@@ -1,0 +1,89 @@
+openapi: 3.0.3
+info:
+  title: ARCHAI Backend API (Scaffold)
+  version: 0.1.0
+  description: Mock-ready, API-key-ready backend for ARCHAI sovereign GLAM workflows.
+servers:
+  - url: http://localhost:8787
+paths:
+  /api/health:
+    get:
+      summary: Service and integration health
+      responses:
+        '200':
+          description: OK
+  /api/search:
+    post:
+      summary: Search collection records (mock/vector mode)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                q: { type: string }
+                limit: { type: integer, minimum: 1, maximum: 100 }
+                dataSource: { type: string, enum: [local_mock, the_met_test, vector] }
+      responses:
+        '200':
+          description: Search results
+  /api/upload/draft:
+    post:
+      summary: Queue ResourceSpace + CA-linked upload metadata draft
+      parameters:
+        - in: header
+          name: x-archai-role
+          schema: { type: string }
+      responses:
+        '201':
+          description: Draft queued
+  /api/vocab/search:
+    get:
+      summary: Search thesaurus terms
+      parameters:
+        - in: query
+          name: q
+          schema: { type: string }
+        - in: query
+          name: type
+          schema: { type: string }
+        - in: query
+          name: category
+          schema: { type: string }
+      responses:
+        '200':
+          description: Term list
+  /api/nfc/tags:
+    get:
+      summary: List NFC tags
+      responses:
+        '200': { description: OK }
+  /api/nfc/pages/{tagId}:
+    get:
+      summary: Render fullscreen-friendly NFC page HTML (prototype)
+      parameters:
+        - in: path
+          name: tagId
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: HTML page
+          content:
+            text/html: {}
+  /api/chat/object:
+    post:
+      summary: Metadata-grounded object chat with hallucination guard + provenance
+      responses:
+        '200': { description: Response generated }
+        '422': { description: Blocked by hallucination prevention }
+  /api/pipeline/nightly-sync:
+    post:
+      summary: Run nightly CA+RS to Qdrant sync pipeline
+      parameters:
+        - in: header
+          name: x-archai-role
+          schema: { type: string }
+      responses:
+        '200': { description: Sync batch result }

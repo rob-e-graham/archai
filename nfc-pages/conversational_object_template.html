@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>ARCHAI NFC Conversational Object Template</title>
+  <style>
+    body { margin: 0; background: #060708; color: #eef2ef; font-family: Georgia, serif; }
+    .shell { max-width: 1200px; margin: 0 auto; padding: 3vw; }
+    .meta { font: 12px/1.4 ui-monospace, monospace; letter-spacing: .18em; text-transform: uppercase; color: #c6d4d0; }
+    h1 { margin: 14px 0; font-size: clamp(2rem, 4vw, 3.75rem); font-weight: 500; }
+    .hero { aspect-ratio: 16/9; border: 1px solid #304040; background: linear-gradient(135deg, #2a3551, #6474c8); }
+    .copy { margin-top: 18px; font: clamp(1rem, 1.7vw, 1.25rem)/1.6 system-ui, sans-serif; }
+    .questions { display: flex; flex-wrap: wrap; gap: 10px; margin: 18px 0; }
+    .chip { border: 1px solid #40484b; padding: 8px 12px; font: 12px ui-monospace, monospace; letter-spacing: .12em; }
+    .chat { border: 1px solid #2f3538; padding: 12px; display: grid; grid-template-columns: 1fr auto; gap: 10px; }
+    input { background: #0d0f11; border: 1px solid #363d40; color: #eef2ef; padding: 10px 12px; }
+    button { border: 1px solid #a8d5d0; background: #bfe9e4; color: #040607; padding: 10px 16px; letter-spacing: .18em; font: 12px ui-monospace, monospace; }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <div class="meta">NFC conversational object · template</div>
+    <h1>Object Title</h1>
+    <div class="meta">Object type · year · gallery location</div>
+    <div class="hero" aria-hidden="true"></div>
+    <p class="copy">This standalone template shows how local HDMI/fullscreen NFC pages can look. Production pages should fetch JSON page models from the ARCHAI backend and POST chat requests to `/api/chat/object`.</p>
+    <div class="questions">
+      <span class="chip">How was this made?</span>
+      <span class="chip">What is known?</span>
+      <span class="chip">What is unknown?</span>
+    </div>
+    <div class="chat">
+      <input placeholder="Ask this work a question" aria-label="Ask this work a question">
+      <button>ASK</button>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FAMTEC Exchange — Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Cormorant+Garamond:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#090909;--surface:#111;--surface2:#181818;--surface3:#202020;
+  --border:#2d2d2d;--border2:#3c3c3c;
+  --text:#f0ece4;--text2:#c0b8af;--text3:#aaa29a;
+  --accent:#b0c87a;--accent2:#8fbcb0;--warn:#c87060;--ok:#7aad8a;--info:#7090c8;
+  --mono:'DM Mono',monospace;--serif:'Cormorant Garamond',serif;--sans:'DM Sans',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;min-height:100vh}
+.header{display:flex;justify-content:space-between;gap:12px;align-items:flex-end;padding:18px 28px 14px;border-bottom:1px solid var(--border)}
+.title{font-family:var(--serif);font-size:1.4rem;letter-spacing:2px}
+.title span{color:var(--accent);font-style:italic}
+.sub{font-family:var(--mono);font-size:.54rem;color:var(--text3);text-transform:uppercase;letter-spacing:2px;margin-top:5px;line-height:1.7}
+.meta{font-family:var(--mono);font-size:.56rem;color:var(--text3);text-align:right;line-height:1.8}
+.top-actions{display:flex;gap:6px;margin-top:6px;justify-content:flex-end}
+.btn{font-family:var(--mono);font-size:.55rem;padding:6px 10px;border:1px solid var(--border2);color:var(--text3);background:transparent;cursor:pointer;text-transform:uppercase;letter-spacing:1px;text-decoration:none}
+.btn:hover{border-color:var(--accent);color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.wrap{display:grid;grid-template-columns:280px 1fr 340px;min-height:calc(100vh - 79px)}
+.left,.main,.right{overflow-y:auto}
+.left{border-right:1px solid var(--border);padding:18px}
+.main{border-right:1px solid var(--border);padding:22px 24px}
+.right{padding:18px}
+.label{font-family:var(--mono);font-size:.56rem;color:var(--text3);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+.banner{border:1px solid rgba(176,200,122,.25);background:rgba(176,200,122,.05);padding:11px 12px;margin-bottom:12px}
+.banner .t{font-family:var(--mono);font-size:.55rem;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:4px}
+.banner .b{font-size:.78rem;color:var(--text2);line-height:1.55}
+.inst{border:1px solid var(--border);background:var(--surface);padding:10px;margin-bottom:6px;cursor:pointer}
+.inst.active{border-color:var(--accent);background:rgba(176,200,122,.05)}
+.inst .n{font-family:var(--serif);font-size:.92rem}
+.inst .m{font-family:var(--mono);font-size:.5rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-top:4px;line-height:1.5}
+.stats{margin-top:12px}
+.stat{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-family:var(--mono);font-size:.55rem;color:var(--text3)}
+.stat span{color:var(--text2)}
+.hero{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;margin-bottom:12px}
+.hero h2{font-family:var(--serif);font-size:1.35rem;font-weight:300}
+.hero p{font-family:var(--mono);font-size:.54rem;color:var(--text3);text-transform:uppercase;letter-spacing:2px;line-height:1.7;margin-top:5px}
+.actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.search{display:flex;border:1px solid var(--border2);background:var(--surface);margin-bottom:9px}
+.search input{flex:1;background:transparent;border:none;outline:none;padding:10px 12px;color:var(--text);font-family:var(--serif);font-style:italic;font-size:.92rem}
+.search button{background:var(--accent);border:none;color:var(--bg);padding:10px 14px;font-family:var(--mono);font-size:.55rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer}
+.chips{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:12px}
+.chip{font-family:var(--mono);font-size:.52rem;padding:3px 7px;border:1px solid var(--border2);color:var(--text3);text-transform:uppercase;letter-spacing:1px;cursor:pointer}
+.chip.active{border-color:var(--accent);color:var(--accent);background:rgba(176,200,122,.07)}
+.feed{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{background:var(--surface);border:1px solid var(--border);padding:12px}
+.card:hover{border-color:var(--border2)}
+.k{font-family:var(--mono);font-size:.48rem;color:var(--text3);text-transform:uppercase;letter-spacing:2px;margin-bottom:5px}
+.card h3{font-family:var(--serif);font-size:.96rem;font-weight:400}
+.meta2{font-family:var(--mono);font-size:.52rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-top:4px;line-height:1.6}
+.body{font-size:.77rem;color:var(--text2);line-height:1.55;margin-top:6px}
+.tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px}
+.tag{font-family:var(--mono);font-size:.47rem;padding:2px 5px;border:1px solid var(--border2);color:var(--text3);text-transform:uppercase}
+.cta{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
+.chat{background:var(--surface);border:1px solid var(--border);padding:12px}
+.chat-head{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:7px}
+.chat-title{font-family:var(--serif);font-size:.95rem}
+.chat-meta{font-family:var(--mono);font-size:.5rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:7px;line-height:1.7}
+.msgs{max-height:320px;overflow:auto;border:1px solid var(--border);background:var(--surface2);padding:8px}
+.msg{padding:7px 0;border-bottom:1px solid var(--border)}
+.msg:last-child{border-bottom:none}
+.who{font-family:var(--mono);font-size:.49rem;color:var(--accent);text-transform:uppercase;letter-spacing:1px}
+.txt{font-size:.75rem;color:var(--text2);line-height:1.5;margin-top:2px}
+.chatrow{display:flex;border:1px solid var(--border2);margin-top:8px}
+.chatrow input{flex:1;background:transparent;border:none;outline:none;padding:9px 10px;color:var(--text);font-family:var(--serif);font-style:italic;font-size:.83rem}
+.chatrow button{border:none;background:transparent;border-left:1px solid var(--border2);color:var(--accent);padding:0 12px;font-family:var(--mono);font-size:.53rem;text-transform:uppercase;letter-spacing:1px;cursor:pointer}
+.note{font-family:var(--mono);font-size:.52rem;color:var(--text3);line-height:1.8}
+@media (max-width: 1100px){
+  .wrap{grid-template-columns:1fr}
+  .left,.main{border-right:none;border-bottom:1px solid var(--border)}
+  .feed{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<header class="header">
+  <div>
+    <div class="title">FAM<span>TEC</span> Exchange</div>
+    <div class="sub">Prototype institution network · sharing / loaning / renting / technician booking · separate service in production</div>
+  </div>
+  <div class="meta">
+    Local prototype page<br>
+    Build v0.1
+    <div class="top-actions">
+      <a class="btn" href="./ARCHAI_v5.html">Back to ARCHAI</a>
+      <a class="btn primary" href="https://github.com/" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+  <aside class="left">
+    <div class="label">Institutions</div>
+    <div id="instList"></div>
+    <div class="stats">
+      <div class="label">Network Stats</div>
+      <div class="stat"><div>Institutions</div><span>18</span></div>
+      <div class="stat"><div>Active listings</div><span>43</span></div>
+      <div class="stat"><div>Open requests</div><span>12</span></div>
+      <div class="stat"><div>Crew bookings</div><span>7</span></div>
+      <div class="stat"><div>Mode</div><span>Prototype local page</span></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <div class="banner">
+      <div class="t">Architecture note</div>
+      <div class="b">This page is local HTML for prototyping the interaction model. In production, FAMTEC should run as a separate online application with its own database, auth, and booking workflows, linked from ARCHAI (not embedded into collection infrastructure data stores).</div>
+    </div>
+    <div class="hero">
+      <div>
+        <h2>Institution Exchange Board</h2>
+        <p>Hardware listings · skill sharing · upcoming exhibition requests · cross-institution coordination</p>
+      </div>
+      <div class="actions">
+        <button class="btn">+ List Hardware</button>
+        <button class="btn">+ Offer Skills</button>
+        <button class="btn">+ Post Request</button>
+      </div>
+    </div>
+    <div class="search">
+      <input id="q" placeholder="Search hardware, skills, institutions, install support, booking needs…">
+      <button onclick="renderFeed()">Search</button>
+    </div>
+    <div class="chips">
+      <div class="chip active" onclick="toggleChip(this)">All</div>
+      <div class="chip" onclick="toggleChip(this)">Loan</div>
+      <div class="chip" onclick="toggleChip(this)">Rental</div>
+      <div class="chip" onclick="toggleChip(this)">Need Skills</div>
+      <div class="chip" onclick="toggleChip(this)">Available Crew</div>
+      <div class="chip" onclick="toggleChip(this)">Install</div>
+      <div class="chip" onclick="toggleChip(this)">AV</div>
+    </div>
+    <div class="feed" id="feed"></div>
+  </main>
+
+  <aside class="right">
+    <div class="label">Institution / User Chat</div>
+    <div class="chat">
+      <div class="chat-head">
+        <div class="chat-title" id="chatTitle">FAMTEC exchange thread</div>
+        <button class="btn">Live Room</button>
+      </div>
+      <div class="chat-meta">Prototype only · production would store conversations in separate FAMTEC service</div>
+      <div class="msgs" id="msgs"></div>
+      <div class="chatrow">
+        <input id="msgIn" placeholder="Message another institution / technician / curator…">
+        <button onclick="sendMsg()">Send</button>
+      </div>
+    </div>
+    <div class="label" style="margin-top:14px">Booking Flow (Prototype)</div>
+    <div class="note">
+      <div>1. Institution posts request (dates, venue, scope, budget).</div>
+      <div>2. Providers reply with crew/hardware availability.</div>
+      <div>3. Confirm booking in FAMTEC service.</div>
+      <div>4. Export job summary to ARCHAI record if needed.</div>
+    </div>
+  </aside>
+</div>
+
+<script>
+const institutions = [
+  {id:'famtec', name:'FAMTEC', city:'Melbourne', focus:'Digital heritage, robotics, media installations'},
+  {id:'acmi', name:'ACMI', city:'Melbourne', focus:'Screen culture, interactive media, AV exhibitions'},
+  {id:'mga', name:'Monash Gallery of Art', city:'Melbourne', focus:'Photography, moving image, sound works'},
+  {id:'sama', name:'South Australian Museum', city:'Adelaide', focus:'Collections digitisation, interpretation systems'}
+];
+const feedItems = [
+  {kind:'loan', title:'2x BrightSign XT players (loan)', org:'ACMI', timing:'10 Mar - 28 Apr', body:'Synchronized two-channel playback; config bundle included.', tags:['loan','av','playback','install']},
+  {kind:'rental', title:'Projection package + alignment support', org:'FAMTEC', timing:'Weekly rates available', body:'Short-throw projectors, mounts and alignment workflow for immersive rooms.', tags:['rental','projection','install','av']},
+  {kind:'need skills', title:'Need browser emulation specialist', org:'FAMTEC', timing:'Exhibition opens in 6 weeks', body:'Legacy net-art display preservation, emulation validation and capture pipeline.', tags:['need skills','preservation','emulation','dev']},
+  {kind:'available crew', title:'2-person install team available', org:'FAMTEC', timing:'April capacity open', body:'Media server commissioning, projection alignment, sensor calibration.', tags:['available crew','install','commissioning','technician']},
+  {kind:'need skills', title:'Ambisonics tuning support wanted', org:'MGA', timing:'Install week 14 Apr', body:'Need calibration and a repeatable setup sheet for staff handover.', tags:['need skills','sound','av','calibration']},
+  {kind:'loan', title:'NFC pilot kit + onboarding docs', org:'FAMTEC', timing:'8-week pilot loan', body:'Tags, kiosk hardware and visitor interpretation setup guide.', tags:['loan','nfc','visitor','pilot']}
+];
+const chats = {
+  famtec:[
+    {who:'FAMTEC / Collections', text:'Seeking install technicians with playback failover experience and documentation handover capacity.'},
+    {who:'FAMTEC / Ops', text:'We can propose a 2-person team and a commissioning checklist. Are weekend hours required?'},
+    {who:'FAMTEC / Curator', text:'Yes, plus documentation suitable for collections records and future reinstall.'}
+  ],
+  acmi:[
+    {who:'ACMI / Exhibitions', text:'BrightSign loan available. We can share firmware details and sync profile exports.'}
+  ],
+  mga:[
+    {who:'MGA / Tech', text:'Need ambisonics calibration support and a maintenance-ready setup sheet.'}
+  ],
+  sama:[
+    {who:'SAMA / Digital', text:'Looking for digitisation workflow support for a seasonal ingest spike.'}
+  ]
+};
+let activeInstitution = 'famtec';
+
+function renderInstitutions(){
+  document.getElementById('instList').innerHTML = institutions.map(i => `
+    <div class="inst ${i.id===activeInstitution?'active':''}" onclick="selectInstitution('${i.id}')">
+      <div class="n">${i.name}</div>
+      <div class="m">${i.city} · ${i.focus}</div>
+    </div>
+  `).join('');
+}
+function selectInstitution(id){ activeInstitution = id; renderInstitutions(); renderChat(); }
+function toggleChip(el){
+  const row = el.parentElement;
+  const txt = el.textContent.trim().toLowerCase();
+  if(txt==='all'){
+    row.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    el.classList.add('active');
+  } else {
+    row.querySelectorAll('.chip').forEach(c=>{ if(c.textContent.trim().toLowerCase()==='all') c.classList.remove('active'); });
+    el.classList.toggle('active');
+    if(!row.querySelector('.chip.active')) row.querySelector('.chip').classList.add('active');
+  }
+  renderFeed();
+}
+function renderFeed(){
+  const q = (document.getElementById('q').value || '').trim().toLowerCase();
+  const active = [...document.querySelectorAll('.chip.active')].map(c=>c.textContent.trim().toLowerCase());
+  const all = active.length===0 || active.includes('all');
+  const filtered = feedItems.filter(item => {
+    const hay = `${item.kind} ${item.title} ${item.org} ${item.timing} ${item.body} ${item.tags.join(' ')}`.toLowerCase();
+    const qOk = !q || hay.includes(q);
+    const cOk = all || active.some(c => hay.includes(c));
+    return qOk && cOk;
+  });
+  document.getElementById('feed').innerHTML = filtered.map(item => `
+    <div class="card">
+      <div class="k">${item.kind}</div>
+      <h3>${item.title}</h3>
+      <div class="meta2">${item.org} · ${item.timing}</div>
+      <div class="body">${item.body}</div>
+      <div class="tags">${item.tags.map(t=>`<div class="tag">${t}</div>`).join('')}</div>
+      <div class="cta">
+        <button class="btn">Open</button>
+        <button class="btn">Message</button>
+        <button class="btn">Book / Enquire</button>
+      </div>
+    </div>
+  `).join('') || `<div class="card"><h3>No matches</h3><div class="body">Try "loan", "projection", "av", "install", or "skills".</div></div>`;
+}
+function renderChat(){
+  const inst = institutions.find(i=>i.id===activeInstitution);
+  document.getElementById('chatTitle').textContent = `${inst.name} · Exchange thread`;
+  const msgs = chats[activeInstitution] || [];
+  const box = document.getElementById('msgs');
+  box.innerHTML = msgs.map(m=>`<div class="msg"><div class="who">${m.who}</div><div class="txt">${m.text}</div></div>`).join('');
+  box.scrollTop = box.scrollHeight;
+}
+function sendMsg(){
+  const input = document.getElementById('msgIn');
+  const text = input.value.trim();
+  if(!text) return;
+  chats[activeInstitution] ||= [];
+  chats[activeInstitution].push({who:'You (prototype)', text});
+  input.value = '';
+  renderChat();
+}
+document.addEventListener('DOMContentLoaded', ()=>{ renderInstitutions(); renderFeed(); renderChat(); });
+</script>
+</body>
+</html>

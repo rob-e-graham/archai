@@ -1,0 +1,24 @@
+{
+  "name": "archai-backend",
+  "version": "0.1.0",
+  "description": "ARCHAI sovereign GLAM backend scaffold (mock-ready, API-key-ready)",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "sync:nightly": "node src/pipeline/runNightlySync.js",
+    "seed:mock": "node src/pipeline/seedMockData.js",
+    "lint:quick": "node -e \"console.log('No linter configured yet')\""
+  },
+  "keywords": ["glam", "museum", "qdrant", "ollama", "collectiveaccess", "resourcespace", "nfc"],
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "morgan": "^1.10.0",
+    "node-cron": "^3.0.3",
+    "zod": "^3.23.8"
+  }
+}
