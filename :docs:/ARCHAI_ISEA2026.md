@@ -50,12 +50,12 @@ ARCHAI sits at the intersection of new media art archiving, fine art practice, a
 | System | Status | Notes |
 | --- | --- | --- |
 | Semantic search (Qdrant + nomic-embed-text) | Operational | 31,204 vectors · local · nightly pipeline |
-| Conversational objects (Ollama / llama3) | Prototype live | Pepper robot reanimated. NFC Morse Key deployed. |
+| Conversational objects (Ollama / llama3) | Prototype live | AI-reactivated hardware deployed. NFC object interfaces live. |
 | NFC Tap-to-Transform | 18 tags active | 12 live · 3 draft · 3 unassigned. Sanity CMS integration. |
 | ARCHAI UI (v0.6.1) | Working prototype | Curator · Upload · Nodel · NFC · Vocab · Visitor · Admin |
 | FAMTEC Exchange | Prototype stage | Institution network · loan / rental / booking. Architecturally separate. |
 | Met Open Access integration | Link + preview | v6 prototype panel. Cross-collection discovery trial. |
-| Hallucination prevention | Framework documented | 5 layers. Morse Key: 10/10 quality, 0 confabulations across 50 tests. |
+| Hallucination prevention | Framework documented | 5 layers. Pilot object: 10/10 quality, 0 confabulations across 50 tests. |
 
 ## 2  The Digital Heritage Access Crisis
 
@@ -89,7 +89,7 @@ ARCHAI proposes a specific inversion of this technique. In the classical memory 
 
 Alongside the memory palace, ancient and Renaissance rhetoric deployed prosopopoeia — the technique of giving voice to absent figures or inanimate objects. Quintilian examined it at length in Institutio Oratoria [17], noting its capacity to render the absent present and the silent articulate. The technique is ancient, cross-cultural, and — as the ARCHAI prototypes demonstrate — structurally suited to a vector database architecture.
 
-ARCHAI’s conversational objects are the computational heirs of prosopopoeia, subject to one constraint the ancient orator did not face. A character in Ovid may testify to whatever the narrative requires. ARCHAI cannot. The Morse Key speaks from its verified archival record and from nowhere else. It has no literary licence. It has what its metadata can truthfully sustain — which, in a well-maintained collection, is still considerable.
+ARCHAI’s conversational objects are the computational heirs of prosopopoeia, subject to one constraint the ancient orator did not face. A character in Ovid may testify to whatever the narrative requires. ARCHAI cannot. Each object speaks from its verified archival record and from nowhere else. It has no literary licence. It has what its metadata can truthfully sustain — which, in a well-maintained collection, is still considerable.
 
 #### 3.2.1  Storage Architecture and the Memory Palace
 
@@ -132,7 +132,7 @@ A third layer, positioned between the archival foundation and the public-facing 
 
 ## 5  Talking to Objects: Metadata-Grounded Conversational AI
 
-ARCHAI’s most immediately visible prototype enables visitors to hold conversations with individual collection objects. An NFC tag affixed to a Morse key from circa 1920 opens a chat interface on the visitor’s device. The key speaks — not as a generic institutional chatbot with contextual knowledge of Morse keys, but as that specific object, drawing on its own curatorially-verified metadata record, with a precisely defined understanding of what it knows and what it does not.
+ARCHAI's most immediately visible prototype enables visitors to hold conversations with individual collection objects. An NFC tag affixed to any object in the collection opens a chat interface on the visitor's device. The object speaks — not as a generic institutional chatbot, but as that specific object, drawing on its own curatorially-verified metadata record, with a precisely defined understanding of what it knows and what it does not.
 
 The mechanism is architectural. Each object runs its own Ollama model instance, configured with a structured system prompt assembled from its validated metadata record. The object’s knowledge is bounded by that record. Equally significant: it is explicitly instructed to acknowledge the boundaries of its knowledge rather than exceed them.
 
@@ -144,13 +144,13 @@ Each object’s metadata record organises its epistemic constraints into four ca
 - Unknown fields  an explicit enumeration of what the object cannot know: manufacturer, original owner, service history, specific messages transmitted. The AI is instructed to acknowledge these gaps directly.
 - Curator-approved statements  pre-authored sentences the object may use verbatim, conveying curatorial authority into the conversation.
 - Prohibited statements  specific claim types the object must not make: named individuals, particular historical events, invented memories.
-### 5.2  Example: The Morse Key
+### 5.2  Example: A Collection Object in Conversation
 
-Object 424 — a Morse key, Western Australia, circa 1920 — operates within a precisely bounded epistemic domain. A visitor asks: “My grandfather used you on the Adelaide railway, right?” A poorly-designed system invents a memory; the visitor leaves with a false one. ARCHAI’s system does not:
+A visitor asks whether a family member once operated a particular object in the collection. A poorly-designed system invents an answer; the visitor leaves with a false memory. ARCHAI's system does not:
 
-> **Validated response:** *My records say I came from Western Australia, though my exact working life is a bit hazy. But your grandfather worked the Adelaide railway? That’s beautiful. He would’ve used a key just like me. Even if it wasn’t me he pressed, we shared that connection. *click-click**
+> **Validated response:** *My records tell me where I came from and how objects like me were used — but I cannot confirm your family member's specific connection to me. What I can say is that people doing exactly that work were part of the same history I belong to. That connection is real, even without a name attached to it.*
 
-The object acknowledges its own epistemic limits, honours the visitor’s connection without fabricating facts, and maintains character throughout. Across 50 pre-deployment test conversations — including deliberate attempts to elicit confabulation — the Morse Key achieved a 10/10 metadata quality score and zero confabulation incidents.
+The object holds its epistemic ground, honours the visitor's connection without fabricating facts, and maintains curatorial character throughout. Across 50 pre-deployment test conversations — including structured attempts to elicit confabulation — the pilot object achieved a 10/10 metadata quality score and zero confabulation incidents.
 
 ### 5.3  Visitor Contribution as Collective Prosopopoeia
 
@@ -160,7 +160,7 @@ This constitutes collective prosopopoeia: the object’s voice built from the ar
 
 ### 5.4  Cross-Object Navigation
 
-At the close of each conversation, objects introduce related items in the collection. The Morse Key names its contemporaries: the Telegraph Sounder it worked alongside, the Semi-Automatic Bug Key that superseded it, the Telephone Switchboard that rendered the entire technology obsolete. Each introduction opens a new conversation. Visitors navigate the collection through the internal logic of the objects rather than the spatial logic of the floor plan.
+At the close of each conversation, objects introduce related items in the collection — contemporaries, successors, the technologies that rendered them obsolete. Each introduction opens a new conversation. Visitors navigate the collection through the internal logic of the objects rather than the spatial logic of the floor plan.
 
 ## 6  Hallucination Prevention: A Five-Layer Framework
 
@@ -228,9 +228,9 @@ Local language models housed in repurposed vintage hardware — a deliberate aes
 
 NFC tags function as the system’s spatial index — each one a locus in the living memory palace, anchoring AI responses to a specific object at a specific location. When a visitor taps, the system resolves exactly which object is being addressed. Voice interaction is available through period-appropriate analogue handsets via Coqui TTS. Sanity CMS manages the public-facing NFC pages, keeping visitor interfaces cleanly decoupled from the collection infrastructure behind them.
 
-### 8.3  Technological Reanimation: Pepper Robot
+### 8.3  Technological Reanimation
 
-A Pepper social robot, whose original manufacturer discontinued cloud services, now runs local language models via Ollama. The robot speaks again — not through external servers but through the collection itself, drawing on the same archival infrastructure that serves every other conversational object in the building. This is functional preservation: not housing the hardware behind glass, but restoring its genuine capacity for interaction through sovereign infrastructure. The robot is simultaneously a collection object, a preservation challenge, and an active artwork. It is also, in a precise sense, the proposition made physical.
+When a manufacturer discontinues cloud services, interactive hardware dies with it — the device physically intact, its capacity for interaction gone. ARCHAI has been used to reverse this: decommissioned interactive works that once required corporate server infrastructure now run entirely on local language models via Ollama, drawing on the same archival infrastructure as every other conversational object in the building. This is functional preservation — not housing hardware behind glass, but restoring its genuine capacity for interaction through sovereign infrastructure. Such works are simultaneously collection objects, preservation challenges, and active artworks.
 
 ### 8.4  ARCHAI Interface (v0.6.1)
 
@@ -246,7 +246,7 @@ For AI artworks and software-dependent works, ARCHAI extends preservation beyond
 
 ARCHAI addresses this through Proxmox VM snapshots: period-appropriate operating system, exact dependency versions, trained models, and documented outputs are preserved together as a reproducible computational environment. For spatial works that cannot be re-executed in situ, VR reconstruction produces experiential documents with explicit fidelity ratings — distinguishing clearly between what has been reconstructed and what remains speculative.
 
-Rinehart and Ippolito argue that preservation strategies must become “medium-independent, translatable into new mediums when their original formats are obsolete.” [2] ARCHAI operationalises this directly. The reanimated Pepper robot is not a simulation of its original behaviour. It is a restoration of the work’s genuine capacity for interaction, running on infrastructure the institution controls, without a cloud dependency that could be deactivated without notice.
+Rinehart and Ippolito argue that preservation strategies must become "medium-independent, translatable into new mediums when their original formats are obsolete." [2] ARCHAI operationalises this directly. Reanimated interactive works are not simulations of their original behaviour. They are restorations of genuine capacity for interaction, running on infrastructure the institution controls, without a cloud dependency that could be deactivated without notice.
 
 ## 10  Cultural Safety Protocols
 
@@ -268,7 +268,7 @@ Finally: ARCHAI is a proposition grounded in a specific institutional, geographi
 
 The framework’s name carries deliberate intent. In Greek philosophy, archai (ἀρχαί) denotes both origins and first principles — the generative forces that determine what comes into being. ARCHAI treats heritage collections as active archai: not inert records of what has occurred, but living sources that continue to generate new understanding through the right kind of technological mediation.
 
-The subtitle’s “reanimation” designates something beyond archival preservation. Defunct systems speak again. Objects recover their interpretive voice. A Pepper robot silenced by a corporate server decommissioning speaks again — through the collection, to visitors who require no knowledge of the technical history to have a genuine encounter with it.
+The subtitle’s “reanimation” designates something beyond archival preservation. Defunct systems speak again. Objects recover their interpretive voice. Hardware silenced by a corporate server decommissioning speaks again — through the collection, to visitors who require no knowledge of the technical history to have a genuine encounter with it.
 
 This project draws on 2,500 years of practice: the memory palaces of Simonides and Cicero, the rhetorical prosopopoeia of Quintilian and Ovid, the archival media theory of Ernst and Kirschenbaum, the data aesthetics of Anadol, and the conversational object proposals proliferating across contemporary museum practice. At every point in this lineage the underlying claim is the same. Stored knowledge has a voice. The question — always — is whether we have built the architecture to let it speak.
 
