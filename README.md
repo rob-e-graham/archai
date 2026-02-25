@@ -1,6 +1,15 @@
 # ARCHAI (Prototype + Backend Scaffold)
 
+![Status](https://img.shields.io/badge/status-v0.1--alpha-blue)
+![Mode](https://img.shields.io/badge/mode-mock--ready%20%2F%20API--key--ready-0a7)
+![License](https://img.shields.io/badge/license-MIT-black)
+
 ARCHAI is a sovereign, open-source GLAM toolkit prototype for metadata-grounded conversational objects, semantic search, NFC interpretation, and institution-controlled AI infrastructure.
+
+Status: `v0.1-alpha` (prototype UI + backend scaffold, local-first, mock-ready / API-key-ready)
+
+Suggested GitHub repository description:
+`Local-first sovereign GLAM toolkit for semantic search, conversational objects, NFC interpretation, and FAMTEC exchange workflows.`
 
 This repository package currently includes:
 
@@ -26,6 +35,24 @@ cd "/Users/robgraham/Desktop/ARCHAI APP"
 
 Then open [http://localhost:8000/ARCHAI_v6.html](http://localhost:8000/ARCHAI_v6.html).
 
+## Screenshots (Add to GitHub README)
+
+Suggested screenshots to add next:
+
+- `ARCHAI_v6` curator search + object detail
+- `ARCHAI_v6` visitor / NFC conversational page preview
+- `ARCHAI_v6` FAMTEC Exchange posting + enquiry workflow
+- `ARCHAI_v6` Upload & Ingest / Admin workflow screens
+
+Example markdown once you export images into `docs/screenshots/`:
+
+```md
+## Screenshots
+![Curator view](docs/screenshots/archai-curator-v6.png)
+![Visitor NFC view](docs/screenshots/archai-visitor-nfc-v6.png)
+![FAMTEC Exchange](docs/screenshots/famtec-exchange-v6.png)
+```
+
 ## Quick Start (Backend scaffold)
 
 ```bash
@@ -46,6 +73,7 @@ API base URL defaults to `http://localhost:8787`.
 - 5-layer hallucination prevention guard + provenance logging structures
 - NFC page models and a local HTML runtime endpoint (`/api/nfc/pages/:tagId`)
 - Documentation for architecture, deployment and data sovereignty approach
+- CHIN-profile vocabulary integration scaffold (`/api/vocab/search?profile=chin`)
 
 ## Next required inputs (API keys / institution config)
 
@@ -59,3 +87,12 @@ API base URL defaults to `http://localhost:8787`.
 
 - This scaffold is intentionally mock-capable so the full flow can be demonstrated before integration credentials are available.
 - Permanent heritage records (CollectiveAccess + ResourceSpace) remain separated from regenerable AI derivative layers (embeddings, caches, chat responses).
+
+## First GitHub Issues (Recommended)
+
+- CollectiveAccess adapter implementation + field mapping
+- ResourceSpace adapter implementation + derivative publishing
+- Qdrant + Ollama production adapters
+- NFC runtime frontend bundle (`nfc-pages/`) + kiosk mode
+- FAMTEC production split (separate service + auth + storage)
+- CHIN vocabulary provider adapters (AAT / Nomenclature / DOCAM)
