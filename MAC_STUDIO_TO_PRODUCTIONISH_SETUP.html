@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ARCHAI Mac Studio Setup Guide</title>
+<style>
+body{margin:0;background:#0b0c0d;color:#f4efe7;font-family:ui-sans-serif,system-ui,sans-serif}
+main{max-width:1100px;margin:0 auto;padding:32px 22px 60px}
+h1{font-size:1.4rem;margin:0 0 8px}
+p{color:#d2c8bd;margin:0 0 16px}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.actions a{color:#06100d;background:#bfe9e4;border:1px solid #bfe9e4;padding:8px 12px;text-decoration:none;font:600 12px/1 ui-monospace,monospace;letter-spacing:.08em;text-transform:uppercase}
+pre{white-space:pre-wrap;word-break:break-word;background:#121416;border:1px solid #2f3538;padding:16px;line-height:1.45;color:#f0ece4;font:14px/1.55 ui-monospace,SFMono-Regular,Menlo,monospace}
+</style>
+</head>
+<body>
+<main>
+<h1>ARCHAI Mac Studio Setup Guide</h1>
+<p>Standalone HTML export of the setup guide for viewing/downloading/sharing.</p>
+<div class="actions">
+<a href="./MAC_STUDIO_TO_PRODUCTIONISH_SETUP.md" download>Download Markdown</a>
+<a href="./ARCHAI_MAC_STUDIO_SETUP_GUIDE.md" download>Download ARCHAI-Named Copy</a>
+</div>
+<pre>
+# ARCHAI Setup Guide: New Mac Studio -&gt; Working Local Stack (with NAS-ready workflow)
+
+This guide is a practical, staged setup document for moving ARCHAI from laptop/prototype development to a local sovereign workstation deployment on a new Mac Studio.
+
+It is written to help you go from:
+
+- new Mac Studio (fresh machine)
+- to ARCHAI frontend + backend running
+- to Qdrant + Ollama local services
+- to ResourceSpace / CollectiveAccess integration prep
+- to NAS-backed media and derivative workflow proof
+
+The goal is not a final production deployment on day one. The goal is a **credible, repeatable local-first architecture** that proves the ARCHAI workflow end to end.
+
+## 0. What you are building (target state)
+
+On the Mac Studio:
+
+- `ARCHAI_v6.html` frontend prototype (served locally)
+- `backend-archai` API + pipeline service
+- Qdrant vector database
+- Ollama local model runtime (embeddings + chat)
+- local file cache for NFC/video playback derivatives
+- logs / provenance / sync batch outputs
+
+On the NAS (when available):
+
+- canonical exports and preservation-related storage support
+- approved visitor playback derivatives and thumbnails
+- pipeline logs / snapshots / backups
+- optional shared media cache for kiosks
+
+## 1. Hardware planning (minimum practical baseline)
+
+## Mac Studio (local compute)
+
+Recommended role:
+- primary ARCHAI dev + local services host
+- pipeline orchestration host
+- local model inference host (Ollama)
+- vector DB host (pilot phase)
+
+## NAS (when purchased)
+
+Recommended role:
+- media cache / playback derivatives
+- DAMS export snapshots
+- pipeline logs + provenance exports
+- Qdrant snapshots/backups (not necessarily live DB first)
+
+## Optional later additions
+
+- dedicated kiosk mini PCs (HDMI displays)
+- separate Qdrant host
+- separate Ollama/GPU host
+- tape backup workflow / offsite backup
+- managed network switch
+- dedicated Wi-Fi access point / router for visitor and ops segmentation
+
+## 1.1 Network hardware to add (recommended)
+
+To properly prove the ARCHAI local-sovereign workflow, add:
+
+- **Managed switch** (Gigabit minimum, 2.5GbE+ preferred)
+- **Router / firewall** (can be existing site router initially)
+- **Wi-Fi access point** (or router Wi-Fi) for visitor/staff testing
+
+Why this matters:
+
+- you can separate ARCHAI services from general internet traffic
+- you can test kiosk/NFC/visitor devices on a local LAN
+- you can prove local service reliability even if internet drops
+- you can simulate production-like network topology
+
+## 1.2 Suggested starter network topology
+
+```text
+Internet
+  |
+[Router / Firewall]
+  |
+[Managed Switch] ---- [Wi-Fi AP]
+  |        |        |        |
+  |        |        |        +-- Visitor phone tests (NFC pages)
+  |        |        +----------- Kiosk / HDMI mini PC(s)
+  |        +-------------------- NAS
+  +----------------------------- Mac Studio (ARCHAI + Qdrant + Ollama, pilot phase)
+```
+
+## 1.3 Recommended network roles (pilot)
+
+- **Mac Studio (wired Ethernet)**:
+  - ARCHAI frontend/backend
+  - Qdrant (pilot)
+  - Ollama (pilot)
+  - pipeline scheduler
+- **NAS (wired Ethernet)**:
+  - media cache / derivatives
+  - logs, snapshots, backups
+- **Kiosk / HDMI devices (wired if possible, Wi-Fi acceptable for pilot)**:
+  - visitor pages / NFC runtimes
+- **Visitor phone tests (Wi-Fi)**:
+  - NFC/mobile page testing
+
+## 1.4 Wi-Fi and local network setup (practical)
+
+Recommended SSIDs (even in pilot mode):
+
+- `ARCHAI-OPS` (staff/tech/admin devices)
+- `ARCHAI-VISITOR` (visitor test devices / NFC phone testing)
+
+If your router/AP supports it, keep them separated:
+
+- `ARCHAI-OPS` can reach backend/Qdrant/NAS
+- `ARCHAI-VISITOR` can reach only frontend/backend public visitor endpoints
+
+If VLANs are available (later/better):
+
+- VLAN 10: Ops / Admin / Dev
+- VLAN 20: Kiosk / Runtime devices
+- VLAN 30: Visitor / test phones
+- VLAN 40: Storage / NAS
+
+You do **not** need VLANs on day one. SSID separation plus basic firewall rules is enough for a credible pilot.
+
+## 1.5 Local hostname and DNS plan (recommended)
+
+As the network matures, define local names:
+
+- `archai.local` -&gt; frontend + backend reverse proxy
+- `api.archai.local` -&gt; backend (optional split)
+- `nas.archai.local` -&gt; NAS admin/storage access
+- `qdrant.local` -&gt; vector DB (if separated later)
+- `ollama.local` -&gt; model runtime (if separated later)
+
+Pilot phase can still use localhost:
+
+- `http://localhost:8000/ARCHAI_v6.html`
+- `http://localhost:8787`
+
+## 1.6 Cabling / reliability notes
+
+- Use **wired Ethernet** for Mac Studio and NAS (strongly recommended)
+- Use wired Ethernet for kiosk devices where possible
+- Put Wi-Fi on a UPS-backed router/switch if possible (later)
+- Label cables and ports (`ARCHAI-MAC`, `ARCHAI-NAS`, `KIOSK-01`, etc.)
+
+These small ops habits make troubleshooting much easier during exhibitions.
+
+## 2. Phase 1: New Mac Studio base setup
+
+## 2.1 Initial macOS setup
+
+1. Complete macOS onboarding
+2. Install system updates
+3. Set computer name (e.g. `archai-studio-01`)
+4. Enable FileVault (recommended)
+5. Create a clear local admin account naming convention
+6. Configure timezone correctly (important for nightly jobs and audit logs)
+
+## 2.2 Basic security and admin settings
+
+- Enable firewall
+- Set screen lock timeout
+- Enable SSH (`System Settings -&gt; General -&gt; Sharing -&gt; Remote Login`) if needed
+- Create a strong local admin password
+- Document machine serial, hostname, OS version in your project notes
+
+## 2.3 Install developer tools
+
+Open Terminal and install Xcode command line tools:
+
+```bash
+xcode-select --install
+```
+
+Install Homebrew (if not already):
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Then install core tools:
+
+```bash
+brew install git node python@3.12 jq rg
+```
+
+Optional but recommended:
+
+```bash
+brew install --cask docker
+brew install caddy
+```
+
+Notes:
+- `rg` (ripgrep) is useful for fast code searches
+- Docker is helpful for Qdrant (and sometimes Qdrant is easiest to run this way)
+- Caddy/Nginx later helps local reverse proxying (`archai.local`)
+
+## 2.4 GitHub access on the new Mac
+
+Generate SSH key (recommended):
+
+```bash
+ssh-keygen -t ed25519 -C "your-email@example.com"
+```
+
+Start agent and add key:
+
+```bash
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+```
+
+Copy public key and add to GitHub:
+
+```bash
+pbcopy &lt; ~/.ssh/id_ed25519.pub
+```
+
+Test:
+
+```bash
+ssh -T git@github.com
+```
+
+## 3. Phase 2: Clone and run ARCHAI locally on the Mac Studio
+
+## 3.1 Clone the repo
+
+Choose a workspace location, e.g.:
+
+```bash
+mkdir -p ~/Projects
+cd ~/Projects
+git clone git@github.com:YOUR-USERNAME/archai.git
+cd archai
+```
+
+## 3.2 Run the frontend prototype
+
+Frontend local static server:
+
+```bash
+./serve_local_archai.sh
+```
+
+Open:
+- `http://localhost:8000/ARCHAI_v6.html`
+
+## 3.3 Run the backend scaffold
+
+```bash
+cd backend-archai
+cp .env.example .env
+npm install
+npm run dev
+```
+
+Open health check:
+- `http://localhost:8787/api/health`
+
+At this stage, the UI and backend should link for:
+- search (mock-backed)
+- object chat (mock-backed)
+- NFC page model sync
+- FAMTEC posts/enquiries/messages (mock runtime state)
+- vocab lookup (CHIN profile scaffold)
+
+## 4. Phase 3: Local services (Qdrant + Ollama)
+
+This phase proves the AI/semantic side on local infrastructure.
+
+## 4.1 Qdrant (vector DB)
+
+## Option A (recommended for speed): Docker
+
+From `backend-archai/examples/`:
+
+```bash
+cd ~/Projects/archai/backend-archai/examples
+docker compose -f docker-compose.local.yml up -d qdrant
+```
+
+Qdrant default URL:
+- `http://localhost:6333`
+
+## Option B: direct binary/manual install
+
+Use if you want native service management later, but Docker is faster for pilot testing.
+
+## 4.2 Ollama (local model runtime)
+
+Install Ollama (Mac app or CLI per your preference).
+
+Then pull models:
+
+```bash
+ollama pull nomic-embed-text
+ollama pull llama3.2
+```
+
+Test:
+
+```bash
+curl http://localhost:11434/api/tags
+```
+
+## 4.3 Configure backend `.env`
+
+In `backend-archai/.env` set:
+
+```env
+QDRANT_URL=http://localhost:6333
+OLLAMA_BASE_URL=http://localhost:11434
+OLLAMA_EMBED_MODEL=nomic-embed-text
+OLLAMA_CHAT_MODEL=llama3.2
+```
+
+The current backend adapters are scaffolded and mock-capable. Real Qdrant/Ollama adapter implementation is a next step, but this config gets the machine ready.
+
+## 5. Phase 4: Local folder layout (before NAS arrives)
+
+Set up a clean local storage layout on the Mac Studio so migrating to NAS later is easy.
+
+Recommended local path root:
+
+```bash
+mkdir -p ~/ARCHAI_DATA/{media-cache,pipeline-logs,qdrant-snapshots,uploads,tmp,exports}
+```
+
+Use these categories:
+
+- `media-cache/` -&gt; visitor-safe derivatives (MP4, thumbs, posters)
+- `pipeline-logs/` -&gt; sync logs, batch JSON outputs, provenance exports
+- `qdrant-snapshots/` -&gt; vector DB snapshots/backups
+- `uploads/` -&gt; ingest staging
+- `exports/` -&gt; CA/RS exports for testing and reproducibility
+
+Update backend `.env`:
+
+```env
+MEDIA_CACHE_DIR=/Users/YOUR_USER/ARCHAI_DATA/media-cache
+MEDIA_STREAM_MODE=local-cache
+```
+
+## 6. Phase 5: NFC visitor pages + local media playback proof
+
+Goal: prove that NFC/visitor pages can play media locally without relying on cloud services.
+
+## 6.1 Use the backend published media endpoints
+
+The backend already supports:
+- `GET /api/media/published`
+- `GET /api/media/published/:mediaId/manifest`
+- `GET /api/media/published/:mediaId/stream` (local cache MP4/audio byte-range streaming)
+
+## 6.2 Place a test video in the local cache
+
+For the mock `Signal Decay` object, use:
+
+```bash
+mkdir -p ~/ARCHAI_DATA/media-cache
+cp /path/to/test.mp4 ~/ARCHAI_DATA/media-cache/pub_famtec_2019_0051.mp4
+```
+
+Then in `ARCHAI_v6.html` visitor view, the app can use the backend media manifest and attempt playback through the local stream endpoint.
+
+## 6.3 HDMI / kiosk proof (later same phase)
+
+When ready:
+- connect display via HDMI
+- open browser fullscreen to `http://localhost:8000/ARCHAI_v6.html` (or future `nfc-pages` bundle)
+- prove local playback, local chat, local data path
+
+## 7. Phase 6: NAS setup (when you get it)
+
+The NAS is where the ARCHAI argument becomes much more convincing.
+
+## 7.1 NAS objectives (ARCHAI proof)
+
+- show local media storage + playback derivatives
+- show backup/snapshot workflow
+- show separation of canonical vs derivative layers
+- show recoverability (rebuild vectors from local sources)
+
+## 7.2 Recommended NAS folder structure
+
+Create top-level structure:
+
+- `ARCHAI/heritage/`
+- `ARCHAI/dams-derivatives/`
+- `ARCHAI/nfc-cache/`
+- `ARCHAI/pipeline/`
+- `ARCHAI/vector/`
+- `ARCHAI/backups/`
+
+Suggested meaning:
+
+- `heritage/` -&gt; canonical exports, reference docs, controlled source packages
+- `dams-derivatives/` -&gt; RS web derivatives / visitor-safe media
+- `nfc-cache/` -&gt; local playback cache for kiosks if separated
+- `pipeline/` -&gt; sync logs, batch reports, provenance exports
+- `vector/` -&gt; Qdrant snapshots and vector exports
+- `backups/` -&gt; config backups, release snapshots
+
+## 7.3 Mount NAS on macOS
+
+Use SMB or NFS (institution preference).
+
+Example mount point:
+
+```bash
+mkdir -p /Volumes/ARCHAI_NAS
+```
+
+Mount via Finder (`Go -&gt; Connect to Server`) or scripted mount later.
+
+## 7.4 Migrate local paths to NAS-backed paths
+
+Update `.env` progressively:
+
+```env
+MEDIA_CACHE_DIR=/Volumes/ARCHAI_NAS/ARCHAI/nfc-cache/media-cache
+```
+
+Do this only after testing local-path behavior first.
+
+## 8. Phase 7: CollectiveAccess + ResourceSpace integration prep
+
+Before writing live adapter code, collect:
+
+## 8.1 CollectiveAccess details needed
+
+- base URL
+- auth method (API key / user+pass / token)
+- endpoint path(s) for object search / detail / modified-since
+- sample JSON payloads
+- field names for:
+  - object ID (`idno`)
+  - title
+  - type/classification
+  - description
+  - materials/technique
+  - location
+  - restrictions
+  - curatorial text
+  - modified timestamp
+
+## 8.2 ResourceSpace details needed
+
+- base URL
+- API user + private key
+- custom field IDs
+- exact CA linkage field (critical)
+- metadata fields for rights/access
+- derivative availability fields / URLs
+- sample JSON from `do_search` and metadata calls
+
+## 8.3 First live integration strategy (recommended)
+
+1. Implement ResourceSpace asset metadata fetch + CA link mapping
+2. Implement CollectiveAccess object metadata fetch
+3. Join on CA object ID / agreed linkage field
+4. Run incremental pipeline on a small subset first (5–20 records)
+
+## 9. Phase 8: Vector pipeline proof (local sovereign workflow)
+
+The goal here is to prove the architectural claim, not just “search works.”
+
+## 9.1 Proof steps
+
+1. Pull a small real metadata set (CA + RS)
+2. Normalize into ARCHAI object payload
+3. Apply cultural safety gate
+4. Build embedding text
+5. Generate embeddings locally
+6. Upsert into Qdrant locally
+7. Search locally from `ARCHAI_v6` via backend
+
+## 9.2 Demonstration script (conceptually)
+
+- “This metadata comes from local CA + RS”
+- “This media derivative is served from local cache/NAS”
+- “This chat response is local + bounded”
+- “If derivative layer is deleted, it is rebuildable from source layer”
+
+That is the ARCHAI argument in practice.
+
+## 10. Phase 9: Persistence (replace in-memory backend state)
+
+Current backend runtime stores many things in memory (fine for prototype).
+
+Next persistence targets:
+
+- FAMTEC institutions/posts/messages/enquiries
+- uploads
+- workflows
+- admin audit
+- webhook events
+- provenance logs
+
+Recommended progression:
+
+1. SQLite (fastest local proof)
+2. Postgres (later production-ish local service)
+
+## 11. Phase 10: VM preservation environments
+
+This can happen in parallel with data integration.
+
+Use the Mac Studio to host/pilot:
+
+- legacy browser VMs
+- old OS environments for specific works
+- documented emulation snapshots
+
+Key rule:
+- treat VMs as preservation assets linked in ARCHAI records, not hidden technical artifacts
+
+Document each VM with:
+
+- host requirements
+- guest OS version
+- software/runtime versions
+- I/O dependencies
+- known issues
+- checksum / snapshot date
+
+## 12. Networking and local hostnames (recommended)
+
+For a more “institutional” feel, add local names later:
+
+- `archai.local` -&gt; frontend/backend reverse proxy
+- `qdrant.local`
+- `ollama.local`
+
+During pilot phase, localhost is fine:
+
+- frontend: `http://localhost:8000/ARCHAI_v6.html`
+- backend: `http://localhost:8787`
+- qdrant: `http://localhost:6333`
+- ollama: `http://localhost:11434`
+
+## 12.1 Network upgrade path (from pilot to stronger local deployment)
+
+1. `localhost` on Mac Studio only (fastest start)
+2. Mac Studio + NAS on same switch, wired
+3. Add Wi-Fi AP for visitor/mobile testing
+4. Add kiosk devices on same local network
+5. Add local DNS / reverse proxy (`archai.local`)
+6. Add VLAN/ACL segmentation if institution/network supports it
+
+## 13. Backup and recovery baseline (important early)
+
+Even in prototype phase, test recoverability.
+
+## 13.1 What to back up
+
+- repo (`archai`)
+- backend `.env` (securely, not in git)
+- local data folders (`~/ARCHAI_DATA/...`)
+- Qdrant snapshots
+- exported pipeline logs/provenance
+
+## 13.2 Recovery drills (recommended)
+
+Try these once the stack is stable:
+
+1. Delete cached derivative file -&gt; restore from NAS copy
+2. Clear vector index -&gt; rerun pipeline
+3. Rebuild backend on clean machine from repo + `.env` + data mounts
+
+This proves the “regenerable derivative layer” claim in a concrete way.
+
+## 14. Suggested implementation timeline (realistic)
+
+## Session 1 (Mac Studio day)
+
+- base machine setup
+- clone repo
+- frontend + backend running
+- Qdrant + Ollama installed
+- local paths created
+
+## Session 2
+
+- media cache playback proof for visitor/NFC page
+- admin/pipeline triggers tested locally
+- NAS planning + folder policy finalized
+
+## Session 3 (NAS day)
+
+- mount NAS
+- migrate media cache + logs paths
+- test playback from NAS-backed cache
+- test Qdrant snapshot export to NAS
+
+## Session 4+
+
+- CA/RS real adapters
+- first real dataset subset
+- Qdrant real upsert/search
+- CHIN provider adapters
+
+## 15. Checklist (copy/paste)
+
+## Machine setup
+
+- [ ] macOS updated
+- [ ] Xcode command line tools installed
+- [ ] Homebrew installed
+- [ ] Git / Node / Python / rg installed
+- [ ] SSH key added to GitHub
+
+## ARCHAI local stack
+
+- [ ] Repo cloned on Mac Studio
+- [ ] Frontend running (`serve_local_archai.sh`)
+- [ ] Backend running (`npm run dev`)
+- [ ] `/api/health` responds
+- [ ] `ARCHAI_v6.html` connects to backend
+
+## Local AI/vector services
+
+- [ ] Qdrant running
+- [ ] Ollama running
+- [ ] Models pulled (`nomic-embed-text`, `llama3.2`)
+
+## Storage + media
+
+- [ ] Local `ARCHAI_DATA` folders created
+- [ ] `MEDIA_CACHE_DIR` configured
+- [ ] Test MP4 placed in cache
+- [ ] Visitor page local video playback tested
+
+## NAS (when available)
+
+- [ ] NAS folder structure created
+- [ ] NAS mounted on Mac Studio
+- [ ] `MEDIA_CACHE_DIR` moved/tested on NAS path
+- [ ] Qdrant snapshots saved to NAS
+- [ ] Pipeline logs/provenance saved to NAS
+
+## Integrations
+
+- [ ] CA API details collected
+- [ ] RS API details + field IDs collected
+- [ ] CA-RS linkage field confirmed
+- [ ] First real adapter implementation started
+
+## 16. Where this setup connects to existing docs
+
+- Architecture: `backend-archai/docs/ARCHITECTURE.md`
+- Local sovereign deployment: `backend-archai/docs/DEPLOYMENT_LOCAL_SOVEREIGN.md`
+- Pipeline flow: `backend-archai/docs/DATA_PIPELINE_RS_CA_QDRANT.md`
+- NFC runtime: `backend-archai/docs/NFC_RUNTIME.md`
+- Operating model baseline: `backend-archai/docs/OPERATING_MODEL_BASELINE.md`
+- FAMTEC workflows: `backend-archai/docs/FAMTEC_EXCHANGE_WORKFLOWS.md`
+- CHIN vocab integration: `backend-archai/docs/CHIN_VOCAB_INTEGRATION.md`
+
+## 17. What to ask for help with (recommended)
+
+When you are ready, the highest-value information to bring into the next setup session is:
+
+1. CollectiveAccess API sample responses
+2. ResourceSpace API sample responses + custom field IDs
+3. NAS model + protocol choice (SMB/NFS) + folder plan
+4. Which first real collection subset to ingest (5–20 records)
+
+That will let ARCHAI move from scaffold/prototype into a genuine local sovereign proof-of-workflow.
+</pre>
+</main>
+</body>
+</html>
