@@ -248,7 +248,7 @@ async function main() {
 
     const relatedHtml = relatedIndices.slice(0, 4).map(ri => {
       const rp = allObjects[ri].payload;
-      const rThumb = rp.media_thumbnail || '';
+      const rThumb = rp.media_medium || rp.media_thumbnail || '';
       const rTitle = rp.title || 'Object';
       const rReg = rp.registration_number || '';
       const rNfc = allObjects[ri].nfcCode;
