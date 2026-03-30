@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>ARCHAI — Connect to Exhibition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080808;
+  --surface: #101010;
+  --border: #1e1e1e;
+  --text: #e8e4dc;
+  --text2: #a09890;
+  --text3: #5a5450;
+  --accent: #c8a96e;
+  --accent2: #8fbcb0;
+  --mono: 'DM Mono', monospace;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--serif);
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  overflow: hidden;
+}
+
+/* Subtle grain overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+.portal {
+  position: relative;
+  z-index: 1;
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+}
+
+.logo {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 2.4rem;
+  letter-spacing: 12px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  animation: fadeIn 1s ease both;
+}
+.logo span { font-style: italic; color: var(--accent); }
+
+.subtitle {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  color: var(--text3);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 48px;
+  animation: fadeIn 1s ease 0.2s both;
+}
+
+.welcome {
+  font-family: var(--serif);
+  font-size: 1.4rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text2);
+  line-height: 1.6;
+  margin-bottom: 32px;
+  animation: fadeIn 0.8s ease 0.4s both;
+}
+
+.info-block {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 20px;
+  margin-bottom: 24px;
+  text-align: left;
+  animation: fadeIn 0.8s ease 0.6s both;
+}
+
+.info-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+
+.info-row {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--text2);
+  line-height: 2;
+}
+.info-row span { color: var(--accent); }
+
+.connect-btn {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 16px;
+  animation: fadeIn 0.8s ease 0.8s both;
+}
+.connect-btn:active { transform: scale(0.98); background: #d9bc85; }
+
+.skip-link {
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  color: var(--text3);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.15s;
+  animation: fadeIn 0.8s ease 1s both;
+}
+.skip-link:active { color: var(--accent); }
+
+.status {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  color: var(--text3);
+  margin-top: 24px;
+  letter-spacing: 1px;
+  animation: fadeIn 0.8s ease 1.2s both;
+}
+.status .dot {
+  display: inline-block;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--accent2);
+  margin-right: 5px;
+  animation: pulse 2s ease infinite;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px;
+  text-align: center;
+  font-family: var(--mono);
+  font-size: 0.44rem;
+  color: var(--text3);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
+}
+</style>
+</head>
+<body>
+
+<div class="portal">
+  <div class="logo">ARC<span>H</span>AI</div>
+  <div class="subtitle">Semantic Infrastructure for Cultural Memory</div>
+
+  <div class="welcome">
+    Welcome to the exhibition.<br>
+    Connect to explore the collection.
+  </div>
+
+  <div class="info-block">
+    <div class="info-label">Exhibition Network</div>
+    <div class="info-row">
+      Network: <span>ARCHAI-Exhibition</span><br>
+      Access: <span>Open · no password required</span><br>
+      Data: <span>Local only · nothing leaves this building</span>
+    </div>
+  </div>
+
+  <button class="connect-btn" onclick="handleConnect()">
+    Connect &amp; Continue
+  </button>
+
+  <a href="#" class="skip-link" onclick="handleSkip(event)">
+    Already connected? Tap to continue →
+  </a>
+
+  <div class="status">
+    <span class="dot"></span>
+    Exhibition network active · all objects available
+  </div>
+</div>
+
+<div class="footer">FAMTEC · RMIT · Museums Victoria · CC BY 4.0</div>
+
+<script>
+// ── CONFIG ──────────────────────────────────────────
+// Set this to the object page URL passed via NFC redirect
+// The NFC tag URL format: http://archai.local/portal.html?next=NFC001
+// After connecting, redirects to: http://archai.local/v/NFC001.html
+const ARCHAI_HOST = 'http://archai.local';  // Change to your LAN IP if needed
+
+function getRedirectURL() {
+  const params = new URLSearchParams(window.location.search);
+  const next = params.get('next') || params.get('tag') || '';
+  if (next) return `${ARCHAI_HOST}/v/${next}.html`;
+  return `${ARCHAI_HOST}/v/`;  // Fallback to visitor index
+}
+
+function handleConnect() {
+  // In a real captive portal this would trigger the WiFi auth
+  // For prototype: just redirect to the object page
+  const btn = document.querySelector('.connect-btn');
+  btn.textContent = 'CONNECTING…';
+  btn.style.opacity = '0.6';
+
+  setTimeout(() => {
+    window.location.href = getRedirectURL();
+  }, 800);
+}
+
+function handleSkip(e) {
+  e.preventDefault();
+  window.location.href = getRedirectURL();
+}
+</script>
+</body>
+</html>

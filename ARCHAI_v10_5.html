@@ -1,0 +1,2051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARCHAI v1.0 — Sovereign Semantic Heritage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0a0a0a; --surface:#111111; --surface2:#181818; --surface3:#202020;
+  --border:#252525; --border2:#303030;
+  --text:#e8e4dc; --text1:#e8e4dc; --text2:#a09890; --text3:#5a5450;
+  --accent:#c8a96e; --accent2:#8fbcb0; --accent3:#9b8fbf; --accent4:#b0c87a;
+  --warn:#c87060; --ok:#7aad8a; --info:#7090c8; --nodel:#e8a840;
+  --nfc:#7ecfcf;
+  --mono:'DM Mono',monospace; --serif:'Cormorant Garamond',serif; --sans:'DM Sans',sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:300;min-height:100vh;overflow-x:hidden;}
+
+/* HEADER */
+.header{display:grid;grid-template-columns:1fr auto;align-items:end;padding:22px 48px 16px;border-bottom:1px solid var(--border);position:sticky;top:0;background:var(--bg);z-index:200;}
+.wordmark-row{display:flex;align-items:center;gap:14px;}
+.wordmark{font-family:var(--serif);font-weight:300;font-size:1.4rem;letter-spacing:8px;text-transform:uppercase;}
+.wordmark span{font-style:italic;color:var(--accent);}
+.header-sub{font-family:var(--mono);font-size:0.55rem;color:var(--text3);letter-spacing:2px;text-transform:uppercase;margin-top:3px;}
+.header-meta{font-family:var(--mono);font-size:0.62rem;color:var(--text3);text-align:right;line-height:2;}
+.header-meta b{color:var(--text2);}
+.header-links{display:flex;gap:8px;margin-top:4px;justify-content:flex-end;}
+.header-link{font-family:var(--mono);font-size:0.52rem;padding:3px 8px;border:1px solid var(--border2);color:var(--text3);text-decoration:none;text-transform:uppercase;letter-spacing:1px;transition:all 0.12s;}
+.header-link:hover{border-color:var(--accent);color:var(--accent);}
+.role-select-wrap{display:flex;align-items:center;gap:8px;margin-top:6px;justify-content:flex-end;}
+.role-select-label{font-family:var(--mono);font-size:0.52rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);}
+.role-select{background:var(--surface);color:var(--text2);border:1px solid var(--border2);padding:5px 8px;font-family:var(--mono);font-size:0.58rem;outline:none;max-width:190px;}
+.role-select:focus{border-color:var(--accent);}
+.role-note{font-size:0.5rem;color:var(--text3);letter-spacing:1px;text-transform:uppercase;font-family:var(--mono);margin-top:4px;text-align:right;}
+
+/* INFRA BAR */
+.infra-bar{display:flex;border-bottom:1px solid var(--border);font-family:var(--mono);font-size:0.62rem;overflow-x:auto;}
+.infra-item{flex:1;min-width:110px;padding:9px 14px;border-right:1px solid var(--border);display:flex;align-items:center;gap:7px;cursor:pointer;transition:background 0.15s;white-space:nowrap;}
+.infra-item:last-child{border-right:none;}
+.infra-item:hover{background:var(--surface);}
+.infra-item a{color:inherit;text-decoration:none;}
+.dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
+.dot-ok{background:var(--ok);animation:blink 3s ease infinite;}
+.dot-warn{background:var(--nodel);animation:blink 1.5s ease infinite;}
+.dot-err{background:var(--warn);animation:blink 0.8s ease infinite;}
+.dot-idle{background:var(--info);}
+.dot-nfc{background:var(--nfc);animation:blink 2.5s ease infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.infra-name{color:var(--text3);text-transform:uppercase;letter-spacing:1px;font-size:0.56rem;}
+.infra-val{color:var(--text2);margin-left:auto;font-size:0.58rem;}
+
+/* TABS */
+.tabs{display:flex;border-bottom:1px solid var(--border);padding:0 48px;background:var(--bg);position:sticky;top:73px;z-index:100;overflow-x:auto;}
+.tab{font-family:var(--mono);font-size:0.63rem;letter-spacing:2px;text-transform:uppercase;color:var(--text3);padding:13px 16px 11px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.2s;display:flex;align-items:center;gap:7px;white-space:nowrap;}
+.tab:hover{color:var(--text2);}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent);}
+.tab.t-nodel.active{color:var(--nodel);border-bottom-color:var(--nodel);}
+.tab.t-vocab.active{color:var(--accent3);border-bottom-color:var(--accent3);}
+.tab.t-nfc.active{color:var(--nfc);border-bottom-color:var(--nfc);}
+.tab.t-visitor.active{color:var(--accent2);border-bottom-color:var(--accent2);}
+.tab.t-objdetail.active{color:var(--nodel);border-bottom-color:var(--nodel);}
+.tab-dot{width:5px;height:5px;border-radius:50%;background:currentColor;opacity:0.7;}
+.tab-count{font-size:0.52rem;background:var(--surface2);padding:1px 5px;border-radius:2px;}
+.tab.restricted{opacity:0.32;pointer-events:none;}
+.tab.t-famtec.active{color:var(--accent4);border-bottom-color:var(--accent4);}
+
+/* PANELS */
+.panel{display:none;}.panel.active{display:block;}
+
+/* SHARED */
+.section-label{font-family:var(--mono);font-size:0.56rem;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:9px;}
+.btn{font-family:var(--mono);font-size:0.6rem;padding:7px 13px;border:1px solid var(--border2);color:var(--text3);cursor:pointer;transition:all 0.12s;text-transform:uppercase;letter-spacing:1px;background:transparent;text-decoration:none;display:inline-block;}
+.btn:hover{border-color:var(--accent);color:var(--accent);}
+.btn.primary{background:var(--accent);color:var(--bg);border-color:var(--accent);}
+.btn.primary:hover{background:#d9bc85;}
+.btn.ok{background:var(--ok);color:var(--bg);border-color:var(--ok);}
+.btn.nfc{background:var(--nfc);color:var(--bg);border-color:var(--nfc);}
+.btn.warn{border-color:rgba(200,112,96,0.5);color:var(--warn);}
+.sb-title{font-family:var(--mono);font-size:0.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:12px;}
+.sb-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--border);font-family:var(--mono);font-size:0.62rem;}
+.sb-row-name{color:var(--text2);}
+
+/* CURATOR PANEL */
+.curator-layout{display:grid;grid-template-columns:1fr 310px;min-height:calc(100vh - 132px);}
+.main-col{border-right:1px solid var(--border);padding:30px 42px;}
+.sidebar{padding:22px 22px;overflow-y:auto;max-height:calc(100vh - 132px);}
+.search-bar{display:flex;border:1px solid var(--border2);background:var(--surface);transition:border-color 0.2s;margin-bottom:9px;}
+.search-bar:focus-within{border-color:var(--accent);}
+.search-input{flex:1;padding:12px 15px;background:transparent;border:none;outline:none;color:var(--text);font-family:var(--serif);font-size:1rem;font-style:italic;}
+.search-input::placeholder{color:var(--text3);font-style:italic;}
+.search-btn{padding:12px 18px;background:var(--accent);color:var(--bg);border:none;cursor:pointer;font-family:var(--mono);font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;}
+.pill-row{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:18px;}
+.pill{font-family:var(--mono);font-size:0.56rem;letter-spacing:1px;text-transform:uppercase;padding:4px 8px;border:1px solid var(--border2);color:var(--text3);cursor:pointer;transition:all 0.12s;user-select:none;}
+.pill:hover{border-color:var(--text3);color:var(--text2);}
+.pill.active{border-color:var(--accent);color:var(--accent);background:rgba(200,169,110,0.07);}
+.filter-row{display:flex;gap:18px;margin-bottom:22px;flex-wrap:wrap;align-items:center;}
+.filter-group{display:flex;align-items:center;gap:5px;}
+.fg-label{font-family:var(--mono);font-size:0.53rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);}
+.chip{font-family:var(--mono);font-size:0.58rem;letter-spacing:1px;text-transform:uppercase;padding:3px 7px;border:1px solid var(--border2);color:var(--text3);cursor:pointer;transition:all 0.12s;}
+.chip:hover{color:var(--text2);border-color:var(--text3);}
+.chip.active{color:var(--text);border-color:var(--text3);background:var(--surface2);}
+.results-header{font-family:var(--mono);font-size:0.56rem;color:var(--text3);text-transform:uppercase;letter-spacing:2px;padding:9px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.r-acts{display:flex;gap:6px;}
+
+/* Result cards */
+.result-card{display:grid;grid-template-columns:88px 1fr auto;gap:14px;padding:14px 0;border-bottom:1px solid var(--border);cursor:pointer;transition:all 0.12s;align-items:start;}
+.result-card:hover{background:var(--surface);margin:0 -14px;padding:14px 14px;}
+.thumb{width:88px;height:63px;background:var(--surface2);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--mono);font-size:0.48rem;color:var(--text3);text-align:center;flex-shrink:0;overflow:hidden;position:relative;}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+.thumb-live{position:absolute;top:3px;right:3px;width:5px;height:5px;border-radius:50%;background:var(--ok);animation:blink 2s ease infinite;z-index:1;}
+.r-title{font-family:var(--serif);font-size:0.98rem;color:var(--text);margin-bottom:3px;}
+.r-meta{font-family:var(--mono);font-size:0.56rem;color:var(--text3);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
+.r-summary{font-size:0.78rem;color:var(--text2);line-height:1.6;font-style:italic;}
+.tag-row{display:flex;gap:3px;flex-wrap:wrap;margin-top:6px;}
+.tag{font-family:var(--mono);font-size:0.5rem;padding:2px 5px;border:1px solid var(--border2);color:var(--text3);text-transform:uppercase;}
+.tag.mv{border-color:rgba(143,188,176,0.3);color:rgba(143,188,176,0.7);}
+.tag.aat{border-color:rgba(200,169,110,0.3);color:rgba(200,169,110,0.7);}
+.tag.nfc-tag{border-color:rgba(126,207,207,0.4);color:rgba(126,207,207,0.8);}
+.score{font-family:var(--mono);font-size:0.68rem;color:var(--accent);text-align:right;}
+.score-label{font-size:0.5rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;}
+.node-st{font-family:var(--mono);font-size:0.53rem;margin-top:4px;text-align:right;display:flex;align-items:center;gap:4px;justify-content:flex-end;}
+
+/* Sidebar */
+.sb-section{margin-bottom:20px;padding-bottom:18px;border-bottom:1px solid var(--border);}
+.sb-section:last-child{border-bottom:none;}
+.pipe-info{font-family:var(--mono);font-size:0.58rem;color:var(--text3);line-height:2.1;}
+.pipe-info span{color:var(--ok);}
+.pipe-btn{width:100%;margin-top:7px;padding:6px;background:transparent;border:1px solid var(--border2);color:var(--text3);font-family:var(--mono);font-size:0.56rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.12s;}
+.pipe-btn:hover{border-color:var(--accent);color:var(--accent);}
+
+/* Loading skeleton */
+.skeleton{background:linear-gradient(90deg,var(--surface2) 25%,var(--surface3) 50%,var(--surface2) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:2px;}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.skel-card{padding:14px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:88px 1fr auto;gap:14px;}
+.skel-thumb{width:88px;height:63px;}
+.skel-line{height:10px;margin-bottom:8px;width:80%;}
+.skel-line.short{width:50%;}
+.skel-line.xs{width:30%;height:8px;}
+
+/* NFC MANAGEMENT PANEL */
+.nfc-mgmt-layout{display:grid;grid-template-columns:300px 1fr 340px;min-height:calc(100vh - 132px);}
+.nfc-list-col{border-right:1px solid var(--border);padding:24px 20px;overflow-y:auto;}
+.nfc-editor-col{padding:28px 36px;border-right:1px solid var(--border);overflow-y:auto;}
+.nfc-preview-col{padding:24px 16px;overflow-y:auto;display:flex;flex-direction:column;align-items:center;}
+.nfc-list-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;}
+.nfc-search{width:100%;padding:8px 10px;background:var(--surface);border:1px solid var(--border2);color:var(--text);font-family:var(--mono);font-size:0.65rem;outline:none;margin-bottom:10px;}
+.nfc-search::placeholder{color:var(--text3);}
+.nfc-search:focus{border-color:var(--nfc);}
+.nfc-filter-row{display:flex;gap:5px;margin-bottom:12px;flex-wrap:wrap;}
+.nfc-fchip{font-family:var(--mono);font-size:0.54rem;padding:3px 7px;border:1px solid var(--border2);color:var(--text3);cursor:pointer;transition:all 0.12s;text-transform:uppercase;letter-spacing:1px;}
+.nfc-fchip:hover{border-color:var(--nfc);color:var(--nfc);}
+.nfc-fchip.active{border-color:var(--nfc);color:var(--nfc);background:rgba(126,207,207,0.07);}
+.nfc-card{padding:11px 13px;border:1px solid var(--border);margin-bottom:6px;cursor:pointer;transition:all 0.15s;position:relative;}
+.nfc-card:hover{border-color:var(--border2);background:var(--surface);}
+.nfc-card.active{border-color:var(--nfc);background:rgba(126,207,207,0.05);}
+.nfc-card.unassigned{opacity:0.55;}
+.nfc-card-header{display:flex;justify-content:space-between;align-items:start;margin-bottom:4px;}
+.nfc-code{font-family:var(--mono);font-size:0.72rem;color:var(--nfc);letter-spacing:2px;text-transform:uppercase;}
+.nfc-status-badge{font-family:var(--mono);font-size:0.5rem;padding:2px 6px;border:1px solid currentColor;text-transform:uppercase;letter-spacing:1px;}
+.nfc-status-badge.live{color:var(--ok);}
+.nfc-status-badge.unassigned{color:var(--text3);}
+.nfc-status-badge.draft{color:var(--accent);}
+.nfc-status-badge.new{color:var(--nfc);}
+.nfc-object-name{font-family:var(--serif);font-size:0.9rem;color:var(--text2);margin-bottom:2px;}
+.nfc-object-id{font-family:var(--mono);font-size:0.54rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;}
+.nfc-location{font-family:var(--mono);font-size:0.54rem;color:var(--text3);margin-top:4px;display:flex;align-items:center;gap:5px;}
+.nfc-location::before{content:'📍';font-size:0.6rem;}
+.nfc-scans{font-family:var(--mono);font-size:0.52rem;color:var(--text3);margin-top:3px;}
+.editor-header{display:flex;justify-content:space-between;align-items:start;margin-bottom:22px;}
+.editor-nfc-code{font-family:var(--mono);font-size:1.2rem;color:var(--nfc);letter-spacing:4px;}
+.editor-actions{display:flex;gap:7px;}
+.editor-section{margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid var(--border);}
+.editor-section:last-child{border-bottom:none;}
+.editor-section-title{font-family:var(--mono);font-size:0.58rem;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;}
+.assigned-object{background:var(--surface2);border:1px solid var(--border2);padding:14px;margin-bottom:10px;display:grid;grid-template-columns:70px 1fr auto;gap:12px;align-items:center;}
+.ao-thumb{width:70px;height:50px;background:var(--surface3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:0.45rem;color:var(--text3);text-align:center;overflow:hidden;}
+.ao-thumb img{width:100%;height:100%;object-fit:cover;}
+.ao-title{font-family:var(--serif);font-size:0.95rem;color:var(--text);margin-bottom:2px;}
+.ao-id{font-family:var(--mono);font-size:0.54rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;}
+.ao-remove{font-family:var(--mono);font-size:0.55rem;color:var(--warn);cursor:pointer;border:1px solid rgba(200,112,96,0.3);padding:3px 7px;transition:all 0.12s;}
+.ao-remove:hover{background:rgba(200,112,96,0.1);}
+.object-picker{background:var(--surface);border:1px solid var(--border);max-height:280px;overflow-y:auto;}
+.op-search{width:100%;padding:9px 12px;background:var(--surface2);border:none;border-bottom:1px solid var(--border);color:var(--text);font-family:var(--mono);font-size:0.65rem;outline:none;}
+.op-search::placeholder{color:var(--text3);}
+.op-item{padding:10px 14px;border-bottom:1px solid var(--border);cursor:pointer;transition:background 0.12s;display:grid;grid-template-columns:50px 1fr auto;gap:10px;align-items:center;}
+.op-item:hover{background:var(--surface2);}
+.op-item.selected{background:rgba(126,207,207,0.06);border-left:2px solid var(--nfc);}
+.op-thumb{width:50px;height:36px;background:var(--surface3);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:0.42rem;color:var(--text3);text-align:center;overflow:hidden;}
+.op-thumb img{width:100%;height:100%;object-fit:cover;}
+.op-name{font-family:var(--serif);font-size:0.9rem;color:var(--text2);}
+.op-meta{font-family:var(--mono);font-size:0.52rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-top:2px;}
+.op-add{font-family:var(--mono);font-size:0.52rem;color:var(--nfc);border:1px solid rgba(126,207,207,0.3);padding:2px 7px;cursor:pointer;transition:all 0.12s;white-space:nowrap;}
+.op-add:hover{background:rgba(126,207,207,0.1);}
+.vis-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+.vis-item{display:flex;align-items:center;gap:7px;padding:7px 9px;border:1px solid var(--border);cursor:pointer;transition:all 0.12s;font-family:var(--mono);font-size:0.58rem;color:var(--text3);}
+.vis-item.on{border-color:rgba(126,207,207,0.3);color:var(--text2);background:rgba(126,207,207,0.04);}
+.vis-toggle{width:26px;height:13px;border-radius:7px;background:var(--border2);position:relative;flex-shrink:0;transition:background 0.2s;}
+.vis-toggle.on{background:var(--accent3);}
+.vis-toggle::after{content:'';position:absolute;width:9px;height:9px;border-radius:50%;background:var(--text);top:2px;left:2px;transition:left 0.2s;}
+.vis-toggle.on::after{left:15px;}
+.vis-label{font-size:0.56rem;}
+.chip-editor{display:flex;flex-direction:column;gap:5px;}
+.chip-edit-item{display:flex;gap:5px;}
+.chip-edit-input{flex:1;padding:5px 9px;background:var(--surface2);border:1px solid var(--border2);color:var(--text);font-family:var(--mono);font-size:0.62rem;outline:none;}
+.chip-edit-input:focus{border-color:var(--nfc);}
+.chip-del{padding:5px 9px;border:1px solid rgba(200,112,96,0.3);color:var(--warn);cursor:pointer;font-family:var(--mono);font-size:0.62rem;transition:all 0.12s;}
+.chip-del:hover{background:rgba(200,112,96,0.1);}
+.story-textarea{width:100%;padding:9px 11px;background:var(--surface2);border:1px solid var(--border2);color:var(--text);font-family:var(--serif);font-style:italic;font-size:0.86rem;min-height:80px;resize:vertical;outline:none;}
+.story-textarea:focus{border-color:var(--nfc);}
+.related-pill-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:5px;}
+.rel-pill{font-family:var(--mono);font-size:0.58rem;padding:4px 9px;border:1px solid var(--border2);color:var(--text3);display:flex;align-items:center;gap:5px;}
+.rp-remove{color:var(--warn);cursor:pointer;}
+.phone-frame{width:280px;min-height:500px;background:var(--bg);border:2px solid var(--border2);border-radius:28px;padding:10px 12px 14px;position:relative;box-shadow:0 8px 32px rgba(0,0,0,0.5),inset 0 0 0 1px rgba(255,255,255,0.04);}
+.phone-notch{width:72px;height:5px;background:var(--border2);border-radius:3px;margin:2px auto 10px;opacity:0.4;}
+.phone-inner{overflow-y:auto;max-height:calc(100vh - 320px);padding:0 2px 4px;scrollbar-width:none;-ms-overflow-style:none;}
+.phone-inner::-webkit-scrollbar{display:none;}
+.phone-home{width:32px;height:4px;background:var(--border2);border-radius:2px;margin:8px auto 0;opacity:0.3;}
+.preview-frame{background:transparent;font-family:var(--mono);position:relative;padding:0;}
+.pf-tag{display:flex;justify-content:space-between;font-size:0.44rem;color:var(--text3);margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;}
+.pf-title{font-family:var(--serif);font-size:1.1rem;margin-bottom:2px;line-height:1.3;}
+.pf-sub{font-size:0.48rem;color:var(--text3);margin-bottom:10px;letter-spacing:1px;text-transform:uppercase;}
+.pf-img{width:100%;background:var(--surface2);display:flex;align-items:center;justify-content:center;font-size:0.5rem;color:var(--text3);margin-bottom:10px;overflow:hidden;border-radius:6px;}
+.pf-img img{width:100%;height:auto;max-height:200px;object-fit:contain;display:block;border-radius:6px;}
+.pf-story{font-size:0.56rem;color:var(--text2);line-height:1.7;margin-bottom:10px;font-style:italic;}
+.pf-ask-label{font-size:0.44rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;}
+.pf-chips{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:7px;}
+.pf-chip{font-size:0.46rem;padding:4px 8px;border:1px solid var(--border2);color:var(--text3);border-radius:12px;}
+.pf-input-mock{width:100%;padding:6px 10px;background:var(--surface2);border:1px solid var(--border2);color:var(--text3);font-family:var(--mono);font-size:0.5rem;border-radius:14px;margin-top:4px;}
+.pf-related{margin-top:12px;}
+.pf-rel-label{font-size:0.44rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;}
+.pf-rel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;}
+.pf-rel-item{background:var(--surface2);padding:5px;border-radius:4px;}
+.pf-rel-thumb{height:36px;background:var(--surface3);margin-bottom:4px;display:flex;align-items:center;justify-content:center;font-size:0.42rem;color:var(--text3);overflow:hidden;border-radius:3px;}
+.pf-rel-thumb img{width:100%;height:100%;object-fit:cover;}
+.pf-rel-title{font-size:0.44rem;color:var(--text3);}
+.pf-comment{margin-top:12px;border-top:1px solid var(--border);padding-top:8px;}
+.pf-comment-label{font-size:0.44rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;}
+.pf-comment-mock{font-size:0.5rem;color:var(--text3);font-style:italic;padding:6px 10px;border:1px solid var(--border2);background:var(--surface2);border-radius:8px;}
+.qr-box{background:white;color:black;font-size:0.42rem;width:36px;height:36px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1.2;border-radius:4px;margin:12px auto 0;}
+
+/* VOCAB PANEL */
+.vocab-layout{display:grid;grid-template-columns:240px 1fr 280px;min-height:calc(100vh - 132px);}
+.vocab-list-col{border-right:1px solid var(--border);padding:24px 20px;overflow-y:auto;}
+.vocab-main-col{padding:28px 32px;border-right:1px solid var(--border);overflow-y:auto;}
+.vocab-result-col{padding:24px 22px;overflow-y:auto;}
+.vocab-source{padding:11px;border:1px solid var(--border);margin-bottom:6px;cursor:pointer;transition:all 0.12s;}
+.vocab-source:hover,.vocab-source.active{border-color:var(--accent3);background:rgba(155,143,191,0.05);}
+.vs-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;}
+.vs-name{font-family:var(--mono);font-size:0.72rem;color:var(--text2);letter-spacing:2px;text-transform:uppercase;}
+.vs-toggle{width:26px;height:13px;border-radius:7px;background:var(--border2);position:relative;flex-shrink:0;cursor:pointer;transition:background 0.2s;}
+.vs-toggle.on{background:var(--accent3);}
+.vs-toggle::after{content:'';position:absolute;width:9px;height:9px;border-radius:50%;background:var(--text);top:2px;left:2px;transition:left 0.2s;}
+.vs-toggle.on::after{left:15px;}
+.vs-desc{font-family:var(--mono);font-size:0.52rem;color:var(--text3);line-height:1.6;}
+.vs-priority{font-family:var(--mono);font-size:0.5rem;color:var(--accent3);margin-top:2px;}
+.vocab-search-bar{display:flex;border:1px solid var(--border2);margin-bottom:18px;background:var(--surface);}
+.vocab-search-bar:focus-within{border-color:var(--accent3);}
+.vocab-input{flex:1;padding:10px 13px;background:transparent;border:none;outline:none;color:var(--text);font-family:var(--mono);font-size:0.78rem;}
+.vocab-input::placeholder{color:var(--text3);}
+.vocab-go{padding:10px 14px;background:var(--accent3);color:var(--bg);border:none;cursor:pointer;font-family:var(--mono);font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;}
+.term-result{padding:11px;border:1px solid var(--border);margin-bottom:5px;cursor:pointer;transition:all 0.12s;}
+.term-result:hover{border-color:var(--border2);background:var(--surface);}
+.term-result.selected{border-color:var(--accent3);background:rgba(155,143,191,0.05);}
+.tr-term{font-family:var(--serif);font-size:1rem;margin-bottom:2px;}
+.tr-source{font-family:var(--mono);font-size:0.52rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:3px;}
+.tr-id{font-family:var(--mono);font-size:0.55rem;color:var(--accent3);}
+.tr-desc{font-size:0.76rem;color:var(--text2);line-height:1.6;margin-top:4px;font-style:italic;}
+.td-title{font-family:var(--serif);font-size:1.15rem;margin-bottom:3px;}
+.td-source{font-family:var(--mono);font-size:0.58rem;color:var(--text3);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:12px;}
+.td-section{margin-bottom:14px;}
+.td-label{font-family:var(--mono);font-size:0.52rem;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:5px;padding-bottom:3px;border-bottom:1px solid var(--border);}
+.td-text{font-size:0.78rem;color:var(--text2);line-height:1.7;}
+.broader-term{font-family:var(--mono);font-size:0.62rem;color:var(--text2);padding:3px 0;border-bottom:1px solid var(--border);cursor:pointer;}
+.narrower-term{font-family:var(--mono);font-size:0.6rem;color:var(--text3);padding:3px 0;border-bottom:1px solid var(--border);cursor:pointer;display:flex;gap:5px;}
+.narrower-term::before{content:'↳';color:var(--text3);}
+.narrower-term:hover,.broader-term:hover{color:var(--accent3);}
+.use-term-btn{width:100%;margin-top:10px;padding:8px;background:var(--accent3);color:var(--bg);border:none;font-family:var(--mono);font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;}
+.add-local-btn{width:100%;margin-top:5px;padding:8px;background:transparent;border:1px solid var(--border2);color:var(--text3);font-family:var(--mono);font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.12s;}
+.add-local-btn:hover{border-color:var(--accent3);color:var(--accent3);}
+.indigenous-box{background:rgba(200,169,110,0.05);border:1px solid rgba(200,169,110,0.2);padding:12px;margin-top:14px;}
+.ib-label{font-family:var(--mono);font-size:0.56rem;text-transform:uppercase;letter-spacing:2px;color:var(--accent);margin-bottom:6px;}
+.ib-text{font-size:0.72rem;color:var(--text2);line-height:1.7;margin-bottom:8px;}
+.ib-btn{padding:5px 10px;background:transparent;border:1px solid rgba(200,169,110,0.3);color:var(--accent);font-family:var(--mono);font-size:0.55rem;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all 0.12s;}
+.ib-btn:hover{background:rgba(200,169,110,0.1);}
+
+/* VISITOR PANEL */
+.visitor-layout{display:grid;grid-template-columns:260px 1fr;min-height:calc(100vh - 132px);}
+.vp-nfc-col{border-right:1px solid var(--border);padding:24px 20px;overflow-y:auto;}
+.vp-main{padding:30px 36px;overflow-y:auto;max-height:calc(100vh - 132px);}
+.vp-nfc-item{padding:11px 13px;border:1px solid var(--border);margin-bottom:6px;cursor:pointer;transition:all 0.12s;}
+.vp-nfc-item:hover{background:var(--surface);}
+.vp-nfc-item.active{border-color:var(--accent2);background:rgba(143,188,176,0.05);}
+.vp-nfc-name{font-family:var(--serif);font-size:0.92rem;color:var(--text);margin-bottom:2px;}
+.vp-nfc-id{font-family:var(--mono);font-size:0.52rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;}
+.vp-badges{display:flex;gap:4px;margin-top:4px;}
+.vbadge{font-family:var(--mono);font-size:0.46rem;padding:1px 5px;border:1px solid currentColor;text-transform:uppercase;letter-spacing:1px;}
+.vbadge.live{color:var(--ok);}
+.vbadge.nodel{color:var(--nodel);}
+.visitor-page-preview{max-width:640px;}
+.vpp-title{font-family:var(--serif);font-size:1.6rem;font-weight:300;margin-bottom:4px;}
+.vpp-sub{font-family:var(--mono);font-size:0.6rem;color:var(--text3);letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;}
+.vpp-img{background:var(--surface2);min-height:120px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:0.56rem;color:var(--text3);margin-bottom:14px;overflow:hidden;}
+.vpp-img img{width:100%;max-height:300px;object-fit:contain;}
+.vpp-story{font-size:0.88rem;color:var(--text2);line-height:1.75;margin-bottom:18px;}
+.vpp-story strong{color:var(--text);font-weight:400;}
+.vpp-ask{margin-bottom:18px;}
+.vpp-ask-label{font-family:var(--mono);font-size:0.56rem;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:9px;}
+.vpp-chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:9px;}
+.vpp-chip{font-family:var(--mono);font-size:0.6rem;padding:5px 9px;border:1px solid var(--border2);color:var(--text3);cursor:pointer;transition:all 0.12s;}
+.vpp-chip:hover{border-color:var(--accent2);color:var(--accent2);}
+.vpp-chat-row{display:flex;border:1px solid var(--border2);}
+.vpp-chat-in{flex:1;padding:10px 13px;background:transparent;border:none;outline:none;color:var(--text);font-family:var(--serif);font-style:italic;font-size:0.9rem;}
+.vpp-chat-in::placeholder{color:var(--text3);}
+.vpp-chat-btn{padding:10px 14px;background:transparent;border:none;border-left:1px solid var(--border2);color:var(--accent2);font-family:var(--mono);font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:background 0.12s;}
+.vpp-chat-btn:hover{background:rgba(143,188,176,0.1);}
+.vpp-response{margin-top:11px;font-style:italic;color:var(--text2);font-size:0.83rem;line-height:1.7;display:none;padding:9px 11px;border-left:2px solid var(--accent2);}
+.vpp-related-label{font-family:var(--mono);font-size:0.56rem;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:11px;border-top:1px solid var(--border);padding-top:18px;}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:18px;}
+.rel-card{background:var(--surface);border:1px solid var(--border);padding:9px;cursor:pointer;transition:border-color 0.12s;}
+.rel-card:hover{border-color:var(--border2);}
+.rel-thumb{width:100%;height:46px;background:var(--surface2);margin-bottom:6px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:0.44rem;color:var(--text3);overflow:hidden;}
+.rel-thumb img{width:100%;height:100%;object-fit:cover;}
+.rel-title{font-family:var(--serif);font-size:0.78rem;color:var(--text2);line-height:1.3;}
+.vpp-comment{padding:14px;border:1px solid var(--border);background:var(--surface);}
+.vpc-label{font-family:var(--mono);font-size:0.56rem;text-transform:uppercase;letter-spacing:2px;color:var(--text3);margin-bottom:7px;}
+.vpc-textarea{width:100%;background:var(--surface2);border:1px solid var(--border2);color:var(--text);font-family:var(--serif);font-style:italic;font-size:0.86rem;padding:9px 11px;resize:vertical;min-height:60px;outline:none;}
+.vpc-textarea:focus{border-color:var(--accent2);}
+.vpc-submit{margin-top:6px;padding:6px 13px;background:transparent;border:1px solid var(--border2);color:var(--text3);font-family:var(--mono);font-size:0.56rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.12s;}
+.vpc-submit:hover{border-color:var(--accent2);color:var(--accent2);}
+
+/* OBJECT DETAIL PANEL */
+.od-panel-wrap{padding:0;overflow-y:auto;max-height:calc(100vh - 132px);}
+.od-hero{display:grid;grid-template-columns:320px 1fr;border-bottom:1px solid var(--border);}
+.od-image-col{border-right:1px solid var(--border);background:var(--surface2);display:flex;align-items:center;justify-content:center;min-height:300px;overflow:hidden;}
+.od-image-col img{width:100%;height:100%;object-fit:contain;display:block;}
+.od-image-placeholder{display:flex;flex-direction:column;align-items:center;gap:8px;font-family:var(--mono);font-size:0.55rem;color:var(--text3);}
+.od-info-col{padding:28px 36px;}
+.od-title{font-family:var(--serif);font-size:1.7rem;font-weight:300;line-height:1.2;margin-bottom:6px;}
+.od-sub{font-family:var(--mono);font-size:0.6rem;color:var(--text3);letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;}
+.od-meta-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px 16px;}
+.od-meta-item{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);padding:8px 10px;}
+.od-meta-key{font-family:var(--mono);font-size:0.49rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text3);margin-bottom:3px;}
+.od-meta-val{font-size:0.66rem;color:var(--text1);word-break:break-word;}
+.od-description-wrap{padding:22px 36px;border-bottom:1px solid var(--border);}
+.od-full-meta-wrap{padding:20px 36px;border-bottom:1px solid var(--border);}
+.od-full-meta-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:6px 20px;}
+.od-lower{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--border);}
+.od-chat-col{padding:24px 36px;border-right:1px solid var(--border);}
+.od-related-col{padding:24px 28px;}
+.od-chat-msgs{background:var(--surface2);border:1px solid var(--border);padding:12px;min-height:180px;max-height:340px;overflow-y:auto;font-size:0.72rem;font-family:var(--mono);line-height:1.6;margin-bottom:10px;}
+.od-chat-row{display:flex;gap:7px;}
+.od-chat-in{flex:1;background:var(--surface);border:1px solid var(--border2);color:var(--text);font-family:var(--mono);font-size:0.62rem;padding:8px 10px;outline:none;}
+.od-chat-in:focus{border-color:var(--accent);}
+.od-chat-send{padding:8px 14px;background:var(--accent);color:var(--bg);border:none;font-family:var(--mono);font-size:0.6rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;}
+.od-chips{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
+.od-chip{font-family:var(--mono);font-size:0.54rem;padding:3px 8px;border:1px solid var(--border2);color:var(--text3);cursor:pointer;transition:all 0.12s;}
+.od-chip:hover{border-color:var(--accent);color:var(--accent);}
+.od-rel-card{display:flex;gap:10px;background:var(--surface2);border:1px solid var(--border);padding:9px;cursor:pointer;transition:border-color 0.12s;margin-bottom:6px;}
+.od-rel-card:hover{border-color:var(--border2);}
+.od-rel-thumb{flex:0 0 52px;height:40px;background:var(--surface3);display:flex;align-items:center;justify-content:center;font-size:0.48rem;color:var(--text3);overflow:hidden;}
+.od-rel-thumb img{width:100%;height:100%;object-fit:cover;}
+.od-rel-info{min-width:0;}
+.od-rel-title{font-family:var(--serif);font-size:0.82rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px;}
+.od-rel-meta{font-family:var(--mono);font-size:0.5rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;}
+.od-rel-score{font-family:var(--mono);font-size:0.5rem;color:var(--accent);}
+.od-back-btn{font-family:var(--mono);font-size:0.56rem;color:var(--text3);cursor:pointer;padding:12px 36px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px;transition:color 0.12s;}
+.od-back-btn:hover{color:var(--accent);}
+
+/* NODEL PANEL */
+.nodel-layout{display:grid;grid-template-columns:1fr 320px;min-height:calc(100vh - 132px);}
+.nodel-main{padding:30px 36px;border-right:1px solid var(--border);}
+.nodel-sb{padding:22px 22px;overflow-y:auto;}
+.nodel-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:18px;}
+.node-card{border:1px solid var(--border);padding:13px;cursor:pointer;transition:all 0.15s;}
+.node-card:hover{border-color:var(--border2);background:var(--surface);}
+.node-card.ok{border-left:3px solid var(--ok);}
+.node-card.warn{border-left:3px solid var(--nodel);}
+.node-card.err{border-left:3px solid var(--warn);}
+.nc-name{font-family:var(--mono);font-size:0.65rem;color:var(--text2);letter-spacing:1px;margin-bottom:3px;}
+.nc-type{font-family:var(--mono);font-size:0.52rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.nc-status{font-family:var(--mono);font-size:0.55rem;display:flex;align-items:center;gap:5px;}
+.nc-log{font-family:var(--mono);font-size:0.52rem;color:var(--text3);margin-top:5px;border-top:1px solid var(--border);padding-top:4px;}
+.sched-item{padding:9px 0;border-bottom:1px solid var(--border);display:grid;grid-template-columns:1fr auto;gap:10px;font-family:var(--mono);font-size:0.6rem;}
+.sched-title{color:var(--text2);}
+.sched-date{color:var(--text3);font-size:0.55rem;}
+.sched-loc{font-size:0.52rem;color:var(--text3);margin-top:2px;}
+
+/* FAMTEC EXCHANGE PANEL */
+.famtec-layout{display:grid;grid-template-columns:280px 1fr 340px;min-height:calc(100vh - 132px);}
+.famtec-left{border-right:1px solid var(--border);padding:22px 18px;overflow-y:auto;}
+.famtec-main{border-right:1px solid var(--border);padding:24px 28px;overflow-y:auto;}
+.famtec-right{padding:22px 18px;overflow-y:auto;}
+.famtec-banner{border:1px solid rgba(176,200,122,0.25);background:rgba(176,200,122,0.05);padding:12px 14px;margin-bottom:16px;}
+.famtec-banner-title{font-family:var(--mono);font-size:0.58rem;letter-spacing:2px;text-transform:uppercase;color:var(--accent4);margin-bottom:5px;}
+.famtec-banner-text{font-size:0.78rem;color:var(--text2);line-height:1.6;}
+.famtec-hero{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px;flex-wrap:wrap;}
+.famtec-title{font-family:var(--serif);font-size:1.45rem;font-weight:300;}
+.famtec-sub{font-family:var(--mono);font-size:0.56rem;color:var(--text3);text-transform:uppercase;letter-spacing:2px;margin-top:4px;line-height:1.7;}
+.famtec-actions{display:flex;gap:6px;flex-wrap:wrap;}
+.famtec-search{display:flex;border:1px solid var(--border2);background:var(--surface);margin-bottom:10px;}
+.famtec-search input{flex:1;background:transparent;border:none;outline:none;padding:10px 12px;color:var(--text);font-family:var(--serif);font-size:0.9rem;font-style:italic;}
+.famtec-search button{border:none;background:var(--accent4);color:var(--bg);padding:10px 14px;font-family:var(--mono);font-size:0.56rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;}
+.famtec-chiprow{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px;}
+.famtec-chip{font-family:var(--mono);font-size:0.53rem;padding:3px 7px;border:1px solid var(--border2);color:var(--text3);text-transform:uppercase;letter-spacing:1px;cursor:pointer;transition:all 0.12s;}
+.famtec-chip.active{border-color:var(--accent4);color:var(--accent4);background:rgba(176,200,122,0.07);}
+.famtec-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.famtec-card{background:var(--surface);border:1px solid var(--border);padding:12px;transition:border-color 0.12s;}
+.famtec-card:hover{border-color:var(--border2);}
+.ft-label{font-family:var(--mono);font-size:0.5rem;color:var(--text3);text-transform:uppercase;letter-spacing:2px;margin-bottom:5px;}
+.ft-title{font-family:var(--serif);font-size:0.95rem;color:var(--text);margin-bottom:3px;}
+.ft-meta{font-family:var(--mono);font-size:0.53rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;line-height:1.6;}
+.ft-body{font-size:0.76rem;color:var(--text2);line-height:1.55;margin-top:6px;}
+.ft-tags{display:flex;gap:4px;flex-wrap:wrap;margin-top:8px;}
+.ft-tag{font-family:var(--mono);font-size:0.48rem;padding:2px 5px;border:1px solid var(--border2);color:var(--text3);text-transform:uppercase;}
+.ft-cta{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
+.ft-cta .btn:hover{border-color:var(--accent4);color:var(--accent4);}
+.inst-list{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+.inst-card{border:1px solid var(--border);padding:10px 11px;cursor:pointer;background:var(--surface);transition:all 0.12s;}
+.inst-card.active{border-color:var(--accent4);background:rgba(176,200,122,0.04);}
+.inst-name{font-family:var(--serif);font-size:0.9rem;}
+.inst-meta{font-family:var(--mono);font-size:0.52rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-top:3px;}
+.famtec-chat{background:var(--surface);border:1px solid var(--border);padding:12px;}
+.famtec-chat-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.famtec-msgs{max-height:280px;overflow-y:auto;border:1px solid var(--border);background:var(--surface2);padding:8px;}
+.famtec-msg{padding:7px 0;border-bottom:1px solid var(--border);}
+.famtec-msg:last-child{border-bottom:none;}
+.famtec-msg-who{font-family:var(--mono);font-size:0.5rem;color:var(--accent4);letter-spacing:1px;text-transform:uppercase;}
+.famtec-msg-text{font-size:0.75rem;color:var(--text2);line-height:1.5;margin-top:2px;}
+.famtec-chat-row{display:flex;border:1px solid var(--border2);margin-top:8px;}
+.famtec-chat-row input{flex:1;background:transparent;border:none;outline:none;padding:9px 10px;color:var(--text);font-family:var(--serif);font-style:italic;font-size:0.82rem;}
+.famtec-chat-row button{background:transparent;border:none;border-left:1px solid var(--border2);color:var(--accent4);padding:0 12px;font-family:var(--mono);font-size:0.54rem;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;}
+.famtec-stat{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);font-family:var(--mono);font-size:0.56rem;color:var(--text3);}
+.famtec-stat span{color:var(--text2);}
+
+/* NODEL — Gallery cards & node table */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-bottom:24px;}
+.gallery-card{background:var(--surface);border:1px solid var(--border);padding:14px;cursor:pointer;transition:all 0.12s;}
+.gallery-card:hover{border-color:var(--border2);}
+.gallery-card.g-ok{border-left:3px solid var(--ok);}
+.gallery-card.g-warn{border-left:3px solid var(--nodel);}
+.gallery-card.g-off{border-left:3px solid var(--text3);opacity:0.5;}
+.gc-header{display:flex;justify-content:space-between;align-items:start;margin-bottom:9px;}
+.gc-name{font-family:var(--serif);font-size:0.95rem;}
+.gc-st{font-family:var(--mono);font-size:0.55rem;text-transform:uppercase;letter-spacing:1px;padding:2px 6px;border:1px solid currentColor;}
+.gc-st.ok{color:var(--ok);} .gc-st.warn{color:var(--nodel);} .gc-st.off{color:var(--text3);}
+.gc-nodes{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:7px;}
+.gc-node{font-family:var(--mono);font-size:0.52rem;padding:2px 6px;border:1px solid var(--border2);display:flex;align-items:center;gap:4px;}
+.gc-node.n-on{border-color:rgba(122,173,138,0.35);} .gc-node.n-warn{border-color:rgba(232,168,64,0.35);} .gc-node.n-off{border-color:rgba(200,112,96,0.3);opacity:0.65;}
+.gc-footer{font-family:var(--mono);font-size:0.55rem;color:var(--text3);display:flex;justify-content:space-between;}
+.node-table{width:100%;border-collapse:collapse;margin-bottom:20px;}
+.node-table th{font-family:var(--mono);font-size:0.52rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);padding:7px 10px;text-align:left;border-bottom:1px solid var(--border);}
+.node-table td{font-family:var(--mono);font-size:0.62rem;padding:8px 10px;border-bottom:1px solid var(--border);color:var(--text2);}
+.node-table tr:hover td{background:var(--surface);}
+.na-btn{font-family:var(--mono);font-size:0.5rem;padding:2px 6px;border:1px solid var(--border2);color:var(--text3);cursor:pointer;transition:all 0.1s;text-transform:uppercase;display:inline-block;margin-right:3px;}
+.na-btn:hover{border-color:var(--nodel);color:var(--nodel);}
+.na-btn.r{border-color:rgba(200,112,96,0.35);color:var(--warn);}
+.fault-log{background:var(--surface);border:1px solid var(--border);}
+.fault-header{padding:9px 14px;border-bottom:1px solid var(--border);font-family:var(--mono);font-size:0.55rem;color:var(--text3);text-transform:uppercase;letter-spacing:2px;display:flex;justify-content:space-between;}
+.fault-item{padding:9px 14px;border-bottom:1px solid var(--border);display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;}
+.fault-time{font-family:var(--mono);font-size:0.55rem;color:var(--text3);white-space:nowrap;}
+.fault-desc{font-family:var(--mono);font-size:0.62rem;}
+.fd-err{color:var(--warn);} .fd-warn{color:var(--nodel);} .fd-ok{color:var(--ok);}
+.fault-link{font-family:var(--mono);font-size:0.52rem;color:var(--accent);cursor:pointer;white-space:nowrap;}
+@media(max-width:900px){.famtec-layout{grid-template-columns:1fr;}.famtec-left,.famtec-main{border-right:none;border-bottom:1px solid var(--border);}.famtec-grid{grid-template-columns:1fr;}}
+
+/* CHAT STYLING */
+.chat-msg{padding:5px 0;border-bottom:1px solid var(--border);font-size:0.72rem;line-height:1.5;}
+.chat-msg.u{color:var(--text3);font-family:var(--mono);font-size:0.62rem;margin-top:6px;}
+.chat-msg.a{color:var(--text);font-style:italic;}
+.chat-msg.thinking{color:var(--text3);animation:pulse 1s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div>
+    <div class="wordmark-row">
+      <div>
+        <div class="wordmark">ARC<span>H</span>AI</div>
+        <div class="header-sub">Semantic Infrastructure for Cultural Memory · FAMTEC / RMIT</div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="header-meta"><b id="clockDisplay">—</b><br><span>Build v1.0 · Museums Victoria · MV-Only</span></div>
+    <div class="header-links">
+      <a class="header-link" href="http://localhost:11434" target="_blank">Ollama LLM</a>
+      <a class="header-link" href="http://localhost:8055/admin" target="_blank">Directus CMS</a>
+      <a class="header-link" href="http://localhost:6333/dashboard" target="_blank">Qdrant</a>
+      <a class="header-link" href="https://github.com/rob-e-graham/archai" target="_blank">GitHub</a>
+    </div>
+    <div class="role-select-wrap">
+      <span class="role-select-label">Role</span>
+      <select id="roleSelect" class="role-select" onchange="setUserRole(this.value)">
+        <option value="admin">Admin</option>
+        <option value="curator" selected>Curator</option>
+        <option value="collections">Collections Officer</option>
+        <option value="technician">Technician / AV</option>
+        <option value="volunteer">Volunteer</option>
+        <option value="visitor">Visitor</option>
+      </select>
+    </div>
+    <div class="role-note" id="roleNote">Curator access · collection editing, NFC publishing, vocab tools</div>
+  </div>
+</header>
+
+<!-- INFRA BAR -->
+<div class="infra-bar">
+  <div class="infra-item" onclick="window.open('http://localhost:6333/dashboard','_blank')"><div class="dot dot-idle" id="qdrantDot"></div><span class="infra-name">Qdrant</span><span class="infra-val" id="qdrantVal">Connecting…</span></div>
+  <div class="infra-item" onclick="window.open('http://localhost:11434','_blank')"><div class="dot dot-idle" id="ollamaDot"></div><span class="infra-name">Ollama</span><span class="infra-val" id="ollamaVal">Connecting…</span></div>
+  <div class="infra-item" onclick="window.open('http://localhost:8055/admin','_blank')"><div class="dot dot-idle" id="directusDot"></div><span class="infra-name">Directus</span><span class="infra-val" id="directusVal">Connecting…</span></div>
+  <div class="infra-item" onclick="window.open('http://localhost:8787','_blank')"><div class="dot dot-idle" id="backendDot"></div><span class="infra-name">Backend</span><span class="infra-val" id="backendVal">localhost:8787</span></div>
+  <div class="infra-item"><div class="dot dot-ok"></div><span class="infra-name">Source</span><span class="infra-val">MV Collections API · CC BY 4.0</span></div>
+  <div class="infra-item"><div class="dot dot-ok"></div><span class="infra-name">Collection</span><span class="infra-val" id="collectionVal">Loading…</span></div>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" data-roles="admin,curator,collections,volunteer" onclick="switchTab('curator',this)">Curator &amp; Collections</div>
+  <div class="tab t-nodel" data-roles="admin,curator,technician" onclick="switchTab('nodel',this)">
+    <div class="tab-dot" style="background:var(--nodel)"></div>Exhibitions · Live
+    <span class="tab-count" style="color:var(--nodel)">2⚠</span>
+  </div>
+  <div class="tab t-nfc" data-roles="admin,curator,collections,volunteer" onclick="switchTab('nfc',this)">
+    <div class="tab-dot" style="background:var(--nfc)"></div>NFC Management
+    <span class="tab-count" style="color:var(--nfc)" id="nfcTabCount">0</span>
+  </div>
+  <div class="tab t-vocab" data-roles="admin,curator,collections" onclick="switchTab('vocab',this)">Vocabulary &amp; Thesaurus</div>
+  <div class="tab t-visitor" data-roles="admin,curator,collections,technician,volunteer,visitor" onclick="switchTab('visitor',this)">Visitor View</div>
+  <div class="tab t-famtec" data-roles="admin,curator,collections,technician,volunteer" onclick="switchTab('famtec',this)">FAMTEC Exchange</div>
+  <div class="tab t-objdetail" id="tab-objdetail" data-roles="admin,curator,collections,technician,volunteer" onclick="switchTab('objdetail',this)" style="display:none">
+    <div class="tab-dot" style="background:var(--nodel)"></div><span id="tab-objdetail-label">Object Detail</span>
+  </div>
+</div>
+
+<!-- ████ CURATOR PANEL ████ -->
+<div class="panel active" id="panel-curator">
+  <div class="curator-layout">
+    <div class="main-col">
+      <div style="margin-bottom:22px;">
+        <div class="section-label">Semantic Search — interrogate the MV collection</div>
+        <div class="search-bar">
+          <input class="search-input" id="curatorSearch" type="text" placeholder="Describe by meaning, concept, material, era, emotion, or registration number…">
+          <button class="search-btn" onclick="doSearch()">Search</button>
+        </div>
+        <div class="pill-row">
+          <div class="pill active" onclick="togglePill(this)">Text</div>
+          <div class="pill" onclick="togglePill(this)">Colour</div>
+          <div class="pill" onclick="togglePill(this)">Image</div>
+          <div class="pill" onclick="togglePill(this)">Object No.</div>
+          <div class="pill" onclick="togglePill(this)">Visual Similarity</div>
+        </div>
+      </div>
+      <div class="filter-row">
+        <div class="filter-group"><span class="fg-label">Role</span><div class="chip active" onclick="setChip(this)">Curator</div><div class="chip" onclick="setChip(this)">Collections</div><div class="chip" onclick="setChip(this)">Research</div></div>
+        <div class="filter-group"><span class="fg-label">Scope</span><div class="chip active" onclick="setChip(this)">All</div><div class="chip" onclick="setChip(this)">Technology</div><div class="chip" onclick="setChip(this)">History</div><div class="chip" onclick="setChip(this)">Science</div></div>
+      </div>
+      <div class="results-header">
+        <span id="resultsLabel">Loading — connecting to Qdrant…</span>
+        <div class="r-acts"><div class="btn" onclick="alert('Select all')">Select All</div><div class="btn" onclick="alert('Export CSV')">Export CSV</div><div class="btn" onclick="alert('Batch tag')">Batch Tag</div></div>
+      </div>
+      <div id="resultsContainer">
+        <div class="skel-card"><div class="skel-thumb skeleton"></div><div><div class="skel-line skeleton"></div><div class="skel-line short skeleton"></div><div class="skel-line xs skeleton"></div></div><div></div></div>
+        <div class="skel-card"><div class="skel-thumb skeleton"></div><div><div class="skel-line skeleton"></div><div class="skel-line short skeleton"></div><div class="skel-line xs skeleton"></div></div><div></div></div>
+        <div class="skel-card"><div class="skel-thumb skeleton"></div><div><div class="skel-line skeleton"></div><div class="skel-line short skeleton"></div><div class="skel-line xs skeleton"></div></div><div></div></div>
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <div class="sb-section">
+        <div class="sb-title">Infrastructure</div>
+        <div class="sb-row"><span class="sb-row-name">Qdrant</span><div style="display:flex;align-items:center;gap:5px;"><div class="dot dot-idle" id="sb-qdrant-dot" style="animation:none"></div><span id="sb-qdrant-val" style="font-family:var(--mono);font-size:0.58rem;color:var(--text3)">Connecting…</span></div></div>
+        <div class="sb-row"><span class="sb-row-name">Ollama · llama3</span><div style="display:flex;align-items:center;gap:5px;"><div class="dot dot-idle" id="sb-ollama-dot" style="animation:none"></div><span id="sb-ollama-val" style="font-family:var(--mono);font-size:0.58rem;color:var(--text3)">Checking…</span></div></div>
+        <div class="sb-row"><span class="sb-row-name">Directus CMS</span><div style="display:flex;align-items:center;gap:5px;"><div class="dot dot-idle" id="sb-directus-dot" style="animation:none"></div><span id="sb-directus-val" style="font-family:var(--mono);font-size:0.58rem;color:var(--text3)">Checking…</span></div></div>
+        <div class="sb-row"><span class="sb-row-name">MV Objects</span><div style="display:flex;align-items:center;gap:5px;"><div class="dot dot-idle" style="animation:none" id="sb-mv-dot"></div><span id="sb-mv-val" style="font-family:var(--mono);font-size:0.58rem;color:var(--text3)">Loading…</span></div></div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-title">Active Vocabulary</div>
+        <div style="font-family:var(--mono);font-size:0.58rem;line-height:2.2;color:var(--text3);">
+          <div style="display:flex;justify-content:space-between;"><span style="color:var(--accent3)">① AAT</span><span>Getty Art & Architecture</span></div>
+          <div style="display:flex;justify-content:space-between;"><span style="color:var(--accent3)">② Local</span><span>Institutional terms</span></div>
+          <div style="display:flex;justify-content:space-between;opacity:0.45"><span>③ LCSH</span><span>Inactive</span></div>
+        </div>
+        <div class="btn" style="margin-top:8px;display:block;text-align:center;" onclick="switchTab('vocab',document.querySelectorAll('.tab')[3])">Manage Vocabularies →</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-title">MV Harvest Pipeline</div>
+        <div class="pipe-info">
+          <div>Source: <span>Museums Victoria API</span></div>
+          <div>Licence: <span>CC BY 4.0</span></div>
+          <div>Embed model: <span>nomic-embed-text</span></div>
+          <div>Objects loaded: <span id="sb-mv-count">0</span></div>
+        </div>
+        <button class="pipe-btn" onclick="loadMVObjects()">↻ Reload from Qdrant</button>
+        <button class="pipe-btn" style="margin-top:4px" onclick="alert('Run: node scripts/mv-harvester.js\nfrom backend-archai directory')">▶ Run Full Harvest</button>
+      </div>
+      <div class="sb-section">
+        <div class="sb-title">Cultural Safety</div>
+        <div style="font-family:var(--mono);font-size:0.58rem;line-height:2;color:var(--text3);">
+          <div>Level 0 — Clear: <span style="color:var(--text2)">active</span></div>
+          <div>Level 3 — Excluded: <span style="color:var(--warn)">pipeline-enforced</span></div>
+        </div>
+        <div style="font-family:var(--mono);font-size:0.52rem;color:var(--text3);margin-top:6px;line-height:1.7">CARE Principles · Global Indigenous Data Alliance</div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-title">Quick Links</div>
+        <div style="display:flex;flex-direction:column;gap:5px;">
+          <a class="btn" style="text-align:left;display:block" href="http://localhost:6333/dashboard" target="_blank">Qdrant Dashboard →</a>
+          <a class="btn" style="text-align:left;display:block" href="http://localhost:8055/admin" target="_blank">Directus Admin →</a>
+          <a class="btn" style="text-align:left;display:block" href="http://localhost:11434" target="_blank">Ollama API →</a>
+          <a class="btn" style="text-align:left;display:block" href="https://github.com/rob-e-graham/archai" target="_blank">GitHub Repo →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ████ EXHIBITIONS / NODEL PANEL ████ -->
+<div class="panel" id="panel-nodel">
+  <div class="nodel-layout">
+    <div class="nodel-main">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px;">
+        <div>
+          <div class="section-label" style="margin:0">Exhibitions · Live Node Status</div>
+          <div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);margin-top:3px;">Real-time status of exhibition hardware nodes managed via Nodel. MV objects linked to physical spaces.</div>
+        </div>
+        <div style="display:flex;gap:6px;">
+          <div class="btn" onclick="alert('Open Nodel web interface')">Open Nodel →</div>
+          <div class="btn" onclick="alert('Refreshing node status...')">Refresh</div>
+        </div>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-card g-ok">
+          <div class="gc-header"><div class="gc-name">Entrance Atrium</div><div class="gc-st ok">Online</div></div>
+          <div class="gc-nodes"><div class="gc-node n-on"><div class="dot dot-ok" style="width:4px;height:4px;animation:none"></div>Rob-01</div><div class="gc-node n-on"><div class="dot dot-ok" style="width:4px;height:4px;animation:none"></div>NFC-Kiosk-01</div></div>
+          <div class="gc-footer"><span>2/2 online</span><span>Runtime: 6h 14m</span></div>
+        </div>
+        <div class="gallery-card g-warn">
+          <div class="gc-header"><div class="gc-name">Hall 2 — Digital Art</div><div class="gc-st warn">1 Warning</div></div>
+          <div class="gc-nodes"><div class="gc-node n-on"><div class="dot dot-ok" style="width:4px;height:4px;animation:none"></div>Proj-01</div><div class="gc-node n-warn"><div class="dot dot-warn" style="width:4px;height:4px"></div>Player-SignalDecay</div><div class="gc-node n-on"><div class="dot dot-ok" style="width:4px;height:4px;animation:none"></div>Audio-01</div></div>
+          <div class="gc-footer"><span>2/3 nominal</span><span>⚠ Player intermittent</span></div>
+        </div>
+        <div class="gallery-card g-ok">
+          <div class="gc-header"><div class="gc-name">Hall 3 — Generative</div><div class="gc-st ok">Online</div></div>
+          <div class="gc-nodes"><div class="gc-node n-on"><div class="dot dot-ok" style="width:4px;height:4px;animation:none"></div>GPU-SynthGarden</div><div class="gc-node n-on"><div class="dot dot-ok" style="width:4px;height:4px;animation:none"></div>Display-SG-01</div></div>
+          <div class="gc-footer"><span>2/2 online</span><span>Runtime: 6h 14m</span></div>
+        </div>
+        <div class="gallery-card g-off">
+          <div class="gc-header"><div class="gc-name">Level 2 — Digital Histories</div><div class="gc-st off">Offline</div></div>
+          <div class="gc-nodes"><div class="gc-node n-off"><div class="dot dot-err" style="width:4px;height:4px;animation:none"></div>Echo-Circuit-VM</div><div class="gc-node n-off"><div class="dot dot-err" style="width:4px;height:4px;animation:none"></div>Display-L2-01</div></div>
+          <div class="gc-footer"><span>0/2 online</span><span>Gallery closed</span></div>
+        </div>
+      </div>
+
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+        <div style="font-family:var(--mono);font-size:0.58rem;color:var(--text3);text-transform:uppercase;letter-spacing:2px">All Nodes</div>
+        <div style="display:flex;gap:5px"><div class="btn">Filter</div><div class="btn">Export Log</div></div>
+      </div>
+      <table class="node-table">
+        <thead><tr><th>Node</th><th>Type</th><th>Gallery</th><th>Status</th><th>Runtime</th><th>Collection Record</th><th>Actions</th></tr></thead>
+        <tbody>
+          <tr><td style="color:var(--text)">Rob-Robot-01</td><td>Interactive Robot</td><td>Atrium</td><td style="color:var(--ok)">● Online</td><td>6h 14m</td><td style="color:var(--accent);cursor:pointer">MV linked →</td><td><div class="na-btn">Restart</div><div class="na-btn">Logs</div></td></tr>
+          <tr><td style="color:var(--text)">GPU-SyntheticGarden</td><td>Compute</td><td>Hall 3</td><td style="color:var(--ok)">● Online</td><td>6h 14m</td><td style="color:var(--accent);cursor:pointer">MV linked →</td><td><div class="na-btn">Restart</div><div class="na-btn">Logs</div></td></tr>
+          <tr><td style="color:var(--text)">Player-SignalDecay</td><td>Media Player</td><td>Hall 2</td><td style="color:var(--nodel)">⚠ Warning</td><td>4h 02m</td><td style="color:var(--accent);cursor:pointer">MV linked →</td><td><div class="na-btn r">Restart</div><div class="na-btn">Diagnose</div></td></tr>
+          <tr><td style="color:var(--text)">Echo-Circuit-VM</td><td>Emulation VM</td><td>Level 2</td><td style="color:var(--text3)">○ Offline</td><td>0h</td><td style="color:var(--text3)">Not linked</td><td><div class="na-btn">Power On</div></td></tr>
+        </tbody>
+      </table>
+
+      <div class="fault-log">
+        <div class="fault-header"><span>Event &amp; Fault Log — Today</span><span style="cursor:pointer;color:var(--accent)">Export to Records</span></div>
+        <div class="fault-item"><span class="fault-time">11:47am</span><span class="fault-desc fd-warn">⚠ Player-SignalDecay: buffer underrun, auto-recovered</span><span class="fault-link">View →</span></div>
+        <div class="fault-item"><span class="fault-time">10:23am</span><span class="fault-desc fd-ok">● GPU-SyntheticGarden: model loaded, render started</span><span class="fault-link">View →</span></div>
+        <div class="fault-item"><span class="fault-time">09:01am</span><span class="fault-desc fd-ok">● Gallery open sequence: complete</span><span class="fault-link">Schedule →</span></div>
+        <div class="fault-item"><span class="fault-time">02:30am</span><span class="fault-desc fd-ok">● ARCHAI pipeline: embeddings complete</span><span class="fault-link">Pipeline →</span></div>
+      </div>
+
+      <div style="margin-top:28px;">
+        <div class="section-label" style="margin-bottom:10px;">Exhibition Schedule</div>
+        <div class="sched-item"><div><div class="sched-title">ISEA2026 — ARCHAI Demonstration</div><div class="sched-loc">Dubai · Conference</div></div><div class="sched-date">Apr 11–12 2026</div></div>
+        <div class="sched-item"><div><div class="sched-title">MV Technology Collection — Pilot Exhibition</div><div class="sched-loc">Melbourne Museum · Pilot</div></div><div class="sched-date">May 2026 (TBC)</div></div>
+        <div class="sched-item"><div><div class="sched-title">PhD Review — Milestone 2</div><div class="sched-loc">RMIT · Academic</div></div><div class="sched-date">Jun 2026</div></div>
+      </div>
+    </div>
+    <div class="nodel-sb">
+      <div class="sb-section">
+        <div class="sb-title">Today's Schedule</div>
+        <div style="font-family:var(--mono);font-size:0.6rem;color:var(--text3);line-height:2.2;">
+          <div><span style="color:var(--ok)">✓</span> 08:55 Gallery open — all zones</div>
+          <div><span style="color:var(--ok)">✓</span> 09:00 Rob-Robot-01 — active</div>
+          <div><span style="color:var(--ok)">✓</span> 09:00 GPU-SyntheticGarden — boot</div>
+          <div style="opacity:0.4">○ 17:00 Gallery close sequence</div>
+          <div style="opacity:0.4">○ 17:05 Rob the Robot — standby</div>
+        </div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-title">Collection Summary</div>
+        <div style="font-family:var(--mono);font-size:0.6rem;color:var(--text3);line-height:2.2;">
+          <div>MV Objects loaded: <span id="nodel-mv-count" style="color:var(--text2)">—</span></div>
+          <div>Embedded in Qdrant: <span style="color:var(--text2)">Yes</span></div>
+          <div>Embed model: <span style="color:var(--text2)">nomic-embed-text</span></div>
+          <div>LLM: <span style="color:var(--text2)">llama3 (local)</span></div>
+        </div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-title">Visitor Interactions</div>
+        <div style="font-family:var(--mono);font-size:0.58rem;color:var(--text3);line-height:2;">
+          <div>Robot interactions: <span style="color:var(--text2)">87</span></div>
+          <div>NFC scans: <span style="color:var(--text2)">54</span></div>
+          <div>Comments received: <span style="color:var(--text2)">12</span></div>
+        </div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-title">Quick Actions</div>
+        <div style="display:flex;flex-direction:column;gap:5px;">
+          <div class="btn" style="text-align:left" onclick="alert('Opens Nodel web UI')">Open Nodel Interface →</div>
+          <a class="btn" style="text-align:left;display:block" href="http://localhost:8055/admin" target="_blank">Configure in Directus →</a>
+          <div class="btn" style="text-align:left" onclick="switchTab('curator',document.querySelectorAll('.tab')[0])">Browse Collection →</div>
+          <div class="btn warn" style="text-align:left" onclick="alert('Emergency stop sent to all nodes')">Emergency Stop All</div>
+        </div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-title">Directus Status</div>
+        <div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);line-height:1.8;">
+          Directus CMS is <b>optional</b> at this stage. Qdrant is the primary data layer for search and object metadata. Directus becomes useful when you need a structured editing UI for exhibition node assignments and content management beyond what the prototype provides.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ████ NFC MANAGEMENT PANEL ████ -->
+<div class="panel" id="panel-nfc">
+  <div class="nfc-mgmt-layout">
+    <div class="nfc-list-col">
+      <div class="nfc-list-header">
+        <div class="sb-title" style="margin:0;color:var(--nfc)">NFC Tags</div>
+        <div class="btn nfc" onclick="onboardNewNFC()">+ Onboard</div>
+      </div>
+      <input class="nfc-search" type="text" placeholder="Search NFC, object, location…" oninput="filterNFCList(this.value)">
+      <div class="nfc-filter-row">
+        <div class="nfc-fchip active" onclick="nfcFilter(this,'all')">All</div>
+        <div class="nfc-fchip" onclick="nfcFilter(this,'live')">Live</div>
+        <div class="nfc-fchip" onclick="nfcFilter(this,'draft')">Draft</div>
+        <div class="nfc-fchip" onclick="nfcFilter(this,'unassigned')">Unassigned</div>
+      </div>
+      <div id="nfcList"></div>
+    </div>
+    <div class="nfc-editor-col" id="nfcEditor">
+      <div style="display:flex;align-items:center;justify-content:center;height:100%;font-family:var(--mono);font-size:0.65rem;color:var(--text3);text-align:center;flex-direction:column;gap:12px;">
+        <div style="font-size:2rem;opacity:0.15">⬡</div>
+        <div style="text-transform:uppercase;letter-spacing:2px;">Select an NFC tag to edit</div>
+        <div style="color:var(--text3);font-size:0.55rem;max-width:240px;line-height:1.8;">NFC tags link physical locations to MV objects. Assign objects from the collection to create visitor-facing pages.</div>
+        <button class="btn nfc" onclick="onboardNewNFC()">+ Onboard New NFC Tag</button>
+      </div>
+    </div>
+    <div class="nfc-preview-col" id="nfcPreviewCol">
+      <div class="sb-title" style="color:var(--nfc);margin-bottom:14px;text-align:center;">Visitor Preview — Mobile</div>
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="phone-inner" id="nfcPreview">
+          <div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);text-align:center;padding:60px 10px;">Tap an NFC tag from the list to preview</div>
+        </div>
+        <div class="phone-home"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ████ VOCABULARY PANEL ████ -->
+<div class="panel" id="panel-vocab">
+  <div class="vocab-layout">
+    <div class="vocab-list-col">
+      <div class="sb-title" style="margin-bottom:13px">Active Vocabularies</div>
+      <div style="font-family:var(--mono);font-size:0.53rem;color:var(--text3);margin-bottom:11px;line-height:1.8">Toggle and order priority. Used during search and upload tagging.</div>
+      <div class="vocab-source active"><div class="vs-header"><span class="vs-name">AAT</span><div class="vs-toggle on" onclick="this.classList.toggle('on')"></div></div><div class="vs-desc">Getty Art & Architecture Thesaurus. Styles, materials, techniques, object types.</div><div class="vs-priority">Priority ① · 300,000+ terms</div></div>
+      <div class="vocab-source active"><div class="vs-header"><span class="vs-name">Local</span><div class="vs-toggle on" onclick="this.classList.toggle('on')"></div></div><div class="vs-desc">Institutional vocabulary. Custom terms specific to this collection.</div><div class="vs-priority">Priority ② · 847 terms</div></div>
+      <div class="vocab-source"><div class="vs-header"><span class="vs-name">LCSH</span><div class="vs-toggle" onclick="this.classList.toggle('on')"></div></div><div class="vs-desc">Library of Congress Subject Headings.</div><div class="vs-priority" style="color:var(--text3)">Inactive · 340,000+ terms</div></div>
+      <div class="vocab-source"><div class="vs-header"><span class="vs-name">TGN</span><div class="vs-toggle" onclick="this.classList.toggle('on')"></div></div><div class="vs-desc">Getty Thesaurus of Geographic Names.</div><div class="vs-priority" style="color:var(--text3)">Inactive · 2M+ names</div></div>
+    </div>
+    <div class="vocab-main-col">
+      <div class="section-label" style="margin-bottom:14px">Term Search</div>
+      <div class="vocab-search-bar"><input class="vocab-input" type="text" placeholder="Search terms across all vocabularies…"><button class="vocab-go">Search</button></div>
+      <div class="term-result selected"><div class="tr-term">Installations (Visual Works)</div><div class="tr-source">AAT · Getty Art & Architecture Thesaurus</div><div class="tr-id">AAT ID: 300047896</div><div class="tr-desc">Three-dimensional works intended to transform a perceptual space.</div></div>
+      <div class="term-result"><div class="tr-term">telecommunications equipment</div><div class="tr-source">AAT · Getty Art & Architecture Thesaurus</div><div class="tr-id">AAT ID: 300249755</div><div class="tr-desc">Equipment used to transmit and receive signals over distance.</div></div>
+      <div class="term-result"><div class="tr-term">scientific instruments</div><div class="tr-source">AAT · Getty Art & Architecture Thesaurus</div><div class="tr-id">AAT ID: 300024563</div><div class="tr-desc">Instruments devised for use in one or more of the sciences.</div></div>
+      <div class="indigenous-box"><div class="ib-label">Indigenous Protocol — Restricted Terms</div><div class="ib-text">This vocabulary layer is governed under community agreement. Terms relating to First Nations cultural materials require consultation before use in public-facing metadata.</div><button class="ib-btn" onclick="alert('Opening protocol documentation')">View Protocol Documentation</button></div>
+    </div>
+    <div class="vocab-result-col">
+      <div class="sb-title" style="margin-bottom:14px">Term Detail</div>
+      <div class="td-title">Installations (Visual Works)</div>
+      <div class="td-source">AAT · Getty Art & Architecture Thesaurus</div>
+      <div class="td-section"><div class="td-label">Scope Note</div><div class="td-text">Three-dimensional works intended to transform a perceptual space. Distinguished from individual objects or two-dimensional works. Often site-specific and temporary.</div></div>
+      <div class="td-section"><div class="td-label">Broader Terms</div><div class="broader-term">visual works &lt;by form&gt;</div><div class="broader-term">visual works</div></div>
+      <div class="td-section"><div class="td-label">Narrower Terms</div><div class="narrower-term">light installations</div><div class="narrower-term">sound installations</div><div class="narrower-term">video installations</div><div class="narrower-term">interactive installations</div></div>
+      <div class="td-section"><div class="td-label">Used in Collection</div><div style="font-family:var(--mono);font-size:0.58rem;color:var(--text3)"><span id="vocab-usage-count">—</span> records tagged</div></div>
+      <button class="use-term-btn" onclick="alert('Term applied to search')">Apply to Record / Search</button>
+      <button class="add-local-btn" onclick="alert('Adding local mapping')">Add Local Mapping</button>
+    </div>
+  </div>
+</div>
+
+<!-- ████ VISITOR PANEL ████ -->
+<div class="panel" id="panel-visitor">
+  <div class="visitor-layout">
+    <div class="vp-nfc-col">
+      <div class="section-label" style="margin-bottom:12px;">MV Objects — Visitor Pages</div>
+      <div id="vpNFCList"></div>
+    </div>
+    <div class="vp-main">
+      <div class="visitor-page-preview">
+        <div class="vpp-title" id="vTitle">Select an object</div>
+        <div class="vpp-sub" id="vSub">—</div>
+        <div class="vpp-img" id="vImg">Select an object from the left panel</div>
+        <div class="vpp-story" id="vStory"></div>
+        <div class="vpp-ask">
+          <div class="vpp-ask-label">Ask this object a question</div>
+          <div class="vpp-chips" id="vChips"></div>
+          <div class="vpp-chat-row"><input class="vpp-chat-in" id="vInput" type="text" placeholder="Ask something…"><button class="vpp-chat-btn" onclick="vAsk()">Ask</button></div>
+          <div class="vpp-response" id="vResponse"></div>
+        </div>
+        <div class="vpp-related-label">Semantically related objects</div>
+        <div class="related-grid" id="vRelated"></div>
+        <div class="vpp-comment">
+          <div class="vpc-label">Leave a response — your note joins the collection record</div>
+          <textarea class="vpc-textarea" placeholder="What did this object make you think or feel?"></textarea>
+          <button class="vpc-submit">Submit response</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ████ FAMTEC EXCHANGE PANEL ████ -->
+<div class="panel" id="panel-famtec">
+  <div class="famtec-layout">
+    <div class="famtec-left">
+      <div class="sb-title" style="color:var(--accent4);margin-bottom:10px;">Institutions</div>
+      <div class="inst-list" id="famtecInstList"></div>
+      <div class="sb-title" style="margin-bottom:8px;">Network Stats</div>
+      <div class="famtec-stat"><div>Institutions</div><span id="famtecStatInst">4</span></div>
+      <div class="famtec-stat"><div>Loan listings</div><span id="famtecStatLoans">2</span></div>
+      <div class="famtec-stat"><div>Skills requests</div><span id="famtecStatReqs">2 open</span></div>
+      <div class="famtec-stat"><div>Tech bookings</div><span id="famtecStatBookings">1 pending</span></div>
+      <div class="famtec-stat"><div>Data mode</div><span>Prototype mirror</span></div>
+    </div>
+    <div class="famtec-main">
+      <div class="famtec-banner">
+        <div class="famtec-banner-title">Prototype Integration Boundary</div>
+        <div class="famtec-banner-text">FAMTEC Exchange is shown inside ARCHAI for workflow testing. In production this runs as a separate platform with its own database and auth, while ARCHAI retains collection and visitor infrastructure for data sovereignty.</div>
+      </div>
+      <div class="famtec-hero">
+        <div>
+          <div class="famtec-title">FAMTEC Exchange</div>
+          <div class="famtec-sub">Institution-to-institution sharing · loan / rental hardware · skilled technician booking · exhibition support</div>
+        </div>
+        <div class="famtec-actions">
+          <div class="btn" onclick="alert('Post new hardware listing to FAMTEC exchange')">+ List Hardware</div>
+          <div class="btn" onclick="alert('Offer skills / crew availability')">+ Offer Skills</div>
+          <div class="btn" onclick="alert('Post a request for support')">+ Post Request</div>
+        </div>
+      </div>
+      <div class="famtec-search">
+        <input id="famtecSearch" type="text" placeholder="Search institutions, hardware, skills, hire/loan requests…">
+        <button onclick="renderFamtecFeed()">Search</button>
+      </div>
+      <div class="famtec-chiprow">
+        <div class="famtec-chip active" onclick="toggleFamtecChip(this)">All</div>
+        <div class="famtec-chip" onclick="toggleFamtecChip(this)">Loan</div>
+        <div class="famtec-chip" onclick="toggleFamtecChip(this)">Rental</div>
+        <div class="famtec-chip" onclick="toggleFamtecChip(this)">Need Skills</div>
+        <div class="famtec-chip" onclick="toggleFamtecChip(this)">Available Crew</div>
+        <div class="famtec-chip" onclick="toggleFamtecChip(this)">AV / Media Server</div>
+      </div>
+      <div class="famtec-grid" id="famtecFeed"></div>
+    </div>
+    <div class="famtec-right">
+      <div class="sb-title" style="color:var(--accent4);margin-bottom:10px;">Institution Chat</div>
+      <div class="famtec-chat">
+        <div class="famtec-chat-head">
+          <div style="font-family:var(--serif);font-size:0.95rem;" id="famtecChatTitle">FAMTEC × ACMI</div>
+        </div>
+        <div class="famtec-msgs" id="famtecMsgs"></div>
+        <div class="famtec-chat-row">
+          <input type="text" placeholder="Message…" onkeypress="if(event.key==='Enter')sendFamtecMsg(this)">
+          <button onclick="sendFamtecMsg(this.previousElementSibling)">Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ████ OBJECT DETAIL PANEL ████ -->
+<div class="panel" id="panel-objdetail">
+  <div class="od-panel-wrap">
+    <div class="od-back-btn" onclick="switchTab('curator',document.querySelectorAll('.tab')[0])">← Back to Collection</div>
+
+    <div class="od-hero">
+      <div class="od-image-col" id="od-image-col">
+        <div class="od-image-placeholder"><div style="font-size:2.5rem;opacity:0.06">▣</div><div>No image</div></div>
+      </div>
+      <div class="od-info-col">
+        <div id="od-title" class="od-title">—</div>
+        <div id="od-sub" class="od-sub">—</div>
+        <div id="od-meta-grid" class="od-meta-grid"></div>
+        <div style="margin-top:14px;display:flex;gap:6px;flex-wrap:wrap;" id="od-source-links"></div>
+      </div>
+    </div>
+
+    <div class="od-description-wrap">
+      <div class="section-label" style="margin-bottom:8px;">Curatorial Description</div>
+      <div id="od-description" style="font-size:0.82rem;color:var(--text2);line-height:1.75;max-width:880px;">—</div>
+    </div>
+
+    <div class="od-full-meta-wrap">
+      <div class="section-label" style="margin-bottom:10px;">Full Metadata Record — Qdrant Payload</div>
+      <div id="od-full-meta" class="od-full-meta-grid"></div>
+    </div>
+
+    <div class="od-lower">
+      <div class="od-chat-col">
+        <div class="section-label" style="margin-bottom:10px;">Interrogate this Object — live llama3</div>
+        <div id="od-chat-msgs" class="od-chat-msgs">
+          <div style="color:var(--text3);font-size:0.6rem;">Ask anything about this object. Responses generated by llama3 using verified MV metadata — hallucination prevention active.</div>
+        </div>
+        <div class="od-chat-row">
+          <input id="od-chat-in" class="od-chat-in" type="text" placeholder="Ask about materials, history, cultural significance…">
+          <button class="od-chat-send" onclick="odChat()">Ask</button>
+        </div>
+        <div class="od-chips" id="od-quick-chips"></div>
+      </div>
+      <div class="od-related-col">
+        <div class="section-label" style="margin-bottom:10px;">Semantically Related Objects</div>
+        <div id="od-related" style="max-height:480px;overflow-y:auto;">
+          <div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);">Select an object to see related works.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════
+// ARCHAI v10 — MV-Only · Full Metadata · Live LLM Chat
+// Museums Victoria objects loaded from Qdrant. No mock objects.
+// ═══════════════════════════════════════════════════════════════════
+
+const OBJECTS = {};
+const NFC_TAGS = [];
+const NFC_VIS_DEFAULTS = {
+  objectImage:true, aiInterpretation:true, artistStatement:true,
+  conservationNotes:false, technicalSpec:false, provenanceChain:false,
+  askQuestions:true, relatedWorks:true, visitorComments:true, nfcCode:false
+};
+const nfcVisibility = {};
+
+// ── STATE ────────────────────────────────────────────────────────
+let activeNFCCode = null;
+let currentVPage = null;
+let currentRole = 'curator';
+let activeFamtecInst = 'famtec';
+window._odCurrentId = null;
+window._odChatHistory = [];
+
+// ── ROLE DEFINITIONS ────────────────────────────────────────────
+const ROLE_DEFS = {
+  admin:       { label:'Admin',              note:'Admin access · user management, infra config, pipeline controls, all data',
+                 tabs:['curator','nodel','nfc','vocab','visitor','famtec','objdetail'] },
+  curator:     { label:'Curator',            note:'Curator access · collection editing, NFC publishing, vocab tools',
+                 tabs:['curator','nodel','nfc','vocab','visitor','famtec','objdetail'] },
+  collections: { label:'Collections Officer', note:'Collections Officer · data entry, upload/tagging, NFC assignment',
+                 tabs:['curator','nfc','vocab','visitor','famtec','objdetail'] },
+  technician:  { label:'Technician / AV',    note:'Technician / AV · Nodel operations and technical record visibility',
+                 tabs:['nodel','visitor','famtec','objdetail'] },
+  volunteer:   { label:'Volunteer',          note:'Volunteer · read-only collection lookup, NFC preview, visitor support',
+                 tabs:['curator','nfc','visitor','famtec'] },
+  visitor:     { label:'Visitor',            note:'Visitor mode · public-facing preview only',
+                 tabs:['visitor'] }
+};
+
+// ── FAMTEC DATA ─────────────────────────────────────────────────
+const FAMTEC_INSTITUTIONS = [
+  { id:'famtec', name:'FAMTEC', city:'Melbourne', focus:'Media art, digital heritage, robotics' },
+  { id:'acmi', name:'ACMI', city:'Melbourne', focus:'Screen culture, AV installations, interactive media' },
+  { id:'sama', name:'South Australian Museum', city:'Adelaide', focus:'Collections digitisation, exhibition infrastructure' },
+  { id:'mga', name:'Monash Gallery of Art', city:'Melbourne', focus:'Photography, moving image, media installs' }
+];
+
+const FAMTEC_FEED = [
+  { kind:'loan', title:'2x BrightSign XT media players (loan)', org:'ACMI', timing:'Available 10 Mar – 28 Apr', body:'Tested for synchronized two-channel playback. Can include SD card image + documentation set.', tags:['loan','media player','playback','installation'] },
+  { kind:'rental', title:'Short-throw projector package (rental)', org:'FAMTEC', timing:'Week rates + install support', body:'Projection package with lenses, mounts and alignment support for immersive rooms.', tags:['rental','projector','install','av'] },
+  { kind:'need skills', title:'Need dev support for legacy browser artwork', org:'FAMTEC', timing:'Exhibition opens in 6 weeks', body:'Seeking emulation / browser preservation specialist for IE6-era net art display and capture workflow.', tags:['need skills','preservation','emulation','net art'] },
+  { kind:'available crew', title:'Installation technicians available (2-person team)', org:'FAMTEC', timing:'April capacity open', body:'Experienced in media server commissioning, projection alignment, sensor calibration and deinstall documentation.', tags:['available crew','installation','commissioning'] },
+  { kind:'need skills', title:'Sound artist/technician for ambisonics tuning', org:'MGA', timing:'Install week 14 Apr', body:'Need support calibrating multi-channel speaker layout and documenting presets.', tags:['need skills','sound','ambisonics'] },
+  { kind:'loan', title:'NFC kiosks + tags starter kit', org:'FAMTEC', timing:'Pilot loan (8 weeks)', body:'Loan bundle for visitor wayfinding and object interpretation pilots. Includes deployment guide.', tags:['loan','nfc','visitor experience','pilot'] }
+];
+
+const FAMTEC_CHAT = {
+  famtec: [
+    { who:'FAMTEC / Collections', text:'We need a technician familiar with media-server failover and install documentation for an April exhibition.' },
+    { who:'FAMTEC / Ops', text:'We can offer a 2-person install team and a commissioning checklist. Do you need weekend bump-in coverage?' }
+  ],
+  acmi: [
+    { who:'ACMI / Exhibitions', text:'We can loan 2 BrightSign units with sync config if transport is arranged.' },
+    { who:'FAMTEC / AV', text:'Great. Can you share firmware version and playback logs from your last show?' }
+  ],
+  sama: [{ who:'SAMA / Digital', text:'Looking for short-term digitisation workflow advice for a seasonal exhibition ingest surge.' }],
+  mga: [{ who:'MGA / Tech', text:'Need ambisonics tuning support and a repeatable setup sheet for our team.' }]
+};
+
+// ═══════════════════════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════════════════════
+window.addEventListener('DOMContentLoaded', () => {
+  setInterval(() => {
+    document.getElementById('clockDisplay').textContent =
+      new Date().toLocaleTimeString('en-AU', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
+  }, 1000);
+
+  // Health checks
+  checkQdrant();
+  checkOllama();
+  checkDirectus();
+
+  // Role init
+  initRoleUI();
+
+  // Load MV objects from Qdrant
+  loadMVObjects();
+
+  // FAMTEC init
+  renderFamtecInstitutions();
+  renderFamtecFeed();
+  renderFamtecChat('famtec');
+
+  // Key bindings
+  document.getElementById('curatorSearch').addEventListener('keypress', e => {
+    if (e.key === 'Enter') doSearch();
+  });
+  document.getElementById('od-chat-in').addEventListener('keypress', e => {
+    if (e.key === 'Enter') odChat();
+  });
+  document.getElementById('vInput').addEventListener('keypress', e => {
+    if (e.key === 'Enter') vAsk();
+  });
+  document.getElementById('famtecSearch')?.addEventListener('keypress', e => {
+    if (e.key === 'Enter') renderFamtecFeed();
+  });
+});
+
+// ═══════════════════════════════════════════════════════════════════
+// HEALTH CHECKS
+// ═══════════════════════════════════════════════════════════════════
+function setDot(id, status) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.className = 'dot';
+  if (status === 'ok') { el.classList.add('dot-ok'); }
+  else if (status === 'warn') { el.classList.add('dot-warn'); }
+  else if (status === 'err') { el.classList.add('dot-err'); }
+  else { el.classList.add('dot-idle'); }
+}
+
+function checkQdrant() {
+  fetch('http://localhost:6333/collections')
+    .then(r => r.json())
+    .then(d => {
+      setDot('qdrantDot', 'ok'); setDot('sb-qdrant-dot', 'ok');
+      const cols = (d.result && d.result.collections) || [];
+      document.getElementById('qdrantVal').textContent = cols.length + ' collection' + (cols.length !== 1 ? 's' : '') + ' · Online';
+      document.getElementById('sb-qdrant-val').textContent = 'Online'; document.getElementById('sb-qdrant-val').style.color = 'var(--ok)';
+    })
+    .catch(() => {
+      setDot('qdrantDot', 'err'); setDot('sb-qdrant-dot', 'err');
+      document.getElementById('qdrantVal').textContent = 'Offline'; document.getElementById('sb-qdrant-val').textContent = 'Offline';
+      document.getElementById('sb-qdrant-val').style.color = 'var(--warn)';
+    });
+}
+
+function checkOllama() {
+  fetch('http://localhost:11434/api/tags')
+    .then(r => r.json())
+    .then(d => {
+      setDot('ollamaDot', 'ok'); setDot('sb-ollama-dot', 'ok');
+      const models = (d.models || []).map(m => m.name.split(':')[0]).join(', ');
+      document.getElementById('ollamaVal').textContent = models || 'No models';
+      document.getElementById('sb-ollama-val').textContent = models || 'Online'; document.getElementById('sb-ollama-val').style.color = 'var(--ok)';
+    })
+    .catch(() => {
+      setDot('ollamaDot', 'err'); setDot('sb-ollama-dot', 'err');
+      document.getElementById('ollamaVal').textContent = 'Offline'; document.getElementById('sb-ollama-val').textContent = 'Offline';
+      document.getElementById('sb-ollama-val').style.color = 'var(--warn)';
+    });
+}
+
+function checkDirectus() {
+  fetch('http://localhost:8055/server/health')
+    .then(r => r.json())
+    .then(d => {
+      setDot('directusDot', 'ok'); setDot('sb-directus-dot', 'ok');
+      document.getElementById('directusVal').textContent = 'Online · ' + (d.status || 'OK');
+      document.getElementById('sb-directus-val').textContent = 'Online'; document.getElementById('sb-directus-val').style.color = 'var(--ok)';
+    })
+    .catch(() => {
+      setDot('directusDot', 'warn'); setDot('sb-directus-dot', 'warn');
+      document.getElementById('directusVal').textContent = 'Not reachable';
+      document.getElementById('sb-directus-val').textContent = 'Not reachable'; document.getElementById('sb-directus-val').style.color = 'var(--nodel)';
+    });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// MV OBJECTS — Load from Qdrant
+// ═══════════════════════════════════════════════════════════════════
+function loadMVObjects() {
+  document.getElementById('collectionVal').textContent = 'Loading…';
+  document.getElementById('resultsLabel').textContent = 'Connecting to Qdrant — fetching Museums Victoria objects…';
+
+  fetch('http://localhost:6333/collections/archai_pilot/points/scroll', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ limit: 200, with_payload: true })
+  })
+  .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+  .then(data => {
+    const points = (data.result && data.result.points) || [];
+    // Clear previous
+    Object.keys(OBJECTS).forEach(k => delete OBJECTS[k]);
+
+    points.forEach((pt, i) => {
+      const p = pt.payload;
+      if (!p || !p.canonical_id) return;
+      const key = 'mv' + (i + 1);
+      OBJECTS[key] = {
+        title: p.title || 'Unknown Object',
+        year: p.date_range || 'date unknown',
+        type: p.object_type || p.discipline || 'Heritage Object',
+        id: p.canonical_id,
+        dams: p.registration_number || '',
+        location: p.museum_location || 'Museums Victoria',
+        status: 'exhibited',
+        nodeLinked: false,
+        ai: p.description || 'No description recorded.',
+        _mv: p,
+        chat: { default: 'I am ' + (p.title || 'an object') + ' from the Museums Victoria collection.' }
+      };
+    });
+
+    const count = Object.keys(OBJECTS).length;
+    document.getElementById('collectionVal').textContent = count + ' MV objects · archai_pilot';
+    document.getElementById('qdrantVal').textContent = 'archai_pilot · ' + count + ' pts';
+    document.getElementById('sb-qdrant-val').textContent = count + ' vectors'; document.getElementById('sb-qdrant-val').style.color = 'var(--ok)';
+    document.getElementById('sb-mv-val').textContent = count + ' objects loaded'; document.getElementById('sb-mv-val').style.color = 'var(--ok)';
+    setDot('sb-mv-dot', 'ok');
+    document.getElementById('sb-mv-count').textContent = count;
+    document.getElementById('resultsLabel').textContent = count + ' MV objects · nomic-embed-text · CC BY 4.0';
+    document.getElementById('nodel-mv-count').textContent = count;
+
+    // Auto-generate NFC tags for first 6 objects
+    generateNFCTags();
+
+    renderResultCards();
+    renderNFCList();
+    renderVisitorList();
+
+    console.log('ARCHAI v10: loaded', count, 'MV objects from Qdrant');
+  })
+  .catch(e => {
+    document.getElementById('collectionVal').textContent = 'Qdrant offline';
+    document.getElementById('qdrantVal').textContent = 'Offline — ' + e.message;
+    document.getElementById('resultsLabel').textContent = 'Qdrant not reachable — start Docker stack to load MV objects';
+    document.getElementById('resultsContainer').innerHTML = `<div style="padding:30px;text-align:center;">
+      <div style="font-family:var(--mono);font-size:0.7rem;color:var(--warn);margin-bottom:12px;">Could not connect to Qdrant</div>
+      <div style="font-family:var(--mono);font-size:0.58rem;color:var(--text3);line-height:2;">
+        Error: ${e.message}<br>
+        Qdrant: http://localhost:6333<br>
+        Run: <span style="color:var(--text2)">docker compose up -d</span><br>
+        Then: <span style="color:var(--text2)">node scripts/mv-harvester.js</span>
+      </div>
+      <button class="btn primary" style="margin-top:14px" onclick="loadMVObjects()">↻ Retry Connection</button>
+    </div>`;
+    console.warn('Qdrant unavailable:', e.message);
+  });
+}
+
+function generateNFCTags() {
+  NFC_TAGS.length = 0;
+  const keys = Object.keys(OBJECTS).slice(0, 8);
+  keys.forEach((k, i) => {
+    const tag = {
+      code: 'NFC' + String(i + 1).padStart(3, '0'),
+      status: i < 5 ? 'live' : 'draft',
+      objectId: k,
+      location: 'Exhibition Space — ' + (OBJECTS[k].location || 'TBC'),
+      scans: i < 5 ? Math.floor(Math.random() * 40) + 5 : 0,
+      lastScan: i < 5 ? Math.floor(Math.random() * 60) + ' min ago' : 'Never'
+    };
+    NFC_TAGS.push(tag);
+    nfcVisibility[tag.code] = {...NFC_VIS_DEFAULTS};
+  });
+  // Add unassigned tags
+  for (let i = keys.length; i < keys.length + 3; i++) {
+    const tag = { code: 'NFC' + String(i + 1).padStart(3, '0'), status: 'unassigned', objectId: null, location: 'Unassigned — Storage', scans: 0, lastScan: 'Never' };
+    NFC_TAGS.push(tag);
+    nfcVisibility[tag.code] = {...NFC_VIS_DEFAULTS};
+  }
+  document.getElementById('nfcTabCount').textContent = NFC_TAGS.length;
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// TABS
+// ═══════════════════════════════════════════════════════════════════
+function switchTab(name, el) {
+  if (el && el.classList && el.classList.contains('restricted')) return;
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  if (typeof el === 'string') {
+    el = [...document.querySelectorAll('.tab')].find(t => t.getAttribute('onclick') && t.getAttribute('onclick').includes("'" + name + "'"));
+  }
+  if (!el || el.classList.contains('restricted')) return;
+  if (el) el.classList.add('active');
+  const panel = document.getElementById('panel-' + name);
+  if (panel) panel.classList.add('active');
+}
+function setChip(el) { el.closest('.filter-group').querySelectorAll('.chip').forEach(c => c.classList.remove('active')); el.classList.add('active'); }
+function togglePill(el) { el.classList.toggle('active'); }
+
+// ═══════════════════════════════════════════════════════════════════
+// ROLE SWITCHING
+// ═══════════════════════════════════════════════════════════════════
+function initRoleUI() {
+  const sel = document.getElementById('roleSelect');
+  if (sel) currentRole = sel.value || currentRole;
+  applyRoleAccess();
+}
+
+function setUserRole(role) {
+  if (!ROLE_DEFS[role]) return;
+  currentRole = role;
+  applyRoleAccess();
+}
+
+function applyRoleAccess() {
+  const cfg = ROLE_DEFS[currentRole] || ROLE_DEFS.curator;
+  const roleNote = document.getElementById('roleNote');
+  if (roleNote) roleNote.textContent = cfg.note;
+
+  document.querySelectorAll('.tab').forEach(tab => {
+    const onclick = tab.getAttribute('onclick') || '';
+    const match = onclick.match(/switchTab\('([^']+)'/);
+    const name = match ? match[1] : '';
+    const allowed = cfg.tabs.includes(name);
+    tab.classList.toggle('restricted', !allowed);
+  });
+
+  // If the active tab is now restricted, switch to first allowed
+  const activeTab = document.querySelector('.tab.active');
+  if (activeTab && activeTab.classList.contains('restricted')) {
+    const firstAllowed = [...document.querySelectorAll('.tab')].find(t => !t.classList.contains('restricted') && t.style.display !== 'none');
+    if (firstAllowed) {
+      const match = (firstAllowed.getAttribute('onclick') || '').match(/switchTab\('([^']+)'/);
+      if (match) switchTab(match[1], firstAllowed);
+    }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// FAMTEC EXCHANGE
+// ═══════════════════════════════════════════════════════════════════
+function renderFamtecInstitutions() {
+  const el = document.getElementById('famtecInstList');
+  if (!el) return;
+  el.innerHTML = FAMTEC_INSTITUTIONS.map(inst =>
+    `<div class="inst-card ${activeFamtecInst === inst.id ? 'active' : ''}" onclick="selectFamtecInst('${inst.id}')">
+      <div class="inst-name">${inst.name}</div>
+      <div class="inst-meta">${inst.city} · ${inst.focus}</div>
+    </div>`
+  ).join('');
+}
+
+function selectFamtecInst(id) {
+  activeFamtecInst = id;
+  renderFamtecInstitutions();
+  renderFamtecChat(id);
+  const inst = FAMTEC_INSTITUTIONS.find(i => i.id === id);
+  document.getElementById('famtecChatTitle').textContent = inst ? `FAMTEC × ${inst.name}` : 'FAMTEC Exchange';
+}
+
+function renderFamtecFeed() {
+  const el = document.getElementById('famtecFeed');
+  if (!el) return;
+  const q = (document.getElementById('famtecSearch')?.value || '').toLowerCase();
+  const items = q
+    ? FAMTEC_FEED.filter(f => (f.title + f.body + f.tags.join(' ')).toLowerCase().includes(q))
+    : FAMTEC_FEED;
+  el.innerHTML = items.map(f =>
+    `<div class="famtec-card">
+      <div class="ft-label">${f.kind}</div>
+      <div class="ft-title">${f.title}</div>
+      <div class="ft-meta">${f.org} · ${f.timing}</div>
+      <div class="ft-body">${f.body}</div>
+      <div class="ft-tags">${f.tags.map(t => '<span class="ft-tag">' + t + '</span>').join('')}</div>
+      <div class="ft-cta"><div class="btn" onclick="alert('Enquiry sent for: ${f.title.replace(/'/g,"\\'")}')">Enquire</div><div class="btn" onclick="alert('View full listing')">Details</div></div>
+    </div>`
+  ).join('');
+  if (!items.length) el.innerHTML = '<div style="grid-column:1/-1;font-family:var(--mono);font-size:0.6rem;color:var(--text3);padding:20px;text-align:center;">No matching listings found.</div>';
+}
+
+function toggleFamtecChip(el) {
+  document.querySelectorAll('.famtec-chip').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  const filter = el.textContent.toLowerCase().trim();
+  const el2 = document.getElementById('famtecFeed');
+  if (!el2) return;
+  if (filter === 'all') { renderFamtecFeed(); return; }
+  const items = FAMTEC_FEED.filter(f => f.kind.toLowerCase().includes(filter) || f.tags.some(t => t.toLowerCase().includes(filter)));
+  el2.innerHTML = items.map(f =>
+    `<div class="famtec-card">
+      <div class="ft-label">${f.kind}</div>
+      <div class="ft-title">${f.title}</div>
+      <div class="ft-meta">${f.org} · ${f.timing}</div>
+      <div class="ft-body">${f.body}</div>
+      <div class="ft-tags">${f.tags.map(t => '<span class="ft-tag">' + t + '</span>').join('')}</div>
+      <div class="ft-cta"><div class="btn" onclick="alert('Enquiry sent')">Enquire</div></div>
+    </div>`
+  ).join('');
+  if (!items.length) el2.innerHTML = '<div style="grid-column:1/-1;font-family:var(--mono);font-size:0.6rem;color:var(--text3);padding:20px;">No listings match this filter.</div>';
+}
+
+function renderFamtecChat(instId) {
+  const msgs = document.getElementById('famtecMsgs');
+  if (!msgs) return;
+  const chat = FAMTEC_CHAT[instId] || [];
+  msgs.innerHTML = chat.map(m =>
+    `<div class="famtec-msg"><div class="famtec-msg-who">${m.who}</div><div class="famtec-msg-text">${m.text}</div></div>`
+  ).join('');
+  if (!chat.length) msgs.innerHTML = '<div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);padding:12px;">No messages yet. Start a conversation.</div>';
+}
+
+function sendFamtecMsg(input) {
+  const text = input?.value?.trim();
+  if (!text) return;
+  const msgs = document.getElementById('famtecMsgs');
+  if (msgs) {
+    msgs.innerHTML += `<div class="famtec-msg"><div class="famtec-msg-who">You / FAMTEC</div><div class="famtec-msg-text">${text}</div></div>`;
+    msgs.scrollTop = msgs.scrollHeight;
+  }
+  input.value = '';
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// CURATOR — RESULT CARDS
+// ═══════════════════════════════════════════════════════════════════
+function thumbHTML(o) {
+  const p = o._mv;
+  if (p && p.media_thumbnail) {
+    return `<img src="${p.media_thumbnail}" alt="${escQ(o.title)}" loading="lazy"
+      onerror="this.outerHTML='<div style=\\'font-size:0.42rem;opacity:0.2;text-align:center\\'>▣<br>${escQ(o.dams)}</div>'">`; 
+  }
+  return `<div style="font-size:1rem;opacity:0.15;margin-bottom:3px">▣</div><div style="font-size:0.44rem">${o.dams}</div>`;
+}
+
+function renderResultCards() {
+  const c = document.getElementById('resultsContainer');
+  if (!c) return;
+  const keys = Object.keys(OBJECTS);
+  if (!keys.length) {
+    c.innerHTML = '<div style="padding:30px;font-family:var(--mono);font-size:0.62rem;color:var(--text3);text-align:center;">No objects loaded. Connect to Qdrant to browse MV collection.</div>';
+    return;
+  }
+  c.innerHTML = keys.map(id => {
+    const o = OBJECTS[id];
+    const p = o._mv || {};
+    return `<div class="result-card" onclick="openObj('${id}')">
+      <div class="thumb"><div class="thumb-live"></div>${thumbHTML(o)}</div>
+      <div>
+        <div class="r-title">${o.title}</div>
+        <div class="r-meta">${p.discipline || o.type} · ${p.category || ''} · ${p.registration_number || o.dams}</div>
+        <div class="r-summary">${(o.ai || '').substring(0, 120)}${(o.ai || '').length > 120 ? '…' : ''}</div>
+        <div class="tag-row">
+          <span class="tag mv">MV Collection</span>
+          <span class="tag">${p.licence || 'CC BY 4.0'}</span>
+          ${p.discipline ? '<span class="tag">' + p.discipline + '</span>' : ''}
+          <span class="tag">${(o.location || '').substring(0, 24)}</span>
+          ${nfcAssigned(id) ? '<span class="tag nfc-tag">NFC</span>' : ''}
+        </div>
+      </div>
+      <div>
+        <div class="score"><div class="score-label">Qdrant</div>●</div>
+        <div class="node-st"><div class="dot dot-ok" style="width:4px;height:4px"></div><span style="color:var(--ok);font-family:var(--mono);font-size:0.52rem">MV · LIVE</span></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function nfcAssigned(objId) { return NFC_TAGS.some(t => t.objectId === objId && t.status === 'live'); }
+
+// ═══════════════════════════════════════════════════════════════════
+// SEMANTIC SEARCH — live Qdrant + Ollama
+// ═══════════════════════════════════════════════════════════════════
+function doSearch() {
+  const q = document.getElementById('curatorSearch').value.trim();
+  if (!q) {
+    document.getElementById('resultsLabel').textContent = Object.keys(OBJECTS).length + ' MV objects · nomic-embed-text · CC BY 4.0';
+    renderResultCards();
+    return;
+  }
+  const container = document.getElementById('resultsContainer');
+  document.getElementById('resultsLabel').textContent = 'Searching "' + q + '" via Qdrant…';
+  container.innerHTML = '<div style="padding:20px;font-family:var(--mono);font-size:0.62rem;color:var(--text2)">Embedding query via nomic-embed-text and searching Qdrant…</div>';
+
+  fetch('http://localhost:11434/api/embeddings', {
+    method: 'POST', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ model: 'nomic-embed-text', prompt: q })
+  })
+  .then(r => r.json())
+  .then(({ embedding }) =>
+    fetch('http://localhost:6333/collections/archai_pilot/points/search', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ vector: embedding, limit: 20, with_payload: true })
+    })
+  )
+  .then(r => r.json())
+  .then(({ result }) => {
+    document.getElementById('resultsLabel').textContent = (result ? result.length : 0) + ' results for "' + q + '" · semantic · Qdrant · Museums Victoria';
+    if (!result || !result.length) {
+      container.innerHTML = '<div style="padding:20px;font-family:var(--mono);font-size:0.62rem;color:var(--text3)">No results — try different terms</div>';
+      return;
+    }
+    container.innerHTML = result.map(r => {
+      const p = r.payload;
+      const score = r.score.toFixed(3);
+      const existingKey = Object.keys(OBJECTS).find(k => OBJECTS[k].id === p.canonical_id);
+      const objKey = existingKey || ('mv_s_' + (p.registration_number || Math.random().toString(36).slice(2,8)));
+      if (!existingKey) {
+        OBJECTS[objKey] = {
+          title: p.title || '', year: p.date_range || '', type: p.object_type || p.discipline || '',
+          id: p.canonical_id, dams: p.registration_number || '', location: p.museum_location || 'Museums Victoria',
+          status: 'exhibited', nodeLinked: false, ai: p.description || '', _mv: p,
+          chat: { default: 'I am ' + (p.title || 'an object') + ' in the Museums Victoria collection.' }
+        };
+      }
+      const thumbSrc = p.media_thumbnail;
+      const thumbInner = thumbSrc
+        ? `<img src="${thumbSrc}" style="width:100%;height:100%;object-fit:cover" loading="lazy" onerror="this.style.display='none'">`
+        : `<div style="font-size:1rem;opacity:0.15;margin-bottom:3px">▣</div><div style="font-size:0.44rem">${p.registration_number || ''}</div>`;
+      return `<div class="result-card" onclick="openObj('${objKey}')">
+        <div class="thumb"><div class="thumb-live"></div>${thumbInner}</div>
+        <div>
+          <div class="r-title">${p.title || ''}</div>
+          <div class="r-meta">${p.discipline || ''} · ${p.category || ''} · ${p.registration_number || ''}</div>
+          <div class="r-summary">${(p.description || '').slice(0, 120)}${(p.description || '').length > 120 ? '…' : ''}</div>
+          <div class="tag-row">
+            <span class="tag mv">MV Collection</span>
+            <span class="tag">${p.licence || 'CC BY'}</span>
+            ${p.discipline ? '<span class="tag">' + p.discipline + '</span>' : ''}
+          </div>
+        </div>
+        <div>
+          <div class="score"><div class="score-label">Cosine</div>${score}</div>
+          <div class="node-st"><div class="dot dot-ok" style="width:4px;height:4px"></div><span style="color:var(--ok);font-family:var(--mono);font-size:0.52rem">MV · LIVE</span></div>
+        </div>
+      </div>`;
+    }).join('');
+  })
+  .catch(e => {
+    console.warn('Semantic search failed, falling back to text search:', e.message);
+    // Text-based fallback: filter loaded objects by title/description match
+    const terms = q.toLowerCase().split(/\s+/);
+    const matches = Object.entries(OBJECTS).filter(([id, o]) => {
+      const haystack = [o.title, o.ai, o.type, o.location, o.dams, o.id,
+        o._mv ? (o._mv.description || '') : '',
+        o._mv ? (o._mv.discipline || '') : '',
+        o._mv ? (o._mv.category || '') : ''
+      ].join(' ').toLowerCase();
+      return terms.some(t => haystack.includes(t));
+    }).slice(0, 20);
+
+    document.getElementById('resultsLabel').textContent = matches.length + ' results for "' + q + '" · text match (Ollama offline — semantic search unavailable)';
+
+    if (!matches.length) {
+      container.innerHTML = `<div style="padding:20px;font-family:var(--mono);font-size:0.62rem;color:var(--text3)">
+        No text matches found for "${escQ(q)}". Semantic search requires Ollama.<br>
+        <span style="color:var(--warn);font-size:0.55rem;">Fix CORS: run <code>launchctl setenv OLLAMA_ORIGINS "*"</code> then restart Ollama</span>
+      </div>`;
+      return;
+    }
+
+    container.innerHTML = matches.map(([id, o]) => {
+      const p = o._mv || {};
+      return `<div class="result-card" onclick="openObj('${id}')">
+        <div class="thumb"><div class="thumb-live"></div>${thumbHTML(o)}</div>
+        <div>
+          <div class="r-title">${o.title}</div>
+          <div class="r-meta">${p.discipline || o.type} · ${p.category || ''} · ${p.registration_number || o.dams}</div>
+          <div class="r-summary">${(o.ai || '').substring(0, 120)}${(o.ai || '').length > 120 ? '…' : ''}</div>
+          <div class="tag-row">
+            <span class="tag mv">MV Collection</span>
+            <span class="tag" style="border-color:rgba(232,168,64,0.3);color:rgba(232,168,64,0.7)">Text Match</span>
+            ${p.discipline ? '<span class="tag">' + p.discipline + '</span>' : ''}
+          </div>
+        </div>
+        <div>
+          <div class="score"><div class="score-label">Match</div>TEXT</div>
+          <div class="node-st"><div class="dot dot-ok" style="width:4px;height:4px"></div><span style="color:var(--ok);font-family:var(--mono);font-size:0.52rem">MV</span></div>
+        </div>
+      </div>`;
+    }).join('');
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// OPEN OBJECT → always goes to full Object Detail tab
+// ═══════════════════════════════════════════════════════════════════
+function openObj(id) {
+  const o = OBJECTS[id];
+  if (!o) return;
+  openObjectDetail(id);
+}
+
+function openObjectDetail(objKey) {
+  const o = OBJECTS[objKey];
+  if (!o) return;
+
+  window._odCurrentId = objKey;
+  window._odChatHistory = [];
+
+  // Show and activate tab
+  const tab = document.getElementById('tab-objdetail');
+  const shortTitle = (o.title || 'Object').substring(0, 28) + ((o.title || '').length > 28 ? '…' : '');
+  document.getElementById('tab-objdetail-label').textContent = shortTitle;
+  tab.style.display = '';
+  switchTab('objdetail', tab);
+
+  const p = o._mv || {};
+
+  // Image
+  const imgSrc = p.media_large || p.media_medium || p.media_thumbnail || null;
+  const imgCol = document.getElementById('od-image-col');
+  if (imgSrc) {
+    imgCol.innerHTML = `<img src="${imgSrc}" alt="${escQ(o.title)}" loading="lazy"
+      onerror="this.outerHTML='<div class=\\'od-image-placeholder\\'><div style=\\'font-size:2rem;opacity:0.08\\'>▣</div><div style=\\'font-family:var(--mono);font-size:0.55rem;color:var(--text3)\\'>Image unavailable</div></div>'"
+      style="width:100%;height:100%;object-fit:contain;min-height:280px;">`;
+  } else {
+    imgCol.innerHTML = `<div class="od-image-placeholder"><div style="font-size:2.5rem;opacity:0.06">▣</div><div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);text-align:center">No image<br>${escQ(p.registration_number || o.dams || '—')}</div></div>`;
+  }
+
+  // Title + sub
+  document.getElementById('od-title').textContent = o.title || '—';
+  document.getElementById('od-sub').textContent = [o.type, o.year, o.id].filter(Boolean).join(' · ');
+
+  // Key metadata
+  const keyMeta = [
+    ['Discipline', p.discipline || o.type || '—'],
+    ['Date / Period', p.date_range || String(o.year) || '—'],
+    ['Registration', p.registration_number || o.dams || '—'],
+    ['Location', p.museum_location || o.location || '—'],
+    ['Category', p.category || '—'],
+    ['Object Type', p.object_type || '—'],
+    ['Licence', p.licence || 'CC BY 4.0'],
+    ['Canonical ID', p.canonical_id || o.id || '—'],
+  ];
+  document.getElementById('od-meta-grid').innerHTML = keyMeta.map(([k, v]) =>
+    `<div class="od-meta-item"><div class="od-meta-key">${k}</div><div class="od-meta-val">${v}</div></div>`
+  ).join('');
+
+  // Source links
+  const linksEl = document.getElementById('od-source-links');
+  linksEl.innerHTML = '';
+  if (p.source_url) {
+    linksEl.innerHTML += `<a href="${p.source_url}" target="_blank" class="btn" style="font-size:0.55rem">View on MV Collections →</a>`;
+  }
+  if (p.media_large || p.media_medium) {
+    linksEl.innerHTML += `<a href="${p.media_large || p.media_medium}" target="_blank" class="btn" style="font-size:0.55rem">Full-res Image →</a>`;
+  }
+  linksEl.innerHTML += `<a href="http://localhost:8055/admin" target="_blank" class="btn" style="font-size:0.55rem">Edit in Directus →</a>`;
+
+  // Description
+  document.getElementById('od-description').textContent = p.description || o.ai || '—';
+
+  // Full metadata — show ALL _mv fields
+  const fullEl = document.getElementById('od-full-meta');
+  if (o._mv) {
+    const entries = Object.entries(o._mv)
+      .filter(([k, v]) => v && String(v).trim() && k !== 'embedding_text');
+    fullEl.innerHTML = entries.map(([k, v]) => {
+      const val = String(v);
+      const isUrl = val.startsWith('http');
+      return `<div class="od-meta-item"><div class="od-meta-key">${k.replace(/_/g, ' ')}</div><div class="od-meta-val">${isUrl ? '<a href="'+val+'" target="_blank" style="color:var(--accent);word-break:break-all">'+val+'</a>' : val}</div></div>`;
+    }).join('');
+  } else {
+    fullEl.innerHTML = '<div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3)">No raw metadata available</div>';
+  }
+
+  // Chat reset
+  document.getElementById('od-chat-msgs').innerHTML =
+    '<div style="color:var(--text3);font-size:0.6rem;font-family:var(--mono);">Ask anything about this object. When Ollama is running, responses are generated by llama3 using verified MV metadata. When offline, ARCHAI responds directly from the metadata record.</div>';
+
+  // Quick chips
+  const chips = ['What are you made of?', 'Tell me your history', 'What is your cultural significance?', 'How were you used?', 'Describe yourself'];
+  document.getElementById('od-quick-chips').innerHTML = chips.map(c =>
+    `<div class="od-chip" onclick="document.getElementById('od-chat-in').value='${escQ(c)}';odChat();">${c}</div>`
+  ).join('');
+  document.getElementById('od-chat-in').value = '';
+
+  // Related objects
+  document.getElementById('od-related').innerHTML = '<div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);padding:4px 0;">Finding related objects via Qdrant…</div>';
+  odLoadRelated(objKey, o);
+
+  // Scroll to top
+  document.querySelector('.od-panel-wrap').scrollTop = 0;
+}
+
+// ── Object Detail: live Ollama chat ────────────────────────────────
+function odChat() {
+  const id = window._odCurrentId;
+  if (!id) return;
+  const o = OBJECTS[id];
+  if (!o) return;
+
+  const inEl = document.getElementById('od-chat-in');
+  const msgs = document.getElementById('od-chat-msgs');
+  const q = inEl.value.trim();
+  if (!q) return;
+
+  inEl.value = '';
+  inEl.disabled = true;
+
+  msgs.innerHTML += `<div class="chat-msg u">↳ ${escQ(q)}</div>`;
+  const thinkId = 'od-think-' + Date.now();
+  msgs.innerHTML += `<div class="chat-msg a thinking" id="${thinkId}">thinking…</div>`;
+  msgs.scrollTop = msgs.scrollHeight;
+
+  const p = o._mv || {};
+  // Build ALL metadata into the system prompt for grounded responses
+  let metaBlock = '';
+  if (o._mv) {
+    metaBlock = Object.entries(o._mv)
+      .filter(([k, v]) => v && String(v).trim() && k !== 'embedding_text' && !k.startsWith('media_'))
+      .map(([k, v]) => `- ${k.replace(/_/g, ' ')}: ${String(v).substring(0, 200)}`)
+      .join('\n');
+  }
+
+  const sys = `You are "${o.title || 'an object'}", a physical object in the Museums Victoria collection. Speak in the first person as the object itself.
+
+VERIFIED METADATA (use ONLY this data — never invent facts):
+${metaBlock || '- No metadata available'}
+
+RULES:
+- Respond in 2-4 sentences as the object speaking about itself
+- Be warm, precise, historically aware
+- If asked something not in the metadata, say "That detail is not in my record — I can only speak to what Museums Victoria has documented about me."
+- Never invent provenance, makers, or history not in the metadata
+- Licence: ${p.licence || 'CC BY 4.0'}`;
+
+  window._odChatHistory.push({ role: 'user', content: q });
+
+  fetch('http://localhost:11434/api/chat', {
+    method: 'POST', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ model: 'llama3', stream: false, messages: [{ role: 'system', content: sys }, ...window._odChatHistory] })
+  })
+  .then(r => r.json())
+  .then(data => {
+    const reply = (data.message && data.message.content) || 'I cannot speak right now.';
+    window._odChatHistory.push({ role: 'assistant', content: reply });
+    const t = document.getElementById(thinkId);
+    if (t) { t.textContent = reply; t.style.color = ''; t.classList.remove('thinking'); }
+    msgs.scrollTop = msgs.scrollHeight;
+  })
+  .catch(e => {
+    console.warn('Ollama unreachable, using metadata fallback:', e.message);
+    const reply = generateMetadataResponse(o, q);
+    window._odChatHistory.push({ role: 'assistant', content: reply });
+    const t = document.getElementById(thinkId);
+    if (t) {
+      t.innerHTML = reply + '<div style="font-family:var(--mono);font-size:0.48rem;color:var(--text3);margin-top:6px;border-top:1px solid var(--border);padding-top:4px;">⚡ Metadata response — Ollama offline. Fix: run <code>launchctl setenv OLLAMA_ORIGINS "*"</code> then restart Ollama.</div>';
+      t.style.color = ''; t.classList.remove('thinking');
+    }
+    msgs.scrollTop = msgs.scrollHeight;
+  })
+  .finally(() => { inEl.disabled = false; inEl.focus(); });
+}
+
+// ── Smart metadata-based response generator (Ollama fallback) ──────
+function generateMetadataResponse(o, question) {
+  const p = o._mv || {};
+  const q = (question || '').toLowerCase();
+  const title = o.title || 'this object';
+  const desc = p.description || o.ai || '';
+  const type = p.object_type || o.type || 'object';
+  const discipline = p.discipline || '';
+  const date = p.date_range || String(o.year) || 'an unknown date';
+  const reg = p.registration_number || o.dams || '';
+  const location = p.museum_location || o.location || 'Museums Victoria';
+  const category = p.category || '';
+  const licence = p.licence || 'CC BY 4.0';
+
+  // Match question intent to metadata
+  if (q.includes('made of') || q.includes('material') || q.includes('what are you')) {
+    if (desc) return `I am ${title}, classified as ${type}${category ? ' in the category of ' + category : ''}. ${desc.substring(0, 250)}${desc.length > 250 ? '…' : ''}`;
+    return `I am ${title}, a ${type} in the Museums Victoria collection. My materials and composition are not fully detailed in my record — you could find more on the MV Collections website.`;
+  }
+
+  if (q.includes('history') || q.includes('old') || q.includes('when') || q.includes('date')) {
+    return `I date from ${date}. I am registered as ${reg} in the Museums Victoria collection${discipline ? ', within the ' + discipline + ' discipline' : ''}. ${desc ? desc.substring(0, 180) + '…' : 'My full history is documented in the MV collection record.'}`;
+  }
+
+  if (q.includes('significance') || q.includes('important') || q.includes('cultural') || q.includes('meaning')) {
+    return `As a ${type} from ${date}, I represent part of ${discipline || 'Victoria\'s'} heritage. ${desc ? desc.substring(0, 200) + '…' : ''} I am held by Museums Victoria under a ${licence} licence, which means my story can be shared and built upon.`;
+  }
+
+  if (q.includes('where') || q.includes('location') || q.includes('from')) {
+    return `I am held at ${location}. My registration number is ${reg}. I belong to the ${discipline || 'general'} collection at Museums Victoria.`;
+  }
+
+  if (q.includes('used') || q.includes('purpose') || q.includes('function')) {
+    if (desc) return `${desc.substring(0, 300)}${desc.length > 300 ? '…' : ''}`;
+    return `I am ${title}, classified as ${type}. My specific use and function are described in more detail on the Museums Victoria Collections website.`;
+  }
+
+  if (q.includes('describe') || q.includes('tell me about') || q.includes('who are you') || q.includes('hello')) {
+    return `I am ${title}, a ${type} from ${date}. ${desc ? desc.substring(0, 250) + (desc.length > 250 ? '…' : '') : 'I am part of the Museums Victoria collection.'} My registration number is ${reg}.`;
+  }
+
+  // Default: return description or a structured summary
+  if (desc) {
+    return `I am ${title}. ${desc.substring(0, 300)}${desc.length > 300 ? '…' : ''} I date from ${date} and am registered as ${reg} at Museums Victoria.`;
+  }
+  return `I am ${title}, a ${type} from ${date}, held at ${location}. My registration number is ${reg}. For more details about me, visit the Museums Victoria Collections website.`;
+}
+
+// ── Related objects via Qdrant ─────────────────────────────────────
+function odLoadRelated(objKey, o) {
+  const relEl = document.getElementById('od-related');
+  const queryText = (o._mv && o._mv.description) || o.ai || o.title || '';
+  if (!queryText) { relEl.innerHTML = '<div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);">No description available for similarity search.</div>'; return; }
+
+  fetch('http://localhost:11434/api/embeddings', {
+    method: 'POST', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ model: 'nomic-embed-text', prompt: queryText.substring(0, 500) })
+  })
+  .then(r => r.json())
+  .then(({ embedding }) =>
+    fetch('http://localhost:6333/collections/archai_pilot/points/search', {
+      method: 'POST', headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({ vector: embedding, limit: 9, with_payload: true })
+    })
+  )
+  .then(r => r.json())
+  .then(({ result }) => {
+    const currentReg = o._mv && o._mv.registration_number;
+    const filtered = (result || []).filter(r => !currentReg || r.payload.registration_number !== currentReg).slice(0, 6);
+    if (!filtered.length) { relEl.innerHTML = '<div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);">No related objects found.</div>'; return; }
+
+    relEl.innerHTML = filtered.map(r => {
+      const p = r.payload;
+      const score = r.score.toFixed(3);
+      const existingKey = Object.keys(OBJECTS).find(k => OBJECTS[k].id === p.canonical_id);
+      const relKey = existingKey || ('mv_r_' + (p.registration_number || Math.random().toString(36).slice(2,8)));
+      if (!existingKey) {
+        OBJECTS[relKey] = {
+          title: p.title || '', year: p.date_range || '', type: p.object_type || p.discipline || '',
+          id: p.canonical_id, dams: p.registration_number || '', location: p.museum_location || 'Museums Victoria',
+          status: 'exhibited', nodeLinked: false, ai: p.description || '', _mv: p,
+          chat: { default: 'I am ' + (p.title || 'an object') + ' in the Museums Victoria collection.' }
+        };
+      }
+      const thumb = p.media_thumbnail
+        ? `<img src="${p.media_thumbnail}" style="width:100%;height:100%;object-fit:cover;" loading="lazy">`
+        : '<span style="font-size:0.5rem;opacity:0.2">▣</span>';
+      return `<div class="od-rel-card" onclick="openObjectDetail('${relKey}')">
+        <div class="od-rel-thumb">${thumb}</div>
+        <div class="od-rel-info">
+          <div class="od-rel-title">${p.title || '—'}</div>
+          <div class="od-rel-meta">${p.discipline || ''} ${p.registration_number ? '· ' + p.registration_number : ''}</div>
+          <div class="od-rel-score">Similarity: ${score}</div>
+        </div>
+      </div>`;
+    }).join('');
+  })
+  .catch(e => {
+    // Fallback: show other objects from the loaded collection
+    const otherKeys = Object.keys(OBJECTS).filter(k => k !== objKey).slice(0, 6);
+    if (!otherKeys.length) {
+      relEl.innerHTML = `<div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);">Ollama offline — cannot compute similarity. No other objects loaded.</div>`;
+      return;
+    }
+    relEl.innerHTML = '<div style="font-family:var(--mono);font-size:0.48rem;color:var(--text3);margin-bottom:8px;">⚡ Ollama offline — showing collection objects (not similarity-ranked)</div>' +
+      otherKeys.map(k => {
+        const ro = OBJECTS[k]; const rp = ro._mv || {};
+        const thumb = rp.media_thumbnail
+          ? `<img src="${rp.media_thumbnail}" style="width:100%;height:100%;object-fit:cover;" loading="lazy">`
+          : '<span style="font-size:0.5rem;opacity:0.2">▣</span>';
+        return `<div class="od-rel-card" onclick="openObjectDetail('${k}')">
+          <div class="od-rel-thumb">${thumb}</div>
+          <div class="od-rel-info">
+            <div class="od-rel-title">${ro.title || '—'}</div>
+            <div class="od-rel-meta">${rp.discipline || ''} ${rp.registration_number ? '· ' + rp.registration_number : ''}</div>
+          </div>
+        </div>`;
+      }).join('');
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// NFC MANAGEMENT
+// ═══════════════════════════════════════════════════════════════════
+function renderNFCList(filter = 'all', search = '') {
+  const c = document.getElementById('nfcList');
+  const filtered = NFC_TAGS.filter(t => {
+    const matchFilter = filter === 'all' || t.status === filter;
+    const matchSearch = !search ||
+      t.code.toLowerCase().includes(search) ||
+      (t.objectId && OBJECTS[t.objectId] && OBJECTS[t.objectId].title.toLowerCase().includes(search)) ||
+      t.location.toLowerCase().includes(search);
+    return matchFilter && matchSearch;
+  });
+  c.innerHTML = filtered.map(t => {
+    const obj = t.objectId ? OBJECTS[t.objectId] : null;
+    return `<div class="nfc-card ${(!t.objectId) ? 'unassigned' : ''} ${activeNFCCode === t.code ? 'active' : ''}" onclick="selectNFC('${t.code}')">
+      <div class="nfc-card-header"><div class="nfc-code">${t.code}</div><div class="nfc-status-badge ${t.status}">${t.status}</div></div>
+      <div class="nfc-object-name">${obj ? obj.title : '— Unassigned —'}</div>
+      <div class="nfc-object-id">${obj ? obj.id : 'No object linked'}</div>
+      <div class="nfc-location">${t.location}</div>
+      <div class="nfc-scans">Scans: ${t.scans} · Last: ${t.lastScan}</div>
+    </div>`;
+  }).join('') || '<div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);padding:10px;">No NFC tags match filter.</div>';
+}
+
+function nfcFilter(el, f) { document.querySelectorAll('.nfc-fchip').forEach(c => c.classList.remove('active')); el.classList.add('active'); renderNFCList(f, document.querySelector('.nfc-search').value.toLowerCase()); }
+function filterNFCList(v) { renderNFCList('all', v.toLowerCase()); }
+
+function selectNFC(code) { activeNFCCode = code; const tag = NFC_TAGS.find(t => t.code === code); renderNFCList(); renderNFCEditor(tag); renderNFCPreview(tag); }
+
+function renderNFCEditor(tag) {
+  const obj = tag.objectId ? OBJECTS[tag.objectId] : null;
+  const vis = nfcVisibility[tag.code];
+  const allObjs = Object.entries(OBJECTS).map(([id, o]) => {
+    const thumbSrc = o._mv && o._mv.media_thumbnail;
+    return `<div class="op-item ${tag.objectId === id ? 'selected' : ''}" onclick="assignObject('${tag.code}','${id}')">
+      <div class="op-thumb">${thumbSrc ? `<img src="${thumbSrc}" loading="lazy">` : `<div style="font-size:0.42rem;opacity:0.2">${o.dams}</div>`}</div>
+      <div><div class="op-name">${o.title}</div><div class="op-meta">${(o.type || '').substring(0, 30)} · ${o.year} · ${o.id}</div></div>
+      <div class="op-add">${tag.objectId === id ? '✓ Assigned' : 'Assign'}</div>
+    </div>`;
+  }).join('');
+
+  const visItems = [['objectImage','Object Image'],['aiInterpretation','AI Interpretation'],['askQuestions','Ask Questions'],['relatedWorks','Related Works'],['visitorComments','Visitor Comments'],['nfcCode','Show NFC Code']];
+
+  document.getElementById('nfcEditor').innerHTML = `
+    <div class="editor-header">
+      <div><div class="editor-nfc-code">${tag.code}</div><div style="font-family:var(--mono);font-size:0.58rem;color:var(--text3);margin-top:4px">${tag.location}</div></div>
+      <div class="editor-actions">
+        <div class="btn" onclick="alert('Generating QR + NFC config for ${tag.code}')">Export QR</div>
+        ${tag.status !== 'live' ? `<div class="btn ok" onclick="publishNFC('${tag.code}')">Publish Live</div>` : `<div class="btn warn" onclick="unpublishNFC('${tag.code}')">Unpublish</div>`}
+      </div>
+    </div>
+    <div class="editor-section">
+      <div class="editor-section-title"><span>Assigned MV Object</span>${obj ? `<div class="btn" onclick="clearAssignment('${tag.code}')">Remove</div>` : ''}</div>
+      ${obj ? `<div class="assigned-object">
+        <div class="ao-thumb">${obj._mv && obj._mv.media_thumbnail ? `<img src="${obj._mv.media_thumbnail}" loading="lazy">` : obj.dams}</div>
+        <div><div class="ao-title">${obj.title}</div><div class="ao-id">${obj.id} · ${(obj.type || '').substring(0,30)} · ${obj.year}</div></div>
+        <div class="ao-remove" onclick="clearAssignment('${tag.code}')">Remove</div>
+      </div>` : `<div style="font-family:var(--mono);font-size:0.62rem;color:var(--text3);margin-bottom:12px;padding:10px;border:1px dashed var(--border2)">No object assigned — select from the MV collection below</div>`}
+      <div style="font-family:var(--mono);font-size:0.56rem;color:var(--text3);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;">Assign from MV Collection</div>
+      <div class="object-picker"><input class="op-search" type="text" placeholder="Search MV objects…" oninput="filterObjectPicker(this,'${tag.code}')"><div id="opItems-${tag.code}">${allObjs}</div></div>
+    </div>
+    <div class="editor-section">
+      <div class="editor-section-title"><span>Visitor Content Visibility</span></div>
+      <div class="vis-grid">${visItems.map(([key, label]) => `<div class="vis-item ${vis[key] ? 'on' : ''}" onclick="toggleVis('${tag.code}','${key}',this)"><div class="vis-toggle ${vis[key] ? 'on' : ''}"></div><span class="vis-label">${label}</span></div>`).join('')}</div>
+    </div>
+    <div style="display:flex;gap:8px;margin-top:16px;">
+      <button class="btn primary" onclick="saveNFC('${tag.code}')">Save Changes</button>
+      <button class="btn" onclick="if(obj) openObj('${tag.objectId}')">View Object Detail</button>
+    </div>`;
+}
+
+function renderNFCPreview(tag) {
+  const obj = tag.objectId ? OBJECTS[tag.objectId] : null;
+  const vis = nfcVisibility[tag.code];
+  const p = obj && obj._mv ? obj._mv : null;
+  // Use medium image for phone preview (better quality than thumbnail)
+  const imgSrc = p && (p.media_medium || p.media_thumbnail);
+
+  document.getElementById('nfcPreview').innerHTML = `
+    <div class="preview-frame">
+      <div class="pf-tag"><span>${tag.code}</span><span style="color:${tag.status === 'live' ? 'var(--ok)' : 'var(--text3)'}">${tag.status.toUpperCase()}</span></div>
+      ${obj ? `
+        <div class="pf-title">${obj.title}</div>
+        <div class="pf-sub">${obj.type} · ${obj.year}</div>
+        ${vis.objectImage && imgSrc ? `<div class="pf-img"><img src="${imgSrc}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>` : ''}
+        ${vis.aiInterpretation ? `<div class="pf-story">${(obj.ai || '').substring(0, 160)}${(obj.ai || '').length > 160 ? '…' : ''}</div>` : ''}
+        ${vis.askQuestions ? `
+          <div class="pf-ask-label">Ask this object</div>
+          <div class="pf-chips">
+            <div class="pf-chip">What are you?</div>
+            <div class="pf-chip">Your history?</div>
+            <div class="pf-chip">How were you used?</div>
+          </div>
+          <input class="pf-input-mock" placeholder="Or type your own question…" readonly>` : ''}
+        ${vis.relatedWorks ? `
+          <div class="pf-related">
+            <div class="pf-rel-label">Related objects</div>
+            <div class="pf-rel-grid">
+              ${Object.keys(OBJECTS).filter(id => id !== tag.objectId).slice(0, 3).map(id => {
+                const ro = OBJECTS[id]; const rt = ro._mv && ro._mv.media_thumbnail;
+                return `<div class="pf-rel-item">
+                  <div class="pf-rel-thumb">${rt ? `<img src="${rt}" loading="lazy">` : '▣'}</div>
+                  <div class="pf-rel-title">${ro.title.substring(0, 18)}</div>
+                </div>`;
+              }).join('')}
+            </div>
+          </div>` : ''}
+        ${vis.visitorComments ? `
+          <div class="pf-comment">
+            <div class="pf-comment-label">Leave a response</div>
+            <div class="pf-comment-mock">What did this make you think?</div>
+          </div>` : ''}
+        <div class="qr-box">QR /<br>NFC<br>${tag.code}</div>
+      ` : `<div style="font-size:0.55rem;color:var(--text3);padding:40px 10px;text-align:center">No object assigned<br><br>Select an NFC tag and assign an MV object to preview</div>`}
+    </div>`;
+}
+
+function assignObject(nfcCode, objId) { const tag = NFC_TAGS.find(t => t.code === nfcCode); if (tag) { tag.objectId = objId; if (tag.status === 'unassigned' || tag.status === 'new') tag.status = 'draft'; renderNFCList(); renderNFCEditor(tag); renderNFCPreview(tag); } }
+function clearAssignment(nfcCode) { const tag = NFC_TAGS.find(t => t.code === nfcCode); if (tag) { tag.objectId = null; tag.status = 'unassigned'; renderNFCList(); renderNFCEditor(tag); renderNFCPreview(tag); } }
+function toggleVis(nfcCode, key, el) { nfcVisibility[nfcCode][key] = !nfcVisibility[nfcCode][key]; el.classList.toggle('on'); el.querySelector('.vis-toggle').classList.toggle('on'); const tag = NFC_TAGS.find(t => t.code === nfcCode); if (tag) renderNFCPreview(tag); }
+function publishNFC(code) { const tag = NFC_TAGS.find(t => t.code === code); if (tag && tag.objectId) { tag.status = 'live'; selectNFC(code); } else alert('Assign an MV object before publishing'); }
+function unpublishNFC(code) { const tag = NFC_TAGS.find(t => t.code === code); if (tag) { tag.status = 'draft'; selectNFC(code); } }
+function saveNFC(code) { alert(`NFC ${code} — changes saved. In production this syncs to Directus.`); }
+function onboardNewNFC() {
+  const code = 'NFC' + String(NFC_TAGS.length + 1).padStart(3, '0');
+  NFC_TAGS.push({ code, status: 'new', objectId: null, location: 'New — configure location', scans: 0, lastScan: 'Never' });
+  nfcVisibility[code] = {...NFC_VIS_DEFAULTS};
+  document.getElementById('nfcTabCount').textContent = NFC_TAGS.length;
+  renderNFCList(); selectNFC(code);
+}
+function filterObjectPicker(input, code) {
+  const v = input.value.toLowerCase();
+  const items = document.getElementById('opItems-' + code);
+  if (!items) return;
+  items.querySelectorAll('.op-item').forEach(item => { item.style.display = item.textContent.toLowerCase().includes(v) ? '' : 'none'; });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// VISITOR PANEL
+// ═══════════════════════════════════════════════════════════════════
+function renderVisitorList() {
+  const keys = Object.keys(OBJECTS).slice(0, 20);
+  const el = document.getElementById('vpNFCList');
+  el.innerHTML = keys.map(k => {
+    const o = OBJECTS[k];
+    return `<div class="vp-nfc-item ${currentVPage === k ? 'active' : ''}" onclick="switchVPage('${k}',this)">
+      <div class="vp-nfc-name">${o.title}</div>
+      <div class="vp-nfc-id">${o._mv ? o._mv.registration_number || '' : ''} · MV</div>
+      <div class="vp-badges"><div class="vbadge live">MV</div></div>
+    </div>`;
+  }).join('');
+
+  if (keys.length && !currentVPage) {
+    currentVPage = keys[0];
+    renderVPage(keys[0]);
+  }
+}
+
+function renderVPage(objId) {
+  currentVPage = objId;
+  const o = OBJECTS[objId];
+  if (!o) return;
+  const p = o._mv || {};
+
+  document.getElementById('vTitle').textContent = o.title;
+  document.getElementById('vSub').textContent = [o.type, o.year, o.location].filter(Boolean).join(' · ');
+
+  const imgEl = document.getElementById('vImg');
+  const thumbSrc = p.media_medium || p.media_thumbnail;
+  imgEl.innerHTML = thumbSrc ? `<img src="${thumbSrc}" loading="lazy" style="max-height:300px;object-fit:contain">` : 'No image available';
+
+  document.getElementById('vStory').innerHTML = `<strong>${o.title}</strong> — ${(o.ai || '').substring(0, 300)}`;
+
+  const chips = ['What are you?', 'Tell me your history', 'How were you used?', 'What are you made of?'];
+  document.getElementById('vChips').innerHTML = chips.map(c =>
+    `<div class="vpp-chip" onclick="vAsk('${escQ(c)}')">${c}</div>`).join('');
+  document.getElementById('vResponse').style.display = 'none';
+  document.getElementById('vInput').value = '';
+
+  // Related
+  document.getElementById('vRelated').innerHTML = Object.keys(OBJECTS)
+    .filter(id => id !== objId).slice(0, 3).map(id => {
+      const ro = OBJECTS[id];
+      const rThumb = ro._mv && ro._mv.media_thumbnail;
+      return `<div class="rel-card" onclick="switchVPage('${id}',null)">
+        <div class="rel-thumb">${rThumb ? `<img src="${rThumb}" loading="lazy">` : '▣'}</div>
+        <div class="rel-title">${ro.title}</div>
+      </div>`;
+    }).join('');
+
+  document.querySelectorAll('.vp-nfc-item').forEach(el => el.classList.remove('active'));
+  const items = document.querySelectorAll('.vp-nfc-item');
+  items.forEach(el => { if (el.querySelector('.vp-nfc-name').textContent === o.title) el.classList.add('active'); });
+}
+
+function switchVPage(objId, el) {
+  currentVPage = objId;
+  if (el) { document.querySelectorAll('.vp-nfc-item').forEach(n => n.classList.remove('active')); el.classList.add('active'); }
+  renderVPage(objId);
+}
+
+function vAsk(q) {
+  const input = document.getElementById('vInput');
+  if (!q) q = input.value.trim();
+  if (!q || !currentVPage) return;
+
+  const o = OBJECTS[currentVPage];
+  if (!o) return;
+  input.value = '';
+
+  const el = document.getElementById('vResponse');
+  el.textContent = 'Asking llama3…';
+  el.style.display = 'block';
+  el.style.color = 'var(--text3)';
+
+  const p = o._mv || {};
+  const sys = `You are "${o.title}", a physical object in the Museums Victoria collection. Speak in the first person as the object. Be warm and conversational. 2-3 sentences. Use ONLY this verified metadata:\n- Title: ${o.title}\n- Type: ${o.type}\n- Date: ${o.year}\n- Description: ${(p.description || o.ai || '').substring(0, 400)}\n- Location: ${o.location}\n- Registration: ${p.registration_number || o.dams}`;
+
+  fetch('http://localhost:11434/api/chat', {
+    method: 'POST', headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({ model: 'llama3', stream: false, messages: [{ role: 'system', content: sys }, { role: 'user', content: q }] })
+  })
+  .then(r => r.json())
+  .then(data => {
+    const reply = (data.message && data.message.content) || o.chat.default;
+    el.textContent = reply; el.style.color = '';
+  })
+  .catch(e => {
+    console.warn('Ollama unreachable in visitor view, using metadata fallback:', e.message);
+    const reply = generateMetadataResponse(o, q);
+    el.innerHTML = reply + '<div style="font-family:var(--mono);font-size:0.48rem;color:var(--text3);margin-top:6px;">⚡ Metadata response — Ollama offline</div>';
+    el.style.color = '';
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// UTILITY
+// ═══════════════════════════════════════════════════════════════════
+function escQ(s) {
+  return String(s).replace(/'/g, "\\'").replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+</script>
+</body>
+</html>
