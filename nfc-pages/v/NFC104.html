@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>{{OBJECT_TITLE}} — ARCHAI</title>
+<title>Bronze man and centaur — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -509,23 +509,23 @@ body::after {
 <!-- HEADER -->
 <div class="v-header">
   <div class="v-logo">ARC<span>H</span>AI</div>
-  <div class="v-tag">{{NFC_CODE}}</div>
+  <div class="v-tag">NFC104</div>
 </div>
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  {{HERO_IMAGE}}
+  <img src="https://images.metmuseum.org/CRDImages/gr/original/DP-23249-001.jpg" alt="Bronze man and centaur" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">{{OBJECT_TITLE}}</div>
-  <div class="v-sub">{{OBJECT_SUB}}</div>
+  <div class="v-title">Bronze man and centaur</div>
+  <div class="v-sub">Statuette of a man and centaur · ca. 750 BCE · 249228</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">{{SOURCE_INSTITUTION}}</span>
-    <span class="v-meta-tag lic">{{OBJECT_LICENCE}}</span>
-    {{DISCIPLINE_TAG}}
+    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
+    <span class="v-meta-tag lic">CC0 — Public Domain</span>
+    <span class="v-meta-tag">Greek and Roman Art</span>
   </div>
 
   <!-- SHARE -->
@@ -536,14 +536,17 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story">{{OBJECT_STORY}}</div>
+  <div class="v-story"><strong>Bronze man and centaur</strong> — Bronze man and centaur. Statuette of a man and centaur. Bronze. Greek and Roman Art. Greek. Late Geometric. Bronzes. ca. 750 BCE</div>
 
   <div class="v-divider"></div>
 
   <!-- ASK THIS OBJECT -->
   <div class="v-ask">
     <div class="v-ask-label">Ask this object a question</div>
-    <div class="v-chips" id="vChips">{{CHIPS_HTML}}</div>
+    <div class="v-chips" id="vChips"><div class="v-chip" onclick="askObject('What are you?')">What are you?</div>
+      <div class="v-chip" onclick="askObject('Tell me your history')">Tell me your history</div>
+      <div class="v-chip" onclick="askObject('How were you used?')">How were you used?</div>
+      <div class="v-chip" onclick="askObject('What are you made of?')">What are you made of?</div></div>
     <div class="v-chat-row">
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
@@ -556,7 +559,13 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    {{META_ROWS}}
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">249228</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Greek and Roman Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Bronzes</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca. 750 BCE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 151</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Statuette of a man and centaur</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -570,7 +579,26 @@ body::after {
   <!-- RELATED OBJECTS -->
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
-    <div class="v-related-grid">{{RELATED_HTML}}</div>
+    <div class="v-related-grid"><a class="v-rel-card" href="NFC102.html">
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PC0392/full/!100,100/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Corn on the Cob</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · PH.558-2024</div>
+      </a>
+      <a class="v-rel-card" href="NFC103.html">
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2012FJ6886/full/!100,100/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Simon</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · B.128:1 to 5-2011</div>
+      </a>
+      <a class="v-rel-card" href="NFC105.html">
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4305/full/!100,100/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">A FIFTH ON A MAZE</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.263-2020</div>
+      </a>
+      <a class="v-rel-card" href="NFC106.html">
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2011EP0065/full/!100,100/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Murphy Television see for yourself</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.521-1985</div>
+      </a></div>
   </div>
 </div>
 
@@ -582,7 +610,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="{{SOURCE_URL}}" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/249228" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -594,21 +622,21 @@ body::after {
 // IMPORTANT: Set this to your Mac Studio's LAN IP address
 // Find it: System Settings → Network → Wi-Fi → IP Address
 // Example: 'http://192.168.1.100:11434'
-const OLLAMA_HOST = '{{OLLAMA_HOST}}';
+const OLLAMA_HOST = 'http://192.168.1.119:11434';
 const CHAT_MODEL = 'llama3';
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `{{OBJECT_TITLE}}`,
-  type: `{{OBJECT_TYPE}}`,
-  date: `{{OBJECT_DATE}}`,
-  registration: `{{OBJECT_REG}}`,
-  location: `{{OBJECT_LOCATION}}`,
-  discipline: `{{OBJECT_DISCIPLINE}}`,
-  category: `{{OBJECT_CATEGORY}}`,
-  description: `{{OBJECT_DESCRIPTION}}`,
-  licence: `{{OBJECT_LICENCE}}`,
-  source_url: `{{SOURCE_URL}}`
+  title: `Bronze man and centaur`,
+  type: `Statuette of a man and centaur`,
+  date: `ca. 750 BCE`,
+  registration: `249228`,
+  location: `Gallery 151`,
+  discipline: `Greek and Roman Art`,
+  category: `Bronzes`,
+  description: `Bronze man and centaur. Statuette of a man and centaur. Bronze. Greek and Roman Art. Greek. Late Geometric. Bronzes. ca. 750 BCE`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.metmuseum.org/art/collection/search/249228`
 };
 
 const SYSTEM_PROMPT = `You are "${OBJECT.title}", a physical object in the Museums Victoria collection. Speak in the first person as the object itself.

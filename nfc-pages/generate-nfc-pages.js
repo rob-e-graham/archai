@@ -27,7 +27,12 @@ const getArg = (name, fallback) => {
 };
 
 const QDRANT_URL = getArg('qdrant', 'http://localhost:6333');
-const COLLECTION = getArg('collection', 'archai_pilot');
+const ALL_COLLECTIONS = ['archai_pilot', 'archai_met', 'archai_va'];
+const COLLECTION_LABELS = {
+  archai_pilot: 'Museums Victoria',
+  archai_met: 'The Metropolitan Museum of Art',
+  archai_va: 'Victoria and Albert Museum, London'
+};
 const OLLAMA_LAN_HOST = getArg('host', 'http://localhost:11434');
 const LIMIT = parseInt(getArg('limit', '200'), 10);
 const OUTPUT_DIR = path.join(__dirname, 'v');
@@ -71,35 +76,84 @@ async function main() {
   const template = fs.readFileSync(TEMPLATE_PATH, 'utf-8');
   console.log('  ✓ Template loaded');
   console.log(`  → Qdrant: ${QDRANT_URL}`);
-  console.log(`  → Collection: ${COLLECTION}`);
+  console.log(`  → Collections: ${ALL_COLLECTIONS.join(', ')}`);
   console.log(`  → Ollama LAN host: ${OLLAMA_LAN_HOST}`);
   console.log(`  → Limit: ${LIMIT}`);
   console.log(`  → Output: ${OUTPUT_DIR}/\n`);
 
-  // Fetch objects from Qdrant
-  let points = [];
-  try {
-    const res = await fetch(`${QDRANT_URL}/collections/${COLLECTION}/points/scroll`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ limit: LIMIT, with_payload: true })
-    });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    points = (data.result && data.result.points) || [];
-  } catch (e) {
-    console.error(`  ✗ Could not connect to Qdrant: ${e.message}`);
-    console.error(`    Make sure Qdrant is running: docker compose up -d`);
-    console.error(`    And collection exists: node scripts/mv-harvester.js\n`);
+  // Fetch objects from ALL Qdrant collections
+  let allPoints = [];
+  const seenTitles = new Set();
+  const seenCanonical = new Set();
+  const collectionCounts = {};
+
+  for (const col of ALL_COLLECTIONS) {
+    try {
+      const res = await fetch(`${QDRANT_URL}/collections/${col}/points/scroll`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ limit: LIMIT, with_payload: true })
+      });
+      if (!res.ok) {
+        console.log(`  ⚠ ${col}: HTTP ${res.status} — skipping`);
+        continue;
+      }
+      const data = await res.json();
+      const points = (data.result && data.result.points) || [];
+
+      let added = 0;
+      for (const pt of points) {
+        const p = pt.payload;
+        if (!p || !p.canonical_id) continue;
+
+        // Deduplicate by canonical_id and title
+        const normTitle = (p.title || '').toLowerCase().trim();
+        if (seenCanonical.has(p.canonical_id)) continue;
+        if (normTitle && seenTitles.has(normTitle)) continue;
+
+        // Skip objects without images
+        const hasImage = p.media_thumbnail || p.media_medium || p.media_large || p.primaryImageSmall || p.primaryImage;
+        if (!hasImage) continue;
+
+        // Skip untitled objects
+        if (!p.title || p.title.toLowerCase() === 'untitled') continue;
+
+        seenCanonical.add(p.canonical_id);
+        if (normTitle) seenTitles.add(normTitle);
+
+        // Tag with source collection
+        pt._sourceCollection = col;
+        pt._sourceLabel = COLLECTION_LABELS[col] || col;
+        allPoints.push(pt);
+        added++;
+      }
+      collectionCounts[col] = added;
+      console.log(`  ✓ ${col}: ${points.length} fetched, ${added} unique added`);
+    } catch (e) {
+      console.log(`  ⚠ ${col}: ${e.message} — skipping`);
+      collectionCounts[col] = 0;
+    }
+  }
+
+  // Shuffle so we get a mix of sources, not all MV first
+  for (let i = allPoints.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [allPoints[i], allPoints[j]] = [allPoints[j], allPoints[i]];
+  }
+
+  // Cap to limit
+  allPoints = allPoints.slice(0, LIMIT);
+
+  if (!allPoints.length) {
+    console.error('\n  ✗ No objects found in any Qdrant collection.');
     process.exit(1);
   }
 
-  if (!points.length) {
-    console.error('  ✗ No objects found in Qdrant collection.');
-    process.exit(1);
-  }
-
-  console.log(`  ✓ ${points.length} objects loaded from Qdrant\n`);
+  const sourceSummary = Object.entries(collectionCounts)
+    .filter(([,c]) => c > 0)
+    .map(([col, c]) => `${col.replace('archai_','')}: ${c}`)
+    .join(', ');
+  console.log(`\n  ✓ ${allPoints.length} unique objects from ${Object.values(collectionCounts).filter(c=>c>0).length} collections (${sourceSummary})\n`);
 
   // Create output directory
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
@@ -113,10 +167,12 @@ async function main() {
 
   // Generate pages
   const generated = [];
-  const allObjects = points.map((pt, i) => ({
+  const allObjects = allPoints.map((pt, i) => ({
     index: i,
     payload: pt.payload,
-    nfcCode: 'NFC' + String(i + 1).padStart(3, '0')
+    nfcCode: 'NFC' + String(i + 1).padStart(3, '0'),
+    sourceLabel: pt._sourceLabel || 'Collection',
+    sourceCollection: pt._sourceCollection || 'archai_pilot'
   }));
 
   for (const obj of allObjects) {
@@ -128,14 +184,15 @@ async function main() {
     const type = p.object_type || p.discipline || 'Heritage Object';
     const date = p.date_range || 'Date unknown';
     const reg = p.registration_number || '';
-    const location = p.museum_location || 'Museums Victoria';
+    const location = p.museum_location || obj.sourceLabel;
     const discipline = p.discipline || '';
     const category = p.category || '';
     const description = p.description || 'No description recorded.';
-    const licence = p.licence || 'CC BY 4.0';
-    const sourceUrl = p.source_url || 'https://collections.museumsvictoria.com.au';
+    const licence = p.licence || 'Open Access';
+    const sourceUrl = p.source_url || '#';
     const imgMedium = p.media_medium || p.media_thumbnail || '';
     const imgThumb = p.media_thumbnail || '';
+    const sourceInstitution = obj.sourceLabel;
 
     // Build hero image
     const heroHtml = imgMedium
@@ -195,10 +252,11 @@ async function main() {
       const rTitle = rp.title || 'Object';
       const rReg = rp.registration_number || '';
       const rNfc = allObjects[ri].nfcCode;
+      const rSrc = allObjects[ri].sourceLabel || '';
       return `<a class="v-rel-card" href="${rNfc}.html">
         <div class="v-rel-thumb">${rThumb ? `<img src="${escHtml(rThumb)}" loading="lazy">` : '<span class="v-rel-thumb-empty">▣</span>'}</div>
         <div class="v-rel-title">${escHtml(rTitle)}</div>
-        <div class="v-rel-meta">${escHtml(rReg)}</div>
+        <div class="v-rel-meta">${escHtml(rSrc)}${rReg ? ' · ' + escHtml(rReg) : ''}</div>
       </a>`;
     }).join('\n      ');
 
@@ -218,6 +276,7 @@ async function main() {
       .replace(/\{\{OBJECT_LICENCE\}\}/g, esc(licence))
       .replace(/\{\{OBJECT_STORY\}\}/g, story)
       .replace(/\{\{SOURCE_URL\}\}/g, escHtml(sourceUrl))
+      .replace(/\{\{SOURCE_INSTITUTION\}\}/g, escHtml(sourceInstitution))
       .replace(/\{\{HERO_IMAGE\}\}/g, heroHtml)
       .replace(/\{\{DISCIPLINE_TAG\}\}/g, discTag)
       .replace(/\{\{CHIPS_HTML\}\}/g, chipsHtml)
@@ -226,10 +285,10 @@ async function main() {
 
     const filename = `${nfcCode}.html`;
     fs.writeFileSync(path.join(OUTPUT_DIR, filename), html, 'utf-8');
-    generated.push({ nfcCode, title, reg, filename });
+    generated.push({ nfcCode, title, reg, filename, source: sourceInstitution });
 
     // Progress
-    process.stdout.write(`  → ${nfcCode} · ${title.substring(0, 40)}${title.length > 40 ? '…' : ''}\n`);
+    process.stdout.write(`  → ${nfcCode} · [${sourceInstitution.substring(0,3).toUpperCase()}] ${title.substring(0, 40)}${title.length > 40 ? '…' : ''}\n`);
   }
 
   // Generate index page for /v/
@@ -238,12 +297,19 @@ async function main() {
 
   // NFC programming reference
   const nfcRef = generated.map(g =>
-    `${g.nfcCode}  →  ${g.filename}  →  ${g.title}  (${g.reg})`
+    `${g.nfcCode}  →  ${g.filename}  →  [${(g.source || '').substring(0,3).toUpperCase()}]  ${g.title}  (${g.reg})`
   ).join('\n');
   fs.writeFileSync(path.join(OUTPUT_DIR, 'nfc-reference.txt'), nfcRef, 'utf-8');
 
+  // Source breakdown
+  const sourceBreakdown = {};
+  generated.forEach(g => { sourceBreakdown[g.source] = (sourceBreakdown[g.source] || 0) + 1; });
+
   console.log(`\n  ════════════════════════════════════════════`);
   console.log(`  ✓ Generated ${generated.length} visitor pages in ${OUTPUT_DIR}/`);
+  Object.entries(sourceBreakdown).forEach(([src, count]) => {
+    console.log(`    → ${src}: ${count} pages`);
+  });
   console.log(`  ✓ Index page: ${OUTPUT_DIR}/index.html`);
   console.log(`  ✓ NFC reference: ${OUTPUT_DIR}/nfc-reference.txt`);
   console.log(`\n  NFC tags should open URLs like:`);
