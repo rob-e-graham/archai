@@ -1,148 +1,98 @@
-# ARCHAI
+# ARCHAI (Prototype + Backend Scaffold)
 
-ARCHAI is an open-source AI toolkit for cultural heritage institutions developed by Rob Graham through FAMTEC (Fine Art Media Tech).
+![Status](https://img.shields.io/badge/status-v0.1--alpha-blue)
+![Mode](https://img.shields.io/badge/mode-mock--ready%20%2F%20API--key--ready-0a7)
+![License](https://img.shields.io/badge/license-MIT-black)
 
-This repository currently contains a working web and Capacitor iOS prototype focused on conversational collection access, metadata-grounded interpretation, and infrastructure that institutions can run on their own terms.
+ARCHAI is a sovereign, open-source GLAM toolkit prototype for metadata-grounded conversational objects, semantic search, NFC interpretation, and institution-controlled AI infrastructure.
 
-## Direction
+Status: `v0.1-alpha` (prototype UI + backend scaffold, local-first, mock-ready / API-key-ready)
 
-ARCHAI is being developed as:
+Suggested GitHub repository description:
+`Local-first sovereign GLAM toolkit for semantic search, conversational objects, NFC interpretation, and FAMTEC exchange workflows.`
 
-- a semantic interface layer that sits above existing collection management and digital asset management systems
-- a framework for metadata-grounded conversational objects and collection discovery
-- a sovereignty-first alternative to black-box, cloud-only AI deployments in the GLAM sector
-- a practice-based research project where implementation, testing, and documentation evolve together
+This repository package currently includes:
 
-The project direction is centered on:
+- `ARCHAI_v6.html` - local-online prototype UI (Met test panel moved to Version tab)
+- `ARCHAI_v6_offline_demo.html` - supervisor/email-friendly offline demo
+- `FAMTEC_exchange.html` - standalone local FAMTEC exchange prototype page
+- `backend-archai/` - Node backend scaffold (mock-ready now, API-key-ready for CA/RS/Qdrant/Ollama)
+- `nfc-pages/` - NFC/HDMI runtime page templates and notes
+- `tools/` - support notes and sanitized helper mappings
+- `REPO_MAP.md` - quick guide to repo layout
+- `CONTRIBUTING.md`, `LICENSE`, `.github/` templates - first GitHub repo support materials
 
-- vector embeddings for heritage discovery
-- provenance-tracked AI interpretation
-- separation between permanent heritage assets and regenerable AI layers
-- conversational object experiences, including NFC-triggered interpretation
-- hallucination prevention and curatorial boundary enforcement
-- transferable, open-source infrastructure for institutional deployment
+## Quick Start (Frontend only)
 
-## Project Context
+Open `ARCHAI_v6_offline_demo.html` directly in a browser for an offline demo.
 
-ARCHAI responds to a practical problem in museums, archives, and collection-based institutions: digitised collections often remain difficult to discover, interpret, and activate for both staff and visitors.
-
-Rather than replacing institutional systems, ARCHAI is intended to connect to them through APIs, normalize metadata, generate semantic search infrastructure, and support conversational access grounded in verified collection records.
-
-This repository represents an active prototype and research environment, not a finished product. It is part of a broader research and infrastructure direction around living archives, technological reanimation, cultural heritage AI, and institutionally sovereign deployment.
-
-## Current Prototype in This Repo
-
-The code in this repository currently includes:
-
-- a single-page web frontend in `index.html`
-- a Capacitor iOS wrapper in `ios/App`
-- a Node backend in `server/server.js`
-- prompt and profile configuration in `server/prompts`
-- local and cloud AI routing
-- Supabase-based account/auth scaffolding
-- RevenueCat and token/memory scaffolding for premium features
-
-## Key Principles
-
-- Heritage data remains foundational and authoritative
-- AI outputs should be regenerable, inspectable, and bounded
-- Institutions should be able to own, audit, and rebuild their systems
-- Uncertainty should be surfaced clearly rather than masked by fluent AI output
-- Open infrastructure is preferable to vendor lock-in where possible
-
-## Research Framing
-
-The broader ARCHAI framework explores:
-
-- conversational terminals for collection access
-- NFC interpretation points as object-specific interfaces
-- local LLM inference and vector search for sovereign deployment
-- preservation of software-dependent and AI artworks through reproducible environments
-- cultural safety pathways for sensitive materials
-
-The practical argument behind the work is simple: a collection that has been digitised is not the same as a collection that can be found, understood, and meaningfully engaged with.
-
-## Running This Prototype
-
-### 1. Install dependencies
+For local online testing (Met preview + future backend wiring):
 
 ```bash
+cd "/Users/robgraham/Desktop/ARCHAI APP"
+./serve_local_archai.sh
+```
+
+Then open [http://localhost:8000/ARCHAI_v6.html](http://localhost:8000/ARCHAI_v6.html).
+
+## Screenshots (Add to GitHub README)
+
+Suggested screenshots to add next:
+
+- `ARCHAI_v6` curator search + object detail
+- `ARCHAI_v6` visitor / NFC conversational page preview
+- `ARCHAI_v6` FAMTEC Exchange posting + enquiry workflow
+- `ARCHAI_v6` Upload & Ingest / Admin workflow screens
+
+Example markdown once you export images into `docs/screenshots/`:
+
+```md
+## Screenshots
+![Curator view](docs/screenshots/archai-curator-v6.png)
+![Visitor NFC view](docs/screenshots/archai-visitor-nfc-v6.png)
+![FAMTEC Exchange](docs/screenshots/famtec-exchange-v6.png)
+```
+
+## Quick Start (Backend scaffold)
+
+```bash
+cd "/Users/robgraham/Desktop/ARCHAI APP/backend-archai"
+cp .env.example .env
 npm install
-```
-
-### 2. Set backend URL
-
-Edit `public/config.js`:
-
-```js
-window.AURA_API_BASE = 'https://api.your-domain.com';
-```
-
-For local development, keep:
-
-```js
-window.AURA_API_BASE = 'http://localhost:3000';
-```
-
-### 3. Run web app locally
-
-```bash
 npm run dev
 ```
 
-### 4. Build + sync iOS project
+API base URL defaults to `http://localhost:8787`.
 
-```bash
-npm run ios
-```
+## What is implemented tonight
 
-This runs:
+- API scaffold for `search`, `objects`, `upload`, `nfc`, `vocab`, `chat`, `admin`, `pipeline`, `famtec`
+- FAMTEC institution/post/enquiry/thread workflows (backend + UI wiring in `ARCHAI_v6.html`)
+- Mock adapters for CollectiveAccess, ResourceSpace, Ollama embeddings/chat, Qdrant
+- Nightly sync pipeline skeleton (CA + RS -> transform -> safety gate -> embeddings -> Qdrant upsert)
+- 5-layer hallucination prevention guard + provenance logging structures
+- NFC page models and a local HTML runtime endpoint (`/api/nfc/pages/:tagId`)
+- Documentation for architecture, deployment and data sovereignty approach
+- CHIN-profile vocabulary integration scaffold (`/api/vocab/search?profile=chin`)
 
-- `npm run build`
-- `npx cap sync ios`
-- `npx cap open ios`
+## Next required inputs (API keys / institution config)
 
-## Xcode Setup
-
-In Xcode:
-
-1. Set Signing Team
-2. Confirm Bundle Identifier in `capacitor.config.json`
-3. Set Version and Build number
-4. Add app icons and launch assets
-5. Configure any native capabilities required by the current build
-
-## Cloud LLM Setup
-
-The backend currently supports provider-based routing through the server layer.
-
-1. Copy `server/.env.example` to `server/.env`
-2. Set the provider credentials required by your chosen backend mode
-3. Keep `LLM_PROVIDER=together` for current cloud mode
-4. Use `LLM_PROVIDER=ollama` for local model fallback
-
-The backend route `/api/llama` supports both providers in the current prototype.
-
-## Prompt Editing
-
-Edit these files to change model behavior without restructuring the app:
-
-- `server/prompts/system_prompt.txt`
-- `server/prompts/prompt_db.json`
-- `server/prompts/soul.md`
-
-Backend behavior:
-
-- each request builds a base system prompt
-- profile blocks can be layered in from `prompt_db.json`
-- frontend context can be appended per request
-
-Optional request field:
-
-- `promptProfile` in `/api/llama` body, for example `balanced`, `poetic`, `direct`, or `deep`
+- CollectiveAccess API base URL + auth method
+- ResourceSpace API base URL + key/user
+- Qdrant host / key (if remote) or local container
+- Ollama runtime details (chat + embedding models)
+- Institution-specific cultural safety flags + restricted workflows
 
 ## Notes
 
-- This repository reflects Rob Graham's current independent research and development direction through FAMTEC.
-- It should be read as an evolving ARCHAI prototype and infrastructure project, rather than as a legacy institutional profile.
-- To test on a physical iPhone, the backend must be reachable over HTTPS.
+- This scaffold is intentionally mock-capable so the full flow can be demonstrated before integration credentials are available.
+- Permanent heritage records (CollectiveAccess + ResourceSpace) remain separated from regenerable AI derivative layers (embeddings, caches, chat responses).
+
+## First GitHub Issues (Recommended)
+
+- CollectiveAccess adapter implementation + field mapping
+- ResourceSpace adapter implementation + derivative publishing
+- Qdrant + Ollama production adapters
+- NFC runtime frontend bundle (`nfc-pages/`) + kiosk mode
+- FAMTEC production split (separate service + auth + storage)
+- CHIN vocabulary provider adapters (AAT / Nomenclature / DOCAM)
