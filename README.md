@@ -7,7 +7,7 @@
 **Status:** Working prototype — multi-institution semantic search + LLM object chat + NFC visitor pages
 **Target:** ISEA2026 Dubai, 6th Summit on New Media Art Archiving (April 11–12)
 **Paper:** `docs/ARCHAI_ISEA2026_Rob_Graham.pdf`
-**Licence:** Apache 2.0 (code) · CC BY 4.0 (MV data) · CC0 (Met data) · V&A Open Access
+**Licence:** © Rob Graham 2026. All rights reserved until further notice. (code) · CC BY 4.0 (MV data) · CC0 (Met data) · V&A Open Access
 
 ---
 
