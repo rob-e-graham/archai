@@ -1,18 +1,13 @@
 # ARCHAI — Sovereign Semantic Heritage Infrastructure
 
-![Status](https://img.shields.io/badge/status-working%20prototype-0a7)
-![Version](https://img.shields.io/badge/version-v10.6-black)
-![License](https://img.shields.io/badge/license-All%20Rights%20Reserved-black)
-
 > "Museums are not silent repositories of Memory; they are living, thinking organisms, where imagination and knowledge, tradition and innovation meet." — Gayane Umerova, UNESCO, 2025
 
-**Version:** 10.6  
-**Author:** Rob Graham · FAMTEC (Fine Art Media Tech) / RMIT University  
-**Status:** Working prototype — multi-institution semantic search + LLM object chat + NFC visitor pages  
-**Target:** ISEA2026 Dubai, 6th Summit on New Media Art Archiving (April 11–12)  
-**Paper:** `docs/ARCHAI_ISEA2026_Rob_Graham.pdf`  
-**Repository rights:** All rights reserved  
-**Collection data rights:** CC BY 4.0 (MV data) · CC0 (Met data) · V&A Open Access
+**Version:** 10.6
+**Author:** Rob Graham · FAMTEC (Fine Art Media Tech) / RMIT University
+**Status:** Working prototype — multi-institution semantic search + LLM object chat + NFC visitor pages
+**Target:** ISEA2026 Dubai, 6th Summit on New Media Art Archiving (April 11–12)
+**Paper:** `docs/ARCHAI_ISEA2026_Rob_Graham.pdf`
+**Licence:** © Rob Graham 2026. All rights reserved until further notice. (code) · CC BY 4.0 (MV data) · CC0 (Met data) · V&A Open Access
 
 ---
 
@@ -32,11 +27,11 @@ Three museum collections in Qdrant, searchable simultaneously:
 - Text fallback when Ollama offline
 - Sort by: name, date, discipline, source
 - Filter: with images (default), all, MV/Met/V&A only
-- Deduplicated by `canonical_id` across collections
+- Deduplicated by canonical_id across collections
 
 ### ✅ Object-as-Speaker LLM Chat
 Each object speaks in first person via llama3, grounded in verified metadata:
-- System prompt built from all metadata fields
+- System prompt built from ALL metadata fields
 - Dynamic institution name per object
 - Hallucination prevention: "That's not in my record"
 - Metadata fallback when Ollama offline — no LLM required
@@ -51,7 +46,7 @@ Each object speaks in first person via llama3, grounded in verified metadata:
 200 standalone HTML pages from all 3 collections:
 - Object image, metadata, description, LLM chat over LAN
 - Share: native iOS sheet, email, copy link, X/Twitter
-- Persistent comments via `localStorage`
+- Persistent comments via localStorage
 - Related objects with cross-collection links
 - Captive portal for exhibition WiFi
 
@@ -86,28 +81,6 @@ Each object speaks in first person via llama3, grounded in verified metadata:
 - Term search, broader/narrower hierarchy
 - Indigenous protocol layer
 
-## Screenshots
-
-Desktop views:
-
-![Curator collections search](docs/screenshots/archai-curator-collections-search-v10-6.png)
-![Exhibitions live dashboard](docs/screenshots/archai-exhibitions-live-dashboard-v10-6.png)
-![NFC management with visitor preview](docs/screenshots/archai-nfc-management-visitor-preview-v10-6.png)
-![Vocabulary and thesaurus tools](docs/screenshots/archai-vocabulary-thesaurus-v10-6.png)
-![Visitor view object page](docs/screenshots/archai-visitor-view-proof-coin-v10-6.png)
-![FAMTEC exchange](docs/screenshots/archai-famtec-exchange-v10-6.png)
-![Object detail view](docs/screenshots/archai-object-detail-a-fifth-on-a-maze-v10-6.png)
-![Curator object conversation](docs/screenshots/archai-curator-object-chat-a-fifth-on-a-maze-v10-6.png)
-
-Mobile views:
-
-![Mobile NFC index](docs/screenshots/archai-mobile-nfc-index-v10-6.png)
-![Mobile object hero](docs/screenshots/archai-mobile-object-hero-dream-still-v10-6.png)
-![Mobile object detail](docs/screenshots/archai-mobile-object-detail-dream-still-v10-6.png)
-![Mobile object chat](docs/screenshots/archai-mobile-object-chat-dream-still-v10-6.png)
-![Mobile object response](docs/screenshots/archai-mobile-object-response-dream-still-v10-6.png)
-![Mobile related objects and footer](docs/screenshots/archai-mobile-object-related-footer-dream-still-v10-6.png)
-
 ---
 
 ## What's Not Working Yet
@@ -140,16 +113,16 @@ Date extraction from titles, better Met filtering, incremental harvest.
 
 ## Architecture
 
-```text
+```
 ┌──────────────────────────────────────────────────────────┐
-│                    ARCHAI Frontend                      │
-│               (ARCHAI_v10_6.html · browser)             │
-│                                                         │
-│  Search ──→ Ollama embed ──→ Qdrant (3 collections)     │
-│  Chat   ──→ Ollama llama3 ──→ grounded response         │
-│  NFC    ──→ Ollama llama3 ──→ chat over LAN             │
-│  Sort   ──→ client-side on loaded objects               │
-└────────┬──────────────┬──────────────┬──────────────────┘
+│                    ARCHAI Frontend                        │
+│                 (ARCHAI_v10_6.html · browser)             │
+│                                                          │
+│  Search ──→ Ollama embed ──→ Qdrant (3 collections)      │
+│  Chat   ──→ Ollama llama3 ──→ grounded response          │
+│  NFC    ──→ Ollama llama3 ──→ chat over LAN              │
+│  Sort   ──→ client-side on loaded objects                │
+└────────┬──────────────┬──────────────┬───────────────────┘
          │              │              │
     localhost:6333  localhost:11434  localhost:8055
       Qdrant          Ollama        Directus (optional)
@@ -159,10 +132,10 @@ Date extraction from titles, better Met filtering, incremental harvest.
 
 ## Project Structure
 
-```text
+```
 archai/
 ├── ARCHAI_v10_6.html              ← Main frontend (current)
-├── README.md                      ← Project overview
+├── README.md                      ← This file
 ├── start-demo.sh                  ← One-command startup
 ├── DEMO_CHEAT_SHEET.md
 ├── backend-archai/scripts/
@@ -189,8 +162,8 @@ cd ~/archai && ./start-demo.sh
 
 Starts Docker, Qdrant, Ollama (with LAN+CORS), checks NFC pages, prints URLs, serves on port 8000.
 
-**Main app:** http://localhost:8000/ARCHAI_v10_6.html  
-**NFC index:** http://localhost:8000/nfc-pages/v/  
+**Main app:** http://localhost:8000/ARCHAI_v10_6.html
+**NFC index:** http://localhost:8000/nfc-pages/v/
 **Phone:** http://LAN_IP:8000/nfc-pages/v/NFC066.html
 
 ---
@@ -213,5 +186,5 @@ Mac Studio M2 Max · 64GB · 1TB. Base institutional deployment: ~$3,500–5,000
 
 ---
 
-Rob Graham · FAMTEC / RMIT · rob@fineartmedia.tech  
+Rob Graham · FAMTEC / RMIT · rob@fineartmedia.tech
 GitHub: github.com/rob-e-graham/archai
