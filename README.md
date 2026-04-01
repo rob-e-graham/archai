@@ -46,6 +46,7 @@ Desktop views:
 ![Visitor view object page](docs/screenshots/archai-visitor-view-proof-coin-v10-6.png)
 ![FAMTEC exchange](docs/screenshots/archai-famtec-exchange-v10-6.png)
 ![Object detail view](docs/screenshots/archai-object-detail-a-fifth-on-a-maze-v10-6.png)
+![Curator object conversation](docs/screenshots/archai-curator-object-chat-a-fifth-on-a-maze-v10-6.png)
 
 Mobile views:
 
