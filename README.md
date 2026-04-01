@@ -66,10 +66,11 @@ Each object speaks in first person via llama3, grounded in verified metadata:
 | Visitor | Visitor only |
 
 ### ✅ FAMTEC Exchange
-- Institution list: FAMTEC, ACMI, SA Museum, MGA
-- Feed: loan, rental, skills, crew availability
-- Chip filters, institution chat
-- Prototype data (separate service in production)
+- Test space for interaction design, workflow feel, and interface prototyping inside ARCHAI
+- Placeholder institution names are used to simulate exchange activity and help evaluate the app experience
+- Feed includes loan, rental, skills, and crew-availability scenarios
+- Chip filters and institution chat are currently prototype interactions only
+- This is not the final FAMTEC platform: production development will be handled separately by FAMTEC outside the PhD work, with potential later integration into ARCHAI once developed
 
 ### ✅ Nodel Panel
 - Gallery cards with status indicators
@@ -95,7 +96,7 @@ Use llava to extract colours, text, objects from images → searchable metadata.
 AAT lookup API, auto-tagging. Currently UI prototype with static data.
 
 ### 🔲 FAMTEC Persistence
-Needs Directus/SQLite backend. Currently in-memory arrays.
+Current in-app FAMTEC Exchange uses prototype data and in-memory arrays only. The production FAMTEC Exchange platform will be developed separately by FAMTEC outside the PhD work, with potential later integration into ARCHAI once developed.
 
 ### 🔲 NFC ↔ Curator Link
 Curator panel doesn't link to NFC pages yet. Pages generated separately.
