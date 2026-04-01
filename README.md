@@ -82,6 +82,28 @@ Each object speaks in first person via llama3, grounded in verified metadata:
 - Term search, broader/narrower hierarchy
 - Indigenous protocol layer
 
+## Screenshots
+
+Desktop views:
+
+![Curator collections search](docs/screenshots/archai-curator-collections-search-v10-6.png)
+![Exhibitions live dashboard](docs/screenshots/archai-exhibitions-live-dashboard-v10-6.png)
+![NFC management with visitor preview](docs/screenshots/archai-nfc-management-visitor-preview-v10-6.png)
+![Vocabulary and thesaurus tools](docs/screenshots/archai-vocabulary-thesaurus-v10-6.png)
+![Visitor view object page](docs/screenshots/archai-visitor-view-proof-coin-v10-6.png)
+![FAMTEC exchange](docs/screenshots/archai-famtec-exchange-v10-6.png)
+![Object detail view](docs/screenshots/archai-object-detail-a-fifth-on-a-maze-v10-6.png)
+![Curator object conversation](docs/screenshots/archai-curator-object-chat-a-fifth-on-a-maze-v10-6.png)
+
+Mobile views:
+
+![Mobile NFC index](docs/screenshots/archai-mobile-nfc-index-v10-6.png)
+![Mobile object hero](docs/screenshots/archai-mobile-object-hero-dream-still-v10-6.png)
+![Mobile object detail](docs/screenshots/archai-mobile-object-detail-dream-still-v10-6.png)
+![Mobile object chat](docs/screenshots/archai-mobile-object-chat-dream-still-v10-6.png)
+![Mobile object response](docs/screenshots/archai-mobile-object-response-dream-still-v10-6.png)
+![Mobile related objects and footer](docs/screenshots/archai-mobile-object-related-footer-dream-still-v10-6.png)
+
 ---
 
 ## What's Not Working Yet
@@ -114,16 +136,16 @@ Date extraction from titles, better Met filtering, incremental harvest.
 
 ## Architecture
 
-```
+```text
 ┌──────────────────────────────────────────────────────────┐
-│                    ARCHAI Frontend                        │
-│                 (ARCHAI_v10_6.html · browser)             │
-│                                                          │
-│  Search ──→ Ollama embed ──→ Qdrant (3 collections)      │
-│  Chat   ──→ Ollama llama3 ──→ grounded response          │
-│  NFC    ──→ Ollama llama3 ──→ chat over LAN              │
-│  Sort   ──→ client-side on loaded objects                │
-└────────┬──────────────┬──────────────┬───────────────────┘
+│                    ARCHAI Frontend                      │
+│                 (ARCHAI_v10_6.html · browser)           │
+│                                                         │
+│  Search ──→ Ollama embed ──→ Qdrant (3 collections)     │
+│  Chat   ──→ Ollama llama3 ──→ grounded response         │
+│  NFC    ──→ Ollama llama3 ──→ chat over LAN             │
+│  Sort   ──→ client-side on loaded objects               │
+└────────┬──────────────┬──────────────┬──────────────────┘
          │              │              │
     localhost:6333  localhost:11434  localhost:8055
       Qdrant          Ollama        Directus (optional)
@@ -133,7 +155,7 @@ Date extraction from titles, better Met filtering, incremental harvest.
 
 ## Project Structure
 
-```
+```text
 archai/
 ├── ARCHAI_v10_6.html              ← Main frontend (current)
 ├── README.md                      ← This file
