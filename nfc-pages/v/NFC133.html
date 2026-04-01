@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#080808">
+<title>Computer Guess/ — ARCHAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080808;
+  --surface: #0f0f0f;
+  --surface2: #161616;
+  --border: #1e1e1e;
+  --border2: #282828;
+  --text: #e8e4dc;
+  --text2: #a09890;
+  --text3: #5a5450;
+  --accent: #c8a96e;
+  --accent2: #8fbcb0;
+  --accent3: #9b8fbf;
+  --mono: 'DM Mono', monospace;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--serif);
+  font-weight: 300;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Grain overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── HEADER ── */
+.v-header {
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 100;
+}
+.v-logo {
+  font-family: var(--serif);
+  font-size: 0.9rem;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+.v-logo span { font-style: italic; color: var(--accent); }
+.v-tag {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--accent2);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid rgba(143,188,176,0.3);
+}
+
+/* ── HERO IMAGE ── */
+.v-hero {
+  width: 100%;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 200px;
+  max-height: 56vh;
+  animation: imgFade 1s ease both;
+}
+.v-hero img {
+  width: 100%;
+  height: 100%;
+  max-height: 56vh;
+  object-fit: contain;
+  display: block;
+}
+.v-hero-empty {
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  color: var(--text3);
+  text-align: center;
+  padding: 40px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── CONTENT ── */
+.v-content { padding: 24px 20px 32px; }
+
+.v-title {
+  font-family: var(--serif);
+  font-size: 1.7rem;
+  font-weight: 300;
+  line-height: 1.25;
+  margin-bottom: 6px;
+  animation: slideUp 0.6s ease 0.1s both;
+}
+
+.v-sub {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  color: var(--text3);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  animation: slideUp 0.6s ease 0.2s both;
+}
+
+.v-meta-strip {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  animation: slideUp 0.6s ease 0.25s both;
+}
+.v-meta-tag {
+  font-family: var(--mono);
+  font-size: 0.46rem;
+  padding: 3px 8px;
+  border: 1px solid var(--border2);
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.v-meta-tag.mv { border-color: rgba(143,188,176,0.3); color: rgba(143,188,176,0.7); }
+.v-meta-tag.lic { border-color: rgba(200,169,110,0.25); color: rgba(200,169,110,0.6); }
+
+.v-story {
+  font-size: 1.05rem;
+  color: var(--text2);
+  line-height: 1.85;
+  margin-bottom: 28px;
+  animation: slideUp 0.6s ease 0.3s both;
+}
+.v-story strong { color: var(--text); font-weight: 400; }
+
+/* ── DIVIDER ── */
+.v-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0 0 24px;
+}
+
+/* ── ASK THIS OBJECT ── */
+.v-ask {
+  animation: slideUp 0.6s ease 0.4s both;
+}
+.v-ask-label {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--text2);
+  margin-bottom: 14px;
+}
+
+.v-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.v-chip {
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  padding: 8px 12px;
+  border: 1px solid var(--border2);
+  color: var(--text2);
+  cursor: pointer;
+  transition: all 0.15s;
+  letter-spacing: 0.5px;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-chip:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+
+.v-chat-row {
+  display: flex;
+  gap: 0;
+  border: 1px solid var(--border2);
+  margin-bottom: 12px;
+}
+.v-chat-input {
+  flex: 1;
+  padding: 14px 16px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1rem;
+}
+.v-chat-input::placeholder { color: var(--text3); }
+.v-chat-send {
+  padding: 14px 18px;
+  background: var(--accent2);
+  border: none;
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-chat-send:active { background: #a5d0c4; }
+
+.v-response {
+  display: none;
+  padding: 16px;
+  border-left: 2px solid var(--accent2);
+  font-size: 0.95rem;
+  color: var(--text2);
+  line-height: 1.8;
+  font-style: italic;
+  margin-bottom: 20px;
+  animation: slideUp 0.3s ease both;
+}
+.v-response.thinking {
+  color: var(--text3);
+  animation: pulse 1s infinite;
+}
+.v-response .fallback-note {
+  font-family: var(--mono);
+  font-size: 0.44rem;
+  color: var(--text3);
+  margin-top: 8px;
+  font-style: normal;
+  letter-spacing: 0.5px;
+}
+
+/* ── METADATA CARD ── */
+.v-meta-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 18px;
+  margin-bottom: 24px;
+  animation: slideUp 0.6s ease 0.5s both;
+}
+.v-meta-card-label {
+  font-family: var(--mono);
+  font-size: 0.46rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 12px;
+}
+.v-meta-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  gap: 12px;
+}
+.v-meta-row:last-child { border-bottom: none; }
+.v-meta-key { color: var(--text3); flex-shrink: 0; }
+.v-meta-value { color: var(--text2); text-align: right; word-break: break-word; }
+
+/* ── RELATED ── */
+.v-related {
+  margin-top: 8px;
+  animation: slideUp 0.6s ease 0.6s both;
+}
+.v-related-label {
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 12px;
+}
+.v-related-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.v-rel-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 8px;
+  text-decoration: none;
+  transition: border-color 0.12s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-rel-card:active { border-color: var(--border2); }
+.v-rel-thumb {
+  width: 100%;
+  height: 80px;
+  background: var(--surface2);
+  margin-bottom: 6px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.v-rel-thumb img { max-width: 100%; max-height: 80px; object-fit: contain; }
+.v-rel-thumb-empty { font-family: var(--mono); font-size: 0.4rem; color: var(--text3); }
+.v-rel-title {
+  font-family: var(--serif);
+  font-size: 0.82rem;
+  color: var(--text2);
+  line-height: 1.3;
+}
+.v-rel-meta {
+  font-family: var(--mono);
+  font-size: 0.42rem;
+  color: var(--text3);
+  margin-top: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ── FOOTER ── */
+.v-footer {
+  padding: 24px 20px 32px;
+  border-top: 1px solid var(--border);
+  margin-top: 8px;
+  text-align: center;
+}
+.v-footer-logo {
+  font-family: var(--serif);
+  font-size: 0.8rem;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 6px;
+}
+.v-footer-logo span { font-style: italic; color: rgba(200,169,110,0.4); }
+.v-footer-text {
+  font-family: var(--mono);
+  font-size: 0.42rem;
+  color: var(--text3);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  line-height: 2;
+}
+.v-footer-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  text-decoration: none;
+  border: 1px solid var(--border2);
+  padding: 6px 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.12s;
+}
+.v-footer-link:active { border-color: var(--accent2); color: var(--accent2); }
+
+/* ── COMMENT ── */
+.v-comment {
+  padding: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  margin-bottom: 24px;
+  animation: slideUp 0.6s ease 0.65s both;
+}
+.v-comment-label {
+  font-family: var(--mono);
+  font-size: 0.46rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 10px;
+}
+.v-comment-input {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  color: var(--text);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.92rem;
+  padding: 12px;
+  resize: vertical;
+  min-height: 60px;
+  outline: none;
+}
+.v-comment-input:focus { border-color: var(--accent2); }
+.v-comment-btn {
+  margin-top: 8px;
+  padding: 10px 16px;
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--text3);
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  width: 100%;
+}
+.v-comment-btn:active { border-color: var(--accent2); color: var(--accent2); }
+.v-prev-comments { margin-top: 14px; }
+.v-prev-label {
+  font-family: var(--mono);
+  font-size: 0.42rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-prev-item {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.v-prev-item:last-child { border-bottom: none; }
+.v-prev-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.88rem;
+  color: var(--text2);
+  line-height: 1.6;
+}
+.v-prev-time {
+  font-family: var(--mono);
+  font-size: 0.4rem;
+  color: var(--text3);
+  margin-top: 3px;
+  letter-spacing: 0.5px;
+}
+
+/* ── SHARE ── */
+.v-share {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+  animation: slideUp 0.6s ease 0.35s both;
+}
+.v-share-btn {
+  flex: 1;
+  min-width: 70px;
+  padding: 10px 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text3);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.12s;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.v-share-btn:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-share-btn.done {
+  border-color: var(--accent2);
+  color: var(--accent2);
+}
+.v-share-icon { font-size: 0.7rem; }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes imgFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="v-header">
+  <div class="v-logo">ARC<span>H</span>AI</div>
+  <div class="v-tag">NFC133</div>
+</div>
+
+<!-- HERO IMAGE -->
+<div class="v-hero">
+  <img src="https://framemark.vam.ac.uk/collections/2017KD4674/full/!600,600/0/default.jpg" alt="Computer Guess/" loading="eager">
+</div>
+
+<!-- CONTENT -->
+<div class="v-content">
+  <div class="v-title">Computer Guess/</div>
+  <div class="v-sub">Computer drawing · 1971 · E.2800-2016</div>
+
+  <div class="v-meta-strip">
+    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
+    <span class="v-meta-tag lic">V&A Open Access</span>
+    <span class="v-meta-tag">Computer drawing</span>
+  </div>
+
+  <!-- SHARE -->
+  <div class="v-share">
+    <button class="v-share-btn" onclick="shareNative()" id="shareNativeBtn"><span class="v-share-icon">↗</span> Share</button>
+    <button class="v-share-btn" onclick="shareEmail()"><span class="v-share-icon">✉</span> Email</button>
+    <button class="v-share-btn" onclick="copyLink(this)"><span class="v-share-icon">⎘</span> Copy Link</button>
+    <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
+  </div>
+
+  <div class="v-story"><strong>Computer Guess/</strong> — Computer Guess/. Computer drawing. Made by Nash, Katherine. 1971. Made in America. Prints &amp; Drawings Study Room, level E</div>
+
+  <div class="v-divider"></div>
+
+  <!-- ASK THIS OBJECT -->
+  <div class="v-ask">
+    <div class="v-ask-label">Ask this object a question</div>
+    <div class="v-chips" id="vChips"><div class="v-chip" onclick="askObject('What are you?')">What are you?</div>
+      <div class="v-chip" onclick="askObject('Tell me your history')">Tell me your history</div>
+      <div class="v-chip" onclick="askObject('How were you used?')">How were you used?</div>
+      <div class="v-chip" onclick="askObject('What are you made of?')">What are you made of?</div></div>
+    <div class="v-chat-row">
+      <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
+      <button class="v-chat-send" onclick="askObject()">Ask</button>
+    </div>
+    <div class="v-response" id="chatResponse"></div>
+  </div>
+
+  <div class="v-divider"></div>
+
+  <!-- METADATA -->
+  <div class="v-meta-card">
+    <div class="v-meta-card-label">Object Record</div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.2800-2016</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Computer drawing</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Computer drawing</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1971</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, level E</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Computer drawing</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+  </div>
+
+  <!-- COMMENT -->
+  <div class="v-comment">
+    <div class="v-comment-label">Leave a response — your note joins the collection record</div>
+    <textarea class="v-comment-input" id="commentInput" placeholder="What did this object make you think or feel?"></textarea>
+    <button class="v-comment-btn" id="commentBtn" onclick="submitComment()">Submit Response</button>
+    <div class="v-prev-comments" id="prevComments"></div>
+  </div>
+
+  <!-- RELATED OBJECTS -->
+  <div class="v-related">
+    <div class="v-related-label">Related Objects</div>
+    <div class="v-related-grid"><a class="v-rel-card" href="NFC131.html">
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2022NE7718/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">MPMan F-10 MP3 player</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · FE.200-2022</div>
+      </a>
+      <a class="v-rel-card" href="NFC132.html">
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4323/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">CO.ED</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.277-2020</div>
+      </a>
+      <a class="v-rel-card" href="NFC134.html">
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AF3344/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Batger's Television Crackers</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.1038-2003</div>
+      </a>
+      <a class="v-rel-card" href="NFC135.html">
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4299/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">MYPOIC</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.257-2020</div>
+      </a></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="v-footer">
+  <div class="v-footer-logo">ARC<span>H</span>AI</div>
+  <div class="v-footer-text">
+    Sovereign Semantic Heritage Infrastructure<br>
+    FAMTEC · RMIT · Open Heritage Data<br>
+    All processing local · data sovereignty preserved
+  </div>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1371699/" target="_blank">View on Collections Website →</a>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════════════
+// ARCHAI NFC Visitor Page — Object Chat via Ollama (LAN)
+// ══════════════════════════════════════════════════════════════════
+
+// ── CONFIG ──────────────────────────────────────────────────────
+// IMPORTANT: Set this to your Mac Studio's LAN IP address
+// Find it: System Settings → Network → Wi-Fi → IP Address
+// Example: 'http://192.168.1.100:11434'
+const OLLAMA_HOST = 'http://192.168.1.119:11434';
+const CHAT_MODEL = 'llama3';
+
+// ── BAKED METADATA (injected at generation time) ────────────────
+const OBJECT = {
+  title: `Computer Guess/`,
+  type: `Computer drawing`,
+  date: `1971`,
+  registration: `E.2800-2016`,
+  location: `Prints & Drawings Study Room, level E`,
+  discipline: `Computer drawing`,
+  category: `Computer drawing`,
+  description: `Computer Guess/. Computer drawing. Made by Nash, Katherine. 1971. Made in America. Prints & Drawings Study Room, level E`,
+  licence: `V&A Open Access`,
+  source_url: `https://collections.vam.ac.uk/item/O1371699/`
+};
+
+const SYSTEM_PROMPT = `You are "${OBJECT.title}", a physical object in the Museums Victoria collection. Speak in the first person as the object itself.
+
+VERIFIED METADATA (use ONLY this data — never invent facts):
+- Title: ${OBJECT.title}
+- Type: ${OBJECT.type}
+- Date/Period: ${OBJECT.date}
+- Registration: ${OBJECT.registration}
+- Location: ${OBJECT.location}
+- Discipline: ${OBJECT.discipline}
+- Category: ${OBJECT.category}
+- Description: ${OBJECT.description}
+- Licence: ${OBJECT.licence}
+
+RULES:
+- Respond in 2-3 sentences as the object speaking about itself
+- Be warm, conversational, precise
+- If asked something not in the metadata, say "That's not in my record — I can only speak to what Museums Victoria has documented about me."
+- Never invent provenance, makers, or history not in the metadata`;
+
+let chatHistory = [];
+
+// ── CHAT ────────────────────────────────────────────────────────
+function askObject(presetQ) {
+  const input = document.getElementById('chatInput');
+  const q = presetQ || input.value.trim();
+  if (!q) return;
+  input.value = '';
+
+  const resp = document.getElementById('chatResponse');
+  resp.textContent = 'Thinking…';
+  resp.className = 'v-response thinking';
+  resp.style.display = 'block';
+
+  chatHistory.push({ role: 'user', content: q });
+
+  fetch(`${OLLAMA_HOST}/api/chat`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      model: CHAT_MODEL,
+      stream: false,
+      messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory]
+    })
+  })
+  .then(r => r.json())
+  .then(data => {
+    const reply = (data.message && data.message.content) || 'I cannot speak right now.';
+    chatHistory.push({ role: 'assistant', content: reply });
+    resp.textContent = reply;
+    resp.className = 'v-response';
+  })
+  .catch(() => {
+    // Metadata fallback — no LLM required
+    const reply = metadataFallback(q);
+    resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
+    resp.className = 'v-response';
+  });
+}
+
+function metadataFallback(q) {
+  const ql = q.toLowerCase();
+  const d = OBJECT;
+  if (ql.includes('made of') || ql.includes('material') || ql.includes('what are you'))
+    return `I am ${d.title}, classified as ${d.type}${d.category ? ' in the category of ' + d.category : ''}. ${d.description.substring(0, 220)}${d.description.length > 220 ? '…' : ''}`;
+  if (ql.includes('history') || ql.includes('old') || ql.includes('when') || ql.includes('date'))
+    return `I date from ${d.date}. I am registered as ${d.registration} in the Museums Victoria collection${d.discipline ? ', within the ' + d.discipline + ' discipline' : ''}. ${d.description.substring(0, 160)}…`;
+  if (ql.includes('significance') || ql.includes('important') || ql.includes('meaning'))
+    return `As a ${d.type} from ${d.date}, I represent part of ${d.discipline || "Victoria's"} heritage. ${d.description.substring(0, 180)}…`;
+  if (ql.includes('where') || ql.includes('location'))
+    return `I am held at ${d.location}. My registration number is ${d.registration}. I belong to the ${d.discipline || 'general'} collection.`;
+  return `I am ${d.title}. ${d.description.substring(0, 250)}${d.description.length > 250 ? '…' : ''} I date from ${d.date} and am registered as ${d.registration}.`;
+}
+
+// Enter key
+document.getElementById('chatInput').addEventListener('keypress', e => {
+  if (e.key === 'Enter') { e.preventDefault(); askObject(); }
+});
+
+// ══════════════════════════════════════════════════════════════════
+// SHARE
+// ══════════════════════════════════════════════════════════════════
+const PAGE_URL = window.location.href;
+const SHARE_TITLE = OBJECT.title + ' — ARCHAI';
+const SHARE_TEXT = `${OBJECT.title} (${OBJECT.date}) — ${OBJECT.type} from the collection. Explore it via ARCHAI.`;
+
+function shareNative() {
+  if (navigator.share) {
+    navigator.share({ title: SHARE_TITLE, text: SHARE_TEXT, url: PAGE_URL })
+      .then(() => {
+        const btn = document.getElementById('shareNativeBtn');
+        btn.classList.add('done');
+        btn.innerHTML = '<span class="v-share-icon">✓</span> Shared';
+      })
+      .catch(() => {});
+  } else {
+    // Fallback: copy link
+    copyLink(document.getElementById('shareNativeBtn'));
+  }
+}
+
+function shareEmail() {
+  const subject = encodeURIComponent(SHARE_TITLE);
+  const body = encodeURIComponent(`${SHARE_TEXT}\n\n${PAGE_URL}\n\n—\nShared via ARCHAI · Sovereign Semantic Heritage Infrastructure`);
+  window.location.href = `mailto:?subject=${subject}&body=${body}`;
+}
+
+function copyLink(btn) {
+  navigator.clipboard.writeText(PAGE_URL).then(() => {
+    btn.classList.add('done');
+    btn.innerHTML = '<span class="v-share-icon">✓</span> Copied';
+    setTimeout(() => {
+      btn.classList.remove('done');
+      btn.innerHTML = '<span class="v-share-icon">⎘</span> Copy Link';
+    }, 2000);
+  }).catch(() => {
+    // Fallback for older browsers
+    const ta = document.createElement('textarea');
+    ta.value = PAGE_URL;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.classList.add('done');
+    btn.innerHTML = '<span class="v-share-icon">✓</span> Copied';
+  });
+}
+
+function shareX() {
+  const text = encodeURIComponent(SHARE_TEXT);
+  const url = encodeURIComponent(PAGE_URL);
+  window.open(`https://x.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+}
+
+// ══════════════════════════════════════════════════════════════════
+// COMMENTS — persisted to localStorage
+// ══════════════════════════════════════════════════════════════════
+const COMMENT_KEY = 'archai_comments_' + OBJECT.registration.replace(/[^a-zA-Z0-9]/g, '_');
+
+function loadComments() {
+  try {
+    return JSON.parse(localStorage.getItem(COMMENT_KEY)) || [];
+  } catch (e) { return []; }
+}
+
+function saveComments(comments) {
+  try { localStorage.setItem(COMMENT_KEY, JSON.stringify(comments)); } catch (e) {}
+}
+
+function renderComments() {
+  const comments = loadComments();
+  const el = document.getElementById('prevComments');
+  if (!comments.length) { el.innerHTML = ''; return; }
+  el.innerHTML = `<div class="v-prev-label">Visitor Responses (${comments.length})</div>` +
+    comments.slice().reverse().map(c =>
+      `<div class="v-prev-item">
+        <div class="v-prev-text">${escHTML(c.text)}</div>
+        <div class="v-prev-time">${c.time}</div>
+      </div>`
+    ).join('');
+}
+
+function submitComment() {
+  const input = document.getElementById('commentInput');
+  const text = input.value.trim();
+  if (!text) return;
+
+  const comments = loadComments();
+  comments.push({
+    text: text,
+    time: new Date().toLocaleString('en-AU', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
+    object: OBJECT.title,
+    reg: OBJECT.registration
+  });
+  saveComments(comments);
+
+  input.value = '';
+  const btn = document.getElementById('commentBtn');
+  btn.textContent = 'Thank you — response recorded';
+  btn.style.color = 'var(--accent2)';
+  btn.style.borderColor = 'var(--accent2)';
+  setTimeout(() => {
+    btn.textContent = 'Submit Response';
+    btn.style.color = '';
+    btn.style.borderColor = '';
+  }, 3000);
+
+  renderComments();
+}
+
+function escHTML(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// Init comments on load
+renderComments();
+</script>
+</body>
+</html>
