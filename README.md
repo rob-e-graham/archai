@@ -1,94 +1,152 @@
 # ARCHAI — Sovereign Semantic Heritage Infrastructure
 
-> "Museums are not silent repositories of Memory; they are living, thinking organisms." — Gayane Umerova, UNESCO, 2025
+> "Museums are not silent repositories of Memory; they are living, thinking organisms, where imagination and knowledge, tradition and innovation meet." — Gayane Umerova, UNESCO, 2025
 
-**Version:** 10.6 · **Author:** Rob Graham · FAMTEC / RMIT · **Target:** ISEA2026 Dubai (April 11–12)
+**Version:** 10.6
+**Author:** Rob Graham · FAMTEC (Fine Art Media Tech) / RMIT University
+**Status:** Working prototype — multi-institution semantic search + LLM object chat + NFC visitor pages
+**Target:** ISEA2026 Dubai, 6th Summit on New Media Art Archiving (April 11–12)
+**Paper:** `docs/ARCHAI_ISEA2026_Rob_Graham.pdf`
+**Licence:** Apache 2.0 (code) · CC BY 4.0 (MV data) · CC0 (Met data) · V&A Open Access
 
 ---
 
-## What's Working
+## What's Working Right Now
 
 ### ✅ Multi-Collection Semantic Search
-Three museums in Qdrant, searched simultaneously via nomic-embed-text embeddings:
-- **Museums Victoria** (~80 objects, CC BY 4.0)
-- **The Met, NYC** (~150 objects, CC0)
-- **V&A, London** (~150 objects, Open Access)
+Three museum collections in Qdrant, searchable simultaneously:
 
-Results colour-tagged by source. Sort by name/date/discipline/source. Filter by institution or images. Deduplicated by canonical_id.
+| Collection | Source | Objects | Licence | Status |
+|-----------|--------|---------|---------|--------|
+| `archai_pilot` | Museums Victoria | ~80 | CC BY 4.0 | ✅ Live |
+| `archai_met` | The Metropolitan Museum of Art, NYC | ~150 | CC0 | ✅ Live |
+| `archai_va` | Victoria and Albert Museum, London | ~150 | V&A Open Access | ✅ Live |
+
+- Query → embedded via nomic-embed-text → vector searched across all 3 collections → results merged by cosine similarity
+- Results colour-tagged: MV (teal), Met (gold), V&A (purple)
+- Text fallback when Ollama offline
+- Sort by: name, date, discipline, source
+- Filter: with images (default), all, MV/Met/V&A only
+- Deduplicated by canonical_id across collections
 
 ### ✅ Object-as-Speaker LLM Chat
-Each object speaks in first person via llama3, grounded in verified metadata. Dynamic institution names. Hallucination prevention active. Metadata fallback when Ollama offline.
+Each object speaks in first person via llama3, grounded in verified metadata:
+- System prompt built from ALL metadata fields
+- Dynamic institution name per object
+- Hallucination prevention: "That's not in my record"
+- Metadata fallback when Ollama offline — no LLM required
+
+### ✅ Object Detail Panel
+- Full metadata, image, curatorial description
+- Live llama3 chat with question chips
+- Semantically related objects across all collections
+- Source-specific links: "View on The Met →", "View on V&A →"
 
 ### ✅ NFC Visitor Pages (Mobile)
-200 standalone HTML pages from all 3 collections. Share (iOS native, email, copy, X). Persistent comments. LLM chat over LAN. Captive portal for exhibition WiFi.
+200 standalone HTML pages from all 3 collections:
+- Object image, metadata, description, LLM chat over LAN
+- Share: native iOS sheet, email, copy link, X/Twitter
+- Persistent comments via localStorage
+- Related objects with cross-collection links
+- Captive portal for exhibition WiFi
+
+### ✅ NFC Management Panel
+- Tags from objects with images, mixed across MV/Met/V&A
+- 3-column layout: tag list → editor → phone preview
+- Search, filter, publish/unpublish
 
 ### ✅ Role Switcher
-Admin / Curator / Collections / Technician / Volunteer / Visitor — tab-level access gating.
+| Role | Access |
+|------|--------|
+| Admin | All tabs |
+| Curator | Curator, Nodel, NFC, Vocab, Visitor, FAMTEC |
+| Collections | Curator, NFC, Vocab, Visitor, FAMTEC |
+| Technician | Nodel, Visitor, FAMTEC |
+| Volunteer | Curator, NFC, Visitor, FAMTEC |
+| Visitor | Visitor only |
 
 ### ✅ FAMTEC Exchange
-Inter-institutional sharing: loan, rental, skills, crew. Institution chat. Prototype data.
+- Institution list: FAMTEC, ACMI, SA Museum, MGA
+- Feed: loan, rental, skills, crew availability
+- Chip filters, institution chat
+- Prototype data (separate service in production)
 
 ### ✅ Nodel Panel
-Gallery cards, node table, fault log, schedule, emergency stop. Prototype data.
+- Gallery cards with status indicators
+- Node table, fault log, schedule
+- Emergency stop
 
 ### ✅ Vocabulary & Thesaurus
-AAT, Local, LCSH, TGN. Term search. Indigenous protocol layer.
+- AAT, Local, LCSH, TGN panels
+- Term search, broader/narrower hierarchy
+- Indigenous protocol layer
 
 ---
 
-## Not Yet Working
+## What's Not Working Yet
 
-- 🔲 Cross-collection RAG (LLM searching Qdrant mid-conversation)
-- 🔲 LLM image analysis (llava for colours/text extraction)
-- 🔲 Thesaurus backend (AAT API, auto-tagging)
-- 🔲 FAMTEC persistence (needs Directus/SQLite)
-- 🔲 NFC ↔ Curator linking
-- 🔲 Directus integration (health-checked only)
-- 🔲 Live Nodel API connection
+### 🔲 Cross-Collection LLM Intelligence (RAG)
+LLM currently only sees one object's metadata. Needs RAG: embed user question → search Qdrant → inject related objects into LLM context → synthesise connections. Curators get full cross-collection access, visitors get bounded single-object responses.
 
----
+### 🔲 LLM Image Analysis
+Use llava to extract colours, text, objects from images → searchable metadata.
 
-## Quick Start
-```bash
-cd ~/archai && ./start-demo.sh
-```
+### 🔲 Thesaurus Backend
+AAT lookup API, auto-tagging. Currently UI prototype with static data.
 
-Starts Docker, Qdrant, Ollama (LAN+CORS), checks NFC pages, serves on port 8000.
+### 🔲 FAMTEC Persistence
+Needs Directus/SQLite backend. Currently in-memory arrays.
 
-- **Main app:** http://localhost:8000/ARCHAI_v10_6.html
-- **NFC index:** http://localhost:8000/nfc-pages/v/
-- **Phone:** http://LAN_IP:8000/nfc-pages/v/NFC066.html
+### 🔲 NFC ↔ Curator Link
+Curator panel doesn't link to NFC pages yet. Pages generated separately.
+
+### 🔲 Directus Integration
+Health-checked only. Not used for data operations.
+
+### 🔲 Nodel API
+Static prototype data. Needs WebSocket to real Nodel instance.
+
+### 🔲 Harvester Improvements
+Date extraction from titles, better Met filtering, incremental harvest.
 
 ---
 
 ## Architecture
-```
-ARCHAI Frontend (single HTML) → Ollama (embed+chat) → Qdrant (3 collections)
-NFC Pages (static HTML) → Ollama over LAN → llama3 chat on phone
-```
 
-| Service | Port | Required |
-|---------|------|----------|
-| Qdrant | localhost:6333 | Yes |
-| Ollama | localhost:11434 | Yes |
-| Directus | localhost:8055 | No (optional) |
+```
+┌──────────────────────────────────────────────────────────┐
+│                    ARCHAI Frontend                        │
+│                 (ARCHAI_v10_6.html · browser)             │
+│                                                          │
+│  Search ──→ Ollama embed ──→ Qdrant (3 collections)      │
+│  Chat   ──→ Ollama llama3 ──→ grounded response          │
+│  NFC    ──→ Ollama llama3 ──→ chat over LAN              │
+│  Sort   ──→ client-side on loaded objects                │
+└────────┬──────────────┬──────────────┬───────────────────┘
+         │              │              │
+    localhost:6333  localhost:11434  localhost:8055
+      Qdrant          Ollama        Directus (optional)
+```
 
 ---
 
 ## Project Structure
+
 ```
 archai/
-├── ARCHAI_v10_6.html              ← Main frontend
+├── ARCHAI_v10_6.html              ← Main frontend (current)
+├── README.md                      ← This file
 ├── start-demo.sh                  ← One-command startup
+├── DEMO_CHEAT_SHEET.md
 ├── backend-archai/scripts/
 │   ├── mv-harvester.js            ← Museums Victoria → Qdrant
 │   ├── met-harvester.js           ← Met NYC → Qdrant
 │   └── va-harvester.js            ← V&A London → Qdrant
 ├── nfc-pages/
 │   ├── generate-nfc-pages.js      ← All collections → HTML per tag
-│   ├── nfc-visitor-template.html
+│   ├── nfc-visitor-template.html  ← Mobile template
 │   ├── captive-portal.html
-│   └── v/                         ← Generated pages
+│   └── v/                         ← Generated pages (not in git)
 ├── docs/
 │   └── ARCHAI_ISEA2026_Rob_Graham.pdf
 └── docker-compose.yml
@@ -96,9 +154,23 @@ archai/
 
 ---
 
+## Quick Start
+
+```bash
+cd ~/archai && ./start-demo.sh
+```
+
+Starts Docker, Qdrant, Ollama (with LAN+CORS), checks NFC pages, prints URLs, serves on port 8000.
+
+**Main app:** http://localhost:8000/ARCHAI_v10_6.html
+**NFC index:** http://localhost:8000/nfc-pages/v/
+**Phone:** http://LAN_IP:8000/nfc-pages/v/NFC066.html
+
+---
+
 ## Hardware
 
-Mac Studio M2 Max · 64GB · 1TB. Institutional deployment: ~$3,500–5,000 USD one-time. No subscriptions, no cloud.
+Mac Studio M2 Max · 64GB · 1TB. Base institutional deployment: ~$3,500–5,000 USD one-time. No subscriptions, no cloud dependency.
 
 ---
 
@@ -106,12 +178,13 @@ Mac Studio M2 Max · 64GB · 1TB. Institutional deployment: ~$3,500–5,000 USD 
 
 | Version | Changes |
 |---------|---------|
-| v6 | Initial prototype |
+| v6 | Initial prototype, mock objects |
 | v7 | Role switcher, FAMTEC, Nodel, NFC, vocabulary |
 | v10.4 | MV-only, live Qdrant + Ollama, LLM chat |
 | v10.5 | Restored all panels, NFC page generator |
-| **v10.6** | **Multi-collection, sort/filter, dedup, harvesters, NFC share+comments, 200 pages** |
+| **v10.6** | **Multi-collection (MV+Met+V&A), sort/filter, dedup, harvesters, NFC share+comments, 200 pages, dynamic institutions** |
 
 ---
 
-Apache 2.0 · Rob Graham · FAMTEC / RMIT · rob@fineartmedia.tech
+Rob Graham · FAMTEC / RMIT · rob@fineartmedia.tech
+GitHub: github.com/rob-e-graham/archai
