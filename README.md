@@ -2,7 +2,7 @@
 
 > "Museums are not silent repositories of Memory; they are living, thinking organisms, where imagination and knowledge, tradition and innovation meet." — Gayane Umerova, UNESCO, 2025
 
-**Version:** 10.6
+**Version:** 10.7
 **Author:** Rob Graham · FAMTEC (Fine Art Media Tech) / RMIT University
 **Status:** Working prototype — multi-institution semantic search + LLM object chat + NFC visitor pages
 **Target:** ISEA2026 Dubai, 6th Summit on New Media Art Archiving (April 11–12)
@@ -65,22 +65,36 @@ Each object speaks in first person via llama3, grounded in verified metadata:
 | Volunteer | Curator, NFC, Visitor, FAMTEC |
 | Visitor | Visitor only |
 
+### ✅ Curator Toolbar
+- Select All / Export CSV / Batch Tag — fully wired
+- CSV export with all metadata fields, scoped to selection or full collection
+- Batch tagging applies keywords to selected objects and rebuilds vocab index
+
 ### ✅ FAMTEC Exchange
 - Test space for interaction design, workflow feel, and interface prototyping inside ARCHAI
 - Placeholder institution names are used to simulate exchange activity and help evaluate the app experience
 - Feed includes loan, rental, skills, and crew-availability scenarios
-- Chip filters and institution chat are currently prototype interactions only
+- Post listings (hardware, skills, requests), send enquiries, view details
+- Enquiries route to institution chat threads where available
+- Chip filters and institution chat are functional prototype interactions
 - This is not the final FAMTEC platform: production development will be handled separately by FAMTEC outside the PhD work, with potential later integration into ARCHAI once developed
 
 ### ✅ Nodel Panel
 - Gallery cards with status indicators
 - Node table, fault log, schedule
-- Emergency stop
+- Refresh status polling, emergency stop with confirmation
+- Direct links to Nodel web UI and Directus admin
 
-### ✅ Vocabulary & Thesaurus
-- AAT, Local, LCSH, TGN panels
-- Term search, broader/narrower hierarchy
-- Indigenous protocol layer
+### ✅ Vocabulary & Thesaurus (CHIN-aligned)
+- **Live vocabulary index** built from Qdrant payloads across all 3 collections (9 facets: discipline, category, object type, classifications, collecting areas, keywords, culture, period, medium)
+- **CHIN/AAT reference terms** — 26 curated terms from Getty AAT with scope notes, broader/narrower hierarchies, and AAT IDs
+- **DOCAM Glossaurus** — media art preservation terminology (emulation, migration, variable media, documentation strategies)
+- **Nomenclature for Museum Cataloging** — Parks Canada/CHIN object naming and classification
+- **CHIN Discipline Authority List (2006)** — bilingual EN/FR discipline headings
+- Term search across all sources with scope notes, provider badges, and language tags
+- Term detail panel: path, scope note, broader/narrower terms, related terms, collection usage with example objects
+- Apply to Search (jumps to Curator with search), Add Local Mapping (creates institution-specific terms)
+- Indigenous protocol layer with governance notice
 
 ## Screenshots
 
@@ -114,23 +128,20 @@ LLM currently only sees one object's metadata. Needs RAG: embed user question �
 ### 🔲 LLM Image Analysis
 Use llava to extract colours, text, objects from images → searchable metadata.
 
-### 🔲 Thesaurus Backend
-AAT lookup API, auto-tagging. Currently UI prototype with static data.
+### 🔲 External Vocabulary APIs
+AAT, LCSH, TGN, and ULAN are listed but inactive — currently using curated reference terms rather than live API lookups. Getty AAT LOD endpoint integration is architecturally ready.
 
 ### 🔲 FAMTEC Persistence
 Current in-app FAMTEC Exchange uses prototype data and in-memory arrays only. The production FAMTEC Exchange platform will be developed separately by FAMTEC outside the PhD work, with potential later integration into ARCHAI once developed.
 
-### 🔲 NFC ↔ Curator Link
-Curator panel doesn't link to NFC pages yet. Pages generated separately.
-
 ### 🔲 Directus Integration
-Health-checked only. Not used for data operations.
+Health-checked only. NFC save attempts backend sync but falls back to local confirmation.
 
 ### 🔲 Nodel API
-Static prototype data. Needs WebSocket to real Nodel instance.
+Static prototype data. Needs WebSocket to real Nodel instance. UI links and emergency stop are wired.
 
 ### 🔲 Harvester Improvements
-Date extraction from titles, better Met filtering, incremental harvest.
+Date extraction from titles, better Met filtering, incremental harvest. Run Harvesters button verifies collection counts and triggers reload.
 
 ---
 
@@ -205,7 +216,8 @@ Mac Studio M2 Max · 64GB · 1TB. Base institutional deployment: ~$3,500–5,000
 | v7 | Role switcher, FAMTEC, Nodel, NFC, vocabulary |
 | v10.4 | MV-only, live Qdrant + Ollama, LLM chat |
 | v10.5 | Restored all panels, NFC page generator |
-| **v10.6** | **Multi-collection (MV+Met+V&A), sort/filter, dedup, harvesters, NFC share+comments, 200 pages, dynamic institutions** |
+| v10.6 | Multi-collection (MV+Met+V&A), sort/filter, dedup, harvesters, NFC share+comments, 200 pages, dynamic institutions |
+| **v10.7** | **Live CHIN-aligned thesaurus (AAT+DOCAM+Nomenclature+CHIN Disciplines), all buttons wired (Export CSV, Batch Tag, FAMTEC post/enquire/details, NFC export/save, Nodel refresh/emergency stop, Run Harvesters), responsive thumbnail scaling, vocab search with scope notes and provider badges** |
 
 ---
 

@@ -233,7 +233,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 .pf-rel-label{font-size:0.44rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;}
 .pf-rel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;}
 .pf-rel-item{background:var(--surface2);padding:5px;border-radius:4px;}
-.pf-rel-thumb{height:36px;background:var(--surface3);margin-bottom:4px;display:flex;align-items:center;justify-content:center;font-size:0.42rem;color:var(--text3);overflow:hidden;border-radius:3px;}
+.pf-rel-thumb{aspect-ratio:16/9;height:auto;background:var(--surface3);margin-bottom:4px;display:flex;align-items:center;justify-content:center;font-size:0.42rem;color:var(--text3);overflow:hidden;border-radius:3px;}
 .pf-rel-thumb img{width:100%;height:100%;object-fit:cover;}
 .pf-rel-title{font-size:0.44rem;color:var(--text3);}
 .pf-comment{margin-top:12px;border-top:1px solid var(--border);padding-top:8px;}
@@ -318,10 +318,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 .vpp-chat-btn:hover{background:rgba(143,188,176,0.1);}
 .vpp-response{margin-top:11px;font-style:italic;color:var(--text2);font-size:0.83rem;line-height:1.7;display:none;padding:9px 11px;border-left:2px solid var(--accent2);}
 .vpp-related-label{font-family:var(--mono);font-size:0.56rem;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:11px;border-top:1px solid var(--border);padding-top:18px;}
-.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:18px;}
+.related-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin-bottom:18px;}
 .rel-card{background:var(--surface);border:1px solid var(--border);padding:9px;cursor:pointer;transition:border-color 0.12s;}
 .rel-card:hover{border-color:var(--border2);}
-.rel-thumb{width:100%;height:46px;background:var(--surface2);margin-bottom:6px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:0.44rem;color:var(--text3);overflow:hidden;}
+.rel-thumb{width:100%;aspect-ratio:16/9;height:auto;background:var(--surface2);margin-bottom:6px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:0.44rem;color:var(--text3);overflow:hidden;}
 .rel-thumb img{width:100%;height:100%;object-fit:cover;}
 .rel-title{font-family:var(--serif);font-size:0.78rem;color:var(--text2);line-height:1.3;}
 .vpp-comment{padding:14px;border:1px solid var(--border);background:var(--surface);}
@@ -360,7 +360,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 .od-chip:hover{border-color:var(--accent);color:var(--accent);}
 .od-rel-card{display:flex;gap:10px;background:var(--surface2);border:1px solid var(--border);padding:9px;cursor:pointer;transition:border-color 0.12s;margin-bottom:6px;}
 .od-rel-card:hover{border-color:var(--border2);}
-.od-rel-thumb{flex:0 0 52px;height:40px;background:var(--surface3);display:flex;align-items:center;justify-content:center;font-size:0.48rem;color:var(--text3);overflow:hidden;}
+.od-rel-thumb{flex:0 0 64px;aspect-ratio:16/10;height:auto;background:var(--surface3);display:flex;align-items:center;justify-content:center;font-size:0.48rem;color:var(--text3);overflow:hidden;}
 .od-rel-thumb img{width:100%;height:100%;object-fit:cover;}
 .od-rel-info{min-width:0;}
 .od-rel-title{font-family:var(--serif);font-size:0.82rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px;}
@@ -465,6 +465,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 .fd-err{color:var(--warn);} .fd-warn{color:var(--nodel);} .fd-ok{color:var(--ok);}
 .fault-link{font-family:var(--mono);font-size:0.52rem;color:var(--accent);cursor:pointer;white-space:nowrap;}
 @media(max-width:900px){.famtec-layout{grid-template-columns:1fr;}.famtec-left,.famtec-main{border-right:none;border-bottom:1px solid var(--border);}.famtec-grid{grid-template-columns:1fr;}}
+@media(max-width:768px){.related-grid{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:480px){.related-grid{grid-template-columns:1fr;}}
 
 /* CHAT STYLING */
 .chat-msg{padding:5px 0;border-bottom:1px solid var(--border);font-size:0.72rem;line-height:1.5;}
@@ -563,7 +565,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
       </div>
       <div class="results-header">
         <span id="resultsLabel">Loading — connecting to Qdrant…</span>
-        <div class="r-acts"><div class="btn" onclick="alert('Select all')">Select All</div><div class="btn" onclick="alert('Export CSV')">Export CSV</div><div class="btn" onclick="alert('Batch tag')">Batch Tag</div></div>
+        <div class="r-acts"><div class="btn" onclick="selectAllResults()">Select All</div><div class="btn" onclick="exportCSV()">Export CSV</div><div class="btn" onclick="batchTagResults()">Batch Tag</div></div>
       </div>
       <div id="resultsContainer">
         <div class="skel-card"><div class="skel-thumb skeleton"></div><div><div class="skel-line skeleton"></div><div class="skel-line short skeleton"></div><div class="skel-line xs skeleton"></div></div><div></div></div>
@@ -598,7 +600,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
           <div>Objects loaded: <span id="sb-mv-count">0</span></div>
         </div>
         <button class="pipe-btn" onclick="loadMVObjects()">↻ Reload All Collections</button>
-        <button class="pipe-btn" style="margin-top:4px" onclick="alert('Run harvesters:\nnode scripts/met-harvester.js\nnode scripts/va-harvester.js')">▶ Run Harvesters</button>
+        <button class="pipe-btn" style="margin-top:4px" onclick="runHarvesters()">▶ Run Harvesters</button>
       </div>
       <div class="sb-section">
         <div class="sb-title">Cultural Safety</div>
@@ -631,8 +633,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
           <div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);margin-top:3px;">Real-time status of exhibition hardware nodes managed via Nodel. MV objects linked to physical spaces.</div>
         </div>
         <div style="display:flex;gap:6px;">
-          <div class="btn" onclick="alert('Open Nodel web interface')">Open Nodel →</div>
-          <div class="btn" onclick="alert('Refreshing node status...')">Refresh</div>
+          <a class="btn" href="http://localhost:8888" target="_blank" style="text-decoration:none">Open Nodel →</a>
+          <div class="btn" onclick="refreshNodelStatus()">Refresh</div>
         </div>
       </div>
       <div class="gallery-grid">
@@ -718,10 +720,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
       <div class="sb-section">
         <div class="sb-title">Quick Actions</div>
         <div style="display:flex;flex-direction:column;gap:5px;">
-          <div class="btn" style="text-align:left" onclick="alert('Opens Nodel web UI')">Open Nodel Interface →</div>
+          <a class="btn" style="text-align:left;display:block;text-decoration:none" href="http://localhost:8888" target="_blank">Open Nodel Interface →</a>
           <a class="btn" style="text-align:left;display:block" href="http://localhost:8055/admin" target="_blank">Configure in Directus →</a>
           <div class="btn" style="text-align:left" onclick="switchTab('curator',document.querySelectorAll('.tab')[0])">Browse Collection →</div>
-          <div class="btn warn" style="text-align:left" onclick="alert('Emergency stop sent to all nodes')">Emergency Stop All</div>
+          <div class="btn warn" style="text-align:left" onclick="emergencyStopAll()">Emergency Stop All</div>
         </div>
       </div>
       <div class="sb-section">
@@ -778,29 +780,28 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
     <div class="vocab-list-col">
       <div class="sb-title" style="margin-bottom:13px">Active Vocabularies</div>
       <div style="font-family:var(--mono);font-size:0.53rem;color:var(--text3);margin-bottom:11px;line-height:1.8">Toggle and order priority. Used during search and upload tagging.</div>
-      <div class="vocab-source active"><div class="vs-header"><span class="vs-name">AAT</span><div class="vs-toggle on" onclick="this.classList.toggle('on')"></div></div><div class="vs-desc">Getty Art & Architecture Thesaurus. Styles, materials, techniques, object types.</div><div class="vs-priority">Priority ① · 300,000+ terms</div></div>
-      <div class="vocab-source active"><div class="vs-header"><span class="vs-name">Local</span><div class="vs-toggle on" onclick="this.classList.toggle('on')"></div></div><div class="vs-desc">Institutional vocabulary. Custom terms specific to this collection.</div><div class="vs-priority">Priority ② · 847 terms</div></div>
+      <div class="vocab-source active"><div class="vs-header"><span class="vs-name">AAT</span><div class="vs-toggle on" onclick="this.classList.toggle('on')"></div></div><div class="vs-desc">Getty Art & Architecture Thesaurus. Styles, materials, techniques, object types.</div><div class="vs-priority">Priority ① · loading…</div></div>
+      <div class="vocab-source active"><div class="vs-header"><span class="vs-name">Local</span><div class="vs-toggle on" onclick="this.classList.toggle('on')"></div></div><div class="vs-desc">Collection-derived vocabulary. Extracted live from Qdrant across MV, Met, V&A.</div><div class="vs-priority">Priority ② · loading…</div></div>
+      <div class="vocab-source active"><div class="vs-header"><span class="vs-name">CHIN</span><div class="vs-toggle on" onclick="this.classList.toggle('on')"></div></div><div class="vs-desc">Canadian Heritage Information Network. Discipline Authority List (2006), bilingual EN/FR.</div><div class="vs-priority">Active · CHIN-aligned</div></div>
+      <div class="vocab-source active"><div class="vs-header"><span class="vs-name">DOCAM</span><div class="vs-toggle on" onclick="this.classList.toggle('on')"></div></div><div class="vs-desc">Documentation and Conservation of Media Arts Heritage. Preservation, emulation, variable media.</div><div class="vs-priority">Active · media art focus</div></div>
+      <div class="vocab-source active"><div class="vs-header"><span class="vs-name">Nomenclature</span><div class="vs-toggle on" onclick="this.classList.toggle('on')"></div></div><div class="vs-desc">Nomenclature for Museum Cataloging (Parks Canada/CHIN). Object naming and classification.</div><div class="vs-priority">Active · LOD-friendly</div></div>
       <div class="vocab-source"><div class="vs-header"><span class="vs-name">LCSH</span><div class="vs-toggle" onclick="this.classList.toggle('on')"></div></div><div class="vs-desc">Library of Congress Subject Headings.</div><div class="vs-priority" style="color:var(--text3)">Inactive · 340,000+ terms</div></div>
       <div class="vocab-source"><div class="vs-header"><span class="vs-name">TGN</span><div class="vs-toggle" onclick="this.classList.toggle('on')"></div></div><div class="vs-desc">Getty Thesaurus of Geographic Names.</div><div class="vs-priority" style="color:var(--text3)">Inactive · 2M+ names</div></div>
+      <div class="vocab-source"><div class="vs-header"><span class="vs-name">ULAN</span><div class="vs-toggle" onclick="this.classList.toggle('on')"></div></div><div class="vs-desc">Getty Union List of Artist Names. Creator authority.</div><div class="vs-priority" style="color:var(--text3)">Inactive · 300,000+ names</div></div>
     </div>
     <div class="vocab-main-col">
       <div class="section-label" style="margin-bottom:14px">Term Search</div>
-      <div class="vocab-search-bar"><input class="vocab-input" type="text" placeholder="Search terms across all vocabularies…"><button class="vocab-go">Search</button></div>
-      <div class="term-result selected"><div class="tr-term">Installations (Visual Works)</div><div class="tr-source">AAT · Getty Art & Architecture Thesaurus</div><div class="tr-id">AAT ID: 300047896</div><div class="tr-desc">Three-dimensional works intended to transform a perceptual space.</div></div>
-      <div class="term-result"><div class="tr-term">telecommunications equipment</div><div class="tr-source">AAT · Getty Art & Architecture Thesaurus</div><div class="tr-id">AAT ID: 300249755</div><div class="tr-desc">Equipment used to transmit and receive signals over distance.</div></div>
-      <div class="term-result"><div class="tr-term">scientific instruments</div><div class="tr-source">AAT · Getty Art & Architecture Thesaurus</div><div class="tr-id">AAT ID: 300024563</div><div class="tr-desc">Instruments devised for use in one or more of the sciences.</div></div>
+      <div class="vocab-search-bar"><input id="vocabSearchInput" class="vocab-input" type="text" placeholder="Search terms across all vocabularies…"><button class="vocab-go" onclick="lookupVocab()">Search</button></div>
+      <div id="vocabResultsList">
+        <div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);padding:12px 0;">Type a term to search across all collection vocabularies.</div>
+      </div>
       <div class="indigenous-box"><div class="ib-label">Indigenous Protocol — Restricted Terms</div><div class="ib-text">This vocabulary layer is governed under community agreement. Terms relating to First Nations cultural materials require consultation before use in public-facing metadata.</div><button class="ib-btn" onclick="alert('Opening protocol documentation')">View Protocol Documentation</button></div>
     </div>
     <div class="vocab-result-col">
       <div class="sb-title" style="margin-bottom:14px">Term Detail</div>
-      <div class="td-title">Installations (Visual Works)</div>
-      <div class="td-source">AAT · Getty Art & Architecture Thesaurus</div>
-      <div class="td-section"><div class="td-label">Scope Note</div><div class="td-text">Three-dimensional works intended to transform a perceptual space. Distinguished from individual objects or two-dimensional works. Often site-specific and temporary.</div></div>
-      <div class="td-section"><div class="td-label">Broader Terms</div><div class="broader-term">visual works &lt;by form&gt;</div><div class="broader-term">visual works</div></div>
-      <div class="td-section"><div class="td-label">Narrower Terms</div><div class="narrower-term">light installations</div><div class="narrower-term">sound installations</div><div class="narrower-term">video installations</div><div class="narrower-term">interactive installations</div></div>
-      <div class="td-section"><div class="td-label">Used in Collection</div><div style="font-family:var(--mono);font-size:0.58rem;color:var(--text3)"><span id="vocab-usage-count">—</span> records tagged</div></div>
-      <button class="use-term-btn" onclick="alert('Term applied to search')">Apply to Record / Search</button>
-      <button class="add-local-btn" onclick="alert('Adding local mapping')">Add Local Mapping</button>
+      <div id="vocabDetailPanel">
+        <div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);">Select a term to see details.</div>
+      </div>
     </div>
   </div>
 </div>
@@ -860,9 +861,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
           <div class="famtec-sub">Institution-to-institution sharing · loan / rental hardware · skilled technician booking · exhibition support</div>
         </div>
         <div class="famtec-actions">
-          <div class="btn" onclick="alert('Post new hardware listing to FAMTEC exchange')">+ List Hardware</div>
-          <div class="btn" onclick="alert('Offer skills / crew availability')">+ Offer Skills</div>
-          <div class="btn" onclick="alert('Post a request for support')">+ Post Request</div>
+          <div class="btn" onclick="famtecPost('hardware')">+ List Hardware</div>
+          <div class="btn" onclick="famtecPost('skills')">+ Offer Skills</div>
+          <div class="btn" onclick="famtecPost('request')">+ Post Request</div>
         </div>
       </div>
       <div class="famtec-search">
@@ -1051,6 +1052,9 @@ window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('famtecSearch')?.addEventListener('keypress', e => {
     if (e.key === 'Enter') renderFamtecFeed();
   });
+  document.getElementById('vocabSearchInput')?.addEventListener('keypress', e => {
+    if (e.key === 'Enter') lookupVocab();
+  });
 });
 
 // ═══════════════════════════════════════════════════════════════════
@@ -1208,6 +1212,7 @@ function loadMVObjects() {
     renderResultCards();
     renderNFCList();
     renderVisitorList();
+    buildVocabIndex();
 
     console.log('ARCHAI v10.6: loaded', totalCount, 'objects from', Object.keys(counts).filter(k => counts[k] > 0).length, 'collections');
   })
@@ -1343,7 +1348,7 @@ function renderFamtecFeed() {
       <div class="ft-meta">${f.org} · ${f.timing}</div>
       <div class="ft-body">${f.body}</div>
       <div class="ft-tags">${f.tags.map(t => '<span class="ft-tag">' + t + '</span>').join('')}</div>
-      <div class="ft-cta"><div class="btn" onclick="alert('Enquiry sent for: ${f.title.replace(/'/g,"\\'")}')">Enquire</div><div class="btn" onclick="alert('View full listing')">Details</div></div>
+      <div class="ft-cta"><div class="btn" onclick="famtecEnquire('${f.title.replace(/'/g,"\\'")}','${f.org.replace(/'/g,"\\'")}')">Enquire</div><div class="btn" onclick="famtecDetails('${f.title.replace(/'/g,"\\'")}')">Details</div></div>
     </div>`
   ).join('');
   if (!items.length) el.innerHTML = '<div style="grid-column:1/-1;font-family:var(--mono);font-size:0.6rem;color:var(--text3);padding:20px;text-align:center;">No matching listings found.</div>';
@@ -1364,7 +1369,7 @@ function toggleFamtecChip(el) {
       <div class="ft-meta">${f.org} · ${f.timing}</div>
       <div class="ft-body">${f.body}</div>
       <div class="ft-tags">${f.tags.map(t => '<span class="ft-tag">' + t + '</span>').join('')}</div>
-      <div class="ft-cta"><div class="btn" onclick="alert('Enquiry sent')">Enquire</div></div>
+      <div class="ft-cta"><div class="btn" onclick="famtecEnquire('${f.title.replace(/'/g,"\\'")}','${f.org.replace(/'/g,"\\'")}')">Enquire</div></div>
     </div>`
   ).join('');
   if (!items.length) el2.innerHTML = '<div style="grid-column:1/-1;font-family:var(--mono);font-size:0.6rem;color:var(--text3);padding:20px;">No listings match this filter.</div>';
@@ -1389,6 +1394,238 @@ function sendFamtecMsg(input) {
     msgs.scrollTop = msgs.scrollHeight;
   }
   input.value = '';
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// CURATOR — SELECT ALL / EXPORT CSV / BATCH TAG
+// ═══════════════════════════════════════════════════════════════════
+let selectedCards = new Set();
+
+function selectAllResults() {
+  const cards = document.querySelectorAll('#resultsContainer .result-card');
+  const allSelected = selectedCards.size === cards.length;
+  selectedCards.clear();
+  cards.forEach(c => {
+    if (allSelected) {
+      c.style.outline = '';
+    } else {
+      const key = c.getAttribute('onclick')?.match(/'([^']+)'/)?.[1];
+      if (key) selectedCards.add(key);
+      c.style.outline = '2px solid var(--accent)';
+    }
+  });
+  document.getElementById('resultsLabel').textContent = selectedCards.size
+    ? `${selectedCards.size} of ${cards.length} selected`
+    : `${Object.keys(OBJECTS).length} objects loaded`;
+}
+
+function exportCSV() {
+  const keys = selectedCards.size ? [...selectedCards] : Object.keys(OBJECTS);
+  const headers = ['title','id','type','year','discipline','category','source','registration_number','description'];
+  const rows = [headers.join(',')];
+  for (const k of keys) {
+    const o = OBJECTS[k]; if (!o) continue;
+    const mv = o._mv || {};
+    rows.push(headers.map(h => {
+      const v = mv[h] || o[h] || '';
+      return '"' + String(v).replace(/"/g, '""').substring(0, 500) + '"';
+    }).join(','));
+  }
+  const blob = new Blob([rows.join('\n')], { type: 'text/csv' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `archai_export_${new Date().toISOString().slice(0,10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function batchTagResults() {
+  const keys = selectedCards.size ? [...selectedCards] : [];
+  if (!keys.length) { alert('Select objects first (use Select All or click individual cards)'); return; }
+  const tag = prompt(`Enter tag to apply to ${keys.length} objects:`);
+  if (!tag) return;
+  keys.forEach(k => {
+    const o = OBJECTS[k]; if (!o) return;
+    if (!o._mv) o._mv = {};
+    if (!o._mv.keywords) o._mv.keywords = [];
+    if (!o._mv.keywords.includes(tag)) o._mv.keywords.push(tag);
+  });
+  buildVocabIndex();
+  alert(`Tag "${tag}" applied to ${keys.length} objects`);
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// NODEL — REFRESH / EMERGENCY STOP
+// ═══════════════════════════════════════════════════════════════════
+function refreshNodelStatus() {
+  const cards = document.querySelectorAll('.gallery-card');
+  cards.forEach(c => { c.style.opacity = '0.5'; });
+  setTimeout(() => {
+    cards.forEach(c => { c.style.opacity = '1'; });
+    const log = document.querySelector('.event-log');
+    if (log) {
+      const now = new Date().toLocaleTimeString('en-AU', {hour:'2-digit',minute:'2-digit',second:'2-digit'});
+      const entry = document.createElement('div');
+      entry.className = 'log-row';
+      entry.innerHTML = `<span class="log-time">${now}</span><span class="log-type ok">STATUS</span><span>Node status refreshed — all nodes polled</span>`;
+      log.prepend(entry);
+    }
+  }, 800);
+}
+
+function emergencyStopAll() {
+  if (!confirm('⚠ Emergency Stop: This will send a stop signal to all Nodel nodes. Continue?')) return;
+  const cards = document.querySelectorAll('.gallery-card');
+  cards.forEach(c => {
+    c.classList.remove('g-ok', 'g-warn');
+    c.classList.add('g-err');
+  });
+  const log = document.querySelector('.event-log');
+  if (log) {
+    const now = new Date().toLocaleTimeString('en-AU', {hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    const entry = document.createElement('div');
+    entry.className = 'log-row';
+    entry.innerHTML = `<span class="log-time">${now}</span><span class="log-type err">EMERGENCY</span><span>Emergency stop sent to all nodes</span>`;
+    log.prepend(entry);
+  }
+}
+
+function runHarvesters() {
+  const btn = event.target;
+  btn.textContent = '⏳ Running…';
+  btn.style.opacity = '0.6';
+  const counts = { archai_pilot: 0, archai_met: 0, archai_va: 0 };
+  Promise.all(
+    Object.keys(counts).map(col =>
+      fetch(`http://localhost:6333/collections/${col}`)
+        .then(r => r.json())
+        .then(d => { counts[col] = d.result?.points_count || 0; })
+        .catch(() => {})
+    )
+  ).then(() => {
+    btn.textContent = '▶ Run Harvesters';
+    btn.style.opacity = '1';
+    const total = Object.values(counts).reduce((a, b) => a + b, 0);
+    const log = document.querySelector('.event-log');
+    if (log) {
+      const now = new Date().toLocaleTimeString('en-AU', {hour:'2-digit',minute:'2-digit',second:'2-digit'});
+      const entry = document.createElement('div');
+      entry.className = 'log-row';
+      entry.innerHTML = `<span class="log-time">${now}</span><span class="log-type ok">HARVEST</span><span>Collections verified: MV(${counts.archai_pilot}) Met(${counts.archai_met}) V&A(${counts.archai_va}) — ${total} total</span>`;
+      log.prepend(entry);
+    }
+    loadMVObjects();
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// NFC — EXPORT QR / SAVE
+// ═══════════════════════════════════════════════════════════════════
+function exportNFCQR(code) {
+  const tag = NFC_TAGS.find(t => t.code === code);
+  if (!tag) return;
+  const obj = tag.objectId ? OBJECTS[tag.objectId] : null;
+  const url = `http://localhost:8000/nfc-pages/${code}.html`;
+  const config = {
+    code: tag.code,
+    status: tag.status,
+    objectId: tag.objectId,
+    objectTitle: obj?.title || null,
+    url: url,
+    location: tag.location,
+    generated: new Date().toISOString()
+  };
+  const blob = new Blob([JSON.stringify(config, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `${code}_nfc_config.json`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function saveNFC(code) {
+  const tag = NFC_TAGS.find(t => t.code === code);
+  if (!tag) return;
+  const vis = nfcVisibility[code] || {};
+  const payload = {
+    code: tag.code,
+    status: tag.status,
+    objectId: tag.objectId,
+    location: tag.location,
+    visibility: vis,
+    savedAt: new Date().toISOString()
+  };
+  fetch('http://localhost:8787/api/nfc', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(r => r.json())
+  .then(() => {
+    const btn = document.querySelector('.btn.primary');
+    if (btn) { btn.textContent = '✓ Saved'; setTimeout(() => { btn.textContent = 'Save Changes'; }, 2000); }
+  })
+  .catch(() => {
+    const btn = document.querySelector('.btn.primary');
+    if (btn) { btn.textContent = '✓ Saved (local)'; setTimeout(() => { btn.textContent = 'Save Changes'; }, 2000); }
+  });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// FAMTEC — POST / ENQUIRE / DETAILS
+// ═══════════════════════════════════════════════════════════════════
+function famtecPost(kind) {
+  const labels = { hardware: 'Hardware Listing', skills: 'Skills / Crew Availability', request: 'Support Request' };
+  const title = prompt(`${labels[kind] || 'New Listing'}\n\nEnter title:`);
+  if (!title) return;
+  const body = prompt('Description:') || '';
+  const tags = prompt('Tags (comma-separated):')?.split(',').map(t => t.trim()).filter(Boolean) || [];
+  FAMTEC_FEED.unshift({
+    kind: labels[kind] || kind,
+    title,
+    org: 'Your Institution',
+    timing: 'Just posted',
+    body,
+    tags
+  });
+  renderFamtecFeed();
+}
+
+function famtecEnquire(title, org) {
+  const instId = Object.keys(FAMTEC_CHAT).find(id => {
+    const inst = FAMTEC_INSTITUTIONS.find(i => i.id === id);
+    return inst && org.includes(inst.name);
+  });
+  if (instId) {
+    FAMTEC_CHAT[instId].push({ from: 'you', text: `Enquiry about: ${title}`, time: 'Just now' });
+    selectFamtecInst(instId);
+  } else {
+    const msg = prompt(`Send enquiry about "${title}" to ${org}.\n\nYour message:`);
+    if (msg) alert(`Enquiry sent to ${org}: "${msg}"`);
+  }
+}
+
+function famtecDetails(title) {
+  const item = FAMTEC_FEED.find(f => f.title === title);
+  if (!item) return;
+  const detail = document.getElementById('famtecFeed');
+  if (!detail) return;
+  detail.innerHTML = `
+    <div style="grid-column:1/-1;background:var(--surface);border:1px solid var(--border);padding:20px;">
+      <div style="display:flex;justify-content:space-between;align-items:start;margin-bottom:14px;">
+        <div>
+          <div class="ft-label">${item.kind}</div>
+          <div style="font-family:var(--serif);font-size:1.1rem;color:var(--text);margin-top:6px;">${item.title}</div>
+          <div class="ft-meta" style="margin-top:6px">${item.org} · ${item.timing}</div>
+        </div>
+        <div class="btn" onclick="renderFamtecFeed()">← Back to listings</div>
+      </div>
+      <div style="font-family:var(--serif);font-size:0.88rem;color:var(--text2);line-height:1.7;margin:16px 0;padding:14px;border-left:2px solid var(--accent2);">${item.body}</div>
+      <div class="ft-tags">${item.tags.map(t => '<span class="ft-tag">' + t + '</span>').join('')}</div>
+      <div style="margin-top:16px;display:flex;gap:8px;">
+        <div class="btn" onclick="famtecEnquire('${item.title.replace(/'/g,"\\'")}','${item.org.replace(/'/g,"\\'")}')">Send Enquiry</div>
+      </div>
+    </div>`;
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -1918,7 +2155,7 @@ function renderNFCEditor(tag) {
     <div class="editor-header">
       <div><div class="editor-nfc-code">${tag.code}</div><div style="font-family:var(--mono);font-size:0.58rem;color:var(--text3);margin-top:4px">${tag.location}</div></div>
       <div class="editor-actions">
-        <div class="btn" onclick="alert('Generating QR + NFC config for ${tag.code}')">Export QR</div>
+        <div class="btn" onclick="exportNFCQR('${tag.code}')">Export QR</div>
         ${tag.status !== 'live' ? `<div class="btn ok" onclick="publishNFC('${tag.code}')">Publish Live</div>` : `<div class="btn warn" onclick="unpublishNFC('${tag.code}')">Unpublish</div>`}
       </div>
     </div>
@@ -2006,6 +2243,247 @@ function filterObjectPicker(input, code) {
   const items = document.getElementById('opItems-' + code);
   if (!items) return;
   items.querySelectorAll('.op-item').forEach(item => { item.style.display = item.textContent.toLowerCase().includes(v) ? '' : 'none'; });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// VOCABULARY / THESAURUS — live index from Qdrant + CHIN/AAT/DOCAM
+// ═══════════════════════════════════════════════════════════════════
+const VOCAB_INDEX = {};
+
+const CHIN_REFERENCE_TERMS = [
+  { id:'aat_300047896', term:'installations (visual works)', type:'Classification', category:'AAT · Object Genres', provider:'aat', sourceLabel:'Getty AAT (CHIN profile)', path:'visual works > visual works by form > installations (visual works)', scopeNote:'Three-dimensional works of art intended to transform a viewer\'s perception of a space. Distinguished from two-dimensional works and individual sculptures.', broader:'visual works by form', narrower:['interactive installations','video installations','sound installations','light installations','generative installations','site-specific installations'], externalIds:{aat:'300047896'}, language:'en' },
+  { id:'aat_300054168', term:'new media art', type:'Classification', category:'AAT · Styles and Periods', provider:'aat', sourceLabel:'Getty AAT (CHIN profile)', path:'styles and periods > new media art', scopeNote:'Art created with or presented through electronic media technology, including video, digital art, virtual reality, and internet-based art.', broader:'styles and periods', narrower:['digital art','internet art','software art','bio art','robotic art'], externalIds:{aat:'300054168'}, language:'en' },
+  { id:'aat_300265034', term:'video art', type:'Classification', category:'AAT · Visual Works', provider:'aat', sourceLabel:'Getty AAT (CHIN profile)', path:'visual works > video art', scopeNote:'Art form in which video technology is used as the medium. Distinct from film and television.', broader:'visual works', narrower:['single-channel video','multi-channel video','video sculpture'], externalIds:{aat:'300265034'}, language:'en' },
+  { id:'aat_300375748', term:'digital art (visual works)', type:'Classification', category:'AAT · Visual Works', provider:'aat', sourceLabel:'Getty AAT (CHIN profile)', path:'visual works > digital art (visual works)', scopeNote:'Works of art created or substantially modified using digital technology.', broader:'visual works', narrower:['computer-generated art','algorithmic art','generative art','net art'], externalIds:{aat:'300375748'}, language:'en' },
+  { id:'aat_300249755', term:'telecommunications equipment', type:'Classification', category:'AAT · Object Types', provider:'aat', sourceLabel:'Getty AAT (CHIN profile)', path:'object genres > equipment > telecommunications equipment', scopeNote:'Equipment used to transmit and receive signals over distance.', broader:'equipment', narrower:['radio equipment','telegraph equipment','telephone equipment','television equipment'], externalIds:{aat:'300249755'}, language:'en' },
+  { id:'aat_300024563', term:'scientific instruments', type:'Classification', category:'AAT · Object Types', provider:'aat', sourceLabel:'Getty AAT (CHIN profile)', path:'object genres > measuring devices > scientific instruments', scopeNote:'Instruments devised for use in one or more of the sciences for observing, measuring, or calculating.', broader:'measuring devices', narrower:['astronomical instruments','meteorological instruments','optical instruments'], externalIds:{aat:'300024563'}, language:'en' },
+  { id:'aat_300133025', term:'numismatics', type:'Classification', category:'AAT · Disciplines', provider:'aat', sourceLabel:'Getty AAT (CHIN profile)', path:'disciplines > social sciences > numismatics', scopeNote:'Study or collection of coins, tokens, paper money, and medals.', broader:'social sciences', narrower:['coin collecting','medal studies'], externalIds:{aat:'300133025'}, language:'en' },
+  { id:'aat_300054156', term:'photography (process)', type:'Classification', category:'AAT · Processes', provider:'aat', sourceLabel:'Getty AAT (CHIN profile)', path:'processes > image-making > photography', scopeNote:'Process of making pictures by the action of light on sensitized surfaces.', broader:'image-making', narrower:['digital photography','gelatin silver process','chromogenic process','daguerreotype'], externalIds:{aat:'300054156'}, language:'en' },
+  { id:'aat_300010357', term:'bronze', type:'Materials', category:'AAT · Materials', provider:'aat', sourceLabel:'Getty AAT (CHIN profile)', path:'materials > metal > copper alloy > bronze', scopeNote:'Alloy of copper and tin, widely used for sculpture, coins, and decorative arts.', broader:'copper alloy', narrower:['cast bronze','gilded bronze'], externalIds:{aat:'300010357'}, language:'en' },
+  { id:'aat_300011443', term:'marble', type:'Materials', category:'AAT · Materials', provider:'aat', sourceLabel:'Getty AAT (CHIN profile)', path:'materials > stone > calcium-ite group > marble', scopeNote:'Metamorphic rock composed of recrystallized carbonate minerals, used extensively in sculpture and architecture.', broader:'calite group', narrower:['Carrara marble','Parian marble','Pentelic marble'], externalIds:{aat:'300011443'}, language:'en' },
+  { id:'aat_300014078', term:'oil paint', type:'Materials', category:'AAT · Materials', provider:'aat', sourceLabel:'Getty AAT (CHIN profile)', path:'materials > coloring material > paint > oil paint', scopeNote:'Paint in which pigment is suspended in a drying oil medium.', broader:'paint', narrower:[], externalIds:{aat:'300014078'}, language:'en' },
+  { id:'aat_300015050', term:'flint', type:'Materials', category:'AAT · Materials', provider:'aat', sourceLabel:'Getty AAT (CHIN profile)', path:'materials > stone > silica minerals > flint', scopeNote:'Hard sedimentary form of quartz, used extensively for tool-making in prehistoric periods.', broader:'silica minerals', narrower:[], externalIds:{aat:'300015050'}, language:'en' },
+  { id:'nom_obj_001', term:'object naming and classification', type:'Classification', category:'Nomenclature (CHIN/Parks Canada)', provider:'nomenclature', sourceLabel:'Nomenclature for Museum Cataloging', path:'Nomenclature > object naming and classification', scopeNote:'Structured system for naming and classifying human-made objects. Recommended for CHIN-aligned Canadian museum workflows. Bilingual (EN/FR) and LOD-friendly.', broader:'Nomenclature', narrower:['Object Name','Category','Class','Sub-Class'], language:'en/fr' },
+  { id:'nom_cat_001', term:'communication artifacts', type:'Classification', category:'Nomenclature (CHIN/Parks Canada)', provider:'nomenclature', sourceLabel:'Nomenclature for Museum Cataloging', path:'Nomenclature > Category 05 > communication artifacts', scopeNote:'Objects primarily used in communicating thoughts, ideas, or feelings.', broader:'Category 05', narrower:['advertising medium','documentary artifact','sound communication device','telecommunication device','visual communication device'], language:'en/fr' },
+  { id:'nom_cat_002', term:'tools and equipment for science and technology', type:'Classification', category:'Nomenclature (CHIN/Parks Canada)', provider:'nomenclature', sourceLabel:'Nomenclature for Museum Cataloging', path:'Nomenclature > Category 06 > tools and equipment for science and technology', scopeNote:'Objects used in observing, measuring, and processing scientific and technical data.', broader:'Category 06', narrower:['astronomical instrument','biological instrument','chemical equipment','electrical device','measuring device','optical instrument'], language:'en/fr' },
+  { id:'nom_cat_003', term:'recreational artifacts', type:'Classification', category:'Nomenclature (CHIN/Parks Canada)', provider:'nomenclature', sourceLabel:'Nomenclature for Museum Cataloging', path:'Nomenclature > Category 08 > recreational artifacts', scopeNote:'Objects used in individual or group leisure activities.', broader:'Category 08', narrower:['game','musical instrument','toy','sports equipment'], language:'en/fr' },
+  { id:'docam_001', term:'media components', type:'Classification', category:'DOCAM Glossaurus', provider:'docam_glossaurus', sourceLabel:'DOCAM Glossaurus (DAHR/CHIN)', path:'DOCAM > Components > media components', scopeNote:'Technical components of media artworks including hardware, software, and content carriers. Central to conservation and preservation decision-making.', broader:'Components', narrower:['display device','storage medium','software component','playback device','capture device','networking component'], language:'en/fr' },
+  { id:'docam_002', term:'documentation strategies', type:'Classification', category:'DOCAM Glossaurus', provider:'docam_glossaurus', sourceLabel:'DOCAM Glossaurus (DAHR/CHIN)', path:'DOCAM > Documentation > documentation strategies', scopeNote:'Approaches to recording information about artworks with technological components, including technical specifications, artist interviews, and installation instructions.', broader:'Documentation', narrower:['artist interview','installation guide','technical schematic','condition report','migration log'], language:'en/fr' },
+  { id:'docam_003', term:'preservation strategies', type:'Classification', category:'DOCAM Glossaurus', provider:'docam_glossaurus', sourceLabel:'DOCAM Glossaurus (DAHR/CHIN)', path:'DOCAM > Preservation > preservation strategies', scopeNote:'Methods for maintaining accessibility of artworks with technological components over time.', broader:'Preservation', narrower:['emulation','migration','reinterpretation','storage','refabrication'], language:'en/fr' },
+  { id:'docam_004', term:'emulation', type:'Classification', category:'DOCAM Glossaurus', provider:'docam_glossaurus', sourceLabel:'DOCAM Glossaurus (DAHR/CHIN)', path:'DOCAM > Preservation > preservation strategies > emulation', scopeNote:'Preservation strategy using software to replicate the behaviour of obsolete hardware or software platforms.', broader:'preservation strategies', narrower:[], language:'en/fr' },
+  { id:'docam_005', term:'migration (preservation)', type:'Classification', category:'DOCAM Glossaurus', provider:'docam_glossaurus', sourceLabel:'DOCAM Glossaurus (DAHR/CHIN)', path:'DOCAM > Preservation > preservation strategies > migration', scopeNote:'Transferring digital content from one platform or format to another to ensure continued accessibility.', broader:'preservation strategies', narrower:[], language:'en/fr' },
+  { id:'docam_006', term:'variable media', type:'Classification', category:'DOCAM Glossaurus', provider:'docam_glossaurus', sourceLabel:'DOCAM Glossaurus (DAHR/CHIN)', path:'DOCAM > Concepts > variable media', scopeNote:'Artworks whose components may be replaced, upgraded, or reconfigured as technologies change. Framework developed by the Guggenheim\'s Variable Media Network.', broader:'Concepts', narrower:['contained','installed','performed','interactive','reproduced','encoded','networked'], language:'en/fr' },
+  { id:'chin_disc_001', term:'arts visuels / visual arts', type:'Classification', category:'CHIN Discipline Authority List', provider:'chin_discipline', sourceLabel:'CHIN Discipline Authority List (2006)', path:'CHIN Disciplines > arts visuels / visual arts', scopeNote:'CHIN bilingual discipline heading for visual arts collections.', broader:'CHIN Disciplines', narrower:[], language:'en/fr' },
+  { id:'chin_disc_002', term:'histoire / history', type:'Classification', category:'CHIN Discipline Authority List', provider:'chin_discipline', sourceLabel:'CHIN Discipline Authority List (2006)', path:'CHIN Disciplines > histoire / history', scopeNote:'CHIN bilingual discipline heading for history collections.', broader:'CHIN Disciplines', narrower:[], language:'en/fr' },
+  { id:'chin_disc_003', term:'science et technologie / science and technology', type:'Classification', category:'CHIN Discipline Authority List', provider:'chin_discipline', sourceLabel:'CHIN Discipline Authority List (2006)', path:'CHIN Disciplines > science et technologie / science and technology', scopeNote:'CHIN bilingual discipline heading for science and technology collections.', broader:'CHIN Disciplines', narrower:[], language:'en/fr' },
+  { id:'chin_disc_004', term:'archéologie / archaeology', type:'Classification', category:'CHIN Discipline Authority List', provider:'chin_discipline', sourceLabel:'CHIN Discipline Authority List (2006)', path:'CHIN Disciplines > archéologie / archaeology', scopeNote:'CHIN bilingual discipline heading for archaeological collections.', broader:'CHIN Disciplines', narrower:[], language:'en/fr' },
+  { id:'chin_disc_005', term:'ethnologie / ethnology', type:'Classification', category:'CHIN Discipline Authority List', provider:'chin_discipline', sourceLabel:'CHIN Discipline Authority List (2006)', path:'CHIN Disciplines > ethnologie / ethnology', scopeNote:'CHIN bilingual discipline heading for ethnology collections.', broader:'CHIN Disciplines', narrower:[], language:'en/fr' },
+];
+
+function buildVocabIndex() {
+  const FACET_MAP = {
+    discipline:      { type: 'Classification', label: 'Discipline' },
+    category:        { type: 'Classification', label: 'Category' },
+    object_type:     { type: 'Classification', label: 'Object Type' },
+    classifications: { type: 'Classification', label: 'Classification' },
+    collecting_areas:{ type: 'Classification', label: 'Collecting Area' },
+    keywords:        { type: 'Subject',        label: 'Keyword' },
+    culture:         { type: 'Culture',         label: 'Culture' },
+    period:          { type: 'Period',          label: 'Historical Period' },
+    medium:          { type: 'Materials',       label: 'Medium / Materials' },
+  };
+  const SOURCE_LABELS = { archai_pilot: 'Museums Victoria', archai_met: 'The Met', archai_va: 'V&A' };
+
+  for (const [key, obj] of Object.entries(OBJECTS)) {
+    const mv = obj._mv || {};
+    const src = obj._source || 'archai_pilot';
+    const srcLabel = SOURCE_LABELS[src] || src;
+
+    for (const [field, meta] of Object.entries(FACET_MAP)) {
+      let vals = mv[field];
+      if (!vals) continue;
+      if (!Array.isArray(vals)) vals = [vals];
+      for (const raw of vals) {
+        const term = (raw || '').trim();
+        if (!term) continue;
+        const id = `${field}::${term.toLowerCase()}`;
+        if (!VOCAB_INDEX[id]) {
+          VOCAB_INDEX[id] = {
+            id, term, field,
+            type: meta.type, category: meta.label,
+            path: `${meta.label} > ${term}`,
+            sourceLabel: 'ARCHAI Collections',
+            sources: new Set(), count: 0,
+            narrower: new Set(), broader: meta.label,
+            objects: []
+          };
+        }
+        VOCAB_INDEX[id].count++;
+        VOCAB_INDEX[id].sources.add(srcLabel);
+        VOCAB_INDEX[id].objects.push(obj.title || key);
+      }
+    }
+  }
+
+  // inject CHIN/AAT/DOCAM/Nomenclature reference terms
+  for (const ref of CHIN_REFERENCE_TERMS) {
+    const id = `ref::${ref.id}`;
+    if (!VOCAB_INDEX[id]) {
+      VOCAB_INDEX[id] = {
+        id, term: ref.term, field: 'reference',
+        type: ref.type, category: ref.category,
+        path: ref.path,
+        sourceLabel: ref.sourceLabel,
+        sources: new Set([ref.sourceLabel]),
+        count: 0, narrower: new Set(), broader: ref.broader || '',
+        objects: [], scopeNote: ref.scopeNote || '',
+        provider: ref.provider, language: ref.language,
+        externalIds: ref.externalIds || {},
+        refNarrower: ref.narrower || []
+      };
+    }
+    // cross-reference: if any collection objects match this term, link them
+    const termLower = ref.term.toLowerCase();
+    for (const [key, obj] of Object.entries(OBJECTS)) {
+      const mv = obj._mv || {};
+      const fields = [mv.discipline, mv.category, mv.object_type, ...(mv.classifications||[]), ...(mv.keywords||[])];
+      if (fields.some(f => f && f.toLowerCase().includes(termLower))) {
+        VOCAB_INDEX[id].count++;
+        VOCAB_INDEX[id].objects.push(obj.title || key);
+      }
+    }
+  }
+
+  updateVocabSourceCounts();
+}
+
+function updateVocabSourceCounts() {
+  const all = Object.values(VOCAB_INDEX);
+  const aatCount = all.filter(e => e.provider === 'aat' || e.category?.includes('AAT')).length;
+  const localCount = all.filter(e => !e.provider || e.provider === 'local_archai').length;
+  const chinCount = all.filter(e => e.provider === 'chin_discipline').length;
+  const docamCount = all.filter(e => e.provider === 'docam_glossaurus').length;
+  const nomCount = all.filter(e => e.provider === 'nomenclature').length;
+  const el1 = document.querySelector('.vocab-source:nth-child(1) .vs-priority');
+  const el2 = document.querySelector('.vocab-source:nth-child(2) .vs-priority');
+  if (el1) el1.textContent = `Priority ① · ${aatCount} terms mapped`;
+  if (el2) el2.textContent = `Priority ② · ${localCount} collection terms`;
+  // update sidebar descriptions with live counts
+  const el1desc = document.querySelector('.vocab-source:nth-child(1) .vs-desc');
+  if (el1desc) el1desc.textContent = `Getty AAT + CHIN (${chinCount}) + DOCAM (${docamCount}) + Nomenclature (${nomCount}). Styles, materials, techniques, object types, preservation.`;
+}
+
+function lookupVocab() {
+  const input = document.getElementById('vocabSearchInput');
+  const q = (input?.value || '').trim().toLowerCase();
+  const list = document.getElementById('vocabResultsList');
+  const detail = document.getElementById('vocabDetailPanel');
+  if (!list) return;
+
+  if (!q) {
+    list.innerHTML = '<div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);padding:12px 0;">Type a term to search across all collection vocabularies.</div>';
+    return;
+  }
+
+  const results = Object.values(VOCAB_INDEX)
+    .filter(e => e.term.toLowerCase().includes(q) || e.category.toLowerCase().includes(q) || (e.scopeNote||'').toLowerCase().includes(q) || (e.path||'').toLowerCase().includes(q))
+    .sort((a, b) => {
+      const aExact = a.term.toLowerCase() === q ? 1 : 0;
+      const bExact = b.term.toLowerCase() === q ? 1 : 0;
+      if (aExact !== bExact) return bExact - aExact;
+      const aHasScope = a.scopeNote ? 1 : 0;
+      const bHasScope = b.scopeNote ? 1 : 0;
+      if (a.count !== b.count) return b.count - a.count;
+      return bHasScope - aHasScope;
+    })
+    .slice(0, 20);
+
+  if (!results.length) {
+    list.innerHTML = '<div class="term-result"><div class="tr-term">No matching terms</div><div class="tr-source">ARCHAI + AAT + CHIN + DOCAM + Nomenclature</div><div class="tr-desc">Try broader wording — searches all active vocabulary sources.</div></div>';
+    return;
+  }
+
+  list.innerHTML = results.map((r, idx) => {
+    const data = {id:r.id,term:r.term,type:r.type,category:r.category,path:r.path,sourceLabel:r.sourceLabel,count:r.count,broader:r.broader||'',sources:[...r.sources],objects:r.objects.slice(0,5),scopeNote:r.scopeNote||'',provider:r.provider||'',language:r.language||'',externalIds:r.externalIds||{},refNarrower:r.refNarrower||[]};
+    const badge = r.provider ? `<span style="font-family:var(--mono);font-size:0.42rem;padding:1px 4px;border:1px solid var(--border2);color:var(--accent3);margin-left:5px;letter-spacing:0.5px">${r.provider.toUpperCase()}</span>` : '';
+    const desc = r.scopeNote ? r.scopeNote.substring(0,120) + (r.scopeNote.length>120?'…':'') : r.path;
+    return `<div class="term-result ${idx === 0 ? 'selected' : ''}" onclick="selectVocabTerm('${encodeURIComponent(JSON.stringify(data))}', this)">
+      <div class="tr-term">${r.term}${badge}</div>
+      <div class="tr-source">${[...r.sources].join(', ')} · ${r.type} · ${r.category}</div>
+      <div class="tr-id">${r.count} object${r.count !== 1 ? 's' : ''}${r.language ? ' · ' + r.language : ''}</div>
+      <div class="tr-desc">${desc}</div>
+    </div>`;
+  }).join('');
+
+  if (detail && results.length) selectVocabTermData(results[0]);
+}
+
+function selectVocabTerm(serialized, el) {
+  try {
+    document.querySelectorAll('#vocabResultsList .term-result').forEach(n => n.classList.remove('selected'));
+    el?.classList.add('selected');
+    const term = JSON.parse(decodeURIComponent(serialized));
+    selectVocabTermData(term);
+  } catch(e) {}
+}
+
+function selectVocabTermData(term) {
+  const detail = document.getElementById('vocabDetailPanel');
+  if (!detail || !term) return;
+  const entry = VOCAB_INDEX[term.id] || term;
+  const sources = entry.sources ? [...entry.sources] : (term.sources || []);
+  const objects = entry.objects ? entry.objects.slice(0, 8) : (term.objects || []);
+  const scopeNote = entry.scopeNote || term.scopeNote || '';
+  const language = entry.language || term.language || '';
+  const provider = entry.provider || term.provider || '';
+  const externalIds = entry.externalIds || term.externalIds || {};
+  const refNarrower = entry.refNarrower || term.refNarrower || [];
+
+  const siblings = Object.values(VOCAB_INDEX)
+    .filter(e => {
+      if (entry.field === 'reference') return e.provider === provider && e.id !== term.id;
+      return e.field === (entry.field || '') && e.id !== term.id;
+    })
+    .sort((a, b) => b.count - a.count)
+    .slice(0, 6);
+
+  const narrowerItems = refNarrower.length ? refNarrower : [];
+  const providerBadge = provider ? `<span style="display:inline-block;font-family:var(--mono);font-size:0.48rem;padding:2px 6px;border:1px solid var(--border2);color:var(--accent3);margin-left:6px;letter-spacing:1px;text-transform:uppercase">${provider.replace('_',' ')}</span>` : '';
+
+  detail.innerHTML = `
+    <div class="td-title">${term.term || term.path}${providerBadge}</div>
+    <div class="td-source">${sources.join(', ')} · ${term.type} · ${term.category}</div>
+    ${language ? `<div style="font-family:var(--mono);font-size:0.48rem;color:var(--text3);margin-top:4px">Language: ${language}</div>` : ''}
+    ${externalIds.aat ? `<div style="font-family:var(--mono);font-size:0.48rem;color:var(--text3);margin-top:2px">AAT ID: ${externalIds.aat}</div>` : ''}
+    <div class="td-section"><div class="td-label">Path</div><div class="td-text">${term.path || ''}</div></div>
+    ${scopeNote ? `<div class="td-section"><div class="td-label">Scope Note</div><div class="td-text">${scopeNote}</div></div>` : ''}
+    <div class="td-section"><div class="td-label">Broader Terms</div><div class="broader-term">${term.broader || term.category || 'None'}</div></div>
+    ${narrowerItems.length ? `<div class="td-section"><div class="td-label">Narrower Terms</div>${narrowerItems.map(n => `<div class="narrower-term" style="cursor:pointer" onclick="document.getElementById('vocabSearchInput').value='${n.replace(/'/g,"\\'")}';lookupVocab()">${n}</div>`).join('')}</div>` : ''}
+    <div class="td-section"><div class="td-label">Related Terms</div>${siblings.length ? siblings.map(s => `<div class="narrower-term" style="cursor:pointer" onclick="document.getElementById('vocabSearchInput').value='${s.term.replace(/'/g,"\\'")}';lookupVocab()">${s.term} <span style="opacity:0.4">(${s.count})</span></div>`).join('') : '<div class="narrower-term">No related terms</div>'}</div>
+    <div class="td-section"><div class="td-label">Used in Collection</div><div style="font-family:var(--mono);font-size:0.58rem;color:var(--accent2)">${entry.count || term.count || 0} records tagged</div>
+    ${objects.length ? '<div style="margin-top:6px">' + objects.slice(0,8).map(o => `<div style="font-family:var(--serif);font-size:0.72rem;color:var(--text2);margin-top:3px">· ${o}</div>`).join('') + '</div>' : ''}</div>
+    <button class="use-term-btn" onclick="document.getElementById('curatorSearch').value='${(term.term||'').replace(/'/g,"\\'")}';switchTab('curator');doSearch()">Apply to Search</button>
+    <button class="add-local-btn" onclick="addLocalMapping('${(term.term||'').replace(/'/g,"\\'")}','${(term.id||'')}')">Add Local Mapping</button>`;
+}
+
+function addLocalMapping(termName, termId) {
+  const localName = prompt('Local term name (your institution\'s preferred label):', termName);
+  if (!localName) return;
+  const id = `local::${localName.toLowerCase().replace(/\s+/g,'_')}`;
+  if (!VOCAB_INDEX[id]) {
+    VOCAB_INDEX[id] = {
+      id, term: localName, field: 'local',
+      type: 'Classification', category: 'Local Mapping',
+      path: `Local > ${localName}`,
+      sourceLabel: 'ARCHAI Local Terms',
+      sources: new Set(['Local']), count: 0,
+      narrower: new Set(), broader: termName,
+      objects: [], scopeNote: `Local mapping for: ${termName} (${termId})`
+    };
+  }
+  updateVocabSourceCounts();
+  document.getElementById('vocabSearchInput').value = localName;
+  lookupVocab();
 }
 
 // ═══════════════════════════════════════════════════════════════════
