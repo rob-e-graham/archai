@@ -2,7 +2,7 @@
 
 > "Museums are not silent repositories of Memory; they are living, thinking organisms, where imagination and knowledge, tradition and innovation meet." — Gayane Umerova, UNESCO, 2025
 
-**Version:** 10.7
+**Version:** 10.8
 **Author:** Rob Graham · FAMTEC (Fine Art Media Tech) / RMIT University
 **Status:** Working prototype — multi-institution semantic search + LLM object chat + NFC visitor pages
 **Target:** ISEA2026 Dubai, 6th Summit on New Media Art Archiving (April 11–12)
@@ -18,9 +18,10 @@ Three museum collections in Qdrant, searchable simultaneously:
 
 | Collection | Source | Objects | Licence | Status |
 |-----------|--------|---------|---------|--------|
-| `archai_pilot` | Museums Victoria | ~80 | CC BY 4.0 | ✅ Live |
-| `archai_met` | The Metropolitan Museum of Art, NYC | ~150 | CC0 | ✅ Live |
-| `archai_va` | Victoria and Albert Museum, London | ~150 | V&A Open Access | ✅ Live |
+| `archai_pilot` | Museums Victoria | ~194 | CC BY 4.0 | ✅ Live |
+| `archai_met` | The Metropolitan Museum of Art, NYC | ~100 | CC0 | ✅ Live |
+| `archai_va` | Victoria and Albert Museum, London | ~80 | V&A Open Access | ✅ Live |
+| `archai_curator` | All of the above + comments | Built on demand | Mixed | ✅ Live |
 
 - Query → embedded via nomic-embed-text → vector searched across all 3 collections → results merged by cosine similarity
 - Results colour-tagged: MV (teal), Met (gold), V&A (purple)
@@ -41,12 +42,38 @@ Each object speaks in first person via llama3, grounded in verified metadata:
 - Live llama3 chat with question chips
 - Semantically related objects across all collections
 - Source-specific links: "View on The Met →", "View on V&A →"
+- **Visitor comment thread** — all comments (including flagged) with approve/remove/reply actions for curators
+
+### ✅ AI-Moderated Visitor Comments
+Comments submitted by visitors are AI-screened in real time:
+- Ollama classifies each comment as safe / suspicious / harmful
+- Safe comments visible immediately on the object page
+- Suspicious/harmful comments hidden — sent to curator review queue
+- **Human curator has final say** — approve or remove
+- Threaded replies supported (staff can respond to visitors)
+- Stored in SQLite — becomes part of the object's collection record
+- Comments included in curator vector collection for semantic search
+
+### ✅ Backend Proxy (Public Hosting Safety)
+Safe proxy layer for exposing ARCHAI publicly via Cloudflare Tunnel:
+- Rate limiting per IP (15 chat/min, 30 search/min)
+- Prompt injection pattern blocking (regex filter)
+- Safety wrapper prepended to all LLM system prompts
+- Token and prompt length caps (512 tokens, 500 chars)
+- All frontend fetch calls route through `qdrantFetch()`/`ollamaFetch()` wrappers
+
+### ✅ Curator Vector Collection
+Enriched `archai_curator` Qdrant collection combining:
+- All object metadata from all 3 source collections
+- Visitor comments attached to each object
+- Rebuilt on demand via `POST /api/proxy/curator/build`
+- Semantic search across everything via `POST /api/proxy/curator/search`
 
 ### ✅ NFC Visitor Pages (Mobile)
-200 standalone HTML pages from all 3 collections:
-- Object image, metadata, description, LLM chat over LAN
+194 standalone HTML pages from all 3 collections:
+- Object image, metadata, description, LLM chat over LAN or via proxy
 - Share: native iOS sheet, email, copy link, X/Twitter
-- Persistent comments via localStorage
+- Comment submission with AI moderation (localStorage fallback offline)
 - Related objects with cross-collection links
 - Captive portal for exhibition WiFi
 
@@ -152,14 +179,23 @@ Date extraction from titles, better Met filtering, incremental harvest. Run Harv
 │                    ARCHAI Frontend                      │
 │                 (ARCHAI_v10_6.html · browser)           │
 │                                                         │
-│  Search ──→ Ollama embed ──→ Qdrant (3 collections)     │
+│  Search ──→ Ollama embed ──→ Qdrant (4 collections)     │
 │  Chat   ──→ Ollama llama3 ──→ grounded response         │
-│  NFC    ──→ Ollama llama3 ──→ chat over LAN             │
+│  NFC    ──→ Ollama llama3 ──→ chat over LAN / proxy     │
 │  Sort   ──→ client-side on loaded objects               │
+│  Comments ──→ Backend API ──→ AI moderation ──→ SQLite  │
 └────────┬──────────────┬──────────────┬──────────────────┘
          │              │              │
-    localhost:6333  localhost:11434  localhost:8055
-      Qdrant          Ollama        Directus (optional)
+    localhost:6333  localhost:11434  localhost:8787
+      Qdrant          Ollama        Backend API
+                                   ├── Safe proxy (rate limit + injection block)
+                                   ├── Comments (AI moderation → SQLite)
+                                   ├── Curator vectors (build + search)
+                                   └── Directus bridge (optional)
+
+  Public access (Cloudflare Tunnel):
+  Visitor phone ──→ tunnel ──→ Backend proxy ──→ Ollama/Qdrant
+                                    └──→ Comments API (AI screened)
 ```
 
 ---
@@ -168,19 +204,32 @@ Date extraction from titles, better Met filtering, incremental harvest. Run Harv
 
 ```text
 archai/
-├── ARCHAI_v10_6.html              ← Main frontend (current)
+├── ARCHAI_v10_6.html              ← Main frontend (single-file app)
 ├── README.md                      ← This file
-├── start-demo.sh                  ← One-command startup
-├── DEMO_CHEAT_SHEET.md
-├── backend-archai/scripts/
-│   ├── mv-harvester.js            ← Museums Victoria → Qdrant
-│   ├── met-harvester.js           ← Met NYC → Qdrant
-│   └── va-harvester.js            ← V&A London → Qdrant
+├── ARCHAI_OPERATIONS_GUIDE.md     ← Full ops guide (startup, testing, APIs, adding objects)
+├── REMOTE_TESTING_GUIDE.md        ← Tailscale setup for iPad/iPhone testing
+├── start-archai.sh                ← One-command startup + health checks
+├── backend-archai/
+│   ├── src/
+│   │   ├── server.js              ← Express entry point
+│   │   ├── data/db.js             ← SQLite database (comments)
+│   │   ├── middleware/rateLimit.js ← Rate limiter
+│   │   ├── routes/
+│   │   │   ├── proxy.js           ← Safe Qdrant/Ollama/curator proxy
+│   │   │   ├── comments.js        ← AI-moderated threaded comments
+│   │   │   └── ...                ← Other route modules
+│   │   └── services/
+│   │       ├── moderation.js      ← Ollama comment screening
+│   │       └── curator-vectors.js ← Curator collection builder
+│   ├── scripts/
+│   │   ├── met-harvester.js       ← Met NYC → Qdrant
+│   │   └── va-harvester.js        ← V&A London → Qdrant
+│   └── data/archai.db             ← SQLite (created at runtime)
 ├── nfc-pages/
 │   ├── generate-nfc-pages.js      ← All collections → HTML per tag
 │   ├── nfc-visitor-template.html  ← Mobile template
 │   ├── captive-portal.html
-│   └── v/                         ← Generated pages (not in git)
+│   └── v/                         ← Generated pages (~194, not in git)
 ├── docs/
 │   └── ARCHAI_ISEA2026_Rob_Graham.pdf
 └── docker-compose.yml
@@ -191,14 +240,18 @@ archai/
 ## Quick Start
 
 ```bash
-cd ~/archai && ./start-demo.sh
+cd ~/Desktop/APPS/ARCHAI\ APP
+./start-archai.sh
 ```
 
-Starts Docker, Qdrant, Ollama (with LAN+CORS), checks NFC pages, prints URLs, serves on port 8000.
+Starts Docker, Qdrant, Ollama (with LAN+CORS), backend API, frontend server. Runs 7 health checks, shows loaded models, Qdrant collections, comment count, and prints all URLs.
 
 **Main app:** http://localhost:8000/ARCHAI_v10_6.html
-**NFC index:** http://localhost:8000/nfc-pages/v/
-**Phone:** http://LAN_IP:8000/nfc-pages/v/NFC066.html
+**NFC index:** http://localhost:8000/nfc-pages/v/index.html
+**Backend API:** http://localhost:8787/api/health
+**Tailscale:** http://100.109.26.39:8000/ARCHAI_v10_6.html
+
+See `ARCHAI_OPERATIONS_GUIDE.md` for full setup, testing, and API reference.
 
 ---
 
@@ -217,7 +270,8 @@ Mac Studio M2 Max · 64GB · 1TB. Base institutional deployment: ~$3,500–5,000
 | v10.4 | MV-only, live Qdrant + Ollama, LLM chat |
 | v10.5 | Restored all panels, NFC page generator |
 | v10.6 | Multi-collection (MV+Met+V&A), sort/filter, dedup, harvesters, NFC share+comments, 200 pages, dynamic institutions |
-| **v10.7** | **Live CHIN-aligned thesaurus (AAT+DOCAM+Nomenclature+CHIN Disciplines), all buttons wired (Export CSV, Batch Tag, FAMTEC post/enquire/details, NFC export/save, Nodel refresh/emergency stop, Run Harvesters), responsive thumbnail scaling, vocab search with scope notes and provider badges** |
+| v10.7 | Live CHIN-aligned thesaurus (AAT+DOCAM+Nomenclature+CHIN Disciplines), all buttons wired, responsive thumbnail scaling, vocab search with scope notes and provider badges |
+| **v10.8** | **Backend proxy for safe public hosting (rate limiting, prompt injection blocking), AI-moderated threaded comments (Ollama screening → curator review queue), curator vector collection (all metadata + comments searchable), SQLite persistence, NFC pages wired to backend API, object detail comment thread with approve/remove/reply, startup script with health checks, operations guide** |
 
 ---
 
