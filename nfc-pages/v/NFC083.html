@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>PRISM — ARCHAI</title>
+<title>Musical Clock with Spinet and Organ — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -314,7 +314,8 @@ body::after {
 .v-rel-card:active { border-color: var(--border2); }
 .v-rel-thumb {
   width: 100%;
-  height: 80px;
+  aspect-ratio: 16/9;
+  height: auto;
   background: var(--surface2);
   margin-bottom: 6px;
   overflow: hidden;
@@ -322,7 +323,7 @@ body::after {
   align-items: center;
   justify-content: center;
 }
-.v-rel-thumb img { max-width: 100%; max-height: 80px; object-fit: contain; }
+.v-rel-thumb img { width: 100%; height: 100%; object-fit: cover; }
 .v-rel-thumb-empty { font-family: var(--mono); font-size: 0.4rem; color: var(--text3); }
 .v-rel-title {
   font-family: var(--serif);
@@ -514,18 +515,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2014HD4334/full/!600,600/0/default.jpg" alt="PRISM" loading="eager">
+  <img src="https://images.metmuseum.org/CRDImages/mi/original/DP302691.jpg" alt="Musical Clock with Spinet and Organ" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">PRISM</div>
-  <div class="v-sub">Computer-generated drawing · 1969 · E.290-2020</div>
+  <div class="v-title">Musical Clock with Spinet and Organ</div>
+  <div class="v-sub">Musical Clock with Spinet and Organ · ca. 1625 · 503530</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Computer-generated drawing</span>
+    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
+    <span class="v-meta-tag lic">CC0 — Public Domain</span>
+    <span class="v-meta-tag">Musical Instruments</span>
   </div>
 
   <!-- SHARE -->
@@ -536,7 +537,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>PRISM</strong> — PRISM. Computer-generated drawing. Made by Frederick Hammersley. 1969. Made in America. Prints &amp; Drawings Study Room, level C</div>
+  <div class="v-story"><strong>Musical Clock with Spinet and Organ</strong> — Musical Clock with Spinet and Organ. Musical Clock with Spinet and Organ. Ebony, gliding, brass, silver gilt, gilt brass, iron, various wood and metals, wire, parchment and leather. Musical Instruments. German. by Veit Langenbucher. Chordophone. ca. 1625</div>
 
   <div class="v-divider"></div>
 
@@ -559,13 +560,13 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.290-2020</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Computer-generated drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Computer-generated drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1969</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, level C</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Computer-generated drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">503530</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Chordophone</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca. 1625</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 684</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Musical Clock with Spinet and Organ</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -580,24 +581,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC081.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/10/659710-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Detector - Radial Electrical, Crystal, 1922-1925</div>
-        <div class="v-rel-meta">Museums Victoria · ST 15915</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2010ED0995/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Amstrad CPC 464 Computer</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · B.166:1 to 12-2010</div>
       </a>
       <a class="v-rel-card" href="NFC082.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/15/166165-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Leaflet - Independent Order of Rechabites, 'When to Stop', 1935</div>
-        <div class="v-rel-meta">Museums Victoria · SH 900837</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2008BT4243/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Black ST 201 TV</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.5:3-1974</div>
       </a>
       <a class="v-rel-card" href="NFC084.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PK1365/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">SPLIT SECOND</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · B.1224:1 to 7-1999</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018LG5945/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Calliope</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.205-2018</div>
       </a>
       <a class="v-rel-card" href="NFC085.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018LC0094/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Electronic clock</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · W.5-1982</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4322/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">LEAN ON FIVE</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.273-2020</div>
       </a></div>
   </div>
 </div>
@@ -610,7 +611,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1284386/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/503530" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -622,21 +623,21 @@ body::after {
 // IMPORTANT: Set this to your Mac Studio's LAN IP address
 // Find it: System Settings → Network → Wi-Fi → IP Address
 // Example: 'http://192.168.1.100:11434'
-const OLLAMA_HOST = 'http://192.168.1.119:11434';
+const OLLAMA_HOST = 'http://100.109.26.39:11434';
 const CHAT_MODEL = 'llama3';
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `PRISM`,
-  type: `Computer-generated drawing`,
-  date: `1969`,
-  registration: `E.290-2020`,
-  location: `Prints & Drawings Study Room, level C`,
-  discipline: `Computer-generated drawing`,
-  category: `Computer-generated drawing`,
-  description: `PRISM. Computer-generated drawing. Made by Frederick Hammersley. 1969. Made in America. Prints & Drawings Study Room, level C`,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1284386/`
+  title: `Musical Clock with Spinet and Organ`,
+  type: `Musical Clock with Spinet and Organ`,
+  date: `ca. 1625`,
+  registration: `503530`,
+  location: `Gallery 684`,
+  discipline: `Musical Instruments`,
+  category: `Chordophone`,
+  description: `Musical Clock with Spinet and Organ. Musical Clock with Spinet and Organ. Ebony, gliding, brass, silver gilt, gilt brass, iron, various wood and metals, wire, parchment and leather. Musical Instruments. German. by Veit Langenbucher. Chordophone. ca. 1625`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.metmuseum.org/art/collection/search/503530`
 };
 
 const SYSTEM_PROMPT = `You are "${OBJECT.title}", a physical object in the Museums Victoria collection. Speak in the first person as the object itself.

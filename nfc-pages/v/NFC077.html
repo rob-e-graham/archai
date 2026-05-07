@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>GENTLY DOES IT — ARCHAI</title>
+<title>Portrait of a Woman — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -314,7 +314,8 @@ body::after {
 .v-rel-card:active { border-color: var(--border2); }
 .v-rel-thumb {
   width: 100%;
-  height: 80px;
+  aspect-ratio: 16/9;
+  height: auto;
   background: var(--surface2);
   margin-bottom: 6px;
   overflow: hidden;
@@ -322,7 +323,7 @@ body::after {
   align-items: center;
   justify-content: center;
 }
-.v-rel-thumb img { max-width: 100%; max-height: 80px; object-fit: contain; }
+.v-rel-thumb img { width: 100%; height: 100%; object-fit: cover; }
 .v-rel-thumb-empty { font-family: var(--mono); font-size: 0.4rem; color: var(--text3); }
 .v-rel-title {
   font-family: var(--serif);
@@ -514,18 +515,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2014HD4345/full/!600,600/0/default.jpg" alt="GENTLY DOES IT" loading="eager">
+  <img src="https://images.metmuseum.org/CRDImages/ep/original/DP143159.jpg" alt="Portrait of a Woman" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">GENTLY DOES IT</div>
-  <div class="v-sub">Computer-generated drawing · 1969 · E.307-2020</div>
+  <div class="v-title">Portrait of a Woman</div>
+  <div class="v-sub">Painting · 1635 · 437374</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Computer-generated drawing</span>
+    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
+    <span class="v-meta-tag lic">CC0 — Public Domain</span>
+    <span class="v-meta-tag">European Paintings</span>
   </div>
 
   <!-- SHARE -->
@@ -536,7 +537,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>GENTLY DOES IT</strong> — GENTLY DOES IT. Computer-generated drawing. Made by Frederick Hammersley. 1969. Made in America. Prints &amp; Drawings Study Room, level C</div>
+  <div class="v-story"><strong>Portrait of a Woman</strong> — Portrait of a Woman. Painting. Oil on wood. European Paintings. by Jan van Ravesteyn. Paintings. 1635</div>
 
   <div class="v-divider"></div>
 
@@ -559,13 +560,13 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.307-2020</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Computer-generated drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Computer-generated drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1969</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, level C</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Computer-generated drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">437374</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">European Paintings</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Paintings</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1635</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">The Met, New York</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -580,24 +581,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC075.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2008BT7543/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">H.M.V. Television Autoradiogram (Model 902)</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · W.2-1978</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2020MU2627/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Costume</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · S.161-2021</div>
       </a>
       <a class="v-rel-card" href="NFC076.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2017JX6025/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Alex Kapranos' jacket from the video for &lt;i&gt;Do You Want To&lt;/i&gt;</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · S.1321-2010</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2019MA1839/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Callbuoy series 14A distress radio telephone</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.467-1973</div>
       </a>
       <a class="v-rel-card" href="NFC078.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2013GU3404/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">The Revolution Will Not Be Televised</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.160-2011</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PG5545/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Electronic Organizer</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:AMERICASFOUNDATION.1394:1 to 3-2024</div>
       </a>
       <a class="v-rel-card" href="NFC079.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4305/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">A FIFTH ON A MAZE</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.263-2020</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/10/164960-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Lantern Slide - Male Portrait, circa 1940s</div>
+        <div class="v-rel-meta">Museums Victoria · MM 69522</div>
       </a></div>
   </div>
 </div>
@@ -610,7 +611,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1284403/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/437374" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -622,21 +623,21 @@ body::after {
 // IMPORTANT: Set this to your Mac Studio's LAN IP address
 // Find it: System Settings → Network → Wi-Fi → IP Address
 // Example: 'http://192.168.1.100:11434'
-const OLLAMA_HOST = 'http://192.168.1.119:11434';
+const OLLAMA_HOST = 'http://100.109.26.39:11434';
 const CHAT_MODEL = 'llama3';
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `GENTLY DOES IT`,
-  type: `Computer-generated drawing`,
-  date: `1969`,
-  registration: `E.307-2020`,
-  location: `Prints & Drawings Study Room, level C`,
-  discipline: `Computer-generated drawing`,
-  category: `Computer-generated drawing`,
-  description: `GENTLY DOES IT. Computer-generated drawing. Made by Frederick Hammersley. 1969. Made in America. Prints & Drawings Study Room, level C`,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1284403/`
+  title: `Portrait of a Woman`,
+  type: `Painting`,
+  date: `1635`,
+  registration: `437374`,
+  location: `The Met, New York`,
+  discipline: `European Paintings`,
+  category: `Paintings`,
+  description: `Portrait of a Woman. Painting. Oil on wood. European Paintings. by Jan van Ravesteyn. Paintings. 1635`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.metmuseum.org/art/collection/search/437374`
 };
 
 const SYSTEM_PROMPT = `You are "${OBJECT.title}", a physical object in the Museums Victoria collection. Speak in the first person as the object itself.

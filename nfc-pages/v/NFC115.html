@@ -314,7 +314,8 @@ body::after {
 .v-rel-card:active { border-color: var(--border2); }
 .v-rel-thumb {
   width: 100%;
-  height: 80px;
+  aspect-ratio: 16/9;
+  height: auto;
   background: var(--surface2);
   margin-bottom: 6px;
   overflow: hidden;
@@ -322,7 +323,7 @@ body::after {
   align-items: center;
   justify-content: center;
 }
-.v-rel-thumb img { max-width: 100%; max-height: 80px; object-fit: contain; }
+.v-rel-thumb img { width: 100%; height: 100%; object-fit: cover; }
 .v-rel-thumb-empty { font-family: var(--mono); font-size: 0.4rem; color: var(--text3); }
 .v-rel-title {
   font-family: var(--serif);
@@ -580,24 +581,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC113.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/5/27155-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Kite Model - Lawrence Hargrave Design, Soaring Kite Type Q, Sydney, New South Wales, circa 1898</div>
-        <div class="v-rel-meta">Museums Victoria · ST 29213</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/11/164861-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Lantern Slide - Facial Profile &amp; Personality, 'Incurving', circa 1940s</div>
+        <div class="v-rel-meta">Museums Victoria · MM 106362</div>
       </a>
       <a class="v-rel-card" href="NFC114.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2009CD9463/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Print</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.160-2009</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4301/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">YO YO WITH ENGLISH</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.250-2020</div>
       </a>
       <a class="v-rel-card" href="NFC116.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AK7343/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Super Toy Teddy</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · B.19-2002</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/29/165129-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Lantern Slide - 'Size', circa 1930s-1940s</div>
+        <div class="v-rel-meta">Museums Victoria · MM 68961</div>
       </a>
       <a class="v-rel-card" href="NFC117.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2011EP0025/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Universal Electronic Vacuum, 1967</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.1217-1967</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018LC0094/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Electronic clock</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.5-1982</div>
       </a></div>
   </div>
 </div>
@@ -622,7 +623,7 @@ body::after {
 // IMPORTANT: Set this to your Mac Studio's LAN IP address
 // Find it: System Settings → Network → Wi-Fi → IP Address
 // Example: 'http://192.168.1.100:11434'
-const OLLAMA_HOST = 'http://192.168.1.119:11434';
+const OLLAMA_HOST = 'http://100.109.26.39:11434';
 const CHAT_MODEL = 'llama3';
 
 // ── BAKED METADATA (injected at generation time) ────────────────

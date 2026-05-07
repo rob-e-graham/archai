@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Elektronische Grafik (Electronic Graphics) — ARCHAI</title>
+<title>Portrait of a Man — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -314,7 +314,8 @@ body::after {
 .v-rel-card:active { border-color: var(--border2); }
 .v-rel-thumb {
   width: 100%;
-  height: 80px;
+  aspect-ratio: 16/9;
+  height: auto;
   background: var(--surface2);
   margin-bottom: 6px;
   overflow: hidden;
@@ -322,7 +323,7 @@ body::after {
   align-items: center;
   justify-content: center;
 }
-.v-rel-thumb img { max-width: 100%; max-height: 80px; object-fit: contain; }
+.v-rel-thumb img { width: 100%; height: 100%; object-fit: cover; }
 .v-rel-thumb-empty { font-family: var(--mono); font-size: 0.4rem; color: var(--text3); }
 .v-rel-title {
   font-family: var(--serif);
@@ -514,18 +515,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2008BT4838/full/!600,600/0/default.jpg" alt="Elektronische Grafik (Electronic Graphics)" loading="eager">
+  <img src="https://images.metmuseum.org/CRDImages/ep/original/DP276131.jpg" alt="Portrait of a Man" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Elektronische Grafik (Electronic Graphics)</div>
-  <div class="v-sub">Print · ca.1970 · E.110-2008</div>
+  <div class="v-title">Portrait of a Man</div>
+  <div class="v-sub">Painting · ca. 1650 · 437875</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Print</span>
+    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
+    <span class="v-meta-tag lic">CC0 — Public Domain</span>
+    <span class="v-meta-tag">European Paintings</span>
   </div>
 
   <!-- SHARE -->
@@ -536,7 +537,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Elektronische Grafik (Electronic Graphics)</strong> — Elektronische Grafik (Electronic Graphics). Print. Made by Franke, Herbert W.. ca.1970. Made in Germany. Prints &amp; Drawings Study Room, level F</div>
+  <div class="v-story"><strong>Portrait of a Man</strong> — Portrait of a Man. Painting. Oil on canvas. European Paintings. by Velázquez. Paintings. ca. 1650</div>
 
   <div class="v-divider"></div>
 
@@ -559,13 +560,13 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.110-2008</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca.1970</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, level F</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">437875</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">European Paintings</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Paintings</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca. 1650</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 625</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -580,24 +581,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC050.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2015HV4909/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Microvision TV1A Pocket Television</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · W.2:1 to 14-2014</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2009BX6575/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Oscillon 40</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.958-2008</div>
       </a>
       <a class="v-rel-card" href="NFC051.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/47/383147-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Coin - Guinea, Charles II, Great Britain, 1679</div>
-        <div class="v-rel-meta">Museums Victoria · NU 540</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/19/164719-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Lantern Slide - 'Sally', circa 1931-1956</div>
+        <div class="v-rel-meta">Museums Victoria · MM 97186</div>
       </a>
       <a class="v-rel-card" href="NFC053.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4322/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">LEAN ON FIVE</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.273-2020</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AT9575/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Black 201 Television set</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.5:1, 2-1974</div>
       </a>
       <a class="v-rel-card" href="NFC054.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2013GC9473/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Flight Patterns</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.1185-2012</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2007BR3166/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">JVC Videosphere</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.661:1 to 4-2001</div>
       </a></div>
   </div>
 </div>
@@ -610,7 +611,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O155076/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/437875" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -622,21 +623,21 @@ body::after {
 // IMPORTANT: Set this to your Mac Studio's LAN IP address
 // Find it: System Settings → Network → Wi-Fi → IP Address
 // Example: 'http://192.168.1.100:11434'
-const OLLAMA_HOST = 'http://192.168.1.119:11434';
+const OLLAMA_HOST = 'http://100.109.26.39:11434';
 const CHAT_MODEL = 'llama3';
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Elektronische Grafik (Electronic Graphics)`,
-  type: `Print`,
-  date: `ca.1970`,
-  registration: `E.110-2008`,
-  location: `Prints & Drawings Study Room, level F`,
-  discipline: `Print`,
-  category: `Print`,
-  description: `Elektronische Grafik (Electronic Graphics). Print. Made by Franke, Herbert W.. ca.1970. Made in Germany. Prints & Drawings Study Room, level F`,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O155076/`
+  title: `Portrait of a Man`,
+  type: `Painting`,
+  date: `ca. 1650`,
+  registration: `437875`,
+  location: `Gallery 625`,
+  discipline: `European Paintings`,
+  category: `Paintings`,
+  description: `Portrait of a Man. Painting. Oil on canvas. European Paintings. by Velázquez. Paintings. ca. 1650`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.metmuseum.org/art/collection/search/437875`
 };
 
 const SYSTEM_PROMPT = `You are "${OBJECT.title}", a physical object in the Museums Victoria collection. Speak in the first person as the object itself.

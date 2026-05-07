@@ -314,7 +314,8 @@ body::after {
 .v-rel-card:active { border-color: var(--border2); }
 .v-rel-thumb {
   width: 100%;
-  height: 80px;
+  aspect-ratio: 16/9;
+  height: auto;
   background: var(--surface2);
   margin-bottom: 6px;
   overflow: hidden;
@@ -322,7 +323,7 @@ body::after {
   align-items: center;
   justify-content: center;
 }
-.v-rel-thumb img { max-width: 100%; max-height: 80px; object-fit: contain; }
+.v-rel-thumb img { width: 100%; height: 100%; object-fit: cover; }
 .v-rel-thumb-empty { font-family: var(--mono); font-size: 0.4rem; color: var(--text3); }
 .v-rel-title {
   font-family: var(--serif);
@@ -580,24 +581,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC092.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018LF5300/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Art</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · S.553-2018</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PC0391/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Hand Behind Painted Glass</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · PH.557-2024</div>
       </a>
       <a class="v-rel-card" href="NFC093.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/is/original/DP353091.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Head of a Central Asian Figure</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 664761</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PJ1589/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Drum Machine</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:AMERICASFOUNDATION.1157:1, 2-2024</div>
       </a>
       <a class="v-rel-card" href="NFC095.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/14/165164-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Lantern Slide - 'I Wonder Who's Kissing Her Now', circa 1940s</div>
-        <div class="v-rel-meta">Museums Victoria · MM 69185</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AE9154/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Furby</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · B.176-2000</div>
       </a>
       <a class="v-rel-card" href="NFC096.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/aa/original/DP273706.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Hunting Knife</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 21962</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/33/165033-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Lantern Slide - Facial Profile &amp; Personality, 'Short Lower Half', circa 1940s</div>
+        <div class="v-rel-meta">Museums Victoria · MM 69462</div>
       </a></div>
   </div>
 </div>
@@ -622,7 +623,7 @@ body::after {
 // IMPORTANT: Set this to your Mac Studio's LAN IP address
 // Find it: System Settings → Network → Wi-Fi → IP Address
 // Example: 'http://192.168.1.100:11434'
-const OLLAMA_HOST = 'http://192.168.1.119:11434';
+const OLLAMA_HOST = 'http://100.109.26.39:11434';
 const CHAT_MODEL = 'llama3';
 
 // ── BAKED METADATA (injected at generation time) ────────────────
