@@ -39,6 +39,7 @@ export const env = {
     embedModel: process.env.OLLAMA_EMBED_MODEL || 'nomic-embed-text',
     chatModel: process.env.OLLAMA_CHAT_MODEL || 'llama3.2',
   },
+  dataDir: process.env.ARCHAI_DATA_DIR || './data',
   media: {
     cacheDir: process.env.MEDIA_CACHE_DIR || './data/runtime/media-cache',
     streamMode: process.env.MEDIA_STREAM_MODE || 'local-cache',

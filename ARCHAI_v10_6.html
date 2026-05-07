@@ -330,6 +330,38 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 .vpc-textarea:focus{border-color:var(--accent2);}
 .vpc-submit{margin-top:6px;padding:6px 13px;background:transparent;border:1px solid var(--border2);color:var(--text3);font-family:var(--mono);font-size:0.56rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.12s;}
 .vpc-submit:hover{border-color:var(--accent2);color:var(--accent2);}
+.vpc-status{font-family:var(--mono);font-size:0.5rem;color:var(--text3);margin-top:6px;min-height:1em;}
+.vpc-list{display:flex;flex-direction:column;gap:8px;margin-bottom:10px;}
+.vpc-item{padding:8px 10px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;font-family:var(--serif);font-size:0.78rem;color:var(--text2);line-height:1.4;}
+.vpc-item-meta{font-family:var(--mono);font-size:0.44rem;color:var(--text3);margin-top:4px;text-transform:uppercase;letter-spacing:1px;}
+.vpc-flag-safe{border-left:3px solid #4a7;}
+.vpc-flag-flagged{border-left:3px solid #c84;}
+.vpc-flag-rejected{border-left:3px solid #c44;opacity:0.5;}
+
+/* OBJECT DETAIL COMMENTS */
+.od-comments-section{padding:24px 36px;border-top:1px solid var(--border);}
+.od-comments-list{display:flex;flex-direction:column;gap:10px;margin-bottom:14px;max-height:400px;overflow-y:auto;}
+.od-comment-item{padding:10px 12px;background:var(--surface2);border:1px solid var(--border);border-radius:6px;font-size:0.72rem;line-height:1.5;}
+.od-comment-item.flagged{border-left:3px solid #c84;background:rgba(200,136,68,0.04);}
+.od-comment-item.harmful{border-left:3px solid #c44;background:rgba(200,68,68,0.04);}
+.od-comment-text{color:var(--text2);font-family:var(--serif);}
+.od-comment-meta{font-family:var(--mono);font-size:0.46rem;color:var(--text3);margin-top:5px;display:flex;gap:10px;align-items:center;}
+.od-comment-flag{padding:2px 6px;border-radius:3px;font-size:0.42rem;text-transform:uppercase;letter-spacing:1px;}
+.od-comment-flag.safe{background:rgba(74,170,119,0.15);color:#4a7;}
+.od-comment-flag.suspicious{background:rgba(200,136,68,0.15);color:#c84;}
+.od-comment-flag.harmful{background:rgba(200,68,68,0.15);color:#c44;}
+.od-comment-actions-inline{display:flex;gap:6px;margin-left:auto;}
+.od-comment-action-btn{background:none;border:1px solid var(--border2);color:var(--text3);font-family:var(--mono);font-size:0.42rem;padding:2px 8px;cursor:pointer;letter-spacing:1px;text-transform:uppercase;}
+.od-comment-action-btn:hover{border-color:var(--accent2);color:var(--accent2);}
+.od-comment-action-btn.remove:hover{border-color:#c44;color:#c44;}
+.od-comment-replies{margin-left:16px;margin-top:8px;padding-left:10px;border-left:1px solid var(--border);}
+.od-comment-compose{margin-top:10px;}
+.od-comment-textarea{width:100%;background:var(--surface);border:1px solid var(--border2);color:var(--text);font-family:var(--serif);font-size:0.72rem;padding:9px 11px;resize:vertical;min-height:50px;outline:none;}
+.od-comment-textarea:focus{border-color:var(--accent2);}
+.od-comment-actions{display:flex;gap:8px;margin-top:6px;align-items:center;}
+.od-comment-select{background:var(--surface);border:1px solid var(--border2);color:var(--text2);font-family:var(--mono);font-size:0.5rem;padding:5px 8px;outline:none;}
+.od-comment-btn{padding:6px 14px;background:var(--accent2);color:var(--bg);border:none;font-family:var(--mono);font-size:0.52rem;letter-spacing:2px;text-transform:uppercase;cursor:pointer;}
+.od-comment-status{font-family:var(--mono);font-size:0.48rem;color:var(--text3);margin-top:5px;}
 
 /* OBJECT DETAIL PANEL */
 .od-panel-wrap{padding:0;overflow-y:auto;max-height:calc(100vh - 132px);}
@@ -829,8 +861,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
         <div class="related-grid" id="vRelated"></div>
         <div class="vpp-comment">
           <div class="vpc-label">Leave a response — your note joins the collection record</div>
-          <textarea class="vpc-textarea" placeholder="What did this object make you think or feel?"></textarea>
-          <button class="vpc-submit">Submit response</button>
+          <div id="vCommentsList" class="vpc-list"></div>
+          <textarea class="vpc-textarea" id="vCommentInput" placeholder="What did this object make you think or feel?"></textarea>
+          <button class="vpc-submit" onclick="submitVisitorComment()">Submit response</button>
+          <div id="vCommentStatus" class="vpc-status"></div>
         </div>
       </div>
     </div>
@@ -942,6 +976,18 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
         </div>
       </div>
     </div>
+    <div class="od-comments-section">
+      <div class="section-label" style="margin-bottom:10px;">Visitor Comments <span id="od-comment-count" style="color:var(--text3);font-size:0.5rem;"></span></div>
+      <div id="od-comments-list" class="od-comments-list"></div>
+      <div class="od-comment-compose">
+        <textarea id="od-comment-input" class="od-comment-textarea" placeholder="Add a curator note or respond to a visitor comment…"></textarea>
+        <div class="od-comment-actions">
+          <select id="od-comment-role" class="od-comment-select"><option value="staff">Staff</option><option value="volunteer">Volunteer</option><option value="visitor">Visitor (test)</option></select>
+          <button class="od-comment-btn" onclick="odPostComment()">Post</button>
+        </div>
+        <div id="od-comment-status" class="od-comment-status"></div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -950,6 +996,57 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 // ARCHAI v10 — MV-Only · Full Metadata · Live LLM Chat
 // Museums Victoria objects loaded from Qdrant. No mock objects.
 // ═══════════════════════════════════════════════════════════════════
+
+// API config — auto-detect: use proxy when not on localhost
+const IS_LOCAL = location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.hostname.startsWith('192.168.') || location.hostname.startsWith('100.');
+const API_BASE = IS_LOCAL ? '' : (window.ARCHAI_API_BASE || '');
+const QDRANT_DIRECT = IS_LOCAL ? 'http://localhost:6333' : '';
+const OLLAMA_DIRECT = IS_LOCAL ? 'http://localhost:11434' : '';
+const USE_PROXY = !IS_LOCAL && API_BASE;
+
+function qdrantFetch(path, options) {
+  if (USE_PROXY) {
+    const url = `${API_BASE}/api/proxy${path.replace('/collections/', '/qdrant/').replace('/points/scroll', '/scroll').replace('/points/search', '/search')}`;
+    return fetch(url, options);
+  }
+  return fetch(`${QDRANT_DIRECT}${path}`, options);
+}
+
+function ollamaFetch(path, body) {
+  if (USE_PROXY) {
+    if (path === '/api/embeddings') {
+      return fetch(`${API_BASE}/api/proxy/embed`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: JSON.parse(body).prompt }),
+      });
+    }
+    if (path === '/api/chat') {
+      const parsed = JSON.parse(body);
+      const sysMsg = parsed.messages?.find(m => m.role === 'system');
+      const userMsg = parsed.messages?.filter(m => m.role !== 'system') || [];
+      const history = userMsg.slice(0, -1);
+      const lastUser = userMsg[userMsg.length - 1];
+      return fetch(`${API_BASE}/api/proxy/chat`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          systemPrompt: sysMsg?.content || '',
+          userPrompt: lastUser?.content || '',
+          history,
+        }),
+      });
+    }
+    if (path === '/api/tags') {
+      return fetch(`${API_BASE}/api/proxy/ollama/health`);
+    }
+  }
+  return fetch(`${OLLAMA_DIRECT}${path}`, {
+    method: body ? 'POST' : 'GET',
+    headers: body ? { 'Content-Type': 'application/json' } : {},
+    body,
+  });
+}
 
 const OBJECTS = {};
 const NFC_TAGS = [];
@@ -1073,7 +1170,7 @@ function setDot(id, status) {
 }
 
 function checkQdrant() {
-  fetch('http://localhost:6333/collections')
+  (USE_PROXY ? fetch(`${API_BASE}/api/proxy/qdrant/health`) : fetch(`${QDRANT_DIRECT}/collections`))
     .then(r => r.json())
     .then(d => {
       setDot('qdrantDot', 'ok'); setDot('sb-qdrant-dot', 'ok');
@@ -1089,7 +1186,7 @@ function checkQdrant() {
 }
 
 function checkOllama() {
-  fetch('http://localhost:11434/api/tags')
+  ollamaFetch('/api/tags')
     .then(r => r.json())
     .then(d => {
       setDot('ollamaDot', 'ok'); setDot('sb-ollama-dot', 'ok');
@@ -1135,7 +1232,7 @@ function loadMVObjects() {
 
   // Load all collections in parallel
   const fetches = COLLECTIONS.map(col =>
-    fetch(`http://localhost:6333/collections/${col}/points/scroll`, {
+    qdrantFetch(`/collections/${col}/points/scroll`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({ limit: 200, with_payload: true })
@@ -1499,7 +1596,7 @@ function runHarvesters() {
   const counts = { archai_pilot: 0, archai_met: 0, archai_va: 0 };
   Promise.all(
     Object.keys(counts).map(col =>
-      fetch(`http://localhost:6333/collections/${col}`)
+      qdrantFetch(`/collections/${col}`)
         .then(r => r.json())
         .then(d => { counts[col] = d.result?.points_count || 0; })
         .catch(() => {})
@@ -1693,15 +1790,12 @@ function doSearch() {
   document.getElementById('resultsLabel').textContent = 'Searching "' + q + '" across all collections…';
   container.innerHTML = '<div style="padding:20px;font-family:var(--mono);font-size:0.62rem;color:var(--text2)">Embedding query via nomic-embed-text and searching Qdrant…</div>';
 
-  fetch('http://localhost:11434/api/embeddings', {
-    method: 'POST', headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ model: 'nomic-embed-text', prompt: q })
-  })
+  ollamaFetch('/api/embeddings', JSON.stringify({ model: 'nomic-embed-text', prompt: q }))
   .then(r => r.json())
   .then(({ embedding }) => {
     // Search all collections in parallel
     const searches = COLLECTIONS.map(col =>
-      fetch(`http://localhost:6333/collections/${col}/points/search`, {
+      qdrantFetch(`/collections/${col}/points/search`, {
         method: 'POST', headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ vector: embedding, limit: 15, with_payload: true })
       })
@@ -1905,6 +1999,10 @@ function openObjectDetail(objKey) {
   document.getElementById('od-related').innerHTML = '<div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);padding:4px 0;">Finding related objects via Qdrant…</div>';
   odLoadRelated(objKey, o);
 
+  // Visitor comments
+  const commentObjId = p.registration_number || o.dams || objKey;
+  odLoadComments(commentObjId);
+
   // Scroll to top
   document.querySelector('.od-panel-wrap').scrollTop = 0;
 }
@@ -1953,10 +2051,7 @@ RULES:
 
   window._odChatHistory.push({ role: 'user', content: q });
 
-  fetch('http://localhost:11434/api/chat', {
-    method: 'POST', headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ model: 'llama3', stream: false, messages: [{ role: 'system', content: sys }, ...window._odChatHistory] })
-  })
+  ollamaFetch('/api/chat', JSON.stringify({ model: 'llama3', stream: false, messages: [{ role: 'system', content: sys }, ...window._odChatHistory] }))
   .then(r => r.json())
   .then(data => {
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
@@ -2033,15 +2128,12 @@ function odLoadRelated(objKey, o) {
   const queryText = (o._mv && o._mv.description) || o.ai || o.title || '';
   if (!queryText) { relEl.innerHTML = '<div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);">No description available for similarity search.</div>'; return; }
 
-  fetch('http://localhost:11434/api/embeddings', {
-    method: 'POST', headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ model: 'nomic-embed-text', prompt: queryText.substring(0, 500) })
-  })
+  ollamaFetch('/api/embeddings', JSON.stringify({ model: 'nomic-embed-text', prompt: queryText.substring(0, 500) }))
   .then(r => r.json())
   .then(({ embedding }) => {
     // Search all collections for related objects
     const searches = COLLECTIONS.map(col =>
-      fetch(`http://localhost:6333/collections/${col}/points/search`, {
+      qdrantFetch(`/collections/${col}/points/search`, {
         method: 'POST', headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ vector: embedding, limit: 5, with_payload: true })
       })
@@ -2107,6 +2199,99 @@ function odLoadRelated(objKey, o) {
         </div>`;
       }).join('');
   });
+}
+
+// ═══════════════════════════════════════════════════════════════════
+// OBJECT DETAIL COMMENTS
+// ═══════════════════════════════════════════════════════════════════
+let _odCurrentObjectId = null;
+
+function odLoadComments(objectId) {
+  _odCurrentObjectId = objectId;
+  const list = document.getElementById('od-comments-list');
+  const count = document.getElementById('od-comment-count');
+  if (!list) return;
+
+  fetch(`${COMMENTS_API}?objectId=${encodeURIComponent(objectId)}&curator=true`)
+    .then(r => r.json())
+    .then(data => {
+      const comments = data.comments || [];
+      const total = comments.reduce((n, c) => n + 1 + (c.replies?.length || 0), 0);
+      count.textContent = total ? `(${total})` : '';
+      if (!comments.length) { list.innerHTML = '<div style="font-family:var(--mono);font-size:0.52rem;color:var(--text3);">No visitor comments yet.</div>'; return; }
+      list.innerHTML = comments.map(c => renderODComment(c, 0)).join('');
+    })
+    .catch(() => { list.innerHTML = ''; count.textContent = ''; });
+}
+
+function renderODComment(c, depth) {
+  const flagClass = (c.ai_flag === 'suspicious') ? 'flagged' : (c.ai_flag === 'harmful') ? 'harmful' : '';
+  const hidden = c.status === 'hidden';
+  const replies = (c.replies || []).map(r => renderODComment(r, depth + 1)).join('');
+
+  return `<div class="od-comment-item ${flagClass}" style="${hidden ? 'opacity:0.6;' : ''}">
+    <div class="od-comment-text">${hidden ? '⚠ ' : ''}${escQ(c.text)}</div>
+    <div class="od-comment-meta">
+      <span>${c.author_type || 'visitor'}</span>
+      <span>${c.created_at ? new Date(c.created_at).toLocaleDateString() : ''}</span>
+      ${c.ai_flag ? `<span class="od-comment-flag ${c.ai_flag}">${c.ai_flag}</span>` : ''}
+      ${c.ai_reason ? `<span style="font-style:italic;">${escQ(c.ai_reason)}</span>` : ''}
+      <span class="od-comment-actions-inline">
+        ${hidden ? `<button class="od-comment-action-btn" onclick="odModerateComment('${c.id}','visible')">Approve</button>` : ''}
+        <button class="od-comment-action-btn remove" onclick="odModerateComment('${c.id}','removed')">Remove</button>
+        <button class="od-comment-action-btn" onclick="odReplyTo('${c.id}')">Reply</button>
+      </span>
+    </div>
+    ${replies ? `<div class="od-comment-replies">${replies}</div>` : ''}
+  </div>`;
+}
+
+function odModerateComment(commentId, status) {
+  fetch(`${COMMENTS_API}/${commentId}`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ status, moderator: 'curator' }),
+  })
+  .then(r => r.json())
+  .then(() => { if (_odCurrentObjectId) odLoadComments(_odCurrentObjectId); });
+}
+
+function odReplyTo(parentId) {
+  const input = document.getElementById('od-comment-input');
+  input.focus();
+  input.dataset.parentId = parentId;
+  input.placeholder = 'Replying to comment…';
+}
+
+function odPostComment() {
+  const input = document.getElementById('od-comment-input');
+  const status = document.getElementById('od-comment-status');
+  const role = document.getElementById('od-comment-role').value;
+  const text = input.value.trim();
+  if (!text || !_odCurrentObjectId) return;
+
+  status.textContent = 'Posting…';
+  const body = { objectId: _odCurrentObjectId, text, authorType: role };
+  if (input.dataset.parentId) body.parentId = input.dataset.parentId;
+
+  fetch(COMMENTS_API, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.ok) {
+      input.value = '';
+      input.placeholder = 'Add a curator note or respond to a visitor comment…';
+      delete input.dataset.parentId;
+      status.textContent = '';
+      odLoadComments(_odCurrentObjectId);
+    } else {
+      status.textContent = data.error || 'Could not post';
+    }
+  })
+  .catch(() => { status.textContent = 'Connection error'; });
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -2550,6 +2735,12 @@ function renderVPage(objId) {
       </div>`;
     }).join('');
 
+  window._currentVisitorObj = o;
+  const commentObjId = p.registration_number || o.dams || objId;
+  loadComments(commentObjId);
+  document.getElementById('vCommentInput').value = '';
+  document.getElementById('vCommentStatus').textContent = '';
+
   document.querySelectorAll('.vp-nfc-item').forEach(el => el.classList.remove('active'));
   const items = document.querySelectorAll('.vp-nfc-item');
   items.forEach(el => { if (el.querySelector('.vp-nfc-name').textContent === o.title) el.classList.add('active'); });
@@ -2578,10 +2769,7 @@ function vAsk(q) {
   const p = o._mv || {};
   const sys = `You are "${o.title}", a physical object in the Museums Victoria collection. Speak in the first person as the object. Be warm and conversational. 2-3 sentences. Use ONLY this verified metadata:\n- Title: ${o.title}\n- Type: ${o.type}\n- Date: ${o.year}\n- Description: ${(p.description || o.ai || '').substring(0, 400)}\n- Location: ${o.location}\n- Registration: ${p.registration_number || o.dams}`;
 
-  fetch('http://localhost:11434/api/chat', {
-    method: 'POST', headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ model: 'llama3', stream: false, messages: [{ role: 'system', content: sys }, { role: 'user', content: q }] })
-  })
+  ollamaFetch('/api/chat', JSON.stringify({ model: 'llama3', stream: false, messages: [{ role: 'system', content: sys }, { role: 'user', content: q }] }))
   .then(r => r.json())
   .then(data => {
     const reply = (data.message && data.message.content) || o.chat.default;
@@ -2598,6 +2786,56 @@ function vAsk(q) {
 // ═══════════════════════════════════════════════════════════════════
 // UTILITY
 // ═══════════════════════════════════════════════════════════════════
+// ── Comments ─────────────────────────────────────────────────────
+const COMMENTS_API = IS_LOCAL ? 'http://localhost:8787/api/comments' : `${API_BASE}/api/comments`;
+
+function loadComments(objectId) {
+  const list = document.getElementById('vCommentsList');
+  if (!list) return;
+  fetch(`${COMMENTS_API}?objectId=${encodeURIComponent(objectId)}`)
+    .then(r => r.json())
+    .then(data => {
+      const comments = data.comments || [];
+      if (!comments.length) { list.innerHTML = ''; return; }
+      list.innerHTML = comments.slice(0, 10).map(c => `
+        <div class="vpc-item vpc-flag-${c.status === 'approved' ? 'safe' : c.status}">
+          <div>${escQ(c.text)}</div>
+          <div class="vpc-item-meta">${c.author_type} · ${new Date(c.created_at).toLocaleDateString()}</div>
+        </div>`).join('');
+    })
+    .catch(() => { list.innerHTML = ''; });
+}
+
+function submitVisitorComment() {
+  const input = document.getElementById('vCommentInput');
+  const status = document.getElementById('vCommentStatus');
+  const text = input.value.trim();
+  if (!text) return;
+  if (!window._currentVisitorObj) { status.textContent = 'No object selected'; return; }
+
+  const objectId = window._currentVisitorObj.dams || window._currentVisitorObj.id || '';
+  status.textContent = 'Submitting…';
+  input.disabled = true;
+
+  fetch(COMMENTS_API, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ objectId, collection: window._currentVisitorObj._col || 'archai_pilot', text, authorType: 'visitor' }),
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.ok) {
+      input.value = '';
+      status.textContent = 'Thank you — your response has been recorded';
+      loadComments(objectId);
+    } else {
+      status.textContent = data.error || 'Could not submit';
+    }
+  })
+  .catch(() => { status.textContent = 'Connection error — try again'; })
+  .finally(() => { input.disabled = false; });
+}
+
 function escQ(s) {
   return String(s).replace(/'/g, "\\'").replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }

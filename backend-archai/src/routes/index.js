@@ -15,6 +15,7 @@ import { commentsRouter } from './comments.js';
 import { mediaRouter } from './media.js';
 import { workflowsRouter } from './workflows.js';
 import { webhooksRouter } from './webhooks/index.js';
+import { proxyRouter } from './proxy.js';
 
 export const apiRouter = Router();
 
@@ -34,3 +35,4 @@ apiRouter.use('/comments', commentsRouter);
 apiRouter.use('/media', mediaRouter);
 apiRouter.use('/workflows', workflowsRouter);
 apiRouter.use('/webhooks', webhooksRouter);
+apiRouter.use('/proxy', proxyRouter);

@@ -592,11 +592,10 @@ body::after {
 // ══════════════════════════════════════════════════════════════════
 
 // ── CONFIG ──────────────────────────────────────────────────────
-// IMPORTANT: Set this to your Mac Studio's LAN IP address
-// Find it: System Settings → Network → Wi-Fi → IP Address
-// Example: 'http://192.168.1.100:11434'
 const OLLAMA_HOST = '{{OLLAMA_HOST}}';
+const BACKEND_PROXY = '{{BACKEND_PROXY}}';
 const CHAT_MODEL = 'llama3';
+const USE_PROXY = BACKEND_PROXY && !BACKEND_PROXY.includes('{{');
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
@@ -647,15 +646,27 @@ function askObject(presetQ) {
 
   chatHistory.push({ role: 'user', content: q });
 
-  fetch(`${OLLAMA_HOST}/api/chat`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      model: CHAT_MODEL,
-      stream: false,
-      messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory]
-    })
-  })
+  const chatFetch = USE_PROXY
+    ? fetch(`${BACKEND_PROXY}/api/proxy/chat`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          systemPrompt: SYSTEM_PROMPT,
+          userPrompt: q,
+          history: chatHistory.slice(0, -1),
+        })
+      })
+    : fetch(`${OLLAMA_HOST}/api/chat`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: CHAT_MODEL,
+          stream: false,
+          messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory]
+        })
+      });
+
+  chatFetch
   .then(r => r.json())
   .then(data => {
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
@@ -746,31 +757,40 @@ function shareX() {
 }
 
 // ══════════════════════════════════════════════════════════════════
-// COMMENTS — persisted to localStorage
+// COMMENTS — saved to backend (AI moderated), localStorage fallback
 // ══════════════════════════════════════════════════════════════════
+const COMMENTS_API = USE_PROXY
+  ? `${BACKEND_PROXY}/api/comments`
+  : `${OLLAMA_HOST.replace(/:\d+$/, ':8787')}/api/comments`;
 const COMMENT_KEY = 'archai_comments_' + OBJECT.registration.replace(/[^a-zA-Z0-9]/g, '_');
 
-function loadComments() {
-  try {
-    return JSON.parse(localStorage.getItem(COMMENT_KEY)) || [];
-  } catch (e) { return []; }
-}
-
-function saveComments(comments) {
-  try { localStorage.setItem(COMMENT_KEY, JSON.stringify(comments)); } catch (e) {}
-}
-
-function renderComments() {
-  const comments = loadComments();
+function renderComments(comments) {
   const el = document.getElementById('prevComments');
-  if (!comments.length) { el.innerHTML = ''; return; }
+  if (!comments || !comments.length) { el.innerHTML = ''; return; }
   el.innerHTML = `<div class="v-prev-label">Visitor Responses (${comments.length})</div>` +
-    comments.slice().reverse().map(c =>
+    comments.slice(0, 10).map(c =>
       `<div class="v-prev-item">
         <div class="v-prev-text">${escHTML(c.text)}</div>
-        <div class="v-prev-time">${c.time}</div>
+        <div class="v-prev-time">${c.author_type || 'visitor'} · ${c.created_at ? new Date(c.created_at).toLocaleDateString() : (c.time || '')}</div>
       </div>`
     ).join('');
+}
+
+function fetchComments() {
+  fetch(`${COMMENTS_API}?objectId=${encodeURIComponent(OBJECT.registration)}`)
+    .then(r => r.json())
+    .then(data => {
+      if (data.comments?.length) renderComments(data.comments);
+      else renderLocalComments();
+    })
+    .catch(() => renderLocalComments());
+}
+
+function renderLocalComments() {
+  try {
+    const local = JSON.parse(localStorage.getItem(COMMENT_KEY)) || [];
+    renderComments(local);
+  } catch { renderComments([]); }
 }
 
 function submitComment() {
@@ -778,27 +798,47 @@ function submitComment() {
   const text = input.value.trim();
   if (!text) return;
 
-  const comments = loadComments();
-  comments.push({
-    text: text,
-    time: new Date().toLocaleString('en-AU', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
-    object: OBJECT.title,
-    reg: OBJECT.registration
-  });
-  saveComments(comments);
-
-  input.value = '';
   const btn = document.getElementById('commentBtn');
-  btn.textContent = 'Thank you — response recorded';
-  btn.style.color = 'var(--accent2)';
-  btn.style.borderColor = 'var(--accent2)';
-  setTimeout(() => {
-    btn.textContent = 'Submit Response';
-    btn.style.color = '';
-    btn.style.borderColor = '';
-  }, 3000);
+  btn.textContent = 'Submitting…';
+  btn.disabled = true;
 
-  renderComments();
+  fetch(COMMENTS_API, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      objectId: OBJECT.registration,
+      collection: 'archai_pilot',
+      text,
+      authorType: 'visitor',
+    }),
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.ok) {
+      input.value = '';
+      btn.textContent = 'Thank you — response recorded';
+      btn.style.color = 'var(--accent2)';
+      btn.style.borderColor = 'var(--accent2)';
+      fetchComments();
+    } else {
+      btn.textContent = data.error || 'Could not submit';
+    }
+  })
+  .catch(() => {
+    // Offline fallback: save locally
+    try {
+      const local = JSON.parse(localStorage.getItem(COMMENT_KEY)) || [];
+      local.push({ text, time: new Date().toLocaleString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' }), author_type: 'visitor' });
+      localStorage.setItem(COMMENT_KEY, JSON.stringify(local));
+      input.value = '';
+      btn.textContent = 'Saved locally — will sync when online';
+      renderLocalComments();
+    } catch { btn.textContent = 'Connection error'; }
+  })
+  .finally(() => {
+    btn.disabled = false;
+    setTimeout(() => { btn.textContent = 'Submit Response'; btn.style.color = ''; btn.style.borderColor = ''; }, 3000);
+  });
 }
 
 function escHTML(s) {
@@ -806,7 +846,7 @@ function escHTML(s) {
 }
 
 // Init comments on load
-renderComments();
+fetchComments();
 </script>
 </body>
 </html>

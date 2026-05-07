@@ -6,9 +6,9 @@
 //
 // Usage:
 //   node generate-nfc-pages.js
-//   node generate-nfc-pages.js --host 192.168.1.100
-//   node generate-nfc-pages.js --limit 20
-//   node generate-nfc-pages.js --host 192.168.1.100 --limit 50
+//   node generate-nfc-pages.js --host http://100.109.26.39:11434
+//   node generate-nfc-pages.js --proxy https://archai.yourdomain.com
+//   node generate-nfc-pages.js --host http://100.109.26.39:11434 --limit 50
 //
 // Requirements:
 //   - Qdrant running at localhost:6333
@@ -34,6 +34,7 @@ const COLLECTION_LABELS = {
   archai_va: 'Victoria and Albert Museum, London'
 };
 const OLLAMA_LAN_HOST = getArg('host', 'http://localhost:11434');
+const BACKEND_PROXY = getArg('proxy', '');
 const LIMIT = parseInt(getArg('limit', '200'), 10);
 const OUTPUT_DIR = path.join(__dirname, 'v');
 const TEMPLATE_PATH = path.join(__dirname, 'nfc-visitor-template.html');
@@ -78,6 +79,7 @@ async function main() {
   console.log(`  → Qdrant: ${QDRANT_URL}`);
   console.log(`  → Collections: ${ALL_COLLECTIONS.join(', ')}`);
   console.log(`  → Ollama LAN host: ${OLLAMA_LAN_HOST}`);
+  console.log(`  → Backend proxy: ${BACKEND_PROXY || '(none — direct mode)'}`);
   console.log(`  → Limit: ${LIMIT}`);
   console.log(`  → Output: ${OUTPUT_DIR}/\n`);
 
@@ -263,6 +265,7 @@ async function main() {
     // Apply template
     let html = template
       .replace(/\{\{OLLAMA_HOST\}\}/g, OLLAMA_LAN_HOST)
+      .replace(/\{\{BACKEND_PROXY\}\}/g, BACKEND_PROXY)
       .replace(/\{\{NFC_CODE\}\}/g, escHtml(nfcCode))
       .replace(/\{\{OBJECT_TITLE\}\}/g, escHtml(title))
       .replace(/\{\{OBJECT_SUB\}\}/g, escHtml(subLine))
