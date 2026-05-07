@@ -177,7 +177,7 @@ Date extraction from titles, better Met filtering, incremental harvest. Run Harv
 ```text
 ┌──────────────────────────────────────────────────────────┐
 │                    ARCHAI Frontend                      │
-│                 (ARCHAI_v10_6.html · browser)           │
+│                 (ARCHAI_v10_8.html · browser)           │
 │                                                         │
 │  Search ──→ Ollama embed ──→ Qdrant (4 collections)     │
 │  Chat   ──→ Ollama llama3 ──→ grounded response         │
@@ -204,7 +204,7 @@ Date extraction from titles, better Met filtering, incremental harvest. Run Harv
 
 ```text
 archai/
-├── ARCHAI_v10_6.html              ← Main frontend (single-file app)
+├── ARCHAI_v10_8.html              ← Main frontend (single-file app)
 ├── README.md                      ← This file
 ├── ARCHAI_OPERATIONS_GUIDE.md     ← Full ops guide (startup, testing, APIs, adding objects)
 ├── REMOTE_TESTING_GUIDE.md        ← Tailscale setup for iPad/iPhone testing
@@ -246,10 +246,10 @@ cd ~/Desktop/APPS/ARCHAI\ APP
 
 Starts Docker, Qdrant, Ollama (with LAN+CORS), backend API, frontend server. Runs 7 health checks, shows loaded models, Qdrant collections, comment count, and prints all URLs.
 
-**Main app:** http://localhost:8000/ARCHAI_v10_6.html
+**Main app:** http://localhost:8000/ARCHAI_v10_8.html
 **NFC index:** http://localhost:8000/nfc-pages/v/index.html
 **Backend API:** http://localhost:8787/api/health
-**Tailscale:** http://100.109.26.39:8000/ARCHAI_v10_6.html
+**Tailscale:** http://100.109.26.39:8000/ARCHAI_v10_8.html
 
 See `ARCHAI_OPERATIONS_GUIDE.md` for full setup, testing, and API reference.
 

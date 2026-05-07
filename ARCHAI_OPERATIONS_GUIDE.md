@@ -27,7 +27,7 @@ This single command starts all services and runs health checks. It will report w
 
 | Service | Port | What it does |
 |---------|------|-------------|
-| **Frontend** | 8000 | Static HTTP server for ARCHAI_v10_6.html and NFC pages |
+| **Frontend** | 8000 | Static HTTP server for ARCHAI_v10_8.html and NFC pages |
 | **Backend API** | 8787 | Express server — comments, proxy, search, admin |
 | **Qdrant** | 6333 | Vector database — stores object embeddings |
 | **Ollama** | 11434 | LLM inference — chat (llama3) and embeddings (nomic-embed-text) |
@@ -88,7 +88,7 @@ cd ~/Desktop/APPS/ARCHAI\ APP
 python3 -m http.server 8000
 ```
 
-Open: http://localhost:8000/ARCHAI_v10_6.html
+Open: http://localhost:8000/ARCHAI_v10_8.html
 
 ---
 
@@ -122,7 +122,7 @@ curl http://localhost:8787/api/proxy/ollama/health
 curl http://localhost:8787/api/comments/stats
 
 # Frontend
-curl -I http://localhost:8000/ARCHAI_v10_6.html
+curl -I http://localhost:8000/ARCHAI_v10_8.html
 ```
 
 ### Testing AI chat
@@ -176,7 +176,7 @@ From iPad/iPhone on the same Tailnet:
 
 | What | URL |
 |------|-----|
-| Main app | `http://100.109.26.39:8000/ARCHAI_v10_6.html` |
+| Main app | `http://100.109.26.39:8000/ARCHAI_v10_8.html` |
 | NFC visitor pages | `http://100.109.26.39:8000/nfc-pages/v/index.html` |
 | Backend API | `http://100.109.26.39:8787/api/health` |
 
@@ -245,7 +245,7 @@ curl -X PUT http://localhost:6333/collections/archai_NEWNAME \
    - The `COLLECTION` constant (e.g. `archai_newmuseum`)
    - Search queries relevant to the institution
 
-3. **Register in the frontend** — add the collection to `ARCHAI_v10_6.html`:
+3. **Register in the frontend** — add the collection to `ARCHAI_v10_8.html`:
 ```javascript
 // Line ~1222
 const COLLECTIONS = ['archai_pilot', 'archai_met', 'archai_va', 'archai_NEWNAME'];
@@ -424,7 +424,7 @@ Key settings in `backend-archai/.env`:
 
 ```
 ARCHAI APP/
-├── ARCHAI_v10_6.html          # Main frontend (single-file app)
+├── ARCHAI_v10_8.html          # Main frontend (single-file app)
 ├── start-archai.sh            # Startup + health check script
 ├── docker-compose.yml         # Qdrant, Directus, Redis, MySQL
 ├── backend-archai/

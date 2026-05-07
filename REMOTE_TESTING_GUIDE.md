@@ -19,7 +19,7 @@ Access the full ARCHAI stack from iPad, iPhone, or any device — anywhere.
 
 | Service | URL |
 |---------|-----|
-| **Main App** | `http://100.109.26.39:8000/ARCHAI_v10_6.html` |
+| **Main App** | `http://100.109.26.39:8000/ARCHAI_v10_8.html` |
 | **NFC Visitor Index** | `http://100.109.26.39:8000/nfc-pages/v/index.html` |
 | **Backend API** | `http://100.109.26.39:8787/api/health` |
 | **Qdrant** | `http://100.109.26.39:6333/collections` |
