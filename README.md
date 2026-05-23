@@ -1,4 +1,4 @@
-# ARCHAI — Sovereign Semantic Heritage Infrastructure
+# ARCHAI™ — Sovereign Semantic Heritage Infrastructure
 
 > "Museums are not silent repositories of Memory; they are living, thinking organisms, where imagination and knowledge, tradition and innovation meet." — Gayane Umerova, UNESCO, 2025
 
@@ -7,7 +7,8 @@
 **Status:** Working prototype — multi-institution semantic search + LLM object chat + NFC visitor pages
 **Target:** ISEA2026 Dubai, 6th Summit on New Media Art Archiving (April 11–12)
 **Paper:** `docs/ARCHAI_ISEA2026_Rob_Graham.pdf`
-**Licence:** MPL-2.0 (code) · CC BY 4.0 (MV data) · CC0 (Met data) · V&A Open Access — see [NOTICE](NOTICE) for IP details
+**Licence:** MPL-2.0 (code) · CC BY 4.0 (MV data) · CC0 (Met data) · V&A Open Access — see [NOTICE](NOTICE) for IP and trademark details
+**Trademark:** ARCHAI™ is a trademark of Rob Graham / FAMTEC. See NOTICE for usage terms.
 
 ---
 
@@ -277,3 +278,7 @@ Mac Studio M2 Max · 64GB · 1TB. Base institutional deployment: ~$3,500–5,000
 
 Rob Graham · FAMTEC / RMIT · rob@fineartmedia.tech
 GitHub: github.com/rob-e-graham/archai
+
+---
+
+ARCHAI™ is a trademark of Rob Graham / FAMTEC (Fine Art Media Tech). Use of the source code under MPL-2.0 does not grant trademark rights. See [NOTICE](NOTICE) for details.

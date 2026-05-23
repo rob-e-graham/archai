@@ -1,4 +1,4 @@
-# ARCHAI — Operations Guide
+# ARCHAI™ — Operations Guide
 
 Startup, testing, adding objects, and API reference.
 

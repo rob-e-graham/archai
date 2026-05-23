@@ -1,7 +1,7 @@
 {
   "name": "archai-backend",
   "version": "0.1.0",
-  "description": "ARCHAI sovereign GLAM backend scaffold (mock-ready, API-key-ready)",
+  "description": "ARCHAI™ sovereign GLAM backend scaffold (mock-ready, API-key-ready)",
   "type": "module",
   "main": "src/server.js",
   "scripts": {
@@ -20,7 +20,7 @@
     "resourcespace",
     "nfc"
   ],
-  "license": "UNLICENSED",
+  "license": "MPL-2.0",
   "dependencies": {
     "better-sqlite3": "^12.9.0",
     "cors": "^2.8.5",

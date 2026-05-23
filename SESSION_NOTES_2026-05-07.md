@@ -1,4 +1,4 @@
-# ARCHAI Session Notes — 7 May 2026
+# ARCHAI™ Session Notes — 7 May 2026
 
 ## What was built tonight
 
