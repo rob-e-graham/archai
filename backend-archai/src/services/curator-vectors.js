@@ -1,3 +1,7 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+// Copyright (c) 2026 Rob Graham / FAMTEC
 import { env } from '../config/env.js';
 import db from '../data/db.js';
 
@@ -59,7 +63,8 @@ function buildCuratorText(payload, comments) {
     }
   }
 
-  return parts.join('\n');
+  return parts.join('
+');
 }
 
 export async function buildCuratorCollection({ onProgress } = {}) {
@@ -145,7 +150,8 @@ export async function buildCuratorCollection({ onProgress } = {}) {
     }
   }
 
-  log(`\nDone — ${totalPoints} objects in ${CURATOR_COLLECTION}`);
+  log(`
+Done — ${totalPoints} objects in ${CURATOR_COLLECTION}`);
   return { collection: CURATOR_COLLECTION, totalPoints };
 }
 

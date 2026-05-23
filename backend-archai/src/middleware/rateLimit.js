@@ -1,3 +1,7 @@
+// This Source Code Form is subject to the terms of the Mozilla Public
+// License, v. 2.0. If a copy of the MPL was not distributed with this
+// file, You can obtain one at https://mozilla.org/MPL/2.0/.
+// Copyright (c) 2026 Rob Graham / FAMTEC
 const buckets = new Map();
 const WINDOW_MS = 60_000;
 const CLEANUP_INTERVAL = 300_000;
