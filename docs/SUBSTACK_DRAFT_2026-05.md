@@ -4,6 +4,12 @@
 
 ---
 
+## AUX.IO — Archai User eXperience: data In, data Out
+
+Before we get into what ARCHAI™ does — a quick note on naming. The public interface is called **AUX** (aux.io). It stands for **A**rchai **U**ser e**X**perience — **data In, data Out**. Because that's what this is: a bidirectional channel. You put questions in. The collection speaks back. You contribute knowledge. It becomes part of the record. In and out. The auxiliary port connecting people to culture.
+
+---
+
 ## The moment it clicked
 
 I was standing in front of a 150-year-old proof coin at Museums Victoria, reading the same three-line label that's been there since 2019. Registration number. Date. "Gold, proof." That's it. That's all most visitors will ever learn about this object.
@@ -101,7 +107,26 @@ The constraints field is crucial. By telling the AI what the object doesn't know
 
 ---
 
-## AUX: one page to access them all
+## The database talks back: conversational search
+
+Here's the latest development, and it's the one that changes everything.
+
+Most museum search works like Google circa 2005: type words, get a list. But what if you could *talk to the entire collection?* Not search it — converse with it.
+
+ARCHAI™ now has a **conversational search engine**. You ask a question in natural language — "What objects connect ancient Rome to 1980s Melbourne?" — and the collection intelligence responds. Not as a list of results. As a curator. It searches semantically, finds the objects, and then *explains the connections*. It cites specific titles, dates, materials. It suggests paths you didn't know existed.
+
+The architecture:
+1. Your question hits the LLM
+2. The LLM searches the vector database semantically
+3. It retrieves relevant objects from all three collections
+4. It synthesises a conversational response *with those objects as context*
+5. You see both the curatorial response and the object cards
+
+This is the move from search to dialogue. From query to conversation. The database doesn't just return results — it *talks back*.
+
+---
+
+## AUX.IO: one page to access them all
 
 The latest development is **AUX** — a universal access page that works with any entry method:
 
