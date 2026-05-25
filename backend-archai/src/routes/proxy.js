@@ -7,6 +7,7 @@ import { z } from 'zod';
 import { env } from '../config/env.js';
 import { rateLimit } from '../middleware/rateLimit.js';
 import { buildCuratorCollection, curatorSearch } from '../services/curator-vectors.js';
+import { conversationalSearch } from '../services/conversational-search.js';
 
 export const proxyRouter = Router();
 
@@ -196,6 +197,39 @@ proxyRouter.post('/curator/build', async (_req, res) => {
     });
     res.json({ ok: true, ...result, logs });
   } catch (e) {
+    res.status(500).json({ ok: false, error: e.message });
+  }
+});
+
+// ── Curator: conversational search (LLM-mediated) ───────────────
+const convoSearchSchema = z.object({
+  message: z.string().min(1).max(500),
+  history: z.array(z.object({
+    role: z.enum(['user', 'assistant']),
+    content: z.string().max(1000),
+  })).max(10).optional().default([]),
+});
+
+proxyRouter.post('/curator/converse', chatLimiter, async (req, res) => {
+  try {
+    const input = convoSearchSchema.parse(req.body);
+
+    // Block prompt injection
+    for (const pattern of BLOCKED_PATTERNS) {
+      if (pattern.test(input.message)) {
+        return res.status(422).json({
+          ok: false,
+          error: 'I can only help you explore the museum collections.',
+        });
+      }
+    }
+
+    const result = await conversationalSearch(input.message, input.history);
+    res.json({ ok: true, ...result });
+  } catch (e) {
+    if (e instanceof z.ZodError) {
+      return res.status(400).json({ ok: false, error: 'Invalid request', details: e.errors });
+    }
     res.status(500).json({ ok: false, error: e.message });
   }
 });

@@ -107,6 +107,20 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 .pill{font-family:var(--mono);font-size:0.56rem;letter-spacing:1px;text-transform:uppercase;padding:4px 8px;border:1px solid var(--border2);color:var(--text3);cursor:pointer;transition:all 0.12s;user-select:none;}
 .pill:hover{border-color:var(--text3);color:var(--text2);}
 .pill.active{border-color:var(--accent);color:var(--accent);background:rgba(200,169,110,0.07);}
+
+/* CONVERSATION THREAD */
+.convo-msg{margin-bottom:12px;padding:10px 14px;font-family:var(--mono);font-size:0.68rem;line-height:1.7;border-radius:2px;animation:fadeIn 0.3s ease}
+.convo-msg.user{background:rgba(200,169,110,0.06);border-left:2px solid var(--accent);color:var(--text2)}
+.convo-msg.assistant{background:rgba(232,228,220,0.02);border-left:2px solid var(--border2);color:var(--text);white-space:pre-wrap}
+.convo-msg .convo-typing{display:inline-block;width:10px;height:10px;border:1.5px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.5s linear infinite}
+.convo-objects{display:flex;gap:8px;overflow-x:auto;padding:8px 0;margin-top:8px}
+.convo-obj-card{flex:0 0 140px;background:var(--surface);border:1px solid var(--border);cursor:pointer;transition:border-color 0.2s}
+.convo-obj-card:hover{border-color:var(--accent)}
+.convo-obj-card img{width:100%;height:80px;object-fit:cover;filter:brightness(0.7)}
+.convo-obj-card .coc-title{padding:6px 8px;font-family:var(--mono);font-size:0.5rem;line-height:1.3;color:var(--text2)}
+.convo-obj-card .coc-meta{padding:0 8px 6px;font-family:var(--mono);font-size:0.44rem;color:var(--text3)}
+@keyframes fadeIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@keyframes spin{to{transform:rotate(360deg)}}
 .filter-row{display:flex;gap:18px;margin-bottom:22px;flex-wrap:wrap;align-items:center;}
 .filter-group{display:flex;align-items:center;gap:5px;}
 .fg-label{font-family:var(--mono);font-size:0.53rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);}
@@ -589,18 +603,20 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
   <div class="curator-layout">
     <div class="main-col">
       <div style="margin-bottom:22px;">
-        <div class="section-label">Semantic Search — interrogate MV + Met + V&amp;A collections</div>
+        <div class="section-label">Collection Intelligence — talk to the database</div>
         <div class="search-bar">
-          <input class="search-input" id="curatorSearch" type="text" placeholder="Describe by meaning, concept, material, era, emotion, or registration number…">
-          <button class="search-btn" onclick="doSearch()">Search</button>
+          <input class="search-input" id="curatorSearch" type="text" placeholder="Ask the collection anything… objects, connections, materials, stories, or registration numbers">
+          <button class="search-btn" onclick="doConverse()">Ask</button>
         </div>
         <div class="pill-row">
-          <div class="pill active" onclick="togglePill(this)">Text</div>
+          <div class="pill active" onclick="togglePill(this)">Converse</div>
+          <div class="pill" onclick="togglePill(this);doSearch()">Classic Search</div>
           <div class="pill" onclick="togglePill(this)">Colour</div>
           <div class="pill" onclick="togglePill(this)">Image</div>
-          <div class="pill" onclick="togglePill(this)">Object No.</div>
           <div class="pill" onclick="togglePill(this)">Visual Similarity</div>
         </div>
+        <!-- Conversation thread -->
+        <div id="convoThread" style="margin-top:14px;max-height:300px;overflow-y:auto;display:none"></div>
       </div>
       <div class="filter-row">
         <div class="filter-group"><span class="fg-label">Role</span><div class="chip active" onclick="setChip(this)">Curator</div><div class="chip" onclick="setChip(this)">Collections</div><div class="chip" onclick="setChip(this)">Research</div></div>
@@ -1149,7 +1165,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // Key bindings
   document.getElementById('curatorSearch').addEventListener('keypress', e => {
-    if (e.key === 'Enter') doSearch();
+    if (e.key === 'Enter') doConverse();
   });
   document.getElementById('od-chat-in').addEventListener('keypress', e => {
     if (e.key === 'Enter') odChat();
@@ -1790,6 +1806,116 @@ function nfcAssigned(objId) { return NFC_TAGS.some(t => t.objectId === objId && 
 // ═══════════════════════════════════════════════════════════════════
 // SEMANTIC SEARCH — live Qdrant + Ollama
 // ═══════════════════════════════════════════════════════════════════
+// ── Conversational Search — the database talks back ─────────────
+let convoHistory = [];
+
+function doConverse() {
+  const q = document.getElementById('curatorSearch').value.trim();
+  if (!q) return;
+  document.getElementById('curatorSearch').value = '';
+
+  const thread = document.getElementById('convoThread');
+  thread.style.display = 'block';
+
+  // Add user message
+  thread.innerHTML += `<div class="convo-msg user">${q}</div>`;
+  thread.innerHTML += `<div class="convo-msg assistant" id="convo-pending"><span class="convo-typing"></span> Searching the collection...</div>`;
+  thread.scrollTop = thread.scrollHeight;
+
+  // Update results label
+  document.getElementById('resultsLabel').textContent = 'Conversing with the collection…';
+
+  // Determine endpoint — use proxy or direct
+  const convoUrl = USE_PROXY
+    ? `${API_BASE}/api/proxy/curator/converse`
+    : 'http://localhost:8787/api/proxy/curator/converse';
+
+  fetch(convoUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: q, history: convoHistory.slice(-8) }),
+  })
+  .then(r => r.json())
+  .then(data => {
+    const pending = document.getElementById('convo-pending');
+    if (!data.ok && data.error) {
+      if (pending) { pending.id = ''; pending.innerHTML = data.error; }
+      return;
+    }
+
+    // Update conversation history
+    convoHistory.push({ role: 'user', content: q });
+    convoHistory.push({ role: 'assistant', content: data.message || '' });
+
+    // Render assistant response
+    let html = data.message || 'No response received.';
+
+    // Render object cards if present
+    if (data.objects && data.objects.length > 0) {
+      html += '<div class="convo-objects">';
+      for (const obj of data.objects) {
+        const colKey = obj.collection === 'archai_met' ? 'met' : obj.collection === 'archai_va' ? 'va' : 'pilot';
+        const objKey = colKey + '_c_' + (obj.registration || Math.random().toString(36).slice(2,8));
+        // Register object for detail view if not already known
+        if (!OBJECTS[objKey]) {
+          OBJECTS[objKey] = {
+            title: obj.title, year: obj.date || '', type: obj.type || '',
+            id: obj.registration, dams: obj.registration, location: '',
+            status: 'exhibited', nodeLinked: false, ai: '', _source: obj.collection,
+            chat: { default: 'I am ' + obj.title + '.' }
+          };
+        }
+        html += `<div class="convo-obj-card" onclick="openObj('${objKey}')">`;
+        if (obj.image) html += `<img src="${obj.image}" loading="lazy" onerror="this.style.display='none'">`;
+        html += `<div class="coc-title">${obj.title}</div>`;
+        html += `<div class="coc-meta">${obj.institution} · ${(obj.score*100).toFixed(0)}%</div>`;
+        html += `</div>`;
+      }
+      html += '</div>';
+
+      // Also update the main results area with the objects
+      document.getElementById('resultsLabel').textContent = data.objects.length + ' objects cited · conversational';
+      renderConvoResults(data.objects);
+    }
+
+    if (pending) { pending.id = ''; pending.innerHTML = html; }
+    thread.scrollTop = thread.scrollHeight;
+  })
+  .catch(e => {
+    const pending = document.getElementById('convo-pending');
+    if (pending) { pending.id = ''; pending.innerHTML = 'Connection failed — falling back to classic search.'; }
+    // Fallback to classic search
+    document.getElementById('curatorSearch').value = q;
+    doSearch();
+  });
+}
+
+function renderConvoResults(objects) {
+  const container = document.getElementById('resultsContainer');
+  container.innerHTML = objects.map(obj => {
+    const colKey = obj.collection === 'archai_met' ? 'met' : obj.collection === 'archai_va' ? 'va' : 'pilot';
+    const label = COLLECTION_LABELS[obj.collection] || COLLECTION_LABELS.archai_pilot;
+    const objKey = colKey + '_c_' + (obj.registration || Math.random().toString(36).slice(2,8));
+    const thumbInner = obj.image
+      ? `<img src="${obj.image}" style="width:100%;height:100%;object-fit:cover" loading="lazy" onerror="this.style.display='none'">`
+      : `<div style="font-size:1rem;opacity:0.15;margin-bottom:3px">▣</div>`;
+    return `<div class="result-card" onclick="openObj('${objKey}')">
+      <div class="thumb"><div class="thumb-live"></div>${thumbInner}</div>
+      <div>
+        <div class="r-title">${obj.title}</div>
+        <div class="r-meta">${obj.type || ''} · ${obj.maker || ''} · ${obj.registration || ''}</div>
+        <div class="r-summary">${obj.date || ''}</div>
+        <div class="tag-row">
+          <span class="tag" style="border-color:${label.border};color:${label.colour}">${label.short}</span>
+        </div>
+      </div>
+      <div>
+        <div class="score"><div class="score-label">Relevance</div>${(obj.score*100).toFixed(0)}%</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
 function doSearch() {
   const q = document.getElementById('curatorSearch').value.trim();
   if (!q) {
