@@ -101,14 +101,14 @@ The constraints field is crucial. By telling the AI what the object doesn't know
 
 ---
 
-## Vox: one page to access them all
+## AUX: one page to access them all
 
-The latest development is **Vox** — a universal access page that works with any entry method:
+The latest development is **AUX** — a universal access page that works with any entry method:
 
-- **NFC tag** on a physical label → opens Vox
-- **QR code** in a print catalogue → opens Vox
-- **Hyperlink** shared on social media → opens Vox
-- **Bluetooth beacon** broadcasting a URL → opens Vox
+- **NFC tag** on a physical label → opens AUX
+- **QR code** in a print catalogue → opens AUX
+- **Hyperlink** shared on social media → opens AUX
+- **Bluetooth beacon** broadcasting a URL → opens AUX
 
 Same page, same experience, any entry point. The object speaks regardless of how you arrived.
 

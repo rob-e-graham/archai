@@ -9,7 +9,7 @@
 
 ## Abstract
 
-This update documents developments to ARCHAI™ since the ISEA2026 Dubai presentation (April 2026). Key advances include: (1) a backend proxy architecture enabling safe public deployment without cloud dependency; (2) an AI-moderated visitor comment system that transforms audience responses into searchable collection records; (3) a unified curator vector collection combining institutional metadata with community knowledge; (4) the Obtext data format for portable, AI-grounded object conversations; (5) trademark protection and MPL-2.0 licensing of the ARCHAI™ toolkit; and (6) the Vox universal access page — a single interface serving NFC, QR, hyperlink, and Bluetooth beacon access patterns.
+This update documents developments to ARCHAI™ since the ISEA2026 Dubai presentation (April 2026). Key advances include: (1) a backend proxy architecture enabling safe public deployment without cloud dependency; (2) an AI-moderated visitor comment system that transforms audience responses into searchable collection records; (3) a unified curator vector collection combining institutional metadata with community knowledge; (4) the Obtext data format for portable, AI-grounded object conversations; (5) trademark protection and MPL-2.0 licensing of the ARCHAI™ toolkit; and (6) the AUX universal access page — a single interface serving NFC, QR, hyperlink, and Bluetooth beacon access patterns.
 
 ---
 
@@ -46,7 +46,7 @@ This maintains the sovereign infrastructure principle — all computation remain
 Visitor responses to museum objects are not ephemeral reactions but potential collection records. ARCHAI™ now captures, screens, and preserves these as structured data attached to the object they reference.
 
 ### Implementation
-1. **Submission** — visitor posts comment via any access point (Vox page, NFC, app)
+1. **Submission** — visitor posts comment via any access point (AUX page, NFC, app)
 2. **AI screening** — Ollama classifies as safe / suspicious / harmful (temperature 0.1 for consistency)
 3. **Routing** — safe comments appear immediately; suspicious/harmful held for curator review
 4. **Curator decision** — human reviews flagged content, approves or removes (AI never has final say)
@@ -114,7 +114,7 @@ Obtext is the *substrate* of prosopopoeia in ARCHAI™. The five-layer hallucina
 
 ---
 
-## 5. Vox — Universal Access Interface
+## 5. AUX — Universal Access Interface
 
 ### Problem
 The previous approach generated ~194 static HTML pages per collection, one per object. This created:
@@ -123,11 +123,11 @@ The previous approach generated ~194 static HTML pages per collection, one per o
 - Inflexibility (access method baked into page design)
 
 ### Solution
-**Vox** is a single HTML page (`vox.html`) that dynamically loads any object from the ARCHAI™ database. Access methods become interchangeable:
+**AUX** is a single HTML page (`aux.html`) that dynamically loads any object from the ARCHAI™ database. Access methods become interchangeable:
 
 | Method | URL Pattern | Use Case |
 |--------|-------------|----------|
-| NFC tag | `fineartmedia.tech/vox.html?id=REG123` | Physical object labels |
+| NFC tag | `fineartmedia.tech/aux.html?id=REG123` | Physical object labels |
 | QR code | Same URL in QR format | Print materials, exhibition graphics |
 | Hyperlink | Direct URL share | Digital comms, social media |
 | Bluetooth beacon | URL broadcast via Eddystone | Proximity detection |
@@ -139,7 +139,7 @@ The previous approach generated ~194 static HTML pages per collection, one per o
 - **Instant sharing** — Web Share API on supported devices, clipboard fallback
 
 ### Naming Rationale
-"Vox" (Latin: voice) — because the page gives voice to objects. It directly references the prosopopoeia concept central to ARCHAI™ without being tied to any specific access technology.
+"AUX" (Latin: voice) — because the page gives voice to objects. It directly references the prosopopoeia concept central to ARCHAI™ without being tied to any specific access technology.
 
 ---
 
@@ -168,13 +168,13 @@ The ARCHAI™ toolkit will be released as fully open-source upon completion of t
 | Embeddings | nomic-embed-text | 768-dim semantic vectors |
 | Backend | Express.js + SQLite | Proxy, comments, curator tools |
 | Frontend | Single HTML file | Zero-dependency UI |
-| Access | Vox (universal page) | NFC/QR/link/beacon entry |
+| Access | AUX (universal page) | NFC/QR/link/beacon entry |
 | Hosting | Mac Studio M2 Max | Sovereign compute (~$3,500 USD) |
 
 ### What's Next
 - Multimodal search (colour picker, image similarity via CLIP, sound)
 - Obtext.md formal specification
-- Cloudflare Tunnel deployment for public Vox access
+- Cloudflare Tunnel deployment for public AUX access
 - Longitudinal study of visitor comment patterns
 - Institution partnership pilots
 
