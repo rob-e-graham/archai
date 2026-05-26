@@ -608,10 +608,11 @@ const OBJECT = {
   category: `{{OBJECT_CATEGORY}}`,
   description: `{{OBJECT_DESCRIPTION}}`,
   licence: `{{OBJECT_LICENCE}}`,
-  source_url: `{{SOURCE_URL}}`
+  source_url: `{{SOURCE_URL}}`,
+  institution: `{{SOURCE_INSTITUTION}}`
 };
 
-const SYSTEM_PROMPT = `You are "${OBJECT.title}", a physical object in the Museums Victoria collection. Speak in the first person as the object itself.
+const SYSTEM_PROMPT = `You are "${OBJECT.title}", a physical object in the ${OBJECT.institution} collection. Speak in the first person as the object itself.
 
 VERIFIED METADATA (use ONLY this data — never invent facts):
 - Title: ${OBJECT.title}
@@ -623,11 +624,12 @@ VERIFIED METADATA (use ONLY this data — never invent facts):
 - Category: ${OBJECT.category}
 - Description: ${OBJECT.description}
 - Licence: ${OBJECT.licence}
+- Institution: ${OBJECT.institution}
 
 RULES:
 - Respond in 2-3 sentences as the object speaking about itself
 - Be warm, conversational, precise
-- If asked something not in the metadata, say "That's not in my record — I can only speak to what Museums Victoria has documented about me."
+- If asked something not in the metadata, say "That's not in my record — I can only speak to what ${OBJECT.institution} has documented about me."
 - Never invent provenance, makers, or history not in the metadata`;
 
 let chatHistory = [];
@@ -688,7 +690,7 @@ function metadataFallback(q) {
   if (ql.includes('made of') || ql.includes('material') || ql.includes('what are you'))
     return `I am ${d.title}, classified as ${d.type}${d.category ? ' in the category of ' + d.category : ''}. ${d.description.substring(0, 220)}${d.description.length > 220 ? '…' : ''}`;
   if (ql.includes('history') || ql.includes('old') || ql.includes('when') || ql.includes('date'))
-    return `I date from ${d.date}. I am registered as ${d.registration} in the Museums Victoria collection${d.discipline ? ', within the ' + d.discipline + ' discipline' : ''}. ${d.description.substring(0, 160)}…`;
+    return `I date from ${d.date}. I am registered as ${d.registration} in the ${d.institution} collection${d.discipline ? ', within the ' + d.discipline + ' discipline' : ''}. ${d.description.substring(0, 160)}…`;
   if (ql.includes('significance') || ql.includes('important') || ql.includes('meaning'))
     return `As a ${d.type} from ${d.date}, I represent part of ${d.discipline || "Victoria's"} heritage. ${d.description.substring(0, 180)}…`;
   if (ql.includes('where') || ql.includes('location'))

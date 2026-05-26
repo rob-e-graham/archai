@@ -510,7 +510,7 @@ body::after {
 <!-- HEADER -->
 <div class="v-header">
   <div class="v-logo">ARC<span>H</span>AI</div>
-  <div class="v-tag">NFC012</div>
+  <div class="v-tag">AUX.IO 012</div>
 </div>
 
 <!-- HERO IMAGE -->
@@ -626,6 +626,10 @@ This forms a small, but signficant, collection relating to the first rice grown 
 // Find it: System Settings → Network → Wi-Fi → IP Address
 // Example: 'http://192.168.1.100:11434'
 const OLLAMA_HOST = 'http://100.109.26.39:11434';
+const PROXY_CANDIDATES = ['https://archai-api.fineartmedia.tech', 'http://100.109.26.39:8787', 'http://localhost:8787'];
+let PROXY_BASE = null;
+async function findProxy(){for(const u of PROXY_CANDIDATES){try{const r=await fetch(u+'/api/health',{signal:AbortSignal.timeout(3000)});if(r.ok){PROXY_BASE=u;return}}catch{}}}
+findProxy();
 const CHAT_MODEL = 'llama3';
 
 // ── BAKED METADATA (injected at generation time) ────────────────
@@ -641,10 +645,11 @@ const OBJECT = {
 
 This forms a small, but signficant, collection relating to the first rice grown in Australia by Jo Takasuka. This collection includes two postcards and rice samples.`,
   licence: `CC BY`,
-  source_url: `https://collections.museumsvictoria.com.au/items/MM 68901`
+  source_url: `https://collections.museumsvictoria.com.au/items/MM 68901`,
+  institution: `Museums Victoria`
 };
 
-const SYSTEM_PROMPT = `You are "${OBJECT.title}", a physical object in the Museums Victoria collection. Speak in the first person as the object itself.
+const SYSTEM_PROMPT = `You are "${OBJECT.title}", a physical object in the ${OBJECT.institution} collection. Speak in the first person as the object itself.
 
 VERIFIED METADATA (use ONLY this data — never invent facts):
 - Title: ${OBJECT.title}
@@ -656,11 +661,12 @@ VERIFIED METADATA (use ONLY this data — never invent facts):
 - Category: ${OBJECT.category}
 - Description: ${OBJECT.description}
 - Licence: ${OBJECT.licence}
+- Institution: ${OBJECT.institution}
 
 RULES:
 - Respond in 2-3 sentences as the object speaking about itself
 - Be warm, conversational, precise
-- If asked something not in the metadata, say "That's not in my record — I can only speak to what Museums Victoria has documented about me."
+- If asked something not in the metadata, say "That's not in my record — I can only speak to what ${OBJECT.institution} has documented about me."
 - Never invent provenance, makers, or history not in the metadata`;
 
 let chatHistory = [];
@@ -679,10 +685,10 @@ function askObject(presetQ) {
 
   chatHistory.push({ role: 'user', content: q });
 
-  fetch(`${OLLAMA_HOST}/api/chat`, {
+  fetch(PROXY_BASE ? `${PROXY_BASE}/api/proxy/chat` : `${OLLAMA_HOST}/api/chat`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
+    body: JSON.stringify(PROXY_BASE ? { systemPrompt: SYSTEM_PROMPT, userPrompt: chatHistory[chatHistory.length-1].content, history: chatHistory.slice(0,-1) } : {
       model: CHAT_MODEL,
       stream: false,
       messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory]
@@ -709,7 +715,7 @@ function metadataFallback(q) {
   if (ql.includes('made of') || ql.includes('material') || ql.includes('what are you'))
     return `I am ${d.title}, classified as ${d.type}${d.category ? ' in the category of ' + d.category : ''}. ${d.description.substring(0, 220)}${d.description.length > 220 ? '…' : ''}`;
   if (ql.includes('history') || ql.includes('old') || ql.includes('when') || ql.includes('date'))
-    return `I date from ${d.date}. I am registered as ${d.registration} in the Museums Victoria collection${d.discipline ? ', within the ' + d.discipline + ' discipline' : ''}. ${d.description.substring(0, 160)}…`;
+    return `I date from ${d.date}. I am registered as ${d.registration} in the ${d.institution} collection${d.discipline ? ', within the ' + d.discipline + ' discipline' : ''}. ${d.description.substring(0, 160)}…`;
   if (ql.includes('significance') || ql.includes('important') || ql.includes('meaning'))
     return `As a ${d.type} from ${d.date}, I represent part of ${d.discipline || "Victoria's"} heritage. ${d.description.substring(0, 180)}…`;
   if (ql.includes('where') || ql.includes('location'))
@@ -840,5 +846,7 @@ function escHTML(s) {
 // Init comments on load
 renderComments();
 </script>
+<!-- img-fallback-script -->
+<script>document.querySelectorAll("img").forEach(function(i){i.addEventListener("error",function(){this.style.display="none";var d=document.createElement("div");d.style.cssText="background:linear-gradient(135deg,#1a1a2e,#16213e);display:flex;align-items:center;justify-content:center;width:100%;min-height:180px;border-radius:4px;color:#555;font-family:monospace;font-size:10px;padding:1rem";d.textContent="Image temporarily unavailable";this.parentElement.insertBefore(d,this)})});</script>
 </body>
 </html>

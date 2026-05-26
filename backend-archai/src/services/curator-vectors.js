@@ -63,8 +63,7 @@ function buildCuratorText(payload, comments) {
     }
   }
 
-  return parts.join('
-');
+  return parts.join('\n');
 }
 
 export async function buildCuratorCollection({ onProgress } = {}) {

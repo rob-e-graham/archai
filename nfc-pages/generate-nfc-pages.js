@@ -27,11 +27,18 @@ const getArg = (name, fallback) => {
 };
 
 const QDRANT_URL = getArg('qdrant', 'http://localhost:6333');
-const ALL_COLLECTIONS = ['archai_pilot', 'archai_met', 'archai_va'];
+const ALL_COLLECTIONS = [
+  'archai_pilot', 'archai_met', 'archai_va',
+  'archai_aic', 'archai_cma', 'archai_rijks', 'archai_europeana'
+];
 const COLLECTION_LABELS = {
   archai_pilot: 'Museums Victoria',
   archai_met: 'The Metropolitan Museum of Art',
-  archai_va: 'Victoria and Albert Museum, London'
+  archai_va: 'Victoria and Albert Museum, London',
+  archai_aic: 'Art Institute of Chicago',
+  archai_cma: 'Cleveland Museum of Art',
+  archai_rijks: 'Rijksmuseum, Amsterdam',
+  archai_europeana: 'Europeana'
 };
 const OLLAMA_LAN_HOST = getArg('host', 'http://localhost:11434');
 const BACKEND_PROXY = getArg('proxy', '');
@@ -63,9 +70,10 @@ function truncate(s, len = 300) {
 
 // ── MAIN ────────────────────────────────────────────────────────
 async function main() {
-  console.log('\n  ╔══════════════════════════════════════════╗');
-  console.log('  ║   ARCHAI — NFC Page Generator            ║');
-  console.log('  ╚══════════════════════════════════════════╝\n');
+  console.log('\n  ╔══════════════════════════════════════════════╗');
+  console.log('  ║   ARCHAI — AUX.IO Page Generator             ║');
+  console.log('  ║   (NFC / QR / Beacon / Hyperlink delivery)   ║');
+  console.log('  ╚══════════════════════════════════════════════╝\n');
 
   // Check template exists
   if (!fs.existsSync(TEMPLATE_PATH)) {
@@ -172,7 +180,8 @@ async function main() {
   const allObjects = allPoints.map((pt, i) => ({
     index: i,
     payload: pt.payload,
-    nfcCode: 'NFC' + String(i + 1).padStart(3, '0'),
+    nfcCode: 'NFC' + String(i + 1).padStart(3, '0'), // filename stays NFC for URL compat
+    auxLabel: 'AUX.IO ' + String(i + 1).padStart(3, '0'), // display label
     sourceLabel: pt._sourceLabel || 'Collection',
     sourceCollection: pt._sourceCollection || 'archai_pilot'
   }));
@@ -266,7 +275,7 @@ async function main() {
     let html = template
       .replace(/\{\{OLLAMA_HOST\}\}/g, OLLAMA_LAN_HOST)
       .replace(/\{\{BACKEND_PROXY\}\}/g, BACKEND_PROXY)
-      .replace(/\{\{NFC_CODE\}\}/g, escHtml(nfcCode))
+      .replace(/\{\{NFC_CODE\}\}/g, escHtml(obj.auxLabel || nfcCode))
       .replace(/\{\{OBJECT_TITLE\}\}/g, escHtml(title))
       .replace(/\{\{OBJECT_SUB\}\}/g, escHtml(subLine))
       .replace(/\{\{OBJECT_TYPE\}\}/g, esc(type))
