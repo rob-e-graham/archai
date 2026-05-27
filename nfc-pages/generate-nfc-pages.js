@@ -199,6 +199,15 @@ async function main() {
     const discipline = p.discipline || '';
     const category = p.category || '';
     const description = p.description || 'No description recorded.';
+    const medium = p.medium || '';
+    const artist = p.artist || '';
+    const culture = p.culture || '';
+    const dimensions = p.dimensions || '';
+    const wallDesc = p.wall_description || '';
+    const funFact = p.fun_fact || '';
+    const didYouKnow = p.did_you_know || '';
+    const provenance = p.provenance || '';
+    const tombstone = p.tombstone || '';
     const licence = p.licence || 'Open Access';
     const sourceUrl = p.source_url || '#';
     const imgMedium = p.media_medium || p.media_thumbnail || '';
@@ -231,9 +240,13 @@ async function main() {
     // Metadata rows
     const metaFields = [
       ['Registration', reg],
+      ['Artist / Maker', artist],
+      ['Material', medium],
+      ['Culture', culture],
       ['Discipline', discipline],
       ['Category', category],
       ['Date / Period', date],
+      ['Dimensions', dimensions],
       ['Location', location],
       ['Object Type', type],
       ['Licence', licence],
@@ -285,6 +298,15 @@ async function main() {
       .replace(/\{\{OBJECT_DISCIPLINE\}\}/g, esc(discipline))
       .replace(/\{\{OBJECT_CATEGORY\}\}/g, esc(category))
       .replace(/\{\{OBJECT_DESCRIPTION\}\}/g, esc(truncate(description, 600)))
+      .replace(/\{\{OBJECT_MEDIUM\}\}/g, esc(medium))
+      .replace(/\{\{OBJECT_ARTIST\}\}/g, esc(artist))
+      .replace(/\{\{OBJECT_CULTURE\}\}/g, esc(culture))
+      .replace(/\{\{OBJECT_DIMENSIONS\}\}/g, esc(dimensions))
+      .replace(/\{\{OBJECT_WALL_DESC\}\}/g, esc(truncate(wallDesc, 500)))
+      .replace(/\{\{OBJECT_FUN_FACT\}\}/g, esc(funFact))
+      .replace(/\{\{OBJECT_DID_YOU_KNOW\}\}/g, esc(didYouKnow))
+      .replace(/\{\{OBJECT_PROVENANCE\}\}/g, esc(truncate(provenance, 300)))
+      .replace(/\{\{OBJECT_TOMBSTONE\}\}/g, esc(tombstone))
       .replace(/\{\{OBJECT_LICENCE\}\}/g, esc(licence))
       .replace(/\{\{OBJECT_STORY\}\}/g, story)
       .replace(/\{\{SOURCE_URL\}\}/g, escHtml(sourceUrl))
