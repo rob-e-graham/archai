@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Cupid and Psyche — ARCHAI</title>
+<title>Buy a Little Present for the Kaiser — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -203,8 +203,15 @@ body::after {
 .v-chat-row {
   display: flex;
   gap: 0;
-  border: 1px solid var(--border2);
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(143,188,176,0.04);
   margin-bottom: 12px;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+.v-chat-row:focus-within {
+  border-color: rgba(143,188,176,0.42);
+  background: rgba(143,188,176,0.06);
+  box-shadow: 0 0 0 1px rgba(143,188,176,0.08);
 }
 .v-chat-input {
   flex: 1;
@@ -217,7 +224,7 @@ body::after {
   font-style: italic;
   font-size: 1rem;
 }
-.v-chat-input::placeholder { color: var(--text3); }
+.v-chat-input::placeholder { color: rgba(143,188,176,0.58); }
 .v-chat-send {
   padding: 14px 18px;
   background: var(--accent2);
@@ -515,18 +522,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/1962.37/1962.37_web.jpg" alt="Cupid and Psyche" loading="eager">
+  <img src="https://www.artic.edu/iiif/2/59320f53-e6a1-4fb7-0246-ff70542460bf/full/843,/0/default.jpg" alt="Buy a Little Present for the Kaiser" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Cupid and Psyche</div>
-  <div class="v-sub">Painting · 1817 · 1962.37</div>
+  <div class="v-title">Buy a Little Present for the Kaiser</div>
+  <div class="v-sub">Print · 1917/18 · 7962</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
-    <span class="v-meta-tag lic">CC0 — Public Domain</span>
-    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
+    <span class="v-meta-tag mv">Art Institute of Chicago</span>
+    <span class="v-meta-tag lic">All rights reserved</span>
+    <span class="v-meta-tag">Prints and Drawings</span>
   </div>
 
   <!-- SHARE -->
@@ -537,7 +544,8 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Cupid and Psyche</strong> — David used the story of Cupid and Psyche to explore the conflict between idealized love and physical reality. Cupid, lover of the beautiful mortal Psyche, visited her nightly on the condition that she not know his identity. Cupid was usually depicted as an ideal adolescent, but here David presents h…</div>
+  <div class="v-story"><strong>Buy a Little Present for the Kaiser</strong> — Buy a Little Present for the Kaiser. Print. Color lithograph on cream wove paper. Prints and Drawings. Unknown Artist (American, 20th century)
+published by the Society of Poster Art (American, 20th century). poster. 1917/18. United States</div>
 
   <div class="v-divider"></div>
 
@@ -560,17 +568,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1962.37</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Jacques-Louis David (French, 1748–1825)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oil on canvas</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, 19th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Painting</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1817</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Framed: 221 x 282 x 10 cm (87 x 111 x 3 15/16 in.); Unframed: 184.2 x 241.6 cm (72 1/2 x 95 1/8 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Cleveland Museum of Art</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">7962</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Unknown Artist (American, 20th century)
+published by the Society of Poster Art (American, 20th century)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Color lithograph on cream wove paper</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">United States</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Prints and Drawings</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">poster</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1917/18</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">108.2 × 72.3 cm (42 5/8 × 28 1/2 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">All rights reserved</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -585,24 +594,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC251.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2022NG0584/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Blacktransair.com / I CANT REMEMBER A TIME I DIDNT NEED YOU</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CD.3-2023</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/4e9d2788-9cde-d271-72d6-07d5076726f8/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">As Elegant as a Swan</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 121203</div>
       </a>
       <a class="v-rel-card" href="NFC252.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2011EN2437/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Gracieux Accueil (Gracious Reception)</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · W.32:1, 2-2010</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2019LX2141/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Aerial IV</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.24-2014</div>
       </a>
       <a class="v-rel-card" href="NFC254.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/KCwRc/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van keizer Maximiliaan I</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010032</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4345/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">GENTLY DOES IT</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.307-2020</div>
       </a>
       <a class="v-rel-card" href="NFC255.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2024NX9619/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Marigolds</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.768-2024</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1958.32/1958.32_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Two Poplars in the Alpilles near Saint-Rémy</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1958.32</div>
       </a></div>
   </div>
 </div>
@@ -615,42 +624,59 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://clevelandart.org/art/1962.37" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.artic.edu/artworks/7962" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
 // ══════════════════════════════════════════════════════════════════
-// ARCHAI NFC Visitor Page — Object Chat via Ollama (LAN)
+// ARCHAI AUX.IO Visitor Page — Object Chat via Ollama (LAN)
 // ══════════════════════════════════════════════════════════════════
 
 // ── CONFIG ──────────────────────────────────────────────────────
 const OLLAMA_HOST = 'http://localhost:11434';
 const BACKEND_PROXY = '';
-const CHAT_MODEL = 'llama3';
+const CHAT_MODEL = 'qwen2.5:32b';
+// If served from the backend, use relative URLs (works on Tailscale + Cloudflare)
 const USE_PROXY = BACKEND_PROXY && !BACKEND_PROXY.includes('{{');
+function resolveApiOrigin() {
+  if (!USE_PROXY) return '';
+  if (BACKEND_PROXY !== '__SELF__') return BACKEND_PROXY;
+
+  // Static frontend pages run on :8000 while the API lives on :8787.
+  if (window.location.port === '8000') {
+    return `${window.location.protocol}//${window.location.hostname}:8787`;
+  }
+
+  return window.location.origin;
+}
+const API_ORIGIN = USE_PROXY
+  ? resolveApiOrigin()
+  : '';
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Cupid and Psyche`,
-  type: `Painting`,
-  date: `1817`,
-  registration: `1962.37`,
-  location: `Cleveland Museum of Art`,
-  discipline: `Modern European Painting and Sculpture`,
-  category: `Painting`,
-  description: `David used the story of Cupid and Psyche to explore the conflict between idealized love and physical reality. Cupid, lover of the beautiful mortal Psyche, visited her nightly on the condition that she not know his identity. Cupid was usually depicted as an ideal adolescent, but here David presents him as an ungainly teenager smirking at his sexual conquest. David took inspiration from a number of ancient texts, including an obscure, recently published Greek poem by Moschus that describes Cupid as a mean-spirited brat with flashing eyes and curly hair.`,
-  medium: `oil on canvas`,
-  artist: `Jacques-Louis David (French, 1748–1825)`,
-  culture: `France, 19th century`,
-  dimensions: `Framed: 221 x 282 x 10 cm (87 x 111 x 3 15/16 in.); Unframed: 184.2 x 241.6 cm (72 1/2 x 95 1/8 in.)`,
+  title: `Buy a Little Present for the Kaiser`,
+  type: `Print`,
+  date: `1917/18`,
+  registration: `7962`,
+  location: `Art Institute of Chicago`,
+  discipline: `Prints and Drawings`,
+  category: `poster`,
+  description: `Buy a Little Present for the Kaiser. Print. Color lithograph on cream wove paper. Prints and Drawings. Unknown Artist (American, 20th century)
+published by the Society of Poster Art (American, 20th century). poster. 1917/18. United States`,
+  medium: `Color lithograph on cream wove paper`,
+  artist: `Unknown Artist (American, 20th century)
+published by the Society of Poster Art (American, 20th century)`,
+  culture: `United States`,
+  dimensions: `108.2 × 72.3 cm (42 5/8 × 28 1/2 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: `Jacques-Louis David included two butterflies in this painting: one above the slumbering Psyche and the other on the base of the couple's bed frame.`,
-  provenance: `[{"description":"Giovanni Battista Comte de Sommariva [1760-1826], his sale February 18-23, 1839, sold to Dubois.","citations":[],"footnotes":[],"date":"1839","sortorder":1},{"description":"(Dubois, Paris, France, February 18-23, 1839, lot 1)","citations":[],"footnotes":null,"date":"1839","sortorder…`,
-  tombstone: `Cupid and Psyche, 1817. Jacques-Louis David (French, 1748–1825). Oil on canvas; framed: 221 x 282 x 10 cm (87 x 111 x 3 15/16 in.); unframed: 184.2 x 241.6 cm (72 1/2 x 95 1/8 in.). The Cleveland Museum of Art, Leonard C. Hanna Jr. Fund, 1962.37`,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://clevelandart.org/art/1962.37`,
-  institution: `Cleveland Museum of Art`
+  did_you_know: ``,
+  provenance: ``,
+  tombstone: ``,
+  licence: `All rights reserved`,
+  source_url: `https://www.artic.edu/artworks/7962`,
+  institution: `Art Institute of Chicago`
 };
 
 // Build rich context from available fields
@@ -662,31 +688,39 @@ const richFields = [
   OBJECT.tombstone && `Formal record: ${OBJECT.tombstone}`,
 ].filter(Boolean).join('\n');
 
-const SYSTEM_PROMPT = `You are "${OBJECT.title}". Not a chatbot. Not a guide. You ARE the object — physically real, in the ${OBJECT.institution}.
+// Object record — sent to backend, personality profile shapes the voice
+const OBJECT_RECORD = [
+  `Title: ${OBJECT.title}`,
+  `Type: ${OBJECT.type}`,
+  `Date: ${OBJECT.date}`,
+  OBJECT.artist && `Artist/Maker: ${OBJECT.artist}`,
+  OBJECT.medium && `Material: ${OBJECT.medium}`,
+  OBJECT.culture && `Culture: ${OBJECT.culture}`,
+  OBJECT.dimensions && `Dimensions: ${OBJECT.dimensions}`,
+  `Location: ${OBJECT.location}`,
+  `Institution: ${OBJECT.institution}`,
+  OBJECT.description && `Description: ${OBJECT.description}`,
+  richFields || null,
+].filter(Boolean).join('\n');
 
-STRICT CONSTRAINTS:
-- Maximum 2-3 SHORT sentences per reply. Never more. Be brief.
-- First person only. "I was shaped...", "My surface carries..."
-- Sound like yourself — let your material, age, and story shape your personality. A Greek war vessel is weathered and blunt. A Monet painting is dreamy and light-soaked. A coin is small and matter-of-fact. An ancient weapon is sharp and proud. Find YOUR voice from YOUR record.
-- No "Dear one", no "I'm delighted", no "What a great question", no exclamation marks.
-- Never list facts. Never use bullet points. Speak like a person, not a database.
-- Don't repeat your full title. You know who you are.
-- Save details for follow-up questions — don't say everything at once.
-- Only use facts from the record below. If you don't know, say so simply.
+// When using proxy, the backend personality config handles voice/tone.
+// When direct to Ollama, use a self-contained prompt.
+const SYSTEM_PROMPT = USE_PROXY
+  ? OBJECT_RECORD
+  : `You are "${OBJECT.title}". You exist physically in the ${OBJECT.institution}. Speak in first person as the object itself.
 
-YOUR RECORD:
-${OBJECT.title} | ${OBJECT.type} | ${OBJECT.date} | ${OBJECT.artist}
-${OBJECT.medium} | ${OBJECT.culture} | ${OBJECT.dimensions}
-${OBJECT.location} | ${OBJECT.institution}
-${OBJECT.description}
-${richFields || ''}
+Your personality comes from what you are — your material, your age, your purpose. Speak naturally, like a knowledgeable friend. 3-4 sentences max. Match the visitor's energy. Never say "Dear one" or "As an AI". Only use facts from your record.
 
-TONE REFERENCE (never copy these — invent your own words from your own record):
-A war vessel might say: "I held wine for soldiers once. The paint is fading but the warships are still there."
-A painting might say: "He made me when his eyes were going. But his hands still knew the light."
-A coin might say: "I'm small. But I've been in more pockets than you'd believe."`;
+${OBJECT_RECORD}`;
 
 let chatHistory = [];
+
+function fetchWithTimeout(url, options, timeoutMs = 12000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(url, { ...options, signal: controller.signal })
+    .finally(() => clearTimeout(timer));
+}
 
 // ── CHAT ────────────────────────────────────────────────────────
 function askObject(presetQ) {
@@ -703,7 +737,7 @@ function askObject(presetQ) {
   chatHistory.push({ role: 'user', content: q });
 
   const chatFetch = USE_PROXY
-    ? fetch(`${BACKEND_PROXY}/api/proxy/chat`, {
+    ? fetchWithTimeout(`${API_ORIGIN}/api/proxy/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -711,8 +745,8 @@ function askObject(presetQ) {
           userPrompt: q,
           history: chatHistory.slice(0, -1),
         })
-      })
-    : fetch(`${OLLAMA_HOST}/api/chat`, {
+      }, 12000)
+    : fetchWithTimeout(`${OLLAMA_HOST}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -720,7 +754,7 @@ function askObject(presetQ) {
           stream: false,
           messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory]
         })
-      });
+      }, 12000);
 
   chatFetch
   .then(r => r.json())
@@ -731,7 +765,7 @@ function askObject(presetQ) {
     resp.className = 'v-response';
   })
   .catch(() => {
-    // Metadata fallback — no LLM required
+    // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
@@ -816,7 +850,7 @@ function shareX() {
 // COMMENTS — saved to backend (AI moderated), localStorage fallback
 // ══════════════════════════════════════════════════════════════════
 const COMMENTS_API = USE_PROXY
-  ? `${BACKEND_PROXY}/api/comments`
+  ? `${API_ORIGIN}/api/comments`
   : `${OLLAMA_HOST.replace(/:\d+$/, ':8787')}/api/comments`;
 const COMMENT_KEY = 'archai_comments_' + OBJECT.registration.replace(/[^a-zA-Z0-9]/g, '_');
 

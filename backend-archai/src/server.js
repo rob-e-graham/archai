@@ -3,6 +3,7 @@ import cors from 'cors';
 import morgan from 'morgan';
 import cron from 'node-cron';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { env } from './config/env.js';
 import { apiRouter } from './routes/index.js';
@@ -20,20 +21,41 @@ app.use(morgan('dev'));
 app.use(requestContext);
 
 // ── Serve AUX/NFC pages statically ──────────────────────────────
-app.use('/aux', express.static(path.resolve(__dirname, '../../nfc-pages/v')));
+const auxPagesDir = path.resolve(__dirname, '../../nfc-pages/v');
+app.use('/aux', express.static(auxPagesDir));
 
-// ── Random AUX page redirect (only pages with working images) ──
-const PAGES_WITH_IMAGES = [2,12,13,17,19,20,21,37,38,41,43,44,46,47,51,52,55,56,58,59,60,61,65,66,70,71,73,77,79,80,83,87,88,96,99,102,109,113,116,118,120,123,125,130,132,135,141,149,154,155,158,162,168,170,175,182,184,185,188,194,195,197];
+function getAuxPages() {
+  try {
+    return fs.readdirSync(auxPagesDir)
+      .filter((name) => /^NFC\d+\.html$/i.test(name))
+      .sort((a, b) => {
+        const aNum = parseInt(a.match(/\d+/)?.[0] || '0', 10);
+        const bNum = parseInt(b.match(/\d+/)?.[0] || '0', 10);
+        return aNum - bNum;
+      });
+  } catch {
+    return [];
+  }
+}
+
+// ── Random AUX page redirect ────────────────────────────────────
 
 app.get('/aux/random', (_req, res) => {
-  const n = PAGES_WITH_IMAGES[Math.floor(Math.random() * PAGES_WITH_IMAGES.length)];
-  const page = 'NFC' + String(n).padStart(3, '0') + '.html';
+  const pages = getAuxPages();
+  if (!pages.length) {
+    return res.status(503).json({ ok: false, error: 'No AUX.IO pages available' });
+  }
+  const page = pages[Math.floor(Math.random() * pages.length)];
   res.redirect('/aux/' + page);
 });
 
 // ── Manifest endpoint for frontends ───────────────────────────
 app.get('/api/aux-manifest', (_req, res) => {
-  res.json({ pages: PAGES_WITH_IMAGES, count: PAGES_WITH_IMAGES.length });
+  const pages = getAuxPages();
+  const pageNumbers = pages
+    .map((name) => parseInt(name.match(/\d+/)?.[0] || '0', 10))
+    .filter((n) => Number.isFinite(n) && n > 0);
+  res.json({ pages: pageNumbers, count: pageNumbers.length });
 });
 
 app.get('/', (_req, res) => {

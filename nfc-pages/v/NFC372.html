@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Allegorical Figure Group: The Arts — ARCHAI</title>
+<title>Chicago Landscape #205 — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -203,8 +203,15 @@ body::after {
 .v-chat-row {
   display: flex;
   gap: 0;
-  border: 1px solid var(--border2);
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(143,188,176,0.04);
   margin-bottom: 12px;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+.v-chat-row:focus-within {
+  border-color: rgba(143,188,176,0.42);
+  background: rgba(143,188,176,0.06);
+  box-shadow: 0 0 0 1px rgba(143,188,176,0.08);
 }
 .v-chat-input {
   flex: 1;
@@ -217,7 +224,7 @@ body::after {
   font-style: italic;
   font-size: 1rem;
 }
-.v-chat-input::placeholder { color: var(--text3); }
+.v-chat-input::placeholder { color: rgba(143,188,176,0.58); }
 .v-chat-send {
   padding: 14px 18px;
   background: var(--accent2);
@@ -515,18 +522,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/9fa1d557-5186-fb47-249f-5bde875b5ddc/full/843,/0/default.jpg" alt="Allegorical Figure Group: The Arts" loading="eager">
+  <img src="https://www.artic.edu/iiif/2/79867088-7d38-b14c-eb7d-4390368d19a0/full/843,/0/default.jpg" alt="Chicago Landscape #205" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Allegorical Figure Group: The Arts</div>
-  <div class="v-sub">Ceramics · 18th century · 94629</div>
+  <div class="v-title">Chicago Landscape #205</div>
+  <div class="v-sub">Photograph · 1965 · 100084</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Art Institute of Chicago</span>
-    <span class="v-meta-tag lic">CC0 — Public Domain</span>
-    <span class="v-meta-tag">Applied Arts of Europe</span>
+    <span class="v-meta-tag lic">All rights reserved</span>
+    <span class="v-meta-tag">Photography and Media</span>
   </div>
 
   <!-- SHARE -->
@@ -537,8 +544,8 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Allegorical Figure Group: The Arts</strong> — Allegorical Figure Group: The Arts. Ceramics. Porcelain with polychrome decoration. Applied Arts of Europe. Buen Retiro Porcelain Factory
-Spanish, 1759-1808. sculpture. 18th century. Buen Retiro</div>
+  <div class="v-story"><strong>Chicago Landscape #205</strong> — Chicago Landscape #205. Photograph. Gelatin silver print. Photography and Media. Art Sinsabaugh
+American, 1924–1983. photography. 1965. United States. New Bauhaus (Institute of Design)</div>
 
   <div class="v-divider"></div>
 
@@ -561,18 +568,18 @@ Spanish, 1759-1808. sculpture. 18th century. Buen Retiro</div>
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">94629</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Buen Retiro Porcelain Factory
-Spanish, 1759-1808</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Porcelain with polychrome decoration</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Buen Retiro</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Applied Arts of Europe</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">18th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">50.8 × 33.8 × 30.5 cm (20 × 13 3/8 × 12 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">100084</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Art Sinsabaugh
+American, 1924–1983</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Gelatin silver print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">United States</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography and Media</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">photography</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1965</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Image/paper: 29.5 × 49.5 cm (11 5/8 × 19 1/2 in.); Mount: 38.2 × 55.9 cm (15 1/16 × 22 1/16 in.)</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Ceramics</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">All rights reserved</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -587,24 +594,24 @@ Spanish, 1759-1808</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC370.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/a8c9e611-7425-17cd-3d75-2a82eaabfaa4/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Girl Smoking</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 35121</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1972.49/1972.49_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Bust of a Chinese</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1972.49</div>
       </a>
       <a class="v-rel-card" href="NFC371.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/WsXvt/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Nederlandse 10 cent, 1882</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100266</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1924.259/1924.259_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Geometric Pitcher: Swans</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1924.259</div>
       </a>
       <a class="v-rel-card" href="NFC373.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1970.127/1970.127_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Covered Box</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1970.127</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2017KD4675/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Polar Coordinates</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.2801-2016</div>
       </a>
       <a class="v-rel-card" href="NFC374.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1997.45/1997.45_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Algerian Woman</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1997.45</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/jLtlO/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Overijsselse duit, 1769</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100259</div>
       </a></div>
   </div>
 </div>
@@ -617,43 +624,58 @@ Spanish, 1759-1808</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/94629" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.artic.edu/artworks/100084" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
 // ══════════════════════════════════════════════════════════════════
-// ARCHAI NFC Visitor Page — Object Chat via Ollama (LAN)
+// ARCHAI AUX.IO Visitor Page — Object Chat via Ollama (LAN)
 // ══════════════════════════════════════════════════════════════════
 
 // ── CONFIG ──────────────────────────────────────────────────────
 const OLLAMA_HOST = 'http://localhost:11434';
 const BACKEND_PROXY = '';
-const CHAT_MODEL = 'llama3';
+const CHAT_MODEL = 'qwen2.5:32b';
+// If served from the backend, use relative URLs (works on Tailscale + Cloudflare)
 const USE_PROXY = BACKEND_PROXY && !BACKEND_PROXY.includes('{{');
+function resolveApiOrigin() {
+  if (!USE_PROXY) return '';
+  if (BACKEND_PROXY !== '__SELF__') return BACKEND_PROXY;
+
+  // Static frontend pages run on :8000 while the API lives on :8787.
+  if (window.location.port === '8000') {
+    return `${window.location.protocol}//${window.location.hostname}:8787`;
+  }
+
+  return window.location.origin;
+}
+const API_ORIGIN = USE_PROXY
+  ? resolveApiOrigin()
+  : '';
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Allegorical Figure Group: The Arts`,
-  type: `Ceramics`,
-  date: `18th century`,
-  registration: `94629`,
+  title: `Chicago Landscape #205`,
+  type: `Photograph`,
+  date: `1965`,
+  registration: `100084`,
   location: `Art Institute of Chicago`,
-  discipline: `Applied Arts of Europe`,
-  category: `sculpture`,
-  description: `Allegorical Figure Group: The Arts. Ceramics. Porcelain with polychrome decoration. Applied Arts of Europe. Buen Retiro Porcelain Factory
-Spanish, 1759-1808. sculpture. 18th century. Buen Retiro`,
-  medium: `Porcelain with polychrome decoration`,
-  artist: `Buen Retiro Porcelain Factory
-Spanish, 1759-1808`,
-  culture: `Buen Retiro`,
-  dimensions: `50.8 × 33.8 × 30.5 cm (20 × 13 3/8 × 12 in.)`,
+  discipline: `Photography and Media`,
+  category: `photography`,
+  description: `Chicago Landscape #205. Photograph. Gelatin silver print. Photography and Media. Art Sinsabaugh
+American, 1924–1983. photography. 1965. United States. New Bauhaus (Institute of Design)`,
+  medium: `Gelatin silver print`,
+  artist: `Art Sinsabaugh
+American, 1924–1983`,
+  culture: `United States`,
+  dimensions: `Image/paper: 29.5 × 49.5 cm (11 5/8 × 19 1/2 in.); Mount: 38.2 × 55.9 cm (15 1/16 × 22 1/16 in.)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://www.artic.edu/artworks/94629`,
+  licence: `All rights reserved`,
+  source_url: `https://www.artic.edu/artworks/100084`,
   institution: `Art Institute of Chicago`
 };
 
@@ -666,31 +688,39 @@ const richFields = [
   OBJECT.tombstone && `Formal record: ${OBJECT.tombstone}`,
 ].filter(Boolean).join('\n');
 
-const SYSTEM_PROMPT = `You are "${OBJECT.title}". Not a chatbot. Not a guide. You ARE the object — physically real, in the ${OBJECT.institution}.
+// Object record — sent to backend, personality profile shapes the voice
+const OBJECT_RECORD = [
+  `Title: ${OBJECT.title}`,
+  `Type: ${OBJECT.type}`,
+  `Date: ${OBJECT.date}`,
+  OBJECT.artist && `Artist/Maker: ${OBJECT.artist}`,
+  OBJECT.medium && `Material: ${OBJECT.medium}`,
+  OBJECT.culture && `Culture: ${OBJECT.culture}`,
+  OBJECT.dimensions && `Dimensions: ${OBJECT.dimensions}`,
+  `Location: ${OBJECT.location}`,
+  `Institution: ${OBJECT.institution}`,
+  OBJECT.description && `Description: ${OBJECT.description}`,
+  richFields || null,
+].filter(Boolean).join('\n');
 
-STRICT CONSTRAINTS:
-- Maximum 2-3 SHORT sentences per reply. Never more. Be brief.
-- First person only. "I was shaped...", "My surface carries..."
-- Sound like yourself — let your material, age, and story shape your personality. A Greek war vessel is weathered and blunt. A Monet painting is dreamy and light-soaked. A coin is small and matter-of-fact. An ancient weapon is sharp and proud. Find YOUR voice from YOUR record.
-- No "Dear one", no "I'm delighted", no "What a great question", no exclamation marks.
-- Never list facts. Never use bullet points. Speak like a person, not a database.
-- Don't repeat your full title. You know who you are.
-- Save details for follow-up questions — don't say everything at once.
-- Only use facts from the record below. If you don't know, say so simply.
+// When using proxy, the backend personality config handles voice/tone.
+// When direct to Ollama, use a self-contained prompt.
+const SYSTEM_PROMPT = USE_PROXY
+  ? OBJECT_RECORD
+  : `You are "${OBJECT.title}". You exist physically in the ${OBJECT.institution}. Speak in first person as the object itself.
 
-YOUR RECORD:
-${OBJECT.title} | ${OBJECT.type} | ${OBJECT.date} | ${OBJECT.artist}
-${OBJECT.medium} | ${OBJECT.culture} | ${OBJECT.dimensions}
-${OBJECT.location} | ${OBJECT.institution}
-${OBJECT.description}
-${richFields || ''}
+Your personality comes from what you are — your material, your age, your purpose. Speak naturally, like a knowledgeable friend. 3-4 sentences max. Match the visitor's energy. Never say "Dear one" or "As an AI". Only use facts from your record.
 
-TONE REFERENCE (never copy these — invent your own words from your own record):
-A war vessel might say: "I held wine for soldiers once. The paint is fading but the warships are still there."
-A painting might say: "He made me when his eyes were going. But his hands still knew the light."
-A coin might say: "I'm small. But I've been in more pockets than you'd believe."`;
+${OBJECT_RECORD}`;
 
 let chatHistory = [];
+
+function fetchWithTimeout(url, options, timeoutMs = 12000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(url, { ...options, signal: controller.signal })
+    .finally(() => clearTimeout(timer));
+}
 
 // ── CHAT ────────────────────────────────────────────────────────
 function askObject(presetQ) {
@@ -707,7 +737,7 @@ function askObject(presetQ) {
   chatHistory.push({ role: 'user', content: q });
 
   const chatFetch = USE_PROXY
-    ? fetch(`${BACKEND_PROXY}/api/proxy/chat`, {
+    ? fetchWithTimeout(`${API_ORIGIN}/api/proxy/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -715,8 +745,8 @@ function askObject(presetQ) {
           userPrompt: q,
           history: chatHistory.slice(0, -1),
         })
-      })
-    : fetch(`${OLLAMA_HOST}/api/chat`, {
+      }, 12000)
+    : fetchWithTimeout(`${OLLAMA_HOST}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -724,7 +754,7 @@ function askObject(presetQ) {
           stream: false,
           messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory]
         })
-      });
+      }, 12000);
 
   chatFetch
   .then(r => r.json())
@@ -735,7 +765,7 @@ function askObject(presetQ) {
     resp.className = 'v-response';
   })
   .catch(() => {
-    // Metadata fallback — no LLM required
+    // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
@@ -820,7 +850,7 @@ function shareX() {
 // COMMENTS — saved to backend (AI moderated), localStorage fallback
 // ══════════════════════════════════════════════════════════════════
 const COMMENTS_API = USE_PROXY
-  ? `${BACKEND_PROXY}/api/comments`
+  ? `${API_ORIGIN}/api/comments`
   : `${OLLAMA_HOST.replace(/:\d+$/, ':8787')}/api/comments`;
 const COMMENT_KEY = 'archai_comments_' + OBJECT.registration.replace(/[^a-zA-Z0-9]/g, '_');
 

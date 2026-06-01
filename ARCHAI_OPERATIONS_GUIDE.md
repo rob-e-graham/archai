@@ -27,7 +27,7 @@ This single command starts all services and runs health checks. It will report w
 
 | Service | Port | What it does |
 |---------|------|-------------|
-| **Frontend** | 8000 | Static HTTP server for ARCHAI_v10_8.html and NFC pages |
+| **Frontend** | 8000 | Static HTTP server for ARCHAI_v10_8.html and local app assets |
 | **Backend API** | 8787 | Express server — comments, proxy, search, admin |
 | **Qdrant** | 6333 | Vector database — stores object embeddings |
 | **Ollama** | 11434 | LLM inference — chat (llama3) and embeddings (nomic-embed-text) |
@@ -177,7 +177,7 @@ From iPad/iPhone on the same Tailnet:
 | What | URL |
 |------|-----|
 | Main app | `http://100.109.26.39:8000/ARCHAI_v10_8.html` |
-| NFC visitor pages | `http://100.109.26.39:8000/nfc-pages/v/index.html` |
+| AUX.IO visitor pages | `http://100.109.26.39:8787/aux/index.html` |
 | Backend API | `http://100.109.26.39:8787/api/health` |
 
 **Troubleshooting:** If the phone forces HTTPS, type `http://` explicitly. If AI chat gives generic responses, check Ollama is running with `OLLAMA_HOST=0.0.0.0:11434`.
@@ -196,9 +196,12 @@ Objects live in **Qdrant vector collections**. Each object is stored as a point 
 
 | Collection | Source | Objects | API |
 |-----------|--------|---------|-----|
-| `archai_pilot` | Museums Victoria | ~194 | [collections.museumsvictoria.com.au/api](https://collections.museumsvictoria.com.au/api) |
-| `archai_met` | The Metropolitan Museum of Art, NYC | ~100 | [metmuseum.github.io](https://metmuseum.github.io/) |
-| `archai_va` | Victoria and Albert Museum, London | ~80 | [developers.vam.ac.uk](https://developers.vam.ac.uk/) |
+| `archai_pilot` | Museums Victoria | ~80 | [collections.museumsvictoria.com.au/api](https://collections.museumsvictoria.com.au/api) |
+| `archai_met` | The Metropolitan Museum of Art, NYC | ~135 | [metmuseum.github.io](https://metmuseum.github.io/) |
+| `archai_va` | Victoria and Albert Museum, London | ~150 | [developers.vam.ac.uk](https://developers.vam.ac.uk/) |
+| `archai_aic` | Art Institute of Chicago | ~150 | [api.artic.edu](https://api.artic.edu/) |
+| `archai_cma` | Cleveland Museum of Art | ~150 | [openaccess-api.clevelandart.org](https://openaccess-api.clevelandart.org/) |
+| `archai_rijks` | Rijksmuseum | ~150 | [rijksmuseum.github.io](https://data.rijksmuseum.nl/) |
 | `archai_curator` | All of the above + comments | Built on demand | Internal |
 
 ### Harvesting from existing APIs
@@ -220,7 +223,7 @@ node va-harvester.js               # harvest default set (~150 objects)
 node va-harvester.js --limit 100   # harvest fewer
 ```
 
-Both harvesters:
+All harvesters follow the same pattern:
 1. Query the museum's public API with search terms (electronic art, digital, technology, etc.)
 2. Fetch full object records with metadata and image URLs
 3. Embed metadata text via Ollama (nomic-embed-text)
@@ -266,7 +269,7 @@ const ALLOWED_COLLECTIONS = ['archai_pilot', 'archai_met', 'archai_va', 'archai_
 node your-harvester.js
 ```
 
-6. **Regenerate NFC pages** (if the new objects should have visitor pages):
+6. **Regenerate AUX.IO pages** (if the new objects should have visitor pages):
 ```bash
 cd nfc-pages
 node generate-nfc-pages.js --host http://100.109.26.39:11434
@@ -311,7 +314,7 @@ After adding objects or accumulating visitor comments, rebuild the enriched cura
 curl -X POST http://localhost:8787/api/proxy/curator/build
 ```
 
-This re-embeds all objects from all three source collections with their full metadata plus any visitor comments, creating `archai_curator` for deep semantic search.
+This re-embeds all objects from all live source collections with their full metadata plus any visitor comments, creating `archai_curator` for deep semantic search.
 
 ```bash
 # Search across everything (objects + comments)
@@ -322,7 +325,7 @@ curl -X POST http://localhost:8787/api/proxy/curator/search \
 
 ---
 
-## NFC Visitor Pages
+## AUX.IO Visitor Pages
 
 ### Generating pages
 
@@ -345,9 +348,9 @@ This reads all objects from Qdrant and generates one standalone HTML page per ob
 - Related objects
 - Comment submission (AI moderated)
 
-### NFC page index
+### AUX.IO page index
 
-Browse all generated pages: `http://localhost:8000/nfc-pages/v/index.html`
+Browse all generated pages: `http://localhost:8787/aux/index.html`
 
 ---
 
@@ -414,7 +417,7 @@ Key settings in `backend-archai/.env`:
 | `QDRANT_URL` | http://localhost:6333 | Qdrant vector database |
 | `OLLAMA_BASE_URL` | http://localhost:11434 | Ollama LLM server |
 | `OLLAMA_EMBED_MODEL` | nomic-embed-text | Model for vector embeddings |
-| `OLLAMA_CHAT_MODEL` | llama3.2 | Model for AI chat |
+| `OLLAMA_CHAT_MODEL` | llama3 | Model for AI chat |
 | `ARCHAI_DATA_DIR` | ./data | SQLite database location (point to NAS later) |
 | `RESTRICTED_FLAGS` | secret-sacred,... | Cultural safety flags |
 
@@ -447,7 +450,7 @@ ARCHAI APP/
 │   └── data/
 │       └── archai.db          # SQLite database (created at runtime)
 └── nfc-pages/
-    ├── generate-nfc-pages.js  # NFC page generator
+    ├── generate-nfc-pages.js  # AUX.IO page generator
     ├── nfc-visitor-template.html
     └── v/                     # Generated visitor pages (194+)
 ```

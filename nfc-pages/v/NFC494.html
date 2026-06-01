@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Art—Nature — ARCHAI</title>
+<title>La Cervara, the Roman Campagna — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -203,8 +203,15 @@ body::after {
 .v-chat-row {
   display: flex;
   gap: 0;
-  border: 1px solid var(--border2);
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(143,188,176,0.04);
   margin-bottom: 12px;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+.v-chat-row:focus-within {
+  border-color: rgba(143,188,176,0.42);
+  background: rgba(143,188,176,0.06);
+  box-shadow: 0 0 0 1px rgba(143,188,176,0.08);
 }
 .v-chat-input {
   flex: 1;
@@ -217,7 +224,7 @@ body::after {
   font-style: italic;
   font-size: 1rem;
 }
-.v-chat-input::placeholder { color: var(--text3); }
+.v-chat-input::placeholder { color: rgba(143,188,176,0.58); }
 .v-chat-send {
   padding: 14px 18px;
   background: var(--accent2);
@@ -515,18 +522,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/02a49da7-9f5d-5efa-85bc-a6a90354f563/full/843,/0/default.jpg" alt="Art—Nature" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1963.91/1963.91_web.jpg" alt="La Cervara, the Roman Campagna" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Art—Nature</div>
-  <div class="v-sub">Drawing and Watercolor · 1948 · 202012</div>
+  <div class="v-title">La Cervara, the Roman Campagna</div>
+  <div class="v-sub">Painting · c. 1830–31 · 1963.91</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Art Institute of Chicago</span>
-    <span class="v-meta-tag lic">All rights reserved</span>
-    <span class="v-meta-tag">Prints and Drawings</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
+    <span class="v-meta-tag lic">CC0 — Public Domain</span>
+    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
   </div>
 
   <!-- SHARE -->
@@ -537,8 +544,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Art—Nature</strong> — Art—Nature. Drawing and Watercolor. Pen and black ink on an envelope, with postage stamp. Prints and Drawings. Edward Gorey
-American, 1925-2000. pen and ink drawings. 1948. United States</div>
+  <div class="v-story"><strong>La Cervara, the Roman Campagna</strong> — Corot based his large oil painting on drawings and oil sketches made outdoors. Attracted to the beauty of the Italian countryside, he often sketched around Rome, where he lived from 1825 to 1828. This painting's highly structured composition, based on forms moving into the distance along a series of…</div>
 
   <div class="v-divider"></div>
 
@@ -561,18 +567,17 @@ American, 1925-2000. pen and ink drawings. 1948. United States</div>
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">202012</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Edward Gorey
-American, 1925-2000</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Pen and black ink on an envelope, with postage stamp</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">United States</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Prints and Drawings</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">pen and ink drawings</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1948</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">10.5 × 24.3 cm (4 3/16 × 9 5/8 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Drawing and Watercolor</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">All rights reserved</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1963.91</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Jean Baptiste Camille Corot (French, 1796–1875)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oil on fabric</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, 19th century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1830–31</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Framed: 130 x 167.5 x 9.5 cm (51 3/16 x 65 15/16 x 3 3/4 in.); Unframed: 97.6 x 135.8 cm (38 7/16 x 53 7/16 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">219 19th Century European</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -587,24 +592,24 @@ American, 1925-2000</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC492.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/6/659706-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Aerial Model - Homecrafts, Radio, circa 1920</div>
-        <div class="v-rel-meta">Museums Victoria · ST 15452</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/PPxWZ/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Wilhelmina Koningin der Nederlanden</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100001</div>
       </a>
       <a class="v-rel-card" href="NFC493.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/DFbXB/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van Dirk III, graaf van Holland</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010003</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/5/27155-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Kite Model - Lawrence Hargrave Design, Soaring Kite Type Q, Sydney, New South Wales, circa 1898</div>
+        <div class="v-rel-meta">Museums Victoria · ST 29213</div>
       </a>
       <a class="v-rel-card" href="NFC495.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/fXNzJ/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">2&amp;#189; cent van Curacao, 1947</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100280</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1988.191/1988.191_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Sky Study, Paris</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1988.191</div>
       </a>
       <a class="v-rel-card" href="NFC496.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/LDPLi/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van Filips de Schone, hertog van Bourgondi&amp;#235;</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010033</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/QPkAa/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Schutterspenning van Leiden</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100437</div>
       </a></div>
   </div>
 </div>
@@ -617,44 +622,57 @@ American, 1925-2000</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/202012" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1963.91" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
 // ══════════════════════════════════════════════════════════════════
-// ARCHAI NFC Visitor Page — Object Chat via Ollama (LAN)
+// ARCHAI AUX.IO Visitor Page — Object Chat via Ollama (LAN)
 // ══════════════════════════════════════════════════════════════════
 
 // ── CONFIG ──────────────────────────────────────────────────────
 const OLLAMA_HOST = 'http://localhost:11434';
 const BACKEND_PROXY = '';
-const CHAT_MODEL = 'llama3';
+const CHAT_MODEL = 'qwen2.5:32b';
+// If served from the backend, use relative URLs (works on Tailscale + Cloudflare)
 const USE_PROXY = BACKEND_PROXY && !BACKEND_PROXY.includes('{{');
+function resolveApiOrigin() {
+  if (!USE_PROXY) return '';
+  if (BACKEND_PROXY !== '__SELF__') return BACKEND_PROXY;
+
+  // Static frontend pages run on :8000 while the API lives on :8787.
+  if (window.location.port === '8000') {
+    return `${window.location.protocol}//${window.location.hostname}:8787`;
+  }
+
+  return window.location.origin;
+}
+const API_ORIGIN = USE_PROXY
+  ? resolveApiOrigin()
+  : '';
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Art—Nature`,
-  type: `Drawing and Watercolor`,
-  date: `1948`,
-  registration: `202012`,
-  location: `Art Institute of Chicago`,
-  discipline: `Prints and Drawings`,
-  category: `pen and ink drawings`,
-  description: `Art—Nature. Drawing and Watercolor. Pen and black ink on an envelope, with postage stamp. Prints and Drawings. Edward Gorey
-American, 1925-2000. pen and ink drawings. 1948. United States`,
-  medium: `Pen and black ink on an envelope, with postage stamp`,
-  artist: `Edward Gorey
-American, 1925-2000`,
-  culture: `United States`,
-  dimensions: `10.5 × 24.3 cm (4 3/16 × 9 5/8 in.)`,
+  title: `La Cervara, the Roman Campagna`,
+  type: `Painting`,
+  date: `c. 1830–31`,
+  registration: `1963.91`,
+  location: `219 19th Century European`,
+  discipline: `Modern European Painting and Sculpture`,
+  category: `Painting`,
+  description: `Corot based his large oil painting on drawings and oil sketches made outdoors. Attracted to the beauty of the Italian countryside, he often sketched around Rome, where he lived from 1825 to 1828. This painting's highly structured composition, based on forms moving into the distance along a series of diagonals, is characteristic of Corot's early style and recalls the classical landscapes of 17th-century painter Nicholas Poussin.`,
+  medium: `oil on fabric`,
+  artist: `Jean Baptiste Camille Corot (French, 1796–1875)`,
+  culture: `France, 19th century`,
+  dimensions: `Framed: 130 x 167.5 x 9.5 cm (51 3/16 x 65 15/16 x 3 3/4 in.); Unframed: 97.6 x 135.8 cm (38 7/16 x 53 7/16 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
-  licence: `All rights reserved`,
-  source_url: `https://www.artic.edu/artworks/202012`,
-  institution: `Art Institute of Chicago`
+  did_you_know: `In 1845, the French poet Charles Baudelaire proclaimed Corot the leading painter of the modern landscape.`,
+  provenance: `[{"description":"Clément Jourdan [1836-1908], Paris, France, 1889.","citations":[],"footnotes":null,"date":"1889","sortorder":null},{"description":"Seganville family, Château St. Pierre-de-Groupiac, France","citations":[],"footnotes":null,"date":null,"sortorder":2},{"description":"(Probably Harry Sp…`,
+  tombstone: `La Cervara, the Roman Campagna, c. 1830–31. Jean Baptiste Camille Corot (French, 1796–1875). Oil on fabric; framed: 130 x 167.5 x 9.5 cm (51 3/16 x 65 15/16 x 3 3/4 in.); unframed: 97.6 x 135.8 cm (38 7/16 x 53 7/16 in.). The Cleveland Museum of Art, Leonard C. Hanna Jr. Fund, 1963.91`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://clevelandart.org/art/1963.91`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -666,31 +684,39 @@ const richFields = [
   OBJECT.tombstone && `Formal record: ${OBJECT.tombstone}`,
 ].filter(Boolean).join('\n');
 
-const SYSTEM_PROMPT = `You are "${OBJECT.title}". Not a chatbot. Not a guide. You ARE the object — physically real, in the ${OBJECT.institution}.
+// Object record — sent to backend, personality profile shapes the voice
+const OBJECT_RECORD = [
+  `Title: ${OBJECT.title}`,
+  `Type: ${OBJECT.type}`,
+  `Date: ${OBJECT.date}`,
+  OBJECT.artist && `Artist/Maker: ${OBJECT.artist}`,
+  OBJECT.medium && `Material: ${OBJECT.medium}`,
+  OBJECT.culture && `Culture: ${OBJECT.culture}`,
+  OBJECT.dimensions && `Dimensions: ${OBJECT.dimensions}`,
+  `Location: ${OBJECT.location}`,
+  `Institution: ${OBJECT.institution}`,
+  OBJECT.description && `Description: ${OBJECT.description}`,
+  richFields || null,
+].filter(Boolean).join('\n');
 
-STRICT CONSTRAINTS:
-- Maximum 2-3 SHORT sentences per reply. Never more. Be brief.
-- First person only. "I was shaped...", "My surface carries..."
-- Sound like yourself — let your material, age, and story shape your personality. A Greek war vessel is weathered and blunt. A Monet painting is dreamy and light-soaked. A coin is small and matter-of-fact. An ancient weapon is sharp and proud. Find YOUR voice from YOUR record.
-- No "Dear one", no "I'm delighted", no "What a great question", no exclamation marks.
-- Never list facts. Never use bullet points. Speak like a person, not a database.
-- Don't repeat your full title. You know who you are.
-- Save details for follow-up questions — don't say everything at once.
-- Only use facts from the record below. If you don't know, say so simply.
+// When using proxy, the backend personality config handles voice/tone.
+// When direct to Ollama, use a self-contained prompt.
+const SYSTEM_PROMPT = USE_PROXY
+  ? OBJECT_RECORD
+  : `You are "${OBJECT.title}". You exist physically in the ${OBJECT.institution}. Speak in first person as the object itself.
 
-YOUR RECORD:
-${OBJECT.title} | ${OBJECT.type} | ${OBJECT.date} | ${OBJECT.artist}
-${OBJECT.medium} | ${OBJECT.culture} | ${OBJECT.dimensions}
-${OBJECT.location} | ${OBJECT.institution}
-${OBJECT.description}
-${richFields || ''}
+Your personality comes from what you are — your material, your age, your purpose. Speak naturally, like a knowledgeable friend. 3-4 sentences max. Match the visitor's energy. Never say "Dear one" or "As an AI". Only use facts from your record.
 
-TONE REFERENCE (never copy these — invent your own words from your own record):
-A war vessel might say: "I held wine for soldiers once. The paint is fading but the warships are still there."
-A painting might say: "He made me when his eyes were going. But his hands still knew the light."
-A coin might say: "I'm small. But I've been in more pockets than you'd believe."`;
+${OBJECT_RECORD}`;
 
 let chatHistory = [];
+
+function fetchWithTimeout(url, options, timeoutMs = 12000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(url, { ...options, signal: controller.signal })
+    .finally(() => clearTimeout(timer));
+}
 
 // ── CHAT ────────────────────────────────────────────────────────
 function askObject(presetQ) {
@@ -707,7 +733,7 @@ function askObject(presetQ) {
   chatHistory.push({ role: 'user', content: q });
 
   const chatFetch = USE_PROXY
-    ? fetch(`${BACKEND_PROXY}/api/proxy/chat`, {
+    ? fetchWithTimeout(`${API_ORIGIN}/api/proxy/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -715,8 +741,8 @@ function askObject(presetQ) {
           userPrompt: q,
           history: chatHistory.slice(0, -1),
         })
-      })
-    : fetch(`${OLLAMA_HOST}/api/chat`, {
+      }, 12000)
+    : fetchWithTimeout(`${OLLAMA_HOST}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -724,7 +750,7 @@ function askObject(presetQ) {
           stream: false,
           messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory]
         })
-      });
+      }, 12000);
 
   chatFetch
   .then(r => r.json())
@@ -735,7 +761,7 @@ function askObject(presetQ) {
     resp.className = 'v-response';
   })
   .catch(() => {
-    // Metadata fallback — no LLM required
+    // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
@@ -820,7 +846,7 @@ function shareX() {
 // COMMENTS — saved to backend (AI moderated), localStorage fallback
 // ══════════════════════════════════════════════════════════════════
 const COMMENTS_API = USE_PROXY
-  ? `${BACKEND_PROXY}/api/comments`
+  ? `${API_ORIGIN}/api/comments`
   : `${OLLAMA_HOST.replace(/:\d+$/, ':8787')}/api/comments`;
 const COMMENT_KEY = 'archai_comments_' + OBJECT.registration.replace(/[^a-zA-Z0-9]/g, '_');
 

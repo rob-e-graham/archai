@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Hollandse leeuwendaalder, 1576 — ARCHAI</title>
+<title>Coffee Shop at the Chicago Art Institute — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -203,8 +203,15 @@ body::after {
 .v-chat-row {
   display: flex;
   gap: 0;
-  border: 1px solid var(--border2);
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(143,188,176,0.04);
   margin-bottom: 12px;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+.v-chat-row:focus-within {
+  border-color: rgba(143,188,176,0.42);
+  background: rgba(143,188,176,0.06);
+  box-shadow: 0 0 0 1px rgba(143,188,176,0.08);
 }
 .v-chat-input {
   flex: 1;
@@ -217,7 +224,7 @@ body::after {
   font-style: italic;
   font-size: 1rem;
 }
-.v-chat-input::placeholder { color: var(--text3); }
+.v-chat-input::placeholder { color: rgba(143,188,176,0.58); }
 .v-chat-send {
   padding: 14px 18px;
   background: var(--accent2);
@@ -515,27 +522,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://iiif.micr.io/HTgXB/full/max/0/default.jpg" alt="Hollandse leeuwendaalder, 1576" loading="eager">
+  <img src="https://www.artic.edu/iiif/2/ac2cf8b0-a80c-fae7-0d68-185c9144f6e8/full/843,/0/default.jpg" alt="Coffee Shop at the Chicago Art Institute" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Hollandse leeuwendaalder, 1576</div>
-  <div class="v-sub">leeuwendaalder · 2026-02-14T04:17:39Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;Provincie Holland&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1576 · 200100253</div>
+  <div class="v-title">Coffee Shop at the Chicago Art Institute</div>
+  <div class="v-sub">Print · 1971 · 194764</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
-    <span class="v-meta-tag lic">https://creativecommons.org/publicdomain/mark/1.0/</span>
-    
+    <span class="v-meta-tag mv">Art Institute of Chicago</span>
+    <span class="v-meta-tag lic">All rights reserved</span>
+    <span class="v-meta-tag">Prints and Drawings</span>
   </div>
 
   <!-- SHARE -->
@@ -546,7 +544,9 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Hollandse leeuwendaalder, 1576</strong> — Zilveren munt. Voorzijde: ridder met helm met pluim naar rechts kijkend met voor zich wapenschild van Holland. Jaartal rondom wapenschild onderaan. Keerzijde: klimmende leeuw naar links.</div>
+  <div class="v-story"><strong>Coffee Shop at the Chicago Art Institute</strong> — Coffee Shop at the Chicago Art Institute. Print. Color screenprint from eleven screens and one photo half-tone screen on white wove paper. Prints and Drawings. Ken Price (American, 1935-2012)
+printed by Richard Ewen with the supervision of Ken Tyler; assisted by Jeff Wasserman
+published by Gemini G.…</div>
 
   <div class="v-divider"></div>
 
@@ -569,23 +569,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">200100253</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Provincie Holland</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">zilver</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">leeuwendaalder</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-02-14T04:17:39Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;Provincie Holland&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1576</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">leeuwendaalder</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">194764</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Ken Price (American, 1935-2012)
+printed by Richard Ewen with the supervision of Ken Tyler; assisted by Jeff Wasserman
+published by Gemini G.E.L. (American, founded 1965)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Color screenprint from eleven screens and one photo half-tone screen on white wove paper</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">United States</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Prints and Drawings</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">screenprint</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1971</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Image/sheet, sight: 100.2 × 150.5 cm (39 1/2 × 59 5/16 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">All rights reserved</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -600,24 +596,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC268.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1970.127.b/1970.127.b_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Cover for a Box</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1970.127.b</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PJ3609/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Avebury</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.307-2025</div>
       </a>
       <a class="v-rel-card" href="NFC269.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1985.1/1985.1_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Black-Figure Lekythos (Oil Vessel): Pan Presenting Hare to Woman</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1985.1</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1985.203/1985.203_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Untitled</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1985.203</div>
       </a>
       <a class="v-rel-card" href="NFC271.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/AvOmO/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van Filips de Goede, hertog van Bourgondi&amp;#235;</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010029</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/QBzch/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Schutterspenning van Leiden</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100435</div>
       </a>
       <a class="v-rel-card" href="NFC272.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1915.533.d/1915.533.d_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Fragment from Red-Figure Oinochoe (Wine Jug) or Hydria (Water Jar): Woman Holding Box</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1915.533.d</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4320/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">ENOUGH IS PLENTY</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.268-2020</div>
       </a></div>
   </div>
 </div>
@@ -630,51 +626,62 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/200100253" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.artic.edu/artworks/194764" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
 // ══════════════════════════════════════════════════════════════════
-// ARCHAI NFC Visitor Page — Object Chat via Ollama (LAN)
+// ARCHAI AUX.IO Visitor Page — Object Chat via Ollama (LAN)
 // ══════════════════════════════════════════════════════════════════
 
 // ── CONFIG ──────────────────────────────────────────────────────
 const OLLAMA_HOST = 'http://localhost:11434';
 const BACKEND_PROXY = '';
-const CHAT_MODEL = 'llama3';
+const CHAT_MODEL = 'qwen2.5:32b';
+// If served from the backend, use relative URLs (works on Tailscale + Cloudflare)
 const USE_PROXY = BACKEND_PROXY && !BACKEND_PROXY.includes('{{');
+function resolveApiOrigin() {
+  if (!USE_PROXY) return '';
+  if (BACKEND_PROXY !== '__SELF__') return BACKEND_PROXY;
+
+  // Static frontend pages run on :8000 while the API lives on :8787.
+  if (window.location.port === '8000') {
+    return `${window.location.protocol}//${window.location.hostname}:8787`;
+  }
+
+  return window.location.origin;
+}
+const API_ORIGIN = USE_PROXY
+  ? resolveApiOrigin()
+  : '';
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Hollandse leeuwendaalder, 1576`,
-  type: `leeuwendaalder`,
-  date: `2026-02-14T04:17:39Z</datestamp>
-        <setSpec>260239</setSpec>
-        <setSpec>261106</setSpec>
-        <setSpec>260251</setSpec>
-        <setSpec>2601</setSpec>
-      </header>
-      <metadata>
-        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
-          <dc:creator>Provincie Holland</dc:creator>
-          <dc:date>1576`,
-  registration: `200100253`,
-  location: `Rijksmuseum, Amsterdam`,
-  discipline: ``,
-  category: `leeuwendaalder`,
-  description: `Zilveren munt. Voorzijde: ridder met helm met pluim naar rechts kijkend met voor zich wapenschild van Holland. Jaartal rondom wapenschild onderaan. Keerzijde: klimmende leeuw naar links.`,
-  medium: `zilver`,
-  artist: `Provincie Holland`,
-  culture: ``,
-  dimensions: ``,
+  title: `Coffee Shop at the Chicago Art Institute`,
+  type: `Print`,
+  date: `1971`,
+  registration: `194764`,
+  location: `Art Institute of Chicago`,
+  discipline: `Prints and Drawings`,
+  category: `screenprint`,
+  description: `Coffee Shop at the Chicago Art Institute. Print. Color screenprint from eleven screens and one photo half-tone screen on white wove paper. Prints and Drawings. Ken Price (American, 1935-2012)
+printed by Richard Ewen with the supervision of Ken Tyler; assisted by Jeff Wasserman
+published by Gemini G.E.L. (American, founded 1965). screenprint. 1971. United States. <p>No such coffee shop has ever existed at the Art Institute of Chicago, but one wishes that it had.</p>
+`,
+  medium: `Color screenprint from eleven screens and one photo half-tone screen on white wove paper`,
+  artist: `Ken Price (American, 1935-2012)
+printed by Richard Ewen with the supervision of Ken Tyler; assisted by Jeff Wasserman
+published by Gemini G.E.L. (American, founded 1965)`,
+  culture: `United States`,
+  dimensions: `Image/sheet, sight: 100.2 × 150.5 cm (39 1/2 × 59 5/16 in.)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
-  source_url: `https://www.rijksmuseum.nl/en/collection/200100253`,
-  institution: `Rijksmuseum, Amsterdam`
+  licence: `All rights reserved`,
+  source_url: `https://www.artic.edu/artworks/194764`,
+  institution: `Art Institute of Chicago`
 };
 
 // Build rich context from available fields
@@ -686,31 +693,39 @@ const richFields = [
   OBJECT.tombstone && `Formal record: ${OBJECT.tombstone}`,
 ].filter(Boolean).join('\n');
 
-const SYSTEM_PROMPT = `You are "${OBJECT.title}". Not a chatbot. Not a guide. You ARE the object — physically real, in the ${OBJECT.institution}.
+// Object record — sent to backend, personality profile shapes the voice
+const OBJECT_RECORD = [
+  `Title: ${OBJECT.title}`,
+  `Type: ${OBJECT.type}`,
+  `Date: ${OBJECT.date}`,
+  OBJECT.artist && `Artist/Maker: ${OBJECT.artist}`,
+  OBJECT.medium && `Material: ${OBJECT.medium}`,
+  OBJECT.culture && `Culture: ${OBJECT.culture}`,
+  OBJECT.dimensions && `Dimensions: ${OBJECT.dimensions}`,
+  `Location: ${OBJECT.location}`,
+  `Institution: ${OBJECT.institution}`,
+  OBJECT.description && `Description: ${OBJECT.description}`,
+  richFields || null,
+].filter(Boolean).join('\n');
 
-STRICT CONSTRAINTS:
-- Maximum 2-3 SHORT sentences per reply. Never more. Be brief.
-- First person only. "I was shaped...", "My surface carries..."
-- Sound like yourself — let your material, age, and story shape your personality. A Greek war vessel is weathered and blunt. A Monet painting is dreamy and light-soaked. A coin is small and matter-of-fact. An ancient weapon is sharp and proud. Find YOUR voice from YOUR record.
-- No "Dear one", no "I'm delighted", no "What a great question", no exclamation marks.
-- Never list facts. Never use bullet points. Speak like a person, not a database.
-- Don't repeat your full title. You know who you are.
-- Save details for follow-up questions — don't say everything at once.
-- Only use facts from the record below. If you don't know, say so simply.
+// When using proxy, the backend personality config handles voice/tone.
+// When direct to Ollama, use a self-contained prompt.
+const SYSTEM_PROMPT = USE_PROXY
+  ? OBJECT_RECORD
+  : `You are "${OBJECT.title}". You exist physically in the ${OBJECT.institution}. Speak in first person as the object itself.
 
-YOUR RECORD:
-${OBJECT.title} | ${OBJECT.type} | ${OBJECT.date} | ${OBJECT.artist}
-${OBJECT.medium} | ${OBJECT.culture} | ${OBJECT.dimensions}
-${OBJECT.location} | ${OBJECT.institution}
-${OBJECT.description}
-${richFields || ''}
+Your personality comes from what you are — your material, your age, your purpose. Speak naturally, like a knowledgeable friend. 3-4 sentences max. Match the visitor's energy. Never say "Dear one" or "As an AI". Only use facts from your record.
 
-TONE REFERENCE (never copy these — invent your own words from your own record):
-A war vessel might say: "I held wine for soldiers once. The paint is fading but the warships are still there."
-A painting might say: "He made me when his eyes were going. But his hands still knew the light."
-A coin might say: "I'm small. But I've been in more pockets than you'd believe."`;
+${OBJECT_RECORD}`;
 
 let chatHistory = [];
+
+function fetchWithTimeout(url, options, timeoutMs = 12000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(url, { ...options, signal: controller.signal })
+    .finally(() => clearTimeout(timer));
+}
 
 // ── CHAT ────────────────────────────────────────────────────────
 function askObject(presetQ) {
@@ -727,7 +742,7 @@ function askObject(presetQ) {
   chatHistory.push({ role: 'user', content: q });
 
   const chatFetch = USE_PROXY
-    ? fetch(`${BACKEND_PROXY}/api/proxy/chat`, {
+    ? fetchWithTimeout(`${API_ORIGIN}/api/proxy/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -735,8 +750,8 @@ function askObject(presetQ) {
           userPrompt: q,
           history: chatHistory.slice(0, -1),
         })
-      })
-    : fetch(`${OLLAMA_HOST}/api/chat`, {
+      }, 12000)
+    : fetchWithTimeout(`${OLLAMA_HOST}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -744,7 +759,7 @@ function askObject(presetQ) {
           stream: false,
           messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory]
         })
-      });
+      }, 12000);
 
   chatFetch
   .then(r => r.json())
@@ -755,7 +770,7 @@ function askObject(presetQ) {
     resp.className = 'v-response';
   })
   .catch(() => {
-    // Metadata fallback — no LLM required
+    // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
@@ -840,7 +855,7 @@ function shareX() {
 // COMMENTS — saved to backend (AI moderated), localStorage fallback
 // ══════════════════════════════════════════════════════════════════
 const COMMENTS_API = USE_PROXY
-  ? `${BACKEND_PROXY}/api/comments`
+  ? `${API_ORIGIN}/api/comments`
   : `${OLLAMA_HOST.replace(/:\d+$/, ':8787')}/api/comments`;
 const COMMENT_KEY = 'archai_comments_' + OBJECT.registration.replace(/[^a-zA-Z0-9]/g, '_');
 

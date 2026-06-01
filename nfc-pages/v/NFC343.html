@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Landscape along the Seine with the Institut de France and the Pont des Arts — ARCHAI</title>
+<title>Rest on the Flight into Egypt — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -203,8 +203,15 @@ body::after {
 .v-chat-row {
   display: flex;
   gap: 0;
-  border: 1px solid var(--border2);
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(143,188,176,0.04);
   margin-bottom: 12px;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+.v-chat-row:focus-within {
+  border-color: rgba(143,188,176,0.42);
+  background: rgba(143,188,176,0.06);
+  box-shadow: 0 0 0 1px rgba(143,188,176,0.08);
 }
 .v-chat-input {
   flex: 1;
@@ -217,7 +224,7 @@ body::after {
   font-style: italic;
   font-size: 1rem;
 }
-.v-chat-input::placeholder { color: var(--text3); }
+.v-chat-input::placeholder { color: rgba(143,188,176,0.58); }
 .v-chat-send {
   padding: 14px 18px;
   background: var(--accent2);
@@ -515,18 +522,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/2bcffdac-951e-569f-8f05-f4c8e4228302/full/843,/0/default.jpg" alt="Landscape along the Seine with the Institut de France and the Pont des Arts" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1962.151/1962.151_web.jpg" alt="Rest on the Flight into Egypt" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Landscape along the Seine with the Institut de France and the Pont des Arts</div>
-  <div class="v-sub">Painting · c. 1875 · 58984</div>
+  <div class="v-title">Rest on the Flight into Egypt</div>
+  <div class="v-sub">Painting · early 1640s · 1962.151</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Art Institute of Chicago</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag lic">CC0 — Public Domain</span>
-    <span class="v-meta-tag">Painting and Sculpture of Europe</span>
+    <span class="v-meta-tag">European Painting and Sculpture</span>
   </div>
 
   <!-- SHARE -->
@@ -537,7 +544,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Landscape along the Seine with the Institut de France and the Pont des Arts</strong> — Landscape along the Seine with the Institut de France and the Pont des Arts. Painting. Oil on canvas. Painting and Sculpture of Europe. Alfred Sisley (British, active in France, 1839–1899). oil on canvas. c. 1875. France. Impressionism</div>
+  <div class="v-story"><strong>Rest on the Flight into Egypt</strong> — One of the most influential landscape painters of the early modern era, Lorrain was a master of the “ideal landscape,” which combined lush foliage and a tranquil atmosphere with allusions to an idyllic, imaginary past. The intention was to create views more beautiful and harmonious than nature itsel…</div>
 
   <div class="v-divider"></div>
 
@@ -560,15 +567,15 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">58984</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Alfred Sisley (British, active in France, 1839–1899)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Oil on canvas</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Painting and Sculpture of Europe</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">oil on canvas</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1875</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">53.3 × 62.2 cm (21 × 24 1/2 in.); Framed: 66.9 × 75.6 × 5.8 cm (26 3/8 × 29 3/4 × 2 1/4 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1962.151</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Claude Lorrain (French, 1604–1682)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oil on canvas</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, 17th century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">European Painting and Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">early 1640s</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Framed: 239 x 185 x 12 cm (94 1/8 x 72 13/16 x 4 3/4 in.); Unframed: 208 x 152.5 cm (81 7/8 x 60 1/16 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">212 Baroque Painting and Sculpture</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
@@ -585,24 +592,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC341.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/pRuWQ/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van Willem V van Holland, graaf van Holland en Zeeland</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010024</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/6d963e82-02d5-9277-e135-282feb323a75/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Red Flag Factory, St. Petersburg, Erich Mendelsohn, 1926</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 158559</div>
       </a>
       <a class="v-rel-card" href="NFC342.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/23/164923-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Lantern Slide - Man &amp; Woman Film Actors, circa 1930s-1940s</div>
-        <div class="v-rel-meta">Museums Victoria · MM 106295</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1949.186/1949.186_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Fight Between a Tiger and a Buffalo</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1949.186</div>
       </a>
       <a class="v-rel-card" href="NFC344.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4330/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">SEEMS AINT</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.293-2020</div>
+        <div class="v-rel-thumb"><span class="v-rel-thumb-empty">▣</span></div>
+        <div class="v-rel-title">Bifacial Sickle Insert</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 571104</div>
       </a>
       <a class="v-rel-card" href="NFC345.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4344/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title"> TEA TALK</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.300-2020</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/CaSsJ/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Nederlandse 10 gulden, 1889</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100263</div>
       </a></div>
   </div>
 </div>
@@ -615,42 +622,57 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/58984" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1962.151" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
 // ══════════════════════════════════════════════════════════════════
-// ARCHAI NFC Visitor Page — Object Chat via Ollama (LAN)
+// ARCHAI AUX.IO Visitor Page — Object Chat via Ollama (LAN)
 // ══════════════════════════════════════════════════════════════════
 
 // ── CONFIG ──────────────────────────────────────────────────────
 const OLLAMA_HOST = 'http://localhost:11434';
 const BACKEND_PROXY = '';
-const CHAT_MODEL = 'llama3';
+const CHAT_MODEL = 'qwen2.5:32b';
+// If served from the backend, use relative URLs (works on Tailscale + Cloudflare)
 const USE_PROXY = BACKEND_PROXY && !BACKEND_PROXY.includes('{{');
+function resolveApiOrigin() {
+  if (!USE_PROXY) return '';
+  if (BACKEND_PROXY !== '__SELF__') return BACKEND_PROXY;
+
+  // Static frontend pages run on :8000 while the API lives on :8787.
+  if (window.location.port === '8000') {
+    return `${window.location.protocol}//${window.location.hostname}:8787`;
+  }
+
+  return window.location.origin;
+}
+const API_ORIGIN = USE_PROXY
+  ? resolveApiOrigin()
+  : '';
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Landscape along the Seine with the Institut de France and the Pont des Arts`,
+  title: `Rest on the Flight into Egypt`,
   type: `Painting`,
-  date: `c. 1875`,
-  registration: `58984`,
-  location: `Art Institute of Chicago`,
-  discipline: `Painting and Sculpture of Europe`,
-  category: `oil on canvas`,
-  description: `Landscape along the Seine with the Institut de France and the Pont des Arts. Painting. Oil on canvas. Painting and Sculpture of Europe. Alfred Sisley (British, active in France, 1839–1899). oil on canvas. c. 1875. France. Impressionism`,
-  medium: `Oil on canvas`,
-  artist: `Alfred Sisley (British, active in France, 1839–1899)`,
-  culture: `France`,
-  dimensions: `53.3 × 62.2 cm (21 × 24 1/2 in.); Framed: 66.9 × 75.6 × 5.8 cm (26 3/8 × 29 3/4 × 2 1/4 in.)`,
+  date: `early 1640s`,
+  registration: `1962.151`,
+  location: `212 Baroque Painting and Sculpture`,
+  discipline: `European Painting and Sculpture`,
+  category: `Painting`,
+  description: `One of the most influential landscape painters of the early modern era, Lorrain was a master of the “ideal landscape,” which combined lush foliage and a tranquil atmosphere with allusions to an idyllic, imaginary past. The intention was to create views more beautiful and harmonious than nature itself. In the foreground of this soaring landscape, the Holy Family rests on a shady bank as kneeling angels offer fruit to the Christ child. Landscape paintings like this were much in demand among wealthy collectors throughout Europe, for whom these expansive idealized scenes represented a calm retreat…`,
+  medium: `oil on canvas`,
+  artist: `Claude Lorrain (French, 1604–1682)`,
+  culture: `France, 17th century`,
+  dimensions: `Framed: 239 x 185 x 12 cm (94 1/8 x 72 13/16 x 4 3/4 in.); Unframed: 208 x 152.5 cm (81 7/8 x 60 1/16 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
+  did_you_know: `Lorrain placed this Middle Eastern biblical event in the Roman countryside.`,
+  provenance: `[{"description":"Count Francesco Crescenzi or Giovanni Battista Crescenzi (1577-1660?), Spanish Marquess de la Torre;","citations":[],"footnotes":null,"date":null,"sortorder":null},{"description":"Sir William Lowther (1727-1753), third and last Baronet of Marske (Holker Hall, Lancashire);","citation…`,
+  tombstone: `Rest on the Flight into Egypt, early 1640s. Claude Lorrain (French, 1604–1682). Oil on canvas; framed: 239 x 185 x 12 cm (94 1/8 x 72 13/16 x 4 3/4 in.); unframed: 208 x 152.5 cm (81 7/8 x 60 1/16 in.). The Cleveland Museum of Art, Leonard C. Hanna Jr. Fund, 1962.151`,
   licence: `CC0 — Public Domain`,
-  source_url: `https://www.artic.edu/artworks/58984`,
-  institution: `Art Institute of Chicago`
+  source_url: `https://clevelandart.org/art/1962.151`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -662,31 +684,39 @@ const richFields = [
   OBJECT.tombstone && `Formal record: ${OBJECT.tombstone}`,
 ].filter(Boolean).join('\n');
 
-const SYSTEM_PROMPT = `You are "${OBJECT.title}". Not a chatbot. Not a guide. You ARE the object — physically real, in the ${OBJECT.institution}.
+// Object record — sent to backend, personality profile shapes the voice
+const OBJECT_RECORD = [
+  `Title: ${OBJECT.title}`,
+  `Type: ${OBJECT.type}`,
+  `Date: ${OBJECT.date}`,
+  OBJECT.artist && `Artist/Maker: ${OBJECT.artist}`,
+  OBJECT.medium && `Material: ${OBJECT.medium}`,
+  OBJECT.culture && `Culture: ${OBJECT.culture}`,
+  OBJECT.dimensions && `Dimensions: ${OBJECT.dimensions}`,
+  `Location: ${OBJECT.location}`,
+  `Institution: ${OBJECT.institution}`,
+  OBJECT.description && `Description: ${OBJECT.description}`,
+  richFields || null,
+].filter(Boolean).join('\n');
 
-STRICT CONSTRAINTS:
-- Maximum 2-3 SHORT sentences per reply. Never more. Be brief.
-- First person only. "I was shaped...", "My surface carries..."
-- Sound like yourself — let your material, age, and story shape your personality. A Greek war vessel is weathered and blunt. A Monet painting is dreamy and light-soaked. A coin is small and matter-of-fact. An ancient weapon is sharp and proud. Find YOUR voice from YOUR record.
-- No "Dear one", no "I'm delighted", no "What a great question", no exclamation marks.
-- Never list facts. Never use bullet points. Speak like a person, not a database.
-- Don't repeat your full title. You know who you are.
-- Save details for follow-up questions — don't say everything at once.
-- Only use facts from the record below. If you don't know, say so simply.
+// When using proxy, the backend personality config handles voice/tone.
+// When direct to Ollama, use a self-contained prompt.
+const SYSTEM_PROMPT = USE_PROXY
+  ? OBJECT_RECORD
+  : `You are "${OBJECT.title}". You exist physically in the ${OBJECT.institution}. Speak in first person as the object itself.
 
-YOUR RECORD:
-${OBJECT.title} | ${OBJECT.type} | ${OBJECT.date} | ${OBJECT.artist}
-${OBJECT.medium} | ${OBJECT.culture} | ${OBJECT.dimensions}
-${OBJECT.location} | ${OBJECT.institution}
-${OBJECT.description}
-${richFields || ''}
+Your personality comes from what you are — your material, your age, your purpose. Speak naturally, like a knowledgeable friend. 3-4 sentences max. Match the visitor's energy. Never say "Dear one" or "As an AI". Only use facts from your record.
 
-TONE REFERENCE (never copy these — invent your own words from your own record):
-A war vessel might say: "I held wine for soldiers once. The paint is fading but the warships are still there."
-A painting might say: "He made me when his eyes were going. But his hands still knew the light."
-A coin might say: "I'm small. But I've been in more pockets than you'd believe."`;
+${OBJECT_RECORD}`;
 
 let chatHistory = [];
+
+function fetchWithTimeout(url, options, timeoutMs = 12000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(url, { ...options, signal: controller.signal })
+    .finally(() => clearTimeout(timer));
+}
 
 // ── CHAT ────────────────────────────────────────────────────────
 function askObject(presetQ) {
@@ -703,7 +733,7 @@ function askObject(presetQ) {
   chatHistory.push({ role: 'user', content: q });
 
   const chatFetch = USE_PROXY
-    ? fetch(`${BACKEND_PROXY}/api/proxy/chat`, {
+    ? fetchWithTimeout(`${API_ORIGIN}/api/proxy/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -711,8 +741,8 @@ function askObject(presetQ) {
           userPrompt: q,
           history: chatHistory.slice(0, -1),
         })
-      })
-    : fetch(`${OLLAMA_HOST}/api/chat`, {
+      }, 12000)
+    : fetchWithTimeout(`${OLLAMA_HOST}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -720,7 +750,7 @@ function askObject(presetQ) {
           stream: false,
           messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory]
         })
-      });
+      }, 12000);
 
   chatFetch
   .then(r => r.json())
@@ -731,7 +761,7 @@ function askObject(presetQ) {
     resp.className = 'v-response';
   })
   .catch(() => {
-    // Metadata fallback — no LLM required
+    // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
@@ -816,7 +846,7 @@ function shareX() {
 // COMMENTS — saved to backend (AI moderated), localStorage fallback
 // ══════════════════════════════════════════════════════════════════
 const COMMENTS_API = USE_PROXY
-  ? `${BACKEND_PROXY}/api/comments`
+  ? `${API_ORIGIN}/api/comments`
   : `${OLLAMA_HOST.replace(/:\d+$/, ':8787')}/api/comments`;
 const COMMENT_KEY = 'archai_comments_' + OBJECT.registration.replace(/[^a-zA-Z0-9]/g, '_');
 

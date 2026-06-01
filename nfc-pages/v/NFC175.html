@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Tray Five - Printing Type, Wood, 30 Line Gothic — ARCHAI</title>
+<title>Art Make-Up — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -203,8 +203,15 @@ body::after {
 .v-chat-row {
   display: flex;
   gap: 0;
-  border: 1px solid var(--border2);
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(143,188,176,0.04);
   margin-bottom: 12px;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+.v-chat-row:focus-within {
+  border-color: rgba(143,188,176,0.42);
+  background: rgba(143,188,176,0.06);
+  box-shadow: 0 0 0 1px rgba(143,188,176,0.08);
 }
 .v-chat-input {
   flex: 1;
@@ -217,7 +224,7 @@ body::after {
   font-style: italic;
   font-size: 1rem;
 }
-.v-chat-input::placeholder { color: var(--text3); }
+.v-chat-input::placeholder { color: rgba(143,188,176,0.58); }
 .v-chat-send {
   padding: 14px 18px;
   background: var(--accent2);
@@ -515,18 +522,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://collections.museumsvictoria.com.au/content/media/39/377639-medium.jpg" alt="Tray Five - Printing Type, Wood, 30 Line Gothic" loading="eager">
+  <img src="https://www.artic.edu/iiif/2/d614d374-c405-35d1-f170-c0e009ca87cf/full/843,/0/default.jpg" alt="Art Make-Up" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Tray Five - Printing Type, Wood, 30 Line Gothic</div>
-  <div class="v-sub">Object · Date unknown · HT 25692</div>
+  <div class="v-title">Art Make-Up</div>
+  <div class="v-sub">Film, Video, New Media · 1967/68 · 47147</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Museums Victoria</span>
-    <span class="v-meta-tag lic">CC BY</span>
-    <span class="v-meta-tag">Technology</span>
+    <span class="v-meta-tag mv">Art Institute of Chicago</span>
+    <span class="v-meta-tag lic">All rights reserved</span>
+    <span class="v-meta-tag">Contemporary Art</span>
   </div>
 
   <!-- SHARE -->
@@ -537,9 +544,8 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Tray Five - Printing Type, Wood, 30 Line Gothic</strong> — Museum container (plastic tray) holding wooden printing type. One of eight trays containing large wooden type. The founts are valuable for size alone. Their date of manufacture is unknown and there is no identification on any piece of wood type.
-
-The fount in this tray is 30 Line Gothic. There are 2…</div>
+  <div class="v-story"><strong>Art Make-Up</strong> — Art Make-Up. Film, Video, New Media. Four 16mm color films, silent, transferred to digital video (projection); 42 min. 30 sec. loop. Contemporary Art. Bruce Nauman
+American, born 1941. modern and contemporary art. 1967/68. United States. &lt;p&gt;Bruce Nauman's influential work explores the poetics of bor…</div>
 
   <div class="v-divider"></div>
 
@@ -562,13 +568,17 @@ The fount in this tray is 30 Line Gothic. There are 2…</div>
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">HT 25692</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Technology</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">History &amp; Technology</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Date unknown</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Museums Victoria</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Object</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">47147</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Bruce Nauman
+American, born 1941</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Four 16mm color films, silent, transferred to digital video (projection); 42 min. 30 sec. loop</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">United States</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Contemporary Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">modern and contemporary art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1967/68</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Film, Video, New Media</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">All rights reserved</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -583,24 +593,24 @@ The fount in this tray is 30 Line Gothic. There are 2…</div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC173.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/c292a7c3-7117-dc86-3369-1178b71832c4/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Midwest Landscape #78</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 18480</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1979.57/1979.57_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Ruin by the Sea</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1979.57</div>
       </a>
       <a class="v-rel-card" href="NFC174.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/2d81229b-e705-a51b-7978-c362ae82b083/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Chicago Mafia Leader Tony Accardo Making First Courthouse Appearance, Chicago</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 223835</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ep/original/DP276131.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portrait of a Man</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 437875</div>
       </a>
       <a class="v-rel-card" href="NFC176.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/ededacde-68b0-4388-6504-3cacc5c03e46/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Novelist Nelson Algren in Local Railway Yard, Chicago</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 223842</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/is/original/DP353091.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Head of a Central Asian Figure</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 664761</div>
       </a>
       <a class="v-rel-card" href="NFC177.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PC0393/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Bowl of Oranges</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · PH.559-2024</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1970.127/1970.127_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Covered Box</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1970.127</div>
       </a></div>
   </div>
 </div>
@@ -613,44 +623,59 @@ The fount in this tray is 30 Line Gothic. There are 2…</div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.museumsvictoria.com.au/items/HT 25692" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.artic.edu/artworks/47147" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
 // ══════════════════════════════════════════════════════════════════
-// ARCHAI NFC Visitor Page — Object Chat via Ollama (LAN)
+// ARCHAI AUX.IO Visitor Page — Object Chat via Ollama (LAN)
 // ══════════════════════════════════════════════════════════════════
 
 // ── CONFIG ──────────────────────────────────────────────────────
 const OLLAMA_HOST = 'http://localhost:11434';
 const BACKEND_PROXY = '';
-const CHAT_MODEL = 'llama3';
+const CHAT_MODEL = 'qwen2.5:32b';
+// If served from the backend, use relative URLs (works on Tailscale + Cloudflare)
 const USE_PROXY = BACKEND_PROXY && !BACKEND_PROXY.includes('{{');
+function resolveApiOrigin() {
+  if (!USE_PROXY) return '';
+  if (BACKEND_PROXY !== '__SELF__') return BACKEND_PROXY;
+
+  // Static frontend pages run on :8000 while the API lives on :8787.
+  if (window.location.port === '8000') {
+    return `${window.location.protocol}//${window.location.hostname}:8787`;
+  }
+
+  return window.location.origin;
+}
+const API_ORIGIN = USE_PROXY
+  ? resolveApiOrigin()
+  : '';
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Tray Five - Printing Type, Wood, 30 Line Gothic`,
-  type: `Object`,
-  date: `Date unknown`,
-  registration: `HT 25692`,
-  location: `Museums Victoria`,
-  discipline: `Technology`,
-  category: `History & Technology`,
-  description: `Museum container (plastic tray) holding wooden printing type. One of eight trays containing large wooden type. The founts are valuable for size alone. Their date of manufacture is unknown and there is no identification on any piece of wood type.
-
-The fount in this tray is 30 Line Gothic. There are 29 pieces in this tray.`,
-  medium: ``,
-  artist: ``,
-  culture: ``,
+  title: `Art Make-Up`,
+  type: `Film, Video, New Media`,
+  date: `1967/68`,
+  registration: `47147`,
+  location: `Art Institute of Chicago`,
+  discipline: `Contemporary Art`,
+  category: `modern and contemporary art`,
+  description: `Art Make-Up. Film, Video, New Media. Four 16mm color films, silent, transferred to digital video (projection); 42 min. 30 sec. loop. Contemporary Art. Bruce Nauman
+American, born 1941. modern and contemporary art. 1967/68. United States. <p>Bruce Nauman's influential work explores the poetics of boredom, entrapment, and failure. Many of his important early works, such as <em>Art Make-Up</em>, grew out of his involvement with experimental film and video in the 1960s, in which the artist often used his own body as the vehicle for exploration. Here  Nauman applied colored makeup—white, pink, gree…`,
+  medium: `Four 16mm color films, silent, transferred to digital video (projection); 42 min. 30 sec. loop`,
+  artist: `Bruce Nauman
+American, born 1941`,
+  culture: `United States`,
   dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `CC BY`,
-  source_url: `https://collections.museumsvictoria.com.au/items/HT 25692`,
-  institution: `Museums Victoria`
+  licence: `All rights reserved`,
+  source_url: `https://www.artic.edu/artworks/47147`,
+  institution: `Art Institute of Chicago`
 };
 
 // Build rich context from available fields
@@ -662,31 +687,39 @@ const richFields = [
   OBJECT.tombstone && `Formal record: ${OBJECT.tombstone}`,
 ].filter(Boolean).join('\n');
 
-const SYSTEM_PROMPT = `You are "${OBJECT.title}". Not a chatbot. Not a guide. You ARE the object — physically real, in the ${OBJECT.institution}.
+// Object record — sent to backend, personality profile shapes the voice
+const OBJECT_RECORD = [
+  `Title: ${OBJECT.title}`,
+  `Type: ${OBJECT.type}`,
+  `Date: ${OBJECT.date}`,
+  OBJECT.artist && `Artist/Maker: ${OBJECT.artist}`,
+  OBJECT.medium && `Material: ${OBJECT.medium}`,
+  OBJECT.culture && `Culture: ${OBJECT.culture}`,
+  OBJECT.dimensions && `Dimensions: ${OBJECT.dimensions}`,
+  `Location: ${OBJECT.location}`,
+  `Institution: ${OBJECT.institution}`,
+  OBJECT.description && `Description: ${OBJECT.description}`,
+  richFields || null,
+].filter(Boolean).join('\n');
 
-STRICT CONSTRAINTS:
-- Maximum 2-3 SHORT sentences per reply. Never more. Be brief.
-- First person only. "I was shaped...", "My surface carries..."
-- Sound like yourself — let your material, age, and story shape your personality. A Greek war vessel is weathered and blunt. A Monet painting is dreamy and light-soaked. A coin is small and matter-of-fact. An ancient weapon is sharp and proud. Find YOUR voice from YOUR record.
-- No "Dear one", no "I'm delighted", no "What a great question", no exclamation marks.
-- Never list facts. Never use bullet points. Speak like a person, not a database.
-- Don't repeat your full title. You know who you are.
-- Save details for follow-up questions — don't say everything at once.
-- Only use facts from the record below. If you don't know, say so simply.
+// When using proxy, the backend personality config handles voice/tone.
+// When direct to Ollama, use a self-contained prompt.
+const SYSTEM_PROMPT = USE_PROXY
+  ? OBJECT_RECORD
+  : `You are "${OBJECT.title}". You exist physically in the ${OBJECT.institution}. Speak in first person as the object itself.
 
-YOUR RECORD:
-${OBJECT.title} | ${OBJECT.type} | ${OBJECT.date} | ${OBJECT.artist}
-${OBJECT.medium} | ${OBJECT.culture} | ${OBJECT.dimensions}
-${OBJECT.location} | ${OBJECT.institution}
-${OBJECT.description}
-${richFields || ''}
+Your personality comes from what you are — your material, your age, your purpose. Speak naturally, like a knowledgeable friend. 3-4 sentences max. Match the visitor's energy. Never say "Dear one" or "As an AI". Only use facts from your record.
 
-TONE REFERENCE (never copy these — invent your own words from your own record):
-A war vessel might say: "I held wine for soldiers once. The paint is fading but the warships are still there."
-A painting might say: "He made me when his eyes were going. But his hands still knew the light."
-A coin might say: "I'm small. But I've been in more pockets than you'd believe."`;
+${OBJECT_RECORD}`;
 
 let chatHistory = [];
+
+function fetchWithTimeout(url, options, timeoutMs = 12000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(url, { ...options, signal: controller.signal })
+    .finally(() => clearTimeout(timer));
+}
 
 // ── CHAT ────────────────────────────────────────────────────────
 function askObject(presetQ) {
@@ -703,7 +736,7 @@ function askObject(presetQ) {
   chatHistory.push({ role: 'user', content: q });
 
   const chatFetch = USE_PROXY
-    ? fetch(`${BACKEND_PROXY}/api/proxy/chat`, {
+    ? fetchWithTimeout(`${API_ORIGIN}/api/proxy/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -711,8 +744,8 @@ function askObject(presetQ) {
           userPrompt: q,
           history: chatHistory.slice(0, -1),
         })
-      })
-    : fetch(`${OLLAMA_HOST}/api/chat`, {
+      }, 12000)
+    : fetchWithTimeout(`${OLLAMA_HOST}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -720,7 +753,7 @@ function askObject(presetQ) {
           stream: false,
           messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory]
         })
-      });
+      }, 12000);
 
   chatFetch
   .then(r => r.json())
@@ -731,7 +764,7 @@ function askObject(presetQ) {
     resp.className = 'v-response';
   })
   .catch(() => {
-    // Metadata fallback — no LLM required
+    // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
@@ -816,7 +849,7 @@ function shareX() {
 // COMMENTS — saved to backend (AI moderated), localStorage fallback
 // ══════════════════════════════════════════════════════════════════
 const COMMENTS_API = USE_PROXY
-  ? `${BACKEND_PROXY}/api/comments`
+  ? `${API_ORIGIN}/api/comments`
   : `${OLLAMA_HOST.replace(/:\d+$/, ':8787')}/api/comments`;
 const COMMENT_KEY = 'archai_comments_' + OBJECT.registration.replace(/[^a-zA-Z0-9]/g, '_');
 

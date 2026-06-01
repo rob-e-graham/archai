@@ -20,7 +20,7 @@ Access the full ARCHAI stack from iPad, iPhone, or any device — anywhere.
 | Service | URL |
 |---------|-----|
 | **Main App** | `http://100.109.26.39:8000/ARCHAI_v10_8.html` |
-| **NFC Visitor Index** | `http://100.109.26.39:8000/nfc-pages/v/index.html` |
+| **AUX.IO Visitor Index** | `http://100.109.26.39:8787/aux/index.html` |
 | **Backend API** | `http://100.109.26.39:8787/api/health` |
 | **Qdrant** | `http://100.109.26.39:6333/collections` |
 | **Ollama** | `http://100.109.26.39:11434/api/tags` |
@@ -55,9 +55,9 @@ cd backend-archai && npm run dev
 python3 -m http.server 8000
 ```
 
-## Regenerating NFC Pages for Remote Access
+## Regenerating AUX.IO Pages for Remote Access
 
-NFC visitor pages have the Ollama host baked in. When the IP changes, regenerate:
+AUX.IO visitor pages have the Ollama host baked in. When the IP changes, regenerate:
 
 ```bash
 cd nfc-pages
@@ -75,7 +75,7 @@ Ollama is not reachable from the device. Check:
 2. CORS is enabled with `OLLAMA_ORIGINS="*"`
 3. Test: `curl http://100.109.26.39:11434/api/tags`
 
-### NFC pages load but chat doesn't work
+### AUX.IO pages load but chat doesn't work
 Pages were generated with an old IP. Regenerate with `--host` flag (see above).
 
 ### Tailscale shows device but can't connect

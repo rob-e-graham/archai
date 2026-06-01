@@ -9,7 +9,6 @@ const QDRANT_URL = env.qdrant.url;
 const OLLAMA_URL = env.ollama.baseUrl;
 const EMBED_MODEL = env.ollama.embedModel;
 const CURATOR_COLLECTION = 'archai_curator';
-const SOURCE_COLLECTIONS = ['archai_pilot', 'archai_met', 'archai_va'];
 const VECTOR_SIZE = 768;
 
 const getCommentsByObject = db.prepare(
@@ -33,6 +32,14 @@ async function qdrantPost(path, body) {
     body: JSON.stringify(body),
   });
   return resp.json();
+}
+
+async function listSourceCollections() {
+  const resp = await fetch(`${QDRANT_URL}/collections`);
+  const data = await resp.json();
+  return (data.result?.collections || [])
+    .map((row) => row.name)
+    .filter((name) => name.startsWith('archai_') && name !== CURATOR_COLLECTION);
 }
 
 function buildCuratorText(payload, comments) {
@@ -68,6 +75,10 @@ function buildCuratorText(payload, comments) {
 
 export async function buildCuratorCollection({ onProgress } = {}) {
   const log = onProgress || console.log;
+  const sourceCollections = await listSourceCollections();
+  if (!sourceCollections.length) {
+    throw new Error('No live source collections found in Qdrant');
+  }
 
   // Create or recreate the curator collection
   await fetch(`${QDRANT_URL}/collections/${CURATOR_COLLECTION}`, { method: 'DELETE' }).catch(() => {});
@@ -82,7 +93,9 @@ export async function buildCuratorCollection({ onProgress } = {}) {
 
   let totalPoints = 0;
 
-  for (const col of SOURCE_COLLECTIONS) {
+  log(`Source collections: ${sourceCollections.join(', ')}`);
+
+  for (const col of sourceCollections) {
     log(`Reading ${col}...`);
 
     let offset = null;

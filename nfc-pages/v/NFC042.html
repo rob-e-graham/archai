@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Vase — ARCHAI</title>
+<title>Untitled — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -203,8 +203,15 @@ body::after {
 .v-chat-row {
   display: flex;
   gap: 0;
-  border: 1px solid var(--border2);
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(143,188,176,0.04);
   margin-bottom: 12px;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+.v-chat-row:focus-within {
+  border-color: rgba(143,188,176,0.42);
+  background: rgba(143,188,176,0.06);
+  box-shadow: 0 0 0 1px rgba(143,188,176,0.08);
 }
 .v-chat-input {
   flex: 1;
@@ -217,7 +224,7 @@ body::after {
   font-style: italic;
   font-size: 1rem;
 }
-.v-chat-input::placeholder { color: var(--text3); }
+.v-chat-input::placeholder { color: rgba(143,188,176,0.58); }
 .v-chat-send {
   padding: 14px 18px;
   background: var(--accent2);
@@ -515,18 +522,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/9e16767b-9979-5393-e944-07843f42318f/full/843,/0/default.jpg" alt="Vase" loading="eager">
+  <div class="v-hero-empty">No image available<br>284086</div>
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Vase</div>
-  <div class="v-sub">Metalwork · 1919–29 · 121390</div>
+  <div class="v-title">Untitled</div>
+  <div class="v-sub">Photograph · 1993 · 284086</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Art Institute of Chicago</span>
-    <span class="v-meta-tag lic">All rights reserved</span>
-    <span class="v-meta-tag">Arts of the Americas</span>
+    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
+    <span class="v-meta-tag lic">CC0 — Public Domain</span>
+    <span class="v-meta-tag">Photographs</span>
   </div>
 
   <!-- SHARE -->
@@ -537,9 +544,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Vase</strong> — Vase. Metalwork. Bronze and silver. Arts of the Americas. Smith Metal Arts Company
-American, founded 1889
-Buffalo, New York. vase. 1919–29. Buffalo. Arts and Crafts Movement</div>
+  <div class="v-story"><strong>Untitled</strong> — Untitled. Photograph. Chromogenic prints. Photographs. by Andrew Bush. Photographs. 1993</div>
 
   <div class="v-divider"></div>
 
@@ -562,19 +567,32 @@ Buffalo, New York. vase. 1919–29. Buffalo. Arts and Crafts Movement</div>
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">121390</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Smith Metal Arts Company
-American, founded 1889
-Buffalo, New York</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Bronze and silver</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Buffalo</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Arts of the Americas</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">vase</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1919–29</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">23.2 × 7.6 cm (9 1/8 × 3 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Metalwork</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">All rights reserved</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">284086</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Andrew Bush</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Chromogenic prints</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photographs</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photographs</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1993</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">a: 22 5/8 × 18 5/8 × 1 3/16 in. (57.5 × 47.3 × 3 cm)
+b: 16 7/8 × 19 15/16 × 1 3/16 in. (42.8 × 50.6 × 3 cm)
+c: 18 3/16 × 15 3/16 × 11/16 in. (46.2 × 38.6 × 1.8 cm)
+d: 16 5/16 × 13 3/8 × 1 7/16 in. (41.4 × 33.9 × 3.6 cm)
+e: 11 1/8 × 13 1/8 × 11/16 in. (28.3 × 33.4 × 1.7 cm)
+f: 10 11/16 × 12 11/16 × 1 1/8 in. (27.2 × 32.3 × 2.8 cm)
+g: 10 1/16 × 12 1/16 × 1 1/8 in. (25.6 × 30.7 × 2.8 cm)
+h: 9 5/8 × 11 3/4 × 1 7/16 in. (24.5 × 29.8 × 3.7 cm)
+i: 13 3/8 × 8 11/16 × 7/8 in. (33.9 × 22.1 × 2.3 cm)
+j: 11 1/8 × 9 3/16 × 11/16 in. (28.3 × 23.3 × 1.7 cm)
+k: 10 1/8 × 7 9/16 × 11/16 in. (25.7 × 19.2 × 1.8 cm)
+l: 7 3/16 × 10 3/16 × 1 1/4 in. (18.2 × 25.8 × 3.2 cm)
+m: 7 × 9 × 1 3/16 in. (17.8 × 22.8 × 3 cm)
+n: 6 1/8 × 8 1/8 × 11/16 in. (15.6 × 20.7 × 1.7 cm)
+o: 4 11/16 × 6 15/16 × 7/8 in. (11.9 × 17.7 × 2.2 cm)
+p: 6 1/8 × 5 1/16 × 15/16 in. (15.6 × 12.8 × 2.4 cm)
+q: 3 × 4 × 13/16 in. (7.6 × 10.1 × 2.1 cm)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">The Met, New York</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -589,14 +607,14 @@ Buffalo, New York</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC040.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/CUpzO/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Voltooiing van de sluizen te Katwijk 1807, afdruk in karton</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100052</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4327/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">YOU IN THE MIDDLE</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.285-2020</div>
       </a>
       <a class="v-rel-card" href="NFC041.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/lvjXP/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van Willem III de Goede, graaf van Holland en Henegouwen</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010021</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1915.533.d/1915.533.d_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Fragment from Red-Figure Oinochoe (Wine Jug) or Hydria (Water Jar): Woman Holding Box</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1915.533.d</div>
       </a>
       <a class="v-rel-card" href="NFC043.html">
         <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1920.120/1920.120_web.jpg" loading="lazy"></div>
@@ -604,9 +622,9 @@ Buffalo, New York</span></div>
         <div class="v-rel-meta">Cleveland Museum of Art · 1920.120</div>
       </a>
       <a class="v-rel-card" href="NFC044.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1963.251/1963.251_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Satyress and Child</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1963.251</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/ywprt/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Filips, erfprins van Spanje, ingehuldigd als graaf van Holland</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010038</div>
       </a></div>
   </div>
 </div>
@@ -619,46 +637,73 @@ Buffalo, New York</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/121390" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/284086" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
 // ══════════════════════════════════════════════════════════════════
-// ARCHAI NFC Visitor Page — Object Chat via Ollama (LAN)
+// ARCHAI AUX.IO Visitor Page — Object Chat via Ollama (LAN)
 // ══════════════════════════════════════════════════════════════════
 
 // ── CONFIG ──────────────────────────────────────────────────────
 const OLLAMA_HOST = 'http://localhost:11434';
 const BACKEND_PROXY = '';
-const CHAT_MODEL = 'llama3';
+const CHAT_MODEL = 'qwen2.5:32b';
+// If served from the backend, use relative URLs (works on Tailscale + Cloudflare)
 const USE_PROXY = BACKEND_PROXY && !BACKEND_PROXY.includes('{{');
+function resolveApiOrigin() {
+  if (!USE_PROXY) return '';
+  if (BACKEND_PROXY !== '__SELF__') return BACKEND_PROXY;
+
+  // Static frontend pages run on :8000 while the API lives on :8787.
+  if (window.location.port === '8000') {
+    return `${window.location.protocol}//${window.location.hostname}:8787`;
+  }
+
+  return window.location.origin;
+}
+const API_ORIGIN = USE_PROXY
+  ? resolveApiOrigin()
+  : '';
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Vase`,
-  type: `Metalwork`,
-  date: `1919–29`,
-  registration: `121390`,
-  location: `Art Institute of Chicago`,
-  discipline: `Arts of the Americas`,
-  category: `vase`,
-  description: `Vase. Metalwork. Bronze and silver. Arts of the Americas. Smith Metal Arts Company
-American, founded 1889
-Buffalo, New York. vase. 1919–29. Buffalo. Arts and Crafts Movement`,
-  medium: `Bronze and silver`,
-  artist: `Smith Metal Arts Company
-American, founded 1889
-Buffalo, New York`,
-  culture: `Buffalo`,
-  dimensions: `23.2 × 7.6 cm (9 1/8 × 3 in.)`,
+  title: `Untitled`,
+  type: `Photograph`,
+  date: `1993`,
+  registration: `284086`,
+  location: `The Met, New York`,
+  discipline: `Photographs`,
+  category: `Photographs`,
+  description: `Untitled. Photograph. Chromogenic prints. Photographs. by Andrew Bush. Photographs. 1993`,
+  medium: `Chromogenic prints`,
+  artist: `Andrew Bush`,
+  culture: ``,
+  dimensions: `a: 22 5/8 × 18 5/8 × 1 3/16 in. (57.5 × 47.3 × 3 cm)
+b: 16 7/8 × 19 15/16 × 1 3/16 in. (42.8 × 50.6 × 3 cm)
+c: 18 3/16 × 15 3/16 × 11/16 in. (46.2 × 38.6 × 1.8 cm)
+d: 16 5/16 × 13 3/8 × 1 7/16 in. (41.4 × 33.9 × 3.6 cm)
+e: 11 1/8 × 13 1/8 × 11/16 in. (28.3 × 33.4 × 1.7 cm)
+f: 10 11/16 × 12 11/16 × 1 1/8 in. (27.2 × 32.3 × 2.8 cm)
+g: 10 1/16 × 12 1/16 × 1 1/8 in. (25.6 × 30.7 × 2.8 cm)
+h: 9 5/8 × 11 3/4 × 1 7/16 in. (24.5 × 29.8 × 3.7 cm)
+i: 13 3/8 × 8 11/16 × 7/8 in. (33.9 × 22.1 × 2.3 cm)
+j: 11 1/8 × 9 3/16 × 11/16 in. (28.3 × 23.3 × 1.7 cm)
+k: 10 1/8 × 7 9/16 × 11/16 in. (25.7 × 19.2 × 1.8 cm)
+l: 7 3/16 × 10 3/16 × 1 1/4 in. (18.2 × 25.8 × 3.2 cm)
+m: 7 × 9 × 1 3/16 in. (17.8 × 22.8 × 3 cm)
+n: 6 1/8 × 8 1/8 × 11/16 in. (15.6 × 20.7 × 1.7 cm)
+o: 4 11/16 × 6 15/16 × 7/8 in. (11.9 × 17.7 × 2.2 cm)
+p: 6 1/8 × 5 1/16 × 15/16 in. (15.6 × 12.8 × 2.4 cm)
+q: 3 × 4 × 13/16 in. (7.6 × 10.1 × 2.1 cm)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `All rights reserved`,
-  source_url: `https://www.artic.edu/artworks/121390`,
-  institution: `Art Institute of Chicago`
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.metmuseum.org/art/collection/search/284086`,
+  institution: `The Metropolitan Museum of Art`
 };
 
 // Build rich context from available fields
@@ -670,31 +715,39 @@ const richFields = [
   OBJECT.tombstone && `Formal record: ${OBJECT.tombstone}`,
 ].filter(Boolean).join('\n');
 
-const SYSTEM_PROMPT = `You are "${OBJECT.title}". Not a chatbot. Not a guide. You ARE the object — physically real, in the ${OBJECT.institution}.
+// Object record — sent to backend, personality profile shapes the voice
+const OBJECT_RECORD = [
+  `Title: ${OBJECT.title}`,
+  `Type: ${OBJECT.type}`,
+  `Date: ${OBJECT.date}`,
+  OBJECT.artist && `Artist/Maker: ${OBJECT.artist}`,
+  OBJECT.medium && `Material: ${OBJECT.medium}`,
+  OBJECT.culture && `Culture: ${OBJECT.culture}`,
+  OBJECT.dimensions && `Dimensions: ${OBJECT.dimensions}`,
+  `Location: ${OBJECT.location}`,
+  `Institution: ${OBJECT.institution}`,
+  OBJECT.description && `Description: ${OBJECT.description}`,
+  richFields || null,
+].filter(Boolean).join('\n');
 
-STRICT CONSTRAINTS:
-- Maximum 2-3 SHORT sentences per reply. Never more. Be brief.
-- First person only. "I was shaped...", "My surface carries..."
-- Sound like yourself — let your material, age, and story shape your personality. A Greek war vessel is weathered and blunt. A Monet painting is dreamy and light-soaked. A coin is small and matter-of-fact. An ancient weapon is sharp and proud. Find YOUR voice from YOUR record.
-- No "Dear one", no "I'm delighted", no "What a great question", no exclamation marks.
-- Never list facts. Never use bullet points. Speak like a person, not a database.
-- Don't repeat your full title. You know who you are.
-- Save details for follow-up questions — don't say everything at once.
-- Only use facts from the record below. If you don't know, say so simply.
+// When using proxy, the backend personality config handles voice/tone.
+// When direct to Ollama, use a self-contained prompt.
+const SYSTEM_PROMPT = USE_PROXY
+  ? OBJECT_RECORD
+  : `You are "${OBJECT.title}". You exist physically in the ${OBJECT.institution}. Speak in first person as the object itself.
 
-YOUR RECORD:
-${OBJECT.title} | ${OBJECT.type} | ${OBJECT.date} | ${OBJECT.artist}
-${OBJECT.medium} | ${OBJECT.culture} | ${OBJECT.dimensions}
-${OBJECT.location} | ${OBJECT.institution}
-${OBJECT.description}
-${richFields || ''}
+Your personality comes from what you are — your material, your age, your purpose. Speak naturally, like a knowledgeable friend. 3-4 sentences max. Match the visitor's energy. Never say "Dear one" or "As an AI". Only use facts from your record.
 
-TONE REFERENCE (never copy these — invent your own words from your own record):
-A war vessel might say: "I held wine for soldiers once. The paint is fading but the warships are still there."
-A painting might say: "He made me when his eyes were going. But his hands still knew the light."
-A coin might say: "I'm small. But I've been in more pockets than you'd believe."`;
+${OBJECT_RECORD}`;
 
 let chatHistory = [];
+
+function fetchWithTimeout(url, options, timeoutMs = 12000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(url, { ...options, signal: controller.signal })
+    .finally(() => clearTimeout(timer));
+}
 
 // ── CHAT ────────────────────────────────────────────────────────
 function askObject(presetQ) {
@@ -711,7 +764,7 @@ function askObject(presetQ) {
   chatHistory.push({ role: 'user', content: q });
 
   const chatFetch = USE_PROXY
-    ? fetch(`${BACKEND_PROXY}/api/proxy/chat`, {
+    ? fetchWithTimeout(`${API_ORIGIN}/api/proxy/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -719,8 +772,8 @@ function askObject(presetQ) {
           userPrompt: q,
           history: chatHistory.slice(0, -1),
         })
-      })
-    : fetch(`${OLLAMA_HOST}/api/chat`, {
+      }, 12000)
+    : fetchWithTimeout(`${OLLAMA_HOST}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -728,7 +781,7 @@ function askObject(presetQ) {
           stream: false,
           messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory]
         })
-      });
+      }, 12000);
 
   chatFetch
   .then(r => r.json())
@@ -739,7 +792,7 @@ function askObject(presetQ) {
     resp.className = 'v-response';
   })
   .catch(() => {
-    // Metadata fallback — no LLM required
+    // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
@@ -824,7 +877,7 @@ function shareX() {
 // COMMENTS — saved to backend (AI moderated), localStorage fallback
 // ══════════════════════════════════════════════════════════════════
 const COMMENTS_API = USE_PROXY
-  ? `${BACKEND_PROXY}/api/comments`
+  ? `${API_ORIGIN}/api/comments`
   : `${OLLAMA_HOST.replace(/:\d+$/, ':8787')}/api/comments`;
 const COMMENT_KEY = 'archai_comments_' + OBJECT.registration.replace(/[^a-zA-Z0-9]/g, '_');
 

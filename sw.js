@@ -1,4 +1,4 @@
-const CACHE_NAME = 'archai-v10.8';
+const CACHE_NAME = 'archai-v10.9';
 const PRECACHE = [
   '/ARCHAI_v10_8.html',
   '/icons/archai-192.png',

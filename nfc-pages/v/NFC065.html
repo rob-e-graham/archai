@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Adeline Ravoux — ARCHAI</title>
+<title>Sickle Insert — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -203,8 +203,15 @@ body::after {
 .v-chat-row {
   display: flex;
   gap: 0;
-  border: 1px solid var(--border2);
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(143,188,176,0.04);
   margin-bottom: 12px;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+.v-chat-row:focus-within {
+  border-color: rgba(143,188,176,0.42);
+  background: rgba(143,188,176,0.06);
+  box-shadow: 0 0 0 1px rgba(143,188,176,0.08);
 }
 .v-chat-input {
   flex: 1;
@@ -217,7 +224,7 @@ body::after {
   font-style: italic;
   font-size: 1rem;
 }
-.v-chat-input::placeholder { color: var(--text3); }
+.v-chat-input::placeholder { color: rgba(143,188,176,0.58); }
 .v-chat-send {
   padding: 14px 18px;
   background: var(--accent2);
@@ -515,18 +522,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/1958.31/1958.31_web.jpg" alt="Adeline Ravoux" loading="eager">
+  <div class="v-hero-empty">No image available<br>568319</div>
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Adeline Ravoux</div>
-  <div class="v-sub">Painting · 1890 · 1958.31</div>
+  <div class="v-title">Sickle Insert</div>
+  <div class="v-sub">sickle, insert, denticualte, truncated, tool, geometric · ca. 1186–1070 B.C. · 568319</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
+    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
     <span class="v-meta-tag lic">CC0 — Public Domain</span>
-    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
+    <span class="v-meta-tag">Egyptian Art</span>
   </div>
 
   <!-- SHARE -->
@@ -537,7 +544,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Adeline Ravoux</strong> — In May 1890, Vincent van Gogh arrived in Auvers, a small town north of Paris, where he rented a room at the inn of Arthur Ravoux. This portrait, completed during the last months of the artist’s life, depicts Ravoux’s 13-year-old daughter, Adeline. Van Gogh wrote that rather than photographic resembl…</div>
+  <div class="v-story"><strong>Sickle Insert</strong> — Sickle Insert. sickle, insert, denticualte, truncated, tool, geometric. Flint. Egyptian Art. New Kingdom, Ramesside. ca. 1186–1070 B.C.</div>
 
   <div class="v-divider"></div>
 
@@ -560,16 +567,13 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1958.31</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Vincent van Gogh (Dutch, 1853–1890)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oil on fabric</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Netherlands</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Painting</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1890</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Framed: 72.5 x 73.5 x 8.5 cm (28 9/16 x 28 15/16 x 3 3/8 in.); Unframed: 50.2 x 50.5 cm (19 3/4 x 19 7/8 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">222 Impressionism &amp; Post-Impressionism</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">568319</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Flint</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Egyptian Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca. 1186–1070 B.C.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">L. 8.2 × W. 4 × Th. 0.9 cm, Wt. 34.5g (3 1/4 × 1 9/16 × 3/8 in., 1.217oz.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 122</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">sickle, insert, denticualte, truncated, tool, geometric</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
@@ -585,24 +589,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC063.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1978.22/1978.22_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Sir H. C. Englefield, Bart.</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1978.22</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2015HV4909/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Microvision TV1A Pocket Television</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.2:1 to 14-2014</div>
       </a>
       <a class="v-rel-card" href="NFC064.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/exlkP/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Schutterspenning Middelburg St. Joris</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100426</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HB8619/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Poster</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · S.3502-1994</div>
       </a>
       <a class="v-rel-card" href="NFC066.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HC3211/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Vype Reload</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CD.37:1 to 11-2014</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/SoDmH/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Vertrek van baron Van Imhoff, gouverneur van Nederlands Oost Indi&amp;#235; 1742, afdruk voorzijde</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100051</div>
       </a>
       <a class="v-rel-card" href="NFC067.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2024PA4615/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Award</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:AMERICASFOUNDATION.771-2024</div>
+        <div class="v-rel-thumb"><span class="v-rel-thumb-empty">▣</span></div>
+        <div class="v-rel-title">Sickle Insert</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 568297</div>
       </a></div>
   </div>
 </div>
@@ -615,42 +619,57 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://clevelandart.org/art/1958.31" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/568319" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
 // ══════════════════════════════════════════════════════════════════
-// ARCHAI NFC Visitor Page — Object Chat via Ollama (LAN)
+// ARCHAI AUX.IO Visitor Page — Object Chat via Ollama (LAN)
 // ══════════════════════════════════════════════════════════════════
 
 // ── CONFIG ──────────────────────────────────────────────────────
 const OLLAMA_HOST = 'http://localhost:11434';
 const BACKEND_PROXY = '';
-const CHAT_MODEL = 'llama3';
+const CHAT_MODEL = 'qwen2.5:32b';
+// If served from the backend, use relative URLs (works on Tailscale + Cloudflare)
 const USE_PROXY = BACKEND_PROXY && !BACKEND_PROXY.includes('{{');
+function resolveApiOrigin() {
+  if (!USE_PROXY) return '';
+  if (BACKEND_PROXY !== '__SELF__') return BACKEND_PROXY;
+
+  // Static frontend pages run on :8000 while the API lives on :8787.
+  if (window.location.port === '8000') {
+    return `${window.location.protocol}//${window.location.hostname}:8787`;
+  }
+
+  return window.location.origin;
+}
+const API_ORIGIN = USE_PROXY
+  ? resolveApiOrigin()
+  : '';
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Adeline Ravoux`,
-  type: `Painting`,
-  date: `1890`,
-  registration: `1958.31`,
-  location: `222 Impressionism & Post-Impressionism`,
-  discipline: `Modern European Painting and Sculpture`,
-  category: `Painting`,
-  description: `In May 1890, Vincent van Gogh arrived in Auvers, a small town north of Paris, where he rented a room at the inn of Arthur Ravoux. This portrait, completed during the last months of the artist’s life, depicts Ravoux’s 13-year-old daughter, Adeline. Van Gogh wrote that rather than photographic resemblance, he wanted his portraits to convey the “impassioned aspects” of contemporary life through the “modern taste for color.”`,
-  medium: `oil on fabric`,
-  artist: `Vincent van Gogh (Dutch, 1853–1890)`,
-  culture: `Netherlands`,
-  dimensions: `Framed: 72.5 x 73.5 x 8.5 cm (28 9/16 x 28 15/16 x 3 3/8 in.); Unframed: 50.2 x 50.5 cm (19 3/4 x 19 7/8 in.)`,
+  title: `Sickle Insert`,
+  type: `sickle, insert, denticualte, truncated, tool, geometric`,
+  date: `ca. 1186–1070 B.C.`,
+  registration: `568319`,
+  location: `Gallery 122`,
+  discipline: `Egyptian Art`,
+  category: ``,
+  description: `Sickle Insert. sickle, insert, denticualte, truncated, tool, geometric. Flint. Egyptian Art. New Kingdom, Ramesside. ca. 1186–1070 B.C.`,
+  medium: `Flint`,
+  artist: ``,
+  culture: ``,
+  dimensions: `L. 8.2 × W. 4 × Th. 0.9 cm, Wt. 34.5g (3 1/4 × 1 9/16 × 3/8 in., 1.217oz.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: `Adeline Ravoux, at age 13, was not pleased with her portrait and did not think the image resembled her. Today, a photograph exists of Adeline in her late seventies and the resemblance is truly remarkable.`,
-  provenance: `[{"description":"Johanna Van Gogh-Bonger [1862-1925], the wife of Theo van Gogh, Amsterdam, Netherlands.","citations":[],"footnotes":[],"date":null,"sortorder":1},{"description":"(Artz and de Bois, The Hague, Netherlands)","citations":[],"footnotes":null,"date":"1912","sortorder":2},{"description":"…`,
-  tombstone: `Adeline Ravoux, 1890. Vincent van Gogh (Dutch, 1853–1890). Oil on fabric; framed: 72.5 x 73.5 x 8.5 cm (28 9/16 x 28 15/16 x 3 3/8 in.); unframed: 50.2 x 50.5 cm (19 3/4 x 19 7/8 in.). The Cleveland Museum of Art, Bequest of Leonard C. Hanna Jr., 1958.31`,
+  did_you_know: ``,
+  provenance: ``,
+  tombstone: ``,
   licence: `CC0 — Public Domain`,
-  source_url: `https://clevelandart.org/art/1958.31`,
-  institution: `Cleveland Museum of Art`
+  source_url: `https://www.metmuseum.org/art/collection/search/568319`,
+  institution: `The Metropolitan Museum of Art`
 };
 
 // Build rich context from available fields
@@ -662,31 +681,39 @@ const richFields = [
   OBJECT.tombstone && `Formal record: ${OBJECT.tombstone}`,
 ].filter(Boolean).join('\n');
 
-const SYSTEM_PROMPT = `You are "${OBJECT.title}". Not a chatbot. Not a guide. You ARE the object — physically real, in the ${OBJECT.institution}.
+// Object record — sent to backend, personality profile shapes the voice
+const OBJECT_RECORD = [
+  `Title: ${OBJECT.title}`,
+  `Type: ${OBJECT.type}`,
+  `Date: ${OBJECT.date}`,
+  OBJECT.artist && `Artist/Maker: ${OBJECT.artist}`,
+  OBJECT.medium && `Material: ${OBJECT.medium}`,
+  OBJECT.culture && `Culture: ${OBJECT.culture}`,
+  OBJECT.dimensions && `Dimensions: ${OBJECT.dimensions}`,
+  `Location: ${OBJECT.location}`,
+  `Institution: ${OBJECT.institution}`,
+  OBJECT.description && `Description: ${OBJECT.description}`,
+  richFields || null,
+].filter(Boolean).join('\n');
 
-STRICT CONSTRAINTS:
-- Maximum 2-3 SHORT sentences per reply. Never more. Be brief.
-- First person only. "I was shaped...", "My surface carries..."
-- Sound like yourself — let your material, age, and story shape your personality. A Greek war vessel is weathered and blunt. A Monet painting is dreamy and light-soaked. A coin is small and matter-of-fact. An ancient weapon is sharp and proud. Find YOUR voice from YOUR record.
-- No "Dear one", no "I'm delighted", no "What a great question", no exclamation marks.
-- Never list facts. Never use bullet points. Speak like a person, not a database.
-- Don't repeat your full title. You know who you are.
-- Save details for follow-up questions — don't say everything at once.
-- Only use facts from the record below. If you don't know, say so simply.
+// When using proxy, the backend personality config handles voice/tone.
+// When direct to Ollama, use a self-contained prompt.
+const SYSTEM_PROMPT = USE_PROXY
+  ? OBJECT_RECORD
+  : `You are "${OBJECT.title}". You exist physically in the ${OBJECT.institution}. Speak in first person as the object itself.
 
-YOUR RECORD:
-${OBJECT.title} | ${OBJECT.type} | ${OBJECT.date} | ${OBJECT.artist}
-${OBJECT.medium} | ${OBJECT.culture} | ${OBJECT.dimensions}
-${OBJECT.location} | ${OBJECT.institution}
-${OBJECT.description}
-${richFields || ''}
+Your personality comes from what you are — your material, your age, your purpose. Speak naturally, like a knowledgeable friend. 3-4 sentences max. Match the visitor's energy. Never say "Dear one" or "As an AI". Only use facts from your record.
 
-TONE REFERENCE (never copy these — invent your own words from your own record):
-A war vessel might say: "I held wine for soldiers once. The paint is fading but the warships are still there."
-A painting might say: "He made me when his eyes were going. But his hands still knew the light."
-A coin might say: "I'm small. But I've been in more pockets than you'd believe."`;
+${OBJECT_RECORD}`;
 
 let chatHistory = [];
+
+function fetchWithTimeout(url, options, timeoutMs = 12000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(url, { ...options, signal: controller.signal })
+    .finally(() => clearTimeout(timer));
+}
 
 // ── CHAT ────────────────────────────────────────────────────────
 function askObject(presetQ) {
@@ -703,7 +730,7 @@ function askObject(presetQ) {
   chatHistory.push({ role: 'user', content: q });
 
   const chatFetch = USE_PROXY
-    ? fetch(`${BACKEND_PROXY}/api/proxy/chat`, {
+    ? fetchWithTimeout(`${API_ORIGIN}/api/proxy/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -711,8 +738,8 @@ function askObject(presetQ) {
           userPrompt: q,
           history: chatHistory.slice(0, -1),
         })
-      })
-    : fetch(`${OLLAMA_HOST}/api/chat`, {
+      }, 12000)
+    : fetchWithTimeout(`${OLLAMA_HOST}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -720,7 +747,7 @@ function askObject(presetQ) {
           stream: false,
           messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory]
         })
-      });
+      }, 12000);
 
   chatFetch
   .then(r => r.json())
@@ -731,7 +758,7 @@ function askObject(presetQ) {
     resp.className = 'v-response';
   })
   .catch(() => {
-    // Metadata fallback — no LLM required
+    // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
@@ -816,7 +843,7 @@ function shareX() {
 // COMMENTS — saved to backend (AI moderated), localStorage fallback
 // ══════════════════════════════════════════════════════════════════
 const COMMENTS_API = USE_PROXY
-  ? `${BACKEND_PROXY}/api/comments`
+  ? `${API_ORIGIN}/api/comments`
   : `${OLLAMA_HOST.replace(/:\d+$/, ':8787')}/api/comments`;
 const COMMENT_KEY = 'archai_comments_' + OBJECT.registration.replace(/[^a-zA-Z0-9]/g, '_');
 

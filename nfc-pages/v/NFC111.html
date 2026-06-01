@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>The Large Plane Trees (Road Menders at Saint-Rémy) — ARCHAI</title>
+<title>Wounded Tree: I'm Meant to Symbolize Strength — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -203,8 +203,15 @@ body::after {
 .v-chat-row {
   display: flex;
   gap: 0;
-  border: 1px solid var(--border2);
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(143,188,176,0.04);
   margin-bottom: 12px;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+.v-chat-row:focus-within {
+  border-color: rgba(143,188,176,0.42);
+  background: rgba(143,188,176,0.06);
+  box-shadow: 0 0 0 1px rgba(143,188,176,0.08);
 }
 .v-chat-input {
   flex: 1;
@@ -217,7 +224,7 @@ body::after {
   font-style: italic;
   font-size: 1rem;
 }
-.v-chat-input::placeholder { color: var(--text3); }
+.v-chat-input::placeholder { color: rgba(143,188,176,0.58); }
 .v-chat-send {
   padding: 14px 18px;
   background: var(--accent2);
@@ -515,18 +522,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/1947.209/1947.209_web.jpg" alt="The Large Plane Trees (Road Menders at Saint-Rémy)" loading="eager">
+  <img src="https://www.artic.edu/iiif/2/cd40d01c-d24f-888d-bcf2-b426374d1fbc/full/843,/0/default.jpg" alt="Wounded Tree: I'm Meant to Symbolize Strength" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">The Large Plane Trees (Road Menders at Saint-Rémy)</div>
-  <div class="v-sub">Painting · 1889 · 1947.209</div>
+  <div class="v-title">Wounded Tree: I'm Meant to Symbolize Strength</div>
+  <div class="v-sub">Photograph · 2004 · 184066</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
-    <span class="v-meta-tag lic">CC0 — Public Domain</span>
-    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
+    <span class="v-meta-tag mv">Art Institute of Chicago</span>
+    <span class="v-meta-tag lic">All rights reserved</span>
+    <span class="v-meta-tag">Photography and Media</span>
   </div>
 
   <!-- SHARE -->
@@ -537,7 +544,8 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>The Large Plane Trees (Road Menders at Saint-Rémy)</strong> — Like Two Poplars in the Alpilles near Saint-Rémy (on view nearby), Vincent van Gogh painted this autumnal landscape while living in a psychiatric hospital near Saint-Rémy in southern France where he was treated for severe depression. Understanding that painting from nature eased his symptoms, Van Go…</div>
+  <div class="v-story"><strong>Wounded Tree: I'm Meant to Symbolize Strength</strong> — Wounded Tree: I'm Meant to Symbolize Strength. Photograph. Inkjet print. Photography and Media. Irene Siegel
+American, born 1932. photograph. 2004. United States. 21st Century</div>
 
   <div class="v-divider"></div>
 
@@ -560,17 +568,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1947.209</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Vincent van Gogh (Dutch, 1853–1890)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oil on fabric</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Netherlands</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Painting</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1889</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Framed: 104.5 x 124.5 x 7.6 cm (41 1/8 x 49 x 3 in.); Unframed: 73.4 x 91.8 cm (28 7/8 x 36 1/8 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">222 Impressionism &amp; Post-Impressionism</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">184066</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Irene Siegel
+American, born 1932</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Inkjet print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">United States</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography and Media</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2004</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Image: 80 × 53.4 cm (31 1/2 × 21 1/16 in.); Paper: 95.9 × 60.9 cm (37 13/16 × 24 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">All rights reserved</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -585,24 +594,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC109.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PD0797/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Rolled Poster</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:AMERICASFOUNDATION.1869-2024</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/ed8db511-c8fe-b218-9326-5f699544bff2/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Children with Fallen Tree Series, #1</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 187498</div>
       </a>
       <a class="v-rel-card" href="NFC110.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/1dc81ff5-5009-29d0-eccc-dbc05df4abc2/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Discussion in Art, San Francisco</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 11363</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/a1486909-2b1b-44cd-7303-798a3d6dc480/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Midwest Landscape #15</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 100086</div>
       </a>
       <a class="v-rel-card" href="NFC112.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2009.350/2009.350_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Venice: Saint Mark's Looking toward San Giorgio Maggiore, in Moonlight</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2009.350</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4330/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">SEEMS AINT</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.293-2020</div>
       </a>
       <a class="v-rel-card" href="NFC113.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/WyVpM/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">1/4 gulden van Curacao, 1944</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100385</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/6e51b10d-5ee0-7320-e71b-55c820cd3473/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Jessica and Samantha</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 181608</div>
       </a></div>
   </div>
 </div>
@@ -615,42 +624,59 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://clevelandart.org/art/1947.209" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.artic.edu/artworks/184066" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
 // ══════════════════════════════════════════════════════════════════
-// ARCHAI NFC Visitor Page — Object Chat via Ollama (LAN)
+// ARCHAI AUX.IO Visitor Page — Object Chat via Ollama (LAN)
 // ══════════════════════════════════════════════════════════════════
 
 // ── CONFIG ──────────────────────────────────────────────────────
 const OLLAMA_HOST = 'http://localhost:11434';
 const BACKEND_PROXY = '';
-const CHAT_MODEL = 'llama3';
+const CHAT_MODEL = 'qwen2.5:32b';
+// If served from the backend, use relative URLs (works on Tailscale + Cloudflare)
 const USE_PROXY = BACKEND_PROXY && !BACKEND_PROXY.includes('{{');
+function resolveApiOrigin() {
+  if (!USE_PROXY) return '';
+  if (BACKEND_PROXY !== '__SELF__') return BACKEND_PROXY;
+
+  // Static frontend pages run on :8000 while the API lives on :8787.
+  if (window.location.port === '8000') {
+    return `${window.location.protocol}//${window.location.hostname}:8787`;
+  }
+
+  return window.location.origin;
+}
+const API_ORIGIN = USE_PROXY
+  ? resolveApiOrigin()
+  : '';
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `The Large Plane Trees (Road Menders at Saint-Rémy)`,
-  type: `Painting`,
-  date: `1889`,
-  registration: `1947.209`,
-  location: `222 Impressionism & Post-Impressionism`,
-  discipline: `Modern European Painting and Sculpture`,
-  category: `Painting`,
-  description: `Like Two Poplars in the Alpilles near Saint-Rémy (on view nearby), Vincent van Gogh painted this autumnal landscape while living in a psychiatric hospital near Saint-Rémy in southern France where he was treated for severe depression. Understanding that painting from nature eased his symptoms, Van Gogh’s physician permitted the artist to paint landscapes outside. Van Gogh described this painting in a letter to his brother Theo: “The last study I did is a view of the village, where they were at work under some enormous plane trees—repairing the pavements. . . . There are heaps of sand, stones, a…`,
-  medium: `oil on fabric`,
-  artist: `Vincent van Gogh (Dutch, 1853–1890)`,
-  culture: `Netherlands`,
-  dimensions: `Framed: 104.5 x 124.5 x 7.6 cm (41 1/8 x 49 x 3 in.); Unframed: 73.4 x 91.8 cm (28 7/8 x 36 1/8 in.)`,
+  title: `Wounded Tree: I'm Meant to Symbolize Strength`,
+  type: `Photograph`,
+  date: `2004`,
+  registration: `184066`,
+  location: `Art Institute of Chicago`,
+  discipline: `Photography and Media`,
+  category: `photograph`,
+  description: `Wounded Tree: I'm Meant to Symbolize Strength. Photograph. Inkjet print. Photography and Media. Irene Siegel
+American, born 1932. photograph. 2004. United States. 21st Century`,
+  medium: `Inkjet print`,
+  artist: `Irene Siegel
+American, born 1932`,
+  culture: `United States`,
+  dimensions: `Image: 80 × 53.4 cm (31 1/2 × 21 1/16 in.); Paper: 95.9 × 60.9 cm (37 13/16 × 24 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: `Van Gogh sometimes created what he called "repetitions," in which he painted the same subject and composition again. This painting has a repetition, currently in the Phillips Collection in Washington, DC. Conservation research has shown that the Cleveland painting is the first version.`,
-  provenance: `[{"description":"Theo van Gogh [1857-1891], Paris, France","citations":[],"footnotes":null,"date":"1890","sortorder":1},{"description":"Julien Leclercq [1865-1901] Paris, France (see document b1533 v/1962 in the archive of the Van Gogh Museum","citations":[],"footnotes":null,"date":null,"sortorder":…`,
-  tombstone: `The Large Plane Trees (Road Menders at Saint-Rémy), 1889. Vincent van Gogh (Dutch, 1853–1890). Oil on fabric; framed: 104.5 x 124.5 x 7.6 cm (41 1/8 x 49 x 3 in.); unframed: 73.4 x 91.8 cm (28 7/8 x 36 1/8 in.). The Cleveland Museum of Art, Gift of the Hanna Fund, 1947.209`,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://clevelandart.org/art/1947.209`,
-  institution: `Cleveland Museum of Art`
+  did_you_know: ``,
+  provenance: ``,
+  tombstone: ``,
+  licence: `All rights reserved`,
+  source_url: `https://www.artic.edu/artworks/184066`,
+  institution: `Art Institute of Chicago`
 };
 
 // Build rich context from available fields
@@ -662,31 +688,39 @@ const richFields = [
   OBJECT.tombstone && `Formal record: ${OBJECT.tombstone}`,
 ].filter(Boolean).join('\n');
 
-const SYSTEM_PROMPT = `You are "${OBJECT.title}". Not a chatbot. Not a guide. You ARE the object — physically real, in the ${OBJECT.institution}.
+// Object record — sent to backend, personality profile shapes the voice
+const OBJECT_RECORD = [
+  `Title: ${OBJECT.title}`,
+  `Type: ${OBJECT.type}`,
+  `Date: ${OBJECT.date}`,
+  OBJECT.artist && `Artist/Maker: ${OBJECT.artist}`,
+  OBJECT.medium && `Material: ${OBJECT.medium}`,
+  OBJECT.culture && `Culture: ${OBJECT.culture}`,
+  OBJECT.dimensions && `Dimensions: ${OBJECT.dimensions}`,
+  `Location: ${OBJECT.location}`,
+  `Institution: ${OBJECT.institution}`,
+  OBJECT.description && `Description: ${OBJECT.description}`,
+  richFields || null,
+].filter(Boolean).join('\n');
 
-STRICT CONSTRAINTS:
-- Maximum 2-3 SHORT sentences per reply. Never more. Be brief.
-- First person only. "I was shaped...", "My surface carries..."
-- Sound like yourself — let your material, age, and story shape your personality. A Greek war vessel is weathered and blunt. A Monet painting is dreamy and light-soaked. A coin is small and matter-of-fact. An ancient weapon is sharp and proud. Find YOUR voice from YOUR record.
-- No "Dear one", no "I'm delighted", no "What a great question", no exclamation marks.
-- Never list facts. Never use bullet points. Speak like a person, not a database.
-- Don't repeat your full title. You know who you are.
-- Save details for follow-up questions — don't say everything at once.
-- Only use facts from the record below. If you don't know, say so simply.
+// When using proxy, the backend personality config handles voice/tone.
+// When direct to Ollama, use a self-contained prompt.
+const SYSTEM_PROMPT = USE_PROXY
+  ? OBJECT_RECORD
+  : `You are "${OBJECT.title}". You exist physically in the ${OBJECT.institution}. Speak in first person as the object itself.
 
-YOUR RECORD:
-${OBJECT.title} | ${OBJECT.type} | ${OBJECT.date} | ${OBJECT.artist}
-${OBJECT.medium} | ${OBJECT.culture} | ${OBJECT.dimensions}
-${OBJECT.location} | ${OBJECT.institution}
-${OBJECT.description}
-${richFields || ''}
+Your personality comes from what you are — your material, your age, your purpose. Speak naturally, like a knowledgeable friend. 3-4 sentences max. Match the visitor's energy. Never say "Dear one" or "As an AI". Only use facts from your record.
 
-TONE REFERENCE (never copy these — invent your own words from your own record):
-A war vessel might say: "I held wine for soldiers once. The paint is fading but the warships are still there."
-A painting might say: "He made me when his eyes were going. But his hands still knew the light."
-A coin might say: "I'm small. But I've been in more pockets than you'd believe."`;
+${OBJECT_RECORD}`;
 
 let chatHistory = [];
+
+function fetchWithTimeout(url, options, timeoutMs = 12000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(url, { ...options, signal: controller.signal })
+    .finally(() => clearTimeout(timer));
+}
 
 // ── CHAT ────────────────────────────────────────────────────────
 function askObject(presetQ) {
@@ -703,7 +737,7 @@ function askObject(presetQ) {
   chatHistory.push({ role: 'user', content: q });
 
   const chatFetch = USE_PROXY
-    ? fetch(`${BACKEND_PROXY}/api/proxy/chat`, {
+    ? fetchWithTimeout(`${API_ORIGIN}/api/proxy/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -711,8 +745,8 @@ function askObject(presetQ) {
           userPrompt: q,
           history: chatHistory.slice(0, -1),
         })
-      })
-    : fetch(`${OLLAMA_HOST}/api/chat`, {
+      }, 12000)
+    : fetchWithTimeout(`${OLLAMA_HOST}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -720,7 +754,7 @@ function askObject(presetQ) {
           stream: false,
           messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory]
         })
-      });
+      }, 12000);
 
   chatFetch
   .then(r => r.json())
@@ -731,7 +765,7 @@ function askObject(presetQ) {
     resp.className = 'v-response';
   })
   .catch(() => {
-    // Metadata fallback — no LLM required
+    // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
@@ -816,7 +850,7 @@ function shareX() {
 // COMMENTS — saved to backend (AI moderated), localStorage fallback
 // ══════════════════════════════════════════════════════════════════
 const COMMENTS_API = USE_PROXY
-  ? `${BACKEND_PROXY}/api/comments`
+  ? `${API_ORIGIN}/api/comments`
   : `${OLLAMA_HOST.replace(/:\d+$/, ':8787')}/api/comments`;
 const COMMENT_KEY = 'archai_comments_' + OBJECT.registration.replace(/[^a-zA-Z0-9]/g, '_');
 

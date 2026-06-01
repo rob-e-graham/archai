@@ -64,11 +64,20 @@ fi
 
 # ── 4. Frontend server ────────────────────────────────────────────
 echo -e "${CYAN}[4/5]${NC} Frontend (static server)..."
-if curl -s http://localhost:8000/ > /dev/null 2>&1; then
-  echo -e "  ${GREEN}✓${NC} Frontend already serving on :8000"
+if curl -sf http://localhost:8000/ARCHAI_v10_8.html > /dev/null 2>&1 && \
+   curl -sf http://localhost:8000/manifest.json > /dev/null 2>&1 && \
+   curl -sf http://localhost:8000/sw.js > /dev/null 2>&1; then
+  echo -e "  ${GREEN}✓${NC} Frontend already serving the PWA on :8000"
 else
-  echo -e "  ${YELLOW}→${NC} Starting Python HTTP server on :8000..."
-  python3 -m http.server 8000 > /dev/null 2>&1 &
+  EXISTING_FRONTEND_PID=$(lsof -tiTCP:8000 -sTCP:LISTEN 2>/dev/null || true)
+  if [ -n "$EXISTING_FRONTEND_PID" ]; then
+    echo -e "  ${YELLOW}→${NC} Replacing stale server on :8000..."
+    kill "$EXISTING_FRONTEND_PID" 2>/dev/null || true
+    sleep 1
+  else
+    echo -e "  ${YELLOW}→${NC} Starting Python HTTP server on :8000..."
+  fi
+  python3 -m http.server 8000 --bind 0.0.0.0 --directory "$PWD" > /dev/null 2>&1 &
   sleep 2
 fi
 

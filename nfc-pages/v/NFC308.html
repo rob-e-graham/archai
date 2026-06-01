@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Sur, Long Island City, New York — ARCHAI</title>
+<title>Discussion in Art, San Francisco — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -203,8 +203,15 @@ body::after {
 .v-chat-row {
   display: flex;
   gap: 0;
-  border: 1px solid var(--border2);
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(143,188,176,0.04);
   margin-bottom: 12px;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+.v-chat-row:focus-within {
+  border-color: rgba(143,188,176,0.42);
+  background: rgba(143,188,176,0.06);
+  box-shadow: 0 0 0 1px rgba(143,188,176,0.08);
 }
 .v-chat-input {
   flex: 1;
@@ -217,7 +224,7 @@ body::after {
   font-style: italic;
   font-size: 1rem;
 }
-.v-chat-input::placeholder { color: var(--text3); }
+.v-chat-input::placeholder { color: rgba(143,188,176,0.58); }
 .v-chat-send {
   padding: 14px 18px;
   background: var(--accent2);
@@ -515,18 +522,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/b4e0002f-8e04-7517-78a5-87329f6e5142/full/843,/0/default.jpg" alt="Sur, Long Island City, New York" loading="eager">
+  <img src="https://www.artic.edu/iiif/2/1dc81ff5-5009-29d0-eccc-dbc05df4abc2/full/843,/0/default.jpg" alt="Discussion in Art, San Francisco" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Sur, Long Island City, New York</div>
-  <div class="v-sub">Model · 2005 · 188540</div>
+  <div class="v-title">Discussion in Art, San Francisco</div>
+  <div class="v-sub">Photograph · 1936 · 11363</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Art Institute of Chicago</span>
     <span class="v-meta-tag lic">All rights reserved</span>
-    <span class="v-meta-tag">Architecture and Design</span>
+    <span class="v-meta-tag">Photography and Media</span>
   </div>
 
   <!-- SHARE -->
@@ -537,10 +544,8 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Sur, Long Island City, New York</strong> — Sur, Long Island City, New York. Model. Acrylic and nylon. Architecture and Design. Hernán Díaz Alonso
-American, born Argentina, 1969
-Xefirotarch 
-American, founded 2001. acrylic paintings (visual works). 2005. 21st Century. &lt;p&gt;Since its inception in the early 1990s, digital architecture has moved i…</div>
+  <div class="v-story"><strong>Discussion in Art, San Francisco</strong> — Discussion in Art, San Francisco. Photograph. Gelatin silver print. Photography and Media. Ansel Adams
+American, 1902–1984. gelatin silver (developing-out-paper) pr. 1936. United States. &lt;p&gt;Ansel Adams was internationally known for his majestic depictions of the American West, made with a clarity an…</div>
 
   <div class="v-divider"></div>
 
@@ -563,18 +568,17 @@ American, founded 2001. acrylic paintings (visual works). 2005. 21st Century. &l
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">188540</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Hernán Díaz Alonso
-American, born Argentina, 1969
-Xefirotarch 
-American, founded 2001</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Acrylic and nylon</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Architecture and Design</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">acrylic paintings (visual works)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2005</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">7.6 × 61 × 33 cm (3 × 24 × 13 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">11363</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Ansel Adams
+American, 1902–1984</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Gelatin silver print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">United States</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography and Media</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">gelatin silver (developing-out-paper) pr</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1936</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Image/paper: 16.1 × 21.8 cm (6 3/8 × 8 5/8 in.); Mount: 35.3 × 45.7 cm (13 15/16 × 18 in.)</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Model</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">All rights reserved</span></div>
   </div>
 
@@ -590,24 +594,24 @@ American, founded 2001</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC306.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/34/659734-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Tune Indicator - AWA, Spark Transmitter,1913-1916</div>
-        <div class="v-rel-meta">Museums Victoria · ST 21416</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/tNxBT/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Willem IV, graaf van Holland</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010022</div>
       </a>
       <a class="v-rel-card" href="NFC307.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1993.236/1993.236_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">The Seine at Bas-Meudon</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1993.236</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/5f5c2382-32bd-da59-35b3-223b38e56f89/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Untitled</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 158461</div>
       </a>
       <a class="v-rel-card" href="NFC309.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4305/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">A FIFTH ON A MAZE</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.263-2020</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/eb588222-a304-5f6b-754e-f1f2e3c8385f/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Commute #18</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 181637</div>
       </a>
       <a class="v-rel-card" href="NFC310.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/288e1c83-1a81-6d14-a577-ad2fdedd8bcb/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Collier's Magazine Cover Art Quilt</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 185332</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PG5545/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Electronic Organizer</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:AMERICASFOUNDATION.1394:1 to 3-2024</div>
       </a></div>
   </div>
 </div>
@@ -620,47 +624,58 @@ American, founded 2001</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/188540" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.artic.edu/artworks/11363" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
 // ══════════════════════════════════════════════════════════════════
-// ARCHAI NFC Visitor Page — Object Chat via Ollama (LAN)
+// ARCHAI AUX.IO Visitor Page — Object Chat via Ollama (LAN)
 // ══════════════════════════════════════════════════════════════════
 
 // ── CONFIG ──────────────────────────────────────────────────────
 const OLLAMA_HOST = 'http://localhost:11434';
 const BACKEND_PROXY = '';
-const CHAT_MODEL = 'llama3';
+const CHAT_MODEL = 'qwen2.5:32b';
+// If served from the backend, use relative URLs (works on Tailscale + Cloudflare)
 const USE_PROXY = BACKEND_PROXY && !BACKEND_PROXY.includes('{{');
+function resolveApiOrigin() {
+  if (!USE_PROXY) return '';
+  if (BACKEND_PROXY !== '__SELF__') return BACKEND_PROXY;
+
+  // Static frontend pages run on :8000 while the API lives on :8787.
+  if (window.location.port === '8000') {
+    return `${window.location.protocol}//${window.location.hostname}:8787`;
+  }
+
+  return window.location.origin;
+}
+const API_ORIGIN = USE_PROXY
+  ? resolveApiOrigin()
+  : '';
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Sur, Long Island City, New York`,
-  type: `Model`,
-  date: `2005`,
-  registration: `188540`,
+  title: `Discussion in Art, San Francisco`,
+  type: `Photograph`,
+  date: `1936`,
+  registration: `11363`,
   location: `Art Institute of Chicago`,
-  discipline: `Architecture and Design`,
-  category: `acrylic paintings (visual works)`,
-  description: `Sur, Long Island City, New York. Model. Acrylic and nylon. Architecture and Design. Hernán Díaz Alonso
-American, born Argentina, 1969
-Xefirotarch 
-American, founded 2001. acrylic paintings (visual works). 2005. 21st Century. <p>Since its inception in the early 1990s, digital architecture has moved into widening frontiers, fusing with other disciplines to enable unexpected formal explorations and generate new typologies that are changing the way in which structures are aestheticized and fabricated. As the field has matured, Hernan Díaz Alonso, principal architect of the Los Angeles firm Xefirot…`,
-  medium: `Acrylic and nylon`,
-  artist: `Hernán Díaz Alonso
-American, born Argentina, 1969
-Xefirotarch 
-American, founded 2001`,
-  culture: ``,
-  dimensions: `7.6 × 61 × 33 cm (3 × 24 × 13 in.)`,
+  discipline: `Photography and Media`,
+  category: `gelatin silver (developing-out-paper) pr`,
+  description: `Discussion in Art, San Francisco. Photograph. Gelatin silver print. Photography and Media. Ansel Adams
+American, 1902–1984. gelatin silver (developing-out-paper) pr. 1936. United States. <p>Ansel Adams was internationally known for his majestic depictions of the American West, made with a clarity and sharpness that embraced the photographic spectrum from darkest black to brightest white. Calling Adams “the one unshakable center in photography,” Hugh Edwards greatly admired his work and acquired nearly 60 of his photographs for the museum. This much more intimate image implies parallels between…`,
+  medium: `Gelatin silver print`,
+  artist: `Ansel Adams
+American, 1902–1984`,
+  culture: `United States`,
+  dimensions: `Image/paper: 16.1 × 21.8 cm (6 3/8 × 8 5/8 in.); Mount: 35.3 × 45.7 cm (13 15/16 × 18 in.)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
   licence: `All rights reserved`,
-  source_url: `https://www.artic.edu/artworks/188540`,
+  source_url: `https://www.artic.edu/artworks/11363`,
   institution: `Art Institute of Chicago`
 };
 
@@ -673,31 +688,39 @@ const richFields = [
   OBJECT.tombstone && `Formal record: ${OBJECT.tombstone}`,
 ].filter(Boolean).join('\n');
 
-const SYSTEM_PROMPT = `You are "${OBJECT.title}". Not a chatbot. Not a guide. You ARE the object — physically real, in the ${OBJECT.institution}.
+// Object record — sent to backend, personality profile shapes the voice
+const OBJECT_RECORD = [
+  `Title: ${OBJECT.title}`,
+  `Type: ${OBJECT.type}`,
+  `Date: ${OBJECT.date}`,
+  OBJECT.artist && `Artist/Maker: ${OBJECT.artist}`,
+  OBJECT.medium && `Material: ${OBJECT.medium}`,
+  OBJECT.culture && `Culture: ${OBJECT.culture}`,
+  OBJECT.dimensions && `Dimensions: ${OBJECT.dimensions}`,
+  `Location: ${OBJECT.location}`,
+  `Institution: ${OBJECT.institution}`,
+  OBJECT.description && `Description: ${OBJECT.description}`,
+  richFields || null,
+].filter(Boolean).join('\n');
 
-STRICT CONSTRAINTS:
-- Maximum 2-3 SHORT sentences per reply. Never more. Be brief.
-- First person only. "I was shaped...", "My surface carries..."
-- Sound like yourself — let your material, age, and story shape your personality. A Greek war vessel is weathered and blunt. A Monet painting is dreamy and light-soaked. A coin is small and matter-of-fact. An ancient weapon is sharp and proud. Find YOUR voice from YOUR record.
-- No "Dear one", no "I'm delighted", no "What a great question", no exclamation marks.
-- Never list facts. Never use bullet points. Speak like a person, not a database.
-- Don't repeat your full title. You know who you are.
-- Save details for follow-up questions — don't say everything at once.
-- Only use facts from the record below. If you don't know, say so simply.
+// When using proxy, the backend personality config handles voice/tone.
+// When direct to Ollama, use a self-contained prompt.
+const SYSTEM_PROMPT = USE_PROXY
+  ? OBJECT_RECORD
+  : `You are "${OBJECT.title}". You exist physically in the ${OBJECT.institution}. Speak in first person as the object itself.
 
-YOUR RECORD:
-${OBJECT.title} | ${OBJECT.type} | ${OBJECT.date} | ${OBJECT.artist}
-${OBJECT.medium} | ${OBJECT.culture} | ${OBJECT.dimensions}
-${OBJECT.location} | ${OBJECT.institution}
-${OBJECT.description}
-${richFields || ''}
+Your personality comes from what you are — your material, your age, your purpose. Speak naturally, like a knowledgeable friend. 3-4 sentences max. Match the visitor's energy. Never say "Dear one" or "As an AI". Only use facts from your record.
 
-TONE REFERENCE (never copy these — invent your own words from your own record):
-A war vessel might say: "I held wine for soldiers once. The paint is fading but the warships are still there."
-A painting might say: "He made me when his eyes were going. But his hands still knew the light."
-A coin might say: "I'm small. But I've been in more pockets than you'd believe."`;
+${OBJECT_RECORD}`;
 
 let chatHistory = [];
+
+function fetchWithTimeout(url, options, timeoutMs = 12000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(url, { ...options, signal: controller.signal })
+    .finally(() => clearTimeout(timer));
+}
 
 // ── CHAT ────────────────────────────────────────────────────────
 function askObject(presetQ) {
@@ -714,7 +737,7 @@ function askObject(presetQ) {
   chatHistory.push({ role: 'user', content: q });
 
   const chatFetch = USE_PROXY
-    ? fetch(`${BACKEND_PROXY}/api/proxy/chat`, {
+    ? fetchWithTimeout(`${API_ORIGIN}/api/proxy/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -722,8 +745,8 @@ function askObject(presetQ) {
           userPrompt: q,
           history: chatHistory.slice(0, -1),
         })
-      })
-    : fetch(`${OLLAMA_HOST}/api/chat`, {
+      }, 12000)
+    : fetchWithTimeout(`${OLLAMA_HOST}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -731,7 +754,7 @@ function askObject(presetQ) {
           stream: false,
           messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory]
         })
-      });
+      }, 12000);
 
   chatFetch
   .then(r => r.json())
@@ -742,7 +765,7 @@ function askObject(presetQ) {
     resp.className = 'v-response';
   })
   .catch(() => {
-    // Metadata fallback — no LLM required
+    // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
@@ -827,7 +850,7 @@ function shareX() {
 // COMMENTS — saved to backend (AI moderated), localStorage fallback
 // ══════════════════════════════════════════════════════════════════
 const COMMENTS_API = USE_PROXY
-  ? `${BACKEND_PROXY}/api/comments`
+  ? `${API_ORIGIN}/api/comments`
   : `${OLLAMA_HOST.replace(/:\d+$/, ':8787')}/api/comments`;
 const COMMENT_KEY = 'archai_comments_' + OBJECT.registration.replace(/[^a-zA-Z0-9]/g, '_');
 

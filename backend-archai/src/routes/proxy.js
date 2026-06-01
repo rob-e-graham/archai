@@ -24,7 +24,7 @@ export const proxyRouter = Router();
 const QDRANT_URL = env.qdrant.url;
 const OLLAMA_URL = env.ollama.baseUrl;
 const EMBED_MODEL = env.ollama.embedModel;
-const CHAT_MODEL = 'llama3';
+const CHAT_MODEL = env.ollama.chatModel || 'llama3';
 const ALLOWED_COLLECTIONS = ['archai_pilot', 'archai_met', 'archai_va', 'archai_aic', 'archai_cma', 'archai_rijks', 'archai_europeana'];
 
 // ── Personality config ────────────────────────────────────────────

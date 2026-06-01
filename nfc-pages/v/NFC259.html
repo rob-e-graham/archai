@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Simon — ARCHAI</title>
+<title>ROUND PEG — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -203,8 +203,15 @@ body::after {
 .v-chat-row {
   display: flex;
   gap: 0;
-  border: 1px solid var(--border2);
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(143,188,176,0.04);
   margin-bottom: 12px;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+.v-chat-row:focus-within {
+  border-color: rgba(143,188,176,0.42);
+  background: rgba(143,188,176,0.06);
+  box-shadow: 0 0 0 1px rgba(143,188,176,0.08);
 }
 .v-chat-input {
   flex: 1;
@@ -217,7 +224,7 @@ body::after {
   font-style: italic;
   font-size: 1rem;
 }
-.v-chat-input::placeholder { color: var(--text3); }
+.v-chat-input::placeholder { color: rgba(143,188,176,0.58); }
 .v-chat-send {
   padding: 14px 18px;
   background: var(--accent2);
@@ -515,18 +522,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2012FJ6886/full/!600,600/0/default.jpg" alt="Simon" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2014HD4329/full/!600,600/0/default.jpg" alt="ROUND PEG" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Simon</div>
-  <div class="v-sub">Electronic game · 1978 · B.128:1 to 5-2011</div>
+  <div class="v-title">ROUND PEG</div>
+  <div class="v-sub">Computer-generated drawing · 1969 · E.291-2020</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
     <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Electronic game</span>
+    <span class="v-meta-tag">Computer-generated drawing</span>
   </div>
 
   <!-- SHARE -->
@@ -537,7 +544,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Simon</strong> — Simon. Electronic game. Made by Ralph H Baer. 1978. Made in Republic of Ireland. Play Gallery, the Arcade, Case 1</div>
+  <div class="v-story"><strong>ROUND PEG</strong> — ROUND PEG. Computer-generated drawing. Made by Frederick Hammersley. 1969. Made in America. Prints &amp; Drawings Study Room, level C</div>
 
   <div class="v-divider"></div>
 
@@ -560,13 +567,13 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">B.128:1 to 5-2011</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Ralph H Baer</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Electronic game</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Electronic game</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1978</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Play Gallery, the Arcade, Case 1</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Electronic game</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.291-2020</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Frederick Hammersley</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Computer-generated drawing</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Computer-generated drawing</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1969</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, level C</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Computer-generated drawing</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
@@ -582,24 +589,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC257.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/owHmZ/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van Dirk I, graaf van Holland</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010000</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1992.369/1992.369_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Fragment of a Red-Figure Bell-Krater or Calyx-Krater (Mixing Vessel): Female Head (Aglauros)</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1992.369</div>
       </a>
       <a class="v-rel-card" href="NFC258.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/5/27155-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Kite Model - Lawrence Hargrave Design, Soaring Kite Type Q, Sydney, New South Wales, circa 1898</div>
-        <div class="v-rel-meta">Museums Victoria · ST 29213</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1970.127.b/1970.127.b_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Cover for a Box</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1970.127.b</div>
       </a>
       <a class="v-rel-card" href="NFC260.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ep/original/DP143159.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portrait of a Woman</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 437374</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/CUpzO/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Voltooiing van de sluizen te Katwijk 1807, afdruk in karton</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100052</div>
       </a>
       <a class="v-rel-card" href="NFC261.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/47b28b55-ced6-502d-f111-fbe0033f8dc8/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Chicago Stock Exchange Trading Room: Reconstruction at the Art Institute of Chicago</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 156538</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/is/original/DP235239.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Standing Figure with Feathered Headdress</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 454621</div>
       </a></div>
   </div>
 </div>
@@ -612,32 +619,47 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1243092/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1284387/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
 // ══════════════════════════════════════════════════════════════════
-// ARCHAI NFC Visitor Page — Object Chat via Ollama (LAN)
+// ARCHAI AUX.IO Visitor Page — Object Chat via Ollama (LAN)
 // ══════════════════════════════════════════════════════════════════
 
 // ── CONFIG ──────────────────────────────────────────────────────
 const OLLAMA_HOST = 'http://localhost:11434';
 const BACKEND_PROXY = '';
-const CHAT_MODEL = 'llama3';
+const CHAT_MODEL = 'qwen2.5:32b';
+// If served from the backend, use relative URLs (works on Tailscale + Cloudflare)
 const USE_PROXY = BACKEND_PROXY && !BACKEND_PROXY.includes('{{');
+function resolveApiOrigin() {
+  if (!USE_PROXY) return '';
+  if (BACKEND_PROXY !== '__SELF__') return BACKEND_PROXY;
+
+  // Static frontend pages run on :8000 while the API lives on :8787.
+  if (window.location.port === '8000') {
+    return `${window.location.protocol}//${window.location.hostname}:8787`;
+  }
+
+  return window.location.origin;
+}
+const API_ORIGIN = USE_PROXY
+  ? resolveApiOrigin()
+  : '';
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Simon`,
-  type: `Electronic game`,
-  date: `1978`,
-  registration: `B.128:1 to 5-2011`,
-  location: `Play Gallery, the Arcade, Case 1`,
-  discipline: `Electronic game`,
-  category: `Electronic game`,
-  description: `Simon. Electronic game. Made by Ralph H Baer. 1978. Made in Republic of Ireland. Play Gallery, the Arcade, Case 1`,
+  title: `ROUND PEG`,
+  type: `Computer-generated drawing`,
+  date: `1969`,
+  registration: `E.291-2020`,
+  location: `Prints & Drawings Study Room, level C`,
+  discipline: `Computer-generated drawing`,
+  category: `Computer-generated drawing`,
+  description: `ROUND PEG. Computer-generated drawing. Made by Frederick Hammersley. 1969. Made in America. Prints & Drawings Study Room, level C`,
   medium: ``,
-  artist: `Ralph H Baer`,
+  artist: `Frederick Hammersley`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -646,7 +668,7 @@ const OBJECT = {
   provenance: ``,
   tombstone: ``,
   licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1243092/`,
+  source_url: `https://collections.vam.ac.uk/item/O1284387/`,
   institution: `Victoria and Albert Museum, London`
 };
 
@@ -659,31 +681,39 @@ const richFields = [
   OBJECT.tombstone && `Formal record: ${OBJECT.tombstone}`,
 ].filter(Boolean).join('\n');
 
-const SYSTEM_PROMPT = `You are "${OBJECT.title}". Not a chatbot. Not a guide. You ARE the object — physically real, in the ${OBJECT.institution}.
+// Object record — sent to backend, personality profile shapes the voice
+const OBJECT_RECORD = [
+  `Title: ${OBJECT.title}`,
+  `Type: ${OBJECT.type}`,
+  `Date: ${OBJECT.date}`,
+  OBJECT.artist && `Artist/Maker: ${OBJECT.artist}`,
+  OBJECT.medium && `Material: ${OBJECT.medium}`,
+  OBJECT.culture && `Culture: ${OBJECT.culture}`,
+  OBJECT.dimensions && `Dimensions: ${OBJECT.dimensions}`,
+  `Location: ${OBJECT.location}`,
+  `Institution: ${OBJECT.institution}`,
+  OBJECT.description && `Description: ${OBJECT.description}`,
+  richFields || null,
+].filter(Boolean).join('\n');
 
-STRICT CONSTRAINTS:
-- Maximum 2-3 SHORT sentences per reply. Never more. Be brief.
-- First person only. "I was shaped...", "My surface carries..."
-- Sound like yourself — let your material, age, and story shape your personality. A Greek war vessel is weathered and blunt. A Monet painting is dreamy and light-soaked. A coin is small and matter-of-fact. An ancient weapon is sharp and proud. Find YOUR voice from YOUR record.
-- No "Dear one", no "I'm delighted", no "What a great question", no exclamation marks.
-- Never list facts. Never use bullet points. Speak like a person, not a database.
-- Don't repeat your full title. You know who you are.
-- Save details for follow-up questions — don't say everything at once.
-- Only use facts from the record below. If you don't know, say so simply.
+// When using proxy, the backend personality config handles voice/tone.
+// When direct to Ollama, use a self-contained prompt.
+const SYSTEM_PROMPT = USE_PROXY
+  ? OBJECT_RECORD
+  : `You are "${OBJECT.title}". You exist physically in the ${OBJECT.institution}. Speak in first person as the object itself.
 
-YOUR RECORD:
-${OBJECT.title} | ${OBJECT.type} | ${OBJECT.date} | ${OBJECT.artist}
-${OBJECT.medium} | ${OBJECT.culture} | ${OBJECT.dimensions}
-${OBJECT.location} | ${OBJECT.institution}
-${OBJECT.description}
-${richFields || ''}
+Your personality comes from what you are — your material, your age, your purpose. Speak naturally, like a knowledgeable friend. 3-4 sentences max. Match the visitor's energy. Never say "Dear one" or "As an AI". Only use facts from your record.
 
-TONE REFERENCE (never copy these — invent your own words from your own record):
-A war vessel might say: "I held wine for soldiers once. The paint is fading but the warships are still there."
-A painting might say: "He made me when his eyes were going. But his hands still knew the light."
-A coin might say: "I'm small. But I've been in more pockets than you'd believe."`;
+${OBJECT_RECORD}`;
 
 let chatHistory = [];
+
+function fetchWithTimeout(url, options, timeoutMs = 12000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(url, { ...options, signal: controller.signal })
+    .finally(() => clearTimeout(timer));
+}
 
 // ── CHAT ────────────────────────────────────────────────────────
 function askObject(presetQ) {
@@ -700,7 +730,7 @@ function askObject(presetQ) {
   chatHistory.push({ role: 'user', content: q });
 
   const chatFetch = USE_PROXY
-    ? fetch(`${BACKEND_PROXY}/api/proxy/chat`, {
+    ? fetchWithTimeout(`${API_ORIGIN}/api/proxy/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -708,8 +738,8 @@ function askObject(presetQ) {
           userPrompt: q,
           history: chatHistory.slice(0, -1),
         })
-      })
-    : fetch(`${OLLAMA_HOST}/api/chat`, {
+      }, 12000)
+    : fetchWithTimeout(`${OLLAMA_HOST}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -717,7 +747,7 @@ function askObject(presetQ) {
           stream: false,
           messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory]
         })
-      });
+      }, 12000);
 
   chatFetch
   .then(r => r.json())
@@ -728,7 +758,7 @@ function askObject(presetQ) {
     resp.className = 'v-response';
   })
   .catch(() => {
-    // Metadata fallback — no LLM required
+    // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
@@ -813,7 +843,7 @@ function shareX() {
 // COMMENTS — saved to backend (AI moderated), localStorage fallback
 // ══════════════════════════════════════════════════════════════════
 const COMMENTS_API = USE_PROXY
-  ? `${BACKEND_PROXY}/api/comments`
+  ? `${API_ORIGIN}/api/comments`
   : `${OLLAMA_HOST.replace(/:\d+$/, ':8787')}/api/comments`;
 const COMMENT_KEY = 'archai_comments_' + OBJECT.registration.replace(/[^a-zA-Z0-9]/g, '_');
 

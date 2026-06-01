@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Lantern Slide - 'The Lads in Navy Blue', circa 1939-1956 — ARCHAI</title>
+<title>Emmy Award — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -203,8 +203,15 @@ body::after {
 .v-chat-row {
   display: flex;
   gap: 0;
-  border: 1px solid var(--border2);
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(143,188,176,0.04);
   margin-bottom: 12px;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+.v-chat-row:focus-within {
+  border-color: rgba(143,188,176,0.42);
+  background: rgba(143,188,176,0.06);
+  box-shadow: 0 0 0 1px rgba(143,188,176,0.08);
 }
 .v-chat-input {
   flex: 1;
@@ -217,7 +224,7 @@ body::after {
   font-style: italic;
   font-size: 1rem;
 }
-.v-chat-input::placeholder { color: var(--text3); }
+.v-chat-input::placeholder { color: rgba(143,188,176,0.58); }
 .v-chat-send {
   padding: 14px 18px;
   background: var(--accent2);
@@ -515,18 +522,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://collections.museumsvictoria.com.au/content/media/25/164775-medium.jpg" alt="Lantern Slide - 'The Lads in Navy Blue', circa 1939-1956" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2018KP7488/full/!600,600/0/default.jpg" alt="Emmy Award" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Lantern Slide - 'The Lads in Navy Blue', circa 1939-1956</div>
-  <div class="v-sub">Image · Date unknown · MM 97306</div>
+  <div class="v-title">Emmy Award</div>
+  <div class="v-sub">Award · 1971 · S.800-2017</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Museums Victoria</span>
-    <span class="v-meta-tag lic">CC BY</span>
-    <span class="v-meta-tag">History</span>
+    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
+    <span class="v-meta-tag lic">V&A Open Access</span>
+    <span class="v-meta-tag">Award</span>
   </div>
 
   <!-- SHARE -->
@@ -537,9 +544,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Lantern Slide - 'The Lads in Navy Blue', circa 1939-1956</strong> — Lantern Slide with the song lyrics for 'The Lads in Navy Blue'. Published by J. Albert, Sydney.
-
-Used by Mr Jack Hayward an entertainer who held community concerts in Sydney suburbs and in Geelong from about 1928 (Lakemba, NSW) to 1939 (Geelong) and then in Geelong for a few years after World War Tw…</div>
+  <div class="v-story"><strong>Emmy Award</strong> — Emmy Award. Award. Made by McManus, Louis. 1971. Made in United States. Theatre and Performance Galleries, Room 104</div>
 
   <div class="v-divider"></div>
 
@@ -562,14 +567,14 @@ Used by Mr Jack Hayward an entertainer who held community concerts in Sydney sub
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">MM 97306</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">History &amp; Technology</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Date unknown</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">[object Object]</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Museums Victoria</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Image</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">S.800-2017</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">McManus, Louis</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Award</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Award</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1971</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Theatre and Performance Galleries, Room 104</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Award</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -584,24 +589,24 @@ Used by Mr Jack Hayward an entertainer who held community concerts in Sydney sub
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC354.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ep/original/DP276131.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portrait of a Man</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 437875</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/16a74df2-b0e7-caa0-0eb8-8288def72c9c/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Starving Artists Cookbook</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 143567</div>
       </a>
       <a class="v-rel-card" href="NFC355.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4314/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">JELLY CENTERS</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.270-2020</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/gr/original/DP261228.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Marble head of a bearded man from a herm</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 255420</div>
       </a>
       <a class="v-rel-card" href="NFC357.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1978.63/1978.63_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">In the Waves (Dans les Vagues)</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1978.63</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1915.533.b/1915.533.b_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Fragment from Red-Figure Cup: Woman</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1915.533.b</div>
       </a>
       <a class="v-rel-card" href="NFC358.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1988.8/1988.8_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Red-Figure Ram-Head Rhyton (Drinking Vessel): Symposiasts; Satyr and Maenad</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1988.8</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2013GV1959/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Personal computer</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.48:1-1984</div>
       </a></div>
   </div>
 </div>
@@ -614,44 +619,57 @@ Used by Mr Jack Hayward an entertainer who held community concerts in Sydney sub
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.museumsvictoria.com.au/items/MM 97306" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1432486/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
 // ══════════════════════════════════════════════════════════════════
-// ARCHAI NFC Visitor Page — Object Chat via Ollama (LAN)
+// ARCHAI AUX.IO Visitor Page — Object Chat via Ollama (LAN)
 // ══════════════════════════════════════════════════════════════════
 
 // ── CONFIG ──────────────────────────────────────────────────────
 const OLLAMA_HOST = 'http://localhost:11434';
 const BACKEND_PROXY = '';
-const CHAT_MODEL = 'llama3';
+const CHAT_MODEL = 'qwen2.5:32b';
+// If served from the backend, use relative URLs (works on Tailscale + Cloudflare)
 const USE_PROXY = BACKEND_PROXY && !BACKEND_PROXY.includes('{{');
+function resolveApiOrigin() {
+  if (!USE_PROXY) return '';
+  if (BACKEND_PROXY !== '__SELF__') return BACKEND_PROXY;
+
+  // Static frontend pages run on :8000 while the API lives on :8787.
+  if (window.location.port === '8000') {
+    return `${window.location.protocol}//${window.location.hostname}:8787`;
+  }
+
+  return window.location.origin;
+}
+const API_ORIGIN = USE_PROXY
+  ? resolveApiOrigin()
+  : '';
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Lantern Slide - 'The Lads in Navy Blue', circa 1939-1956`,
-  type: `Image`,
-  date: `Date unknown`,
-  registration: `MM 97306`,
-  location: `Museums Victoria`,
-  discipline: `History`,
-  category: `History & Technology`,
-  description: `Lantern Slide with the song lyrics for 'The Lads in Navy Blue'. Published by J. Albert, Sydney.
-
-Used by Mr Jack Hayward an entertainer who held community concerts in Sydney suburbs and in Geelong from about 1928 (Lakemba, NSW) to 1939 (Geelong) and then in Geelong for a few years after World War Two. "Community Singing As It Should Be" was a feature of these concerts, which also included other musical items. Community Concerts were held at the Hall of Honour, Yarra Street, Geelong on weekend evenings; his son suggested they continued until the advent of television in 1956. Many of the slides …`,
+  title: `Emmy Award`,
+  type: `Award`,
+  date: `1971`,
+  registration: `S.800-2017`,
+  location: `Theatre and Performance Galleries, Room 104`,
+  discipline: `Award`,
+  category: `Award`,
+  description: `Emmy Award. Award. Made by McManus, Louis. 1971. Made in United States. Theatre and Performance Galleries, Room 104`,
   medium: ``,
-  artist: ``,
+  artist: `McManus, Louis`,
   culture: ``,
-  dimensions: `[object Object]`,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `CC BY`,
-  source_url: `https://collections.museumsvictoria.com.au/items/MM 97306`,
-  institution: `Museums Victoria`
+  licence: `V&A Open Access`,
+  source_url: `https://collections.vam.ac.uk/item/O1432486/`,
+  institution: `Victoria and Albert Museum, London`
 };
 
 // Build rich context from available fields
@@ -663,31 +681,39 @@ const richFields = [
   OBJECT.tombstone && `Formal record: ${OBJECT.tombstone}`,
 ].filter(Boolean).join('\n');
 
-const SYSTEM_PROMPT = `You are "${OBJECT.title}". Not a chatbot. Not a guide. You ARE the object — physically real, in the ${OBJECT.institution}.
+// Object record — sent to backend, personality profile shapes the voice
+const OBJECT_RECORD = [
+  `Title: ${OBJECT.title}`,
+  `Type: ${OBJECT.type}`,
+  `Date: ${OBJECT.date}`,
+  OBJECT.artist && `Artist/Maker: ${OBJECT.artist}`,
+  OBJECT.medium && `Material: ${OBJECT.medium}`,
+  OBJECT.culture && `Culture: ${OBJECT.culture}`,
+  OBJECT.dimensions && `Dimensions: ${OBJECT.dimensions}`,
+  `Location: ${OBJECT.location}`,
+  `Institution: ${OBJECT.institution}`,
+  OBJECT.description && `Description: ${OBJECT.description}`,
+  richFields || null,
+].filter(Boolean).join('\n');
 
-STRICT CONSTRAINTS:
-- Maximum 2-3 SHORT sentences per reply. Never more. Be brief.
-- First person only. "I was shaped...", "My surface carries..."
-- Sound like yourself — let your material, age, and story shape your personality. A Greek war vessel is weathered and blunt. A Monet painting is dreamy and light-soaked. A coin is small and matter-of-fact. An ancient weapon is sharp and proud. Find YOUR voice from YOUR record.
-- No "Dear one", no "I'm delighted", no "What a great question", no exclamation marks.
-- Never list facts. Never use bullet points. Speak like a person, not a database.
-- Don't repeat your full title. You know who you are.
-- Save details for follow-up questions — don't say everything at once.
-- Only use facts from the record below. If you don't know, say so simply.
+// When using proxy, the backend personality config handles voice/tone.
+// When direct to Ollama, use a self-contained prompt.
+const SYSTEM_PROMPT = USE_PROXY
+  ? OBJECT_RECORD
+  : `You are "${OBJECT.title}". You exist physically in the ${OBJECT.institution}. Speak in first person as the object itself.
 
-YOUR RECORD:
-${OBJECT.title} | ${OBJECT.type} | ${OBJECT.date} | ${OBJECT.artist}
-${OBJECT.medium} | ${OBJECT.culture} | ${OBJECT.dimensions}
-${OBJECT.location} | ${OBJECT.institution}
-${OBJECT.description}
-${richFields || ''}
+Your personality comes from what you are — your material, your age, your purpose. Speak naturally, like a knowledgeable friend. 3-4 sentences max. Match the visitor's energy. Never say "Dear one" or "As an AI". Only use facts from your record.
 
-TONE REFERENCE (never copy these — invent your own words from your own record):
-A war vessel might say: "I held wine for soldiers once. The paint is fading but the warships are still there."
-A painting might say: "He made me when his eyes were going. But his hands still knew the light."
-A coin might say: "I'm small. But I've been in more pockets than you'd believe."`;
+${OBJECT_RECORD}`;
 
 let chatHistory = [];
+
+function fetchWithTimeout(url, options, timeoutMs = 12000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(url, { ...options, signal: controller.signal })
+    .finally(() => clearTimeout(timer));
+}
 
 // ── CHAT ────────────────────────────────────────────────────────
 function askObject(presetQ) {
@@ -704,7 +730,7 @@ function askObject(presetQ) {
   chatHistory.push({ role: 'user', content: q });
 
   const chatFetch = USE_PROXY
-    ? fetch(`${BACKEND_PROXY}/api/proxy/chat`, {
+    ? fetchWithTimeout(`${API_ORIGIN}/api/proxy/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -712,8 +738,8 @@ function askObject(presetQ) {
           userPrompt: q,
           history: chatHistory.slice(0, -1),
         })
-      })
-    : fetch(`${OLLAMA_HOST}/api/chat`, {
+      }, 12000)
+    : fetchWithTimeout(`${OLLAMA_HOST}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -721,7 +747,7 @@ function askObject(presetQ) {
           stream: false,
           messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory]
         })
-      });
+      }, 12000);
 
   chatFetch
   .then(r => r.json())
@@ -732,7 +758,7 @@ function askObject(presetQ) {
     resp.className = 'v-response';
   })
   .catch(() => {
-    // Metadata fallback — no LLM required
+    // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
@@ -817,7 +843,7 @@ function shareX() {
 // COMMENTS — saved to backend (AI moderated), localStorage fallback
 // ══════════════════════════════════════════════════════════════════
 const COMMENTS_API = USE_PROXY
-  ? `${BACKEND_PROXY}/api/comments`
+  ? `${API_ORIGIN}/api/comments`
   : `${OLLAMA_HOST.replace(/:\d+$/, ':8787')}/api/comments`;
 const COMMENT_KEY = 'archai_comments_' + OBJECT.registration.replace(/[^a-zA-Z0-9]/g, '_');
 

@@ -1,29 +1,39 @@
 # ARCHAI Local Prototype (Quick Start)
 
-This folder contains local HTML prototypes for ARCHAI and the standalone FAMTEC Exchange concept.
+This folder contains the current local ARCHAI prototype, the backend scaffold, AUX.IO visitor pages, and related support files.
 
-## Files
+## Main entry points
 
-- `ARCHAI_v5.html` — main prototype (`v0.6`) with:
-  - Curator search
-  - Upload & Ingest
-  - Nodel
-  - NFC management
-  - Vocabulary
-  - Visitor view
-  - FAMTEC tab (opens separate page)
-  - Admin
-  - Version & Links
+- `ARCHAI_v10_8.html` — current main frontend with:
+  - multi-collection search
+  - live object chat
+  - curator tools
+  - AUX.IO management
+  - comments + proxy integration
+  - PWA manifest + service worker
 
-- `ARCHAI_v6.html` — `v6` prototype with The Met integration links + small Met preview panel
+- `backend-archai/` — backend proxy/API for public-safe hosting, comments, and curator services
 
-- `FAMTEC_exchange.html` — standalone local FAMTEC Exchange prototype page
+- `nfc-pages/` — generated AUX.IO visitor pages
 
-- `serve_local_archai.sh` — simple local web server helper (recommended for The Met preview)
+- `start-archai.sh` — recommended full-stack launcher
+- `serve_local_archai.sh` — static-server helper for frontend/PWA testing only
 
-## Recommended Launch (for Met preview)
+## Recommended launch
 
 From this folder:
+
+```bash
+./start-archai.sh
+```
+
+Then open:
+
+- `http://localhost:8000/ARCHAI_v10_8.html`
+
+## Frontend-only launch
+
+If you only want the static frontend/PWA:
 
 ```bash
 ./serve_local_archai.sh
@@ -31,16 +41,16 @@ From this folder:
 
 Then open:
 
-- `http://localhost:8000/ARCHAI_v6.html`
+- `http://localhost:8000/ARCHAI_v10_8.html`
 
-## Direct URLs (when local server is running)
+## Direct URLs
 
-- ARCHAI v5: `http://localhost:8000/ARCHAI_v5.html`
-- ARCHAI v6 (Met preview): `http://localhost:8000/ARCHAI_v6.html`
-- FAMTEC Exchange: `http://localhost:8000/FAMTEC_exchange.html`
+- Main app: `http://localhost:8000/ARCHAI_v10_8.html`
+- AUX.IO index: `http://localhost:8787/aux/index.html`
+- Backend API: `http://localhost:8787/api/health`
 
 ## Notes
 
-- Opening the HTML files directly (`file://`) is fine for most UI work.
-- The Met API preview in `ARCHAI_v6.html` is more reliable via `http://localhost:8000` (not `file://`) because browsers may block API requests from local files.
-- FAMTEC is currently a local prototype page. In production it should be a separate online app/service with separate data storage and auth.
+- The PWA requires `http://localhost:8000`, not `file://`.
+- If `localhost:8000` shows a directory listing or returns `404` for `ARCHAI_v10_8.html`, the server is likely rooted in the wrong folder. `start-archai.sh` now replaces stale port `8000` servers automatically.
+- The public `fineartmedia.tech/aux` landing page lives in the website repo, while the tunnel-backed AUX.IO object pages come from this ARCHAI repo/backend.

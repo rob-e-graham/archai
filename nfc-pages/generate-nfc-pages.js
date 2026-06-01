@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // ══════════════════════════════════════════════════════════════════
-// ARCHAI — NFC Page Generator
-// Reads MV objects from Qdrant and generates one HTML visitor page
-// per object/NFC tag. Output goes to ./v/ directory.
+// ARCHAI — AUX.IO Page Generator
+// Reads live ARCHAI collection objects from Qdrant and generates one HTML visitor page
+// per object/AUX.IO tag. Output goes to ./v/ directory.
 //
 // Usage:
 //   node generate-nfc-pages.js
@@ -12,7 +12,7 @@
 //
 // Requirements:
 //   - Qdrant running at localhost:6333
-//   - Collection 'archai_pilot' populated (run mv-harvester.js first)
+//   - One or more ARCHAI source collections populated in Qdrant
 //   - Template file: nfc-visitor-template.html (same directory)
 // ══════════════════════════════════════════════════════════════════
 
@@ -42,7 +42,7 @@ const COLLECTION_LABELS = {
 };
 const OLLAMA_LAN_HOST = getArg('host', 'http://localhost:11434');
 const BACKEND_PROXY = getArg('proxy', '');
-const LIMIT = parseInt(getArg('limit', '200'), 10);
+const LIMIT = parseInt(getArg('limit', '1000'), 10);
 const OUTPUT_DIR = path.join(__dirname, 'v');
 const TEMPLATE_PATH = path.join(__dirname, 'nfc-visitor-template.html');
 const PORTAL_PATH = path.join(__dirname, 'captive-portal.html');
@@ -72,7 +72,7 @@ function truncate(s, len = 300) {
 async function main() {
   console.log('\n  ╔══════════════════════════════════════════════╗');
   console.log('  ║   ARCHAI — AUX.IO Page Generator             ║');
-  console.log('  ║   (NFC / QR / Beacon / Hyperlink delivery)   ║');
+  console.log('  ║   (AUX.IO / QR / Beacon / Hyperlink delivery)║');
   console.log('  ╚══════════════════════════════════════════════╝\n');
 
   // Check template exists
@@ -93,7 +93,6 @@ async function main() {
 
   // Fetch objects from ALL Qdrant collections
   let allPoints = [];
-  const seenTitles = new Set();
   const seenCanonical = new Set();
   const collectionCounts = {};
 
@@ -116,20 +115,10 @@ async function main() {
         const p = pt.payload;
         if (!p || !p.canonical_id) continue;
 
-        // Deduplicate by canonical_id and title
-        const normTitle = (p.title || '').toLowerCase().trim();
+        // Deduplicate by canonical_id across collections
         if (seenCanonical.has(p.canonical_id)) continue;
-        if (normTitle && seenTitles.has(normTitle)) continue;
-
-        // Skip objects without images
-        const hasImage = p.media_thumbnail || p.media_medium || p.media_large || p.primaryImageSmall || p.primaryImage;
-        if (!hasImage) continue;
-
-        // Skip untitled objects
-        if (!p.title || p.title.toLowerCase() === 'untitled') continue;
 
         seenCanonical.add(p.canonical_id);
-        if (normTitle) seenTitles.add(normTitle);
 
         // Tag with source collection
         pt._sourceCollection = col;
@@ -191,7 +180,8 @@ async function main() {
     if (!p || !p.canonical_id) continue;
 
     const nfcCode = obj.nfcCode;
-    const title = p.title || 'Unknown Object';
+    const fallbackTitle = p.registration_number || p.accession_number || p.canonical_id || 'Unknown Object';
+    const title = (p.title && p.title.trim()) ? p.title.trim() : `Untitled — ${fallbackTitle}`;
     const type = p.object_type || p.discipline || 'Heritage Object';
     const date = p.date_range || 'Date unknown';
     const reg = p.registration_number || '';
@@ -288,6 +278,7 @@ async function main() {
     let html = template
       .replace(/\{\{OLLAMA_HOST\}\}/g, OLLAMA_LAN_HOST)
       .replace(/\{\{BACKEND_PROXY\}\}/g, BACKEND_PROXY)
+      .replace(/\{\{CHAT_MODEL\}\}/g, getArg('model', 'qwen2.5:32b'))
       .replace(/\{\{NFC_CODE\}\}/g, escHtml(obj.auxLabel || nfcCode))
       .replace(/\{\{OBJECT_TITLE\}\}/g, escHtml(title))
       .replace(/\{\{OBJECT_SUB\}\}/g, escHtml(subLine))
@@ -322,16 +313,16 @@ async function main() {
     generated.push({ nfcCode, title, reg, filename, source: sourceInstitution });
 
     // Progress
-    process.stdout.write(`  → ${nfcCode} · [${sourceInstitution.substring(0,3).toUpperCase()}] ${title.substring(0, 40)}${title.length > 40 ? '…' : ''}\n`);
+    process.stdout.write(`  → ${obj.auxLabel} · [${sourceInstitution.substring(0,3).toUpperCase()}] ${title.substring(0, 40)}${title.length > 40 ? '…' : ''}\n`);
   }
 
   // Generate index page for /v/
   const indexHtml = generateIndex(generated);
   fs.writeFileSync(path.join(OUTPUT_DIR, 'index.html'), indexHtml, 'utf-8');
 
-  // NFC programming reference
+  // AUX.IO programming reference
   const nfcRef = generated.map(g =>
-    `${g.nfcCode}  →  ${g.filename}  →  [${(g.source || '').substring(0,3).toUpperCase()}]  ${g.title}  (${g.reg})`
+    `${g.nfcCode.replace(/^NFC/, 'AUX.IO ')}  →  ${g.filename}  →  [${(g.source || '').substring(0,3).toUpperCase()}]  ${g.title}  (${g.reg})`
   ).join('\n');
   fs.writeFileSync(path.join(OUTPUT_DIR, 'nfc-reference.txt'), nfcRef, 'utf-8');
 
@@ -345,8 +336,8 @@ async function main() {
     console.log(`    → ${src}: ${count} pages`);
   });
   console.log(`  ✓ Index page: ${OUTPUT_DIR}/index.html`);
-  console.log(`  ✓ NFC reference: ${OUTPUT_DIR}/nfc-reference.txt`);
-  console.log(`\n  NFC tags should open URLs like:`);
+  console.log(`  ✓ AUX.IO reference: ${OUTPUT_DIR}/nfc-reference.txt`);
+  console.log(`\n  AUX.IO tags should open URLs like:`);
   console.log(`    http://<your-lan-ip>:8000/v/NFC001.html`);
   console.log(`\n  Or with captive portal:`);
   console.log(`    http://<your-lan-ip>:8000/captive-portal.html?next=NFC001`);
@@ -357,7 +348,7 @@ async function main() {
 function generateIndex(items) {
   const rows = items.map(g =>
     `<a href="${g.filename}" class="idx-item">
-      <span class="idx-nfc">${g.nfcCode}</span>
+      <span class="idx-nfc">${g.nfcCode.replace(/^NFC/, 'AUX.IO ')}</span>
       <span class="idx-title">${escHtml(g.title)}</span>
       <span class="idx-reg">${escHtml(g.reg)}</span>
     </a>`
@@ -387,7 +378,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--serif);padding:32p
 </head>
 <body>
 <div class="logo">ARC<span>H</span>AI</div>
-<div class="sub">NFC Visitor Pages · ${items.length} Objects</div>
+<div class="sub">AUX.IO Visitor Pages · ${items.length} Objects</div>
 <div class="count">${items.length} pages generated</div>
 ${rows}
 </body>

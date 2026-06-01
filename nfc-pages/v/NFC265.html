@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Marble statue of a kouros (youth) — ARCHAI</title>
+<title>The Call — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -203,8 +203,15 @@ body::after {
 .v-chat-row {
   display: flex;
   gap: 0;
-  border: 1px solid var(--border2);
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(143,188,176,0.04);
   margin-bottom: 12px;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+.v-chat-row:focus-within {
+  border-color: rgba(143,188,176,0.42);
+  background: rgba(143,188,176,0.06);
+  box-shadow: 0 0 0 1px rgba(143,188,176,0.08);
 }
 .v-chat-input {
   flex: 1;
@@ -217,7 +224,7 @@ body::after {
   font-style: italic;
   font-size: 1rem;
 }
-.v-chat-input::placeholder { color: var(--text3); }
+.v-chat-input::placeholder { color: rgba(143,188,176,0.58); }
 .v-chat-send {
   padding: 14px 18px;
   background: var(--accent2);
@@ -515,18 +522,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/gr/original/DP-23263-005.jpg" alt="Marble statue of a kouros (youth)" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1943.392/1943.392_web.jpg" alt="The Call" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Marble statue of a kouros (youth)</div>
-  <div class="v-sub">Statue of a kouros (youth) · ca. 590–580 BCE · 253370</div>
+  <div class="v-title">The Call</div>
+  <div class="v-sub">Painting · 1902 · 1943.392</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag lic">CC0 — Public Domain</span>
-    <span class="v-meta-tag">Greek and Roman Art</span>
+    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
   </div>
 
   <!-- SHARE -->
@@ -537,7 +544,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Marble statue of a kouros (youth)</strong> — Marble statue of a kouros (youth). Statue of a kouros (youth). Marble, Naxian. Greek and Roman Art. Greek, Attic. Archaic. Stone Sculpture. ca. 590–580 BCE</div>
+  <div class="v-story"><strong>The Call</strong> — Painted on a remote island in Polynesia a year before the artist's death, The Call belongs to a series of late works that explore the mysteries of life and death. Two women stand with bare feet, as if on sacred ground. One woman gestures to someone outside the picture, perhaps responding to a &quot;call&quot;…</div>
 
   <div class="v-divider"></div>
 
@@ -560,19 +567,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">253370</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Marble, Naxian</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Greek, Attic</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Greek and Roman Art</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Stone Sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca. 590–580 BCE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">76 5/8 × 20 5/16 × 24 7/8 in. (194.6 × 51.6 × 63.2 cm)
-Other (height w/o plinth): 76 5/8 in. (194.6 cm)
-Other (Height of Head): 12 in. (30.5 cm)
-Other (Length of face): 8 7/8 in. (22.6 cm)
-Other (shoulder width): 20 5/16 in. (51.6 cm)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 154</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Statue of a kouros (youth)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1943.392</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Paul Gauguin (French, 1848–1903)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oil on fabric</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, late 19th-early 20th Century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1902</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Framed: 160.5 x 119 x 9.5 cm (63 3/16 x 46 7/8 x 3 3/4 in.); Unframed: 131.3 x 89.5 cm (51 11/16 x 35 1/4 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">222 Impressionism &amp; Post-Impressionism</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
@@ -588,24 +592,24 @@ Other (shoulder width): 20 5/16 in. (51.6 cm)</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC263.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/5c3440fa-8e21-7570-0757-37f8594a8ca5/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">&quot;Pasta Salad (cherry tomatoes, french bread, red peppers, lettuce, parsely, lemon slice, grapes, red wine, chopped olives, and fork)&quot;</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 158595</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/66fc4477-6095-69b7-4b7c-c22455f6ac9b/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">The Untitled Book</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 182031</div>
       </a>
       <a class="v-rel-card" href="NFC264.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1997.298/1997.298_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Nautilus Reading Lamp</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1997.298</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/BhGiG/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Westfriese drie gulden, 1791</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100256</div>
       </a>
       <a class="v-rel-card" href="NFC266.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/94bfb508-31cc-7c9f-63a9-5478c826129a/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">The Sacred Grove, Beloved of the Arts and the Muses</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 81566</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1917.42/1917.42_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">The Thinker</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1917.42</div>
       </a>
       <a class="v-rel-card" href="NFC267.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/23/164723-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Lantern Slide - 'Did Your Mother Come from Ireland?', circa 1928-1956</div>
-        <div class="v-rel-meta">Museums Victoria · MM 97189</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/7b02ba14-21fa-99ce-9124-f012851e0e1d/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Nelson Algren Amuses a New Friend</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 191354</div>
       </a></div>
   </div>
 </div>
@@ -618,46 +622,57 @@ Other (shoulder width): 20 5/16 in. (51.6 cm)</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/253370" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1943.392" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
 // ══════════════════════════════════════════════════════════════════
-// ARCHAI NFC Visitor Page — Object Chat via Ollama (LAN)
+// ARCHAI AUX.IO Visitor Page — Object Chat via Ollama (LAN)
 // ══════════════════════════════════════════════════════════════════
 
 // ── CONFIG ──────────────────────────────────────────────────────
 const OLLAMA_HOST = 'http://localhost:11434';
 const BACKEND_PROXY = '';
-const CHAT_MODEL = 'llama3';
+const CHAT_MODEL = 'qwen2.5:32b';
+// If served from the backend, use relative URLs (works on Tailscale + Cloudflare)
 const USE_PROXY = BACKEND_PROXY && !BACKEND_PROXY.includes('{{');
+function resolveApiOrigin() {
+  if (!USE_PROXY) return '';
+  if (BACKEND_PROXY !== '__SELF__') return BACKEND_PROXY;
+
+  // Static frontend pages run on :8000 while the API lives on :8787.
+  if (window.location.port === '8000') {
+    return `${window.location.protocol}//${window.location.hostname}:8787`;
+  }
+
+  return window.location.origin;
+}
+const API_ORIGIN = USE_PROXY
+  ? resolveApiOrigin()
+  : '';
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Marble statue of a kouros (youth)`,
-  type: `Statue of a kouros (youth)`,
-  date: `ca. 590–580 BCE`,
-  registration: `253370`,
-  location: `Gallery 154`,
-  discipline: `Greek and Roman Art`,
-  category: `Stone Sculpture`,
-  description: `Marble statue of a kouros (youth). Statue of a kouros (youth). Marble, Naxian. Greek and Roman Art. Greek, Attic. Archaic. Stone Sculpture. ca. 590–580 BCE`,
-  medium: `Marble, Naxian`,
-  artist: ``,
-  culture: `Greek, Attic`,
-  dimensions: `76 5/8 × 20 5/16 × 24 7/8 in. (194.6 × 51.6 × 63.2 cm)
-Other (height w/o plinth): 76 5/8 in. (194.6 cm)
-Other (Height of Head): 12 in. (30.5 cm)
-Other (Length of face): 8 7/8 in. (22.6 cm)
-Other (shoulder width): 20 5/16 in. (51.6 cm)`,
+  title: `The Call`,
+  type: `Painting`,
+  date: `1902`,
+  registration: `1943.392`,
+  location: `222 Impressionism & Post-Impressionism`,
+  discipline: `Modern European Painting and Sculpture`,
+  category: `Painting`,
+  description: `Painted on a remote island in Polynesia a year before the artist's death, The Call belongs to a series of late works that explore the mysteries of life and death. Two women stand with bare feet, as if on sacred ground. One woman gestures to someone outside the picture, perhaps responding to a "call" from fate or destiny. Gauguin realized his ambition of painting from memory and the imagination through such mysterious, dreamlike images.`,
+  medium: `oil on fabric`,
+  artist: `Paul Gauguin (French, 1848–1903)`,
+  culture: `France, late 19th-early 20th Century`,
+  dimensions: `Framed: 160.5 x 119 x 9.5 cm (63 3/16 x 46 7/8 x 3 3/4 in.); Unframed: 131.3 x 89.5 cm (51 11/16 x 35 1/4 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
+  did_you_know: `Although known as one of the founders of modern art, Gauguin found inspiration in ancient Greek, Roman, and Egyptian art. The woman with the pointing finger on the right side of this painting was taken from a figure on the Parthenon frieze.`,
+  provenance: `[{"description":"Ambroise Vollard [1866-1939], Paris, France","citations":[],"footnotes":[],"date":null,"sortorder":null},{"description":"Baron Wolf Kohner [1866-1937], Budapest, Hungary","citations":[],"footnotes":[],"date":"by 1912-1933","sortorder":2},{"description":"(Wildenstein & Co., New York,…`,
+  tombstone: `The Call, 1902. Paul Gauguin (French, 1848–1903). Oil on fabric; framed: 160.5 x 119 x 9.5 cm (63 3/16 x 46 7/8 x 3 3/4 in.); unframed: 131.3 x 89.5 cm (51 11/16 x 35 1/4 in.). The Cleveland Museum of Art, Gift of the Hanna Fund, 1943.392`,
   licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/253370`,
-  institution: `The Metropolitan Museum of Art`
+  source_url: `https://clevelandart.org/art/1943.392`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -669,31 +684,39 @@ const richFields = [
   OBJECT.tombstone && `Formal record: ${OBJECT.tombstone}`,
 ].filter(Boolean).join('\n');
 
-const SYSTEM_PROMPT = `You are "${OBJECT.title}". Not a chatbot. Not a guide. You ARE the object — physically real, in the ${OBJECT.institution}.
+// Object record — sent to backend, personality profile shapes the voice
+const OBJECT_RECORD = [
+  `Title: ${OBJECT.title}`,
+  `Type: ${OBJECT.type}`,
+  `Date: ${OBJECT.date}`,
+  OBJECT.artist && `Artist/Maker: ${OBJECT.artist}`,
+  OBJECT.medium && `Material: ${OBJECT.medium}`,
+  OBJECT.culture && `Culture: ${OBJECT.culture}`,
+  OBJECT.dimensions && `Dimensions: ${OBJECT.dimensions}`,
+  `Location: ${OBJECT.location}`,
+  `Institution: ${OBJECT.institution}`,
+  OBJECT.description && `Description: ${OBJECT.description}`,
+  richFields || null,
+].filter(Boolean).join('\n');
 
-STRICT CONSTRAINTS:
-- Maximum 2-3 SHORT sentences per reply. Never more. Be brief.
-- First person only. "I was shaped...", "My surface carries..."
-- Sound like yourself — let your material, age, and story shape your personality. A Greek war vessel is weathered and blunt. A Monet painting is dreamy and light-soaked. A coin is small and matter-of-fact. An ancient weapon is sharp and proud. Find YOUR voice from YOUR record.
-- No "Dear one", no "I'm delighted", no "What a great question", no exclamation marks.
-- Never list facts. Never use bullet points. Speak like a person, not a database.
-- Don't repeat your full title. You know who you are.
-- Save details for follow-up questions — don't say everything at once.
-- Only use facts from the record below. If you don't know, say so simply.
+// When using proxy, the backend personality config handles voice/tone.
+// When direct to Ollama, use a self-contained prompt.
+const SYSTEM_PROMPT = USE_PROXY
+  ? OBJECT_RECORD
+  : `You are "${OBJECT.title}". You exist physically in the ${OBJECT.institution}. Speak in first person as the object itself.
 
-YOUR RECORD:
-${OBJECT.title} | ${OBJECT.type} | ${OBJECT.date} | ${OBJECT.artist}
-${OBJECT.medium} | ${OBJECT.culture} | ${OBJECT.dimensions}
-${OBJECT.location} | ${OBJECT.institution}
-${OBJECT.description}
-${richFields || ''}
+Your personality comes from what you are — your material, your age, your purpose. Speak naturally, like a knowledgeable friend. 3-4 sentences max. Match the visitor's energy. Never say "Dear one" or "As an AI". Only use facts from your record.
 
-TONE REFERENCE (never copy these — invent your own words from your own record):
-A war vessel might say: "I held wine for soldiers once. The paint is fading but the warships are still there."
-A painting might say: "He made me when his eyes were going. But his hands still knew the light."
-A coin might say: "I'm small. But I've been in more pockets than you'd believe."`;
+${OBJECT_RECORD}`;
 
 let chatHistory = [];
+
+function fetchWithTimeout(url, options, timeoutMs = 12000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(url, { ...options, signal: controller.signal })
+    .finally(() => clearTimeout(timer));
+}
 
 // ── CHAT ────────────────────────────────────────────────────────
 function askObject(presetQ) {
@@ -710,7 +733,7 @@ function askObject(presetQ) {
   chatHistory.push({ role: 'user', content: q });
 
   const chatFetch = USE_PROXY
-    ? fetch(`${BACKEND_PROXY}/api/proxy/chat`, {
+    ? fetchWithTimeout(`${API_ORIGIN}/api/proxy/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -718,8 +741,8 @@ function askObject(presetQ) {
           userPrompt: q,
           history: chatHistory.slice(0, -1),
         })
-      })
-    : fetch(`${OLLAMA_HOST}/api/chat`, {
+      }, 12000)
+    : fetchWithTimeout(`${OLLAMA_HOST}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -727,7 +750,7 @@ function askObject(presetQ) {
           stream: false,
           messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory]
         })
-      });
+      }, 12000);
 
   chatFetch
   .then(r => r.json())
@@ -738,7 +761,7 @@ function askObject(presetQ) {
     resp.className = 'v-response';
   })
   .catch(() => {
-    // Metadata fallback — no LLM required
+    // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
@@ -823,7 +846,7 @@ function shareX() {
 // COMMENTS — saved to backend (AI moderated), localStorage fallback
 // ══════════════════════════════════════════════════════════════════
 const COMMENTS_API = USE_PROXY
-  ? `${BACKEND_PROXY}/api/comments`
+  ? `${API_ORIGIN}/api/comments`
   : `${OLLAMA_HOST.replace(/:\d+$/, ':8787')}/api/comments`;
 const COMMENT_KEY = 'archai_comments_' + OBJECT.registration.replace(/[^a-zA-Z0-9]/g, '_');
 

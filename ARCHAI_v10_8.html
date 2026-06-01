@@ -1,7 +1,4 @@
-<!-- This Source Code Form is subject to the terms of the Mozilla Public
-   - License, v. 2.0. If a copy of the MPL was not distributed with this
-   - file, You can obtain one at https://mozilla.org/MPL/2.0/.
-   - Copyright (c) 2026 Rob Graham / FAMTEC -->
+<!-- Copyright (c) 2026 Rob Graham / FAMTEC. All rights reserved. -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -545,7 +542,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
     </div>
   </div>
   <div>
-    <div class="header-meta"><b id="clockDisplay">—</b><br><span>Build v10.6 · MV + Met + V&amp;A · Multi-Collection</span></div>
+    <div class="header-meta"><b id="clockDisplay">—</b><br><span>Build v10.9 · MV + Met + V&amp;A + AIC + CMA + Rijks · Multi-Collection</span></div>
     <div class="header-links">
       <a class="header-link" href="http://localhost:11434" target="_blank">Ollama LLM</a>
       <a class="header-link" href="http://localhost:8055/admin" target="_blank">Directus CMS</a>
@@ -563,7 +560,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
         <option value="visitor">Visitor</option>
       </select>
     </div>
-    <div class="role-note" id="roleNote">Curator access · collection editing, NFC publishing, vocab tools</div>
+    <div class="role-note" id="roleNote">Curator access · collection editing, AUX.IO publishing, vocab tools</div>
   </div>
 </header>
 
@@ -573,10 +570,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
   <div class="infra-item" onclick="window.open('http://localhost:11434','_blank')"><div class="dot dot-idle" id="ollamaDot"></div><span class="infra-name">Ollama</span><span class="infra-val" id="ollamaVal">Connecting…</span></div>
   <div class="infra-item" onclick="window.open('http://localhost:8055/admin','_blank')"><div class="dot dot-idle" id="directusDot"></div><span class="infra-name">Directus</span><span class="infra-val" id="directusVal">Connecting…</span></div>
   <div class="infra-item" onclick="window.open('http://localhost:8787','_blank')"><div class="dot dot-idle" id="backendDot"></div><span class="infra-name">Backend</span><span class="infra-val" id="backendVal">localhost:8787</span></div>
-  <div class="infra-item"><div class="dot dot-ok"></div><span class="infra-name">Source</span><span class="infra-val">MV Collections API · CC BY 4.0</span></div>
-  <div class="infra-item"><div class="dot dot-ok"></div><span class="infra-name">MV</span><span class="infra-val" id="collectionVal">Loading…</span></div>
-  <div class="infra-item"><div class="dot dot-idle" id="metDot"></div><span class="infra-name">Met NYC</span><span class="infra-val" id="metVal">—</span></div>
-  <div class="infra-item"><div class="dot dot-idle" id="vaDot"></div><span class="infra-name">V&A</span><span class="infra-val" id="vaVal">—</span></div>
+  <div class="infra-item"><div class="dot dot-ok"></div><span class="infra-name">Sources</span><span class="infra-val">MV · Met · V&A · AIC · CMA · Rijks · Europeana</span></div>
+  <div class="infra-item"><div class="dot dot-ok"></div><span class="infra-name">Collections</span><span class="infra-val" id="collectionVal">Loading…</span></div>
+  <div class="infra-item"><div class="dot dot-idle" id="metDot"></div><span class="infra-name">US APIs</span><span class="infra-val" id="metVal">—</span></div>
+  <div class="infra-item"><div class="dot dot-idle" id="vaDot"></div><span class="infra-name">EU APIs</span><span class="infra-val" id="vaVal">—</span></div>
 </div>
 
 <!-- TABS -->
@@ -587,7 +584,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
     <span class="tab-count" style="color:var(--nodel)">2⚠</span>
   </div>
   <div class="tab t-nfc" data-roles="admin,curator,collections,volunteer" onclick="switchTab('nfc',this)">
-    <div class="tab-dot" style="background:var(--nfc)"></div>NFC Management
+    <div class="tab-dot" style="background:var(--nfc)"></div>AUX.IO Management
     <span class="tab-count" style="color:var(--nfc)" id="nfcTabCount">0</span>
   </div>
   <div class="tab t-vocab" data-roles="admin,curator,collections" onclick="switchTab('vocab',this)">Vocabulary &amp; Thesaurus</div>
@@ -637,9 +634,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
       <div class="sb-section">
         <div class="sb-title">Infrastructure</div>
         <div class="sb-row"><span class="sb-row-name">Qdrant</span><div style="display:flex;align-items:center;gap:5px;"><div class="dot dot-idle" id="sb-qdrant-dot" style="animation:none"></div><span id="sb-qdrant-val" style="font-family:var(--mono);font-size:0.58rem;color:var(--text3)">Connecting…</span></div></div>
-        <div class="sb-row"><span class="sb-row-name">Ollama · llama3</span><div style="display:flex;align-items:center;gap:5px;"><div class="dot dot-idle" id="sb-ollama-dot" style="animation:none"></div><span id="sb-ollama-val" style="font-family:var(--mono);font-size:0.58rem;color:var(--text3)">Checking…</span></div></div>
+        <div class="sb-row"><span class="sb-row-name">Ollama · local LLM</span><div style="display:flex;align-items:center;gap:5px;"><div class="dot dot-idle" id="sb-ollama-dot" style="animation:none"></div><span id="sb-ollama-val" style="font-family:var(--mono);font-size:0.58rem;color:var(--text3)">Checking…</span></div></div>
         <div class="sb-row"><span class="sb-row-name">Directus CMS</span><div style="display:flex;align-items:center;gap:5px;"><div class="dot dot-idle" id="sb-directus-dot" style="animation:none"></div><span id="sb-directus-val" style="font-family:var(--mono);font-size:0.58rem;color:var(--text3)">Checking…</span></div></div>
-        <div class="sb-row"><span class="sb-row-name">MV Objects</span><div style="display:flex;align-items:center;gap:5px;"><div class="dot dot-idle" style="animation:none" id="sb-mv-dot"></div><span id="sb-mv-val" style="font-family:var(--mono);font-size:0.58rem;color:var(--text3)">Loading…</span></div></div>
+        <div class="sb-row"><span class="sb-row-name">Collection Objects</span><div style="display:flex;align-items:center;gap:5px;"><div class="dot dot-idle" style="animation:none" id="sb-mv-dot"></div><span id="sb-mv-val" style="font-family:var(--mono);font-size:0.58rem;color:var(--text3)">Loading…</span></div></div>
       </div>
       <div class="sb-section">
         <div class="sb-title">Active Vocabulary</div>
@@ -653,7 +650,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
       <div class="sb-section">
         <div class="sb-title">Collection Pipeline</div>
         <div class="pipe-info">
-          <div>Sources: <span>MV + Met + V&A</span></div>
+          <div>Sources: <span>MV + Met + V&A + AIC + CMA + Rijks + Europeana</span></div>
           <div>Licence: <span>CC BY / CC0 / Open</span></div>
           <div>Embed model: <span>nomic-embed-text</span></div>
           <div>Objects loaded: <span id="sb-mv-count">0</span></div>
@@ -699,7 +696,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
       <div class="gallery-grid">
         <div class="gallery-card g-ok">
           <div class="gc-header"><div class="gc-name">Entrance Atrium</div><div class="gc-st ok">Online</div></div>
-          <div class="gc-nodes"><div class="gc-node n-on"><div class="dot dot-ok" style="width:4px;height:4px;animation:none"></div>Rob-01</div><div class="gc-node n-on"><div class="dot dot-ok" style="width:4px;height:4px;animation:none"></div>NFC-Kiosk-01</div></div>
+          <div class="gc-nodes"><div class="gc-node n-on"><div class="dot dot-ok" style="width:4px;height:4px;animation:none"></div>Rob-01</div><div class="gc-node n-on"><div class="dot dot-ok" style="width:4px;height:4px;animation:none"></div>AUX.IO-Kiosk-01</div></div>
           <div class="gc-footer"><span>2/2 online</span><span>Runtime: 6h 14m</span></div>
         </div>
         <div class="gallery-card g-warn">
@@ -762,17 +759,17 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
       <div class="sb-section">
         <div class="sb-title">Collection Summary</div>
         <div style="font-family:var(--mono);font-size:0.6rem;color:var(--text3);line-height:2.2;">
-          <div>MV Objects loaded: <span id="nodel-mv-count" style="color:var(--text2)">—</span></div>
+          <div>Objects loaded: <span id="nodel-mv-count" style="color:var(--text2)">—</span></div>
           <div>Embedded in Qdrant: <span style="color:var(--text2)">Yes</span></div>
           <div>Embed model: <span style="color:var(--text2)">nomic-embed-text</span></div>
-          <div>LLM: <span style="color:var(--text2)">llama3 (local)</span></div>
+          <div>LLM: <span style="color:var(--text2)">local model</span></div>
         </div>
       </div>
       <div class="sb-section">
         <div class="sb-title">Visitor Interactions</div>
         <div style="font-family:var(--mono);font-size:0.58rem;color:var(--text3);line-height:2;">
           <div>Robot interactions: <span style="color:var(--text2)">87</span></div>
-          <div>NFC scans: <span style="color:var(--text2)">54</span></div>
+          <div>AUX.IO scans: <span style="color:var(--text2)">54</span></div>
           <div>Comments received: <span style="color:var(--text2)">12</span></div>
         </div>
       </div>
@@ -800,10 +797,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
   <div class="nfc-mgmt-layout">
     <div class="nfc-list-col">
       <div class="nfc-list-header">
-        <div class="sb-title" style="margin:0;color:var(--nfc)">NFC Tags</div>
+        <div class="sb-title" style="margin:0;color:var(--nfc)">AUX.IO Tags</div>
         <div class="btn nfc" onclick="onboardNewNFC()">+ Onboard</div>
       </div>
-      <input class="nfc-search" type="text" placeholder="Search NFC, object, location…" oninput="filterNFCList(this.value)">
+      <input class="nfc-search" type="text" placeholder="Search AUX.IO, object, location…" oninput="filterNFCList(this.value)">
       <div class="nfc-filter-row">
         <div class="nfc-fchip active" onclick="nfcFilter(this,'all')">All</div>
         <div class="nfc-fchip" onclick="nfcFilter(this,'live')">Live</div>
@@ -815,9 +812,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
     <div class="nfc-editor-col" id="nfcEditor">
       <div style="display:flex;align-items:center;justify-content:center;height:100%;font-family:var(--mono);font-size:0.65rem;color:var(--text3);text-align:center;flex-direction:column;gap:12px;">
         <div style="font-size:2rem;opacity:0.15">⬡</div>
-        <div style="text-transform:uppercase;letter-spacing:2px;">Select an NFC tag to edit</div>
-        <div style="color:var(--text3);font-size:0.55rem;max-width:240px;line-height:1.8;">NFC tags link physical locations to MV objects. Assign objects from the collection to create visitor-facing pages.</div>
-        <button class="btn nfc" onclick="onboardNewNFC()">+ Onboard New NFC Tag</button>
+        <div style="text-transform:uppercase;letter-spacing:2px;">Select an AUX.IO tag to edit</div>
+        <div style="color:var(--text3);font-size:0.55rem;max-width:240px;line-height:1.8;">AUX.IO tags link physical locations to collection objects. Assign objects from the collection to create visitor-facing pages.</div>
+        <button class="btn nfc" onclick="onboardNewNFC()">+ Onboard New AUX.IO Tag</button>
       </div>
     </div>
     <div class="nfc-preview-col" id="nfcPreviewCol">
@@ -825,7 +822,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
       <div class="phone-frame">
         <div class="phone-notch"></div>
         <div class="phone-inner" id="nfcPreview">
-          <div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);text-align:center;padding:60px 10px;">Tap an NFC tag from the list to preview</div>
+          <div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);text-align:center;padding:60px 10px;">Tap an AUX.IO tag from the list to preview</div>
         </div>
         <div class="phone-home"></div>
       </div>
@@ -840,7 +837,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
       <div class="sb-title" style="margin-bottom:13px">Active Vocabularies</div>
       <div style="font-family:var(--mono);font-size:0.53rem;color:var(--text3);margin-bottom:11px;line-height:1.8">Toggle and order priority. Used during search and upload tagging.</div>
       <div class="vocab-source active"><div class="vs-header"><span class="vs-name">AAT</span><div class="vs-toggle on" onclick="this.classList.toggle('on')"></div></div><div class="vs-desc">Getty Art & Architecture Thesaurus. Styles, materials, techniques, object types.</div><div class="vs-priority">Priority ① · loading…</div></div>
-      <div class="vocab-source active"><div class="vs-header"><span class="vs-name">Local</span><div class="vs-toggle on" onclick="this.classList.toggle('on')"></div></div><div class="vs-desc">Collection-derived vocabulary. Extracted live from Qdrant across MV, Met, V&A.</div><div class="vs-priority">Priority ② · loading…</div></div>
+      <div class="vocab-source active"><div class="vs-header"><span class="vs-name">Local</span><div class="vs-toggle on" onclick="this.classList.toggle('on')"></div></div><div class="vs-desc">Collection-derived vocabulary. Extracted live from Qdrant across all active museum collections.</div><div class="vs-priority">Priority ② · loading…</div></div>
       <div class="vocab-source active"><div class="vs-header"><span class="vs-name">CHIN</span><div class="vs-toggle on" onclick="this.classList.toggle('on')"></div></div><div class="vs-desc">Canadian Heritage Information Network. Discipline Authority List (2006), bilingual EN/FR.</div><div class="vs-priority">Active · CHIN-aligned</div></div>
       <div class="vocab-source active"><div class="vs-header"><span class="vs-name">DOCAM</span><div class="vs-toggle on" onclick="this.classList.toggle('on')"></div></div><div class="vs-desc">Documentation and Conservation of Media Arts Heritage. Preservation, emulation, variable media.</div><div class="vs-priority">Active · media art focus</div></div>
       <div class="vocab-source active"><div class="vs-header"><span class="vs-name">Nomenclature</span><div class="vs-toggle on" onclick="this.classList.toggle('on')"></div></div><div class="vs-desc">Nomenclature for Museum Cataloging (Parks Canada/CHIN). Object naming and classification.</div><div class="vs-priority">Active · LOD-friendly</div></div>
@@ -869,7 +866,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 <div class="panel" id="panel-visitor">
   <div class="visitor-layout">
     <div class="vp-nfc-col">
-      <div class="section-label" style="margin-bottom:12px;">MV Objects — Visitor Pages</div>
+      <div class="section-label" style="margin-bottom:12px;">Collection Objects — Visitor Pages</div>
       <div id="vpNFCList"></div>
     </div>
     <div class="vp-main">
@@ -986,9 +983,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 
     <div class="od-lower">
       <div class="od-chat-col">
-        <div class="section-label" style="margin-bottom:10px;">Interrogate this Object — live llama3</div>
+        <div class="section-label" style="margin-bottom:10px;">Interrogate this Object — live local LLM</div>
         <div id="od-chat-msgs" class="od-chat-msgs">
-          <div style="color:var(--text3);font-size:0.6rem;">Ask anything about this object. Responses generated by llama3 using verified MV metadata — hallucination prevention active.</div>
+          <div style="color:var(--text3);font-size:0.6rem;">Ask anything about this object. Responses are grounded in verified collection metadata — hallucination prevention active.</div>
         </div>
         <div class="od-chat-row">
           <input id="od-chat-in" class="od-chat-in" type="text" placeholder="Ask about materials, history, cultural significance…">
@@ -1020,12 +1017,12 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 
 <script>
 // ═══════════════════════════════════════════════════════════════════
-// ARCHAI™ v10 — MV-Only · Full Metadata · Live LLM Chat
-// Museums Victoria objects loaded from Qdrant. No mock objects.
+// ARCHAI™ v10.9 — Multi-Collection · Backend-Aware · Live LLM Chat
+// Collection objects loaded from Qdrant. Comments and curator vectors via backend APIs.
 // ═══════════════════════════════════════════════════════════════════
 
 // API config — auto-detect: use proxy when not on localhost
-const IS_LOCAL = location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.hostname.startsWith('192.168.') || location.hostname.startsWith('100.');
+const IS_LOCAL = location.protocol === 'file:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1' || location.hostname.startsWith('192.168.') || location.hostname.startsWith('100.');
 const API_BASE = IS_LOCAL ? '' : (window.ARCHAI_API_BASE || '');
 const QDRANT_DIRECT = IS_LOCAL ? 'http://localhost:6333' : '';
 const OLLAMA_DIRECT = IS_LOCAL ? 'http://localhost:11434' : '';
@@ -1075,6 +1072,12 @@ function ollamaFetch(path, body) {
   });
 }
 
+function getAuxPageBase() {
+  if (USE_PROXY && API_BASE) return `${API_BASE}/aux`;
+  const host = location.hostname || 'localhost';
+  return `http://${host}:8787/aux`;
+}
+
 const OBJECTS = {};
 const NFC_TAGS = [];
 const NFC_VIS_DEFAULTS = {
@@ -1096,13 +1099,13 @@ window._odChatHistory = [];
 const ROLE_DEFS = {
   admin:       { label:'Admin',              note:'Admin access · user management, infra config, pipeline controls, all data',
                  tabs:['curator','nodel','nfc','vocab','visitor','famtec','objdetail'] },
-  curator:     { label:'Curator',            note:'Curator access · collection editing, NFC publishing, vocab tools',
+  curator:     { label:'Curator',            note:'Curator access · collection editing, AUX.IO publishing, vocab tools',
                  tabs:['curator','nodel','nfc','vocab','visitor','famtec','objdetail'] },
-  collections: { label:'Collections Officer', note:'Collections Officer · data entry, upload/tagging, NFC assignment',
+  collections: { label:'Collections Officer', note:'Collections Officer · data entry, upload/tagging, AUX.IO assignment',
                  tabs:['curator','nfc','vocab','visitor','famtec','objdetail'] },
   technician:  { label:'Technician / AV',    note:'Technician / AV · Nodel operations and technical record visibility',
                  tabs:['nodel','visitor','famtec','objdetail'] },
-  volunteer:   { label:'Volunteer',          note:'Volunteer · read-only collection lookup, NFC preview, visitor support',
+  volunteer:   { label:'Volunteer',          note:'Volunteer · read-only collection lookup, AUX.IO preview, visitor support',
                  tabs:['curator','nfc','visitor','famtec'] },
   visitor:     { label:'Visitor',            note:'Visitor mode · public-facing preview only',
                  tabs:['visitor'] }
@@ -1122,7 +1125,7 @@ const FAMTEC_FEED = [
   { kind:'need skills', title:'Need dev support for legacy browser artwork', org:'FAMTEC', timing:'Exhibition opens in 6 weeks', body:'Seeking emulation / browser preservation specialist for IE6-era net art display and capture workflow.', tags:['need skills','preservation','emulation','net art'] },
   { kind:'available crew', title:'Installation technicians available (2-person team)', org:'FAMTEC', timing:'April capacity open', body:'Experienced in media server commissioning, projection alignment, sensor calibration and deinstall documentation.', tags:['available crew','installation','commissioning'] },
   { kind:'need skills', title:'Sound artist/technician for ambisonics tuning', org:'MGA', timing:'Install week 14 Apr', body:'Need support calibrating multi-channel speaker layout and documenting presets.', tags:['need skills','sound','ambisonics'] },
-  { kind:'loan', title:'NFC kiosks + tags starter kit', org:'FAMTEC', timing:'Pilot loan (8 weeks)', body:'Loan bundle for visitor wayfinding and object interpretation pilots. Includes deployment guide.', tags:['loan','nfc','visitor experience','pilot'] }
+  { kind:'loan', title:'AUX.IO kiosks + tags starter kit', org:'FAMTEC', timing:'Pilot loan (8 weeks)', body:'Loan bundle for visitor wayfinding and object interpretation pilots. Includes deployment guide.', tags:['loan','aux.io','visitor experience','pilot'] }
 ];
 
 const FAMTEC_CHAT = {
@@ -1246,12 +1249,32 @@ function checkDirectus() {
 // ═══════════════════════════════════════════════════════════════════
 // LOAD OBJECTS FROM QDRANT — All Collections
 // ═══════════════════════════════════════════════════════════════════
-const COLLECTIONS = ['archai_pilot', 'archai_met', 'archai_va'];
+const COLLECTIONS = ['archai_pilot', 'archai_met', 'archai_va', 'archai_aic', 'archai_cma', 'archai_rijks', 'archai_europeana'];
 const COLLECTION_LABELS = {
   archai_pilot: { name: 'Museums Victoria', short: 'MV', colour: 'rgba(143,188,176,0.7)', border: 'rgba(143,188,176,0.3)' },
   archai_met: { name: 'The Met, NYC', short: 'Met', colour: 'rgba(200,169,110,0.7)', border: 'rgba(200,169,110,0.3)' },
-  archai_va: { name: 'V&A, London', short: 'V&A', colour: 'rgba(155,143,191,0.7)', border: 'rgba(155,143,191,0.3)' }
+  archai_va: { name: 'V&A, London', short: 'V&A', colour: 'rgba(155,143,191,0.7)', border: 'rgba(155,143,191,0.3)' },
+  archai_aic: { name: 'Art Institute of Chicago', short: 'AIC', colour: 'rgba(111,170,204,0.78)', border: 'rgba(111,170,204,0.32)' },
+  archai_cma: { name: 'Cleveland Museum of Art', short: 'CMA', colour: 'rgba(216,124,144,0.78)', border: 'rgba(216,124,144,0.32)' },
+  archai_rijks: { name: 'Rijksmuseum, Amsterdam', short: 'Rijks', colour: 'rgba(220,146,86,0.78)', border: 'rgba(220,146,86,0.32)' },
+  archai_europeana: { name: 'Europeana', short: 'EU', colour: 'rgba(116,156,214,0.78)', border: 'rgba(116,156,214,0.32)' }
 };
+
+function getCollectionLabel(col) {
+  return COLLECTION_LABELS[col] || COLLECTION_LABELS.archai_pilot;
+}
+
+function getInstitutionName(o) {
+  const p = o?._mv || {};
+  return p.source_institution || getCollectionLabel(o?._source).name || p.museum_location || o?.location || 'the collection';
+}
+
+function getCollectionSummary(counts, keys) {
+  return keys
+    .filter(key => (counts[key] || 0) > 0)
+    .map(key => `${getCollectionLabel(key).short} ${counts[key]}`)
+    .join(' + ');
+}
 
 function loadMVObjects() {
   document.getElementById('collectionVal').textContent = 'Loading…';
@@ -1302,24 +1325,26 @@ function loadMVObjects() {
 
     // Update infra bar
     const mvCount = counts.archai_pilot || 0;
-    const metCount = counts.archai_met || 0;
-    const vaCount = counts.archai_va || 0;
+    const usKeys = ['archai_met', 'archai_aic', 'archai_cma'];
+    const euKeys = ['archai_va', 'archai_rijks', 'archai_europeana'];
+    const usTotal = usKeys.reduce((sum, key) => sum + (counts[key] || 0), 0);
+    const euTotal = euKeys.reduce((sum, key) => sum + (counts[key] || 0), 0);
 
-    document.getElementById('collectionVal').textContent = mvCount + ' objects';
+    document.getElementById('collectionVal').textContent = totalCount + ' objects';
     setDot('sb-mv-dot', mvCount > 0 ? 'ok' : 'idle');
-    document.getElementById('sb-mv-val').textContent = mvCount > 0 ? mvCount + ' objects' : 'Empty';
-    document.getElementById('sb-mv-val').style.color = mvCount > 0 ? 'var(--ok)' : 'var(--text3)';
+    document.getElementById('sb-mv-val').textContent = totalCount > 0 ? totalCount + ' objects' : 'Empty';
+    document.getElementById('sb-mv-val').style.color = totalCount > 0 ? 'var(--ok)' : 'var(--text3)';
 
-    if (metCount > 0) {
+    if (usTotal > 0) {
       setDot('metDot', 'ok');
-      document.getElementById('metVal').textContent = metCount + ' objects · CC0';
+      document.getElementById('metVal').textContent = getCollectionSummary(counts, usKeys);
     } else {
       document.getElementById('metVal').textContent = 'Not harvested';
     }
 
-    if (vaCount > 0) {
+    if (euTotal > 0) {
       setDot('vaDot', 'ok');
-      document.getElementById('vaVal').textContent = vaCount + ' objects';
+      document.getElementById('vaVal').textContent = getCollectionSummary(counts, euKeys);
     } else {
       document.getElementById('vaVal').textContent = 'Not harvested';
     }
@@ -1327,11 +1352,7 @@ function loadMVObjects() {
     document.getElementById('qdrantVal').textContent = totalCount + ' objects · ' + Object.keys(counts).filter(k => counts[k] > 0).length + ' collections';
     document.getElementById('sb-qdrant-val').textContent = totalCount + ' vectors'; document.getElementById('sb-qdrant-val').style.color = 'var(--ok)';
     document.getElementById('sb-mv-count').textContent = totalCount;
-    document.getElementById('resultsLabel').textContent = totalCount + ' objects · ' + [
-      mvCount > 0 ? 'MV ' + mvCount : '',
-      metCount > 0 ? 'Met ' + metCount : '',
-      vaCount > 0 ? 'V&A ' + vaCount : ''
-    ].filter(Boolean).join(' + ');
+    document.getElementById('resultsLabel').textContent = totalCount + ' objects · ' + getCollectionSummary(counts, COLLECTIONS);
     document.getElementById('nodel-mv-count').textContent = totalCount;
 
     generateNFCTags();
@@ -1340,7 +1361,7 @@ function loadMVObjects() {
     renderVisitorList();
     buildVocabIndex();
 
-    console.log('ARCHAI™ v10.8: loaded', totalCount, 'objects from', Object.keys(counts).filter(k => counts[k] > 0).length, 'collections');
+    console.log('ARCHAI™ v10.9: loaded', totalCount, 'objects from', Object.keys(counts).filter(k => counts[k] > 0).length, 'collections');
   })
   .catch(e => {
     document.getElementById('collectionVal').textContent = 'Qdrant offline';
@@ -1379,6 +1400,11 @@ function generateNFCTags() {
     nfcVisibility[tag.code] = {...NFC_VIS_DEFAULTS};
   }
   document.getElementById('nfcTabCount').textContent = NFC_TAGS.length;
+}
+
+function displayAuxCode(code) {
+  if (!code) return '';
+  return String(code).replace(/^NFC-?(\d+)$/i, (_m, num) => `AUX.IO ${num.padStart(3, '0')}`);
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -1565,10 +1591,86 @@ function exportCSV() {
   URL.revokeObjectURL(a.href);
 }
 
-function batchTagResults() {
+function appPrompt(message, defaultValue = '') {
+  return new Promise(resolve => {
+    const existing = document.getElementById('archaiPromptOverlay');
+    if (existing) existing.remove();
+
+    const overlay = document.createElement('div');
+    overlay.id = 'archaiPromptOverlay';
+    overlay.style.cssText = [
+      'position:fixed',
+      'inset:0',
+      'z-index:99999',
+      'background:rgba(5,5,5,0.82)',
+      'display:flex',
+      'align-items:center',
+      'justify-content:center',
+      'padding:24px'
+    ].join(';');
+
+    const panel = document.createElement('div');
+    panel.style.cssText = [
+      'width:min(540px,100%)',
+      'background:var(--surface)',
+      'border:1px solid var(--border2)',
+      'padding:18px',
+      'box-shadow:0 18px 48px rgba(0,0,0,0.45)'
+    ].join(';');
+
+    const label = document.createElement('div');
+    label.style.cssText = 'font-family:var(--mono);font-size:0.62rem;line-height:1.8;letter-spacing:1px;color:var(--text2);white-space:pre-wrap;margin-bottom:12px;';
+    label.textContent = message;
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.value = defaultValue || '';
+    input.style.cssText = 'width:100%;padding:12px 14px;background:var(--bg);border:1px solid var(--border2);color:var(--text);font-family:var(--serif);font-size:0.96rem;outline:none;';
+
+    const actions = document.createElement('div');
+    actions.style.cssText = 'display:flex;justify-content:flex-end;gap:10px;margin-top:14px;';
+
+    const cancel = document.createElement('button');
+    cancel.type = 'button';
+    cancel.textContent = 'Cancel';
+    cancel.style.cssText = 'padding:10px 14px;background:transparent;border:1px solid var(--border2);color:var(--text3);font-family:var(--mono);font-size:0.58rem;letter-spacing:1px;text-transform:uppercase;cursor:pointer;';
+
+    const ok = document.createElement('button');
+    ok.type = 'button';
+    ok.textContent = 'OK';
+    ok.style.cssText = 'padding:10px 16px;background:var(--accent2);border:1px solid rgba(143,188,176,0.28);color:var(--bg);font-family:var(--mono);font-size:0.58rem;letter-spacing:1px;text-transform:uppercase;cursor:pointer;';
+
+    const close = value => {
+      overlay.remove();
+      resolve(value);
+    };
+
+    cancel.onclick = () => close(null);
+    ok.onclick = () => close(input.value);
+    overlay.addEventListener('click', e => {
+      if (e.target === overlay) close(null);
+    });
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter') { e.preventDefault(); close(input.value); }
+      if (e.key === 'Escape') { e.preventDefault(); close(null); }
+    });
+
+    actions.appendChild(cancel);
+    actions.appendChild(ok);
+    panel.appendChild(label);
+    panel.appendChild(input);
+    panel.appendChild(actions);
+    overlay.appendChild(panel);
+    document.body.appendChild(overlay);
+    input.focus();
+    input.select();
+  });
+}
+
+async function batchTagResults() {
   const keys = selectedCards.size ? [...selectedCards] : [];
   if (!keys.length) { alert('Select objects first (use Select All or click individual cards)'); return; }
-  const tag = prompt(`Enter tag to apply to ${keys.length} objects:`);
+  const tag = (await appPrompt(`Enter tag to apply to ${keys.length} objects:`))?.trim();
   if (!tag) return;
   keys.forEach(k => {
     const o = OBJECTS[k]; if (!o) return;
@@ -1620,7 +1722,7 @@ function runHarvesters() {
   const btn = event.target;
   btn.textContent = '⏳ Running…';
   btn.style.opacity = '0.6';
-  const counts = { archai_pilot: 0, archai_met: 0, archai_va: 0 };
+  const counts = Object.fromEntries(COLLECTIONS.map(col => [col, 0]));
   Promise.all(
     Object.keys(counts).map(col =>
       qdrantFetch(`/collections/${col}`)
@@ -1637,7 +1739,7 @@ function runHarvesters() {
       const now = new Date().toLocaleTimeString('en-AU', {hour:'2-digit',minute:'2-digit',second:'2-digit'});
       const entry = document.createElement('div');
       entry.className = 'log-row';
-      entry.innerHTML = `<span class="log-time">${now}</span><span class="log-type ok">HARVEST</span><span>Collections verified: MV(${counts.archai_pilot}) Met(${counts.archai_met}) V&A(${counts.archai_va}) — ${total} total</span>`;
+      entry.innerHTML = `<span class="log-time">${now}</span><span class="log-type ok">HARVEST</span><span>Collections verified: ${getCollectionSummary(counts, COLLECTIONS)} — ${total} total</span>`;
       log.prepend(entry);
     }
     loadMVObjects();
@@ -1651,7 +1753,7 @@ function exportNFCQR(code) {
   const tag = NFC_TAGS.find(t => t.code === code);
   if (!tag) return;
   const obj = tag.objectId ? OBJECTS[tag.objectId] : null;
-  const url = `http://localhost:8000/nfc-pages/${code}.html`;
+  const url = `${getAuxPageBase()}/${code}.html`;
   const config = {
     code: tag.code,
     status: tag.status,
@@ -1664,7 +1766,7 @@ function exportNFCQR(code) {
   const blob = new Blob([JSON.stringify(config, null, 2)], { type: 'application/json' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
-  a.download = `${code}_nfc_config.json`;
+  a.download = `${code}_auxio_config.json`;
   a.click();
   URL.revokeObjectURL(a.href);
 }
@@ -1700,12 +1802,15 @@ function saveNFC(code) {
 // ═══════════════════════════════════════════════════════════════════
 // FAMTEC — POST / ENQUIRE / DETAILS
 // ═══════════════════════════════════════════════════════════════════
-function famtecPost(kind) {
+async function famtecPost(kind) {
   const labels = { hardware: 'Hardware Listing', skills: 'Skills / Crew Availability', request: 'Support Request' };
-  const title = prompt(`${labels[kind] || 'New Listing'}\n\nEnter title:`);
+  const title = (await appPrompt(`${labels[kind] || 'New Listing'}\n\nEnter title:`))?.trim();
   if (!title) return;
-  const body = prompt('Description:') || '';
-  const tags = prompt('Tags (comma-separated):')?.split(',').map(t => t.trim()).filter(Boolean) || [];
+  const body = (await appPrompt('Description:')) || '';
+  const tags = ((await appPrompt('Tags (comma-separated):')) || '')
+    .split(',')
+    .map(t => t.trim())
+    .filter(Boolean);
   FAMTEC_FEED.unshift({
     kind: labels[kind] || kind,
     title,
@@ -1717,7 +1822,7 @@ function famtecPost(kind) {
   renderFamtecFeed();
 }
 
-function famtecEnquire(title, org) {
+async function famtecEnquire(title, org) {
   const instId = Object.keys(FAMTEC_CHAT).find(id => {
     const inst = FAMTEC_INSTITUTIONS.find(i => i.id === id);
     return inst && org.includes(inst.name);
@@ -1726,7 +1831,7 @@ function famtecEnquire(title, org) {
     FAMTEC_CHAT[instId].push({ from: 'you', text: `Enquiry about: ${title}`, time: 'Just now' });
     selectFamtecInst(instId);
   } else {
-    const msg = prompt(`Send enquiry about "${title}" to ${org}.\n\nYour message:`);
+    const msg = (await appPrompt(`Send enquiry about "${title}" to ${org}.\n\nYour message:`))?.trim();
     if (msg) alert(`Enquiry sent to ${org}: "${msg}"`);
   }
 }
@@ -1790,7 +1895,7 @@ function renderResultCards() {
           <span class="tag">${p.licence || 'CC BY 4.0'}</span>
           ${p.discipline ? '<span class="tag">' + p.discipline + '</span>' : ''}
           <span class="tag">${(o.location || '').substring(0, 24)}</span>
-          ${nfcAssigned(id) ? '<span class="tag nfc-tag">NFC</span>' : ''}
+          ${nfcAssigned(id) ? '<span class="tag nfc-tag">AUX.IO</span>' : ''}
         </div>
       </div>
       <div>
@@ -1854,8 +1959,7 @@ function doConverse() {
     if (data.objects && data.objects.length > 0) {
       html += '<div class="convo-objects">';
       for (const obj of data.objects) {
-        const colKey = obj.collection === 'archai_met' ? 'met' : obj.collection === 'archai_va' ? 'va' : 'pilot';
-        const objKey = colKey + '_c_' + (obj.registration || Math.random().toString(36).slice(2,8));
+        const objKey = (obj.collection || 'archai_pilot') + '_c_' + (obj.registration || Math.random().toString(36).slice(2,8));
         // Register object for detail view if not already known
         if (!OBJECTS[objKey]) {
           OBJECTS[objKey] = {
@@ -1893,9 +1997,8 @@ function doConverse() {
 function renderConvoResults(objects) {
   const container = document.getElementById('resultsContainer');
   container.innerHTML = objects.map(obj => {
-    const colKey = obj.collection === 'archai_met' ? 'met' : obj.collection === 'archai_va' ? 'va' : 'pilot';
     const label = COLLECTION_LABELS[obj.collection] || COLLECTION_LABELS.archai_pilot;
-    const objKey = colKey + '_c_' + (obj.registration || Math.random().toString(36).slice(2,8));
+    const objKey = (obj.collection || 'archai_pilot') + '_c_' + (obj.registration || Math.random().toString(36).slice(2,8));
     const thumbInner = obj.image
       ? `<img src="${obj.image}" style="width:100%;height:100%;object-fit:cover" loading="lazy" onerror="this.style.display='none'">`
       : `<div style="font-size:1rem;opacity:0.15;margin-bottom:3px">▣</div>`;
@@ -2097,7 +2200,7 @@ function openObjectDetail(objKey) {
   const linksEl = document.getElementById('od-source-links');
   linksEl.innerHTML = '';
   if (p.source_url) {
-    linksEl.innerHTML += `<a href="${p.source_url}" target="_blank" class="btn" style="font-size:0.55rem">View on MV Collections →</a>`;
+    linksEl.innerHTML += `<a href="${p.source_url}" target="_blank" class="btn" style="font-size:0.55rem">View on ${escQ(getInstitutionName(o))} →</a>`;
   }
   if (p.media_large || p.media_medium) {
     linksEl.innerHTML += `<a href="${p.media_large || p.media_medium}" target="_blank" class="btn" style="font-size:0.55rem">Full-res Image →</a>`;
@@ -2123,7 +2226,7 @@ function openObjectDetail(objKey) {
 
   // Chat reset
   document.getElementById('od-chat-msgs').innerHTML =
-    '<div style="color:var(--text3);font-size:0.6rem;font-family:var(--mono);">Ask anything about this object. When Ollama is running, responses are generated by llama3 using verified MV metadata. When offline, ARCHAI™ responds directly from the metadata record.</div>';
+    '<div style="color:var(--text3);font-size:0.6rem;font-family:var(--mono);">Ask anything about this object. When Ollama is running, responses are generated by the local model using verified collection metadata. When offline, ARCHAI™ responds directly from the metadata record.</div>';
 
   // Quick chips
   const chips = ['What are you made of?', 'Tell me your history', 'What is your cultural significance?', 'How were you used?', 'Describe yourself'];
@@ -2174,7 +2277,8 @@ function odChat() {
       .join('\n');
   }
 
-  const sys = `You are "${o.title || 'an object'}", a physical object in the Museums Victoria collection. Speak in the first person as the object itself.
+  const institution = getInstitutionName(o);
+  const sys = `You are "${o.title || 'an object'}", a physical object in the ${institution} collection. Speak in the first person as the object itself.
 
 VERIFIED METADATA (use ONLY this data — never invent facts):
 ${metaBlock || '- No metadata available'}
@@ -2182,7 +2286,7 @@ ${metaBlock || '- No metadata available'}
 RULES:
 - Respond in 2-4 sentences as the object speaking about itself
 - Be warm, precise, historically aware
-- If asked something not in the metadata, say "That detail is not in my record — I can only speak to what Museums Victoria has documented about me."
+- If asked something not in the metadata, say "That detail is not in my record — I can only speak to what ${institution} has documented about me."
 - Never invent provenance, makers, or history not in the metadata
 - Licence: ${p.licence || 'CC BY 4.0'}`;
 
@@ -2221,42 +2325,43 @@ function generateMetadataResponse(o, question) {
   const discipline = p.discipline || '';
   const date = p.date_range || String(o.year) || 'an unknown date';
   const reg = p.registration_number || o.dams || '';
-  const location = p.museum_location || o.location || 'Museums Victoria';
+  const institution = getInstitutionName(o);
+  const location = p.museum_location || o.location || institution;
   const category = p.category || '';
   const licence = p.licence || 'CC BY 4.0';
 
   // Match question intent to metadata
   if (q.includes('made of') || q.includes('material') || q.includes('what are you')) {
     if (desc) return `I am ${title}, classified as ${type}${category ? ' in the category of ' + category : ''}. ${desc.substring(0, 250)}${desc.length > 250 ? '…' : ''}`;
-    return `I am ${title}, a ${type} in the Museums Victoria collection. My materials and composition are not fully detailed in my record — you could find more on the MV Collections website.`;
+    return `I am ${title}, a ${type} in the ${institution} collection. My materials and composition are not fully detailed in my record — you could find more on the source museum website.`;
   }
 
   if (q.includes('history') || q.includes('old') || q.includes('when') || q.includes('date')) {
-    return `I date from ${date}. I am registered as ${reg} in the Museums Victoria collection${discipline ? ', within the ' + discipline + ' discipline' : ''}. ${desc ? desc.substring(0, 180) + '…' : 'My full history is documented in the MV collection record.'}`;
+    return `I date from ${date}. I am registered as ${reg} in the ${institution} collection${discipline ? ', within the ' + discipline + ' discipline' : ''}. ${desc ? desc.substring(0, 180) + '…' : 'My full history is documented in the source collection record.'}`;
   }
 
   if (q.includes('significance') || q.includes('important') || q.includes('cultural') || q.includes('meaning')) {
-    return `As a ${type} from ${date}, I represent part of ${discipline || 'Victoria\'s'} heritage. ${desc ? desc.substring(0, 200) + '…' : ''} I am held by Museums Victoria under a ${licence} licence, which means my story can be shared and built upon.`;
+    return `As a ${type} from ${date}, I represent part of ${discipline || institution + "'s"} heritage. ${desc ? desc.substring(0, 200) + '…' : ''} I am held by ${institution} under a ${licence} rights statement, which shapes how my story can be shared.`;
   }
 
   if (q.includes('where') || q.includes('location') || q.includes('from')) {
-    return `I am held at ${location}. My registration number is ${reg}. I belong to the ${discipline || 'general'} collection at Museums Victoria.`;
+    return `I am held at ${location}. My registration number is ${reg}. I belong to the ${discipline || 'general'} collection at ${institution}.`;
   }
 
   if (q.includes('used') || q.includes('purpose') || q.includes('function')) {
     if (desc) return `${desc.substring(0, 300)}${desc.length > 300 ? '…' : ''}`;
-    return `I am ${title}, classified as ${type}. My specific use and function are described in more detail on the Museums Victoria Collections website.`;
+    return `I am ${title}, classified as ${type}. My specific use and function are described in more detail on the source museum website.`;
   }
 
   if (q.includes('describe') || q.includes('tell me about') || q.includes('who are you') || q.includes('hello')) {
-    return `I am ${title}, a ${type} from ${date}. ${desc ? desc.substring(0, 250) + (desc.length > 250 ? '…' : '') : 'I am part of the Museums Victoria collection.'} My registration number is ${reg}.`;
+    return `I am ${title}, a ${type} from ${date}. ${desc ? desc.substring(0, 250) + (desc.length > 250 ? '…' : '') : 'I am part of the ' + institution + ' collection.'} My registration number is ${reg}.`;
   }
 
   // Default: return description or a structured summary
   if (desc) {
-    return `I am ${title}. ${desc.substring(0, 300)}${desc.length > 300 ? '…' : ''} I date from ${date} and am registered as ${reg} at Museums Victoria.`;
+    return `I am ${title}. ${desc.substring(0, 300)}${desc.length > 300 ? '…' : ''} I date from ${date} and am registered as ${reg} at ${institution}.`;
   }
-  return `I am ${title}, a ${type} from ${date}, held at ${location}. My registration number is ${reg}. For more details about me, visit the Museums Victoria Collections website.`;
+  return `I am ${title}, a ${type} from ${date}, held at ${location}. My registration number is ${reg}. For more details about me, visit the source museum website.`;
 }
 
 // ── Related objects via Qdrant ─────────────────────────────────────
@@ -2296,7 +2401,7 @@ function odLoadRelated(objKey, o) {
       if (!existingKey) {
         OBJECTS[relKey] = {
           title: p.title || '', year: p.date_range || '', type: p.object_type || p.discipline || '',
-          id: p.canonical_id, dams: p.registration_number || '', location: p.museum_location || 'Museums Victoria',
+          id: p.canonical_id, dams: p.registration_number || '', location: p.museum_location || label.name,
           status: 'exhibited', nodeLinked: false, ai: p.description || '', _mv: p, _source: col,
           chat: { default: 'I am ' + (p.title || 'an object') + ' in the ' + label.name + ' collection.' }
         };
@@ -2447,13 +2552,13 @@ function renderNFCList(filter = 'all', search = '') {
   c.innerHTML = filtered.map(t => {
     const obj = t.objectId ? OBJECTS[t.objectId] : null;
     return `<div class="nfc-card ${(!t.objectId) ? 'unassigned' : ''} ${activeNFCCode === t.code ? 'active' : ''}" onclick="selectNFC('${t.code}')">
-      <div class="nfc-card-header"><div class="nfc-code">${t.code}</div><div class="nfc-status-badge ${t.status}">${t.status}</div></div>
+      <div class="nfc-card-header"><div class="nfc-code">${displayAuxCode(t.code)}</div><div class="nfc-status-badge ${t.status}">${t.status}</div></div>
       <div class="nfc-object-name">${obj ? obj.title : '— Unassigned —'}</div>
       <div class="nfc-object-id">${obj ? obj.id : 'No object linked'}</div>
       <div class="nfc-location">${t.location}</div>
       <div class="nfc-scans">Scans: ${t.scans} · Last: ${t.lastScan}</div>
     </div>`;
-  }).join('') || '<div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);padding:10px;">No NFC tags match filter.</div>';
+  }).join('') || '<div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);padding:10px;">No AUX.IO tags match filter.</div>';
 }
 
 function nfcFilter(el, f) { document.querySelectorAll('.nfc-fchip').forEach(c => c.classList.remove('active')); el.classList.add('active'); renderNFCList(f, document.querySelector('.nfc-search').value.toLowerCase()); }
@@ -2473,25 +2578,25 @@ function renderNFCEditor(tag) {
     </div>`;
   }).join('');
 
-  const visItems = [['objectImage','Object Image'],['aiInterpretation','AI Interpretation'],['askQuestions','Ask Questions'],['relatedWorks','Related Works'],['visitorComments','Visitor Comments'],['nfcCode','Show NFC Code']];
+  const visItems = [['objectImage','Object Image'],['aiInterpretation','AI Interpretation'],['askQuestions','Ask Questions'],['relatedWorks','Related Works'],['visitorComments','Visitor Comments'],['nfcCode','Show AUX.IO Code']];
 
   document.getElementById('nfcEditor').innerHTML = `
     <div class="editor-header">
-      <div><div class="editor-nfc-code">${tag.code}</div><div style="font-family:var(--mono);font-size:0.58rem;color:var(--text3);margin-top:4px">${tag.location}</div></div>
+      <div><div class="editor-nfc-code">${displayAuxCode(tag.code)}</div><div style="font-family:var(--mono);font-size:0.58rem;color:var(--text3);margin-top:4px">${tag.location}</div></div>
       <div class="editor-actions">
         <div class="btn" onclick="exportNFCQR('${tag.code}')">Export QR</div>
         ${tag.status !== 'live' ? `<div class="btn ok" onclick="publishNFC('${tag.code}')">Publish Live</div>` : `<div class="btn warn" onclick="unpublishNFC('${tag.code}')">Unpublish</div>`}
       </div>
     </div>
     <div class="editor-section">
-      <div class="editor-section-title"><span>Assigned MV Object</span>${obj ? `<div class="btn" onclick="clearAssignment('${tag.code}')">Remove</div>` : ''}</div>
+      <div class="editor-section-title"><span>Assigned Collection Object</span>${obj ? `<div class="btn" onclick="clearAssignment('${tag.code}')">Remove</div>` : ''}</div>
       ${obj ? `<div class="assigned-object">
         <div class="ao-thumb">${obj._mv && obj._mv.media_thumbnail ? `<img src="${obj._mv.media_thumbnail}" loading="lazy">` : obj.dams}</div>
         <div><div class="ao-title">${obj.title}</div><div class="ao-id">${obj.id} · ${(obj.type || '').substring(0,30)} · ${obj.year}</div></div>
         <div class="ao-remove" onclick="clearAssignment('${tag.code}')">Remove</div>
-      </div>` : `<div style="font-family:var(--mono);font-size:0.62rem;color:var(--text3);margin-bottom:12px;padding:10px;border:1px dashed var(--border2)">No object assigned — select from the MV collection below</div>`}
-      <div style="font-family:var(--mono);font-size:0.56rem;color:var(--text3);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;">Assign from MV Collection</div>
-      <div class="object-picker"><input class="op-search" type="text" placeholder="Search MV objects…" oninput="filterObjectPicker(this,'${tag.code}')"><div id="opItems-${tag.code}">${allObjs}</div></div>
+      </div>` : `<div style="font-family:var(--mono);font-size:0.62rem;color:var(--text3);margin-bottom:12px;padding:10px;border:1px dashed var(--border2)">No object assigned — select from the collection below</div>`}
+      <div style="font-family:var(--mono);font-size:0.56rem;color:var(--text3);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;">Assign from Collection</div>
+      <div class="object-picker"><input class="op-search" type="text" placeholder="Search collection objects…" oninput="filterObjectPicker(this,'${tag.code}')"><div id="opItems-${tag.code}">${allObjs}</div></div>
     </div>
     <div class="editor-section">
       <div class="editor-section-title"><span>Visitor Content Visibility</span></div>
@@ -2512,7 +2617,7 @@ function renderNFCPreview(tag) {
 
   document.getElementById('nfcPreview').innerHTML = `
     <div class="preview-frame">
-      <div class="pf-tag"><span>${tag.code}</span><span style="color:${tag.status === 'live' ? 'var(--ok)' : 'var(--text3)'}">${tag.status.toUpperCase()}</span></div>
+      <div class="pf-tag"><span>${displayAuxCode(tag.code)}</span><span style="color:${tag.status === 'live' ? 'var(--ok)' : 'var(--text3)'}">${tag.status.toUpperCase()}</span></div>
       ${obj ? `
         <div class="pf-title">${obj.title}</div>
         <div class="pf-sub">${obj.type} · ${obj.year}</div>
@@ -2544,17 +2649,17 @@ function renderNFCPreview(tag) {
             <div class="pf-comment-label">Leave a response</div>
             <div class="pf-comment-mock">What did this make you think?</div>
           </div>` : ''}
-        <div class="qr-box">QR /<br>NFC<br>${tag.code}</div>
-      ` : `<div style="font-size:0.55rem;color:var(--text3);padding:40px 10px;text-align:center">No object assigned<br><br>Select an NFC tag and assign an MV object to preview</div>`}
+        <div class="qr-box">QR /<br>AUX.IO<br>${displayAuxCode(tag.code).replace('AUX.IO ', '')}</div>
+      ` : `<div style="font-size:0.55rem;color:var(--text3);padding:40px 10px;text-align:center">No object assigned<br><br>Select an AUX.IO tag and assign an object to preview</div>`}
     </div>`;
 }
 
 function assignObject(nfcCode, objId) { const tag = NFC_TAGS.find(t => t.code === nfcCode); if (tag) { tag.objectId = objId; if (tag.status === 'unassigned' || tag.status === 'new') tag.status = 'draft'; renderNFCList(); renderNFCEditor(tag); renderNFCPreview(tag); } }
 function clearAssignment(nfcCode) { const tag = NFC_TAGS.find(t => t.code === nfcCode); if (tag) { tag.objectId = null; tag.status = 'unassigned'; renderNFCList(); renderNFCEditor(tag); renderNFCPreview(tag); } }
 function toggleVis(nfcCode, key, el) { nfcVisibility[nfcCode][key] = !nfcVisibility[nfcCode][key]; el.classList.toggle('on'); el.querySelector('.vis-toggle').classList.toggle('on'); const tag = NFC_TAGS.find(t => t.code === nfcCode); if (tag) renderNFCPreview(tag); }
-function publishNFC(code) { const tag = NFC_TAGS.find(t => t.code === code); if (tag && tag.objectId) { tag.status = 'live'; selectNFC(code); } else alert('Assign an MV object before publishing'); }
+function publishNFC(code) { const tag = NFC_TAGS.find(t => t.code === code); if (tag && tag.objectId) { tag.status = 'live'; selectNFC(code); } else alert('Assign an object before publishing'); }
 function unpublishNFC(code) { const tag = NFC_TAGS.find(t => t.code === code); if (tag) { tag.status = 'draft'; selectNFC(code); } }
-function saveNFC(code) { alert(`NFC ${code} — changes saved. In production this syncs to Directus.`); }
+function saveNFC(code) { alert(`${displayAuxCode(code)} — changes saved. In production this syncs to Directus.`); }
 function onboardNewNFC() {
   const code = 'NFC' + String(NFC_TAGS.length + 1).padStart(3, '0');
   NFC_TAGS.push({ code, status: 'new', objectId: null, location: 'New — configure location', scans: 0, lastScan: 'Never' });
@@ -2619,7 +2724,15 @@ function buildVocabIndex() {
     period:          { type: 'Period',          label: 'Historical Period' },
     medium:          { type: 'Materials',       label: 'Medium / Materials' },
   };
-  const SOURCE_LABELS = { archai_pilot: 'Museums Victoria', archai_met: 'The Met', archai_va: 'V&A' };
+  const SOURCE_LABELS = {
+    archai_pilot: 'Museums Victoria',
+    archai_met: 'The Met',
+    archai_va: 'V&A',
+    archai_aic: 'Art Institute of Chicago',
+    archai_cma: 'Cleveland Museum of Art',
+    archai_rijks: 'Rijksmuseum',
+    archai_europeana: 'Europeana'
+  };
 
   for (const [key, obj] of Object.entries(OBJECTS)) {
     const mv = obj._mv || {};
@@ -2799,8 +2912,8 @@ function selectVocabTermData(term) {
     <button class="add-local-btn" onclick="addLocalMapping('${(term.term||'').replace(/'/g,"\\'")}','${(term.id||'')}')">Add Local Mapping</button>`;
 }
 
-function addLocalMapping(termName, termId) {
-  const localName = prompt('Local term name (your institution\'s preferred label):', termName);
+async function addLocalMapping(termName, termId) {
+  const localName = (await appPrompt('Local term name (your institution\'s preferred label):', termName))?.trim();
   if (!localName) return;
   const id = `local::${localName.toLowerCase().replace(/\s+/g,'_')}`;
   if (!VOCAB_INDEX[id]) {
@@ -2829,8 +2942,8 @@ function renderVisitorList() {
     const o = OBJECTS[k];
     return `<div class="vp-nfc-item ${currentVPage === k ? 'active' : ''}" onclick="switchVPage('${k}',this)">
       <div class="vp-nfc-name">${o.title}</div>
-      <div class="vp-nfc-id">${o._mv ? o._mv.registration_number || '' : ''} · MV</div>
-      <div class="vp-badges"><div class="vbadge live">MV</div></div>
+      <div class="vp-nfc-id">${o._mv ? o._mv.registration_number || '' : ''} · ${getCollectionLabel(o._source).short}</div>
+      <div class="vp-badges"><div class="vbadge live">${getCollectionLabel(o._source).short}</div></div>
     </div>`;
   }).join('');
 
@@ -2899,12 +3012,13 @@ function vAsk(q) {
   input.value = '';
 
   const el = document.getElementById('vResponse');
-  el.textContent = 'Asking llama3…';
+  el.textContent = 'Thinking…';
   el.style.display = 'block';
   el.style.color = 'var(--text3)';
 
   const p = o._mv || {};
-  const sys = `You are "${o.title}", a physical object in the Museums Victoria collection. Speak in the first person as the object. Be warm and conversational. 2-3 sentences. Use ONLY this verified metadata:\n- Title: ${o.title}\n- Type: ${o.type}\n- Date: ${o.year}\n- Description: ${(p.description || o.ai || '').substring(0, 400)}\n- Location: ${o.location}\n- Registration: ${p.registration_number || o.dams}`;
+  const institution = getInstitutionName(o);
+  const sys = `You are "${o.title}", a physical object in the ${institution} collection. Speak in the first person as the object. Be warm and conversational. 2-3 sentences. Use ONLY this verified metadata:\n- Title: ${o.title}\n- Type: ${o.type}\n- Date: ${o.year}\n- Description: ${(p.description || o.ai || '').substring(0, 400)}\n- Location: ${o.location}\n- Registration: ${p.registration_number || o.dams}`;
 
   ollamaFetch('/api/chat', JSON.stringify({ model: 'llama3', stream: false, messages: [{ role: 'system', content: sys }, { role: 'user', content: q }] }))
   .then(r => r.json())
@@ -2957,7 +3071,7 @@ function submitVisitorComment() {
   fetch(COMMENTS_API, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ objectId, collection: window._currentVisitorObj._col || 'archai_pilot', text, authorType: 'visitor' }),
+    body: JSON.stringify({ objectId, collection: window._currentVisitorObj._source || 'archai_pilot', text, authorType: 'visitor' }),
   })
   .then(r => r.json())
   .then(data => {

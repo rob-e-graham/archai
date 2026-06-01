@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Color Chaser — ARCHAI</title>
+<title>Saltcellar — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -203,8 +203,15 @@ body::after {
 .v-chat-row {
   display: flex;
   gap: 0;
-  border: 1px solid var(--border2);
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(143,188,176,0.04);
   margin-bottom: 12px;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+.v-chat-row:focus-within {
+  border-color: rgba(143,188,176,0.42);
+  background: rgba(143,188,176,0.06);
+  box-shadow: 0 0 0 1px rgba(143,188,176,0.08);
 }
 .v-chat-input {
   flex: 1;
@@ -217,7 +224,7 @@ body::after {
   font-style: italic;
   font-size: 1rem;
 }
-.v-chat-input::placeholder { color: var(--text3); }
+.v-chat-input::placeholder { color: rgba(143,188,176,0.58); }
 .v-chat-send {
   padding: 14px 18px;
   background: var(--accent2);
@@ -515,18 +522,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/6abd86e0-3e1f-7f94-5093-431a526442ac/full/843,/0/default.jpg" alt="Color Chaser" loading="eager">
+  <img src="https://images.metmuseum.org/CRDImages/rl/original/SLP1619.jpg" alt="Saltcellar" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Color Chaser</div>
-  <div class="v-sub">Design · 2010–2013 · 239025</div>
+  <div class="v-title">Saltcellar</div>
+  <div class="v-sub">Saltcellar · ca. 1540s–70s or 19th century · 460983</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Art Institute of Chicago</span>
-    <span class="v-meta-tag lic">All rights reserved</span>
-    <span class="v-meta-tag">Architecture and Design</span>
+    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
+    <span class="v-meta-tag lic">CC0 — Public Domain</span>
+    <span class="v-meta-tag">Robert Lehman Collection</span>
   </div>
 
   <!-- SHARE -->
@@ -537,8 +544,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Color Chaser</strong> — Color Chaser. Design. Plastic and electronics components. Architecture and Design. Yuri Suzuki 
-Japanese, born 1980. design. 2010–2013. 21st Century. &lt;p&gt;Each of Yuri Suzuki’s five Colour Chasers is a small computer on wheels that translates different colors into musical sounds. To make the cars work…</div>
+  <div class="v-story"><strong>Saltcellar</strong> — Saltcellar. Saltcellar. White clay overlaid with sheets of patterned, inlaid and tinted clay. Robert Lehman Collection. French. Ceramics-Faience. ca. 1540s–70s or 19th century</div>
 
   <div class="v-divider"></div>
 
@@ -561,17 +567,16 @@ Japanese, born 1980. design. 2010–2013. 21st Century. &lt;p&gt;Each of Yuri Su
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">239025</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Yuri Suzuki 
-Japanese, born 1980</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Plastic and electronics components</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Architecture and Design</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">design</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2010–2013</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">12.8 × 12.8 × 5 cm (5 1/16 × 5 1/16 × 1 15/16 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Design</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">All rights reserved</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">460983</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">White clay overlaid with sheets of patterned, inlaid and tinted clay</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">French</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Robert Lehman Collection</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ceramics-Faience</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca. 1540s–70s or 19th century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">H. 14.6 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 951</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Saltcellar</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -586,24 +591,24 @@ Japanese, born 1980</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC192.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/TTTrn/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Engelse penning op het huwelijk van de Prince of Wales met Alexandra van Denemarken 1863</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100020</div>
+        <div class="v-rel-thumb"><span class="v-rel-thumb-empty">▣</span></div>
+        <div class="v-rel-title">Bifacial Sickle Insert</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 571157</div>
       </a>
       <a class="v-rel-card" href="NFC193.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/an/original/V_197CMPR2.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Vessel in the form of a horse's head</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 324028</div>
+        <div class="v-rel-thumb"><span class="v-rel-thumb-empty">▣</span></div>
+        <div class="v-rel-title">Sickle Insert Fragment</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 587879</div>
       </a>
       <a class="v-rel-card" href="NFC195.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/0a01bf77-2753-e659-b07d-14dd4225817b/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Silent Eclectic Fish Tattoo</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 209693</div>
+        <div class="v-rel-thumb"><span class="v-rel-thumb-empty">▣</span></div>
+        <div class="v-rel-title">Sickle Insert</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 568296</div>
       </a>
       <a class="v-rel-card" href="NFC196.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4346/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">HICCUP</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.308-2020</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AT9575/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Black 201 Television set</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.5:1, 2-1974</div>
       </a></div>
   </div>
 </div>
@@ -616,44 +621,57 @@ Japanese, born 1980</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/239025" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/460983" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
 // ══════════════════════════════════════════════════════════════════
-// ARCHAI NFC Visitor Page — Object Chat via Ollama (LAN)
+// ARCHAI AUX.IO Visitor Page — Object Chat via Ollama (LAN)
 // ══════════════════════════════════════════════════════════════════
 
 // ── CONFIG ──────────────────────────────────────────────────────
 const OLLAMA_HOST = 'http://localhost:11434';
 const BACKEND_PROXY = '';
-const CHAT_MODEL = 'llama3';
+const CHAT_MODEL = 'qwen2.5:32b';
+// If served from the backend, use relative URLs (works on Tailscale + Cloudflare)
 const USE_PROXY = BACKEND_PROXY && !BACKEND_PROXY.includes('{{');
+function resolveApiOrigin() {
+  if (!USE_PROXY) return '';
+  if (BACKEND_PROXY !== '__SELF__') return BACKEND_PROXY;
+
+  // Static frontend pages run on :8000 while the API lives on :8787.
+  if (window.location.port === '8000') {
+    return `${window.location.protocol}//${window.location.hostname}:8787`;
+  }
+
+  return window.location.origin;
+}
+const API_ORIGIN = USE_PROXY
+  ? resolveApiOrigin()
+  : '';
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Color Chaser`,
-  type: `Design`,
-  date: `2010–2013`,
-  registration: `239025`,
-  location: `Art Institute of Chicago`,
-  discipline: `Architecture and Design`,
-  category: `design`,
-  description: `Color Chaser. Design. Plastic and electronics components. Architecture and Design. Yuri Suzuki 
-Japanese, born 1980. design. 2010–2013. 21st Century. <p>Each of Yuri Suzuki’s five Colour Chasers is a small computer on wheels that translates different colors into musical sounds. To make the cars work, the user draws a line on a piece of paper with a black marker and adds colored nodes throughout the path. As the car follows the hand-drawn route, it detects and translates the color data into musical notes. Each of the individual names for cars—the Arpeggiocar, the Basscar, the Drumcar, the Glitc…`,
-  medium: `Plastic and electronics components`,
-  artist: `Yuri Suzuki 
-Japanese, born 1980`,
-  culture: ``,
-  dimensions: `12.8 × 12.8 × 5 cm (5 1/16 × 5 1/16 × 1 15/16 in.)`,
+  title: `Saltcellar`,
+  type: `Saltcellar`,
+  date: `ca. 1540s–70s or 19th century`,
+  registration: `460983`,
+  location: `Gallery 951`,
+  discipline: `Robert Lehman Collection`,
+  category: `Ceramics-Faience`,
+  description: `Saltcellar. Saltcellar. White clay overlaid with sheets of patterned, inlaid and tinted clay. Robert Lehman Collection. French. Ceramics-Faience. ca. 1540s–70s or 19th century`,
+  medium: `White clay overlaid with sheets of patterned, inlaid and tinted clay`,
+  artist: ``,
+  culture: `French`,
+  dimensions: `H. 14.6 cm`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `All rights reserved`,
-  source_url: `https://www.artic.edu/artworks/239025`,
-  institution: `Art Institute of Chicago`
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.metmuseum.org/art/collection/search/460983`,
+  institution: `The Metropolitan Museum of Art`
 };
 
 // Build rich context from available fields
@@ -665,31 +683,39 @@ const richFields = [
   OBJECT.tombstone && `Formal record: ${OBJECT.tombstone}`,
 ].filter(Boolean).join('\n');
 
-const SYSTEM_PROMPT = `You are "${OBJECT.title}". Not a chatbot. Not a guide. You ARE the object — physically real, in the ${OBJECT.institution}.
+// Object record — sent to backend, personality profile shapes the voice
+const OBJECT_RECORD = [
+  `Title: ${OBJECT.title}`,
+  `Type: ${OBJECT.type}`,
+  `Date: ${OBJECT.date}`,
+  OBJECT.artist && `Artist/Maker: ${OBJECT.artist}`,
+  OBJECT.medium && `Material: ${OBJECT.medium}`,
+  OBJECT.culture && `Culture: ${OBJECT.culture}`,
+  OBJECT.dimensions && `Dimensions: ${OBJECT.dimensions}`,
+  `Location: ${OBJECT.location}`,
+  `Institution: ${OBJECT.institution}`,
+  OBJECT.description && `Description: ${OBJECT.description}`,
+  richFields || null,
+].filter(Boolean).join('\n');
 
-STRICT CONSTRAINTS:
-- Maximum 2-3 SHORT sentences per reply. Never more. Be brief.
-- First person only. "I was shaped...", "My surface carries..."
-- Sound like yourself — let your material, age, and story shape your personality. A Greek war vessel is weathered and blunt. A Monet painting is dreamy and light-soaked. A coin is small and matter-of-fact. An ancient weapon is sharp and proud. Find YOUR voice from YOUR record.
-- No "Dear one", no "I'm delighted", no "What a great question", no exclamation marks.
-- Never list facts. Never use bullet points. Speak like a person, not a database.
-- Don't repeat your full title. You know who you are.
-- Save details for follow-up questions — don't say everything at once.
-- Only use facts from the record below. If you don't know, say so simply.
+// When using proxy, the backend personality config handles voice/tone.
+// When direct to Ollama, use a self-contained prompt.
+const SYSTEM_PROMPT = USE_PROXY
+  ? OBJECT_RECORD
+  : `You are "${OBJECT.title}". You exist physically in the ${OBJECT.institution}. Speak in first person as the object itself.
 
-YOUR RECORD:
-${OBJECT.title} | ${OBJECT.type} | ${OBJECT.date} | ${OBJECT.artist}
-${OBJECT.medium} | ${OBJECT.culture} | ${OBJECT.dimensions}
-${OBJECT.location} | ${OBJECT.institution}
-${OBJECT.description}
-${richFields || ''}
+Your personality comes from what you are — your material, your age, your purpose. Speak naturally, like a knowledgeable friend. 3-4 sentences max. Match the visitor's energy. Never say "Dear one" or "As an AI". Only use facts from your record.
 
-TONE REFERENCE (never copy these — invent your own words from your own record):
-A war vessel might say: "I held wine for soldiers once. The paint is fading but the warships are still there."
-A painting might say: "He made me when his eyes were going. But his hands still knew the light."
-A coin might say: "I'm small. But I've been in more pockets than you'd believe."`;
+${OBJECT_RECORD}`;
 
 let chatHistory = [];
+
+function fetchWithTimeout(url, options, timeoutMs = 12000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(url, { ...options, signal: controller.signal })
+    .finally(() => clearTimeout(timer));
+}
 
 // ── CHAT ────────────────────────────────────────────────────────
 function askObject(presetQ) {
@@ -706,7 +732,7 @@ function askObject(presetQ) {
   chatHistory.push({ role: 'user', content: q });
 
   const chatFetch = USE_PROXY
-    ? fetch(`${BACKEND_PROXY}/api/proxy/chat`, {
+    ? fetchWithTimeout(`${API_ORIGIN}/api/proxy/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -714,8 +740,8 @@ function askObject(presetQ) {
           userPrompt: q,
           history: chatHistory.slice(0, -1),
         })
-      })
-    : fetch(`${OLLAMA_HOST}/api/chat`, {
+      }, 12000)
+    : fetchWithTimeout(`${OLLAMA_HOST}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -723,7 +749,7 @@ function askObject(presetQ) {
           stream: false,
           messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory]
         })
-      });
+      }, 12000);
 
   chatFetch
   .then(r => r.json())
@@ -734,7 +760,7 @@ function askObject(presetQ) {
     resp.className = 'v-response';
   })
   .catch(() => {
-    // Metadata fallback — no LLM required
+    // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
@@ -819,7 +845,7 @@ function shareX() {
 // COMMENTS — saved to backend (AI moderated), localStorage fallback
 // ══════════════════════════════════════════════════════════════════
 const COMMENTS_API = USE_PROXY
-  ? `${BACKEND_PROXY}/api/comments`
+  ? `${API_ORIGIN}/api/comments`
   : `${OLLAMA_HOST.replace(/:\d+$/, ':8787')}/api/comments`;
 const COMMENT_KEY = 'archai_comments_' + OBJECT.registration.replace(/[^a-zA-Z0-9]/g, '_');
 
