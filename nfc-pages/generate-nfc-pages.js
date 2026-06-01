@@ -41,7 +41,9 @@ const COLLECTION_LABELS = {
   archai_europeana: 'Europeana'
 };
 const OLLAMA_LAN_HOST = getArg('host', 'http://localhost:11434');
-const BACKEND_PROXY = getArg('proxy', '');
+// Default to backend-proxy mode so public AUX.IO pages can use the live chat API
+// instead of trying to call a visitor's local Ollama instance from the browser.
+const BACKEND_PROXY = getArg('proxy', '__SELF__');
 const LIMIT = parseInt(getArg('limit', '1000'), 10);
 const OUTPUT_DIR = path.join(__dirname, 'v');
 const TEMPLATE_PATH = path.join(__dirname, 'nfc-visitor-template.html');
@@ -142,6 +144,17 @@ async function main() {
 
   // Cap to limit
   allPoints = allPoints.slice(0, LIMIT);
+
+  // Only generate pages for objects with images
+  const beforeFilter = allPoints.length;
+  allPoints = allPoints.filter(pt => {
+    const p = pt.payload;
+    return p && (p.media_medium || p.media_thumbnail || p.image_url || p.primaryImageSmall);
+  });
+  const skippedNoImage = beforeFilter - allPoints.length;
+  if (skippedNoImage > 0) {
+    console.log(`  ⊘ Skipped ${skippedNoImage} objects without images`);
+  }
 
   if (!allPoints.length) {
     console.error('\n  ✗ No objects found in any Qdrant collection.');

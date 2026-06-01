@@ -11,20 +11,20 @@ Access the full ARCHAI stack from iPad, iPhone, or any device — anywhere.
 
 | Device | Tailscale IP | Role |
 |--------|-------------|------|
-| Mac Studio | `100.109.26.39` | Server (runs everything) |
-| iPad Pro | `100.67.189.36` | Demo / testing |
-| iPhone 15 Pro Max | `100.82.246.35` | Mobile testing |
+| Mac Studio | `<SERVER_IP>` | Server (runs everything) |
+| iPad Pro | `<TABLET_IP>` | Demo / testing |
+| iPhone 15 Pro Max | `<MOBILE_IP>` | Mobile testing |
 
 ## URLs (use from any device on the Tailnet)
 
 | Service | URL |
 |---------|-----|
-| **Main App** | `http://100.109.26.39:8000/ARCHAI_v10_8.html` |
-| **AUX.IO Visitor Index** | `http://100.109.26.39:8787/aux/index.html` |
-| **Backend API** | `http://100.109.26.39:8787/api/health` |
-| **Qdrant** | `http://100.109.26.39:6333/collections` |
-| **Ollama** | `http://100.109.26.39:11434/api/tags` |
-| **Directus** | `http://100.109.26.39:8055` |
+| **Main App** | `http://<SERVER_IP>:8000/ARCHAI_v10_8.html` |
+| **AUX.IO Visitor Index** | `http://<SERVER_IP>:8787/aux/index.html` |
+| **Backend API** | `http://<SERVER_IP>:8787/api/health` |
+| **Qdrant** | `http://<SERVER_IP>:6333/collections` |
+| **Ollama** | `http://<SERVER_IP>:11434/api/tags` |
+| **Directus** | `http://<SERVER_IP>:8055` |
 
 ## Starting the Stack (on Mac Studio)
 
@@ -61,7 +61,7 @@ AUX.IO visitor pages have the Ollama host baked in. When the IP changes, regener
 
 ```bash
 cd nfc-pages
-node generate-nfc-pages.js --host http://100.109.26.39:11434
+node generate-nfc-pages.js --host http://<SERVER_IP>:11434
 ```
 
 ## Troubleshooting
@@ -73,7 +73,7 @@ Your browser is forcing HTTPS. Type `http://` explicitly — these are plain HTT
 Ollama is not reachable from the device. Check:
 1. Ollama is running with `OLLAMA_HOST=0.0.0.0:11434`
 2. CORS is enabled with `OLLAMA_ORIGINS="*"`
-3. Test: `curl http://100.109.26.39:11434/api/tags`
+3. Test: `curl http://<SERVER_IP>:11434/api/tags`
 
 ### AUX.IO pages load but chat doesn't work
 Pages were generated with an old IP. Regenerate with `--host` flag (see above).

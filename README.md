@@ -2,9 +2,9 @@
 
 > "Museums are not silent repositories of Memory; they are living, thinking organisms, where imagination and knowledge, tradition and innovation meet." — Gayane Umerova, UNESCO, 2025
 
-**Version:** 10.8
+**Version:** 10.9
 **Author:** Rob Graham · FAMTEC (Fine Art Media Tech) / RMIT University
-**Status:** Working prototype — multi-institution semantic search + LLM object chat + NFC visitor pages
+**Status:** Working prototype — multi-institution semantic search + LLM object chat + AUX.IO visitor pages
 **Target:** ISEA2026 Dubai, 6th Summit on New Media Art Archiving (April 11–12)
 **Paper:** `docs/ARCHAI_ISEA2026_Rob_Graham.pdf`
 **Licence:** MPL-2.0 (code) · CC BY 4.0 (MV data) · CC0 (Met data) · V&A Open Access — see [NOTICE](NOTICE) for IP and trademark details
@@ -12,27 +12,63 @@
 
 ---
 
+## Research Status
+
+ARCHAI is an active doctoral research project undertaken by Rob Graham through RMIT University and FAMTEC.
+
+This repository contains an open-source reference implementation and associated research outputs.
+
+Third-party collection data, trademarks, institutional names, and external systems remain the property of their respective owners. Use of the software does not imply endorsement by any institution represented within the project datasets.
+
+---
+
+## Origin
+
+The conceptual foundations of ARCHAI were developed over twenty years of professional practice across museums, galleries, and cultural institutions — including ACMI, TarraWarra Museum of Art (Head of Technology), Heide Museum of Modern Art, Museums Victoria, Grande Experiences, and the National Communication Museum. All theoretical frameworks, design principles, and research questions emerged from this accumulated practitioner experience, entirely independent of any single institution.
+
+All code in this repository was written after departing the National Communication Museum, developed independently through FAMTEC as part of doctoral research at RMIT University. The first version committed to GitHub (v6, the `v0.1-alpha` release) was the first working prototype, built from the updated PhD document and the ISEA2026 white paper. Earlier conceptual iterations (v1–v4) existed as planning documents and Claude.ai conversation prototypes during the research design phase — the ideas that informed them are documented in the PhD drafts and the ARCHAI Master Plan.
+
+This repository, its commit history, and its git log constitute a verifiable research journal of the entire development process.
+
+---
+
+## Try It Live
+
+| | |
+|---|---|
+| **ARCHAI Project Page** | [fineartmedia.tech/archai](https://fineartmedia.tech/archai) |
+| **AUX.IO — Talk to Museum Objects** | [fineartmedia.tech/aux](https://fineartmedia.tech/aux) |
+| **SafeChat — Crisis Safety Protocol** | [fineartmedia.tech/safechat](https://fineartmedia.tech/safechat) |
+| **KeyTec — API Credential Vault** | [fineartmedia.tech/keytec](https://fineartmedia.tech/keytec) |
+| **Dark Plates — Autonomous AI Artwork** | [darkplates.art](https://darkplates.art) |
+
+---
+
 ## What's Working Right Now
 
 ### ✅ Multi-Collection Semantic Search
-Three museum collections in Qdrant, searchable simultaneously:
+Six museum collections are live in Qdrant right now, searchable simultaneously:
 
 | Collection | Source | Objects | Licence | Status |
 |-----------|--------|---------|---------|--------|
-| `archai_pilot` | Museums Victoria | ~194 | CC BY 4.0 | ✅ Live |
-| `archai_met` | The Metropolitan Museum of Art, NYC | ~100 | CC0 | ✅ Live |
-| `archai_va` | Victoria and Albert Museum, London | ~80 | V&A Open Access | ✅ Live |
-| `archai_curator` | All of the above + comments | Built on demand | Mixed | ✅ Live |
+| `archai_pilot` | Museums Victoria | ~80 | CC BY 4.0 | ✅ Live |
+| `archai_met` | The Metropolitan Museum of Art, NYC | ~135 | CC0 | ✅ Live |
+| `archai_va` | Victoria and Albert Museum, London | ~150 | V&A Open Access | ✅ Live |
+| `archai_aic` | Art Institute of Chicago | ~150 | Open API / source rights apply | ✅ Live |
+| `archai_cma` | Cleveland Museum of Art | ~150 | Open API / source rights apply | ✅ Live |
+| `archai_rijks` | Rijksmuseum | ~150 | Rijksmuseum API / source rights apply | ✅ Live |
+| `archai_curator` | All live collections + comments | Built on demand | Mixed | ✅ Live |
 
-- Query → embedded via nomic-embed-text → vector searched across all 3 collections → results merged by cosine similarity
-- Results colour-tagged: MV (teal), Met (gold), V&A (purple)
+- Query → embedded via nomic-embed-text → vector searched across all live collections → results merged by cosine similarity
+- Results colour-tagged by source museum/institution
 - Text fallback when Ollama offline
 - Sort by: name, date, discipline, source
-- Filter: with images (default), all, MV/Met/V&A only
+- Filter: with images (default), all, or source-specific subsets
 - Deduplicated by canonical_id across collections
+- Europeana is already wired in the app/backend path and can be added to the live stack as harvesting is finalised
 
 ### ✅ Object-as-Speaker LLM Chat
-Each object speaks in first person via llama3, grounded in verified metadata:
+Each object speaks in first person via Qwen 2.5 32B, grounded in verified metadata:
 - System prompt built from ALL metadata fields
 - Dynamic institution name per object
 - Hallucination prevention: "That's not in my record"
@@ -40,7 +76,7 @@ Each object speaks in first person via llama3, grounded in verified metadata:
 
 ### ✅ Object Detail Panel
 - Full metadata, image, curatorial description
-- Live llama3 chat with question chips
+- Live Qwen 2.5 32B chat with question chips
 - Semantically related objects across all collections
 - Source-specific links: "View on The Met →", "View on V&A →"
 - **Visitor comment thread** — all comments (including flagged) with approve/remove/reply actions for curators
@@ -65,21 +101,21 @@ Safe proxy layer for exposing ARCHAI publicly via Cloudflare Tunnel:
 
 ### ✅ Curator Vector Collection
 Enriched `archai_curator` Qdrant collection combining:
-- All object metadata from all 3 source collections
+- All object metadata from all live source collections
 - Visitor comments attached to each object
 - Rebuilt on demand via `POST /api/proxy/curator/build`
 - Semantic search across everything via `POST /api/proxy/curator/search`
 
-### ✅ NFC Visitor Pages (Mobile)
-194 standalone HTML pages from all 3 collections:
+### ✅ AUX.IO Visitor Pages (Mobile)
+Standalone AUX.IO object pages generated from the live collection set:
 - Object image, metadata, description, LLM chat over LAN or via proxy
 - Share: native iOS sheet, email, copy link, X/Twitter
 - Comment submission with AI moderation (localStorage fallback offline)
 - Related objects with cross-collection links
 - Captive portal for exhibition WiFi
 
-### ✅ NFC Management Panel
-- Tags from objects with images, mixed across MV/Met/V&A
+### ✅ AUX.IO Management Panel
+- Tags from objects with images, mixed across the live collections
 - 3-column layout: tag list → editor → phone preview
 - Search, filter, publish/unpublish
 
@@ -114,7 +150,7 @@ Enriched `archai_curator` Qdrant collection combining:
 - Direct links to Nodel web UI and Directus admin
 
 ### ✅ Vocabulary & Thesaurus (CHIN-aligned)
-- **Live vocabulary index** built from Qdrant payloads across all 3 collections (9 facets: discipline, category, object type, classifications, collecting areas, keywords, culture, period, medium)
+- **Live vocabulary index** built from Qdrant payloads across all live collections (9 facets: discipline, category, object type, classifications, collecting areas, keywords, culture, period, medium)
 - **CHIN/AAT reference terms** — 26 curated terms from Getty AAT with scope notes, broader/narrower hierarchies, and AAT IDs
 - **DOCAM Glossaurus** — media art preservation terminology (emulation, migration, variable media, documentation strategies)
 - **Nomenclature for Museum Cataloging** — Parks Canada/CHIN object naming and classification
@@ -130,7 +166,7 @@ Desktop views:
 
 ![Curator collections search](docs/screenshots/archai-curator-collections-search-v10-6.png)
 ![Exhibitions live dashboard](docs/screenshots/archai-exhibitions-live-dashboard-v10-6.png)
-![NFC management with visitor preview](docs/screenshots/archai-nfc-management-visitor-preview-v10-6.png)
+![AUX.IO management with visitor preview](docs/screenshots/archai-nfc-management-visitor-preview-v10-6.png)
 ![Vocabulary and thesaurus tools](docs/screenshots/archai-vocabulary-thesaurus-v10-6.png)
 ![Visitor view object page](docs/screenshots/archai-visitor-view-proof-coin-v10-6.png)
 ![FAMTEC exchange](docs/screenshots/archai-famtec-exchange-v10-6.png)
@@ -180,9 +216,9 @@ Date extraction from titles, better Met filtering, incremental harvest. Run Harv
 │                    ARCHAI Frontend                      │
 │                 (ARCHAI_v10_8.html · browser)           │
 │                                                         │
-│  Search ──→ Ollama embed ──→ Qdrant (4 collections)     │
+│  Search ──→ Ollama embed ──→ Qdrant (6 live collections)│
 │  Chat   ──→ Ollama llama3 ──→ grounded response         │
-│  NFC    ──→ Ollama llama3 ──→ chat over LAN / proxy     │
+│  AUX.IO ─→ Ollama llama3 ──→ chat over LAN / proxy      │
 │  Sort   ──→ client-side on loaded objects               │
 │  Comments ──→ Backend API ──→ AI moderation ──→ SQLite  │
 └────────┬──────────────┬──────────────┬──────────────────┘
@@ -227,8 +263,8 @@ archai/
 │   │   └── va-harvester.js        ← V&A London → Qdrant
 │   └── data/archai.db             ← SQLite (created at runtime)
 ├── nfc-pages/
-│   ├── generate-nfc-pages.js      ← All collections → HTML per tag
-│   ├── nfc-visitor-template.html  ← Mobile template
+│   ├── generate-nfc-pages.js      ← AUX.IO page generator from all live collections
+│   ├── nfc-visitor-template.html  ← AUX.IO mobile template
 │   ├── captive-portal.html
 │   └── v/                         ← Generated pages (~194, not in git)
 ├── docs/
@@ -248,9 +284,9 @@ cd ~/Desktop/APPS/ARCHAI\ APP
 Starts Docker, Qdrant, Ollama (with LAN+CORS), backend API, frontend server. Runs 7 health checks, shows loaded models, Qdrant collections, comment count, and prints all URLs.
 
 **Main app:** http://localhost:8000/ARCHAI_v10_8.html
-**NFC index:** http://localhost:8000/nfc-pages/v/index.html
+**AUX.IO index:** http://localhost:8787/aux/index.html
 **Backend API:** http://localhost:8787/api/health
-**Tailscale:** http://100.109.26.39:8000/ARCHAI_v10_8.html
+**Remote testing:** via Tailscale VPN or equivalent secure networking
 
 See `ARCHAI_OPERATIONS_GUIDE.md` for full setup, testing, and API reference.
 
@@ -269,10 +305,11 @@ Mac Studio M2 Max · 64GB · 1TB. Base institutional deployment: ~$3,500–5,000
 | v6 | Initial prototype, mock objects |
 | v7 | Role switcher, FAMTEC, Nodel, NFC, vocabulary |
 | v10.4 | MV-only, live Qdrant + Ollama, LLM chat |
-| v10.5 | Restored all panels, NFC page generator |
-| v10.6 | Multi-collection (MV+Met+V&A), sort/filter, dedup, harvesters, NFC share+comments, 200 pages, dynamic institutions |
+| v10.5 | Restored all panels, AUX.IO page generator |
+| v10.6 | Multi-collection (MV+Met+V&A), sort/filter, dedup, AUX.IO share+comments, dynamic institutions |
 | v10.7 | Live CHIN-aligned thesaurus (AAT+DOCAM+Nomenclature+CHIN Disciplines), all buttons wired, responsive thumbnail scaling, vocab search with scope notes and provider badges |
-| **v10.8** | **Backend proxy for safe public hosting (rate limiting, prompt injection blocking), AI-moderated threaded comments (Ollama screening → curator review queue), curator vector collection (all metadata + comments searchable), SQLite persistence, NFC pages wired to backend API, object detail comment thread with approve/remove/reply, startup script with health checks, operations guide** |
+| **v10.8** | **Backend proxy for safe public hosting (rate limiting, prompt injection blocking), AI-moderated threaded comments, curator vector collection (all metadata + comments searchable), SQLite persistence, six live source collections in Qdrant, AUX.IO pages wired to backend API, object detail comment thread with approve/remove/reply, startup script with health checks, operations guide** |
+| **v10.9** | **AUX.IO moved from the old 62-page website subset to the live generated collection manifest, public website wrappers aligned with newer institutions, and the current runtime/docs brought into sync around the expanded live object set** |
 
 ---
 
