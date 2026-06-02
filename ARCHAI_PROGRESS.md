@@ -389,3 +389,26 @@ Good next step after this session:
 1. identify repeatable Auckland placeholder media signatures
 2. suppress them in the harvester or canonical media selection logic
 3. continue onboarding more regionally diverse collections for language and rights testing
+
+## International source gating added
+
+To keep expansion clean, a legal / quality gate has now been added at the planning layer:
+
+- [backend-archai/scripts/INTERNATIONAL_ONBOARDING_MATRIX.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/backend-archai/scripts/INTERNATIONAL_ONBOARDING_MATRIX.md)
+- [backend-archai/scripts/collection-targets.json](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/backend-archai/scripts/collection-targets.json)
+
+This does three important things:
+
+- separates `approved open` from `item-rights-check` sources
+- marks `non-commercial only` sources clearly for PhD/demo use
+- stops us onboarding attractive but legally muddy collections too early
+
+Verified next-priority international targets currently favour:
+
+1. Te Papa
+2. M+
+3. Tokyo Museum Collection
+4. Brasiliana Museus
+5. DigitalNZ
+
+These were chosen for legal clarity, multilingual value, regional balance, and likelihood of producing public-safe, image-backed records.

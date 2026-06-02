@@ -126,6 +126,11 @@ Only after the canonical/display layer is stable.
 
 Priority should favour balance, not just scale.
 
+Use the legal / quality gate matrix before starting any new harvester:
+
+- [INTERNATIONAL_ONBOARDING_MATRIX.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/backend-archai/scripts/INTERNATIONAL_ONBOARDING_MATRIX.md)
+- [collection-targets.json](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/backend-archai/scripts/collection-targets.json)
+
 ### Australia / Aotearoa / Pacific
 
 - Te Papa

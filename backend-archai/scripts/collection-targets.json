@@ -3,19 +3,45 @@
     "id": "tepapa",
     "name": "Te Papa",
     "region": "Oceania",
-    "focus": ["Pacific", "Māori", "technology", "material culture"],
+    "focus": ["Pacific", "Maori", "technology", "material culture"],
     "status": "planned",
     "priority": 1,
-    "translation_mode": "source-first"
+    "translation_mode": "source-first",
+    "access_mode": "api",
+    "api_key": "free_registration",
+    "metadata_rights": "CC BY 4.0",
+    "image_rights": "per-item / mixed",
+    "public_demo_policy": "approved_with_item_rights_check",
+    "quality_gate": "image-backed + item-rights-cleared + culturally appropriate",
+    "cultural_protocol": "Respect taonga and tupuna guidance from source",
+    "verification_status": "verified_2026_06_02",
+    "official_docs": [
+      "https://www.tepapa.govt.nz/learn/research/datasets/collections-api",
+      "https://data.tepapa.govt.nz/collection",
+      "https://www.tepapa.govt.nz/api-terms-of-use"
+    ],
+    "notes": "High-priority Southern Hemisphere source. Strong multilingual and Pacific relevance. Best next API onboarding if we preserve item-level image rights and cultural guidance."
   },
   {
     "id": "aucklandmuseum",
     "name": "Auckland Museum",
     "region": "Oceania",
-    "focus": ["Māori", "Pacific", "history", "objects"],
+    "focus": ["Maori", "Pacific", "history", "objects"],
     "status": "live",
     "priority": 2,
-    "translation_mode": "source-first"
+    "translation_mode": "source-first",
+    "access_mode": "api",
+    "api_key": "none",
+    "metadata_rights": "mixed / item-level",
+    "image_rights": "mixed / item-level",
+    "public_demo_policy": "live_with_placeholder_filter",
+    "quality_gate": "image-backed + placeholder-suppressed + per-item-rights-preserved",
+    "cultural_protocol": "Protect taonga, sensitive material, and source protocol flags",
+    "verification_status": "terms_recheck_pending",
+    "official_docs": [
+      "https://api.aucklandmuseum.com/"
+    ],
+    "notes": "Live in ARCHAI now. Needs source-side false-image suppression and a formal terms re-check before bigger expansion."
   },
   {
     "id": "digitalnz",
@@ -24,7 +50,21 @@
     "focus": ["aggregated heritage", "Pacific", "archives", "objects"],
     "status": "planned",
     "priority": 3,
-    "translation_mode": "source-first"
+    "translation_mode": "source-first",
+    "access_mode": "aggregator_api",
+    "api_key": "none",
+    "metadata_rights": "mixed / rights-field dependent",
+    "image_rights": "partner-specific",
+    "public_demo_policy": "approved_metadata_with_partner_rights_check",
+    "quality_gate": "rights-field-present + image-backed + partner-source-clear",
+    "cultural_protocol": "Aggregator content may carry culturally sensitive legacy descriptions",
+    "verification_status": "verified_2026_06_02",
+    "official_docs": [
+      "https://digitalnz.org/developers",
+      "https://digitalnz.org/developers/api-docs-v3",
+      "https://digitalnz.org/about/terms-of-use/developer-api-terms-of-use"
+    ],
+    "notes": "Excellent for breadth and Pacific/Aotearoa reach, but only safe if we filter by rights and keep partner provenance attached."
   },
   {
     "id": "qagoma",
@@ -33,7 +73,19 @@
     "focus": ["contemporary art", "Asia Pacific", "collections"],
     "status": "planned",
     "priority": 4,
-    "translation_mode": "source-first"
+    "translation_mode": "source-first",
+    "access_mode": "dataset",
+    "api_key": "none",
+    "metadata_rights": "open data dataset",
+    "image_rights": "dataset verified, image reuse recheck recommended",
+    "public_demo_policy": "approved_dataset_with_image_rights_recheck",
+    "quality_gate": "schema-stable + image-availability-checked + attribution-preserved",
+    "cultural_protocol": "Review any Indigenous or culturally sensitive material in downstream records",
+    "verification_status": "partially_verified_2026_06_02",
+    "official_docs": [
+      "https://www.data.qld.gov.au/dataset/qagoma-collection"
+    ],
+    "notes": "Strong Australian and Asia-Pacific balancing source. Good dataset shape for onboarding, but image reuse terms should be rechecked at item level before public AUX.IO exposure."
   },
   {
     "id": "nma",
@@ -42,7 +94,20 @@
     "focus": ["history", "objects", "social collections"],
     "status": "planned",
     "priority": 5,
-    "translation_mode": "source-first"
+    "translation_mode": "source-first",
+    "access_mode": "api",
+    "api_key": "free_registration",
+    "metadata_rights": "CC BY-NC 4.0",
+    "image_rights": "public domain or CC BY-SA / CC BY-NC-SA via API",
+    "public_demo_policy": "noncommercial_only",
+    "quality_gate": "noncommercial-context + source-image-url + attribution + cultural-sensitivity-check",
+    "cultural_protocol": "Source warns that some material is culturally sensitive and may require permission",
+    "verification_status": "verified_2026_06_02",
+    "official_docs": [
+      "https://www.nma.gov.au/about/our-collection/museum-api",
+      "https://www.nma.gov.au/about/our-collection/museum-api/collection-api-terms-of-use"
+    ],
+    "notes": "Strong Australian object source, but its API terms are explicitly non-commercial. Fine for research/demo framing, not for any commercial-facing deployment."
   },
   {
     "id": "wamuseum",
@@ -51,7 +116,17 @@
     "focus": ["maritime", "archaeology", "regional collections"],
     "status": "planned",
     "priority": 6,
-    "translation_mode": "source-first"
+    "translation_mode": "source-first",
+    "access_mode": "sandbox_api",
+    "api_key": "unknown",
+    "metadata_rights": "verification pending",
+    "image_rights": "verification pending",
+    "public_demo_policy": "pending_verification",
+    "quality_gate": "verify terms + image reuse + collection stability",
+    "cultural_protocol": "Expect Aboriginal and sensitive heritage material review needs",
+    "verification_status": "pending_verification",
+    "official_docs": [],
+    "notes": "Worth pursuing for regional and maritime balance, but legal and API details still need a proper source check."
   },
   {
     "id": "mplus",
@@ -60,7 +135,20 @@
     "focus": ["contemporary art", "design", "moving image"],
     "status": "planned",
     "priority": 7,
-    "translation_mode": "source-first"
+    "translation_mode": "source-first",
+    "access_mode": "graphql_api",
+    "api_key": "developer_token",
+    "metadata_rights": "CC0 open data",
+    "image_rights": "CC0 open data where exposed by API",
+    "public_demo_policy": "approved_open",
+    "quality_gate": "image-backed + token-managed + object-level QA",
+    "cultural_protocol": "Standard museum sensitivity review; excellent multilingual potential",
+    "verification_status": "verified_2026_06_02",
+    "official_docs": [
+      "https://api.mplus.org.hk/",
+      "https://api.mplus.org.hk/en/documentation"
+    ],
+    "notes": "Best next Asia-focused source. Open-data posture is excellent and the collection focus aligns strongly with design, visual culture, and moving image."
   },
   {
     "id": "tomuco",
@@ -69,7 +157,20 @@
     "focus": ["museum network", "art", "objects"],
     "status": "planned",
     "priority": 8,
-    "translation_mode": "source-first"
+    "translation_mode": "source-first",
+    "access_mode": "api",
+    "api_key": "none",
+    "metadata_rights": "open metadata",
+    "image_rights": "source-provider dependent",
+    "public_demo_policy": "approved_metadata_with_item_media_check",
+    "quality_gate": "image-download-allowed + bilingual-field-preserved + source-terms-honoured",
+    "cultural_protocol": "Preserve Japanese and English fields cleanly; obey source-provider media terms",
+    "verification_status": "verified_2026_06_02",
+    "official_docs": [
+      "https://museumcollection.tokyo/en/developer/",
+      "https://museumcollection.tokyo/en/terms/"
+    ],
+    "notes": "Very good multilingual target. Metadata is open, but media terms can vary by contributing museum, so image gating is essential."
   },
   {
     "id": "npm",
@@ -78,7 +179,17 @@
     "focus": ["Chinese art", "historical objects", "archives"],
     "status": "planned",
     "priority": 9,
-    "translation_mode": "source-first"
+    "translation_mode": "source-first",
+    "access_mode": "open_data",
+    "api_key": "unknown",
+    "metadata_rights": "verification pending",
+    "image_rights": "verification pending",
+    "public_demo_policy": "pending_verification",
+    "quality_gate": "verify open-data terms + image sizes + language fields",
+    "cultural_protocol": "Expect multilingual complexity and object-level rights nuance",
+    "verification_status": "pending_verification",
+    "official_docs": [],
+    "notes": "Potentially strong for historic Asian collections, but needs a proper legal and technical pass before onboarding."
   },
   {
     "id": "ntmofa",
@@ -87,7 +198,17 @@
     "focus": ["fine art", "modern art", "contemporary art"],
     "status": "planned",
     "priority": 10,
-    "translation_mode": "source-first"
+    "translation_mode": "source-first",
+    "access_mode": "open_data",
+    "api_key": "unknown",
+    "metadata_rights": "verification pending",
+    "image_rights": "verification pending",
+    "public_demo_policy": "pending_verification",
+    "quality_gate": "verify open-data and media rules before public use",
+    "cultural_protocol": "Preserve Chinese and English text cleanly",
+    "verification_status": "pending_verification",
+    "official_docs": [],
+    "notes": "Promising art source, but still waiting on a formal legal and technical check."
   },
   {
     "id": "brasiliana",
@@ -96,7 +217,19 @@
     "focus": ["Brazilian collections", "history", "objects"],
     "status": "planned",
     "priority": 11,
-    "translation_mode": "source-first"
+    "translation_mode": "source-first",
+    "access_mode": "open_platform",
+    "api_key": "none",
+    "metadata_rights": "open data / open access policy",
+    "image_rights": "platform-open, item-level review still recommended",
+    "public_demo_policy": "approved_with_item_rights_check",
+    "quality_gate": "image-backed + source provenance + item-level rights spot-check",
+    "cultural_protocol": "Strong diversity gain; keep local context and language intact",
+    "verification_status": "verified_2026_06_02",
+    "official_docs": [
+      "https://brasiliana.museus.gov.br/dados-abertos/"
+    ],
+    "notes": "Best immediate South American expansion candidate. Broad open-data framing, but spot-check individual object media before large public surfacing."
   },
   {
     "id": "qatarmuseums",
@@ -105,7 +238,17 @@
     "focus": ["Islamic art", "heritage", "modern Arab collections"],
     "status": "planned",
     "priority": 12,
-    "translation_mode": "source-first"
+    "translation_mode": "source-first",
+    "access_mode": "collection_site",
+    "api_key": "unknown",
+    "metadata_rights": "verification pending",
+    "image_rights": "verification pending",
+    "public_demo_policy": "pending_verification",
+    "quality_gate": "verify API access or structured export + media terms",
+    "cultural_protocol": "High cultural sensitivity; provenance and respectful presentation are critical",
+    "verification_status": "pending_verification",
+    "official_docs": [],
+    "notes": "Potentially important Middle East source, but not ready until API and reuse terms are properly confirmed."
   },
   {
     "id": "qdl",
@@ -114,7 +257,17 @@
     "focus": ["archives", "regional history", "documents"],
     "status": "planned",
     "priority": 13,
-    "translation_mode": "source-first"
+    "translation_mode": "source-first",
+    "access_mode": "digital_library",
+    "api_key": "unknown",
+    "metadata_rights": "verification pending",
+    "image_rights": "verification pending",
+    "public_demo_policy": "pending_verification",
+    "quality_gate": "verify object/media reuse and whether record type fits ARCHAI object model",
+    "cultural_protocol": "Archive-oriented material may need different UX treatment than object collections",
+    "verification_status": "pending_verification",
+    "official_docs": [],
+    "notes": "Valuable regional archive source, but likely better for document/knowledge layers than object-heavy AUX.IO first."
   },
   {
     "id": "chm",
@@ -123,7 +276,17 @@
     "focus": ["technology", "computing objects", "history of media"],
     "status": "planned",
     "priority": 14,
-    "translation_mode": "machine-if-needed"
+    "translation_mode": "machine-if-needed",
+    "access_mode": "developer_portal",
+    "api_key": "unknown",
+    "metadata_rights": "verification pending",
+    "image_rights": "verification pending",
+    "public_demo_policy": "pending_verification",
+    "quality_gate": "verify developer access and media reuse before harvest",
+    "cultural_protocol": "Low cultural sensitivity risk, high relevance for media-tech history",
+    "verification_status": "pending_verification",
+    "official_docs": [],
+    "notes": "Excellent thematic fit for technology objects, but not yet legally or technically verified in this pass."
   },
   {
     "id": "trove",
@@ -132,6 +295,16 @@
     "focus": ["aggregated heritage", "archives", "discovery"],
     "status": "planned",
     "priority": 15,
-    "translation_mode": "source-first"
+    "translation_mode": "source-first",
+    "access_mode": "aggregator_api",
+    "api_key": "registration_required",
+    "metadata_rights": "mixed / source dependent",
+    "image_rights": "source dependent",
+    "public_demo_policy": "metadata-first",
+    "quality_gate": "partner-rights-aware + media-availability-check",
+    "cultural_protocol": "Legacy description and sensitivity checks required",
+    "verification_status": "pending_verification",
+    "official_docs": [],
+    "notes": "Useful discovery layer for Australian breadth, but better as metadata and reference enrichment than first-wave AUX.IO media source."
   }
 ]
