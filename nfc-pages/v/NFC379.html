@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Art — ARCHAI</title>
+<title>Schutterspenning van Leiden — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -36,6 +36,18 @@ body {
   font-weight: 300;
   min-height: 100dvh;
   -webkit-font-smoothing: antialiased;
+}
+
+.v-stage {
+  width: 100%;
+  min-height: 100dvh;
+}
+
+.v-phone-shell {
+  width: 100%;
+  min-height: 100dvh;
+  background: var(--bg);
+  position: relative;
 }
 
 /* Grain overlay */
@@ -76,6 +88,43 @@ body::after {
   text-transform: uppercase;
   padding: 3px 8px;
   border: 1px solid rgba(143,188,176,0.3);
+}
+
+.v-scroll-cue {
+  position: sticky;
+  top: 58px;
+  z-index: 95;
+  width: fit-content;
+  margin: 12px auto -2px;
+  padding: 7px 12px;
+  border: 1px solid rgba(143,188,176,0.24);
+  border-radius: 999px;
+  background: rgba(8,8,8,0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.v-scroll-cue.hidden {
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+}
+.v-scroll-cue-label {
+  font-family: var(--mono);
+  font-size: 0.46rem;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: rgba(143,188,176,0.88);
+}
+.v-scroll-cue-arrows {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 1px;
+  color: var(--accent2);
+  animation: nudgeScroll 1.5s ease-in-out infinite;
 }
 
 /* ── HERO IMAGE ── */
@@ -200,6 +249,48 @@ body::after {
   background: rgba(143,188,176,0.06);
 }
 
+.v-tone-wrap {
+  margin-bottom: 14px;
+}
+.v-tone-label {
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-tone-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-tone-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-tone-buttons button.active,
+.v-tone-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-tone-note {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
 .v-chat-row {
   display: flex;
   gap: 0;
@@ -252,7 +343,32 @@ body::after {
 }
 .v-response.thinking {
   color: var(--text3);
-  animation: pulse 1s infinite;
+}
+.v-response.thinking .thinking-dots {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+}
+.v-response.thinking .thinking-dots span {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.3;
+  animation: dotPulse 1.4s ease-in-out infinite;
+}
+.v-response.thinking .thinking-dots span:nth-child(2) { animation-delay: 0.2s; }
+.v-response.thinking .thinking-dots span:nth-child(3) { animation-delay: 0.4s; }
+.v-response.thinking .thinking-label {
+  font-family: var(--mono);
+  font-size: 0.42rem;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text3);
+  display: block;
+  margin-bottom: 6px;
+  animation: fadeInSlow 0.4s ease both;
 }
 .v-response .fallback-note {
   font-family: var(--mono);
@@ -510,9 +626,100 @@ body::after {
 @keyframes pulse {
   0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
 }
+@keyframes dotPulse {
+  0%, 80%, 100% { opacity: 0.15; transform: scale(0.8); }
+  40% { opacity: 1; transform: scale(1.2); }
+}
+@keyframes fadeInSlow {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes nudgeScroll {
+  0%, 100% { transform: translateY(0); opacity: 0.7; }
+  50% { transform: translateY(2px); opacity: 1; }
+}
+
+@media (min-width: 520px) {
+  body {
+    overflow: hidden;
+    background:
+      radial-gradient(circle at top, rgba(143,188,176,0.08), transparent 34%),
+      linear-gradient(180deg, #090909 0%, #050505 100%);
+  }
+
+  .v-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px;
+  }
+
+  .v-phone-shell {
+    width: min(100%, 430px);
+    height: min(860px, calc(100dvh - 56px));
+    min-height: 0;
+    overflow-y: auto;
+    border-radius: 34px;
+    border: 1px solid rgba(232,228,220,0.08);
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.03),
+      0 24px 70px rgba(0,0,0,0.62),
+      inset 0 1px 0 rgba(255,255,255,0.03);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(143,188,176,0.36) rgba(255,255,255,0.03);
+  }
+
+  .v-phone-shell::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .v-phone-shell::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.03);
+    border-radius: 999px;
+  }
+
+  .v-phone-shell::-webkit-scrollbar-thumb {
+    background: rgba(143,188,176,0.32);
+    border-radius: 999px;
+  }
+
+  .v-phone-shell::before {
+    content: '';
+    position: sticky;
+    top: 12px;
+    z-index: 140;
+    display: block;
+    width: 112px;
+    height: 14px;
+    margin: 12px auto -26px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.03);
+  }
+
+  .v-phone-shell::after {
+    content: '';
+    position: sticky;
+    bottom: 14px;
+    z-index: 120;
+    display: block;
+    width: 124px;
+    height: 5px;
+    margin: -12px auto 12px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.15);
+  }
+
+  .v-scroll-cue {
+    top: 72px;
+  }
+}
 </style>
 </head>
 <body>
+
+<div class="v-stage">
+<div class="v-phone-shell" id="phoneShell">
 
 <!-- HEADER -->
 <div class="v-header">
@@ -520,20 +727,36 @@ body::after {
   <div class="v-tag">AUX.IO 379</div>
 </div>
 
+<div class="v-scroll-cue" id="scrollCue" aria-hidden="true">
+  <span class="v-scroll-cue-label">Scroll to explore</span>
+  <span class="v-scroll-cue-arrows">↕</span>
+</div>
+
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2018LF5300/full/!600,600/0/default.jpg" alt="Art" loading="eager">
+  <img src="https://iiif.micr.io/UelyU/full/max/0/default.jpg" alt="Schutterspenning van Leiden" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Art</div>
-  <div class="v-sub">Poster · 2016 · S.553-2018</div>
+  <div class="v-title">Schutterspenning van Leiden</div>
+  <div class="v-sub">schutterspenning · 2026-02-14T04:18:14Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;261219&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+        &lt;setSpec&gt;2601&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:creator&gt;anoniem&lt;/dc:creator&gt;
+          &lt;dc:creator&gt;anonymous&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1667 · 200100446</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Poster</span>
+    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
+    <span class="v-meta-tag lic">https://creativecommons.org/publicdomain/mark/1.0/</span>
+    
   </div>
 
   <!-- SHARE -->
@@ -544,13 +767,23 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Art</strong> — Art. Poster. Made by Nick Turner. 2016. Made in Great Britain. In Store</div>
+  <div class="v-story"><strong>Schutterspenning van Leiden</strong> — Zilveren schutterspenning van Leiden. Voorzijde: een gekroonde klimmende leeuw met een zwaard in zijn rechter en een schild met het Leidse wapen in zijn linker klauw. Omschrift: PVGNO PRO PATRIA (ik vecht voor het vaderland). Keerzijde: twee gekruiste musketten tussen LEY en DEN. Omschrift: SCHVTTER…</div>
 
   <div class="v-divider"></div>
 
   <!-- ASK THIS OBJECT -->
   <div class="v-ask">
     <div class="v-ask-label">Ask this object a question</div>
+    <div class="v-tone-wrap">
+      <div class="v-tone-label">Response style</div>
+      <div class="v-tone-buttons">
+        <button class="active" onclick="setVisitorTone('guide')">Guide</button>
+        <button onclick="setVisitorTone('curatorial')">Curatorial</button>
+        <button onclick="setVisitorTone('learning')">Learning</button>
+        <button onclick="setVisitorTone('interpretive')">Interpretive</button>
+      </div>
+      <div class="v-tone-note" id="toneNote">Friendly, welcoming, and easy to follow for most visitors.</div>
+    </div>
     <div class="v-chips" id="vChips"><div class="v-chip" onclick="askObject('What are you?')">What are you?</div>
       <div class="v-chip" onclick="askObject('Tell me your history')">Tell me your history</div>
       <div class="v-chip" onclick="askObject('How were you used?')">How were you used?</div>
@@ -567,14 +800,25 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">S.553-2018</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Nick Turner</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Poster</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Poster</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2016</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In Store</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Poster</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">200100446</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">anoniem; anonymous</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">zilver</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">schutterspenning</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-02-14T04:18:14Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;261219&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+        &lt;setSpec&gt;2601&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:creator&gt;anoniem&lt;/dc:creator&gt;
+          &lt;dc:creator&gt;anonymous&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1667</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">schutterspenning</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -589,24 +833,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC377.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2011EP0025/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Universal Electronic Vacuum, 1967</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.1217-1967</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/DaRix/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Maximiliaan, aartshertog van Oostenrijk, en Maria, hertogin van Bourgondie, rekenpenning van het hertogdom Brabant</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010045</div>
       </a>
       <a class="v-rel-card" href="NFC378.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/MDTsf/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van Ada, gravin van Holland</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010014</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/knNKc/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Jacoba van Beieren, gravin van Holland, Zeeland en Henegouwen</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010028</div>
       </a>
       <a class="v-rel-card" href="NFC380.html">
-        <div class="v-rel-thumb"><span class="v-rel-thumb-empty">▣</span></div>
-        <div class="v-rel-title">Bifacial Sickle Insert</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 571129</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/342b5db7-f0fb-27bc-0f2f-2444b8aca821/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Atlantic City Bicentennial Celebration</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 141467</div>
       </a>
       <a class="v-rel-card" href="NFC381.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/34/659734-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Tune Indicator - AWA, Spark Transmitter,1913-1916</div>
-        <div class="v-rel-meta">Museums Victoria · ST 21416</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/XOHPu/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Nederlandse &amp;#189; gulden, 1859</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100264</div>
       </a></div>
   </div>
 </div>
@@ -619,7 +863,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1459345/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/200100446" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -629,7 +873,7 @@ body::after {
 
 // ── CONFIG ──────────────────────────────────────────────────────
 const OLLAMA_HOST = 'http://localhost:11434';
-const BACKEND_PROXY = '';
+const BACKEND_PROXY = '__SELF__';
 const CHAT_MODEL = 'qwen2.5:32b';
 // If served from the backend, use relative URLs (works on Tailscale + Cloudflare)
 const USE_PROXY = BACKEND_PROXY && !BACKEND_PROXY.includes('{{');
@@ -650,16 +894,27 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Art`,
-  type: `Poster`,
-  date: `2016`,
-  registration: `S.553-2018`,
-  location: `In Store`,
-  discipline: `Poster`,
-  category: `Poster`,
-  description: `Art. Poster. Made by Nick Turner. 2016. Made in Great Britain. In Store`,
-  medium: ``,
-  artist: `Nick Turner`,
+  title: `Schutterspenning van Leiden`,
+  type: `schutterspenning`,
+  date: `2026-02-14T04:18:14Z</datestamp>
+        <setSpec>260239</setSpec>
+        <setSpec>261106</setSpec>
+        <setSpec>261219</setSpec>
+        <setSpec>260251</setSpec>
+        <setSpec>2601</setSpec>
+      </header>
+      <metadata>
+        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
+          <dc:creator>anoniem</dc:creator>
+          <dc:creator>anonymous</dc:creator>
+          <dc:date>1667`,
+  registration: `200100446`,
+  location: `Rijksmuseum, Amsterdam`,
+  discipline: ``,
+  category: `schutterspenning`,
+  description: `Zilveren schutterspenning van Leiden. Voorzijde: een gekroonde klimmende leeuw met een zwaard in zijn rechter en een schild met het Leidse wapen in zijn linker klauw. Omschrift: PVGNO PRO PATRIA (ik vecht voor het vaderland). Keerzijde: twee gekruiste musketten tussen LEY en DEN. Omschrift: SCHVTTERS PENNING en daarachter het jaartal.`,
+  medium: `zilver`,
+  artist: `anoniem; anonymous`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -667,9 +922,9 @@ const OBJECT = {
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1459345/`,
-  institution: `Victoria and Albert Museum, London`
+  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
+  source_url: `https://www.rijksmuseum.nl/en/collection/200100446`,
+  institution: `Rijksmuseum, Amsterdam`
 };
 
 // Build rich context from available fields
@@ -696,15 +951,58 @@ const OBJECT_RECORD = [
   richFields || null,
 ].filter(Boolean).join('\n');
 
-// When using proxy, the backend personality config handles voice/tone.
-// When direct to Ollama, use a self-contained prompt.
-const SYSTEM_PROMPT = USE_PROXY
-  ? OBJECT_RECORD
-  : `You are "${OBJECT.title}". You exist physically in the ${OBJECT.institution}. Speak in first person as the object itself.
+let visitorTone = 'guide';
 
-Your personality comes from what you are — your material, your age, your purpose. Speak naturally, like a knowledgeable friend. 3-4 sentences max. Match the visitor's energy. Never say "Dear one" or "As an AI". Only use facts from your record.
+const VISITOR_TONES = {
+  guide: {
+    note: 'Friendly, welcoming, and easy to follow for most visitors.',
+    instruction: 'Speak like a thoughtful gallery guide. Be welcoming, clear, and concise. 3-4 sentences max.',
+    placeholder: 'Ask for a simple introduction or guided explanation…'
+  },
+  curatorial: {
+    note: 'A little more interpretive and museum-like, while staying accessible.',
+    instruction: 'Speak with a curatorial tone. Focus on interpretation, materials, and why the object matters, while staying readable to a general visitor.',
+    placeholder: 'Ask about interpretation, materials, or significance…'
+  },
+  learning: {
+    note: 'Uses simpler language and adds context for students and first-time visitors.',
+    instruction: 'Speak for a learning audience. Use plain language, explain terms simply, and make the object easy to understand without sounding childish.',
+    placeholder: 'Ask in simple language about what it is, how it was used, or why it matters…'
+  },
+  interpretive: {
+    note: 'More reflective and atmospheric, while still grounded in the record.',
+    instruction: 'Speak in a reflective interpretive voice. Stay grounded in the record, but allow a little more atmosphere and curiosity.',
+    placeholder: 'Ask for a more reflective reading grounded in the record…'
+  }
+};
+
+function updateVisitorToneUI() {
+  const toneMeta = VISITOR_TONES[visitorTone];
+  const buttons = document.querySelectorAll('.v-tone-buttons button');
+  buttons.forEach((btn, index) => {
+    const toneKey = Object.keys(VISITOR_TONES)[index];
+    btn.classList.toggle('active', toneKey === visitorTone);
+  });
+  const note = document.getElementById('toneNote');
+  if (note) note.textContent = toneMeta.note;
+  const input = document.getElementById('chatInput');
+  if (input) input.placeholder = toneMeta.placeholder;
+}
+
+function setVisitorTone(tone) {
+  if (!VISITOR_TONES[tone]) return;
+  visitorTone = tone;
+  updateVisitorToneUI();
+}
+
+function buildSystemPrompt() {
+  const toneInstruction = VISITOR_TONES[visitorTone].instruction;
+  return `You are "${OBJECT.title}". You exist physically in the ${OBJECT.institution}. Speak in first person as the object itself.
+
+${toneInstruction} Never say "Dear one" or "As an AI". Only use facts from your record. If the record does not support something, say so plainly.
 
 ${OBJECT_RECORD}`;
+}
 
 let chatHistory = [];
 
@@ -723,9 +1021,24 @@ function askObject(presetQ) {
   input.value = '';
 
   const resp = document.getElementById('chatResponse');
-  resp.textContent = 'Thinking…';
+  resp.innerHTML = '<span class="thinking-label">Considering your question</span><span class="thinking-dots"><span></span><span></span><span></span></span>';
   resp.className = 'v-response thinking';
   resp.style.display = 'block';
+
+  // Rotate thinking messages to feel alive
+  const thinkingPhrases = [
+    'Consulting my record',
+    'Reviewing the object file',
+    'Finding the clearest answer',
+    'Looking through the details',
+    'Preparing a response',
+  ];
+  let phraseIdx = 0;
+  const thinkingInterval = setInterval(() => {
+    phraseIdx = (phraseIdx + 1) % thinkingPhrases.length;
+    const label = resp.querySelector('.thinking-label');
+    if (label) label.textContent = thinkingPhrases[phraseIdx];
+  }, 2200);
 
   chatHistory.push({ role: 'user', content: q });
 
@@ -734,30 +1047,32 @@ function askObject(presetQ) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          systemPrompt: SYSTEM_PROMPT,
+          systemPrompt: buildSystemPrompt(),
           userPrompt: q,
           history: chatHistory.slice(0, -1),
         })
-      }, 12000)
+      }, 30000)
     : fetchWithTimeout(`${OLLAMA_HOST}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           model: CHAT_MODEL,
           stream: false,
-          messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory]
+          messages: [{ role: 'system', content: buildSystemPrompt() }, ...chatHistory]
         })
-      }, 12000);
+      }, 30000);
 
   chatFetch
   .then(r => r.json())
   .then(data => {
+    clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
     resp.textContent = reply;
     resp.className = 'v-response';
   })
   .catch(() => {
+    clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
@@ -783,6 +1098,7 @@ function metadataFallback(q) {
 document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
+updateVisitorToneUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -930,6 +1246,39 @@ function escHTML(s) {
 
 // Init comments on load
 fetchComments();
+
+const scrollCue = document.getElementById('scrollCue');
+const phoneShell = document.getElementById('phoneShell');
+const scrollHost = window.matchMedia('(min-width: 520px)').matches && phoneShell
+  ? phoneShell
+  : window;
+
+function getScrollMetrics() {
+  if (scrollHost === window) {
+    const doc = document.documentElement;
+    return {
+      top: window.scrollY || doc.scrollTop || 0,
+      canScroll: doc.scrollHeight > window.innerHeight + 18,
+    };
+  }
+
+  return {
+    top: scrollHost.scrollTop,
+    canScroll: scrollHost.scrollHeight > scrollHost.clientHeight + 18,
+  };
+}
+
+function updateScrollCue() {
+  if (!scrollCue) return;
+  const { top, canScroll } = getScrollMetrics();
+  scrollCue.classList.toggle('hidden', !canScroll || top > 28);
+}
+
+scrollHost.addEventListener('scroll', updateScrollCue, { passive: true });
+window.addEventListener('resize', updateScrollCue);
+updateScrollCue();
 </script>
+</div>
+</div>
 </body>
 </html>

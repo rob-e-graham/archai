@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Sickle Insert — ARCHAI</title>
+<title>Art Institute of Chicago Addition, Concept Sketch Perspective — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -36,6 +36,18 @@ body {
   font-weight: 300;
   min-height: 100dvh;
   -webkit-font-smoothing: antialiased;
+}
+
+.v-stage {
+  width: 100%;
+  min-height: 100dvh;
+}
+
+.v-phone-shell {
+  width: 100%;
+  min-height: 100dvh;
+  background: var(--bg);
+  position: relative;
 }
 
 /* Grain overlay */
@@ -76,6 +88,43 @@ body::after {
   text-transform: uppercase;
   padding: 3px 8px;
   border: 1px solid rgba(143,188,176,0.3);
+}
+
+.v-scroll-cue {
+  position: sticky;
+  top: 58px;
+  z-index: 95;
+  width: fit-content;
+  margin: 12px auto -2px;
+  padding: 7px 12px;
+  border: 1px solid rgba(143,188,176,0.24);
+  border-radius: 999px;
+  background: rgba(8,8,8,0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.v-scroll-cue.hidden {
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+}
+.v-scroll-cue-label {
+  font-family: var(--mono);
+  font-size: 0.46rem;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: rgba(143,188,176,0.88);
+}
+.v-scroll-cue-arrows {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 1px;
+  color: var(--accent2);
+  animation: nudgeScroll 1.5s ease-in-out infinite;
 }
 
 /* ── HERO IMAGE ── */
@@ -200,6 +249,48 @@ body::after {
   background: rgba(143,188,176,0.06);
 }
 
+.v-tone-wrap {
+  margin-bottom: 14px;
+}
+.v-tone-label {
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-tone-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-tone-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-tone-buttons button.active,
+.v-tone-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-tone-note {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
 .v-chat-row {
   display: flex;
   gap: 0;
@@ -252,7 +343,32 @@ body::after {
 }
 .v-response.thinking {
   color: var(--text3);
-  animation: pulse 1s infinite;
+}
+.v-response.thinking .thinking-dots {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+}
+.v-response.thinking .thinking-dots span {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.3;
+  animation: dotPulse 1.4s ease-in-out infinite;
+}
+.v-response.thinking .thinking-dots span:nth-child(2) { animation-delay: 0.2s; }
+.v-response.thinking .thinking-dots span:nth-child(3) { animation-delay: 0.4s; }
+.v-response.thinking .thinking-label {
+  font-family: var(--mono);
+  font-size: 0.42rem;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text3);
+  display: block;
+  margin-bottom: 6px;
+  animation: fadeInSlow 0.4s ease both;
 }
 .v-response .fallback-note {
   font-family: var(--mono);
@@ -510,9 +626,100 @@ body::after {
 @keyframes pulse {
   0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
 }
+@keyframes dotPulse {
+  0%, 80%, 100% { opacity: 0.15; transform: scale(0.8); }
+  40% { opacity: 1; transform: scale(1.2); }
+}
+@keyframes fadeInSlow {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes nudgeScroll {
+  0%, 100% { transform: translateY(0); opacity: 0.7; }
+  50% { transform: translateY(2px); opacity: 1; }
+}
+
+@media (min-width: 520px) {
+  body {
+    overflow: hidden;
+    background:
+      radial-gradient(circle at top, rgba(143,188,176,0.08), transparent 34%),
+      linear-gradient(180deg, #090909 0%, #050505 100%);
+  }
+
+  .v-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px;
+  }
+
+  .v-phone-shell {
+    width: min(100%, 430px);
+    height: min(860px, calc(100dvh - 56px));
+    min-height: 0;
+    overflow-y: auto;
+    border-radius: 34px;
+    border: 1px solid rgba(232,228,220,0.08);
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.03),
+      0 24px 70px rgba(0,0,0,0.62),
+      inset 0 1px 0 rgba(255,255,255,0.03);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(143,188,176,0.36) rgba(255,255,255,0.03);
+  }
+
+  .v-phone-shell::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .v-phone-shell::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.03);
+    border-radius: 999px;
+  }
+
+  .v-phone-shell::-webkit-scrollbar-thumb {
+    background: rgba(143,188,176,0.32);
+    border-radius: 999px;
+  }
+
+  .v-phone-shell::before {
+    content: '';
+    position: sticky;
+    top: 12px;
+    z-index: 140;
+    display: block;
+    width: 112px;
+    height: 14px;
+    margin: 12px auto -26px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.03);
+  }
+
+  .v-phone-shell::after {
+    content: '';
+    position: sticky;
+    bottom: 14px;
+    z-index: 120;
+    display: block;
+    width: 124px;
+    height: 5px;
+    margin: -12px auto 12px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.15);
+  }
+
+  .v-scroll-cue {
+    top: 72px;
+  }
+}
 </style>
 </head>
 <body>
+
+<div class="v-stage">
+<div class="v-phone-shell" id="phoneShell">
 
 <!-- HEADER -->
 <div class="v-header">
@@ -520,20 +727,25 @@ body::after {
   <div class="v-tag">AUX.IO 246</div>
 </div>
 
+<div class="v-scroll-cue" id="scrollCue" aria-hidden="true">
+  <span class="v-scroll-cue-label">Scroll to explore</span>
+  <span class="v-scroll-cue-arrows">↕</span>
+</div>
+
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <div class="v-hero-empty">No image available<br>571243</div>
+  <img src="https://www.artic.edu/iiif/2/7b042c72-78b6-9b17-9d63-52e556d78bc9/full/843,/0/default.jpg" alt="Art Institute of Chicago Addition, Concept Sketch Perspective" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Sickle Insert</div>
-  <div class="v-sub">sickle, blade, insert, segment, denticulate, tool · ca. 1184–664 B.C. · 571243</div>
+  <div class="v-title">Art Institute of Chicago Addition, Concept Sketch Perspective</div>
+  <div class="v-sub">Architectural Drawing · 2001 · 158987</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
-    <span class="v-meta-tag lic">CC0 — Public Domain</span>
-    <span class="v-meta-tag">Egyptian Art</span>
+    <span class="v-meta-tag mv">Art Institute of Chicago</span>
+    <span class="v-meta-tag lic">All rights reserved</span>
+    <span class="v-meta-tag">Architecture and Design</span>
   </div>
 
   <!-- SHARE -->
@@ -544,13 +756,24 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Sickle Insert</strong> — Sickle Insert. sickle, blade, insert, segment, denticulate, tool. Flint. Egyptian Art. Probably New Kingdom, Ramesside–Third Intermediate Period. ca. 1184–664 B.C.</div>
+  <div class="v-story"><strong>Art Institute of Chicago Addition, Concept Sketch Perspective</strong> — Art Institute of Chicago Addition, Concept Sketch Perspective. Architectural Drawing. Green marker on paper. Architecture and Design. Renzo Piano
+Italian, born 1937. design sketch. 2001. Grant Park. 21st Century. &lt;p&gt;New wings, additions, and visitors’ centers built in the 21st century reflect evolvi…</div>
 
   <div class="v-divider"></div>
 
   <!-- ASK THIS OBJECT -->
   <div class="v-ask">
     <div class="v-ask-label">Ask this object a question</div>
+    <div class="v-tone-wrap">
+      <div class="v-tone-label">Response style</div>
+      <div class="v-tone-buttons">
+        <button class="active" onclick="setVisitorTone('guide')">Guide</button>
+        <button onclick="setVisitorTone('curatorial')">Curatorial</button>
+        <button onclick="setVisitorTone('learning')">Learning</button>
+        <button onclick="setVisitorTone('interpretive')">Interpretive</button>
+      </div>
+      <div class="v-tone-note" id="toneNote">Friendly, welcoming, and easy to follow for most visitors.</div>
+    </div>
     <div class="v-chips" id="vChips"><div class="v-chip" onclick="askObject('What are you?')">What are you?</div>
       <div class="v-chip" onclick="askObject('Tell me your history')">Tell me your history</div>
       <div class="v-chip" onclick="askObject('How were you used?')">How were you used?</div>
@@ -567,14 +790,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">571243</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Flint</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Egyptian Art</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca. 1184–664 B.C.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">L. 7 × W. 1.4 × Th. 0.5 cm, Wt. 4.4g (2 3/4 × 9/16 × 3/16 in., 0.155oz.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">The Met, New York</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">sickle, blade, insert, segment, denticulate, tool</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">158987</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Renzo Piano
+Italian, born 1937</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Green marker on paper</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Grant Park</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Architecture and Design</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">design sketch</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2001</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Approx: 38 × 30.4 cm (14 15/16 × 12 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Architectural Drawing</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">All rights reserved</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -589,24 +816,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC244.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/DiHWr/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van Willem II, graaf van Holland, rooms-koning</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010017</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/Rorhg/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Jan van Beieren</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010027</div>
       </a>
       <a class="v-rel-card" href="NFC245.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/DYgkP/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Brandspuitpenning van Amsterdam, wijk 7 nummer D4</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100013</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/957adb06-99ea-3a1e-3d6a-062adbbab349/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Art Classes for Children</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 223078</div>
       </a>
       <a class="v-rel-card" href="NFC247.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/qCkeI/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/jPzCT/full/max/0/default.jpg" loading="lazy"></div>
         <div class="v-rel-title">Schutterspenning van Leiden</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100439</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100448</div>
       </a>
       <a class="v-rel-card" href="NFC248.html">
-        <div class="v-rel-thumb"><span class="v-rel-thumb-empty">▣</span></div>
-        <div class="v-rel-title">Motion and Rest #2</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 285344</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/fWRxp/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Schutterspenning van Middelburg</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100430</div>
       </a></div>
   </div>
 </div>
@@ -619,7 +846,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/571243" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.artic.edu/artworks/158987" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -629,7 +856,7 @@ body::after {
 
 // ── CONFIG ──────────────────────────────────────────────────────
 const OLLAMA_HOST = 'http://localhost:11434';
-const BACKEND_PROXY = '';
+const BACKEND_PROXY = '__SELF__';
 const CHAT_MODEL = 'qwen2.5:32b';
 // If served from the backend, use relative URLs (works on Tailscale + Cloudflare)
 const USE_PROXY = BACKEND_PROXY && !BACKEND_PROXY.includes('{{');
@@ -650,26 +877,28 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Sickle Insert`,
-  type: `sickle, blade, insert, segment, denticulate, tool`,
-  date: `ca. 1184–664 B.C.`,
-  registration: `571243`,
-  location: `The Met, New York`,
-  discipline: `Egyptian Art`,
-  category: ``,
-  description: `Sickle Insert. sickle, blade, insert, segment, denticulate, tool. Flint. Egyptian Art. Probably New Kingdom, Ramesside–Third Intermediate Period. ca. 1184–664 B.C.`,
-  medium: `Flint`,
-  artist: ``,
-  culture: ``,
-  dimensions: `L. 7 × W. 1.4 × Th. 0.5 cm, Wt. 4.4g (2 3/4 × 9/16 × 3/16 in., 0.155oz.)`,
+  title: `Art Institute of Chicago Addition, Concept Sketch Perspective`,
+  type: `Architectural Drawing`,
+  date: `2001`,
+  registration: `158987`,
+  location: `Art Institute of Chicago`,
+  discipline: `Architecture and Design`,
+  category: `design sketch`,
+  description: `Art Institute of Chicago Addition, Concept Sketch Perspective. Architectural Drawing. Green marker on paper. Architecture and Design. Renzo Piano
+Italian, born 1937. design sketch. 2001. Grant Park. 21st Century. <p>New wings, additions, and visitors’ centers built in the 21st century reflect evolving cultural discourses and institutional identities. These projects use various strategies to respond to contemporary agendas while respecting the existing structure of buildings. For the addition to the Museum of Fine Arts, Houston, José Rafael Moneo decided not to emulate the institution’s older b…`,
+  medium: `Green marker on paper`,
+  artist: `Renzo Piano
+Italian, born 1937`,
+  culture: `Grant Park`,
+  dimensions: `Approx: 38 × 30.4 cm (14 15/16 × 12 in.)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/571243`,
-  institution: `The Metropolitan Museum of Art`
+  licence: `All rights reserved`,
+  source_url: `https://www.artic.edu/artworks/158987`,
+  institution: `Art Institute of Chicago`
 };
 
 // Build rich context from available fields
@@ -696,15 +925,58 @@ const OBJECT_RECORD = [
   richFields || null,
 ].filter(Boolean).join('\n');
 
-// When using proxy, the backend personality config handles voice/tone.
-// When direct to Ollama, use a self-contained prompt.
-const SYSTEM_PROMPT = USE_PROXY
-  ? OBJECT_RECORD
-  : `You are "${OBJECT.title}". You exist physically in the ${OBJECT.institution}. Speak in first person as the object itself.
+let visitorTone = 'guide';
 
-Your personality comes from what you are — your material, your age, your purpose. Speak naturally, like a knowledgeable friend. 3-4 sentences max. Match the visitor's energy. Never say "Dear one" or "As an AI". Only use facts from your record.
+const VISITOR_TONES = {
+  guide: {
+    note: 'Friendly, welcoming, and easy to follow for most visitors.',
+    instruction: 'Speak like a thoughtful gallery guide. Be welcoming, clear, and concise. 3-4 sentences max.',
+    placeholder: 'Ask for a simple introduction or guided explanation…'
+  },
+  curatorial: {
+    note: 'A little more interpretive and museum-like, while staying accessible.',
+    instruction: 'Speak with a curatorial tone. Focus on interpretation, materials, and why the object matters, while staying readable to a general visitor.',
+    placeholder: 'Ask about interpretation, materials, or significance…'
+  },
+  learning: {
+    note: 'Uses simpler language and adds context for students and first-time visitors.',
+    instruction: 'Speak for a learning audience. Use plain language, explain terms simply, and make the object easy to understand without sounding childish.',
+    placeholder: 'Ask in simple language about what it is, how it was used, or why it matters…'
+  },
+  interpretive: {
+    note: 'More reflective and atmospheric, while still grounded in the record.',
+    instruction: 'Speak in a reflective interpretive voice. Stay grounded in the record, but allow a little more atmosphere and curiosity.',
+    placeholder: 'Ask for a more reflective reading grounded in the record…'
+  }
+};
+
+function updateVisitorToneUI() {
+  const toneMeta = VISITOR_TONES[visitorTone];
+  const buttons = document.querySelectorAll('.v-tone-buttons button');
+  buttons.forEach((btn, index) => {
+    const toneKey = Object.keys(VISITOR_TONES)[index];
+    btn.classList.toggle('active', toneKey === visitorTone);
+  });
+  const note = document.getElementById('toneNote');
+  if (note) note.textContent = toneMeta.note;
+  const input = document.getElementById('chatInput');
+  if (input) input.placeholder = toneMeta.placeholder;
+}
+
+function setVisitorTone(tone) {
+  if (!VISITOR_TONES[tone]) return;
+  visitorTone = tone;
+  updateVisitorToneUI();
+}
+
+function buildSystemPrompt() {
+  const toneInstruction = VISITOR_TONES[visitorTone].instruction;
+  return `You are "${OBJECT.title}". You exist physically in the ${OBJECT.institution}. Speak in first person as the object itself.
+
+${toneInstruction} Never say "Dear one" or "As an AI". Only use facts from your record. If the record does not support something, say so plainly.
 
 ${OBJECT_RECORD}`;
+}
 
 let chatHistory = [];
 
@@ -723,9 +995,24 @@ function askObject(presetQ) {
   input.value = '';
 
   const resp = document.getElementById('chatResponse');
-  resp.textContent = 'Thinking…';
+  resp.innerHTML = '<span class="thinking-label">Considering your question</span><span class="thinking-dots"><span></span><span></span><span></span></span>';
   resp.className = 'v-response thinking';
   resp.style.display = 'block';
+
+  // Rotate thinking messages to feel alive
+  const thinkingPhrases = [
+    'Consulting my record',
+    'Reviewing the object file',
+    'Finding the clearest answer',
+    'Looking through the details',
+    'Preparing a response',
+  ];
+  let phraseIdx = 0;
+  const thinkingInterval = setInterval(() => {
+    phraseIdx = (phraseIdx + 1) % thinkingPhrases.length;
+    const label = resp.querySelector('.thinking-label');
+    if (label) label.textContent = thinkingPhrases[phraseIdx];
+  }, 2200);
 
   chatHistory.push({ role: 'user', content: q });
 
@@ -734,30 +1021,32 @@ function askObject(presetQ) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          systemPrompt: SYSTEM_PROMPT,
+          systemPrompt: buildSystemPrompt(),
           userPrompt: q,
           history: chatHistory.slice(0, -1),
         })
-      }, 12000)
+      }, 30000)
     : fetchWithTimeout(`${OLLAMA_HOST}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           model: CHAT_MODEL,
           stream: false,
-          messages: [{ role: 'system', content: SYSTEM_PROMPT }, ...chatHistory]
+          messages: [{ role: 'system', content: buildSystemPrompt() }, ...chatHistory]
         })
-      }, 12000);
+      }, 30000);
 
   chatFetch
   .then(r => r.json())
   .then(data => {
+    clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
     resp.textContent = reply;
     resp.className = 'v-response';
   })
   .catch(() => {
+    clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
@@ -783,6 +1072,7 @@ function metadataFallback(q) {
 document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
+updateVisitorToneUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -930,6 +1220,39 @@ function escHTML(s) {
 
 // Init comments on load
 fetchComments();
+
+const scrollCue = document.getElementById('scrollCue');
+const phoneShell = document.getElementById('phoneShell');
+const scrollHost = window.matchMedia('(min-width: 520px)').matches && phoneShell
+  ? phoneShell
+  : window;
+
+function getScrollMetrics() {
+  if (scrollHost === window) {
+    const doc = document.documentElement;
+    return {
+      top: window.scrollY || doc.scrollTop || 0,
+      canScroll: doc.scrollHeight > window.innerHeight + 18,
+    };
+  }
+
+  return {
+    top: scrollHost.scrollTop,
+    canScroll: scrollHost.scrollHeight > scrollHost.clientHeight + 18,
+  };
+}
+
+function updateScrollCue() {
+  if (!scrollCue) return;
+  const { top, canScroll } = getScrollMetrics();
+  scrollCue.classList.toggle('hidden', !canScroll || top > 28);
+}
+
+scrollHost.addEventListener('scroll', updateScrollCue, { passive: true });
+window.addEventListener('resize', updateScrollCue);
+updateScrollCue();
 </script>
+</div>
+</div>
 </body>
 </html>
