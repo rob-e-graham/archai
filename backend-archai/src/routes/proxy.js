@@ -24,8 +24,19 @@ export const proxyRouter = Router();
 const QDRANT_URL = env.qdrant.url;
 const OLLAMA_URL = env.ollama.baseUrl;
 const EMBED_MODEL = env.ollama.embedModel;
-const CHAT_MODEL = env.ollama.chatModel || 'llama3';
-const ALLOWED_COLLECTIONS = ['archai_pilot', 'archai_met', 'archai_va', 'archai_aic', 'archai_cma', 'archai_rijks', 'archai_europeana'];
+const CHAT_MODEL = env.ollama.chatModel || 'qwen2.5:7b';
+const CURATOR_MODEL = env.ollama.curatorModel || 'qwen2.5:32b';
+const ALLOWED_COLLECTIONS = ['archai_pilot', 'archai_met', 'archai_va', 'archai_aic', 'archai_cma', 'archai_rijks', 'archai_europeana', 'archai_auckland'];
+const COLLECTION_INSTITUTIONS = {
+  archai_pilot: 'Museums Victoria',
+  archai_met: 'The Metropolitan Museum of Art',
+  archai_va: 'Victoria and Albert Museum',
+  archai_aic: 'Art Institute of Chicago',
+  archai_cma: 'Cleveland Museum of Art',
+  archai_rijks: 'Rijksmuseum',
+  archai_europeana: 'Europeana',
+  archai_auckland: 'Auckland Museum'
+};
 
 // ── Personality config ────────────────────────────────────────────
 let personalities = {};
@@ -349,9 +360,7 @@ proxyRouter.get('/random-object', searchLimiter, async (_req, res) => {
       return res.status(404).json({ ok: false, error: 'No objects found' });
     }
     const p = point.payload || {};
-    const institution = collection === 'archai_met' ? 'The Metropolitan Museum of Art'
-      : collection === 'archai_va' ? 'Victoria and Albert Museum'
-      : 'Museums Victoria';
+    const institution = COLLECTION_INSTITUTIONS[collection] || 'ARCHAI collection';
     res.json({
       ok: true,
       object: {

@@ -37,7 +37,8 @@ export const env = {
   ollama: {
     baseUrl: process.env.OLLAMA_BASE_URL || 'http://localhost:11434',
     embedModel: process.env.OLLAMA_EMBED_MODEL || 'nomic-embed-text',
-    chatModel: process.env.OLLAMA_CHAT_MODEL || 'llama3',
+    chatModel: process.env.OLLAMA_CHAT_MODEL || 'qwen2.5:14b',
+    curatorModel: process.env.OLLAMA_CURATOR_MODEL || 'qwen2.5:32b',
   },
   dataDir: process.env.ARCHAI_DATA_DIR || './data',
   media: {

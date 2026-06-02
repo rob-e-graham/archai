@@ -12,6 +12,7 @@ Each harvester fetches objects from a museum API, generates embeddings via Ollam
 | `va-harvester.js` | Victoria & Albert Museum | 🇬🇧 UK | 1.2M+ | ⚠️ Down | None | Mixed |
 | `rijksmuseum-harvester.js` | Rijksmuseum | 🇳🇱 Netherlands | 800K+ | ✅ IIIF | None | CC0 |
 | `europeana-harvester.js` | Europeana (4000+ institutions) | 🇪🇺 Europe | Millions | ✅ | 🔑 Free | Mixed |
+| `aucklandmuseum-harvester.js` | Auckland Museum | 🇳🇿 New Zealand | 1M+ searchable | ✅ | None | Mixed / per-record |
 
 **Museums Victoria** objects are in the `archai_pilot` collection (harvested separately via the pipeline).
 
@@ -29,8 +30,12 @@ node rijksmuseum-harvester.js --limit 150
 # Need free API key
 EUROPEANA_API_KEY=xxx node europeana-harvester.js --limit 150
 
+# Southern Hemisphere onboarding
+node aucklandmuseum-harvester.js --limit 120
+
 # Dry run (no writes)
 node cleveland-harvester.js --dry-run
+node aucklandmuseum-harvester.js --dry-run
 ```
 
 ## After Harvesting
@@ -52,6 +57,7 @@ node generate-nfc-pages.js --limit 300
 | `archai_cma` | 4,000,000+ | Cleveland Museum of Art |
 | `archai_rijks` | 5,000,000+ | Rijksmuseum |
 | `archai_europeana` | 6,000,000+ | Europeana |
+| `archai_auckland` | 7,000,000+ | Auckland Museum |
 
 ## Data Richness
 
@@ -72,6 +78,11 @@ famtec run archai -- node europeana-harvester.js
 - **Europeana**: https://pro.europeana.eu/page/get-api (free registration)
 
 ## International Expansion Notes
+
+ARCHAI is moving toward translation-aware onboarding at ingest time, not only in the live interface. See:
+
+- [COLLECTION_ONBOARDING_BLUEPRINT.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/backend-archai/scripts/COLLECTION_ONBOARDING_BLUEPRINT.md)
+- [collection-targets.json](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/backend-archai/scripts/collection-targets.json)
 
 ### Available but no public API
 - ColBase (Japan) — 4 national museums, web-only, no REST API

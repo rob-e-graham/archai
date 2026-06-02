@@ -29,7 +29,7 @@ const getArg = (name, fallback) => {
 const QDRANT_URL = getArg('qdrant', 'http://localhost:6333');
 const ALL_COLLECTIONS = [
   'archai_pilot', 'archai_met', 'archai_va',
-  'archai_aic', 'archai_cma', 'archai_rijks', 'archai_europeana'
+  'archai_aic', 'archai_cma', 'archai_rijks', 'archai_europeana', 'archai_auckland'
 ];
 const COLLECTION_LABELS = {
   archai_pilot: 'Museums Victoria',
@@ -38,7 +38,8 @@ const COLLECTION_LABELS = {
   archai_aic: 'Art Institute of Chicago',
   archai_cma: 'Cleveland Museum of Art',
   archai_rijks: 'Rijksmuseum, Amsterdam',
-  archai_europeana: 'Europeana'
+  archai_europeana: 'Europeana',
+  archai_auckland: 'Auckland Museum'
 };
 const OLLAMA_LAN_HOST = getArg('host', 'http://localhost:11434');
 // Default to backend-proxy mode so public AUX.IO pages can use the live chat API
@@ -312,6 +313,7 @@ async function main() {
       .replace(/\{\{OBJECT_PROVENANCE\}\}/g, esc(truncate(provenance, 300)))
       .replace(/\{\{OBJECT_TOMBSTONE\}\}/g, esc(tombstone))
       .replace(/\{\{OBJECT_LICENCE\}\}/g, esc(licence))
+      .replace(/\{\{OBJECT_COLLECTION\}\}/g, esc(obj.sourceCollection || 'archai_pilot'))
       .replace(/\{\{OBJECT_STORY\}\}/g, story)
       .replace(/\{\{SOURCE_URL\}\}/g, escHtml(sourceUrl))
       .replace(/\{\{SOURCE_INSTITUTION\}\}/g, escHtml(sourceInstitution))

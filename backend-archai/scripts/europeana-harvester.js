@@ -23,6 +23,14 @@ const QDRANT_URL = 'http://localhost:6333';
 const OLLAMA_URL = 'http://localhost:11434';
 const COLLECTION = 'archai_europeana';
 const EMBED_MODEL = 'nomic-embed-text';
+import {
+  normalizeMultilingualField,
+  mergeLanguageMaps,
+  pickBestLanguage,
+  pickPrimaryLanguage,
+  collectLanguages,
+  buildDisplayTexts
+} from './lib/multilingual.js';
 
 const API_KEY = process.env.EUROPEANA_API_KEY;
 if (!API_KEY) {
@@ -115,17 +123,8 @@ async function upsertPoint(id, vector, payload) {
   });
 }
 
-// Extract best text from Europeana's multilingual fields (prefer English, then first available)
-function bestLang(field) {
-  if (!field) return '';
-  if (typeof field === 'string') return field;
-  if (Array.isArray(field)) return field[0] || '';
-  // Multilingual object: { en: [...], fr: [...], def: [...] }
-  const en = field.en || field.eng;
-  if (en) return Array.isArray(en) ? en.join('. ') : en;
-  const def = field.def || field[''] || Object.values(field)[0];
-  if (def) return Array.isArray(def) ? def.join('. ') : def;
-  return '';
+function bestText(field) {
+  return pickBestLanguage(normalizeMultilingualField(field));
 }
 
 async function main() {
@@ -171,10 +170,10 @@ async function main() {
         if (!img) continue;
 
         // Score data richness
-        const hasTitle = !!bestLang(item.title);
-        const hasDesc = !!(bestLang(item.dcDescription) || bestLang(item.dctermsAlternative));
-        const hasCreator = !!bestLang(item.dcCreator);
-        const hasDate = !!bestLang(item.year || item.dctermsCreated);
+        const hasTitle = !!bestText(item.title);
+        const hasDesc = !!(bestText(item.dcDescription) || bestText(item.dctermsAlternative));
+        const hasCreator = !!bestText(item.dcCreator);
+        const hasDate = !!bestText(item.year || item.dctermsCreated);
         const hasProvider = !!item.dataProvider?.[0];
         const richness = [hasTitle, hasDesc, hasCreator, hasDate, hasProvider].filter(Boolean).length;
 
@@ -206,16 +205,46 @@ async function main() {
   for (let i = 0; i < objects.length; i++) {
     const item = objects[i];
     try {
-      const title = bestLang(item.title) || 'Untitled';
-      const desc = bestLang(item.dcDescription) || '';
-      const creator = bestLang(item.dcCreator) || '';
-      const date = bestLang(item.year) || bestLang(item.dctermsCreated) || '';
+      const titleTranslations = normalizeMultilingualField(item.title);
+      const descriptionTranslations = mergeLanguageMaps(
+        normalizeMultilingualField(item.dcDescription),
+        normalizeMultilingualField(item.dctermsAlternative)
+      );
+      const creatorTranslations = normalizeMultilingualField(item.dcCreator);
+      const mediumTranslations = normalizeMultilingualField(item.dcFormat);
+      const subjectTranslations = normalizeMultilingualField(item.dcSubject);
+      const title = pickBestLanguage(titleTranslations) || 'Untitled';
+      const desc = pickBestLanguage(descriptionTranslations) || '';
+      const creator = pickBestLanguage(creatorTranslations) || '';
+      const date = bestText(item.year) || bestText(item.dctermsCreated) || '';
       const provider = item.dataProvider?.[0] || '';
       const country = item.country?.[0] || '';
-      const type = bestLang(item.type) || '';
+      const type = bestText(item.type) || '';
       const rights = item.rights?.[0] || '';
-      const medium = bestLang(item.dcFormat) || '';
-      const subject = (item.dcSubject || []).map(s => bestLang({ def: [s] })).filter(Boolean).join(', ');
+      const medium = pickBestLanguage(mediumTranslations) || '';
+      const subject = pickBestLanguage(subjectTranslations) || '';
+      const availableLanguages = collectLanguages(
+        titleTranslations,
+        descriptionTranslations,
+        creatorTranslations,
+        mediumTranslations,
+        subjectTranslations
+      );
+      const sourceLanguage = pickPrimaryLanguage(
+        [
+          titleTranslations,
+          descriptionTranslations,
+          creatorTranslations,
+          mediumTranslations,
+          subjectTranslations
+        ],
+        item.language?.[0] || 'und'
+      );
+      const displayTexts = buildDisplayTexts({
+        titleMap: titleTranslations,
+        descriptionMap: descriptionTranslations,
+        primaryLanguage: sourceLanguage
+      });
 
       const embeddingParts = [title, desc, creator, medium, subject, provider, country, date].filter(Boolean).join('. ');
 
@@ -239,7 +268,17 @@ async function main() {
         media_thumbnail: item.edmPreview?.[0] || '',
         media_medium: item._img,
         media_large: item.edmIsShownBy?.[0] || item._img,
-        language: item.language?.[0] || 'en',
+        language: item.language?.[0] || sourceLanguage || 'und',
+        source_language: sourceLanguage,
+        available_languages: availableLanguages,
+        title_translations: titleTranslations,
+        description_translations: descriptionTranslations,
+        creator_translations: creatorTranslations,
+        medium_translations: mediumTranslations,
+        subject_translations: subjectTranslations,
+        display_texts: displayTexts,
+        translation_status: availableLanguages.length > 1 ? 'source_multilingual' : 'source_single_language',
+        translation_ready: availableLanguages.length > 0,
         richness_score: item._richness,
         embedding_text: embeddingParts
       };

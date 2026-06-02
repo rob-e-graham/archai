@@ -1144,7 +1144,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_pilot',
+      collection: '{{OBJECT_COLLECTION}}',
       text,
       authorType: 'visitor',
     }),

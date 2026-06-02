@@ -6,9 +6,19 @@ import { env } from '../config/env.js';
 import { curatorSearch } from './curator-vectors.js';
 
 const OLLAMA_URL = env.ollama.baseUrl;
-const CHAT_MODEL = env.ollama.chatModel || 'llama3';
+const CHAT_MODEL = env.ollama.curatorModel || env.ollama.chatModel || 'qwen2.5:32b';
+const COLLECTION_INSTITUTIONS = {
+  archai_pilot: 'Museums Victoria',
+  archai_met: 'The Metropolitan Museum of Art',
+  archai_va: 'Victoria and Albert Museum',
+  archai_aic: 'Art Institute of Chicago',
+  archai_cma: 'Cleveland Museum of Art',
+  archai_rijks: 'Rijksmuseum',
+  archai_europeana: 'Europeana',
+  archai_auckland: 'Auckland Museum'
+};
 
-const SYSTEM_PROMPT = `You are the ARCHAI™ collection intelligence — a curatorial AI that has deep knowledge of every object across three museum collections: Museums Victoria (Melbourne), The Metropolitan Museum of Art (NYC), and the Victoria and Albert Museum (London).
+const SYSTEM_PROMPT = `You are the ARCHAI™ collection intelligence — a curatorial AI that has deep knowledge of every object across eight live collection sources: Museums Victoria (Melbourne), The Metropolitan Museum of Art (NYC), the Victoria and Albert Museum (London), the Art Institute of Chicago, the Cleveland Museum of Art, the Rijksmuseum (Amsterdam), Europeana, and Auckland Museum (Aotearoa New Zealand).
 
 You search the collection semantically and respond conversationally. You are NOT a generic chatbot. You are the voice of the collection itself.
 
@@ -42,9 +52,7 @@ export async function conversationalSearch(userMessage, history = []) {
       const p = result.payload || {};
       const title = p.title || p.object_name || 'Untitled';
       const col = p._source_collection || 'unknown';
-      const institution = col === 'archai_met' ? 'The Metropolitan Museum of Art'
-        : col === 'archai_va' ? 'Victoria and Albert Museum'
-        : 'Museums Victoria';
+      const institution = COLLECTION_INSTITUTIONS[col] || 'ARCHAI collection';
       const reg = p.registration_number || p.accession_number || '';
       const date = p.date || p.date_display || p.production_date || '';
       const maker = p.maker || p.artist || p.creator || '';
@@ -88,6 +96,8 @@ export async function conversationalSearch(userMessage, history = []) {
 
   // Step 4: Generate response
   try {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 120000); // 2 min for cold model load
     const resp = await fetch(`${OLLAMA_URL}/api/chat`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -97,7 +107,9 @@ export async function conversationalSearch(userMessage, history = []) {
         stream: false,
         options: { num_predict: 600, temperature: 0.75 },
       }),
+      signal: controller.signal,
     });
+    clearTimeout(timer);
 
     if (!resp.ok) {
       return {

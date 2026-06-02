@@ -22,6 +22,7 @@ async function ollamaHealth() {
       online: true,
       url: env.ollama.baseUrl,
       chatModel: env.ollama.chatModel,
+      curatorModel: env.ollama.curatorModel,
       embedModel: env.ollama.embedModel,
       models,
     };

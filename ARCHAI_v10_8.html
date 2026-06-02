@@ -405,6 +405,14 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 .od-chat-col{padding:24px 36px;border-right:1px solid var(--border);}
 .od-related-col{padding:24px 28px;}
 .od-chat-msgs{background:var(--surface2);border:1px solid var(--border);padding:12px;min-height:180px;max-height:340px;overflow-y:auto;font-size:0.72rem;font-family:var(--mono);line-height:1.6;margin-bottom:10px;}
+.od-lang-wrap{margin-bottom:12px;}
+.od-lang-label{font-family:var(--mono);font-size:0.56rem;letter-spacing:1.4px;text-transform:uppercase;color:var(--text3);margin-bottom:8px;}
+.od-lang-buttons{display:flex;flex-wrap:wrap;gap:6px;}
+.od-lang-buttons button,.od-translate-btn{font-family:var(--mono);font-size:0.54rem;padding:7px 10px;border:1px solid var(--border2);background:transparent;color:var(--text2);letter-spacing:0.5px;text-transform:uppercase;cursor:pointer;transition:all 0.15s;}
+.od-lang-buttons button.active,.od-lang-buttons button:active,.od-translate-btn:hover{border-color:var(--accent2);color:var(--accent2);background:rgba(143,188,176,0.06);}
+.od-lang-buttons button:disabled,.od-translate-btn:disabled{opacity:0.45;cursor:not-allowed;background:transparent;color:var(--text3);border-color:var(--border2);}
+.od-lang-note{margin-top:8px;color:var(--text3);font-size:0.72rem;line-height:1.6;}
+.od-lang-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
 .od-chat-row{display:flex;gap:7px;}
 .od-chat-in{flex:1;background:var(--surface);border:1px solid var(--border2);color:var(--text);font-family:var(--mono);font-size:0.62rem;padding:8px 10px;outline:none;}
 .od-chat-in:focus{border-color:var(--accent);}
@@ -542,7 +550,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
     </div>
   </div>
   <div>
-    <div class="header-meta"><b id="clockDisplay">—</b><br><span>Build v10.9 · MV + Met + V&amp;A + AIC + CMA + Rijks · Multi-Collection</span></div>
+    <div class="header-meta"><b id="clockDisplay">—</b><br><span>Build v11.0 · 8 live collections · translation-aware onboarding</span></div>
     <div class="header-links">
       <a class="header-link" href="http://localhost:11434" target="_blank">Ollama LLM</a>
       <a class="header-link" href="http://localhost:8055/admin" target="_blank">Directus CMS</a>
@@ -984,6 +992,22 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
     <div class="od-lower">
       <div class="od-chat-col">
         <div class="section-label" style="margin-bottom:10px;">Interrogate this Object — live local LLM</div>
+        <div class="od-lang-wrap">
+          <div class="od-lang-label">Response Language</div>
+          <div class="od-lang-buttons" id="od-lang-buttons">
+            <button class="active" onclick="setOdResponseLanguage('english')">English</button>
+            <button onclick="setOdResponseLanguage('arabic')">Arabic</button>
+            <button onclick="setOdResponseLanguage('spanish')">Spanish</button>
+            <button onclick="setOdResponseLanguage('french')">French</button>
+            <button onclick="setOdResponseLanguage('portuguese')">Portuguese</button>
+            <button onclick="setOdResponseLanguage('japanese')">Japanese</button>
+          </div>
+          <div class="od-lang-note" id="od-lang-note">Replies stay in English. Choose another language to return object chat in that language, then use Translate record to convert the curatorial description and key metadata in this view.</div>
+          <div class="od-lang-actions">
+            <button class="od-translate-btn" id="od-translate-btn" onclick="odTranslateRecord()" disabled>Translate Record</button>
+            <button class="od-translate-btn" id="od-translate-reset-btn" onclick="odRestoreRecordText()" style="display:none;">Show Original</button>
+          </div>
+        </div>
         <div id="od-chat-msgs" class="od-chat-msgs">
           <div style="color:var(--text3);font-size:0.6rem;">Ask anything about this object. Responses are grounded in verified collection metadata — hallucination prevention active.</div>
         </div>
@@ -1017,7 +1041,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 
 <script>
 // ═══════════════════════════════════════════════════════════════════
-// ARCHAI™ v10.9 — Multi-Collection · Backend-Aware · Live LLM Chat
+// ARCHAI™ v11.0 — Multi-Collection · Backend-Aware · Live LLM Chat
 // Collection objects loaded from Qdrant. Comments and curator vectors via backend APIs.
 // ═══════════════════════════════════════════════════════════════════
 
@@ -1094,6 +1118,214 @@ let currentRole = 'curator';
 let activeFamtecInst = 'famtec';
 window._odCurrentId = null;
 window._odChatHistory = [];
+window._odResponseLanguage = 'english';
+window._odRecordTranslated = false;
+window._odLanguageStatus = '';
+
+const RESPONSE_LANGUAGES = {
+  english: {
+    label: 'English',
+    note: 'Replies stay in English. Choose another language to return object chat in that language, then use Translate record to convert the curatorial description and key metadata in this view.',
+    placeholder: 'Ask about materials, history, cultural significance…',
+    rtl: false
+  },
+  arabic: {
+    label: 'Arabic',
+    note: 'Replies return in Arabic. Translate record converts the curatorial description, key metadata, and prompt chips in this view.',
+    placeholder: 'اسأل عن المواد أو التاريخ أو الدلالة الثقافية…',
+    rtl: true
+  },
+  spanish: {
+    label: 'Spanish',
+    note: 'Replies return in Spanish. Translate record converts the curatorial description, key metadata, and prompt chips in this view.',
+    placeholder: 'Pregunta por materiales, historia o significado cultural…',
+    rtl: false
+  },
+  french: {
+    label: 'French',
+    note: 'Replies return in French. Translate record converts the curatorial description, key metadata, and prompt chips in this view.',
+    placeholder: 'Posez une question sur les matériaux, l’histoire ou la signification culturelle…',
+    rtl: false
+  },
+  portuguese: {
+    label: 'Portuguese',
+    note: 'Replies return in Portuguese. Translate record converts the curatorial description, key metadata, and prompt chips in this view.',
+    placeholder: 'Pergunte sobre materiais, história ou significado cultural…',
+    rtl: false
+  },
+  japanese: {
+    label: 'Japanese',
+    note: 'Replies return in Japanese. Translate record converts the curatorial description, key metadata, and prompt chips in this view.',
+    placeholder: '素材や歴史、文化的な意味について聞いてみてください…',
+    rtl: false
+  }
+};
+
+function getResponseLanguageMeta(languageKey) {
+  return RESPONSE_LANGUAGES[languageKey] || RESPONSE_LANGUAGES.english;
+}
+
+function setTranslatedNodeDirection(node, rtl) {
+  if (!node || !node.dataset) return;
+  if (node.dataset.originalDir === undefined) {
+    node.dataset.originalDir = node.getAttribute('dir') || '';
+  }
+  if (rtl) node.setAttribute('dir', 'rtl');
+  else if (node.dataset.originalDir) node.setAttribute('dir', node.dataset.originalDir);
+  else node.removeAttribute('dir');
+}
+
+function updateOdLanguageUI() {
+  const langMeta = getResponseLanguageMeta(window._odResponseLanguage);
+  const buttons = document.querySelectorAll('#od-lang-buttons button');
+  buttons.forEach((btn, index) => {
+    const languageKey = Object.keys(RESPONSE_LANGUAGES)[index];
+    btn.classList.toggle('active', languageKey === window._odResponseLanguage);
+  });
+
+  const noteEl = document.getElementById('od-lang-note');
+  if (noteEl) {
+    noteEl.textContent = window._odLanguageStatus
+      ? `${langMeta.note} ${window._odLanguageStatus}`
+      : langMeta.note;
+  }
+
+  const inputEl = document.getElementById('od-chat-in');
+  if (inputEl) {
+    inputEl.placeholder = langMeta.placeholder;
+    setTranslatedNodeDirection(inputEl, langMeta.rtl);
+  }
+
+  const translateBtn = document.getElementById('od-translate-btn');
+  if (translateBtn) {
+    translateBtn.disabled = window._odResponseLanguage === 'english';
+    translateBtn.textContent = window._odResponseLanguage === 'english'
+      ? 'Translate Record'
+      : `Translate Record to ${langMeta.label}`;
+  }
+
+  const resetBtn = document.getElementById('od-translate-reset-btn');
+  if (resetBtn) {
+    resetBtn.style.display = window._odRecordTranslated ? '' : 'none';
+  }
+}
+
+function setOdResponseLanguage(languageKey) {
+  if (!RESPONSE_LANGUAGES[languageKey]) return;
+  if (window._odRecordTranslated) odRestoreRecordText(false);
+  window._odResponseLanguage = languageKey;
+  window._odLanguageStatus = '';
+  updateOdLanguageUI();
+}
+
+function translateStringsWithOllama(strings, languageKey, contextLabel) {
+  if (!strings.length || languageKey === 'english') {
+    return Promise.resolve(strings);
+  }
+
+  const langMeta = getResponseLanguageMeta(languageKey);
+  const sys = `You translate museum interface copy and collection record text into ${langMeta.label}. Return only valid JSON: an array of translated strings in the same order. Preserve accession numbers, dates, institution names, artist names, URLs, licence names, and the product names ARCHAI, AUX.IO, Qdrant, Ollama, and Directus exactly. Do not add commentary or markdown.`;
+  const numberedStrings = strings.map((text, index) => `${index + 1}. ${JSON.stringify(text)}`).join('\n');
+
+  return ollamaFetch('/api/chat', JSON.stringify({
+    model: 'llama3',
+    stream: false,
+    messages: [
+      { role: 'system', content: sys },
+      { role: 'user', content: `Translate these ${strings.length} strings for ${contextLabel}:\n${numberedStrings}` }
+    ]
+  }))
+  .then(r => r.json())
+  .then(data => {
+    const raw = ((data.message && data.message.content) || '').trim();
+    const jsonMatch = raw.match(/\[[\s\S]*\]/);
+    const parsed = JSON.parse(jsonMatch ? jsonMatch[0] : raw);
+    if (!Array.isArray(parsed) || parsed.length !== strings.length) {
+      throw new Error('Unexpected translation payload');
+    }
+    return parsed.map(item => String(item));
+  });
+}
+
+function odGetRecordTranslationTargets() {
+  return {
+    textNodes: [
+      document.querySelector('.od-description-wrap .section-label'),
+      document.getElementById('od-description'),
+      ...document.querySelectorAll('#od-meta-grid .od-meta-key, #od-meta-grid .od-meta-val, #od-quick-chips .od-chip')
+    ].filter(Boolean),
+    placeholderNodes: [
+      document.getElementById('od-chat-in')
+    ].filter(Boolean)
+  };
+}
+
+function odRestoreRecordText(updateUI = true) {
+  const { textNodes, placeholderNodes } = odGetRecordTranslationTargets();
+
+  textNodes.forEach(node => {
+    if (node.dataset.originalText !== undefined) node.textContent = node.dataset.originalText;
+    setTranslatedNodeDirection(node, false);
+  });
+
+  placeholderNodes.forEach(node => {
+    if (node.dataset.originalPlaceholder !== undefined) node.placeholder = node.dataset.originalPlaceholder;
+    setTranslatedNodeDirection(node, false);
+  });
+
+  window._odRecordTranslated = false;
+  window._odLanguageStatus = '';
+  if (updateUI) updateOdLanguageUI();
+}
+
+function odTranslateRecord() {
+  const languageKey = window._odResponseLanguage;
+  if (languageKey === 'english') return;
+
+  const { textNodes, placeholderNodes } = odGetRecordTranslationTargets();
+  const translateBtn = document.getElementById('od-translate-btn');
+  if (translateBtn) {
+    translateBtn.disabled = true;
+    translateBtn.textContent = 'Translating…';
+  }
+
+  const allStrings = [];
+
+  textNodes.forEach(node => {
+    if (node.dataset.originalText === undefined) node.dataset.originalText = node.textContent;
+    allStrings.push(node.dataset.originalText);
+  });
+
+  placeholderNodes.forEach(node => {
+    if (node.dataset.originalPlaceholder === undefined) node.dataset.originalPlaceholder = node.placeholder;
+    allStrings.push(node.dataset.originalPlaceholder);
+  });
+
+  translateStringsWithOllama(allStrings, languageKey, 'ARCHAI object detail view')
+    .then(translated => {
+      const langMeta = getResponseLanguageMeta(languageKey);
+      let index = 0;
+      textNodes.forEach(node => {
+        node.textContent = translated[index++];
+        setTranslatedNodeDirection(node, langMeta.rtl);
+      });
+      placeholderNodes.forEach(node => {
+        node.placeholder = translated[index++];
+        setTranslatedNodeDirection(node, langMeta.rtl);
+      });
+      window._odRecordTranslated = true;
+      window._odLanguageStatus = langMeta.rtl ? 'Right-to-left formatting is applied to translated record text.' : '';
+      updateOdLanguageUI();
+    })
+    .catch(err => {
+      console.warn('Object detail translation unavailable:', err.message);
+      window._odLanguageStatus = 'Record translation needs the local model online.';
+      updateOdLanguageUI();
+    })
+    .finally(() => {
+      if (translateBtn) translateBtn.disabled = false;
+    });
+}
 
 // ── ROLE DEFINITIONS ────────────────────────────────────────────
 const ROLE_DEFS = {
@@ -1249,7 +1481,7 @@ function checkDirectus() {
 // ═══════════════════════════════════════════════════════════════════
 // LOAD OBJECTS FROM QDRANT — All Collections
 // ═══════════════════════════════════════════════════════════════════
-const COLLECTIONS = ['archai_pilot', 'archai_met', 'archai_va', 'archai_aic', 'archai_cma', 'archai_rijks', 'archai_europeana'];
+const COLLECTIONS = ['archai_pilot', 'archai_met', 'archai_va', 'archai_aic', 'archai_cma', 'archai_rijks', 'archai_europeana', 'archai_auckland'];
 const COLLECTION_LABELS = {
   archai_pilot: { name: 'Museums Victoria', short: 'MV', colour: 'rgba(143,188,176,0.7)', border: 'rgba(143,188,176,0.3)' },
   archai_met: { name: 'The Met, NYC', short: 'Met', colour: 'rgba(200,169,110,0.7)', border: 'rgba(200,169,110,0.3)' },
@@ -1257,11 +1489,38 @@ const COLLECTION_LABELS = {
   archai_aic: { name: 'Art Institute of Chicago', short: 'AIC', colour: 'rgba(111,170,204,0.78)', border: 'rgba(111,170,204,0.32)' },
   archai_cma: { name: 'Cleveland Museum of Art', short: 'CMA', colour: 'rgba(216,124,144,0.78)', border: 'rgba(216,124,144,0.32)' },
   archai_rijks: { name: 'Rijksmuseum, Amsterdam', short: 'Rijks', colour: 'rgba(220,146,86,0.78)', border: 'rgba(220,146,86,0.32)' },
-  archai_europeana: { name: 'Europeana', short: 'EU', colour: 'rgba(116,156,214,0.78)', border: 'rgba(116,156,214,0.32)' }
+  archai_europeana: { name: 'Europeana', short: 'EU', colour: 'rgba(116,156,214,0.78)', border: 'rgba(116,156,214,0.32)' },
+  archai_auckland: { name: 'Auckland Museum', short: 'AKL', colour: 'rgba(124,196,172,0.82)', border: 'rgba(124,196,172,0.34)' }
 };
 
 function getCollectionLabel(col) {
   return COLLECTION_LABELS[col] || COLLECTION_LABELS.archai_pilot;
+}
+
+async function fetchCollectionPoints(col) {
+  let offset = null;
+  const points = [];
+
+  do {
+    const body = { limit: 200, with_payload: true };
+    if (offset !== null && offset !== undefined) body.offset = offset;
+
+    const response = await qdrantFetch(`/collections/${col}/points/scroll`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(body)
+    });
+    if (!response.ok) throw new Error('HTTP ' + response.status);
+
+    const data = await response.json();
+    const batch = (data.result && data.result.points) || [];
+    points.push(...batch);
+    offset = data.result && data.result.next_page_offset !== undefined
+      ? data.result.next_page_offset
+      : null;
+  } while (offset !== null && offset !== undefined);
+
+  return points;
 }
 
 function getInstitutionName(o) {
@@ -1282,14 +1541,9 @@ function loadMVObjects() {
 
   // Load all collections in parallel
   const fetches = COLLECTIONS.map(col =>
-    qdrantFetch(`/collections/${col}/points/scroll`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({ limit: 200, with_payload: true })
-    })
-    .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-    .then(data => ({ col, points: (data.result && data.result.points) || [] }))
-    .catch(() => ({ col, points: [] }))
+    fetchCollectionPoints(col)
+      .then(points => ({ col, points }))
+      .catch(() => ({ col, points: [] }))
   );
 
   Promise.all(fetches).then(results => {
@@ -1330,7 +1584,7 @@ function loadMVObjects() {
     const usTotal = usKeys.reduce((sum, key) => sum + (counts[key] || 0), 0);
     const euTotal = euKeys.reduce((sum, key) => sum + (counts[key] || 0), 0);
 
-    document.getElementById('collectionVal').textContent = totalCount + ' objects';
+    document.getElementById('collectionVal').textContent = totalCount + ' objects · ' + Object.keys(counts).filter(k => counts[k] > 0).length + ' collections';
     setDot('sb-mv-dot', mvCount > 0 ? 'ok' : 'idle');
     document.getElementById('sb-mv-val').textContent = totalCount > 0 ? totalCount + ' objects' : 'Empty';
     document.getElementById('sb-mv-val').style.color = totalCount > 0 ? 'var(--ok)' : 'var(--text3)';
@@ -1361,7 +1615,7 @@ function loadMVObjects() {
     renderVisitorList();
     buildVocabIndex();
 
-    console.log('ARCHAI™ v10.9: loaded', totalCount, 'objects from', Object.keys(counts).filter(k => counts[k] > 0).length, 'collections');
+    console.log('ARCHAI™ v11.0: loaded', totalCount, 'objects from', Object.keys(counts).filter(k => counts[k] > 0).length, 'collections');
   })
   .catch(e => {
     document.getElementById('collectionVal').textContent = 'Qdrant offline';
@@ -2731,7 +2985,8 @@ function buildVocabIndex() {
     archai_aic: 'Art Institute of Chicago',
     archai_cma: 'Cleveland Museum of Art',
     archai_rijks: 'Rijksmuseum',
-    archai_europeana: 'Europeana'
+    archai_europeana: 'Europeana',
+    archai_auckland: 'Auckland Museum'
   };
 
   for (const [key, obj] of Object.entries(OBJECTS)) {
