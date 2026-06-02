@@ -40,12 +40,12 @@ Do not onboard beyond basic technical exploration until legal and media terms ar
 |---|---|---|---|---|---|---|---|
 | 1 | Te Papa | Aotearoa / Pacific | API, free key or guest token | CC BY 4.0 | Per-item / mixed | Live with item rights check | Live as preview-first onboarding with item rights attached and sensitive records excluded by default |
 | 2 | Auckland Museum | Aotearoa / Pacific | API | Mixed / per-item | Mixed / per-item | Live with placeholder filter | Already live; now needs source-side media cleanup |
-| 3 | DigitalNZ | Aotearoa / Pacific | Aggregator API | Mixed, rights-field dependent | Partner-specific | Approved metadata with partner rights check | Strong breadth and multilingual / regional reach |
-| 4 | QAGOMA | Australia / Asia Pacific | Open dataset | Open dataset | Recheck per item | Approved dataset with image rights recheck | Strong Australian and Asia-Pacific balancing source |
-| 5 | National Museum of Australia | Australia | API, free key | CC BY-NC 4.0 | Public domain / CC variants | Non-commercial only | Valuable object-rich source for research and demo context |
-| 7 | M+ | Asia | GraphQL API, token | CC0 | CC0 where exposed | Approved open | Best next Asia-focused source for visual culture, design, moving image |
-| 8 | Tokyo Museum Collection (ToMuCo) | Asia | API | Open metadata | Source-provider dependent | Approved metadata with media check | Strong multilingual museum-network source |
-| 11 | Brasiliana Museus | South America | Open platform | Open data / open access | Spot-check per item | Approved with item rights check | Best current South American expansion path |
+| 3 | M+ | Asia | Public GraphQL API | CC0 | Preview-first / source rights apply | Live | Strong Asia-focused visual culture, design, and moving-image source with bilingual metadata |
+| 4 | Brasiliana Museus | South America | Open platform | Open data / open access | Spot-check per item | Live with item rights check | First live South American expansion path, filtered to public-domain / open-access records |
+| 5 | DigitalNZ | Aotearoa / Pacific | Aggregator API | Mixed, rights-field dependent | Partner-specific | Approved metadata with partner rights check | Strong breadth and multilingual / regional reach |
+| 6 | QAGOMA | Australia / Asia Pacific | Open dataset | Open dataset | Recheck per item | Approved dataset with image rights recheck | Strong Australian and Asia-Pacific balancing source |
+| 7 | National Museum of Australia | Australia | API, free key | CC BY-NC 4.0 | Public domain / CC variants | Non-commercial only | Valuable object-rich source for research and demo context |
+| 8 | Tokyo Museum Collection (ToMuCo) | Asia | API | Open metadata | Source-provider dependent | Hold | Technically reachable, but current legal gate does not yield enough public-safe image-backed records for live onboarding |
 
 ## Sources not yet cleared
 
@@ -61,18 +61,18 @@ Do not onboard beyond basic technical exploration until legal and media terms ar
 
 ## Recommended next onboarding order
 
-1. `M+`
-2. `ToMuCo`
-3. `Brasiliana Museus`
-4. `DigitalNZ`
-5. `QAGOMA`
+1. `DigitalNZ`
+2. `QAGOMA`
+3. `National Museum of Australia`
+4. `WA Museum`
+5. `National Palace Museum`
 
 This sequence gives ARCHAI:
 
 - stronger Pacific and Southern Hemisphere representation
-- stronger Asia coverage
-- first meaningful South American growth
-- better multilingual testing
+- a cleaner Australian and Pacific next wave
+- broader multilingual testing through partner-rich aggregators
+- stronger legal discipline before the next mixed-rights onboarding pass
 - better balance than continuing to only add Europe / North America
 
 ## Quality rules for every new international source
@@ -85,6 +85,10 @@ Do not ingest a source into public-facing demos unless it passes all of these:
 4. institution name, source URL, and rights stay attached to every object
 5. culturally sensitive records can be excluded or handled carefully
 6. multilingual source fields are preserved before machine translation is attempted
+
+### Current hold note
+
+`ToMuCo` remains architecturally interesting, but it is being kept out of the live stack for now because the current legal / media gate did not produce a strong enough set of public-safe, image-backed records for ARCHAI or AUX.IO.
 
 ## Official source links
 

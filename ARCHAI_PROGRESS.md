@@ -1,6 +1,6 @@
 # ARCHAI Progress Log
 
-Last updated: 2026-06-02
+Last updated: 2026-06-03
 Maintained as an active handoff note so Claude, Codex, and Rob can quickly see where the work is up to if a session ends or tokens run out.
 
 ## Current focus
@@ -74,6 +74,8 @@ Why:
 - `archai_europeana`
 - `archai_auckland`
 - `archai_tepapa`
+- `archai_mplus`
+- `archai_brasiliana`
 - `archai_curator`
 
 ### Known collection counts at last check
@@ -87,16 +89,18 @@ Why:
 - `archai_europeana`: 150
 - `archai_auckland`: 120
 - `archai_tepapa`: 120
+- `archai_mplus`: 120
+- `archai_brasiliana`: 120
 
-Total live source objects in the current working set: `1205`
+Total live source objects in the current working set: `1445`
 
 ### AUX.IO generation
 
-Europeana harvest was run successfully and AUX.IO pages were regenerated.
+Latest collection harvests were run successfully and AUX.IO pages were regenerated.
 
 Last noted AUX.IO output:
-- `1071` generated visitor pages in [nfc-pages/v](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v)
-- live source spread: MV 39, Met 42, V&A 150, AIC 150, CMA 150, Rijks 150, Europeana 150, Auckland 120, Te Papa 120
+- `1311` generated visitor pages in [nfc-pages/v](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v)
+- live source spread: MV 39, Met 42, V&A 150, AIC 150, CMA 150, Rijks 150, Europeana 150, Auckland 120, Te Papa 120, M+ 120, Brasiliana 120
 
 ### Europeana / Keytec
 
@@ -120,9 +124,9 @@ Best immediate targets for regional balance and legally reusable data:
 
 - Auckland Museum — live
 - Te Papa — live
-- M+
-- Tokyo Museum Collection API
-- Brasiliana Museus
+- M+ — live
+- Brasiliana Museus — live
+- Tokyo Museum Collection API — explored, held out of live onboarding
 - DigitalNZ
 - QAGOMA
 - National Museum of Australia
@@ -407,11 +411,11 @@ This does three important things:
 
 Verified next-priority international targets currently favour:
 
-1. M+
-2. Tokyo Museum Collection
-3. Brasiliana Museus
-4. DigitalNZ
-5. QAGOMA
+1. DigitalNZ
+2. QAGOMA
+3. National Museum of Australia
+4. WA Museum
+5. National Palace Museum
 
 These were chosen for legal clarity, multilingual value, regional balance, and likelihood of producing public-safe, image-backed records.
 
@@ -442,8 +446,70 @@ Workflow notes:
 - AUX.IO default generation cap was lifted from `1000` to `5000`
 - [ARCHAI_v10_8.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ARCHAI_v10_8.html) now knows about Te Papa and displays `Build v11.1 · 9 live collections`
 
-Recommended next harvest after Te Papa:
+Completed since that Te Papa pass:
 
-1. M+
-2. Tokyo Museum Collection
-3. Brasiliana Museus
+1. M+ live onboarding completed
+2. Brasiliana live onboarding completed
+3. ToMuCo explored but held out of live onboarding on public-rights grounds
+
+## M+ onboarding completed — 2026-06-03
+
+Added:
+
+- [backend-archai/scripts/mplus-harvester.js](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/backend-archai/scripts/mplus-harvester.js)
+
+What changed:
+
+- M+ now lives in its own source collection: `archai_mplus`
+- bilingual metadata fields are preserved where exposed
+- public preview media is attached from the source object pages
+- source-rights context remains attached to each record rather than being flattened away
+
+Verification:
+
+- `archai_mplus` created in Qdrant with `120` records
+- backend health now reports `1325` live source objects across `10` source collections
+- `archai_curator` was expanded and rebuilt as part of the next onboarding pass
+
+Workflow notes:
+
+- [backend-archai/src/routes/proxy.js](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/backend-archai/src/routes/proxy.js) now knows `archai_mplus`
+- [backend-archai/src/services/conversational-search.js](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/backend-archai/src/services/conversational-search.js) now includes M+ in the collection-intelligence layer
+- [nfc-pages/generate-nfc-pages.js](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/generate-nfc-pages.js) now includes M+
+
+## Brasiliana onboarding completed — 2026-06-03
+
+Added:
+
+- [backend-archai/scripts/brasiliana-harvester.js](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/backend-archai/scripts/brasiliana-harvester.js)
+
+What changed:
+
+- Brasiliana Museus now lives in its own source collection: `archai_brasiliana`
+- only public-domain / open-access records that pass the item-level rights gate are admitted
+- rights-restricted items were intentionally skipped rather than softened for demo use
+- all source media URLs came through as HTTPS, which keeps the public wrapper cleaner than the Auckland onboarding pass
+
+Verification:
+
+- `archai_brasiliana` created in Qdrant with `120` records
+- rights-restricted records skipped during harvest: `1995`
+- backend health now reports `1445` live source objects across `11` source collections
+- `archai_curator` rebuilt to `1445` vectors
+- AUX.IO regenerated to `1311` visitor pages across `11` live collections
+
+Workflow notes:
+
+- [ARCHAI_v10_8.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ARCHAI_v10_8.html) still needed a final UI sync so Brasiliana appeared in the app shell
+- [README.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/README.md) and the public website wrapper also needed post-harvest count updates
+
+## Tokyo Museum Collection / ToMuCo status — 2026-06-03
+
+Outcome:
+
+- technically reachable, but held out of the live stack for now
+
+Reason:
+
+- the current legal / media gate did not produce a strong enough set of public-safe, image-backed records for ARCHAI or AUX.IO
+- this remains a possible future metadata / research source, but not a clean public demo source yet

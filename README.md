@@ -2,7 +2,7 @@
 
 > "Museums are not silent repositories of Memory; they are living, thinking organisms, where imagination and knowledge, tradition and innovation meet." — Gayane Umerova, UNESCO, 2025
 
-**Version:** 11.1
+**Version:** 11.3
 **Author:** Rob Graham · FAMTEC (Fine Art Media Tech) / RMIT University
 **Status:** Working prototype — multi-institution semantic search + LLM object chat + AUX.IO visitor pages
 **Target:** ISEA2026 Dubai, 6th Summit on New Media Art Archiving (April 11–12)
@@ -51,7 +51,7 @@ This repository, its commit history, and its git log constitute a verifiable res
 ## What's Working Right Now
 
 ### ✅ Multi-Collection Semantic Search
-Nine live collection sources are in Qdrant right now, searchable simultaneously:
+Eleven live collection sources are in Qdrant right now, searchable simultaneously:
 
 | Collection | Source | Objects | Licence | Status |
 |-----------|--------|---------|---------|--------|
@@ -64,6 +64,8 @@ Nine live collection sources are in Qdrant right now, searchable simultaneously:
 | `archai_europeana` | Europeana | ~150 | Mixed / per-record | ✅ Live |
 | `archai_auckland` | Auckland Museum | ~120 | Mixed / per-record | ✅ Live |
 | `archai_tepapa` | Museum of New Zealand Te Papa Tongarewa | ~120 | Metadata CC BY 4.0 · images mixed / per-item | ✅ Live |
+| `archai_mplus` | M+, Hong Kong | ~120 | CC0 metadata · preview media / source rights apply | ✅ Live |
+| `archai_brasiliana` | Brasiliana Museus | ~120 | Public domain / open-access, item-checked | ✅ Live |
 | `archai_curator` | All live collections + comments | Built on demand | Mixed | ✅ Live |
 
 - Query → embedded via nomic-embed-text → vector searched across all live collections → results merged by cosine similarity
@@ -72,12 +74,13 @@ Nine live collection sources are in Qdrant right now, searchable simultaneously:
 - Sort by: name, date, discipline, source
 - Filter: with images (default), all, or source-specific subsets
 - Deduplicated by canonical_id across collections
-- Curator collection currently rebuilds across `1205` live objects
-- Auckland Museum and Te Papa are the first live Southern Hemisphere onboarding passes in the stack
+- Curator collection currently rebuilds across `1445` live objects
+- Auckland Museum, Te Papa, M+, and Brasiliana now extend the live stack into Aotearoa, Asia, and South America
 - Te Papa media is ingested preview-first with item-level rights preserved for public-safe display
+- Brasiliana onboarding only admits public-domain / open-access records that pass item-level rights checks
 
 ### ✅ Object-as-Speaker LLM Chat
-Each object speaks in first person via Qwen 2.5 32B, grounded in verified metadata:
+Each object speaks in first person via the local Qwen 2.5 stack, grounded in verified metadata:
 - System prompt built from ALL metadata fields
 - Dynamic institution name per object
 - Hallucination prevention: "That's not in my record"
@@ -85,7 +88,7 @@ Each object speaks in first person via Qwen 2.5 32B, grounded in verified metada
 
 ### ✅ Object Detail Panel
 - Full metadata, image, curatorial description
-- Live Qwen 2.5 32B chat with question chips
+- Live Qwen 2.5 local chat with question chips
 - Semantically related objects across all collections
 - Source-specific links: "View on The Met →", "View on V&A →"
 - **Visitor comment thread** — all comments (including flagged) with approve/remove/reply actions for curators
@@ -225,9 +228,9 @@ Date extraction from titles, better Met filtering, incremental harvest. Run Harv
 │                    ARCHAI Frontend                      │
 │                 (ARCHAI_v10_8.html · browser)           │
 │                                                         │
-│  Search ──→ Ollama embed ──→ Qdrant (6 live collections)│
-│  Chat   ──→ Ollama llama3 ──→ grounded response         │
-│  AUX.IO ─→ Ollama llama3 ──→ chat over LAN / proxy      │
+│  Search ──→ Ollama embed ──→ Qdrant (11 live collections)│
+│  Chat   ──→ Ollama qwen2.5 ──→ grounded response        │
+│  AUX.IO ─→ Ollama qwen2.5 ──→ chat over LAN / proxy     │
 │  Sort   ──→ client-side on loaded objects               │
 │  Comments ──→ Backend API ──→ AI moderation ──→ SQLite  │
 └────────┬──────────────┬──────────────┬──────────────────┘
@@ -275,7 +278,7 @@ archai/
 │   ├── generate-nfc-pages.js      ← AUX.IO page generator from all live collections
 │   ├── nfc-visitor-template.html  ← AUX.IO mobile template
 │   ├── captive-portal.html
-│   └── v/                         ← Generated pages (~194, not in git)
+│   └── v/                         ← Generated pages (~1311, not in git)
 ├── docs/
 │   └── ARCHAI_ISEA2026_Rob_Graham.pdf
 └── docker-compose.yml
@@ -321,6 +324,8 @@ Mac Studio M2 Max · 64GB · 1TB. Base institutional deployment: ~$3,500–5,000
 | **v10.9** | **AUX.IO moved from the old 62-page website subset to the live generated collection manifest, public website wrappers aligned with newer institutions, and the current runtime/docs brought into sync around the expanded live object set** |
 | **v11.0** | **Auckland Museum onboarded into the live stack, collection loading now scrolls beyond the first 200 Qdrant points, curator vectors rebuilt to 1085 live objects, AUX.IO source tagging corrected, and 951 public-facing visitor pages regenerated across 8 collections** |
 | **v11.1** | **Te Papa Tongarewa onboarded as the ninth live collection, guest-token and registered-key API access supported, curator vectors rebuilt to 1205 live objects, AUX.IO default cap lifted, and 1071 public-facing visitor pages regenerated across 9 collections** |
+| **v11.2** | **M+ Hong Kong onboarded as the tenth live collection with bilingual metadata preserved, public preview media attached from the source object pages, and the curator layer expanded to include Asia-focused visual culture records** |
+| **v11.3** | **Brasiliana Museus onboarded as the eleventh live collection using a public-domain / open-access legal gate, curator vectors rebuilt to 1445 live objects, and 1311 AUX.IO visitor pages regenerated across 11 collections** |
 
 ---
 

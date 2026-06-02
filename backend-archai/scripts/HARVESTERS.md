@@ -14,6 +14,8 @@ Each harvester fetches objects from a museum API, generates embeddings via Ollam
 | `europeana-harvester.js` | Europeana (4000+ institutions) | 🇪🇺 Europe | Millions | ✅ | 🔑 Free | Mixed |
 | `aucklandmuseum-harvester.js` | Auckland Museum | 🇳🇿 New Zealand | 1M+ searchable | ✅ | None | Mixed / per-record |
 | `tepapa-harvester.js` | Museum of New Zealand Te Papa Tongarewa | 🇳🇿 New Zealand | 500K+ searchable | ✅ Preview-first | Optional / guest fallback | Metadata CC BY 4.0 · images mixed |
+| `mplus-harvester.js` | M+, Hong Kong | 🇭🇰 Hong Kong | Public GraphQL catalog | ✅ Preview-first | None | CC0 metadata · source rights apply |
+| `brasiliana-harvester.js` | Brasiliana Museus | 🇧🇷 Brazil | Large Tainacan platform | ✅ | None | Public domain / open-access, item-checked |
 
 **Museums Victoria** objects are in the `archai_pilot` collection (harvested separately via the pipeline).
 
@@ -34,11 +36,15 @@ EUROPEANA_API_KEY=xxx node europeana-harvester.js --limit 150
 # Southern Hemisphere onboarding
 node aucklandmuseum-harvester.js --limit 120
 node tepapa-harvester.js --limit 120
+node mplus-harvester.js --limit 120
+node brasiliana-harvester.js --limit 120
 
 # Dry run (no writes)
 node cleveland-harvester.js --dry-run
 node aucklandmuseum-harvester.js --dry-run
 node tepapa-harvester.js --dry-run
+node mplus-harvester.js --dry-run
+node brasiliana-harvester.js --dry-run
 ```
 
 ## After Harvesting
@@ -62,6 +68,8 @@ node generate-nfc-pages.js --limit 300
 | `archai_europeana` | 6,000,000+ | Europeana |
 | `archai_auckland` | 7,000,000+ | Auckland Museum |
 | `archai_tepapa` | 8,000,000+ | Te Papa Tongarewa |
+| `archai_mplus` | 9,000,000+ | M+, Hong Kong |
+| `archai_brasiliana` | 12,000,000+ | Brasiliana Museus |
 
 ## Data Richness
 
@@ -81,6 +89,8 @@ famtec run archai -- node europeana-harvester.js
 - **Rijksmuseum**: No key needed (uses OAI-PMH endpoint)
 - **Europeana**: https://pro.europeana.eu/page/get-api (free registration)
 - **Te Papa**: optional registered key or built-in guest-token fallback for development
+- **M+**: public GraphQL endpoint currently works without separate registration for metadata access
+- **Brasiliana Museus**: public Tainacan / WordPress API, no key required
 
 ## International Expansion Notes
 
@@ -99,3 +109,5 @@ ARCHAI is moving toward translation-aware onboarding at ingest time, not only in
 - Harvard Art Museums (needs API key)
 - Cooper Hewitt / Smithsonian Design (needs API key)
 - Brooklyn Museum (needs API key)
+- DigitalNZ (partner-rights gate still needed before public AUX.IO use)
+- Tokyo Museum Collection / ToMuCo (technically explored, but currently held out of live onboarding on public-rights grounds)
