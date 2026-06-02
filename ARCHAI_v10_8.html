@@ -1481,7 +1481,7 @@ function checkDirectus() {
 // ═══════════════════════════════════════════════════════════════════
 // LOAD OBJECTS FROM QDRANT — All Collections
 // ═══════════════════════════════════════════════════════════════════
-const COLLECTIONS = ['archai_pilot', 'archai_met', 'archai_va', 'archai_aic', 'archai_cma', 'archai_rijks', 'archai_europeana', 'archai_auckland', 'archai_tepapa'];
+const COLLECTIONS = ['archai_pilot', 'archai_met', 'archai_va', 'archai_aic', 'archai_cma', 'archai_rijks', 'archai_europeana', 'archai_auckland', 'archai_tepapa', 'archai_mplus'];
 const COLLECTION_LABELS = {
   archai_pilot: { name: 'Museums Victoria', short: 'MV', colour: 'rgba(143,188,176,0.7)', border: 'rgba(143,188,176,0.3)' },
   archai_met: { name: 'The Met, NYC', short: 'Met', colour: 'rgba(200,169,110,0.7)', border: 'rgba(200,169,110,0.3)' },
@@ -1491,7 +1491,8 @@ const COLLECTION_LABELS = {
   archai_rijks: { name: 'Rijksmuseum, Amsterdam', short: 'Rijks', colour: 'rgba(220,146,86,0.78)', border: 'rgba(220,146,86,0.32)' },
   archai_europeana: { name: 'Europeana', short: 'EU', colour: 'rgba(116,156,214,0.78)', border: 'rgba(116,156,214,0.32)' },
   archai_auckland: { name: 'Auckland Museum', short: 'AKL', colour: 'rgba(124,196,172,0.82)', border: 'rgba(124,196,172,0.34)' },
-  archai_tepapa: { name: 'Te Papa Tongarewa', short: 'TP', colour: 'rgba(96,166,154,0.84)', border: 'rgba(96,166,154,0.34)' }
+  archai_tepapa: { name: 'Te Papa Tongarewa', short: 'TP', colour: 'rgba(96,166,154,0.84)', border: 'rgba(96,166,154,0.34)' },
+  archai_mplus: { name: 'M+, Hong Kong', short: 'M+', colour: 'rgba(216,158,88,0.84)', border: 'rgba(216,158,88,0.34)' }
 };
 
 function getCollectionLabel(col) {
@@ -2988,7 +2989,8 @@ function buildVocabIndex() {
     archai_rijks: 'Rijksmuseum',
     archai_europeana: 'Europeana',
     archai_auckland: 'Auckland Museum',
-    archai_tepapa: 'Te Papa Tongarewa'
+    archai_tepapa: 'Te Papa Tongarewa',
+    archai_mplus: 'M+, Hong Kong'
   };
 
   for (const [key, obj] of Object.entries(OBJECTS)) {

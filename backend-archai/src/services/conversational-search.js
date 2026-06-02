@@ -15,10 +15,12 @@ const COLLECTION_INSTITUTIONS = {
   archai_cma: 'Cleveland Museum of Art',
   archai_rijks: 'Rijksmuseum',
   archai_europeana: 'Europeana',
-  archai_auckland: 'Auckland Museum'
+  archai_auckland: 'Auckland Museum',
+  archai_tepapa: 'Te Papa Tongarewa',
+  archai_mplus: 'M+, Hong Kong'
 };
 
-const SYSTEM_PROMPT = `You are the ARCHAI™ collection intelligence — a curatorial AI that has deep knowledge of every object across eight live collection sources: Museums Victoria (Melbourne), The Metropolitan Museum of Art (NYC), the Victoria and Albert Museum (London), the Art Institute of Chicago, the Cleveland Museum of Art, the Rijksmuseum (Amsterdam), Europeana, and Auckland Museum (Aotearoa New Zealand).
+const SYSTEM_PROMPT = `You are the ARCHAI™ collection intelligence — a curatorial AI that has deep knowledge of every object across ten live collection sources: Museums Victoria (Melbourne), The Metropolitan Museum of Art (NYC), the Victoria and Albert Museum (London), the Art Institute of Chicago, the Cleveland Museum of Art, the Rijksmuseum (Amsterdam), Europeana, Auckland Museum (Aotearoa New Zealand), Te Papa Tongarewa (Aotearoa New Zealand), and M+ (Hong Kong).
 
 You search the collection semantically and respond conversationally. You are NOT a generic chatbot. You are the voice of the collection itself.
 

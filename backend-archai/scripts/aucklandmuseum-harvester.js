@@ -165,7 +165,10 @@ function extractClassificationTerms(source, bucket) {
 
 function mediaUrl(primaryRepresentation, rendering = 'standard.jpg') {
   if (!primaryRepresentation) return '';
-  return `${primaryRepresentation}?rendering=${rendering}`;
+  // Force https — the Auckland API serves http by default, which is blocked
+  // as mixed content on the https site. The API fully supports https.
+  const secure = String(primaryRepresentation).replace(/^http:\/\//, 'https://');
+  return `${secure}?rendering=${rendering}`;
 }
 
 function isRightsFriendly(copyrights = []) {

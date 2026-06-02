@@ -26,7 +26,7 @@ const OLLAMA_URL = env.ollama.baseUrl;
 const EMBED_MODEL = env.ollama.embedModel;
 const CHAT_MODEL = env.ollama.chatModel || 'qwen2.5:7b';
 const CURATOR_MODEL = env.ollama.curatorModel || 'qwen2.5:32b';
-const ALLOWED_COLLECTIONS = ['archai_pilot', 'archai_met', 'archai_va', 'archai_aic', 'archai_cma', 'archai_rijks', 'archai_europeana', 'archai_auckland'];
+const ALLOWED_COLLECTIONS = ['archai_pilot', 'archai_met', 'archai_va', 'archai_aic', 'archai_cma', 'archai_rijks', 'archai_europeana', 'archai_auckland', 'archai_tepapa', 'archai_mplus'];
 const COLLECTION_INSTITUTIONS = {
   archai_pilot: 'Museums Victoria',
   archai_met: 'The Metropolitan Museum of Art',
@@ -35,7 +35,9 @@ const COLLECTION_INSTITUTIONS = {
   archai_cma: 'Cleveland Museum of Art',
   archai_rijks: 'Rijksmuseum',
   archai_europeana: 'Europeana',
-  archai_auckland: 'Auckland Museum'
+  archai_auckland: 'Auckland Museum',
+  archai_tepapa: 'Te Papa Tongarewa',
+  archai_mplus: 'M+, Hong Kong'
 };
 
 // ── Personality config ────────────────────────────────────────────
