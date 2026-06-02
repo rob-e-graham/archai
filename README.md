@@ -18,6 +18,10 @@ ARCHAI is an active doctoral research project undertaken by Rob Graham through R
 
 This repository contains an open-source reference implementation and associated research outputs.
 
+ARCHAI is a working research prototype, not a finished commercial product. FAMTEC is open to funded research partnerships, institutional pilot testing, accessibility evaluation, collection-data collaborations, software development support, grant partnerships, and feedback from museums, galleries, archives, universities, and aligned public-interest technology partners.
+
+For research, funding, testing, or development enquiries: rob@fineartmedia.tech
+
 Third-party collection data, trademarks, institutional names, and external systems remain the property of their respective owners. Use of the software does not imply endorsement by any institution represented within the project datasets.
 
 ---
