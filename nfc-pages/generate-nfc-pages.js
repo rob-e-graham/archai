@@ -29,7 +29,7 @@ const getArg = (name, fallback) => {
 const QDRANT_URL = getArg('qdrant', 'http://localhost:6333');
 const ALL_COLLECTIONS = [
   'archai_pilot', 'archai_met', 'archai_va',
-  'archai_aic', 'archai_cma', 'archai_rijks', 'archai_europeana', 'archai_auckland'
+  'archai_aic', 'archai_cma', 'archai_rijks', 'archai_europeana', 'archai_auckland', 'archai_tepapa'
 ];
 const COLLECTION_LABELS = {
   archai_pilot: 'Museums Victoria',
@@ -39,13 +39,14 @@ const COLLECTION_LABELS = {
   archai_cma: 'Cleveland Museum of Art',
   archai_rijks: 'Rijksmuseum, Amsterdam',
   archai_europeana: 'Europeana',
-  archai_auckland: 'Auckland Museum'
+  archai_auckland: 'Auckland Museum',
+  archai_tepapa: 'Museum of New Zealand Te Papa Tongarewa'
 };
 const OLLAMA_LAN_HOST = getArg('host', 'http://localhost:11434');
 // Default to backend-proxy mode so public AUX.IO pages can use the live chat API
 // instead of trying to call a visitor's local Ollama instance from the browser.
 const BACKEND_PROXY = getArg('proxy', '__SELF__');
-const LIMIT = parseInt(getArg('limit', '1000'), 10);
+const LIMIT = parseInt(getArg('limit', '5000'), 10);
 const OUTPUT_DIR = path.join(__dirname, 'v');
 const TEMPLATE_PATH = path.join(__dirname, 'nfc-visitor-template.html');
 const PORTAL_PATH = path.join(__dirname, 'captive-portal.html');

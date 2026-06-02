@@ -2,7 +2,7 @@
 
 > "Museums are not silent repositories of Memory; they are living, thinking organisms, where imagination and knowledge, tradition and innovation meet." — Gayane Umerova, UNESCO, 2025
 
-**Version:** 11.0
+**Version:** 11.1
 **Author:** Rob Graham · FAMTEC (Fine Art Media Tech) / RMIT University
 **Status:** Working prototype — multi-institution semantic search + LLM object chat + AUX.IO visitor pages
 **Target:** ISEA2026 Dubai, 6th Summit on New Media Art Archiving (April 11–12)
@@ -51,7 +51,7 @@ This repository, its commit history, and its git log constitute a verifiable res
 ## What's Working Right Now
 
 ### ✅ Multi-Collection Semantic Search
-Eight live collection sources are in Qdrant right now, searchable simultaneously:
+Nine live collection sources are in Qdrant right now, searchable simultaneously:
 
 | Collection | Source | Objects | Licence | Status |
 |-----------|--------|---------|---------|--------|
@@ -63,6 +63,7 @@ Eight live collection sources are in Qdrant right now, searchable simultaneously
 | `archai_rijks` | Rijksmuseum | ~150 | Rijksmuseum API / source rights apply | ✅ Live |
 | `archai_europeana` | Europeana | ~150 | Mixed / per-record | ✅ Live |
 | `archai_auckland` | Auckland Museum | ~120 | Mixed / per-record | ✅ Live |
+| `archai_tepapa` | Museum of New Zealand Te Papa Tongarewa | ~120 | Metadata CC BY 4.0 · images mixed / per-item | ✅ Live |
 | `archai_curator` | All live collections + comments | Built on demand | Mixed | ✅ Live |
 
 - Query → embedded via nomic-embed-text → vector searched across all live collections → results merged by cosine similarity
@@ -71,8 +72,9 @@ Eight live collection sources are in Qdrant right now, searchable simultaneously
 - Sort by: name, date, discipline, source
 - Filter: with images (default), all, or source-specific subsets
 - Deduplicated by canonical_id across collections
-- Curator collection currently rebuilds across `1085` live objects
-- Auckland Museum is the first translation-aware Southern Hemisphere onboarding pass in the live stack
+- Curator collection currently rebuilds across `1205` live objects
+- Auckland Museum and Te Papa are the first live Southern Hemisphere onboarding passes in the stack
+- Te Papa media is ingested preview-first with item-level rights preserved for public-safe display
 
 ### ✅ Object-as-Speaker LLM Chat
 Each object speaks in first person via Qwen 2.5 32B, grounded in verified metadata:
@@ -318,6 +320,7 @@ Mac Studio M2 Max · 64GB · 1TB. Base institutional deployment: ~$3,500–5,000
 | **v10.8** | **Backend proxy for safe public hosting (rate limiting, prompt injection blocking), AI-moderated threaded comments, curator vector collection (all metadata + comments searchable), SQLite persistence, six live source collections in Qdrant, AUX.IO pages wired to backend API, object detail comment thread with approve/remove/reply, startup script with health checks, operations guide** |
 | **v10.9** | **AUX.IO moved from the old 62-page website subset to the live generated collection manifest, public website wrappers aligned with newer institutions, and the current runtime/docs brought into sync around the expanded live object set** |
 | **v11.0** | **Auckland Museum onboarded into the live stack, collection loading now scrolls beyond the first 200 Qdrant points, curator vectors rebuilt to 1085 live objects, AUX.IO source tagging corrected, and 951 public-facing visitor pages regenerated across 8 collections** |
+| **v11.1** | **Te Papa Tongarewa onboarded as the ninth live collection, guest-token and registered-key API access supported, curator vectors rebuilt to 1205 live objects, AUX.IO default cap lifted, and 1071 public-facing visitor pages regenerated across 9 collections** |
 
 ---
 

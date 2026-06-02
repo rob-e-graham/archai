@@ -38,7 +38,7 @@ Do not onboard beyond basic technical exploration until legal and media terms ar
 
 | Priority | Source | Region | Access | Metadata | Images | Demo status | Why it matters |
 |---|---|---|---|---|---|---|---|
-| 1 | Te Papa | Aotearoa / Pacific | API, free key | CC BY 4.0 | Per-item / mixed | Approved with item rights check | Best next Southern Hemisphere source, strong Pacific and Maori relevance |
+| 1 | Te Papa | Aotearoa / Pacific | API, free key or guest token | CC BY 4.0 | Per-item / mixed | Live with item rights check | Live as preview-first onboarding with item rights attached and sensitive records excluded by default |
 | 2 | Auckland Museum | Aotearoa / Pacific | API | Mixed / per-item | Mixed / per-item | Live with placeholder filter | Already live; now needs source-side media cleanup |
 | 3 | DigitalNZ | Aotearoa / Pacific | Aggregator API | Mixed, rights-field dependent | Partner-specific | Approved metadata with partner rights check | Strong breadth and multilingual / regional reach |
 | 4 | QAGOMA | Australia / Asia Pacific | Open dataset | Open dataset | Recheck per item | Approved dataset with image rights recheck | Strong Australian and Asia-Pacific balancing source |
@@ -61,11 +61,11 @@ Do not onboard beyond basic technical exploration until legal and media terms ar
 
 ## Recommended next onboarding order
 
-1. `Te Papa`
-2. `M+`
-3. `ToMuCo`
-4. `Brasiliana Museus`
-5. `DigitalNZ`
+1. `M+`
+2. `ToMuCo`
+3. `Brasiliana Museus`
+4. `DigitalNZ`
+5. `QAGOMA`
 
 This sequence gives ARCHAI:
 

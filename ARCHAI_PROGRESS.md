@@ -73,6 +73,7 @@ Why:
 - `archai_rijks`
 - `archai_europeana`
 - `archai_auckland`
+- `archai_tepapa`
 - `archai_curator`
 
 ### Known collection counts at last check
@@ -85,16 +86,17 @@ Why:
 - `archai_rijks`: 150
 - `archai_europeana`: 150
 - `archai_auckland`: 120
+- `archai_tepapa`: 120
 
-Total live source objects in the current working set: `1085`
+Total live source objects in the current working set: `1205`
 
 ### AUX.IO generation
 
 Europeana harvest was run successfully and AUX.IO pages were regenerated.
 
 Last noted AUX.IO output:
-- `951` generated visitor pages in [nfc-pages/v](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v)
-- live source spread: MV 39, Met 42, V&A 150, AIC 150, CMA 150, Rijks 150, Europeana 150, Auckland 120
+- `1071` generated visitor pages in [nfc-pages/v](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v)
+- live source spread: MV 39, Met 42, V&A 150, AIC 150, CMA 150, Rijks 150, Europeana 150, Auckland 120, Te Papa 120
 
 ### Europeana / Keytec
 
@@ -116,17 +118,17 @@ node "/Users/robgraham/Desktop/APPS/Keytec API Wallet/source/bin/famtec.js" run 
 
 Best immediate targets for regional balance and legally reusable data:
 
-- Te Papa
-- Auckland Museum
+- Auckland Museum — live
+- Te Papa — live
+- M+
+- Tokyo Museum Collection API
+- Brasiliana Museus
 - DigitalNZ
 - QAGOMA
 - National Museum of Australia
 - WA Museum
-- M+
-- Tokyo Museum Collection API
 - National Palace Museum
 - National Taiwan Museum of Fine Arts
-- Brasiliana Museus
 - Qatar Museums / Qatar Digital Library
 - Computer History Museum
 - Trove
@@ -405,10 +407,43 @@ This does three important things:
 
 Verified next-priority international targets currently favour:
 
-1. Te Papa
-2. M+
-3. Tokyo Museum Collection
-4. Brasiliana Museus
-5. DigitalNZ
+1. M+
+2. Tokyo Museum Collection
+3. Brasiliana Museus
+4. DigitalNZ
+5. QAGOMA
 
 These were chosen for legal clarity, multilingual value, regional balance, and likelihood of producing public-safe, image-backed records.
+
+## Te Papa onboarding completed — 2026-06-02
+
+Added:
+
+- [backend-archai/scripts/tepapa-harvester.js](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/backend-archai/scripts/tepapa-harvester.js)
+
+What changed:
+
+- Te Papa now lives in its own source collection: `archai_tepapa`
+- onboarding uses guest-token auth by default, with optional `TEPAPA_API_KEY`
+- metadata remains source-faithful and rights-aware
+- public-facing media uses preview-first selection so item-level image restrictions stay respected
+- culturally sensitive records remain excluded by default unless deliberately revisited later
+
+Verification:
+
+- `archai_tepapa` created in Qdrant with `120` records
+- backend health now reports `1205` live source objects across `9` collections
+- `archai_curator` rebuilt to `1205` vectors
+- AUX.IO regenerated to `1071` visitor pages across `9` live collections
+
+Workflow notes:
+
+- [nfc-pages/generate-nfc-pages.js](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/generate-nfc-pages.js) now includes `archai_tepapa`
+- AUX.IO default generation cap was lifted from `1000` to `5000`
+- [ARCHAI_v10_8.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ARCHAI_v10_8.html) now knows about Te Papa and displays `Build v11.1 · 9 live collections`
+
+Recommended next harvest after Te Papa:
+
+1. M+
+2. Tokyo Museum Collection
+3. Brasiliana Museus
