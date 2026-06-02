@@ -371,7 +371,7 @@ Work completed in the public website wrapper at [archai.html](/Users/robgraham/D
 - result score label changed from raw `%` to `Match %` so it reads as semantic relevance, not upload progress
 - result cards now show lightweight `match cues` drawn from structured metadata
 - cue cleanup added so the website shows museum-facing language rather than internal catalog or ontology noise
-- a second browser-side false-image filter now suppresses Auckland placeholder media even when the source provides a technically valid image URL
+- a second browser-side false-image filter was added first to suppress Auckland placeholder media even when the source provided a technically valid image URL
 
 Verified locally on the website demo:
 
@@ -384,16 +384,19 @@ Verified locally on the website demo:
   - `Persia`
   - `locally loom woven textile`
 
-Important remaining issue:
+Resolved follow-up:
 
-- some Auckland Museum records still expose placeholder media such as `Digital image not yet created`
-- the website demo now suppresses the obvious placeholder thumbnails at render time
-- the next proper step is still a source-quality filter during Auckland onboarding so false media never enters the canonical layer in the first place
+- repeatable Auckland placeholder assets were identified by exact media hashes
+- [backend-archai/scripts/aucklandmuseum-harvester.js](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/backend-archai/scripts/aucklandmuseum-harvester.js) now filters those placeholder assets during ingest, before they reach Qdrant
+- latest Auckland dry run skipped `11` placeholder-media records while still returning a full `120` clean objects
+- latest live Auckland refresh skipped `15` placeholder-media records, rewrote the `archai_auckland` collection, and left `0` known placeholder hashes in the live source collection
+- `archai_curator` was rebuilt to `1445` vectors after the Auckland refresh
+- AUX.IO was regenerated again to `1311` visitor pages after the source-side cleanup
 
 Good next step after this session:
 
-1. identify repeatable Auckland placeholder media signatures
-2. suppress them in the harvester or canonical media selection logic
+1. keep watching Auckland for new placeholder variants beyond the two known hashes
+2. consider moving media validation into a shared onboarding helper for other mixed-rights sources
 3. continue onboarding more regionally diverse collections for language and rights testing
 
 ## International source gating added

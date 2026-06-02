@@ -24,6 +24,7 @@ import {
   collectLanguages,
   buildDisplayTexts
 } from './lib/multilingual.js';
+import { createHash } from 'node:crypto';
 
 const AUCKLAND_SEARCH_API = 'https://api.aucklandmuseum.com/search/collectionsonline/_search';
 const QDRANT_URL = 'http://localhost:6333';
@@ -31,6 +32,10 @@ const OLLAMA_URL = 'http://localhost:11434';
 const COLLECTION = 'archai_auckland';
 const EMBED_MODEL = 'nomic-embed-text';
 const POINT_ID_OFFSET = 7000000;
+const AUCKLAND_PLACEHOLDER_HASHES = new Set([
+  '8824d0781730427b72813fa1678a2b02',
+  '53000f8668ef40d519eb97aa73cfdb48'
+]);
 
 const SEARCH_QUERIES = [
   { q: 'department:"Applied Arts and Design" AND primaryRepresentation:*', focus: 'design' },
@@ -169,6 +174,30 @@ function mediaUrl(primaryRepresentation, rendering = 'standard.jpg') {
   // as mixed content on the https site. The API fully supports https.
   const secure = String(primaryRepresentation).replace(/^http:\/\//, 'https://');
   return `${secure}?rendering=${rendering}`;
+}
+
+const mediaValidationCache = new Map();
+
+async function isKnownPlaceholderMedia(primaryRepresentation) {
+  if (!primaryRepresentation) return true;
+  const url = mediaUrl(primaryRepresentation, 'standard.jpg');
+  if (mediaValidationCache.has(url)) return mediaValidationCache.get(url);
+
+  try {
+    const res = await fetch(url);
+    if (!res.ok) {
+      mediaValidationCache.set(url, true);
+      return true;
+    }
+    const buffer = Buffer.from(await res.arrayBuffer());
+    const hash = createHash('md5').update(buffer).digest('hex');
+    const isPlaceholder = AUCKLAND_PLACEHOLDER_HASHES.has(hash);
+    mediaValidationCache.set(url, isPlaceholder);
+    return isPlaceholder;
+  } catch {
+    mediaValidationCache.set(url, true);
+    return true;
+  }
 }
 
 function isRightsFriendly(copyrights = []) {
@@ -319,6 +348,7 @@ async function main() {
   let skippedRights = 0;
   let skippedSensitive = 0;
   let skippedScore = 0;
+  let skippedPlaceholder = 0;
 
   console.log('\n  Searching Auckland Museum API…\n');
 
@@ -337,6 +367,7 @@ async function main() {
         if ((source.recordScore || 0) < MIN_RECORD_SCORE) { skippedScore++; continue; }
         if (!INCLUDE_TAONGA && (source.isTaonga || source.isSensitive)) { skippedSensitive++; continue; }
         if (!isRightsFriendly(source.copyright || [])) { skippedRights++; continue; }
+        if (await isKnownPlaceholderMedia(source.primaryRepresentation)) { skippedPlaceholder++; continue; }
 
         seen.set(id, { id, source, focus: search.focus });
         added++;
@@ -357,6 +388,7 @@ async function main() {
   console.log(`  → Skipped low score: ${skippedScore}`);
   console.log(`  → Skipped rights filter: ${skippedRights}`);
   console.log(`  → Skipped sensitive / taonga filter: ${skippedSensitive}`);
+  console.log(`  → Skipped placeholder media: ${skippedPlaceholder}`);
   console.log(`  → Processing ${ranked.length}\n`);
 
   let success = 0;
