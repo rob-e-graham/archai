@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#080808">
+<title>Nossa Senhora das Dores — ARCHAI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080808;
+  --surface: #0f0f0f;
+  --surface2: #161616;
+  --border: #1e1e1e;
+  --border2: #282828;
+  --text: #e8e4dc;
+  --text2: #a09890;
+  --text3: #5a5450;
+  --accent: #c8a96e;
+  --accent2: #8fbcb0;
+  --accent3: #9b8fbf;
+  --mono: 'DM Mono', monospace;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--serif);
+  font-weight: 300;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+}
+
+.v-stage {
+  width: 100%;
+  min-height: 100dvh;
+}
+
+.v-phone-shell {
+  width: 100%;
+  min-height: 100dvh;
+  background: var(--bg);
+  position: relative;
+}
+
+/* Grain overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── HEADER ── */
+.v-header {
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 100;
+}
+.v-logo {
+  font-family: var(--serif);
+  font-size: 0.9rem;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+.v-logo span { font-style: italic; color: var(--accent); }
+.v-tag {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--accent2);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border: 1px solid rgba(143,188,176,0.3);
+}
+
+.v-scroll-cue {
+  position: sticky;
+  top: 58px;
+  z-index: 95;
+  width: fit-content;
+  margin: 12px auto -2px;
+  padding: 7px 12px;
+  border: 1px solid rgba(143,188,176,0.24);
+  border-radius: 999px;
+  background: rgba(8,8,8,0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.v-scroll-cue.hidden {
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+}
+.v-scroll-cue-label {
+  font-family: var(--mono);
+  font-size: 0.46rem;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: rgba(143,188,176,0.88);
+}
+.v-scroll-cue-arrows {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 1px;
+  color: var(--accent2);
+  animation: nudgeScroll 1.5s ease-in-out infinite;
+}
+
+/* ── HERO IMAGE ── */
+.v-hero {
+  width: 100%;
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 200px;
+  max-height: 56vh;
+  animation: imgFade 1s ease both;
+}
+.v-hero img {
+  width: 100%;
+  height: 100%;
+  max-height: 56vh;
+  object-fit: contain;
+  display: block;
+}
+.v-hero-empty {
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  color: var(--text3);
+  text-align: center;
+  padding: 40px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── CONTENT ── */
+.v-content { padding: 24px 20px 32px; }
+
+.v-title {
+  font-family: var(--serif);
+  font-size: 1.7rem;
+  font-weight: 300;
+  line-height: 1.25;
+  margin-bottom: 6px;
+  animation: slideUp 0.6s ease 0.1s both;
+}
+
+.v-sub {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  color: var(--text3);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  animation: slideUp 0.6s ease 0.2s both;
+}
+
+.v-meta-strip {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+  animation: slideUp 0.6s ease 0.25s both;
+}
+.v-meta-tag {
+  font-family: var(--mono);
+  font-size: 0.46rem;
+  padding: 3px 8px;
+  border: 1px solid var(--border2);
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.v-meta-tag.mv { border-color: rgba(143,188,176,0.3); color: rgba(143,188,176,0.7); }
+.v-meta-tag.lic { border-color: rgba(200,169,110,0.25); color: rgba(200,169,110,0.6); }
+
+.v-story {
+  font-size: 1.05rem;
+  color: var(--text2);
+  line-height: 1.85;
+  margin-bottom: 28px;
+  animation: slideUp 0.6s ease 0.3s both;
+}
+.v-story strong { color: var(--text); font-weight: 400; }
+
+/* ── DIVIDER ── */
+.v-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 0 0 24px;
+}
+
+/* ── ASK THIS OBJECT ── */
+.v-ask {
+  animation: slideUp 0.6s ease 0.4s both;
+}
+.v-ask-label {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--text2);
+  margin-bottom: 14px;
+}
+
+.v-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.v-chip {
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  padding: 8px 12px;
+  border: 1px solid var(--border2);
+  color: var(--text2);
+  cursor: pointer;
+  transition: all 0.15s;
+  letter-spacing: 0.5px;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-chip:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+
+.v-tone-wrap {
+  margin-bottom: 14px;
+}
+.v-tone-label {
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-tone-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-tone-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-tone-buttons button.active,
+.v-tone-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-tone-note {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.v-chat-row {
+  display: flex;
+  gap: 0;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(143,188,176,0.04);
+  margin-bottom: 12px;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+}
+.v-chat-row:focus-within {
+  border-color: rgba(143,188,176,0.42);
+  background: rgba(143,188,176,0.06);
+  box-shadow: 0 0 0 1px rgba(143,188,176,0.08);
+}
+.v-chat-input {
+  flex: 1;
+  padding: 14px 16px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1rem;
+}
+.v-chat-input::placeholder { color: rgba(143,188,176,0.58); }
+.v-chat-send {
+  padding: 14px 18px;
+  background: var(--accent2);
+  border: none;
+  color: var(--bg);
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-chat-send:active { background: #a5d0c4; }
+
+.v-response {
+  display: none;
+  padding: 16px;
+  border-left: 2px solid var(--accent2);
+  font-size: 0.95rem;
+  color: var(--text2);
+  line-height: 1.8;
+  font-style: italic;
+  margin-bottom: 20px;
+  animation: slideUp 0.3s ease both;
+}
+.v-response.thinking {
+  color: var(--text3);
+}
+.v-response.thinking .thinking-dots {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+}
+.v-response.thinking .thinking-dots span {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.3;
+  animation: dotPulse 1.4s ease-in-out infinite;
+}
+.v-response.thinking .thinking-dots span:nth-child(2) { animation-delay: 0.2s; }
+.v-response.thinking .thinking-dots span:nth-child(3) { animation-delay: 0.4s; }
+.v-response.thinking .thinking-label {
+  font-family: var(--mono);
+  font-size: 0.42rem;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--text3);
+  display: block;
+  margin-bottom: 6px;
+  animation: fadeInSlow 0.4s ease both;
+}
+.v-response .fallback-note {
+  font-family: var(--mono);
+  font-size: 0.44rem;
+  color: var(--text3);
+  margin-top: 8px;
+  font-style: normal;
+  letter-spacing: 0.5px;
+}
+
+/* ── METADATA CARD ── */
+.v-meta-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 18px;
+  margin-bottom: 24px;
+  animation: slideUp 0.6s ease 0.5s both;
+}
+.v-meta-card-label {
+  font-family: var(--mono);
+  font-size: 0.46rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 12px;
+}
+.v-meta-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  gap: 12px;
+}
+.v-meta-row:last-child { border-bottom: none; }
+.v-meta-key { color: var(--text3); flex-shrink: 0; }
+.v-meta-value { color: var(--text2); text-align: right; word-break: break-word; }
+
+/* ── RELATED ── */
+.v-related {
+  margin-top: 8px;
+  animation: slideUp 0.6s ease 0.6s both;
+}
+.v-related-label {
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 12px;
+}
+.v-related-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.v-rel-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 8px;
+  text-decoration: none;
+  transition: border-color 0.12s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-rel-card:active { border-color: var(--border2); }
+.v-rel-thumb {
+  width: 100%;
+  aspect-ratio: 16/9;
+  height: auto;
+  background: var(--surface2);
+  margin-bottom: 6px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.v-rel-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.v-rel-thumb-empty { font-family: var(--mono); font-size: 0.4rem; color: var(--text3); }
+.v-rel-title {
+  font-family: var(--serif);
+  font-size: 0.82rem;
+  color: var(--text2);
+  line-height: 1.3;
+}
+.v-rel-meta {
+  font-family: var(--mono);
+  font-size: 0.42rem;
+  color: var(--text3);
+  margin-top: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ── FOOTER ── */
+.v-footer {
+  padding: 24px 20px 32px;
+  border-top: 1px solid var(--border);
+  margin-top: 8px;
+  text-align: center;
+}
+.v-footer-logo {
+  font-family: var(--serif);
+  font-size: 0.8rem;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 6px;
+}
+.v-footer-logo span { font-style: italic; color: rgba(200,169,110,0.4); }
+.v-footer-text {
+  font-family: var(--mono);
+  font-size: 0.42rem;
+  color: var(--text3);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  line-height: 2;
+}
+.v-footer-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  text-decoration: none;
+  border: 1px solid var(--border2);
+  padding: 6px 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.12s;
+}
+.v-footer-link:active { border-color: var(--accent2); color: var(--accent2); }
+
+/* ── COMMENT ── */
+.v-comment {
+  padding: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  margin-bottom: 24px;
+  animation: slideUp 0.6s ease 0.65s both;
+}
+.v-comment-label {
+  font-family: var(--mono);
+  font-size: 0.46rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 10px;
+}
+.v-comment-input {
+  width: 100%;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  color: var(--text);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.92rem;
+  padding: 12px;
+  resize: vertical;
+  min-height: 60px;
+  outline: none;
+}
+.v-comment-input:focus { border-color: var(--accent2); }
+.v-comment-btn {
+  margin-top: 8px;
+  padding: 10px 16px;
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--text3);
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  width: 100%;
+}
+.v-comment-btn:active { border-color: var(--accent2); color: var(--accent2); }
+.v-prev-comments { margin-top: 14px; }
+.v-prev-label {
+  font-family: var(--mono);
+  font-size: 0.42rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-prev-item {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+.v-prev-item:last-child { border-bottom: none; }
+.v-prev-text {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.88rem;
+  color: var(--text2);
+  line-height: 1.6;
+}
+.v-prev-time {
+  font-family: var(--mono);
+  font-size: 0.4rem;
+  color: var(--text3);
+  margin-top: 3px;
+  letter-spacing: 0.5px;
+}
+
+/* ── SHARE ── */
+.v-share {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+  animation: slideUp 0.6s ease 0.35s both;
+}
+.v-share-btn {
+  flex: 1;
+  min-width: 70px;
+  padding: 10px 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text3);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.12s;
+  -webkit-tap-highlight-color: transparent;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.v-share-btn:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-share-btn.done {
+  border-color: var(--accent2);
+  color: var(--accent2);
+}
+.v-share-icon { font-size: 0.7rem; }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes imgFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
+}
+@keyframes dotPulse {
+  0%, 80%, 100% { opacity: 0.15; transform: scale(0.8); }
+  40% { opacity: 1; transform: scale(1.2); }
+}
+@keyframes fadeInSlow {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes nudgeScroll {
+  0%, 100% { transform: translateY(0); opacity: 0.7; }
+  50% { transform: translateY(2px); opacity: 1; }
+}
+
+@media (min-width: 520px) {
+  body {
+    overflow: hidden;
+    background:
+      radial-gradient(circle at top, rgba(143,188,176,0.08), transparent 34%),
+      linear-gradient(180deg, #090909 0%, #050505 100%);
+  }
+
+  .v-stage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 28px;
+  }
+
+  .v-phone-shell {
+    width: min(100%, 430px);
+    height: min(860px, calc(100dvh - 56px));
+    min-height: 0;
+    overflow-y: auto;
+    border-radius: 34px;
+    border: 1px solid rgba(232,228,220,0.08);
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.03),
+      0 24px 70px rgba(0,0,0,0.62),
+      inset 0 1px 0 rgba(255,255,255,0.03);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(143,188,176,0.36) rgba(255,255,255,0.03);
+  }
+
+  .v-phone-shell::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .v-phone-shell::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.03);
+    border-radius: 999px;
+  }
+
+  .v-phone-shell::-webkit-scrollbar-thumb {
+    background: rgba(143,188,176,0.32);
+    border-radius: 999px;
+  }
+
+  .v-phone-shell::before {
+    content: '';
+    position: sticky;
+    top: 12px;
+    z-index: 140;
+    display: block;
+    width: 112px;
+    height: 14px;
+    margin: 12px auto -26px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.08);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.03);
+  }
+
+  .v-phone-shell::after {
+    content: '';
+    position: sticky;
+    bottom: 14px;
+    z-index: 120;
+    display: block;
+    width: 124px;
+    height: 5px;
+    margin: -12px auto 12px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.15);
+  }
+
+  .v-scroll-cue {
+    top: 72px;
+  }
+}
+</style>
+</head>
+<body>
+
+<div class="v-stage">
+<div class="v-phone-shell" id="phoneShell">
+
+<!-- HEADER -->
+<div class="v-header">
+  <div class="v-logo">ARC<span>H</span>AI</div>
+  <div class="v-tag">AUX.IO 1293</div>
+</div>
+
+<div class="v-scroll-cue" id="scrollCue" aria-hidden="true">
+  <span class="v-scroll-cue-label">Scroll to explore</span>
+  <span class="v-scroll-cue-arrows">↕</span>
+</div>
+
+<!-- HERO IMAGE -->
+<div class="v-hero">
+  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680062/default-43-1.jpg" alt="Nossa Senhora das Dores" loading="eager">
+</div>
+
+<!-- CONTENT -->
+<div class="v-content">
+  <div class="v-title">Nossa Senhora das Dores</div>
+  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · 18-- · nossa-senhora-das-dores-18</div>
+
+  <div class="v-meta-strip">
+    <span class="v-meta-tag mv">Brasiliana Museus</span>
+    <span class="v-meta-tag lic">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span>
+    <span class="v-meta-tag">Brasiliana Museus</span>
+  </div>
+
+  <!-- SHARE -->
+  <div class="v-share">
+    <button class="v-share-btn" onclick="shareNative()" id="shareNativeBtn"><span class="v-share-icon">↗</span> Share</button>
+    <button class="v-share-btn" onclick="shareEmail()"><span class="v-share-icon">✉</span> Email</button>
+    <button class="v-share-btn" onclick="copyLink(this)"><span class="v-share-icon">⎘</span> Copy Link</button>
+    <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
+  </div>
+
+  <div class="v-story"><strong>Nossa Senhora das Dores</strong> — Cabeça de Nossa Senhora, em 3/4, voltada para a esquerda sobre fundo escuro, encimada por resplendor dourado, envolvida por véu em tonalidades claras. Expressão facial de dor, mão semi encoberta pelo véu sobre o peito. Assinatura do autor no canto inferior esquerdo: &amp;#034;M. BROCOS&amp;#034;. Moldura em…</div>
+
+  <div class="v-divider"></div>
+
+  <!-- ASK THIS OBJECT -->
+  <div class="v-ask">
+    <div class="v-ask-label">Ask this object a question</div>
+    <div class="v-tone-wrap">
+      <div class="v-tone-label">Response style</div>
+      <div class="v-tone-buttons">
+        <button class="active" onclick="setVisitorTone('guide')">Guide</button>
+        <button onclick="setVisitorTone('curatorial')">Curatorial</button>
+        <button onclick="setVisitorTone('learning')">Learning</button>
+        <button onclick="setVisitorTone('interpretive')">Interpretive</button>
+      </div>
+      <div class="v-tone-note" id="toneNote">Friendly, welcoming, and easy to follow for most visitors.</div>
+    </div>
+    <div class="v-chips" id="vChips"><div class="v-chip" onclick="askObject('What are you?')">What are you?</div>
+      <div class="v-chip" onclick="askObject('Tell me your history')">Tell me your history</div>
+      <div class="v-chip" onclick="askObject('How were you used?')">How were you used?</div>
+      <div class="v-chip" onclick="askObject('What are you made of?')">What are you made of?</div></div>
+    <div class="v-chat-row">
+      <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
+      <button class="v-chat-send" onclick="askObject()">Ask</button>
+    </div>
+    <div class="v-response" id="chatResponse"></div>
+  </div>
+
+  <div class="v-divider"></div>
+
+  <!-- METADATA -->
+  <div class="v-meta-card">
+    <div class="v-meta-card-label">Object Record</div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">nossa-senhora-das-dores-18</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">18--</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 44,00 cm · largura 35,00 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
+  </div>
+
+  <!-- COMMENT -->
+  <div class="v-comment">
+    <div class="v-comment-label">Leave a response — your note joins the collection record</div>
+    <textarea class="v-comment-input" id="commentInput" placeholder="What did this object make you think or feel?"></textarea>
+    <button class="v-comment-btn" id="commentBtn" onclick="submitComment()">Submit Response</button>
+    <div class="v-prev-comments" id="prevComments"></div>
+  </div>
+
+  <!-- RELATED OBJECTS -->
+  <div class="v-related">
+    <div class="v-related-label">Related Objects</div>
+    <div class="v-related-grid"><a class="v-rel-card" href="NFC1291.html">
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/668969/006341.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Josefa de Barros Barreto do Rego Barros</div>
+        <div class="v-rel-meta">Brasiliana Museus · josefa-de-barros-barreto-do-rego-barros</div>
+      </a>
+      <a class="v-rel-card" href="NFC1292.html">
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2008BU3016/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Oscillon 520</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.1096-2008</div>
+      </a>
+      <a class="v-rel-card" href="NFC1294.html">
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/BPuqf/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Nederlandse gulden, 1938</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100270</div>
+      </a>
+      <a class="v-rel-card" href="NFC1295.html">
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/1023934?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">hairpin</div>
+        <div class="v-rel-meta">Auckland Museum · S428</div>
+      </a></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="v-footer">
+  <div class="v-footer-logo">ARC<span>H</span>AI</div>
+  <div class="v-footer-text">
+    Sovereign Semantic Heritage Infrastructure<br>
+    FAMTEC · RMIT · Open Heritage Data<br>
+    All processing local · data sovereignty preserved
+  </div>
+  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/nossa-senhora-das-dores-18/" target="_blank">View on Collections Website →</a>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════════════
+// ARCHAI AUX.IO Visitor Page — Object Chat via Ollama (LAN)
+// ══════════════════════════════════════════════════════════════════
+
+// ── CONFIG ──────────────────────────────────────────────────────
+const OLLAMA_HOST = 'http://localhost:11434';
+const BACKEND_PROXY = '__SELF__';
+const CHAT_MODEL = 'qwen2.5:32b';
+// If served from the backend, use relative URLs (works on Tailscale + Cloudflare)
+const USE_PROXY = BACKEND_PROXY && !BACKEND_PROXY.includes('{{');
+function resolveApiOrigin() {
+  if (!USE_PROXY) return '';
+  if (BACKEND_PROXY !== '__SELF__') return BACKEND_PROXY;
+
+  // Static frontend pages run on :8000 while the API lives on :8787.
+  if (window.location.port === '8000') {
+    return `${window.location.protocol}//${window.location.hostname}:8787`;
+  }
+
+  return window.location.origin;
+}
+const API_ORIGIN = USE_PROXY
+  ? resolveApiOrigin()
+  : '';
+
+// ── BAKED METADATA (injected at generation time) ────────────────
+const OBJECT = {
+  title: `Nossa Senhora das Dores`,
+  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  date: `18--`,
+  registration: `nossa-senhora-das-dores-18`,
+  location: `Brasiliana Museus`,
+  discipline: `Brasiliana Museus`,
+  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  description: `Cabeça de Nossa Senhora, em 3/4, voltada para a esquerda sobre fundo escuro, encimada por resplendor dourado, envolvida por véu em tonalidades claras. Expressão facial de dor, mão semi encoberta pelo véu sobre o peito. Assinatura do autor no canto inferior esquerdo: &#034;M. BROCOS&#034;. Moldura em madeira dourada, borda com folhas estilizadas.`,
+  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  artist: ``,
+  culture: `Brazil`,
+  dimensions: `altura 44,00 cm · largura 35,00 cm`,
+  wall_description: `Cabeça de Nossa Senhora, em 3/4, voltada para a esquerda sobre fundo escuro, encimada por resplendor dourado, envolvida por véu em tonalidades claras. Expressão facial de dor, mão semi encoberta pelo véu sobre o peito. Assinatura do autor no canto inferior esquerdo: &#034;M. BROCOS&#034;. Moldura em madeira dourada, borda com folhas estilizadas.`,
+  fun_fact: ``,
+  did_you_know: ``,
+  provenance: ``,
+  tombstone: `Nossa Senhora das Dores. 18--. Brasiliana Museus`,
+  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
+  source_url: `https://brasiliana.museus.gov.br/acervos/nossa-senhora-das-dores-18/`,
+  institution: `Brasiliana Museus`
+};
+
+// Build rich context from available fields
+const richFields = [
+  OBJECT.wall_description && `Wall description: ${OBJECT.wall_description}`,
+  OBJECT.fun_fact && `Fun fact: ${OBJECT.fun_fact}`,
+  OBJECT.did_you_know && `Did you know: ${OBJECT.did_you_know}`,
+  OBJECT.provenance && `Provenance: ${OBJECT.provenance}`,
+  OBJECT.tombstone && `Formal record: ${OBJECT.tombstone}`,
+].filter(Boolean).join('\n');
+
+// Object record — sent to backend, personality profile shapes the voice
+const OBJECT_RECORD = [
+  `Title: ${OBJECT.title}`,
+  `Type: ${OBJECT.type}`,
+  `Date: ${OBJECT.date}`,
+  OBJECT.artist && `Artist/Maker: ${OBJECT.artist}`,
+  OBJECT.medium && `Material: ${OBJECT.medium}`,
+  OBJECT.culture && `Culture: ${OBJECT.culture}`,
+  OBJECT.dimensions && `Dimensions: ${OBJECT.dimensions}`,
+  `Location: ${OBJECT.location}`,
+  `Institution: ${OBJECT.institution}`,
+  OBJECT.description && `Description: ${OBJECT.description}`,
+  richFields || null,
+].filter(Boolean).join('\n');
+
+let visitorTone = 'guide';
+
+const VISITOR_TONES = {
+  guide: {
+    note: 'Friendly, welcoming, and easy to follow for most visitors.',
+    instruction: 'Speak like a thoughtful gallery guide. Be welcoming, clear, and concise. 3-4 sentences max.',
+    placeholder: 'Ask for a simple introduction or guided explanation…'
+  },
+  curatorial: {
+    note: 'A little more interpretive and museum-like, while staying accessible.',
+    instruction: 'Speak with a curatorial tone. Focus on interpretation, materials, and why the object matters, while staying readable to a general visitor.',
+    placeholder: 'Ask about interpretation, materials, or significance…'
+  },
+  learning: {
+    note: 'Uses simpler language and adds context for students and first-time visitors.',
+    instruction: 'Speak for a learning audience. Use plain language, explain terms simply, and make the object easy to understand without sounding childish.',
+    placeholder: 'Ask in simple language about what it is, how it was used, or why it matters…'
+  },
+  interpretive: {
+    note: 'More reflective and atmospheric, while still grounded in the record.',
+    instruction: 'Speak in a reflective interpretive voice. Stay grounded in the record, but allow a little more atmosphere and curiosity.',
+    placeholder: 'Ask for a more reflective reading grounded in the record…'
+  }
+};
+
+function updateVisitorToneUI() {
+  const toneMeta = VISITOR_TONES[visitorTone];
+  const buttons = document.querySelectorAll('.v-tone-buttons button');
+  buttons.forEach((btn, index) => {
+    const toneKey = Object.keys(VISITOR_TONES)[index];
+    btn.classList.toggle('active', toneKey === visitorTone);
+  });
+  const note = document.getElementById('toneNote');
+  if (note) note.textContent = toneMeta.note;
+  const input = document.getElementById('chatInput');
+  if (input) input.placeholder = toneMeta.placeholder;
+}
+
+function setVisitorTone(tone) {
+  if (!VISITOR_TONES[tone]) return;
+  visitorTone = tone;
+  updateVisitorToneUI();
+}
+
+function buildSystemPrompt() {
+  const toneInstruction = VISITOR_TONES[visitorTone].instruction;
+  return `You are "${OBJECT.title}". You exist physically in the ${OBJECT.institution}. Speak in first person as the object itself.
+
+${toneInstruction} Never say "Dear one" or "As an AI". Only use facts from your record. If the record does not support something, say so plainly.
+
+${OBJECT_RECORD}`;
+}
+
+let chatHistory = [];
+
+function fetchWithTimeout(url, options, timeoutMs = 12000) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  return fetch(url, { ...options, signal: controller.signal })
+    .finally(() => clearTimeout(timer));
+}
+
+// ── CHAT ────────────────────────────────────────────────────────
+function askObject(presetQ) {
+  const input = document.getElementById('chatInput');
+  const q = presetQ || input.value.trim();
+  if (!q) return;
+  input.value = '';
+
+  const resp = document.getElementById('chatResponse');
+  resp.innerHTML = '<span class="thinking-label">Considering your question</span><span class="thinking-dots"><span></span><span></span><span></span></span>';
+  resp.className = 'v-response thinking';
+  resp.style.display = 'block';
+
+  // Rotate thinking messages to feel alive
+  const thinkingPhrases = [
+    'Consulting my record',
+    'Reviewing the object file',
+    'Finding the clearest answer',
+    'Looking through the details',
+    'Preparing a response',
+  ];
+  let phraseIdx = 0;
+  const thinkingInterval = setInterval(() => {
+    phraseIdx = (phraseIdx + 1) % thinkingPhrases.length;
+    const label = resp.querySelector('.thinking-label');
+    if (label) label.textContent = thinkingPhrases[phraseIdx];
+  }, 2200);
+
+  chatHistory.push({ role: 'user', content: q });
+
+  const chatFetch = USE_PROXY
+    ? fetchWithTimeout(`${API_ORIGIN}/api/proxy/chat`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          systemPrompt: buildSystemPrompt(),
+          userPrompt: q,
+          history: chatHistory.slice(0, -1),
+        })
+      }, 30000)
+    : fetchWithTimeout(`${OLLAMA_HOST}/api/chat`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          model: CHAT_MODEL,
+          stream: false,
+          messages: [{ role: 'system', content: buildSystemPrompt() }, ...chatHistory]
+        })
+      }, 30000);
+
+  chatFetch
+  .then(r => r.json())
+  .then(data => {
+    clearInterval(thinkingInterval);
+    const reply = (data.message && data.message.content) || 'I cannot speak right now.';
+    chatHistory.push({ role: 'assistant', content: reply });
+    resp.textContent = reply;
+    resp.className = 'v-response';
+  })
+  .catch(() => {
+    clearInterval(thinkingInterval);
+    // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
+    const reply = metadataFallback(q);
+    resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
+    resp.className = 'v-response';
+  });
+}
+
+function metadataFallback(q) {
+  const ql = q.toLowerCase();
+  const d = OBJECT;
+  if (ql.includes('made of') || ql.includes('material') || ql.includes('what are you'))
+    return `I am ${d.title}, classified as ${d.type}${d.category ? ' in the category of ' + d.category : ''}. ${d.description.substring(0, 220)}${d.description.length > 220 ? '…' : ''}`;
+  if (ql.includes('history') || ql.includes('old') || ql.includes('when') || ql.includes('date'))
+    return `I date from ${d.date}. I am registered as ${d.registration} in the ${d.institution} collection${d.discipline ? ', within the ' + d.discipline + ' discipline' : ''}. ${d.description.substring(0, 160)}…`;
+  if (ql.includes('significance') || ql.includes('important') || ql.includes('meaning'))
+    return `As a ${d.type} from ${d.date}, I represent part of ${d.discipline || "Victoria's"} heritage. ${d.description.substring(0, 180)}…`;
+  if (ql.includes('where') || ql.includes('location'))
+    return `I am held at ${d.location}. My registration number is ${d.registration}. I belong to the ${d.discipline || 'general'} collection.`;
+  return `I am ${d.title}. ${d.description.substring(0, 250)}${d.description.length > 250 ? '…' : ''} I date from ${d.date} and am registered as ${d.registration}.`;
+}
+
+// Enter key
+document.getElementById('chatInput').addEventListener('keypress', e => {
+  if (e.key === 'Enter') { e.preventDefault(); askObject(); }
+});
+updateVisitorToneUI();
+
+// ══════════════════════════════════════════════════════════════════
+// SHARE
+// ══════════════════════════════════════════════════════════════════
+const PAGE_URL = window.location.href;
+const SHARE_TITLE = OBJECT.title + ' — ARCHAI';
+const SHARE_TEXT = `${OBJECT.title} (${OBJECT.date}) — ${OBJECT.type} from the collection. Explore it via ARCHAI.`;
+
+function shareNative() {
+  if (navigator.share) {
+    navigator.share({ title: SHARE_TITLE, text: SHARE_TEXT, url: PAGE_URL })
+      .then(() => {
+        const btn = document.getElementById('shareNativeBtn');
+        btn.classList.add('done');
+        btn.innerHTML = '<span class="v-share-icon">✓</span> Shared';
+      })
+      .catch(() => {});
+  } else {
+    // Fallback: copy link
+    copyLink(document.getElementById('shareNativeBtn'));
+  }
+}
+
+function shareEmail() {
+  const subject = encodeURIComponent(SHARE_TITLE);
+  const body = encodeURIComponent(`${SHARE_TEXT}\n\n${PAGE_URL}\n\n—\nShared via ARCHAI · Sovereign Semantic Heritage Infrastructure`);
+  window.location.href = `mailto:?subject=${subject}&body=${body}`;
+}
+
+function copyLink(btn) {
+  navigator.clipboard.writeText(PAGE_URL).then(() => {
+    btn.classList.add('done');
+    btn.innerHTML = '<span class="v-share-icon">✓</span> Copied';
+    setTimeout(() => {
+      btn.classList.remove('done');
+      btn.innerHTML = '<span class="v-share-icon">⎘</span> Copy Link';
+    }, 2000);
+  }).catch(() => {
+    // Fallback for older browsers
+    const ta = document.createElement('textarea');
+    ta.value = PAGE_URL;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    btn.classList.add('done');
+    btn.innerHTML = '<span class="v-share-icon">✓</span> Copied';
+  });
+}
+
+function shareX() {
+  const text = encodeURIComponent(SHARE_TEXT);
+  const url = encodeURIComponent(PAGE_URL);
+  window.open(`https://x.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+}
+
+// ══════════════════════════════════════════════════════════════════
+// COMMENTS — saved to backend (AI moderated), localStorage fallback
+// ══════════════════════════════════════════════════════════════════
+const COMMENTS_API = USE_PROXY
+  ? `${API_ORIGIN}/api/comments`
+  : `${OLLAMA_HOST.replace(/:\d+$/, ':8787')}/api/comments`;
+const COMMENT_KEY = 'archai_comments_' + OBJECT.registration.replace(/[^a-zA-Z0-9]/g, '_');
+
+function renderComments(comments) {
+  const el = document.getElementById('prevComments');
+  if (!comments || !comments.length) { el.innerHTML = ''; return; }
+  el.innerHTML = `<div class="v-prev-label">Visitor Responses (${comments.length})</div>` +
+    comments.slice(0, 10).map(c =>
+      `<div class="v-prev-item">
+        <div class="v-prev-text">${escHTML(c.text)}</div>
+        <div class="v-prev-time">${c.author_type || 'visitor'} · ${c.created_at ? new Date(c.created_at).toLocaleDateString() : (c.time || '')}</div>
+      </div>`
+    ).join('');
+}
+
+function fetchComments() {
+  fetch(`${COMMENTS_API}?objectId=${encodeURIComponent(OBJECT.registration)}`)
+    .then(r => r.json())
+    .then(data => {
+      if (data.comments?.length) renderComments(data.comments);
+      else renderLocalComments();
+    })
+    .catch(() => renderLocalComments());
+}
+
+function renderLocalComments() {
+  try {
+    const local = JSON.parse(localStorage.getItem(COMMENT_KEY)) || [];
+    renderComments(local);
+  } catch { renderComments([]); }
+}
+
+function submitComment() {
+  const input = document.getElementById('commentInput');
+  const text = input.value.trim();
+  if (!text) return;
+
+  const btn = document.getElementById('commentBtn');
+  btn.textContent = 'Submitting…';
+  btn.disabled = true;
+
+  fetch(COMMENTS_API, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      objectId: OBJECT.registration,
+      collection: 'archai_brasiliana',
+      text,
+      authorType: 'visitor',
+    }),
+  })
+  .then(r => r.json())
+  .then(data => {
+    if (data.ok) {
+      input.value = '';
+      btn.textContent = 'Thank you — response recorded';
+      btn.style.color = 'var(--accent2)';
+      btn.style.borderColor = 'var(--accent2)';
+      fetchComments();
+    } else {
+      btn.textContent = data.error || 'Could not submit';
+    }
+  })
+  .catch(() => {
+    // Offline fallback: save locally
+    try {
+      const local = JSON.parse(localStorage.getItem(COMMENT_KEY)) || [];
+      local.push({ text, time: new Date().toLocaleString('en-AU', { day: 'numeric', month: 'short', year: 'numeric' }), author_type: 'visitor' });
+      localStorage.setItem(COMMENT_KEY, JSON.stringify(local));
+      input.value = '';
+      btn.textContent = 'Saved locally — will sync when online';
+      renderLocalComments();
+    } catch { btn.textContent = 'Connection error'; }
+  })
+  .finally(() => {
+    btn.disabled = false;
+    setTimeout(() => { btn.textContent = 'Submit Response'; btn.style.color = ''; btn.style.borderColor = ''; }, 3000);
+  });
+}
+
+function escHTML(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// Init comments on load
+fetchComments();
+
+const scrollCue = document.getElementById('scrollCue');
+const phoneShell = document.getElementById('phoneShell');
+const scrollHost = window.matchMedia('(min-width: 520px)').matches && phoneShell
+  ? phoneShell
+  : window;
+
+function getScrollMetrics() {
+  if (scrollHost === window) {
+    const doc = document.documentElement;
+    return {
+      top: window.scrollY || doc.scrollTop || 0,
+      canScroll: doc.scrollHeight > window.innerHeight + 18,
+    };
+  }
+
+  return {
+    top: scrollHost.scrollTop,
+    canScroll: scrollHost.scrollHeight > scrollHost.clientHeight + 18,
+  };
+}
+
+function updateScrollCue() {
+  if (!scrollCue) return;
+  const { top, canScroll } = getScrollMetrics();
+  scrollCue.classList.toggle('hidden', !canScroll || top > 28);
+}
+
+scrollHost.addEventListener('scroll', updateScrollCue, { passive: true });
+window.addEventListener('resize', updateScrollCue);
+updateScrollCue();
+</script>
+</div>
+</div>
+</body>
+</html>

@@ -45,7 +45,17 @@ const SEARCH_QUERIES = [
   { q: 'instrumento', focus: 'instrument' },
   { q: 'tecido', focus: 'textile' },
   { q: 'mobiliário', focus: 'furniture' },
-  { q: 'mapa', focus: 'map' }
+  { q: 'mapa', focus: 'map' },
+  { q: 'gravura', focus: 'print' },
+  { q: 'desenho', focus: 'drawing' },
+  { q: 'retrato', focus: 'portrait' },
+  { q: 'paisagem', focus: 'landscape' },
+  { q: 'moeda', focus: 'coin' },
+  { q: 'documento', focus: 'document' },
+  { q: 'arte sacra', focus: 'sacred-art' },
+  { q: 'religião', focus: 'religion' },
+  { q: 'história', focus: 'history' },
+  { q: 'livro', focus: 'book' }
 ];
 
 const args = process.argv.slice(2);
@@ -57,6 +67,7 @@ const getArg = (name, fallback) => {
 const LIMIT = parseInt(getArg('limit', '120'), 10);
 const QUERY_SIZE = parseInt(getArg('query-size', '25'), 10);
 const MIN_RECORD_SCORE = parseInt(getArg('min-score', '10'), 10);
+const MAX_PAGES = parseInt(getArg('max-pages', '6'), 10);
 const DRY_RUN = args.includes('--dry-run');
 
 function sleep(ms) {
@@ -352,39 +363,46 @@ async function main() {
   console.log('\n  Searching Brasiliana…\n');
 
   for (const search of SEARCH_QUERIES) {
-    try {
-      const data = await fetchJSON(buildQueryUrl({ search: search.q, page: 1 }));
-      const rows = Array.isArray(data?.items) ? data.items : [];
-      let added = 0;
+    let added = 0;
+    let rowsSeen = 0;
+    for (let page = 1; page <= MAX_PAGES; page++) {
+      // Stop early once we have plenty — keeps the crawl polite
+      if (seen.size >= LIMIT * 2) break;
+      try {
+        const data = await fetchJSON(buildQueryUrl({ search: search.q, page }));
+        const rows = Array.isArray(data?.items) ? data.items : [];
+        if (!rows.length) break; // no more pages for this query
+        rowsSeen += rows.length;
 
-      for (const item of rows) {
-        if (!item?.id || seen.has(item.id)) continue;
-        if (!item.document_options?.is_image || !item.document) {
-          skippedNoImage++;
-          continue;
+        for (const item of rows) {
+          if (!item?.id || seen.has(item.id)) continue;
+          if (!item.document_options?.is_image || !item.document) {
+            skippedNoImage++;
+            continue;
+          }
+
+          const rights = metadataValue(item, 'condicoes-de-reproducao');
+          if (!isOpenRights(rights)) {
+            skippedRights++;
+            continue;
+          }
+
+          const recordScore = scoreRecord(item, search.focus);
+          if (recordScore < MIN_RECORD_SCORE) {
+            skippedLowScore++;
+            continue;
+          }
+
+          seen.set(item.id, { item, focus: search.focus, recordScore });
+          added++;
         }
-
-        const rights = metadataValue(item, 'condicoes-de-reproducao');
-        if (!isOpenRights(rights)) {
-          skippedRights++;
-          continue;
-        }
-
-        const recordScore = scoreRecord(item, search.focus);
-        if (recordScore < MIN_RECORD_SCORE) {
-          skippedLowScore++;
-          continue;
-        }
-
-        seen.set(item.id, { item, focus: search.focus, recordScore });
-        added++;
+        await sleep(220);
+      } catch (err) {
+        process.stdout.write(`  ⚠ "${search.q}" p${page} — ${err.message}\n`);
+        break;
       }
-
-      process.stdout.write(`  → "${search.q}" — ${rows.length} rows, ${added} kept (total: ${seen.size})\n`);
-      await sleep(220);
-    } catch (err) {
-      process.stdout.write(`  ⚠ "${search.q}" — ${err.message}\n`);
     }
+    process.stdout.write(`  → "${search.q}" — ${rowsSeen} rows scanned, ${added} kept (total: ${seen.size})\n`);
   }
 
   const ranked = selectDiverseRecords([...seen.values()], LIMIT);

@@ -29,7 +29,7 @@ const getArg = (name, fallback) => {
 const QDRANT_URL = getArg('qdrant', 'http://localhost:6333');
 const ALL_COLLECTIONS = [
   'archai_pilot', 'archai_met', 'archai_va',
-  'archai_aic', 'archai_cma', 'archai_rijks', 'archai_europeana', 'archai_auckland', 'archai_tepapa', 'archai_mplus'
+  'archai_aic', 'archai_cma', 'archai_rijks', 'archai_europeana', 'archai_auckland', 'archai_tepapa', 'archai_mplus', 'archai_brasiliana'
 ];
 const COLLECTION_LABELS = {
   archai_pilot: 'Museums Victoria',
@@ -41,7 +41,8 @@ const COLLECTION_LABELS = {
   archai_europeana: 'Europeana',
   archai_auckland: 'Auckland Museum',
   archai_tepapa: 'Museum of New Zealand Te Papa Tongarewa',
-  archai_mplus: 'M+, Hong Kong'
+  archai_mplus: 'M+, Hong Kong',
+  archai_brasiliana: 'Brasiliana Museus'
 };
 const OLLAMA_LAN_HOST = getArg('host', 'http://localhost:11434');
 // Default to backend-proxy mode so public AUX.IO pages can use the live chat API

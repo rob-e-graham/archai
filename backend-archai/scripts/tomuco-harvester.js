@@ -165,6 +165,22 @@ function extractIdentifier(row, name) {
   return '';
 }
 
+// LEGAL GATE: only items carrying an explicit, recognised open license may be
+// onboarded. ToMuCo's terms place the burden on the user to clear third-party
+// rights unless rights are explicitly indicated, so items with no license field
+// are NOT safe to ingest. Accepted: CC0, Public Domain Mark, CC BY.
+function hasOpenLicense(row) {
+  const raw = firstNonEmpty(row['schema:license']);
+  if (!raw) return false;
+  const v = String(raw).toLowerCase();
+  return (
+    v.includes('creativecommons.org/publicdomain/zero') ||  // CC0
+    v.includes('creativecommons.org/publicdomain/mark') ||  // Public Domain Mark
+    v.includes('creativecommons.org/licenses/by') ||        // CC BY (+ BY-SA etc.)
+    v === 'cc0' || v.includes('public domain') || v.includes('publicdomain')
+  );
+}
+
 function scoreRecord(row, focus) {
   const image = asArray(row['schema:image'])[0];
   const title = pickBestLanguage(langMap(asArray(row['schema:name'])));
@@ -372,6 +388,7 @@ async function main() {
   const seen = new Map();
   let skippedNoImage = 0;
   let skippedLowScore = 0;
+  let skippedNoLicense = 0;
 
   console.log('\n  Searching ToMuCo…\n');
 
@@ -392,6 +409,12 @@ async function main() {
           if (!sourceId || seen.has(sourceId)) continue;
           if (!asArray(row['schema:image']).length) {
             skippedNoImage++;
+            continue;
+          }
+
+          // LEGAL GATE — skip anything without an explicit open license
+          if (!hasOpenLicense(row)) {
+            skippedNoLicense++;
             continue;
           }
 
@@ -417,6 +440,7 @@ async function main() {
 
   console.log(`\n  ✓ ${seen.size} suitable ToMuCo records found`);
   console.log(`  → Skipped no image: ${skippedNoImage}`);
+  console.log(`  → Skipped no open license (legal gate): ${skippedNoLicense}`);
   console.log(`  → Skipped low score: ${skippedLowScore}`);
   console.log(`  → Processing ${ranked.length}\n`);
 
