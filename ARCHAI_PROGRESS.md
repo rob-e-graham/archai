@@ -356,3 +356,36 @@ Start by checking:
 ## Short handoff sentence
 
 ARCHAI should remain a fast, layered, provenance-aware system: raw collection data stays clean, canonical data gets normalized, translations and embeddings are derived during ingest, and ARCHAI / AUX.IO sit above that as interpretive interfaces.
+
+## Website demo status — 2026-06-02 afternoon
+
+Work completed in the public website wrapper at [archai.html](/Users/robgraham/Desktop/APPS/fineartmedia-tech-web/archai.html):
+
+- heading refined to `Search the collection, then ask ARCHAI what the results reveal`
+- result score label changed from raw `%` to `Match %` so it reads as semantic relevance, not upload progress
+- result cards now show lightweight `match cues` drawn from structured metadata
+- cue cleanup added so the website shows museum-facing language rather than internal catalog or ontology noise
+- a second browser-side false-image filter now suppresses Auckland placeholder media even when the source provides a technically valid image URL
+
+Verified locally on the website demo:
+
+- `textile and fabric` search initially returned `36 image-ready objects`
+- after false-image suppression, the visible result set settled at `33 image-ready objects`
+- top result cues now read more cleanly, for example:
+  - `textile`
+  - `Silk (textile)`
+  - `Cloth`
+  - `Persia`
+  - `locally loom woven textile`
+
+Important remaining issue:
+
+- some Auckland Museum records still expose placeholder media such as `Digital image not yet created`
+- the website demo now suppresses the obvious placeholder thumbnails at render time
+- the next proper step is still a source-quality filter during Auckland onboarding so false media never enters the canonical layer in the first place
+
+Good next step after this session:
+
+1. identify repeatable Auckland placeholder media signatures
+2. suppress them in the harvester or canonical media selection logic
+3. continue onboarding more regionally diverse collections for language and rights testing
