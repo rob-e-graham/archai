@@ -24,6 +24,7 @@ const DRY_RUN = process.argv.includes('--dry-run');
 // out as explicit variants. Tuned for heritage/museum object vocabulary.
 const THEMES = {
   'Technology & Computing': ['computer', 'computing', 'computational', 'electronic', 'electronics', 'circuit', 'microchip', 'transistor', 'robot', 'robotic', 'synthesizer', 'synthesiser', 'calculator', 'processor', 'video game', 'mp3 player', 'cassette', 'semiconductor', 'integrated circuit', 'microprocessor'],
+  'Born-Digital & New Media': ['digital art', 'video art', 'generative art', 'net art', 'net.art', 'software art', 'computer art', 'computer-generated', 'algorithmic art', 'interactive media', 'interactive installation', 'new media', 'media art', 'screen-based', 'born digital', 'born-digital', 'data visualisation', 'data visualization', 'glitch art', 'ascii art', 'pixel art', 'virtual reality', 'augmented reality', 'electronic art', 'single-channel video', 'video installation', 'sound installation'],
   'Communication & Media': ['telephone', 'telegraph', 'radio', 'broadcast', 'television', 'gramophone', 'phonograph', 'microphone', 'loudspeaker', 'typewriter', 'printing press', 'morse', 'antenna', 'transmitter', 'film projector', 'tape recorder', 'record player'],
   'Photography & Film': ['camera', 'photograph', 'photography', 'photographic', 'daguerreotype', 'cinema', 'cinematograph', 'film reel', 'slide projector'],
   'Transport': ['vehicle', 'automobile', 'motor car', 'aircraft', 'aeroplane', 'airplane', 'locomotive', 'railway', 'bicycle', 'ship model', 'carriage', 'aviation', 'spacecraft', 'rocket', 'steam engine'],
@@ -53,7 +54,7 @@ for (const [theme, terms] of Object.entries(THEMES)) {
 // Definition: devices, machines & instruments — NOT fine-art photography/film
 // (Photography & Film remains its own theme). Set by Rob, 2026-06-03.
 const TECH_THEMES = new Set([
-  'Technology & Computing', 'Communication & Media',
+  'Technology & Computing', 'Born-Digital & New Media', 'Communication & Media',
   'Transport', 'Science & Instruments',
 ]);
 
