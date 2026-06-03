@@ -19,34 +19,20 @@ const OLLAMA_URL = 'http://localhost:11434';
 const COLLECTION = 'archai_met';
 const EMBED_MODEL = 'nomic-embed-text';
 
-// Search terms targeting digital, electronic, modern/contemporary art
+// Search terms targeting the Met's technology-adjacent PUBLIC-DOMAIN strengths
+// (instruments, arms & armour, horology, scientific apparatus) plus some breadth,
+// so we reliably reach a full image-backed set rather than chasing digital/new-media
+// the Met barely holds in the public domain.
 const SEARCH_QUERIES = [
-  'electronic art',
-  'digital art',
-  'video art',
-  'computer',
-  'installation art',
-  'kinetic sculpture',
-  'new media',
-  'contemporary photography',
-  'television',
-  'radio',
-  'telephone',
-  'technology',
-  'scientific instrument',
-  'projection',
-  'sound art',
-  'neon art',
-  'light art',
-  'interactive',
-  'generative',
-  'robot',
-  'circuit',
-  'synthesizer',
-  'camera',
-  'film projector',
-  'modern sculpture',
-  'contemporary art'
+  // Technology / mechanism (Met has deep PD holdings here)
+  'musical instrument', 'astrolabe', 'scientific instrument', 'clock',
+  'watch', 'automaton', 'compass', 'sundial', 'telescope', 'microscope',
+  'camera', 'lock and key', 'armor', 'sword', 'firearm', 'helmet',
+  'navigation instrument', 'mathematical instrument', 'printing',
+  'mechanical', 'engine', 'machine',
+  // Breadth to fill the image-backed quota with strong PD objects
+  'photograph', 'sculpture', 'decorative arts', 'metalwork', 'ceramic',
+  'painting', 'textile'
 ];
 
 const args = process.argv.slice(2);
@@ -60,16 +46,19 @@ const OFFSET = parseInt(getArg('offset', '0'), 10);
 // ── HELPERS ─────────────────────────────────────────────────────
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-async function fetchJSON(url, retries = 3) {
+async function fetchJSON(url, retries = 5) {
   for (let i = 0; i < retries; i++) {
     try {
-      const res = await fetch(url);
-      if (res.status === 429) { await sleep(2000); continue; }
+      const res = await fetch(url, {
+        headers: { 'User-Agent': 'ARCHAI/1.0 (research; rob@fineartmedia.tech)', 'Accept': 'application/json' }
+      });
+      // 429 (rate limit) and 403 (throttle) — back off progressively and retry
+      if (res.status === 429 || res.status === 403) { await sleep(3000 * (i + 1)); continue; }
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       return await res.json();
     } catch (e) {
       if (i === retries - 1) throw e;
-      await sleep(1000);
+      await sleep(1500 * (i + 1));
     }
   }
 }
@@ -150,11 +139,13 @@ async function main() {
 
   for (const query of SEARCH_QUERIES) {
     try {
-      const data = await fetchJSON(`${MET_API}/search?hasImages=true&q=${encodeURIComponent(query)}`);
+      // isPublicDomain=true guarantees an open primaryImage (CC0); hasImages alone
+      // includes rights-restricted objects whose image URL comes back empty.
+      const data = await fetchJSON(`${MET_API}/search?isPublicDomain=true&hasImages=true&q=${encodeURIComponent(query)}`);
       const ids = data.objectIDs || [];
       ids.forEach(id => allIds.add(id));
       process.stdout.write(`  → "${query}" — ${ids.length} results (total unique: ${allIds.size})\n`);
-      await sleep(200); // Be polite to the API
+      await sleep(600); // Be polite to the API (avoid 403 throttle)
     } catch (e) {
       process.stdout.write(`  ⚠ "${query}" — failed: ${e.message}\n`);
     }
@@ -162,18 +153,26 @@ async function main() {
 
   console.log(`\n  ✓ ${allIds.size} unique object IDs found`);
 
-  // Slice to limit
-  const idsToFetch = [...allIds].slice(OFFSET, OFFSET + LIMIT);
-  console.log(`  → Fetching ${idsToFetch.length} objects (offset ${OFFSET}, limit ${LIMIT})\n`);
+  // Over-fetch candidates: the Met search hasImages=true flag is unreliable, so
+  // we pull a larger pool and keep only objects that actually return an image URL,
+  // stopping once we have LIMIT image-backed objects.
+  const idsToFetch = [...allIds].slice(OFFSET, OFFSET + LIMIT * 4);
+  console.log(`  → Scanning up to ${idsToFetch.length} candidates for ${LIMIT} image-backed objects (offset ${OFFSET})\n`);
 
   let success = 0;
   let errors = 0;
+  let skippedNoImage = 0;
 
   for (let i = 0; i < idsToFetch.length; i++) {
     const objId = idsToFetch[i];
     try {
+      if (success >= LIMIT) break;
       const obj = await fetchJSON(`${MET_API}/objects/${objId}`);
       if (!obj || !obj.objectID) { errors++; continue; }
+
+      // IMAGE GUARD — the Met's hasImages search flag is unreliable; require a
+      // real image URL on the actual object record.
+      if (!obj.primaryImage && !obj.primaryImageSmall) { skippedNoImage++; continue; }
 
       // Build payload
       const title = obj.title || 'Untitled';
@@ -219,9 +218,9 @@ async function main() {
       const vector = await embed(description);
       if (!vector || !vector.length) { errors++; continue; }
 
-      // Upsert
-      // Use a numeric ID for Qdrant (offset to avoid collision)
-      const pointId = 1000000 + i;
+      // Upsert — id keyed to success count so the collection is contiguous and
+      // any previous image-less rows at higher positions are left behind/overwritten.
+      const pointId = 1000000 + success;
       await upsertPoint(pointId, vector, payload);
 
       success++;
