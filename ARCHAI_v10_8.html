@@ -1051,6 +1051,10 @@ const API_BASE = IS_LOCAL ? '' : (window.ARCHAI_API_BASE || '');
 const QDRANT_DIRECT = IS_LOCAL ? 'http://localhost:6333' : '';
 const OLLAMA_DIRECT = IS_LOCAL ? 'http://localhost:11434' : '';
 const USE_PROXY = !IS_LOCAL && API_BASE;
+// Backend base for AI calls — available locally too (backend on :8787, CORS open),
+// so object/visitor chat always runs through the qwen + personality + SafeChat
+// proxy instead of falling back to raw local Ollama (llama3).
+const BACKEND_BASE = IS_LOCAL ? 'http://localhost:8787' : (window.ARCHAI_API_BASE || API_BASE || '');
 
 function qdrantFetch(path, options) {
   if (USE_PROXY) {
@@ -1061,9 +1065,9 @@ function qdrantFetch(path, options) {
 }
 
 function ollamaFetch(path, body) {
-  if (USE_PROXY) {
+  if (BACKEND_BASE) {
     if (path === '/api/embeddings') {
-      return fetch(`${API_BASE}/api/proxy/embed`, {
+      return fetch(`${BACKEND_BASE}/api/proxy/embed`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prompt: JSON.parse(body).prompt }),
@@ -1075,7 +1079,7 @@ function ollamaFetch(path, body) {
       const userMsg = parsed.messages?.filter(m => m.role !== 'system') || [];
       const history = userMsg.slice(0, -1);
       const lastUser = userMsg[userMsg.length - 1];
-      return fetch(`${API_BASE}/api/proxy/chat`, {
+      return fetch(`${BACKEND_BASE}/api/proxy/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -1086,7 +1090,7 @@ function ollamaFetch(path, body) {
       });
     }
     if (path === '/api/tags') {
-      return fetch(`${API_BASE}/api/proxy/ollama/health`);
+      return fetch(`${BACKEND_BASE}/api/proxy/ollama/health`);
     }
   }
   return fetch(`${OLLAMA_DIRECT}${path}`, {
@@ -1228,7 +1232,7 @@ function translateStringsWithOllama(strings, languageKey, contextLabel) {
   const numberedStrings = strings.map((text, index) => `${index + 1}. ${JSON.stringify(text)}`).join('\n');
 
   return ollamaFetch('/api/chat', JSON.stringify({
-    model: 'llama3',
+    model: 'qwen2.5:14b',
     stream: false,
     messages: [
       { role: 'system', content: sys },
@@ -2549,7 +2553,7 @@ RULES:
 
   window._odChatHistory.push({ role: 'user', content: q });
 
-  ollamaFetch('/api/chat', JSON.stringify({ model: 'llama3', stream: false, messages: [{ role: 'system', content: sys }, ...window._odChatHistory] }))
+  ollamaFetch('/api/chat', JSON.stringify({ model: 'qwen2.5:14b', stream: false, messages: [{ role: 'system', content: sys }, ...window._odChatHistory] }))
   .then(r => r.json())
   .then(data => {
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
@@ -3281,7 +3285,7 @@ function vAsk(q) {
   const institution = getInstitutionName(o);
   const sys = `You are "${o.title}", a physical object in the ${institution} collection. Speak in the first person as the object. Be warm and conversational. 2-3 sentences. Use ONLY this verified metadata:\n- Title: ${o.title}\n- Type: ${o.type}\n- Date: ${o.year}\n- Description: ${(p.description || o.ai || '').substring(0, 400)}\n- Location: ${o.location}\n- Registration: ${p.registration_number || o.dams}`;
 
-  ollamaFetch('/api/chat', JSON.stringify({ model: 'llama3', stream: false, messages: [{ role: 'system', content: sys }, { role: 'user', content: q }] }))
+  ollamaFetch('/api/chat', JSON.stringify({ model: 'qwen2.5:14b', stream: false, messages: [{ role: 'system', content: sys }, { role: 'user', content: q }] }))
   .then(r => r.json())
   .then(data => {
     const reply = (data.message && data.message.content) || o.chat.default;
