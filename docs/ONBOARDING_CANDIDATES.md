@@ -103,6 +103,36 @@ harvest (image-backed + license-gated) → embed → add to `ALLOWED_COLLECTIONS
 (proxy.js), `ALL_COLLECTIONS` (generate-nfc-pages.js), `COLLECTION_INSTITUTIONS`
 (both + conversational-search.js) → rebuild curator → regenerate AUX.IO.
 
+## Strategy B — re-harvest sources we already have (zero new legal work)
+
+Rob's insight: we've **already cleared rights** on the 11 live collections, so we
+can go back and pull more **technology and born-digital** assets from them without
+any new legal review. Proven this session:
+
+- **V&A re-harvest**, limit 150 → 300 (queries were already tech-focused:
+  electronic, computer, synthesizer, robot, circuit, MP3 player…).
+- Result: V&A doubled to 300 tech-rich objects (Furby, Speak & Spell, drum
+  machines, electronic clocks, MP3 players, oscillons).
+- **Curator technology density rose 15% → 25%** (226/1445 → 402/1595) from this
+  single legal re-harvest.
+
+This is the cheapest, safest lever for the tech gap. Next candidates to re-harvest
+for technology (already rights-cleared):
+- **Europeana** — its queries already include scientific instrument, camera,
+  telescope, Deutsches Museum technology, printing press. Raise limit / add
+  born-digital + industrial terms.
+- **The Met** — add scientific instrument / musical instrument / arms-and-armor
+  department queries.
+- **Museums Victoria** — it's a science museum; add technology/communication terms.
+- **Te Papa, Auckland** — social-history + technology terms.
+
+Pattern (append-safe — collections upsert, they don't wipe):
+```
+node scripts/<source>-harvester.js --limit <higher>
+curl -s -X POST http://localhost:8787/api/proxy/curator/build
+cd nfc-pages && node generate-nfc-pages.js
+```
+
 ## Legal rule (carried from this session)
 
 Only onboard records that are **image-backed AND carry an explicit open license**
