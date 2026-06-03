@@ -6,6 +6,7 @@
     "focus": ["Pacific", "Maori", "technology", "material culture"],
     "status": "live_with_item_rights_check",
     "priority": 1,
+    "harvester_script": "tepapa-harvester.js",
     "translation_mode": "source-first",
     "access_mode": "api",
     "api_key": "free_registration",
@@ -29,6 +30,7 @@
     "focus": ["Maori", "Pacific", "history", "objects"],
     "status": "live",
     "priority": 2,
+    "harvester_script": "aucklandmuseum-harvester.js",
     "translation_mode": "source-first",
     "access_mode": "api",
     "api_key": "none",
@@ -41,7 +43,7 @@
     "official_docs": [
       "https://api.aucklandmuseum.com/"
     ],
-    "notes": "Live in ARCHAI now. Needs source-side false-image suppression and a formal terms re-check before bigger expansion."
+    "notes": "Live in ARCHAI now. Source-side placeholder suppression is active in the harvester, and a formal terms re-check should still happen before bigger expansion."
   },
   {
     "id": "digitalnz",
@@ -133,44 +135,46 @@
     "name": "M+",
     "region": "Asia",
     "focus": ["contemporary art", "design", "moving image"],
-    "status": "planned",
+    "status": "live",
     "priority": 7,
+    "harvester_script": "mplus-harvester.js",
     "translation_mode": "source-first",
     "access_mode": "graphql_api",
-    "api_key": "developer_token",
+    "api_key": "none",
     "metadata_rights": "CC0 open data",
-    "image_rights": "CC0 open data where exposed by API",
+    "image_rights": "preview-first / source rights apply",
     "public_demo_policy": "approved_open",
-    "quality_gate": "image-backed + token-managed + object-level QA",
+    "quality_gate": "image-backed + bilingual-preserved + object-level QA",
     "cultural_protocol": "Standard museum sensitivity review; excellent multilingual potential",
-    "verification_status": "verified_2026_06_02",
+    "verification_status": "verified_2026_06_03",
     "official_docs": [
       "https://api.mplus.org.hk/",
       "https://api.mplus.org.hk/en/documentation"
     ],
-    "notes": "Best next Asia-focused source. Open-data posture is excellent and the collection focus aligns strongly with design, visual culture, and moving image."
+    "notes": "Live in ARCHAI now. Public GraphQL metadata access and bilingual fields are working, and preview media is preserved with source-rights context attached."
   },
   {
     "id": "tomuco",
     "name": "Tokyo Museum Collection",
     "region": "Asia",
     "focus": ["museum network", "art", "objects"],
-    "status": "planned",
+    "status": "hold",
     "priority": 8,
+    "harvester_script": "tomuco-harvester.js",
     "translation_mode": "source-first",
     "access_mode": "api",
     "api_key": "none",
     "metadata_rights": "open metadata",
     "image_rights": "source-provider dependent",
-    "public_demo_policy": "approved_metadata_with_item_media_check",
+    "public_demo_policy": "hold_public_demo_pending_media_rights",
     "quality_gate": "image-download-allowed + bilingual-field-preserved + source-terms-honoured",
     "cultural_protocol": "Preserve Japanese and English fields cleanly; obey source-provider media terms",
-    "verification_status": "verified_2026_06_02",
+    "verification_status": "verified_2026_06_03",
     "official_docs": [
       "https://museumcollection.tokyo/en/developer/",
       "https://museumcollection.tokyo/en/terms/"
     ],
-    "notes": "Very good multilingual target. Metadata is open, but media terms can vary by contributing museum, so image gating is essential."
+    "notes": "Technically explored and multilingual-friendly, but currently held out of live onboarding because the public-rights gate did not yield a strong enough set of image-backed records."
   },
   {
     "id": "npm",
@@ -215,8 +219,9 @@
     "name": "Brasiliana Museus",
     "region": "South America",
     "focus": ["Brazilian collections", "history", "objects"],
-    "status": "planned",
+    "status": "live",
     "priority": 11,
+    "harvester_script": "brasiliana-harvester.js",
     "translation_mode": "source-first",
     "access_mode": "open_platform",
     "api_key": "none",
@@ -225,11 +230,11 @@
     "public_demo_policy": "approved_with_item_rights_check",
     "quality_gate": "image-backed + source provenance + item-level rights spot-check",
     "cultural_protocol": "Strong diversity gain; keep local context and language intact",
-    "verification_status": "verified_2026_06_02",
+    "verification_status": "verified_2026_06_03",
     "official_docs": [
       "https://brasiliana.museus.gov.br/dados-abertos/"
     ],
-    "notes": "Best immediate South American expansion candidate. Broad open-data framing, but spot-check individual object media before large public surfacing."
+    "notes": "Live in ARCHAI now. Onboarding is filtered to public-domain / open-access records that pass the item-level rights gate before public surfacing."
   },
   {
     "id": "qatarmuseums",
