@@ -139,10 +139,26 @@ export async function conversationalSearch(userMessage, history = []) {
         registration: reg,
         collection: col,
         score,
-        image: p.image_url || p.primaryImageSmall || p.media_thumbnail || '',
+        image: p.image_url || p.primaryImageSmall || p.media_thumbnail || p.media_medium || '',
         date,
         maker,
         type,
+        // Fields so the front-end can open a full object detail directly from chat
+        _source_collection: col,
+        canonical_id: p.canonical_id || '',
+        registration_number: reg,
+        object_type: type,
+        medium: materials,
+        description: p.description || p.ai || '',
+        source_url: p.source_url || '',
+        media_medium: p.media_medium || '',
+        media_thumbnail: p.media_thumbnail || '',
+        image_url: p.image_url || p.primaryImageSmall || '',
+        // Rights fields so the detail view shows the legal status when opened from chat
+        licence: p.licence || '',
+        media_rights_title: p.media_rights_title || '',
+        media_rights_mode: p.media_rights_mode || '',
+        rights_notes: p.rights_notes || '',
       });
     }
   } else {
