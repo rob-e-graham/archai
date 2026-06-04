@@ -151,7 +151,7 @@ async function main() {
 
   for (const search of SEARCH_QUERIES) {
     try {
-      let url = `${EUROPEANA_API}?wskey=${API_KEY}&query=${encodeURIComponent(search.q)}&media=true&thumbnail=true&rows=50&profile=${search.profile || 'standard'}`;
+      let url = `${EUROPEANA_API}?wskey=${API_KEY}&query=${encodeURIComponent(search.q)}&media=true&thumbnail=true&reusability=open&rows=50&profile=${search.profile || 'standard'}`;
       if (search.country && search.country !== '*') {
         url += `&qf=COUNTRY:${search.country}`;
       }

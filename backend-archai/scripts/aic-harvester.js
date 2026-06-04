@@ -31,32 +31,16 @@ const FIELDS = [
 ].join(',');
 
 // Search terms targeting technology, science, modern/contemporary
+// Targeted at the Art Institute of Chicago's deep PUBLIC-DOMAIN holdings (the
+// API filter restricts to PD; these queries spread across its open strengths
+// while keeping some technology/design-adjacent terms).
 const SEARCH_QUERIES = [
-  'electronic art',
-  'digital',
-  'video art',
-  'computer',
-  'installation',
-  'kinetic sculpture',
-  'new media',
-  'technology',
-  'scientific instrument',
-  'projection',
-  'sound art',
-  'neon',
-  'light art',
-  'photography contemporary',
-  'robot',
-  'camera',
-  'film',
-  'modern sculpture',
-  'contemporary art',
-  'textile',
-  'ceramic',
-  'glass art',
-  'metalwork',
-  'architecture model',
-  'industrial design'
+  'painting', 'portrait', 'landscape', 'print', 'drawing', 'etching',
+  'photograph', 'sculpture', 'textile', 'ceramic', 'porcelain', 'glass',
+  'metalwork', 'furniture', 'decorative arts', 'arms armor', 'clock',
+  'scientific instrument', 'japanese woodblock', 'chinese bronze',
+  'silver', 'jewelry', 'costume', 'architecture drawing', 'industrial design',
+  'still life', 'impressionism', 'modernism', 'ancient', 'manuscript'
 ];
 
 const args = process.argv.slice(2);
@@ -142,7 +126,9 @@ async function main() {
 
   for (const query of SEARCH_QUERIES) {
     try {
-      const url = `${AIC_API}/artworks/search?q=${encodeURIComponent(query)}&limit=100&fields=${FIELDS}`;
+      // Filter to public-domain at the API level — AIC's modern/contemporary works
+      // are mostly in-copyright; only PD works are legally publishable.
+      const url = `${AIC_API}/artworks/search?q=${encodeURIComponent(query)}&query[term][is_public_domain]=true&limit=100&fields=${FIELDS}`;
       const data = await fetchJSON(url);
       const artworks = data.data || [];
       let added = 0;
