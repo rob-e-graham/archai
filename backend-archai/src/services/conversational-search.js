@@ -6,7 +6,66 @@ import { env } from '../config/env.js';
 import { curatorSearch } from './curator-vectors.js';
 
 const OLLAMA_URL = env.ollama.baseUrl;
+const QDRANT_URL = env.qdrant.url;
+const CURATOR_COLLECTION = 'archai_curator';
 const CHAT_MODEL = env.ollama.curatorModel || env.ollama.chatModel || 'qwen2.5:32b';
+
+// ── Collection overview ("one big brain") ──────────────────────────
+// A cached, aggregate picture of the WHOLE collection so the AI reasons like a
+// single mind that knows everything it holds — not just the objects retrieved
+// for one query. Refreshes every 10 minutes (or call refreshCollectionOverview).
+let _overviewCache = null;
+let _overviewAt = 0;
+const OVERVIEW_TTL = 10 * 60 * 1000;
+
+export async function getCollectionOverview() {
+  if (_overviewCache && Date.now() - _overviewAt < OVERVIEW_TTL) return _overviewCache;
+  const byInstitution = {}, byCountry = {}, byTheme = {};
+  let total = 0, tech = 0;
+  let offset = null;
+  try {
+    do {
+      const body = { limit: 500, with_payload: ['institution', 'institution_country', 'themes', 'is_technology'] };
+      if (offset) body.offset = offset;
+      const resp = await fetch(`${QDRANT_URL}/collections/${CURATOR_COLLECTION}/points/scroll`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body),
+      });
+      const data = await resp.json();
+      const pts = data.result?.points || [];
+      for (const p of pts) {
+        const pl = p.payload || {};
+        total++;
+        if (pl.is_technology) tech++;
+        const inst = pl.institution || 'Unknown';
+        byInstitution[inst] = (byInstitution[inst] || 0) + 1;
+        const ctry = pl.institution_country || 'Unknown';
+        byCountry[ctry] = (byCountry[ctry] || 0) + 1;
+        for (const t of (pl.themes || [])) byTheme[t] = (byTheme[t] || 0) + 1;
+      }
+      offset = data.result?.next_page_offset || null;
+    } while (offset);
+  } catch (e) {
+    return _overviewCache || { total: 0, byInstitution: {}, byCountry: {}, byTheme: {}, tech: 0 };
+  }
+  _overviewCache = { total, byInstitution, byCountry, byTheme, tech };
+  _overviewAt = Date.now();
+  return _overviewCache;
+}
+
+export function refreshCollectionOverview() { _overviewCache = null; }
+
+function overviewText(o) {
+  if (!o || !o.total) return '';
+  const top = (obj, n = 12) => Object.entries(obj).sort((a, b) => b[1] - a[1]).slice(0, n)
+    .map(([k, v]) => `${k} (${v})`).join(', ');
+  return `\n\nWHOLE-COLLECTION OVERVIEW (you know all of this — use it for counts, comparisons, and "how many / which / what kinds" questions):
+- Total objects: ${o.total}
+- Institutions: ${top(o.byInstitution)}
+- Countries: ${top(o.byCountry, 8)}
+- Themes: ${top(o.byTheme)}
+- Technology/devices: ${o.tech} objects flagged as technology.
+When asked aggregate questions (how many, which museums, what themes, breakdowns), answer from this overview. When asked about specific objects, use the OBJECTS FOUND below.`;
+}
 const COLLECTION_INSTITUTIONS = {
   archai_pilot: 'Museums Victoria',
   archai_met: 'The Metropolitan Museum of Art',
@@ -90,9 +149,11 @@ export async function conversationalSearch(userMessage, history = []) {
     objectContext = '\n\nNo objects found matching this query. Let the user know and suggest alternative search terms or broader concepts.';
   }
 
-  // Step 3: Build messages for LLM
+  // Step 3: Build messages for LLM — inject whole-collection overview so the
+  // assistant reasons as one mind that knows the entire collection.
+  const overview = overviewText(await getCollectionOverview());
   const messages = [
-    { role: 'system', content: SYSTEM_PROMPT + objectContext },
+    { role: 'system', content: SYSTEM_PROMPT + overview + objectContext },
     ...history.slice(-8),
     { role: 'user', content: userMessage },
   ];
