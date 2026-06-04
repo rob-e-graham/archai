@@ -1,0 +1,41 @@
+{
+  "_comment": "ARCHAI AI tagging configuration. This defines the regenerable AI metadata layer that sits ALONGSIDE (never overwrites) the clean institutional record. Institutions can edit this to define their own themes, their own definition of 'technology', and their own facets. Re-run scripts/tag-themes.js after editing. Word-boundary matching is used on all terms.",
+  "version": "1.0",
+  "taxonomy_basis": "Standard museum collection categories (Art / History & Heritage / Natural History / Science, Technology & Industry / Cultural & Ethnographic)",
+
+  "themes": {
+    "Technology & Computing": ["computer", "computing", "computational", "electronic", "electronics", "circuit", "microchip", "transistor", "robot", "robotic", "synthesizer", "synthesiser", "calculator", "processor", "video game", "mp3 player", "cassette", "semiconductor", "integrated circuit", "microprocessor"],
+    "Born-Digital & New Media": ["digital art", "video art", "generative art", "net art", "net.art", "software art", "computer art", "computer-generated", "algorithmic art", "interactive media", "interactive installation", "new media", "media art", "screen-based", "born digital", "born-digital", "data visualisation", "data visualization", "glitch art", "ascii art", "pixel art", "virtual reality", "augmented reality", "electronic art", "single-channel video", "video installation", "sound installation"],
+    "Communication & Media": ["telephone", "telegraph", "radio", "broadcast", "television", "gramophone", "phonograph", "microphone", "loudspeaker", "typewriter", "printing press", "morse", "antenna", "transmitter", "film projector", "tape recorder", "record player"],
+    "Photography & Film": ["camera", "photograph", "photography", "photographic", "daguerreotype", "cinema", "cinematograph", "film reel", "slide projector"],
+    "Transport": ["vehicle", "automobile", "motor car", "aircraft", "aeroplane", "airplane", "locomotive", "railway", "bicycle", "ship model", "carriage", "aviation", "spacecraft", "rocket", "steam engine"],
+    "Science & Instruments": ["scientific instrument", "microscope", "telescope", "astrolabe", "compass", "sundial", "barometer", "thermometer", "sextant", "apparatus", "laboratory", "medical instrument", "surgical", "orrery", "mathematical instrument", "clock", "watch", "horology", "horological", "chronometer"],
+    "Arms & Armour": ["armour", "armor", "sword", "firearm", "pistol", "rifle", "helmet", "shield", "dagger", "cannon", "weapon", "musket"],
+    "Painting & Drawing": ["painting", "drawing", "watercolour", "watercolor", "oil on canvas", "sketch", "portrait", "landscape"],
+    "Print & Graphic": ["print", "engraving", "etching", "lithograph", "woodcut", "poster"],
+    "Sculpture": ["sculpture", "statue", "bust", "carving", "figurine", "relief"],
+    "Ceramics & Glass": ["ceramic", "porcelain", "pottery", "vase", "stoneware", "earthenware", "glass", "tile"],
+    "Textiles & Fashion": ["textile", "costume", "dress", "fashion", "garment", "weaving", "embroidery", "embroidered", "tapestry", "lace", "shawl", "bodice", "petticoat"],
+    "Furniture & Design": ["furniture", "chair", "table", "cabinet", "desk", "decorative arts", "metalwork", "silverware", "jewellery", "jewelry"],
+    "Numismatics & Philately": ["coin", "medal", "banknote", "currency", "token", "numismatic", "stamp", "postage", "philatelic"],
+    "Natural History": ["specimen", "mineral", "fossil", "taxidermy", "botanical", "zoology", "geology", "palaeontology", "paleontology", "insect", "seashell", "skeleton", "herbarium"],
+    "Archaeology": ["archaeolog", "excavat", "artefact", "artifact", "antiquit", "ancient", "prehistoric"],
+    "Cultural & Ethnographic": ["mask", "ritual", "ceremonial", "indigenous", "ethnographic", "ethnography", "sacred", "totem", "taonga", "first nations"],
+    "Books & Documents": ["book", "manuscript", "document", "map", "letter", "archive", "diary"]
+  },
+
+  "technology_themes": [
+    "Technology & Computing",
+    "Born-Digital & New Media",
+    "Communication & Media",
+    "Transport",
+    "Science & Instruments"
+  ],
+
+  "facet_fields": ["title", "object_type", "category", "classification", "medium", "discipline", "description", "embedding_text"],
+
+  "notes": {
+    "technology_definition": "is_technology = an object whose themes intersect technology_themes. Set per Rob 2026-06-03: devices, machines, instruments, communication & born-digital — NOT fine-art photography (its own theme).",
+    "separation": "These tags are written to the AI layer of each object's payload. They never modify clean institutional fields (title, description, registration_number, source_*). Delete-and-retag is always safe."
+  }
+}

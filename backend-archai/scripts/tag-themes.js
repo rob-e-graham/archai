@@ -15,32 +15,23 @@
 //   node tag-themes.js --dry-run    # report only, no writes
 // ══════════════════════════════════════════════════════════════════
 
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const QDRANT_URL = 'http://localhost:6333';
 const DRY_RUN = process.argv.includes('--dry-run');
 
-// Theme taxonomy — ordered, keyword-driven. Terms are matched on WORD
-// BOUNDARIES (\bterm\b) to avoid substring false positives, e.g. 'cinema'
-// matching the Portuguese classification 'cinematográfica'. Stems are written
-// out as explicit variants. Tuned for heritage/museum object vocabulary.
-const THEMES = {
-  'Technology & Computing': ['computer', 'computing', 'computational', 'electronic', 'electronics', 'circuit', 'microchip', 'transistor', 'robot', 'robotic', 'synthesizer', 'synthesiser', 'calculator', 'processor', 'video game', 'mp3 player', 'cassette', 'semiconductor', 'integrated circuit', 'microprocessor'],
-  'Born-Digital & New Media': ['digital art', 'video art', 'generative art', 'net art', 'net.art', 'software art', 'computer art', 'computer-generated', 'algorithmic art', 'interactive media', 'interactive installation', 'new media', 'media art', 'screen-based', 'born digital', 'born-digital', 'data visualisation', 'data visualization', 'glitch art', 'ascii art', 'pixel art', 'virtual reality', 'augmented reality', 'electronic art', 'single-channel video', 'video installation', 'sound installation'],
-  'Communication & Media': ['telephone', 'telegraph', 'radio', 'broadcast', 'television', 'gramophone', 'phonograph', 'microphone', 'loudspeaker', 'typewriter', 'printing press', 'morse', 'antenna', 'transmitter', 'film projector', 'tape recorder', 'record player'],
-  'Photography & Film': ['camera', 'photograph', 'photography', 'photographic', 'daguerreotype', 'cinema', 'cinematograph', 'film reel', 'slide projector'],
-  'Transport': ['vehicle', 'automobile', 'motor car', 'aircraft', 'aeroplane', 'airplane', 'locomotive', 'railway', 'bicycle', 'ship model', 'carriage', 'aviation', 'spacecraft', 'rocket', 'steam engine'],
-  'Science & Instruments': ['scientific instrument', 'microscope', 'telescope', 'astrolabe', 'compass', 'sundial', 'barometer', 'thermometer', 'sextant', 'apparatus', 'laboratory', 'medical instrument', 'surgical', 'orrery', 'mathematical instrument', 'clock', 'watch', 'horology', 'horological', 'chronometer'],
-  'Arms & Armour': ['armour', 'armor', 'sword', 'firearm', 'pistol', 'rifle', 'helmet', 'shield', 'dagger', 'cannon', 'weapon', 'musket'],
-  'Painting & Drawing': ['painting', 'drawing', 'watercolour', 'watercolor', 'oil on canvas', 'sketch', 'portrait', 'landscape'],
-  'Print & Graphic': ['print', 'engraving', 'etching', 'lithograph', 'woodcut', 'poster'],
-  'Sculpture': ['sculpture', 'statue', 'bust', 'carving', 'figurine', 'relief'],
-  'Ceramics & Glass': ['ceramic', 'porcelain', 'pottery', 'vase', 'stoneware', 'earthenware', 'glass', 'tile'],
-  'Textiles & Fashion': ['textile', 'costume', 'dress', 'fashion', 'garment', 'weaving', 'embroidery', 'embroidered', 'tapestry', 'lace', 'shawl', 'bodice', 'petticoat'],
-  'Furniture & Design': ['furniture', 'chair', 'table', 'cabinet', 'desk', 'decorative arts', 'metalwork', 'silverware', 'jewellery', 'jewelry'],
-  'Numismatics': ['coin', 'medal', 'banknote', 'currency', 'token', 'numismatic'],
-  'Natural History': ['specimen', 'mineral', 'fossil', 'taxidermy', 'botanical', 'zoology', 'geology', 'palaeontology', 'paleontology', 'insect', 'seashell', 'skeleton'],
-  'Cultural & Ethnographic': ['mask', 'ritual', 'ceremonial', 'indigenous', 'ethnographic', 'ethnography', 'sacred', 'totem', 'taonga', 'first nations'],
-  'Books & Documents': ['book', 'manuscript', 'document', 'map', 'letter', 'archive', 'diary'],
-};
+// Load the user-editable tagging configuration. Institutions edit
+// src/config/tagging.json to define their own themes / technology definition /
+// facets — no code changes. Terms are matched on WORD BOUNDARIES (\bterm\b).
+const CONFIG_PATH = path.join(__dirname, '..', 'src', 'config', 'tagging.json');
+const CONFIG = JSON.parse(fs.readFileSync(CONFIG_PATH, 'utf-8'));
+const THEMES = CONFIG.themes;
+const FACET_FIELDS = CONFIG.facet_fields || ['title', 'object_type', 'category', 'classification', 'medium', 'discipline', 'description', 'embedding_text'];
+console.log(`  Tagging config: ${Object.keys(THEMES).length} themes, ${CONFIG.technology_themes.length} count as technology (config v${CONFIG.version})`);
+
 
 // Pre-compile word-boundary regexes per term.
 const THEME_REGEX = {};
@@ -50,19 +41,12 @@ for (const [theme, terms] of Object.entries(THEMES)) {
   );
 }
 
-// Themes that count as "technology" for the is_technology flag / facet.
-// Definition: devices, machines & instruments — NOT fine-art photography/film
-// (Photography & Film remains its own theme). Set by Rob, 2026-06-03.
-const TECH_THEMES = new Set([
-  'Technology & Computing', 'Born-Digital & New Media', 'Communication & Media',
-  'Transport', 'Science & Instruments',
-]);
+// Which themes count as "technology" — read from the config so institutions can
+// redefine it without touching code.
+const TECH_THEMES = new Set(CONFIG.technology_themes);
 
 function deriveThemes(pl) {
-  const blob = [
-    pl.title, pl.object_type, pl.category, pl.classification,
-    pl.medium, pl.discipline, pl.description, pl.embedding_text,
-  ].filter(Boolean).join(' ').toLowerCase();
+  const blob = FACET_FIELDS.map(f => pl[f]).filter(Boolean).join(' ').toLowerCase();
   const themes = [];
   for (const [theme, regexes] of Object.entries(THEME_REGEX)) {
     if (regexes.some(re => re.test(blob))) themes.push(theme);
