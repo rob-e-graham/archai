@@ -1106,6 +1106,16 @@ function getAuxPageBase() {
   return `http://${host}:8787/aux`;
 }
 
+async function proxyCuratorSearch(query, limit = 20) {
+  const r = await fetch(`${BACKEND_BASE}/api/proxy/curator/search`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ query, limit }),
+  });
+  const d = await r.json();
+  return d.results || [];
+}
+
 const OBJECTS = {};
 const NFC_TAGS = [];
 const NFC_VIS_DEFAULTS = {
@@ -1114,6 +1124,15 @@ const NFC_VIS_DEFAULTS = {
   askQuestions:true, relatedWorks:true, visitorComments:true, nfcCode:false
 };
 const nfcVisibility = {};
+
+const CURATOR_SEARCH_LIMIT = 50;
+const SEARCH_STOPWORDS = new Set([
+  'the', 'and', 'for', 'with', 'from', 'into', 'about', 'across', 'through',
+  'this', 'that', 'these', 'those', 'what', 'which', 'where', 'when', 'your',
+  'their', 'have', 'show', 'find', 'look', 'like', 'made', 'make', 'work',
+  'works', 'object', 'objects', 'museum', 'museums', 'collection', 'collections',
+  'image', 'images', 'style', 'styles', 'theme', 'themes'
+]);
 
 // ── STATE ────────────────────────────────────────────────────────
 let activeNFCCode = null;
@@ -1569,21 +1588,283 @@ function getObjectRightsInfo(payload = {}) {
     status = 'Restricted / mixed';
     guidance = 'Metadata may be open, but media reuse is limited, non-commercial, or preview-only.';
     color = 'var(--nodel)';
-  } else if (/cc by-sa|creativecommons\.org\/licenses\/by-sa\//.test(normalized)) {
+  } else if (/cc by-sa|https?:\/\/creativecommons\.org\/licenses\/by-sa\//.test(normalized)) {
     status = 'Share alike';
     guidance = 'Reusable with attribution, and derivative use should keep the same licence terms.';
     color = 'var(--accent3)';
-  } else if (/cc by|creativecommons\.org\/licenses\/by\/|creative commons attribution|© auckland museum cc by/.test(normalized)) {
+  } else if (/cc by|https?:\/\/creativecommons\.org\/licenses\/by\/|creative commons attribution|© auckland museum cc by/.test(normalized)) {
     status = 'Attribution required';
     guidance = 'Reusable with attribution to the source institution and creator where required.';
     color = 'var(--accent2)';
-  } else if (/cc0|creativecommons\.org\/publicdomain\/zero|creativecommons\.org\/publicdomain\/mark|public domain|public domain mark|rightsstatements\.org\/vocab\/noc|dom[ií]nio p[úu]blico|no known copyright restrictions|open access/.test(normalized)) {
+  } else if (/cc0|https?:\/\/creativecommons\.org\/publicdomain\/zero|https?:\/\/creativecommons\.org\/publicdomain\/mark|public domain|public domain mark|rightsstatements\.org\/vocab\/noc|dom[ií]nio p[úu]blico|no known copyright restrictions|open access/.test(normalized)) {
     status = 'Open access';
     guidance = 'Appears reusable under open-access or public-domain terms.';
     color = 'var(--ok)';
   }
 
   return { status, guidance, detail, color };
+}
+
+function normalizeSearchText(value = '') {
+  return String(value || '')
+    .toLowerCase()
+    .replace(/&/g, ' and ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/[^\p{L}\p{N}\s-]+/gu, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function tokenizeSearchText(value = '') {
+  const tokens = normalizeSearchText(value).split(' ').filter(Boolean);
+  const unique = [];
+  const seen = new Set();
+  for (const token of tokens) {
+    const keep = token.length > 2 || /^\d{4}$/.test(token);
+    if (!keep || SEARCH_STOPWORDS.has(token) || seen.has(token)) continue;
+    seen.add(token);
+    unique.push(token);
+  }
+  return unique;
+}
+
+function cleanCueLabel(value = '') {
+  return String(value || '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/_/g, ' ')
+    .replace(/\s+/g, ' ')
+    .replace(/\s*,\s*/g, ', ')
+    .trim();
+}
+
+function isUsefulCueLabel(label = '') {
+  const cleaned = cleanCueLabel(label);
+  const lower = cleaned.toLowerCase();
+  if (!cleaned) return false;
+  if (['unknown', 'untitled'].includes(lower)) return false;
+  if (/^(ecrm:|dc_|http)/i.test(cleaned)) return false;
+  if (/(infomuse|t&e|man-made object)/i.test(lower)) return false;
+  return true;
+}
+
+function splitCueValues(value = '') {
+  return String(value || '')
+    .split(/[;|]/)
+    .flatMap(part => part.split(/\s*,\s*/))
+    .map(cleanCueLabel)
+    .filter(Boolean);
+}
+
+function addCueCandidate(candidates, label, priority = 0) {
+  const cleaned = cleanCueLabel(label);
+  if (!isUsefulCueLabel(cleaned)) return;
+  const key = normalizeSearchText(cleaned);
+  if (!key) return;
+  const existing = candidates.find(candidate => candidate.key === key);
+  if (existing) {
+    existing.priority = Math.max(existing.priority, priority);
+    return;
+  }
+  candidates.push({
+    label: cleaned,
+    key,
+    priority,
+    tokens: tokenizeSearchText(cleaned)
+  });
+}
+
+function buildResultCueCandidates(payload = {}) {
+  const candidates = [];
+  const descriptionLead = cleanCueLabel(String(payload.description || payload.wall_description || '').split(/[.;]/)[0] || '')
+    .replace(/^(textile|painting|object|work|artifact|artefact|photograph|image),?\s*/i, '');
+  addCueCandidate(candidates, payload.object_type, 10);
+  addCueCandidate(candidates, payload.category, 9);
+  addCueCandidate(candidates, payload.culture, 8);
+  addCueCandidate(candidates, payload.period, 7);
+  addCueCandidate(candidates, payload.place_of_origin, 7);
+  addCueCandidate(candidates, payload.discipline, 6);
+  splitCueValues(payload.medium || '').slice(0, 6).forEach(value => addCueCandidate(candidates, value, 7));
+  (payload.classification_terms || []).slice(0, 6).forEach(value => addCueCandidate(candidates, value, 6));
+  (payload.keyword_terms || []).slice(0, 6).forEach(value => addCueCandidate(candidates, value, 5));
+  addCueCandidate(candidates, descriptionLead, 6);
+  addCueCandidate(candidates, payload.title || payload.object_name, 4);
+  return candidates.filter(candidate => candidate.label.length <= 42);
+}
+
+function scoreCueCandidate(queryTokens, normalizedQuery, candidate) {
+  let score = candidate.priority;
+  let overlap = 0;
+  for (const token of candidate.tokens) {
+    if (queryTokens.includes(token)) overlap += 1;
+    else if (queryTokens.some(queryToken => queryToken.startsWith(token) || token.startsWith(queryToken))) overlap += 0.75;
+  }
+  if (overlap) score += overlap * 12;
+  if (normalizedQuery && candidate.key && (normalizedQuery.includes(candidate.key) || candidate.key.includes(normalizedQuery))) {
+    score += 8;
+  }
+  return score;
+}
+
+function getResultMatchCues(query, payload, max = 3) {
+  const candidates = buildResultCueCandidates(payload);
+  if (!candidates.length) return [];
+
+  const queryTokens = tokenizeSearchText(query);
+  const normalizedQuery = normalizeSearchText(query);
+  const ranked = candidates
+    .map(candidate => ({
+      ...candidate,
+      score: scoreCueCandidate(queryTokens, normalizedQuery, candidate)
+    }))
+    .sort((a, b) => b.score - a.score || b.priority - a.priority || a.label.length - b.label.length);
+
+  const cues = [];
+  const used = new Set();
+
+  for (const candidate of ranked) {
+    if (cues.length >= max) break;
+    if (used.has(candidate.key)) continue;
+    if (queryTokens.length && candidate.score <= candidate.priority && cues.length > 0) continue;
+    used.add(candidate.key);
+    cues.push(candidate.label);
+  }
+
+  for (const candidate of ranked) {
+    if (cues.length >= max) break;
+    if (used.has(candidate.key)) continue;
+    used.add(candidate.key);
+    cues.push(candidate.label);
+  }
+
+  return cues;
+}
+
+function pickSearchImage(payload = {}) {
+  return payload.media_medium
+    || payload.media_large
+    || payload.media_thumbnail
+    || payload.image_url
+    || payload.primaryImageSmall
+    || '';
+}
+
+function getDisplayTitleParts(value = '') {
+  const raw = String(value || '').trim();
+  if (!raw) return { display: '', alternate: '' };
+  const parts = raw.split(/\.\s+/).map(part => part.trim()).filter(Boolean);
+  if (parts.length === 2) {
+    const [first, second] = parts;
+    const firstLatin = /[A-Za-z]/.test(first);
+    const secondLatin = /[A-Za-z]/.test(second);
+    const firstNonLatin = /[^\u0000-\u024f]/.test(first.replace(/\s/g, ''));
+    const secondNonLatin = /[^\u0000-\u024f]/.test(second.replace(/\s/g, ''));
+    if (firstNonLatin && secondLatin && !firstLatin) return { display: second, alternate: first };
+    if (firstLatin && secondNonLatin && !secondLatin) return { display: first, alternate: second };
+  }
+  return { display: raw, alternate: '' };
+}
+
+function getDisplayTitle(payload = {}, fallback = 'Untitled object') {
+  const title = typeof payload === 'string'
+    ? payload
+    : (payload.title || payload.object_name || fallback);
+  const parts = getDisplayTitleParts(title);
+  return parts.display || fallback;
+}
+
+function getDisplayRegistration(payload = {}, fallback = '') {
+  const raw = String(payload.registration_number || payload.accession_number || payload.source_record_id || fallback || '').trim();
+  if (!raw) return fallback || '—';
+  if ((payload._source_collection || payload.source) === 'archai_europeana' && /https___/i.test(raw)) {
+    return 'Europeana aggregator record';
+  }
+  return raw;
+}
+
+function getObjectKeyForPayload(payload = {}) {
+  return Object.keys(OBJECTS).find(key => OBJECTS[key].id === payload.canonical_id) || '';
+}
+
+function ensureSearchObject(payload = {}) {
+  const existingKey = getObjectKeyForPayload(payload);
+  if (existingKey) return existingKey;
+
+  const source = payload._source_collection || 'archai_pilot';
+  const label = getCollectionLabel(source);
+  const fallbackKey = source.replace('archai_', '') + '_s_' + (payload.registration_number || Math.random().toString(36).slice(2, 8));
+  OBJECTS[fallbackKey] = {
+    title: payload.title || 'Unknown Object',
+    year: payload.date_range || 'date unknown',
+    type: payload.object_type || payload.discipline || '',
+    id: payload.canonical_id || fallbackKey,
+    dams: payload.registration_number || '',
+    location: payload.museum_location || label.name,
+    status: 'exhibited',
+    nodeLinked: false,
+    ai: payload.description || '',
+    _mv: payload,
+    _source: source,
+    chat: { default: 'I am ' + (payload.title || 'an object') + ' in the ' + label.name + ' collection.' }
+  };
+  return fallbackKey;
+}
+
+function renderSemanticResults(query, results, labelText) {
+  const container = document.getElementById('resultsContainer');
+  const labelEl = document.getElementById('resultsLabel');
+  if (!container || !labelEl) return;
+
+  if (!results.length) {
+    labelEl.textContent = '0 image-ready results for "' + query + '"';
+    container.innerHTML = '<div style="padding:20px;font-family:var(--mono);font-size:0.62rem;color:var(--text3)">No image-ready results — try different terms.</div>';
+    return;
+  }
+
+  labelEl.textContent = labelText;
+  container.innerHTML = results.map(result => {
+    const payload = result.payload || {};
+    const objectKey = ensureSearchObject(payload);
+    const source = payload._source_collection || 'archai_pilot';
+    const collection = getCollectionLabel(source);
+    const rights = getObjectRightsInfo(payload);
+    const image = result._image || pickSearchImage(payload);
+    const cues = getResultMatchCues(query, payload, 3);
+    const displayRegistration = getDisplayRegistration(payload);
+    const metaParts = [
+      payload.discipline || payload.object_type || '',
+      payload.date_range || payload.period || '',
+      displayRegistration
+    ].filter(Boolean);
+    const summaryBase = payload.description || payload.wall_description || payload.tombstone || '';
+    const summary = summaryBase
+      ? summaryBase.slice(0, 150) + (summaryBase.length > 150 ? '…' : '')
+      : (cues.length ? 'Matched themes: ' + cues.join(' · ') : 'Metadata-ready result from the live collection.');
+    const matchLine = cues.length ? 'Matched on: ' + cues.join(' · ') : '';
+    const matchScore = result.score ? Math.round(result.score * 100) + '%' : '—';
+
+    return `<div class="result-card" onclick="openObj('${objectKey}')">
+      <div class="thumb"><div class="thumb-live"></div>${
+        image
+          ? `<img src="${image}" alt="${escQ(getDisplayTitle(payload))}" loading="lazy" onerror="this.outerHTML='<div style=\\'font-size:0.42rem;opacity:0.2;text-align:center\\'>▣<br>${escQ(displayRegistration)}</div>'">`
+          : `<div style="font-size:1rem;opacity:0.15;margin-bottom:3px">▣</div><div style="font-size:0.44rem">${escQ(displayRegistration)}</div>`
+      }</div>
+      <div>
+        <div class="r-title">${getDisplayTitle(payload)}</div>
+        <div class="r-meta">${metaParts.join(' · ')}</div>
+        <div class="r-summary">${summary}</div>
+        ${matchLine ? `<div class="r-summary" style="margin-top:6px;font-style:normal;color:var(--text3)">Matched on: ${escQ(cues.join(' · '))}</div>` : ''}
+        <div class="tag-row">
+          <span class="tag" style="border-color:${collection.border};color:${collection.colour}">${collection.short}</span>
+          <span class="tag" style="border-color:${rights.color};color:${rights.color}">${rights.status}</span>
+          ${payload.discipline ? '<span class="tag">' + escQ(payload.discipline) + '</span>' : ''}
+        </div>
+      </div>
+      <div>
+        <div class="score"><div class="score-label">Match</div>${matchScore}</div>
+        <div class="node-st"><div class="dot dot-ok" style="width:4px;height:4px"></div><span style="color:var(--ok);font-family:var(--mono);font-size:0.52rem">${collection.short}</span></div>
+      </div>
+    </div>`;
+  }).join('');
 }
 
 function loadMVObjects() {
@@ -2193,8 +2474,8 @@ function renderResultCards() {
     return `<div class="result-card" onclick="openObj('${id}')">
       <div class="thumb"><div class="thumb-live"></div>${thumbHTML(o)}</div>
       <div>
-        <div class="r-title">${o.title}</div>
-        <div class="r-meta">${p.discipline || o.type} · ${p.category || ''} · ${p.registration_number || o.dams}</div>
+        <div class="r-title">${getDisplayTitle(p, o.title)}</div>
+        <div class="r-meta">${p.discipline || o.type} · ${p.category || ''} · ${getDisplayRegistration(p, o.dams)}</div>
         <div class="r-summary">${(o.ai || '').substring(0, 120)}${(o.ai || '').length > 120 ? '…' : ''}</div>
         <div class="tag-row">
           <span class="tag" style="border-color:${label.border};color:${label.colour}">${label.short}</span>
@@ -2327,84 +2608,50 @@ function renderConvoResults(objects) {
   }).join('');
 }
 
-function doSearch() {
-  const q = document.getElementById('curatorSearch').value.trim();
+async function doSearch(query) {
+  const q = (query !== undefined ? query : document.getElementById('curatorSearch').value).trim();
   if (!q) {
     document.getElementById('resultsLabel').textContent = Object.keys(OBJECTS).length + ' objects · all collections';
     renderResultCards();
     return;
   }
   const container = document.getElementById('resultsContainer');
-  document.getElementById('resultsLabel').textContent = 'Searching "' + q + '" across all collections…';
-  container.innerHTML = '<div style="padding:20px;font-family:var(--mono);font-size:0.62rem;color:var(--text2)">Embedding query via nomic-embed-text and searching Qdrant…</div>';
+  document.getElementById('curatorSearch').value = q;
+  document.getElementById('resultsLabel').textContent = 'Searching "' + q + '" across the live collection…';
+  container.innerHTML = '<div style="padding:20px;font-family:var(--mono);font-size:0.62rem;color:var(--text2)">Reviewing the curator index and preparing image-backed matches…</div>';
 
-  ollamaFetch('/api/embeddings', JSON.stringify({ model: 'nomic-embed-text', prompt: q }))
-  .then(r => r.json())
-  .then(({ embedding }) => {
-    // Search all collections in parallel
-    const searches = COLLECTIONS.map(col =>
-      qdrantFetch(`/collections/${col}/points/search`, {
-        method: 'POST', headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ vector: embedding, limit: 15, with_payload: true })
-      })
-      .then(r => r.json())
-      .then(d => ((d.result || []).map(r => ({ ...r, _col: col }))))
-      .catch(() => [])
-    );
-    return Promise.all(searches);
-  })
-  .then(allResults => {
-    // Merge and sort by score
-    const merged = allResults.flat().sort((a, b) => b.score - a.score).slice(0, 30);
+  try {
+    const semanticResults = await proxyCuratorSearch(q, CURATOR_SEARCH_LIMIT);
+    const seen = new Set();
+    const imageReady = [];
 
-    document.getElementById('resultsLabel').textContent = merged.length + ' results for "' + q + '" · semantic · ' +
-      [...new Set(merged.map(r => r._col))].map(c => (COLLECTION_LABELS[c] || {}).short || c).join(' + ');
+    for (const result of semanticResults) {
+      const payload = result.payload || {};
+      const image = pickSearchImage(payload);
+      if (!image) continue;
+      const dedupeKey = payload.canonical_id || [
+        payload._source_collection || '',
+        payload.registration_number || '',
+        payload.title || ''
+      ].join('::');
+      if (!dedupeKey || seen.has(dedupeKey)) continue;
+      seen.add(dedupeKey);
+      imageReady.push({ ...result, payload, _image: image });
+    }
 
-    if (!merged.length) {
-      container.innerHTML = '<div style="padding:20px;font-family:var(--mono);font-size:0.62rem;color:var(--text3)">No results — try different terms</div>';
+    if (!imageReady.length) {
+      document.getElementById('resultsLabel').textContent = '0 image-ready matches for "' + q + '"';
+      container.innerHTML = '<div style="padding:20px;font-family:var(--mono);font-size:0.62rem;color:var(--text3)">No image-ready results — try broader terms, a material, or a place.</div>';
       return;
     }
 
-    container.innerHTML = merged.map(r => {
-      const p = r.payload;
-      const col = r._col;
-      const label = COLLECTION_LABELS[col] || COLLECTION_LABELS.archai_pilot;
-      const rights = getObjectRightsInfo(p);
-      const score = r.score.toFixed(3);
-      const existingKey = Object.keys(OBJECTS).find(k => OBJECTS[k].id === p.canonical_id);
-      const objKey = existingKey || (col.replace('archai_', '') + '_s_' + (p.registration_number || Math.random().toString(36).slice(2,8)));
-      if (!existingKey) {
-        OBJECTS[objKey] = {
-          title: p.title || '', year: p.date_range || '', type: p.object_type || p.discipline || '',
-          id: p.canonical_id, dams: p.registration_number || '', location: p.museum_location || '',
-          status: 'exhibited', nodeLinked: false, ai: p.description || '', _mv: p, _source: col,
-          chat: { default: 'I am ' + (p.title || 'an object') + ' in the ' + label.name + ' collection.' }
-        };
-      }
-      const thumbSrc = p.media_thumbnail;
-      const thumbInner = thumbSrc
-        ? `<img src="${thumbSrc}" style="width:100%;height:100%;object-fit:cover" loading="lazy" onerror="this.style.display='none'">`
-        : `<div style="font-size:1rem;opacity:0.15;margin-bottom:3px">▣</div><div style="font-size:0.44rem">${p.registration_number || ''}</div>`;
-      return `<div class="result-card" onclick="openObj('${objKey}')">
-        <div class="thumb"><div class="thumb-live"></div>${thumbInner}</div>
-        <div>
-          <div class="r-title">${p.title || ''}</div>
-          <div class="r-meta">${p.discipline || ''} · ${p.category || ''} · ${p.registration_number || ''}</div>
-          <div class="r-summary">${(p.description || '').slice(0, 120)}${(p.description || '').length > 120 ? '…' : ''}</div>
-          <div class="tag-row">
-            <span class="tag" style="border-color:${label.border};color:${label.colour}">${label.short}</span>
-            <span class="tag" style="border-color:${rights.color};color:${rights.color}">${rights.status}</span>
-            ${p.discipline ? '<span class="tag">' + p.discipline + '</span>' : ''}
-          </div>
-        </div>
-        <div>
-          <div class="score"><div class="score-label">Cosine</div>${score}</div>
-          <div class="node-st"><div class="dot dot-ok" style="width:4px;height:4px"></div><span style="color:var(--ok);font-family:var(--mono);font-size:0.52rem">${label.short}</span></div>
-        </div>
-      </div>`;
-    }).join('');
-  })
-  .catch(e => {
+    const collectionShorts = [...new Set(imageReady.map(r => getCollectionLabel((r.payload || {})._source_collection || 'archai_pilot').short))];
+    const labelText = semanticResults.length >= CURATOR_SEARCH_LIMIT
+      ? 'Showing top ' + imageReady.length + ' image-ready matches for "' + q + '" · ' + collectionShorts.join(' + ')
+      : imageReady.length + ' image-ready matches for "' + q + '" · ' + collectionShorts.join(' + ');
+    renderSemanticResults(q, imageReady, labelText);
+    return;
+  } catch (e) {
     console.warn('Semantic search failed, falling back to text search:', e.message);
     const terms = q.toLowerCase().split(/\s+/);
     const matches = Object.entries(OBJECTS).filter(([id, o]) => {
@@ -2434,22 +2681,22 @@ function doSearch() {
       return `<div class="result-card" onclick="openObj('${id}')">
         <div class="thumb"><div class="thumb-live"></div>${thumbHTML(o)}</div>
         <div>
-          <div class="r-title">${o.title}</div>
-          <div class="r-meta">${p.discipline || o.type} · ${p.category || ''} · ${p.registration_number || o.dams}</div>
+          <div class="r-title">${getDisplayTitle(p, o.title)}</div>
+          <div class="r-meta">${p.discipline || o.type} · ${p.category || ''} · ${getDisplayRegistration(p, o.dams)}</div>
           <div class="r-summary">${(o.ai || '').substring(0, 120)}${(o.ai || '').length > 120 ? '…' : ''}</div>
           <div class="tag-row">
             <span class="tag" style="border-color:${label.border};color:${label.colour}">${label.short}</span>
-            <span class="tag" style="border-color:${rights.color};color:${rights.color}">${rights.status}</span>
-            <span class="tag" style="border-color:rgba(232,168,64,0.3);color:rgba(232,168,64,0.7)">Text Match</span>
-          </div>
+          <span class="tag" style="border-color:${rights.color};color:${rights.color}">${rights.status}</span>
+          <span class="tag" style="border-color:rgba(232,168,64,0.3);color:rgba(232,168,64,0.7)">Text Match</span>
         </div>
-        <div>
-          <div class="score"><div class="score-label">Match</div>TEXT</div>
-          <div class="node-st"><div class="dot dot-ok" style="width:4px;height:4px"></div><span style="color:var(--ok);font-family:var(--mono);font-size:0.52rem">${label.short}</span></div>
-        </div>
-      </div>`;
+      </div>
+      <div>
+        <div class="score"><div class="score-label">Match</div>TEXT</div>
+        <div class="node-st"><div class="dot dot-ok" style="width:4px;height:4px"></div><span style="color:var(--ok);font-family:var(--mono);font-size:0.52rem">${label.short}</span></div>
+      </div>
+    </div>`;
     }).join('');
-  });
+  }
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -2464,40 +2711,41 @@ function openObj(id) {
 function openObjectDetail(objKey) {
   const o = OBJECTS[objKey];
   if (!o) return;
+  const p = o._mv || {};
+  const displayTitle = getDisplayTitle(p, o.title || 'Object');
 
   window._odCurrentId = objKey;
   window._odChatHistory = [];
 
   // Show and activate tab
   const tab = document.getElementById('tab-objdetail');
-  const shortTitle = (o.title || 'Object').substring(0, 28) + ((o.title || '').length > 28 ? '…' : '');
+  const shortTitle = displayTitle.substring(0, 28) + (displayTitle.length > 28 ? '…' : '');
   document.getElementById('tab-objdetail-label').textContent = shortTitle;
   tab.style.display = '';
   switchTab('objdetail', tab);
 
-  const p = o._mv || {};
   const rights = getObjectRightsInfo(p);
 
   // Image
   const imgSrc = p.media_large || p.media_medium || p.media_thumbnail || null;
   const imgCol = document.getElementById('od-image-col');
   if (imgSrc) {
-    imgCol.innerHTML = `<img src="${imgSrc}" alt="${escQ(o.title)}" loading="lazy"
+    imgCol.innerHTML = `<img src="${imgSrc}" alt="${escQ(displayTitle)}" loading="lazy"
       onerror="this.outerHTML='<div class=\\'od-image-placeholder\\'><div style=\\'font-size:2rem;opacity:0.08\\'>▣</div><div style=\\'font-family:var(--mono);font-size:0.55rem;color:var(--text3)\\'>Image unavailable</div></div>'"
       style="width:100%;height:100%;object-fit:contain;min-height:280px;">`;
   } else {
-    imgCol.innerHTML = `<div class="od-image-placeholder"><div style="font-size:2.5rem;opacity:0.06">▣</div><div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);text-align:center">No image<br>${escQ(p.registration_number || o.dams || '—')}</div></div>`;
+    imgCol.innerHTML = `<div class="od-image-placeholder"><div style="font-size:2.5rem;opacity:0.06">▣</div><div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);text-align:center">No image<br>${escQ(getDisplayRegistration(p, o.dams || '—'))}</div></div>`;
   }
 
   // Title + sub
-  document.getElementById('od-title').textContent = o.title || '—';
+  document.getElementById('od-title').textContent = displayTitle || '—';
   document.getElementById('od-sub').textContent = [o.type, o.year, o.id].filter(Boolean).join(' · ');
 
   // Key metadata
   const keyMeta = [
     ['Discipline', p.discipline || o.type || '—'],
     ['Date / Period', p.date_range || String(o.year) || '—'],
-    ['Registration', p.registration_number || o.dams || '—'],
+    ['Registration', getDisplayRegistration(p, o.dams || '—')],
     ['Location', p.museum_location || o.location || '—'],
     ['Category', p.category || '—'],
     ['Object Type', p.object_type || '—'],

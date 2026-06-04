@@ -545,3 +545,27 @@ Reason:
 
 - the current legal / media gate did not produce a strong enough set of public-safe, image-backed records for ARCHAI or AUX.IO
 - this remains a possible future metadata / research source, but not a clean public demo source yet
+
+## Main app search aligned with website demo — 2026-06-04
+
+What changed:
+
+- [ARCHAI_v10_8.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ARCHAI_v10_8.html) now uses the backend curator-search path for classic search instead of the older direct `embed → spray-search each collection → raw merge` loop.
+- classic search now shows curator-ranked, image-backed matches with `Match %` scoring rather than raw cosine values
+- result cards now surface lightweight metadata match cues so the user can see why a work is appearing
+- Europeana-style bilingual titles now display more cleanly in the app search and object-detail views
+- Europeana-style aggregator registration strings are softened in the display layer so public-facing UI does not look like raw ingest plumbing
+
+Verification:
+
+- inline script parse passed after the search refactor
+- live browser check against a fresh local server (`http://127.0.0.1:8002/ARCHAI_v10_8.html`) returned improved semantic search results for:
+  - `textiles weaving embroidery cloth garment costume tapa`
+  - `Kemane traditional musical instrument with four cords`
+- object handoff from search into the object-detail tab remained functional, with legal status still visible
+
+Notes:
+
+- this is a display-layer cleanup, not a rewrite of the raw source record
+- the screenshot showing Greek + English title text and a long Europeana aggregator id is a good reminder that raw heritage records and public display records need to stay distinct
+- next cleanup pass should move this kind of source-specific normalization further upstream into onboarding so ARCHAI and AUX.IO read cleaner display metadata by default
