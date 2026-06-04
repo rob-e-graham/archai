@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Ready-made Product of Media — ARCHAI</title>
+<title>Rainbow — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,17 +761,17 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.mplus.org.hk/_nuxt/img/share.23eb426.jpg" alt="Ready-made Product of Media" loading="eager">
+  <img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627901854/v2/prod/small/002501_003000/002861_001.jpg" alt="Rainbow" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Ready-made Product of Media</div>
-  <div class="v-sub">Video · 2003 · 2012.1476</div>
+  <div class="v-title">Rainbow</div>
+  <div class="v-sub">Video · 1998 · 2012.1200</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">M+, Hong Kong</span>
-    <span class="v-meta-tag lic">CC0 metadata · M+ API service non-commercial · © Zhou Xiaohu</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
     <span class="v-meta-tag">Moving Image</span>
   </div>
 
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Ready-made Product of Media</strong> — Monochrome video still of clay figures. Two police officers in the foreground appear to restrain a figure in a suit facing us off-centre. In the background, figures point their cameras towards the figure being restrained while another figure on our right thrusts a microphone in our direction.</div>
+  <div class="v-story"><strong>Rainbow</strong> — Still from a video of a person standing against a white background with their arms raised. Only their back is visible, framed from below the shoulder blades to the lower hip.</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Xu Zhen · © Xu Zhen</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,17 +821,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2012.1476</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Zhou Xiaohu</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2012.1200</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Xu Zhen</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">single-channel digital video (colour, sound)</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Chinese</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Moving Image</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Video</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2003</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">duration: 3 min.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1998</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">duration: 3 min. 13 sec.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Video</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Zhou Xiaohu</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Xu Zhen · © Xu Zhen</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -814,24 +848,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC824.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP-27244-001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Miniature horn</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 315705</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/261455/preview" loading="lazy"></div>
+        <div class="v-rel-title">Photograph</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH003434</div>
       </a>
       <a class="v-rel-card" href="NFC825.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/358757?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">cloak, evening</div>
-        <div class="v-rel-meta">Auckland Museum · 1965.78.880</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fcollection.mobilier-national.fr%2Fmedia%2Fxl%2FDIVERS%2F2020%2FGoogle-Lab%2Fgmmp-21724-001_2019-1.jpg&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">SOIERIE - Bordures pour tenture destinées à la Grande Galerie du Louvre</div>
+        <div class="v-rel-meta">Europeana · /957/GMMP_21724_001</div>
       </a>
       <a class="v-rel-card" href="NFC827.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/f37e7263-4b5c-de71-d398-40aa87548c54/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Vase</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 120187</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/93169?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">vessel</div>
+        <div class="v-rel-meta">Auckland Museum · 1996x2.103.30</div>
       </a>
       <a class="v-rel-card" href="NFC828.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/ZWBPB/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Concours van de Koninklijke Liedertafel &quot;Kunst en Vriendschap&quot; te Amsterdam 1876</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100314</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1979.37/1979.37_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portrait of Napoléone Elisa Baciocchi, Niece of Napoleon I</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1979.37</div>
       </a></div>
   </div>
 </div>
@@ -844,7 +878,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/ready-made-product-of-media-20121476/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/rainbow-20121200/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -875,25 +909,25 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Ready-made Product of Media`,
+  title: `Rainbow`,
   type: `Video`,
-  date: `2003`,
-  registration: `2012.1476`,
+  date: `1998`,
+  registration: `2012.1200`,
   location: `M+, Hong Kong`,
   discipline: `Moving Image`,
   category: `Video`,
-  description: `Monochrome video still of clay figures. Two police officers in the foreground appear to restrain a figure in a suit facing us off-centre. In the background, figures point their cameras towards the figure being restrained while another figure on our right thrusts a microphone in our direction.`,
+  description: `Still from a video of a person standing against a white background with their arms raised. Only their back is visible, framed from below the shoulder blades to the lower hip.`,
   medium: `single-channel digital video (colour, sound)`,
-  artist: `Zhou Xiaohu`,
+  artist: `Xu Zhen`,
   culture: `Chinese`,
-  dimensions: `duration: 3 min.`,
-  wall_description: `Monochrome video still of clay figures. Two police officers in the foreground appear to restrain a figure in a suit facing us off-centre. In the background, figures point their cameras towards the figure being restrained while another figure on our right thrusts a microphone in our direction.`,
+  dimensions: `duration: 3 min. 13 sec.`,
+  wall_description: `Still from a video of a person standing against a white background with their arms raised. Only their back is visible, framed from below the shoulder blades to the lower hip.`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Ready-made Product of Media. Zhou Xiaohu. 2003. M+, Hong Kong`,
-  licence: `CC0 metadata · M+ API service non-commercial · © Zhou Xiaohu`,
-  source_url: `https://www.mplus.org.hk/en/collection/objects/ready-made-product-of-media-20121476/`,
+  tombstone: `Rainbow. Xu Zhen. 1998. M+, Hong Kong`,
+  licence: `CC0 metadata · M+ API service non-commercial · © Xu Zhen`,
+  source_url: `https://www.mplus.org.hk/en/collection/objects/rainbow-20121200/`,
   institution: `M+, Hong Kong`
 };
 

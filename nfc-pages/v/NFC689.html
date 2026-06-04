@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Facade of the Art Institute — ARCHAI</title>
+<title>Male Nude — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/96fd267e-1601-ef1d-2958-ea954bfc2ed7/full/843,/0/default.jpg" alt="Facade of the Art Institute" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1996.357/1996.357_web.jpg" alt="Male Nude" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Facade of the Art Institute</div>
-  <div class="v-sub">Print · n.d. · 181094</div>
+  <div class="v-title">Male Nude</div>
+  <div class="v-sub">Photograph · c. 1870–75 · 1996.357</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Art Institute of Chicago</span>
-    <span class="v-meta-tag lic">All rights reserved</span>
-    <span class="v-meta-tag">Prints and Drawings</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Photography</span>
   </div>
 
   <!-- SHARE -->
@@ -756,8 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Facade of the Art Institute</strong> — Facade of the Art Institute. Print. Etching on ivory Japanese paper. Prints and Drawings. Otto Henry Schneider
-American, 1865-1950. etching. n.d.. United States. &lt;p&gt;The Art Institute towers over the automobiles lining East Adams Street in Otto Schneider’s etching of a familiar local vista. The artis…</div>
+  <div class="v-story"><strong>Male Nude</strong> — Guglielmo Marconi specialized in nude studies for use by painters and sculptors. Using children, women, and men as models, he photographed a variety of poses traditionally employed by models in academic studios. Artists purchased them because working from a photograph was much cheaper than hiring a …</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -790,18 +821,19 @@ American, 1865-1950. etching. n.d.. United States. &lt;p&gt;The Art Institute to
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">181094</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Otto Henry Schneider
-American, 1865-1950</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Etching on ivory Japanese paper</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">United States</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Prints and Drawings</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">etching</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">n.d.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Plate: 25.5 × 21.8 cm (10 1/16 × 8 5/8 in.); Sheet: 35.3 × 28.7 cm (13 15/16 × 11 5/16 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">All rights reserved</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1996.357</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Guglielmo Marconi (French, 1842–after 1885)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">albumen print from wet collodion negative</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, 19th century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1870–75</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Image: 27.2 x 18.8 cm (10 11/16 x 7 3/8 in.); Matted: 55.9 x 45.7 cm (22 x 18 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">230 Photography</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -816,24 +848,24 @@ American, 1865-1950</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC687.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/124658/preview" loading="lazy"></div>
-        <div class="v-rel-title">Musket, flintlock, British, &quot;India Pattern&quot;, 1805</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · DM000006</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2012FK3674/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Alhambra</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · 34776</div>
       </a>
       <a class="v-rel-card" href="NFC688.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/b0fa4234-a3a4-8db1-60e6-55b6fb046fac/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Geese in a Farmyard</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 93</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1706495405/v2/prod/small/008501_009000/008520_022.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Model, Singapore Conference Hall and Trade Union House (1961–1965), Singapore</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2017.236</div>
       </a>
       <a class="v-rel-card" href="NFC690.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP-37845-001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Oliphant (side-blown horn)</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 883968</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/Eqjej/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Filips de Goede, hertog van Bourgondie, rekenpenning van het hertogdom Brabant</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010044</div>
       </a>
       <a class="v-rel-card" href="NFC691.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/cd40d01c-d24f-888d-bcf2-b426374d1fbc/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Wounded Tree: I'm Meant to Symbolize Strength</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 184066</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP-12659-001.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Seated female figure</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 312595</div>
       </a></div>
   </div>
 </div>
@@ -846,7 +878,7 @@ American, 1865-1950</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/181094" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1996.357" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -877,28 +909,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Facade of the Art Institute`,
-  type: `Print`,
-  date: `n.d.`,
-  registration: `181094`,
-  location: `Art Institute of Chicago`,
-  discipline: `Prints and Drawings`,
-  category: `etching`,
-  description: `Facade of the Art Institute. Print. Etching on ivory Japanese paper. Prints and Drawings. Otto Henry Schneider
-American, 1865-1950. etching. n.d.. United States. <p>The Art Institute towers over the automobiles lining East Adams Street in Otto Schneider’s etching of a familiar local vista. The artist’s vision allows us to imagine the hustle and bustle of early 20th-century Chicago as cars speed down Michigan Avenue and pedestrians make their way down the sidewalk. Schneider attended the School of the Art Institute of Chicago for a brief period before embarking upon a career as an illustrator.<…`,
-  medium: `Etching on ivory Japanese paper`,
-  artist: `Otto Henry Schneider
-American, 1865-1950`,
-  culture: `United States`,
-  dimensions: `Plate: 25.5 × 21.8 cm (10 1/16 × 8 5/8 in.); Sheet: 35.3 × 28.7 cm (13 15/16 × 11 5/16 in.)`,
+  title: `Male Nude`,
+  type: `Photograph`,
+  date: `c. 1870–75`,
+  registration: `1996.357`,
+  location: `230 Photography`,
+  discipline: `Photography`,
+  category: `Photograph`,
+  description: `Guglielmo Marconi specialized in nude studies for use by painters and sculptors. Using children, women, and men as models, he photographed a variety of poses traditionally employed by models in academic studios. Artists purchased them because working from a photograph was much cheaper than hiring a live model.`,
+  medium: `albumen print from wet collodion negative`,
+  artist: `Guglielmo Marconi (French, 1842–after 1885)`,
+  culture: `France, 19th century`,
+  dimensions: `Image: 27.2 x 18.8 cm (10 11/16 x 7 3/8 in.); Matted: 55.9 x 45.7 cm (22 x 18 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
-  licence: `All rights reserved`,
-  source_url: `https://www.artic.edu/artworks/181094`,
-  institution: `Art Institute of Chicago`
+  did_you_know: `This photograph illustrates the developing close association in the late 1800s between photographers and artists.`,
+  provenance: `[{"description":"(Charles Isaacs Photographs, Inc., New York, NY), sold to The Cleveland Museum of Art, Cleveland, OH","citations":[],"footnotes":null,"date":"?–1996","sortorder":1},{"description":"The Cleveland Museum of Art, Cleveland, OH","citations":[],"footnotes":null,"date":"December 2, 1996–"…`,
+  tombstone: `Male Nude, c. 1870–75. Guglielmo Marconi (French, 1842–after 1885). Albumen print from wet collodion negative; image: 27.2 x 18.8 cm (10 11/16 x 7 3/8 in.); matted: 55.9 x 45.7 cm (22 x 18 in.). The Cleveland Museum of Art, John L. Severance Fund, 1996.357`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://clevelandart.org/art/1996.357`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1180,7 +1210,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_aic',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

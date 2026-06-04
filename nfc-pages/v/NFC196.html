@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Dream Still — ARCHAI</title>
+<title>Untitled — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2014GX3511/full/!600,600/0/default.jpg" alt="Dream Still" loading="eager">
+  <img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1653843655/v2/prod/small/001501_002000/001994_001.jpg" alt="Untitled" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Dream Still</div>
-  <div class="v-sub">Digital print · 2009 · E.77-2013</div>
+  <div class="v-title">Untitled</div>
+  <div class="v-sub">Ink Art · 1960 · 2016.83</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Digital print</span>
+    <span class="v-meta-tag mv">M+, Hong Kong</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">Visual Art</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Dream Still</strong> — Dream Still. Digital print. Made by Barbara Nessim. 2009. Made in America. Prints &amp; Drawings Study Room, room 315</div>
+  <div class="v-story"><strong>Untitled</strong> — Long rectangular paper scroll with black ink marks and lines painted across it along a horizontal orientation, suggesting a musical notation or an abstract landscape.</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Li Yuan-Chia Foundation · © Li Yuan-Chia Foundation</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +821,20 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.77-2013</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Barbara Nessim</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Digital print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Digital print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2009</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, room 315</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Digital print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2016.83</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Li Yuan-chia</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">ink on paper</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">British</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Visual Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ink Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1960</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">overall: 30 × 751 cm
+image: 28 × 748.2 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Ink Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Li Yuan-Chia Foundation · © Li Yuan-Chia Foundation</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +849,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC194.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/345934/preview" loading="lazy"></div>
-        <div class="v-rel-title">Soldier doll</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH016389</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1997.298/1997.298_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Nautilus Reading Lamp</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1997.298</div>
       </a>
       <a class="v-rel-card" href="NFC195.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PJ3613/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Avebury</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.309-2025</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/1979.206.574.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Seated female figure</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 312770</div>
       </a>
       <a class="v-rel-card" href="NFC197.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/zxvEg/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Franse button voor juryleden bij onbekende gelegenheid, 1900</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100016</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4286/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">ASTIGMATISM</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.242-2020</div>
       </a>
       <a class="v-rel-card" href="NFC198.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/a1486909-2b1b-44cd-7303-798a3d6dc480/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Midwest Landscape #15</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 100086</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/157613?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">textile piece</div>
+        <div class="v-rel-meta">Auckland Museum · 1967.197</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +879,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1257751/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/untitled-201683/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,26 +910,27 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Dream Still`,
-  type: `Digital print`,
-  date: `2009`,
-  registration: `E.77-2013`,
-  location: `Prints & Drawings Study Room, room 315`,
-  discipline: `Digital print`,
-  category: `Digital print`,
-  description: `Dream Still. Digital print. Made by Barbara Nessim. 2009. Made in America. Prints & Drawings Study Room, room 315`,
-  medium: ``,
-  artist: `Barbara Nessim`,
-  culture: ``,
-  dimensions: ``,
-  wall_description: ``,
+  title: `Untitled`,
+  type: `Ink Art`,
+  date: `1960`,
+  registration: `2016.83`,
+  location: `M+, Hong Kong`,
+  discipline: `Visual Art`,
+  category: `Ink Art`,
+  description: `Long rectangular paper scroll with black ink marks and lines painted across it along a horizontal orientation, suggesting a musical notation or an abstract landscape.`,
+  medium: `ink on paper`,
+  artist: `Li Yuan-chia`,
+  culture: `British`,
+  dimensions: `overall: 30 × 751 cm
+image: 28 × 748.2 cm`,
+  wall_description: `Long rectangular paper scroll with black ink marks and lines painted across it along a horizontal orientation, suggesting a musical notation or an abstract landscape.`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1257751/`,
-  institution: `Victoria and Albert Museum, London`
+  tombstone: `Untitled. Li Yuan-chia. 1960. M+, Hong Kong`,
+  licence: `CC0 metadata · M+ API service non-commercial · © Li Yuan-Chia Foundation`,
+  source_url: `https://www.mplus.org.hk/en/collection/objects/untitled-201683/`,
+  institution: `M+, Hong Kong`
 };
 
 // Build rich context from available fields
@@ -1173,7 +1212,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_mplus',
       text,
       authorType: 'visitor',
     }),

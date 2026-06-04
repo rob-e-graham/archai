@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>A FIFTH ON A MAZE — ARCHAI</title>
+<title>Over-the-Shoulder Soprano Horn in E-flat — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2014HD4305/full/!600,600/0/default.jpg" alt="A FIFTH ON A MAZE" loading="eager">
+  <img src="https://images.metmuseum.org/CRDImages/mi/original/DP-12679-053.jpg" alt="Over-the-Shoulder Soprano Horn in E-flat" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">A FIFTH ON A MAZE</div>
-  <div class="v-sub">Computer-generated drawing · 1969 · E.263-2020</div>
+  <div class="v-title">Over-the-Shoulder Soprano Horn in E-flat</div>
+  <div class="v-sub">Over-the-Shoulder Soprano Horn in E-flat · ca. 1880 · 503846</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Computer-generated drawing</span>
+    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Musical Instruments</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>A FIFTH ON A MAZE</strong> — A FIFTH ON A MAZE. Computer-generated drawing. Made by Frederick Hammersley. 1969. Made in America. Prints &amp; Drawings Study Room, level C</div>
+  <div class="v-story"><strong>Over-the-Shoulder Soprano Horn in E-flat</strong> — Over-the-Shoulder Soprano Horn in E-flat. Over-the-Shoulder Soprano Horn in E-flat. Nickel-silver. Musical Instruments. American. by John F. Stratton. Aerophone-Lip Vibrated-horn. ca. 1880</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +821,21 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.263-2020</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Frederick Hammersley</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Computer-generated drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Computer-generated drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1969</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, level C</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Computer-generated drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">503846</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">John F. Stratton</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Nickel-silver</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">American</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Aerophone-Lip Vibrated-horn</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca. 1880</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Height: 21 15/16 in. (55.8 cm)
+Diameter (Of bell): 4 5/16 in. (10.9 cm)
+Weight: 1.4 lbs. (635.036 g)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 680</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Over-the-Shoulder Soprano Horn in E-flat</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +850,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1239.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Ffotothek.slub-dresden.de%2Ffotos%2Fdf_pj_0010782.jpg&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Deutsches Hygiene-Museum</div>
-        <div class="v-rel-meta">Europeana · /188/item_4D37FQQJH4GGV4TSXL752467XYZR6T7S</div>
-      </a>
-      <a class="v-rel-card" href="NFC1240.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/10325?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">dress, evening</div>
-        <div class="v-rel-meta">Auckland Museum · 1995.101.7</div>
-      </a>
-      <a class="v-rel-card" href="NFC1242.html">
         <div class="v-rel-thumb"><img src="https://museuregionalcasadosottoni.acervos.museus.gov.br/wp-content/uploads/2019/04/171_A-2-1-1-4.jpg" loading="lazy"></div>
         <div class="v-rel-title">Estampa religiosa</div>
         <div class="v-rel-meta">Brasiliana Museus · 5368641-2</div>
       </a>
+      <a class="v-rel-card" href="NFC1240.html">
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F2%2F26%2FNationalmuseum_Stockholm-DSC_0040w.jpg&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Nationalmuseum Stockholm-DSC 0040w</div>
+        <div class="v-rel-meta">Europeana · /2058704/File_Nationalmuseum_Stockholm_DSC_0040w_jpg</div>
+      </a>
+      <a class="v-rel-card" href="NFC1242.html">
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DT6580.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Idiophone with an iyọ́bà</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 316558</div>
+      </a>
       <a class="v-rel-card" href="NFC1243.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_729/v1627853231/v2/prod/small/002501_003000/002860_004.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Civilization Pillar</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2012.947</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1988.65/1988.65_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Heron-Shaped Figure Vase (Oil Vessel)</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1988.65</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +880,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1279508/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/503846" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,26 +911,28 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `A FIFTH ON A MAZE`,
-  type: `Computer-generated drawing`,
-  date: `1969`,
-  registration: `E.263-2020`,
-  location: `Prints & Drawings Study Room, level C`,
-  discipline: `Computer-generated drawing`,
-  category: `Computer-generated drawing`,
-  description: `A FIFTH ON A MAZE. Computer-generated drawing. Made by Frederick Hammersley. 1969. Made in America. Prints & Drawings Study Room, level C`,
-  medium: ``,
-  artist: `Frederick Hammersley`,
-  culture: ``,
-  dimensions: ``,
+  title: `Over-the-Shoulder Soprano Horn in E-flat`,
+  type: `Over-the-Shoulder Soprano Horn in E-flat`,
+  date: `ca. 1880`,
+  registration: `503846`,
+  location: `Gallery 680`,
+  discipline: `Musical Instruments`,
+  category: `Aerophone-Lip Vibrated-horn`,
+  description: `Over-the-Shoulder Soprano Horn in E-flat. Over-the-Shoulder Soprano Horn in E-flat. Nickel-silver. Musical Instruments. American. by John F. Stratton. Aerophone-Lip Vibrated-horn. ca. 1880`,
+  medium: `Nickel-silver`,
+  artist: `John F. Stratton`,
+  culture: `American`,
+  dimensions: `Height: 21 15/16 in. (55.8 cm)
+Diameter (Of bell): 4 5/16 in. (10.9 cm)
+Weight: 1.4 lbs. (635.036 g)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1279508/`,
-  institution: `Victoria and Albert Museum, London`
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.metmuseum.org/art/collection/search/503846`,
+  institution: `The Metropolitan Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1173,7 +1214,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_met',
       text,
       authorType: 'visitor',
     }),

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Costume — ARCHAI</title>
+<title>Banjo — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2020MU2627/full/!600,600/0/default.jpg" alt="Costume" loading="eager">
+  <img src="https://images.metmuseum.org/CRDImages/mi/original/DP-39911-002.jpg" alt="Banjo" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Costume</div>
-  <div class="v-sub">Costume · 1960s · S.161-2021</div>
+  <div class="v-title">Banjo</div>
+  <div class="v-sub">Banjo · mid-19th century · 504951</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Costume</span>
+    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Musical Instruments</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Costume</strong> — Costume. Costume. 1960s. In Store</div>
+  <div class="v-story"><strong>Banjo</strong> — Banjo. Banjo. Wood, various materials. Musical Instruments. British. Chordophone-Lute-plucked. mid-19th century</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,13 +821,20 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">S.161-2021</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Costume</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Costume</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1960s</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In Store</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Costume</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">504951</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Wood, various materials</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">British</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Chordophone-Lute-plucked</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">mid-19th century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">99.5cm x 31cm x 12cm
+
+Weight: under 40 lbs</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 199</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Banjo</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -810,24 +849,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1080.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/TTTrn/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Engelse penning op het huwelijk van de Prince of Wales met Alexandra van Denemarken 1863</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100020</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP302548.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Nyonganyonga</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 503679</div>
       </a>
       <a class="v-rel-card" href="NFC1081.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/794136?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">relief</div>
-        <div class="v-rel-meta">Auckland Museum · 1996x2.20</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/sbiLI/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Geertruida van Saksen</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010006</div>
       </a>
       <a class="v-rel-card" href="NFC1083.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/235408?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">sampler</div>
-        <div class="v-rel-meta">Auckland Museum · col.1037</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/910839/preview" loading="lazy"></div>
+        <div class="v-rel-title">New, authentic, and complete collection of voyages round the world : undertaken and performed by royal authority. Containing a new, authentic, entertaining, instructive, full, and complete historical account of Captain Cook's first, second, third, and last voyages, undertaken by order of His present Majesty, for making new discoveries in geography, navigation, astronomy, &amp;c. in the Southern and Northern Hemispheres, &amp;c., &amp;c., &amp;c. ... To which will be added, complete and genuine narratives of other voyages of discovery round the world, &amp;c. ... Illustrated with all the elegant, splendid, and fine large folio copper-plates, belonging to Capt. Cook's first, second, third and last voyages ... / the whole of these voyages of Capt. James Cook, &amp;c., being newly written by the editors from the authentic journals of several principal officers and other gentlemen of the most distinguished naval and philosophical abilities, who sailed in the various ships and now publishing under the immediate direction of George William Anderson ... assisted, very materially, by a principal officer who sailed in the Resolution sloop, and by other gentlemen of the Royal Navy.</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · RB000015</div>
       </a>
       <a class="v-rel-card" href="NFC1084.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_668/v1706892866/v2/prod/small/001501_002000/001515_002.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Tié</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2013.31</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2019MD9380/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Radiograph of telephone handset</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · RPS.1078-2019</div>
       </a></div>
   </div>
 </div>
@@ -840,7 +879,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1554379/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/504951" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -871,26 +910,28 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Costume`,
-  type: `Costume`,
-  date: `1960s`,
-  registration: `S.161-2021`,
-  location: `In Store`,
-  discipline: `Costume`,
-  category: `Costume`,
-  description: `Costume. Costume. 1960s. In Store`,
-  medium: ``,
+  title: `Banjo`,
+  type: `Banjo`,
+  date: `mid-19th century`,
+  registration: `504951`,
+  location: `Gallery 199`,
+  discipline: `Musical Instruments`,
+  category: `Chordophone-Lute-plucked`,
+  description: `Banjo. Banjo. Wood, various materials. Musical Instruments. British. Chordophone-Lute-plucked. mid-19th century`,
+  medium: `Wood, various materials`,
   artist: ``,
-  culture: ``,
-  dimensions: ``,
+  culture: `British`,
+  dimensions: `99.5cm x 31cm x 12cm
+
+Weight: under 40 lbs`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1554379/`,
-  institution: `Victoria and Albert Museum, London`
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.metmuseum.org/art/collection/search/504951`,
+  institution: `The Metropolitan Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1172,7 +1213,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_met',
       text,
       authorType: 'visitor',
     }),

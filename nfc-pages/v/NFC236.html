@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Brambles and Nightingales — ARCHAI</title>
+<title>Soft Boundaries — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/b9301862-923f-01bc-5962-932a62c291bb/full/843,/0/default.jpg" alt="Brambles and Nightingales" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2021NB9575/full/!600,600/0/default.jpg" alt="Soft Boundaries" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Brambles and Nightingales</div>
-  <div class="v-sub">Photograph · 2004 · 184065</div>
+  <div class="v-title">Soft Boundaries</div>
+  <div class="v-sub">Digital print · 1994 · E.18-2021</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Art Institute of Chicago</span>
-    <span class="v-meta-tag lic">All rights reserved</span>
-    <span class="v-meta-tag">Photography and Media</span>
+    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Digital print</span>
   </div>
 
   <!-- SHARE -->
@@ -756,8 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Brambles and Nightingales</strong> — Brambles and Nightingales. Photograph. Inkjet print. Photography and Media. Irene Siegel
-American, born 1932. photograph. 2004. United States. 21st Century</div>
+  <div class="v-story"><strong>Soft Boundaries</strong> — Soft Boundaries. Digital print. Made by Truckenbrod, Joan. 1994. Made in Chicago. Prints &amp; Drawings Study Room, level C</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -790,18 +821,16 @@ American, born 1932. photograph. 2004. United States. 21st Century</div>
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">184065</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Irene Siegel
-American, born 1932</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Inkjet print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">United States</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography and Media</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">photograph</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2004</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Image: 43.1 × 67.2 cm (17 × 26 1/2 in.); Paper: 60.9 × 80.6 cm (24 × 31 3/4 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">All rights reserved</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.18-2021</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Truckenbrod, Joan</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Digital print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Digital print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1994</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, level C</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Digital print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -816,24 +845,24 @@ American, born 1932</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC234.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2021.65/2021.65_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Fontaine du Jardin du Luxembourg (grotte de Marie de Médécis)</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2021.65</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/PyzGb/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Hollandse wapenstuiver, 1733</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100258</div>
       </a>
       <a class="v-rel-card" href="NFC235.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/as/original/1987_142_268.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Suspension Part for a Musical Instrument called &quot;Gender&quot;</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 37774</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669246/006258.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Jesus e Verônica</div>
+        <div class="v-rel-meta">Brasiliana Museus · jesus-e-veronica</div>
       </a>
       <a class="v-rel-card" href="NFC237.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2007BM7780/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Technophone</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · W.19-2003</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2007BR3923/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Kolster-Brandes model FB10C</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.293-1976</div>
       </a>
       <a class="v-rel-card" href="NFC238.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/40138?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">collars</div>
-        <div class="v-rel-meta">Auckland Museum · 1979.42</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_668/v1706892866/v2/prod/small/001501_002000/001515_002.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Tié</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2013.31</div>
       </a></div>
   </div>
 </div>
@@ -846,7 +875,7 @@ American, born 1932</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/184065" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1522430/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -877,28 +906,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Brambles and Nightingales`,
-  type: `Photograph`,
-  date: `2004`,
-  registration: `184065`,
-  location: `Art Institute of Chicago`,
-  discipline: `Photography and Media`,
-  category: `photograph`,
-  description: `Brambles and Nightingales. Photograph. Inkjet print. Photography and Media. Irene Siegel
-American, born 1932. photograph. 2004. United States. 21st Century`,
-  medium: `Inkjet print`,
-  artist: `Irene Siegel
-American, born 1932`,
-  culture: `United States`,
-  dimensions: `Image: 43.1 × 67.2 cm (17 × 26 1/2 in.); Paper: 60.9 × 80.6 cm (24 × 31 3/4 in.)`,
+  title: `Soft Boundaries`,
+  type: `Digital print`,
+  date: `1994`,
+  registration: `E.18-2021`,
+  location: `Prints & Drawings Study Room, level C`,
+  discipline: `Digital print`,
+  category: `Digital print`,
+  description: `Soft Boundaries. Digital print. Made by Truckenbrod, Joan. 1994. Made in Chicago. Prints & Drawings Study Room, level C`,
+  medium: ``,
+  artist: `Truckenbrod, Joan`,
+  culture: ``,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `All rights reserved`,
-  source_url: `https://www.artic.edu/artworks/184065`,
-  institution: `Art Institute of Chicago`
+  licence: `V&A Open Access`,
+  source_url: `https://collections.vam.ac.uk/item/O1522430/`,
+  institution: `Victoria and Albert Museum, London`
 };
 
 // Build rich context from available fields
@@ -1180,7 +1207,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_aic',
+      collection: 'archai_va',
       text,
       authorType: 'visitor',
     }),

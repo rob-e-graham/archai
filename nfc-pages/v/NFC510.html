@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Deutsches Hygiene-Museum — ARCHAI</title>
+<title>Cupid and Psyche — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Ffotothek.slub-dresden.de%2Ffotos%2Fdf_pj_0010774.jpg&amp;type=IMAGE" alt="Deutsches Hygiene-Museum" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1962.37/1962.37_web.jpg" alt="Cupid and Psyche" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Deutsches Hygiene-Museum</div>
-  <div class="v-sub">IMAGE · Date unknown · /440/item_PYUSDEV73XZ2D5CPNSFQ3PBLB3LGYNDP</div>
+  <div class="v-title">Cupid and Psyche</div>
+  <div class="v-sub">Painting · 1817 · 1962.37</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Europeana</span>
-    <span class="v-meta-tag lic">http://rightsstatements.org/vocab/InC-EDU/1.0/</span>
-    
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Deutsches Hygiene-Museum</strong> — Dresden-Altstadt, Lingnerplatz 1 (Deutsches Hygiene-Museum). Serie &quot;Kongreß der Gesellschaften für perinatale Medizin und Pädiatrie der DDR Dresden 1970&quot;. Zwei Mediziner und eine Medizinerin im Gespräch, im Foyer stehend</div>
+  <div class="v-story"><strong>Cupid and Psyche</strong> — David used the story of Cupid and Psyche to explore the conflict between idealized love and physical reality. Cupid, lover of the beautiful mortal Psyche, visited her nightly on the condition that she not know his identity. Cupid was usually depicted as an ideal adolescent, but here David presents h…</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,13 +821,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">/440/item_PYUSDEV73XZ2D5CPNSFQ3PBLB3LGYNDP</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Peter, Richard jun. (Herstellung) (Fotograf)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">IMAGE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Date unknown</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Deutsche Fotothek</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">IMAGE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">http://rightsstatements.org/vocab/InC-EDU/1.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1962.37</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Jacques-Louis David (French, 1748–1825)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oil on canvas</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, 19th century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1817</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Framed: 221 x 282 x 10 cm (87 x 111 x 3 15/16 in.); Unframed: 184.2 x 241.6 cm (72 1/2 x 95 1/8 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Cleveland Museum of Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -810,24 +848,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC508.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/MUS413A1.JPG" loading="lazy"></div>
-        <div class="v-rel-title">Cavalry Trumpet in C</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 501680</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627855402/v2/prod/small/002001_002500/002206_004.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Han Dynasty Urn with Coca Cola Logo</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2012.49</div>
       </a>
       <a class="v-rel-card" href="NFC509.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD6568/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">First colour broadcast by Associated Television</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · S.172-1980</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/34/659734-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Tune Indicator - AWA, Spark Transmitter,1913-1916</div>
+        <div class="v-rel-meta">Museums Victoria · ST 21416</div>
       </a>
       <a class="v-rel-card" href="NFC511.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP210445.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Monastery Bell</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 502041</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018KR4548/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Camera</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · RPS.324-2018</div>
       </a>
       <a class="v-rel-card" href="NFC512.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2021NB9575/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Soft Boundaries</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.18-2021</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%3A80%2Fwebclient%2FDeliveryManager%3Fpid%3D6346956%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Servizio fotografico Firenze, 1957-1956</div>
+        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6346956_custom_att_2_simple_viewer</div>
       </a></div>
   </div>
 </div>
@@ -840,7 +878,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.europeana.eu/item/440/item_PYUSDEV73XZ2D5CPNSFQ3PBLB3LGYNDP?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1962.37" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -871,26 +909,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Deutsches Hygiene-Museum`,
-  type: `IMAGE`,
-  date: `Date unknown`,
-  registration: `/440/item_PYUSDEV73XZ2D5CPNSFQ3PBLB3LGYNDP`,
-  location: `Deutsche Fotothek`,
-  discipline: ``,
-  category: `IMAGE`,
-  description: `Dresden-Altstadt, Lingnerplatz 1 (Deutsches Hygiene-Museum). Serie "Kongreß der Gesellschaften für perinatale Medizin und Pädiatrie der DDR Dresden 1970". Zwei Mediziner und eine Medizinerin im Gespräch, im Foyer stehend`,
-  medium: ``,
-  artist: `Peter, Richard jun. (Herstellung) (Fotograf)`,
-  culture: ``,
-  dimensions: ``,
+  title: `Cupid and Psyche`,
+  type: `Painting`,
+  date: `1817`,
+  registration: `1962.37`,
+  location: `Cleveland Museum of Art`,
+  discipline: `Modern European Painting and Sculpture`,
+  category: `Painting`,
+  description: `David used the story of Cupid and Psyche to explore the conflict between idealized love and physical reality. Cupid, lover of the beautiful mortal Psyche, visited her nightly on the condition that she not know his identity. Cupid was usually depicted as an ideal adolescent, but here David presents him as an ungainly teenager smirking at his sexual conquest. David took inspiration from a number of ancient texts, including an obscure, recently published Greek poem by Moschus that describes Cupid as a mean-spirited brat with flashing eyes and curly hair.`,
+  medium: `oil on canvas`,
+  artist: `Jacques-Louis David (French, 1748–1825)`,
+  culture: `France, 19th century`,
+  dimensions: `Framed: 221 x 282 x 10 cm (87 x 111 x 3 15/16 in.); Unframed: 184.2 x 241.6 cm (72 1/2 x 95 1/8 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
-  licence: `http://rightsstatements.org/vocab/InC-EDU/1.0/`,
-  source_url: `https://www.europeana.eu/item/440/item_PYUSDEV73XZ2D5CPNSFQ3PBLB3LGYNDP?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb`,
-  institution: `Europeana`
+  did_you_know: `Jacques-Louis David included two butterflies in this painting: one above the slumbering Psyche and the other on the base of the couple's bed frame.`,
+  provenance: `[{"description":"Giovanni Battista Comte de Sommariva [1760-1826], his sale February 18-23, 1839, sold to Dubois.","citations":[],"footnotes":[],"date":"1839","sortorder":1},{"description":"(Dubois, Paris, France, February 18-23, 1839, lot 1)","citations":[],"footnotes":null,"date":"1839","sortorder…`,
+  tombstone: `Cupid and Psyche, 1817. Jacques-Louis David (French, 1748–1825). Oil on canvas; framed: 221 x 282 x 10 cm (87 x 111 x 3 15/16 in.); unframed: 184.2 x 241.6 cm (72 1/2 x 95 1/8 in.). The Cleveland Museum of Art, Leonard C. Hanna Jr. Fund, 1962.37`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://clevelandart.org/art/1962.37`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1172,7 +1210,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_europeana',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

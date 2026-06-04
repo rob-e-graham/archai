@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>medal, athletic — ARCHAI</title>
+<title>chair, dining — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/392771?rendering=standard.jpg" alt="medal, athletic" loading="eager">
+  <img src="https://api.aucklandmuseum.com/id/media/v/72977?rendering=standard.jpg" alt="chair, dining" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">medal, athletic</div>
-  <div class="v-sub">Medal, Award · 1900-1910 · 2016.12.1</div>
+  <div class="v-title">chair, dining</div>
+  <div class="v-sub">Chair, Dining · [1940s] · 1994.112</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Auckland Museum</span>
-    <span class="v-meta-tag lic">© Auckland Museum CC BY</span>
-    <span class="v-meta-tag">Applied Arts and Design</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
+    <span class="v-meta-tag">Social History</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,13 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>medal, athletic</strong> — medal, metal, with a relief of a man running on the front, and inscribed on the back: 'Victor Ludorum / won by / C.D. Cowan / A.A.A. &amp; C.C.' Victor Ludorum is Latin for 'the winner of the games'.</div>
+  <div class="v-story"><strong>chair, dining</strong> — dining table chair, Auckland Lyceum Club
+wooden chair with black painted surface, padded seat with [plastic] cover</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
+      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +822,17 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2016.12.1</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Metal, &lt;metal And Metal Products&gt;, Inorganic Material, &lt;materials By Composition&gt;, Aat Materials</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Applied Arts and Design</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Medal, Award</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1900-1910</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1994.112</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Cousins &amp; Cousins Ltd, Roy A Lippincott</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Wood, Botanical (arch), Archaeology, Aat Materials</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Chair, Dining</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">[1940s]</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Medal, Award</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Chair, Dining</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +847,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC220.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/784675?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">clarinet</div>
-        <div class="v-rel-meta">Auckland Museum · CL 1997.05.2</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP-12679-041.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Soprano Helicon in B-flat</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 504667</div>
       </a>
       <a class="v-rel-card" href="NFC221.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/LDPLi/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van Filips de Schone, hertog van Bourgondi&amp;#235;</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010033</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fbdh-rd.bne.es%2Fpdf.raw%3Fquery%3Did%3A0000133173%26page%3D1%26jpeg%3Dtrue&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">[Álbum 12] [Material gráfico]</div>
+        <div class="v-rel-meta">Europeana · /2022717/bnesearch_detalle_bdh0000133173</div>
       </a>
       <a class="v-rel-card" href="NFC223.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/a8cbf59c-2f27-ef34-29a3-cb7a5dc10f26/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Johnny's Restaurant, Chicago, Illinois, Oblique Aerial View</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 152065</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627843917/v2/prod/small/003001_003500/003011_002.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Whose Utopia</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2012.85</div>
       </a>
       <a class="v-rel-card" href="NFC224.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP-12679-081.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Parade Trumpet</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 504061</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/125927/preview" loading="lazy"></div>
+        <div class="v-rel-title">Textile swatchbook</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH009582</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +877,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/777905" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/5458" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,16 +908,17 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `medal, athletic`,
-  type: `Medal, Award`,
-  date: `1900-1910`,
-  registration: `2016.12.1`,
+  title: `chair, dining`,
+  type: `Chair, Dining`,
+  date: `[1940s]`,
+  registration: `1994.112`,
   location: `Auckland Museum`,
-  discipline: `Applied Arts and Design`,
-  category: `Medal, Award`,
-  description: `medal, metal, with a relief of a man running on the front, and inscribed on the back: 'Victor Ludorum / won by / C.D. Cowan / A.A.A. & C.C.' Victor Ludorum is Latin for 'the winner of the games'.`,
-  medium: `Metal, <metal And Metal Products>, Inorganic Material, <materials By Composition>, Aat Materials`,
-  artist: ``,
+  discipline: `Social History`,
+  category: `Chair, Dining`,
+  description: `dining table chair, Auckland Lyceum Club
+wooden chair with black painted surface, padded seat with [plastic] cover`,
+  medium: `Wood, Botanical (arch), Archaeology, Aat Materials`,
+  artist: `Cousins & Cousins Ltd, Roy A Lippincott`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -890,7 +927,7 @@ const OBJECT = {
   provenance: ``,
   tombstone: ``,
   licence: `© Auckland Museum CC BY`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/777905`,
+  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/5458`,
   institution: `Auckland Museum`
 };
 

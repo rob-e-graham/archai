@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Flask — ARCHAI</title>
+<title>Maria I — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://media.tepapa.govt.nz/collection/10712/preview" alt="Flask" loading="eager">
+  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680942/470-scaled.jpg" alt="Maria I" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Flask</div>
-  <div class="v-sub">flasks · circa 100 BC · CG000017/2</div>
+  <div class="v-title">Maria I</div>
+  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · 18-- · maria-i</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
-    <span class="v-meta-tag lic">CC BY-NC-ND 4.0 · metadata CC BY 4.0</span>
-    <span class="v-meta-tag">History</span>
+    <span class="v-meta-tag mv">Brasiliana Museus</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Brasiliana Museus</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Flask</strong> — Flask , circa 100 BC, maker unknown. Gift of Mrs G.L. Tacon, 1935. CC BY-NC-ND 4.0 . Te Papa (CG000017/2)</div>
+  <div class="v-story"><strong>Maria I</strong> — Retrato de figura feminina sobre fundo escuro, de pé, a meio corpo voltado para a sua direita. Cabelos em tom castanho avermelhado, longos e presos, ornados com pedras, tendo um cacho caindo sobre o ombro esquerdo. Pele clara, sobrancelhas arqueadas e lábios vermelhos. Traja vestido acinzentado long…</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,16 +821,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">CG000017/2</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Unknown</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">glass</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">flasks</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">circa 100 BC</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 37mm (width), 58mm (height)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">flasks</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC BY-NC-ND 4.0 · metadata CC BY 4.0</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">maria-i</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">18--</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 128,30 cm · largura 94,00 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -813,24 +847,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC601.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AT9582/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Murphy A104</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · W.44-1978</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/94bfb508-31cc-7c9f-63a9-5478c826129a/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">The Sacred Grove, Beloved of the Arts and the Muses</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 81566</div>
       </a>
       <a class="v-rel-card" href="NFC602.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/GPueS/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Schutterspenning van Leiden</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100450</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1991.1/1991.1_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Red-Figure Calyx-Krater (Mixing Vessel): Medea in Chariot (A); Telephos with Baby Orestes (B)</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1991.1</div>
       </a>
       <a class="v-rel-card" href="NFC604.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2004.32/2004.32_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Behind the Troglodyte Farm</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2004.32</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/679916/000863-1.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Almirante José Secundino de Gomensoro</div>
+        <div class="v-rel-meta">Brasiliana Museus · almirante-jose-secundino-de-gomensoro</div>
       </a>
       <a class="v-rel-card" href="NFC605.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP204706a.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Harpsichord</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 502377</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/329130?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">sherd</div>
+        <div class="v-rel-meta">Auckland Museum · K2484</div>
       </a></div>
   </div>
 </div>
@@ -843,7 +877,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/48575" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/maria-i/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -874,26 +908,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Flask`,
-  type: `flasks`,
-  date: `circa 100 BC`,
-  registration: `CG000017/2`,
-  location: `Te Papa Tongarewa, Wellington`,
-  discipline: `History`,
-  category: `flasks`,
-  description: `Flask , circa 100 BC, maker unknown. Gift of Mrs G.L. Tacon, 1935. CC BY-NC-ND 4.0 . Te Papa (CG000017/2)`,
-  medium: `glass`,
-  artist: `Unknown`,
-  culture: ``,
-  dimensions: `Overall: 37mm (width), 58mm (height)`,
-  wall_description: ``,
+  title: `Maria I`,
+  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  date: `18--`,
+  registration: `maria-i`,
+  location: `Brasiliana Museus`,
+  discipline: `Brasiliana Museus`,
+  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  description: `Retrato de figura feminina sobre fundo escuro, de pé, a meio corpo voltado para a sua direita. Cabelos em tom castanho avermelhado, longos e presos, ornados com pedras, tendo um cacho caindo sobre o ombro esquerdo. Pele clara, sobrancelhas arqueadas e lábios vermelhos. Traja vestido acinzentado longo, com mangas curtas e bufantes arrematadas por fina renda. Ao peito, longo peitilho em V até a cintura com pedras vermelhas e pérolas. Sobre os ombros, manto marrom com panejamento caindo a sua direita. Mão direita flexionada carrega junto ao corpo bastão com grande pedra oval azul clara. Mão esque…`,
+  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  artist: ``,
+  culture: `Brazil`,
+  dimensions: `altura 128,30 cm · largura 94,00 cm`,
+  wall_description: `Retrato de figura feminina sobre fundo escuro, de pé, a meio corpo voltado para a sua direita. Cabelos em tom castanho avermelhado, longos e presos, ornados com pedras, tendo um cacho caindo sobre o ombro esquerdo. Pele clara, sobrancelhas arqueadas e lábios vermelhos. Traja vestido acinzentado longo, com mangas curtas e bufantes arrematadas por fina renda. Ao peito, longo peitilho em V até a cintura com pedras vermelhas e pérolas. Sobre os ombros, manto marrom com panejamento caindo a sua direi…`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Flask, circa 100 BC, maker unknown. Gift of Mrs G.L. Tacon, 1935. CC BY-NC-ND 4.0. Te Papa (CG000017/2)`,
-  licence: `CC BY-NC-ND 4.0 · metadata CC BY 4.0`,
-  source_url: `https://collections.tepapa.govt.nz/object/48575`,
-  institution: `Museum of New Zealand Te Papa Tongarewa`
+  tombstone: `Maria I. 18--. Brasiliana Museus`,
+  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
+  source_url: `https://brasiliana.museus.gov.br/acervos/maria-i/`,
+  institution: `Brasiliana Museus`
 };
 
 // Build rich context from available fields
@@ -1175,7 +1209,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_tepapa',
+      collection: 'archai_brasiliana',
       text,
       authorType: 'visitor',
     }),

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>CLAIROL — ARCHAI</title>
+<title>Radio — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2014HD4347/full/!600,600/0/default.jpg" alt="CLAIROL" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2018KY2030/full/!600,600/0/default.jpg" alt="Radio" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">CLAIROL</div>
-  <div class="v-sub">Computer-generated drawing · 1969 · E.309-2020</div>
+  <div class="v-title">Radio</div>
+  <div class="v-sub">Radio · 1932 · CIRC.43-1977</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Computer-generated drawing</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Radio</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>CLAIROL</strong> — CLAIROL. Computer-generated drawing. Made by Frederick Hammersley. 1969. Made in America. Prints &amp; Drawings Study Room, level C</div>
+  <div class="v-story"><strong>Radio</strong> — Radio. Radio. Made by Ultra Radios. 1932. Made in England. In Store</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +821,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.309-2020</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Frederick Hammersley</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Computer-generated drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Computer-generated drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1969</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, level C</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Computer-generated drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">CIRC.43-1977</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Ultra Radios</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Radio</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Radio</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1932</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In Store</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Radio</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +845,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC014.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627822927/v2/prod/small/008001_008500/008351_003.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Kowloon Walled City—Children on Rooftop</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2018.2</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/124658/preview" loading="lazy"></div>
+        <div class="v-rel-title">Musket, flintlock, British, &quot;India Pattern&quot;, 1805</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · DM000006</div>
       </a>
       <a class="v-rel-card" href="NFC015.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/yzUTT/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Dukaat van de Bataafse Republiek op naam van Holland, 1802</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100089</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/45564/preview" loading="lazy"></div>
+        <div class="v-rel-title">Mehit-em-Wesekht and Sarcophagus</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · FE003200</div>
       </a>
       <a class="v-rel-card" href="NFC017.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%3A80%2Fwebclient%2FDeliveryManager%3Fpid%3D6355706%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Servizio fotografico Firenze, 1957-1956</div>
-        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6355706_custom_att_2_simple_viewer</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2011EP0025/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Universal Electronic Vacuum, 1967</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.1217-1967</div>
       </a>
       <a class="v-rel-card" href="NFC018.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2008BT5107/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Analog-Grafik D3 (Dance of the Electrons)</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.119-2008</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fsgdap.girona.cat%2Fsdam%2Fimatges%2F085288.jpg&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">[Aparell fotogràfic]</div>
+        <div class="v-rel-meta">Europeana · /2024914/photography_ProvidedCHO_Ajuntament_de_Girona_085288</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +875,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1284405/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O372009/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,16 +906,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `CLAIROL`,
-  type: `Computer-generated drawing`,
-  date: `1969`,
-  registration: `E.309-2020`,
-  location: `Prints & Drawings Study Room, level C`,
-  discipline: `Computer-generated drawing`,
-  category: `Computer-generated drawing`,
-  description: `CLAIROL. Computer-generated drawing. Made by Frederick Hammersley. 1969. Made in America. Prints & Drawings Study Room, level C`,
+  title: `Radio`,
+  type: `Radio`,
+  date: `1932`,
+  registration: `CIRC.43-1977`,
+  location: `In Store`,
+  discipline: `Radio`,
+  category: `Radio`,
+  description: `Radio. Radio. Made by Ultra Radios. 1932. Made in England. In Store`,
   medium: ``,
-  artist: `Frederick Hammersley`,
+  artist: `Ultra Radios`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -890,7 +924,7 @@ const OBJECT = {
   provenance: ``,
   tombstone: ``,
   licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1284405/`,
+  source_url: `https://collections.vam.ac.uk/item/O372009/`,
   institution: `Victoria and Albert Museum, London`
 };
 

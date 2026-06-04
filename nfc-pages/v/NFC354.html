@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Aerial V — ARCHAI</title>
+<title>La Cervara, the Roman Campagna — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2019LX2140/full/!600,600/0/default.jpg" alt="Aerial V" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1963.91/1963.91_web.jpg" alt="La Cervara, the Roman Campagna" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Aerial V</div>
-  <div class="v-sub">Photograph · 2011 · E.23-2014</div>
+  <div class="v-title">La Cervara, the Roman Campagna</div>
+  <div class="v-sub">Painting · c. 1830–31 · 1963.91</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Photograph</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Aerial V</strong> — Aerial V. Photograph. Made by jananne Al-Ani. 2011. Prints &amp; Drawings Study Room, room 315</div>
+  <div class="v-story"><strong>La Cervara, the Roman Campagna</strong> — Corot based his large oil painting on drawings and oil sketches made outdoors. Attracted to the beauty of the Italian countryside, he often sketched around Rome, where he lived from 1825 to 1828. This painting's highly structured composition, based on forms moving into the distance along a series of…</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +821,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.23-2014</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">jananne Al-Ani</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photograph</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photograph</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2011</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, room 315</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1963.91</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Jean Baptiste Camille Corot (French, 1796–1875)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oil on fabric</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, 19th century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1830–31</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Framed: 130 x 167.5 x 9.5 cm (51 3/16 x 65 15/16 x 3 3/4 in.); Unframed: 97.6 x 135.8 cm (38 7/16 x 53 7/16 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">219 19th Century European</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +848,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC352.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/fe8ddbbd-f0e2-dfea-990c-10652dca7a4b/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">The Celestial Art</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 108633</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2019MD8168/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Rolleiflex camera and case owned by William Houston Rogers</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · S.306:1 to 2-2019</div>
       </a>
       <a class="v-rel-card" href="NFC353.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/681452/default-48-1-1.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Descobrimento do Brasil</div>
-        <div class="v-rel-meta">Brasiliana Museus · descobrimento-do-brasil</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2012FK3676/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Alhambra</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · 34778</div>
       </a>
       <a class="v-rel-card" href="NFC355.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AT9641/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Philco model 444</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · W.30-1992</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/5/745405-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Certificate - Radium Certificate of Purity, Union Miniere du Haut Katanga, Brussels, 1928</div>
+        <div class="v-rel-meta">Museums Victoria · HT 36999</div>
       </a>
       <a class="v-rel-card" href="NFC356.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/2658eeb4-ad05-9fb5-5f2e-1fd8ffee9ce0/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Nelson Algren, by his Favorite Division St. Bar, Chicago</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 191353</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/45323?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">shirt, uniform, school</div>
+        <div class="v-rel-meta">Auckland Museum · 1999.183.4</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +878,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1278176/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1963.91" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,26 +909,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Aerial V`,
-  type: `Photograph`,
-  date: `2011`,
-  registration: `E.23-2014`,
-  location: `Prints & Drawings Study Room, room 315`,
-  discipline: `Photograph`,
-  category: `Photograph`,
-  description: `Aerial V. Photograph. Made by jananne Al-Ani. 2011. Prints & Drawings Study Room, room 315`,
-  medium: ``,
-  artist: `jananne Al-Ani`,
-  culture: ``,
-  dimensions: ``,
+  title: `La Cervara, the Roman Campagna`,
+  type: `Painting`,
+  date: `c. 1830–31`,
+  registration: `1963.91`,
+  location: `219 19th Century European`,
+  discipline: `Modern European Painting and Sculpture`,
+  category: `Painting`,
+  description: `Corot based his large oil painting on drawings and oil sketches made outdoors. Attracted to the beauty of the Italian countryside, he often sketched around Rome, where he lived from 1825 to 1828. This painting's highly structured composition, based on forms moving into the distance along a series of diagonals, is characteristic of Corot's early style and recalls the classical landscapes of 17th-century painter Nicholas Poussin.`,
+  medium: `oil on fabric`,
+  artist: `Jean Baptiste Camille Corot (French, 1796–1875)`,
+  culture: `France, 19th century`,
+  dimensions: `Framed: 130 x 167.5 x 9.5 cm (51 3/16 x 65 15/16 x 3 3/4 in.); Unframed: 97.6 x 135.8 cm (38 7/16 x 53 7/16 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1278176/`,
-  institution: `Victoria and Albert Museum, London`
+  did_you_know: `In 1845, the French poet Charles Baudelaire proclaimed Corot the leading painter of the modern landscape.`,
+  provenance: `[{"description":"Clément Jourdan [1836-1908], Paris, France, 1889.","citations":[],"footnotes":null,"date":"1889","sortorder":null},{"description":"Seganville family, Château St. Pierre-de-Groupiac, France","citations":[],"footnotes":null,"date":null,"sortorder":2},{"description":"(Probably Harry Sp…`,
+  tombstone: `La Cervara, the Roman Campagna, c. 1830–31. Jean Baptiste Camille Corot (French, 1796–1875). Oil on fabric; framed: 130 x 167.5 x 9.5 cm (51 3/16 x 65 15/16 x 3 3/4 in.); unframed: 97.6 x 135.8 cm (38 7/16 x 53 7/16 in.). The Cleveland Museum of Art, Leonard C. Hanna Jr. Fund, 1963.91`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://clevelandart.org/art/1963.91`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1173,7 +1210,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

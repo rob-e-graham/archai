@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Stylophone Pocket Electronic Organ — ARCHAI</title>
+<title>Mandolin — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2006AE8378/full/!600,600/0/default.jpg" alt="Stylophone Pocket Electronic Organ" loading="eager">
+  <img src="https://images.metmuseum.org/CRDImages/mi/original/DT679.jpg" alt="Mandolin" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Stylophone Pocket Electronic Organ</div>
-  <div class="v-sub">Toy Instrument · ©1970 · B.185:1 to 16-1999</div>
+  <div class="v-title">Mandolin</div>
+  <div class="v-sub">Mandolin · ca. 1900 · 503675</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Toy Instrument</span>
+    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Musical Instruments</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Stylophone Pocket Electronic Organ</strong> — Stylophone Pocket Electronic Organ. Toy Instrument. Made by Rolf Harris. ©1970. Made in England. In Store</div>
+  <div class="v-story"><strong>Mandolin</strong> — Mandolin. Mandolin. Spruce, tortoiseshell, ivory, nickel-silver, metal,. Musical Instruments. American. by Angelo Mannello. Chordophone-Lute-plucked-fretted. ca. 1900</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +821,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">B.185:1 to 16-1999</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Rolf Harris</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Toy Instrument</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Toy Instrument</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">©1970</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In Store</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Toy Instrument</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">503675</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Angelo Mannello</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Spruce, tortoiseshell, ivory, nickel-silver, metal,</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">American</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Chordophone-Lute-plucked-fretted</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca. 1900</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">24 9/16 × 7 13/16 × 5 3/8 in. (62.4 × 19.8 × 13.6 cm)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 684</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Mandolin</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +848,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC698.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1972.119/1972.119_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Noah:  The Eve of the Deluge</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1972.119</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2017KA4657/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Rock and pop costume</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · S.60-2011</div>
       </a>
       <a class="v-rel-card" href="NFC699.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_355/v1627822943/v2/prod/small/010501_011000/010545_003.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Poster, British American Tobacco: Leisurely Time</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2018.26</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2019MJ0216/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Interior of a Murphy Radio</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.646-1985</div>
       </a>
       <a class="v-rel-card" href="NFC701.html">
-        <div class="v-rel-thumb"><img src="https://www.mplus.org.hk/_nuxt/img/share.23eb426.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Fen–Ma Liuming Walks the Great Wall</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2012.706</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/826741?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">picture, silhouette</div>
+        <div class="v-rel-meta">Auckland Museum · col.1022.2</div>
       </a>
       <a class="v-rel-card" href="NFC702.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1915.533.f/1915.533.f_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Fragment from Black-Figure Neck-Amphora of Panathenaic Shape (Storage Vessel): Apollo with Lyre</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1915.533.f</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/MI89.4.163.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Taūs (mayuri)</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 500709</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +878,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O11765/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/503675" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,26 +909,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Stylophone Pocket Electronic Organ`,
-  type: `Toy Instrument`,
-  date: `©1970`,
-  registration: `B.185:1 to 16-1999`,
-  location: `In Store`,
-  discipline: `Toy Instrument`,
-  category: `Toy Instrument`,
-  description: `Stylophone Pocket Electronic Organ. Toy Instrument. Made by Rolf Harris. ©1970. Made in England. In Store`,
-  medium: ``,
-  artist: `Rolf Harris`,
-  culture: ``,
-  dimensions: ``,
+  title: `Mandolin`,
+  type: `Mandolin`,
+  date: `ca. 1900`,
+  registration: `503675`,
+  location: `Gallery 684`,
+  discipline: `Musical Instruments`,
+  category: `Chordophone-Lute-plucked-fretted`,
+  description: `Mandolin. Mandolin. Spruce, tortoiseshell, ivory, nickel-silver, metal,. Musical Instruments. American. by Angelo Mannello. Chordophone-Lute-plucked-fretted. ca. 1900`,
+  medium: `Spruce, tortoiseshell, ivory, nickel-silver, metal,`,
+  artist: `Angelo Mannello`,
+  culture: `American`,
+  dimensions: `24 9/16 × 7 13/16 × 5 3/8 in. (62.4 × 19.8 × 13.6 cm)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O11765/`,
-  institution: `Victoria and Albert Museum, London`
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.metmuseum.org/art/collection/search/503675`,
+  institution: `The Metropolitan Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1173,7 +1210,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_met',
       text,
       authorType: 'visitor',
     }),

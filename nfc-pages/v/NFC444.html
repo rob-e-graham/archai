@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Portret van Willem V van Holland, graaf van Holland en Zeeland — ARCHAI</title>
+<title>atlas (book) — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,28 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://iiif.micr.io/pRuWQ/full/max/0/default.jpg" alt="Portret van Willem V van Holland, graaf van Holland en Zeeland" loading="eager">
+  <img src="https://api.aucklandmuseum.com/id/media/v/1040979?rendering=standard.jpg" alt="atlas (book)" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Portret van Willem V van Holland, graaf van Holland en Zeeland</div>
-  <div class="v-sub">prent · 2026-01-27T04:44:37Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260241&lt;/setSpec&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;26151&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:coverage&gt;Graafschap Holland&lt;/dc:coverage&gt;
-          &lt;dc:creator&gt;Adriaen Matham&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1620 · 20010024</div>
+  <div class="v-title">atlas (book)</div>
+  <div class="v-sub">ecrm:E22_Man-Made_Object · 2014-12-09T00:00:00.000Z · 1996.92.1</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
-    <span class="v-meta-tag lic">https://creativecommons.org/publicdomain/mark/1.0/</span>
-    <span class="v-meta-tag">Willem V van Holland (graaf van Holland en Zeeland)</span>
+    <span class="v-meta-tag mv">Auckland Museum</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
+    <span class="v-meta-tag">Social History</span>
   </div>
 
   <!-- SHARE -->
@@ -766,7 +783,15 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Portret van Willem V van Holland, graaf van Holland en Zeeland</strong> — Portret van Willem V van Holland, graaf van Holland en Zeeland, staande in een harnas met op zijn schouder een wapenschild en in zijn hand een zwaard. Prent uit een serie van 36 prenten met portretten ten voeten uit van graven en gravinnen van Holland.</div>
+  <div class="v-story"><strong>atlas (book)</strong> — Whitcombe's New War Atlas; 2nd Revised Edition; nd
+16 pages plus cover; printed in colour on thin cardboard
+publisher : Whitcombe &amp; Tombs Ltd
+dimensions: L 280mm; W 220mm</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
+      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -799,25 +824,15 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">20010024</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Adriaen Matham</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">papier</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Willem V van Holland (graaf van Holland en Zeeland)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">prent</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-01-27T04:44:37Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260241&lt;/setSpec&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;26151&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:coverage&gt;Graafschap Holland&lt;/dc:coverage&gt;
-          &lt;dc:creator&gt;Adriaen Matham&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1620</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">prent</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1996.92.1</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2014-12-09T00:00:00.000Z</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -832,24 +847,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC442.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%3A80%2Fwebclient%2FDeliveryManager%3Fpid%3D6366299%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Servizio fotografico Firenze, 1957-1956</div>
-        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6366299_custom_att_2_simple_viewer</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2023NN5900/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">The Stage and Television Today</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.441-1976</div>
       </a>
       <a class="v-rel-card" href="NFC443.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/midp89.4.419.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Gunibri</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 501037</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%2Fwebclient%2FDeliveryManager%3Fpid%3D6355709%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Photographic reportage, Florence, 1957-1956</div>
+        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6355709_custom_att_2_simple_viewer</div>
       </a>
       <a class="v-rel-card" href="NFC445.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/SQZax/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Schutterspenning van Leiden</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100452</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4301/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">YO YO WITH ENGLISH</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.250-2020</div>
       </a>
       <a class="v-rel-card" href="NFC446.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/165743/preview" loading="lazy"></div>
-        <div class="v-rel-title">Photograph</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH002982/3</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AP5693/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Vase</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · C.41-1972</div>
       </a></div>
   </div>
 </div>
@@ -862,7 +877,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/20010024" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/774158" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -893,26 +908,19 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Portret van Willem V van Holland, graaf van Holland en Zeeland`,
-  type: `prent`,
-  date: `2026-01-27T04:44:37Z</datestamp>
-        <setSpec>260241</setSpec>
-        <setSpec>260239</setSpec>
-        <setSpec>26151</setSpec>
-        <setSpec>260251</setSpec>
-      </header>
-      <metadata>
-        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
-          <dc:coverage>Graafschap Holland</dc:coverage>
-          <dc:creator>Adriaen Matham</dc:creator>
-          <dc:date>1620`,
-  registration: `20010024`,
-  location: `Rijksmuseum, Amsterdam`,
-  discipline: `Willem V van Holland (graaf van Holland en Zeeland)`,
-  category: `prent`,
-  description: `Portret van Willem V van Holland, graaf van Holland en Zeeland, staande in een harnas met op zijn schouder een wapenschild en in zijn hand een zwaard. Prent uit een serie van 36 prenten met portretten ten voeten uit van graven en gravinnen van Holland.`,
-  medium: `papier`,
-  artist: `Adriaen Matham`,
+  title: `atlas (book)`,
+  type: `ecrm:E22_Man-Made_Object`,
+  date: `2014-12-09T00:00:00.000Z`,
+  registration: `1996.92.1`,
+  location: `Auckland Museum`,
+  discipline: `Social History`,
+  category: `ecrm:E22_Man-Made_Object`,
+  description: `Whitcombe's New War Atlas; 2nd Revised Edition; nd
+16 pages plus cover; printed in colour on thin cardboard
+publisher : Whitcombe & Tombs Ltd
+dimensions: L 280mm; W 220mm`,
+  medium: ``,
+  artist: ``,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -920,9 +928,9 @@ const OBJECT = {
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
-  source_url: `https://www.rijksmuseum.nl/en/collection/20010024`,
-  institution: `Rijksmuseum, Amsterdam`
+  licence: `© Auckland Museum CC BY`,
+  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/774158`,
+  institution: `Auckland Museum`
 };
 
 // Build rich context from available fields
@@ -1204,7 +1212,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_rijks',
+      collection: 'archai_auckland',
       text,
       authorType: 'visitor',
     }),

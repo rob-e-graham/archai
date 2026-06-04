@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Haunted — ARCHAI</title>
+<title>Kikkoman soy sauce container — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/e6182f28-0c22-6907-0d8f-ca14a32e653b/full/843,/0/default.jpg" alt="Haunted" loading="eager">
+  <img src="https://res.cloudinary.com/mplustms/image/upload/w_668/v1627862558/v2/prod/small/007001_007500/007236_009.jpg" alt="Kikkoman soy sauce container" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Haunted</div>
-  <div class="v-sub">Photograph · 1999 · 154149</div>
+  <div class="v-title">Kikkoman soy sauce container</div>
+  <div class="v-sub">Product Design · designed circa 1958 · 2016.638</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Art Institute of Chicago</span>
-    <span class="v-meta-tag lic">All rights reserved</span>
-    <span class="v-meta-tag">Photography and Media</span>
+    <span class="v-meta-tag mv">M+, Hong Kong</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">Design and Architecture</span>
   </div>
 
   <!-- SHARE -->
@@ -756,8 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Haunted</strong> — Haunted. Photograph. Iris digital print on Somerset paper. Photography and Media. Helena Chapellín Wilson
-American, born Venezuela 1941. continuous jet (iris, stark) print. 1999. Venezuela</div>
+  <div class="v-story"><strong>Kikkoman soy sauce container</strong> — Transparent glass bottle with yellow logo printed on its side depicting Japanese characters on the bottom. The bottle has narrow cylinder neck and tear-shaped body. A red polystyrene plastic cap with a spout sits on the left next to the bottle.</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Kikkoman Corporation · © Kikkoman Corporation</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -790,18 +821,19 @@ American, born Venezuela 1941. continuous jet (iris, stark) print. 1999. Venezue
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">154149</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Helena Chapellín Wilson
-American, born Venezuela 1941</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Iris digital print on Somerset paper</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Venezuela</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography and Media</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">continuous jet (iris, stark) print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1999</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Image: 60 × 50 cm (23 5/8 × 19 11/16 in.); Paper: 70.5 × 60.2 cm (27 13/16 × 23 3/4 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">All rights reserved</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2016.638</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Kikkoman Corporation</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">glass and plastic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Japanese</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Design and Architecture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Product Design</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">designed circa 1958</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">overall: 16.1 × 6.5 × 6.5 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Product Design</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Kikkoman Corporation · © Kikkoman Corporation</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -816,24 +848,24 @@ American, born Venezuela 1941</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC131.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2016JA5803/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Murphy A8</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.626&amp;A-1975</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP-12679-032.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Ohotniche Rogi sounding A</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 502343</div>
       </a>
       <a class="v-rel-card" href="NFC132.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fbdh-rd.bne.es%2Fpdf.raw%3Fquery%3Did%3A0000207646%26page%3D1%26jpeg%3Dtrue&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">[Ciro el Grande y torso masculino]</div>
-        <div class="v-rel-meta">Europeana · /2022717/bnesearch_detalle_bdh0000207646</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/BUXWc/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Godfried III met de Bult, hertog van Neder-Lotharingen</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010008</div>
       </a>
       <a class="v-rel-card" href="NFC134.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680105/807-1-scaled.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Vila Rica</div>
-        <div class="v-rel-meta">Brasiliana Museus · vila-rica</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/260834?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">tea service</div>
+        <div class="v-rel-meta">Auckland Museum · 2014.26.3</div>
       </a>
       <a class="v-rel-card" href="NFC135.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/qBJGT/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Schutterspenning van Leiden</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100438</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/MUS402A.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Orchestral Horn</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 501687</div>
       </a></div>
   </div>
 </div>
@@ -846,7 +878,7 @@ American, born Venezuela 1941</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/154149" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/kikkoman-soy-sauce-container-2016638/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -877,28 +909,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Haunted`,
-  type: `Photograph`,
-  date: `1999`,
-  registration: `154149`,
-  location: `Art Institute of Chicago`,
-  discipline: `Photography and Media`,
-  category: `continuous jet (iris, stark) print`,
-  description: `Haunted. Photograph. Iris digital print on Somerset paper. Photography and Media. Helena Chapellín Wilson
-American, born Venezuela 1941. continuous jet (iris, stark) print. 1999. Venezuela`,
-  medium: `Iris digital print on Somerset paper`,
-  artist: `Helena Chapellín Wilson
-American, born Venezuela 1941`,
-  culture: `Venezuela`,
-  dimensions: `Image: 60 × 50 cm (23 5/8 × 19 11/16 in.); Paper: 70.5 × 60.2 cm (27 13/16 × 23 3/4 in.)`,
-  wall_description: ``,
+  title: `Kikkoman soy sauce container`,
+  type: `Product Design`,
+  date: `designed circa 1958`,
+  registration: `2016.638`,
+  location: `M+, Hong Kong`,
+  discipline: `Design and Architecture`,
+  category: `Product Design`,
+  description: `Transparent glass bottle with yellow logo printed on its side depicting Japanese characters on the bottom. The bottle has narrow cylinder neck and tear-shaped body. A red polystyrene plastic cap with a spout sits on the left next to the bottle.`,
+  medium: `glass and plastic`,
+  artist: `Kikkoman Corporation`,
+  culture: `Japanese`,
+  dimensions: `overall: 16.1 × 6.5 × 6.5 cm`,
+  wall_description: `Transparent glass bottle with yellow logo printed on its side depicting Japanese characters on the bottom. The bottle has narrow cylinder neck and tear-shaped body. A red polystyrene plastic cap with a spout sits on the left next to the bottle.`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `All rights reserved`,
-  source_url: `https://www.artic.edu/artworks/154149`,
-  institution: `Art Institute of Chicago`
+  tombstone: `Kikkoman soy sauce container. Kikkoman Corporation. designed circa 1958. M+, Hong Kong`,
+  licence: `CC0 metadata · M+ API service non-commercial · © Kikkoman Corporation`,
+  source_url: `https://www.mplus.org.hk/en/collection/objects/kikkoman-soy-sauce-container-2016638/`,
+  institution: `M+, Hong Kong`
 };
 
 // Build rich context from available fields
@@ -1180,7 +1210,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_aic',
+      collection: 'archai_mplus',
       text,
       authorType: 'visitor',
     }),

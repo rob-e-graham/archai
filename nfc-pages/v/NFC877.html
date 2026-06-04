@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Chicago Landscape #9 — ARCHAI</title>
+<title>purse — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/35ec4af2-3828-ac21-1469-ad79e4ca5555/full/843,/0/default.jpg" alt="Chicago Landscape #9" loading="eager">
+  <img src="https://api.aucklandmuseum.com/id/media/v/607851?rendering=standard.jpg" alt="purse" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Chicago Landscape #9</div>
-  <div class="v-sub">Photograph · 1964 · 100085</div>
+  <div class="v-title">purse</div>
+  <div class="v-sub">Handbag · Circa 1900 · T846</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Art Institute of Chicago</span>
-    <span class="v-meta-tag lic">All rights reserved</span>
-    <span class="v-meta-tag">Photography and Media</span>
+    <span class="v-meta-tag mv">Auckland Museum</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
+    <span class="v-meta-tag">Applied Arts and Design</span>
   </div>
 
   <!-- SHARE -->
@@ -756,8 +783,13 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Chicago Landscape #9</strong> — Chicago Landscape #9. Photograph. Gelatin silver print. Photography and Media. Art Sinsabaugh
-American, 1924–1983. photography. 1964. United States. New Bauhaus (Institute of Design)</div>
+  <div class="v-story"><strong>purse</strong> — purse
+purple velvet pouch with silver beading, starburst in centre, triangular border, looped beaded fringe; metal frame with kiss clasp; frame suspends doubled chain as handle; lined with purple and green [taffeta] with two bows.</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
+      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY · Copyright undetermined - untraced rights owner</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -790,18 +822,16 @@ American, 1924–1983. photography. 1964. United States. New Bauhaus (Institute 
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">100085</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Art Sinsabaugh
-American, 1924–1983</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Gelatin silver print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">United States</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography and Media</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">photography</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1964</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Image/paper: 25.8 × 49.4 cm (10 3/16 × 19 1/2 in.); Mount: 38.2 × 56 cm (15 1/16 × 22 1/16 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">All rights reserved</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">T846</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Velvet, Warp Pile Weave, Pile Weave, &lt;textile Materials By Weaving Technique&gt;, &lt;textile Materials By Process Or Technique&gt;, &lt;textile Materials&gt;</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Applied Arts and Design</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Handbag</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Circa 1900</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Handbag</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY · Copyright undetermined - untraced rights owner</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -816,24 +846,24 @@ American, 1924–1983</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC875.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/AvOmO/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van Filips de Goede, hertog van Bourgondi&amp;#235;</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010029</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP351504.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Ceremonial axe with headrest</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 635754</div>
       </a>
       <a class="v-rel-card" href="NFC876.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1942.647/1942.647_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">The Burning of the Houses of Lords and Commons, 16 October 1834</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1942.647</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669331/006234.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Paisagem (com flores amarelas)</div>
+        <div class="v-rel-meta">Brasiliana Museus · paisagem-com-flores-amarelas</div>
       </a>
       <a class="v-rel-card" href="NFC878.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/midp89.4.768.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Time Marker</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 501396</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DT1271.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Drum</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 310563</div>
       </a>
       <a class="v-rel-card" href="NFC879.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fceres.mcu.es%2Fpages%2FViewer%3Fraw%3Dy%26accion%3D42%26AMuseo%3DMPAS%26img%3D%2FMPAS%2Ffondos_pre%2FMPASFFM010944_P.JPG%26Ninv%3DFM010944&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Cuadro</div>
-        <div class="v-rel-meta">Europeana · /2022703/pages_Main_idt_169332_inventary_FM010944_table_FMUS_museum_MPAS</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/LDPLi/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Filips de Schone, hertog van Bourgondi&amp;#235;</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010033</div>
       </a></div>
   </div>
 </div>
@@ -846,7 +876,7 @@ American, 1924–1983</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/100085" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/95994" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -877,28 +907,27 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Chicago Landscape #9`,
-  type: `Photograph`,
-  date: `1964`,
-  registration: `100085`,
-  location: `Art Institute of Chicago`,
-  discipline: `Photography and Media`,
-  category: `photography`,
-  description: `Chicago Landscape #9. Photograph. Gelatin silver print. Photography and Media. Art Sinsabaugh
-American, 1924–1983. photography. 1964. United States. New Bauhaus (Institute of Design)`,
-  medium: `Gelatin silver print`,
-  artist: `Art Sinsabaugh
-American, 1924–1983`,
-  culture: `United States`,
-  dimensions: `Image/paper: 25.8 × 49.4 cm (10 3/16 × 19 1/2 in.); Mount: 38.2 × 56 cm (15 1/16 × 22 1/16 in.)`,
+  title: `purse`,
+  type: `Handbag`,
+  date: `Circa 1900`,
+  registration: `T846`,
+  location: `Auckland Museum`,
+  discipline: `Applied Arts and Design`,
+  category: `Handbag`,
+  description: `purse
+purple velvet pouch with silver beading, starburst in centre, triangular border, looped beaded fringe; metal frame with kiss clasp; frame suspends doubled chain as handle; lined with purple and green [taffeta] with two bows.`,
+  medium: `Velvet, Warp Pile Weave, Pile Weave, <textile Materials By Weaving Technique>, <textile Materials By Process Or Technique>, <textile Materials>`,
+  artist: ``,
+  culture: ``,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `All rights reserved`,
-  source_url: `https://www.artic.edu/artworks/100085`,
-  institution: `Art Institute of Chicago`
+  licence: `© Auckland Museum CC BY · Copyright undetermined - untraced rights owner`,
+  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/95994`,
+  institution: `Auckland Museum`
 };
 
 // Build rich context from available fields
@@ -1180,7 +1209,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_aic',
+      collection: 'archai_auckland',
       text,
       authorType: 'visitor',
     }),

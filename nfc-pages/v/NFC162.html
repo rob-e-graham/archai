@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>textile — ARCHAI</title>
+<title>Murphy Television — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/590009?rendering=standard.jpg" alt="textile" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2009BW8766/full/!600,600/0/default.jpg" alt="Murphy Television" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">textile</div>
-  <div class="v-sub">Cloth · Pre 1999 · 55421</div>
+  <div class="v-title">Murphy Television</div>
+  <div class="v-sub">Poster · c.1951 · E.158-1980</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Auckland Museum</span>
-    <span class="v-meta-tag lic">© Auckland Museum CC BY</span>
-    <span class="v-meta-tag">World</span>
+    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Poster</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>textile</strong> — textile, Eastern Mediterranean</div>
+  <div class="v-story"><strong>Murphy Television</strong> — Murphy Television. Poster. Made by Games, Abram. c.1951. Made in Great Britain. Prints &amp; Drawings Study Room, level C</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,13 +821,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">55421</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">World</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Cloth</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Pre 1999</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Cloth</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.158-1980</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Games, Abram</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Poster</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Poster</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c.1951</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, level C</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Poster</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -810,24 +845,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC160.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1930.104/1930.104_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Red-Figure Column Krater (Mixing Vessel): Apollo and Goddesses with Chariot (A); Komos (Revel) (B)</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1930.104</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1993.38/1993.38_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portrait Bust</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1993.38</div>
       </a>
       <a class="v-rel-card" href="NFC161.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/524946?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">blade</div>
-        <div class="v-rel-meta">Auckland Museum · 51364.1</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/679972/849-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Tenente-Coronel José Carlos de Carvalho</div>
+        <div class="v-rel-meta">Brasiliana Museus · tenente-coronel-jose-carlos-de-carvalho-2</div>
       </a>
       <a class="v-rel-card" href="NFC163.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1962.151/1962.151_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Rest on the Flight into Egypt</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1962.151</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2011ER6468/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Print</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.1072-1967</div>
       </a>
       <a class="v-rel-card" href="NFC164.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fbdh-rd.bne.es%2Fpdf.raw%3Fquery%3Did%3A0000175084%26page%3D1%26jpeg%3Dtrue&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">[Kundry] : [estudio desnudo medio cuerpo] [Material gráfico]</div>
-        <div class="v-rel-meta">Europeana · /2022717/bnesearch_detalle_bdh0000175084</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/620046/preview" loading="lazy"></div>
+        <div class="v-rel-title">One Sen</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · NU002166</div>
       </a></div>
   </div>
 </div>
@@ -840,7 +875,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/61634" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O550953/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -871,16 +906,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `textile`,
-  type: `Cloth`,
-  date: `Pre 1999`,
-  registration: `55421`,
-  location: `Auckland Museum`,
-  discipline: `World`,
-  category: `Cloth`,
-  description: `textile, Eastern Mediterranean`,
+  title: `Murphy Television`,
+  type: `Poster`,
+  date: `c.1951`,
+  registration: `E.158-1980`,
+  location: `Prints & Drawings Study Room, level C`,
+  discipline: `Poster`,
+  category: `Poster`,
+  description: `Murphy Television. Poster. Made by Games, Abram. c.1951. Made in Great Britain. Prints & Drawings Study Room, level C`,
   medium: ``,
-  artist: ``,
+  artist: `Games, Abram`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -888,9 +923,9 @@ const OBJECT = {
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `© Auckland Museum CC BY`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/61634`,
-  institution: `Auckland Museum`
+  licence: `V&A Open Access`,
+  source_url: `https://collections.vam.ac.uk/item/O550953/`,
+  institution: `Victoria and Albert Museum, London`
 };
 
 // Build rich context from available fields
@@ -1172,7 +1207,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_auckland',
+      collection: 'archai_va',
       text,
       authorType: 'visitor',
     }),

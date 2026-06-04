@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Fotografie: Vorführung des Lilienthalschen Flugapparates am Fliegeberg — ARCHAI</title>
+<title>Schutterspenning van Leiden — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,17 +761,28 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fwww.museum-digital.de%2Fdata%2Fmeckpomm%2Fimages%2F201707%2F19125117297.jpg&amp;type=IMAGE" alt="Fotografie: Vorführung des Lilienthalschen Flugapparates am Fliegeberg" loading="eager">
+  <img src="https://iiif.micr.io/zpzYq/full/max/0/default.jpg" alt="Schutterspenning van Leiden" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Fotografie: Vorführung des Lilienthalschen Flugapparates am Fliegeberg</div>
-  <div class="v-sub">IMAGE · 1895 · /2064125/Museu_ProvidedCHO_museum_digital_261__technical_number_</div>
+  <div class="v-title">Schutterspenning van Leiden</div>
+  <div class="v-sub">schutterspenning · 2026-02-14T04:18:14Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;261219&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+        &lt;setSpec&gt;2601&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:creator&gt;anoniem&lt;/dc:creator&gt;
+          &lt;dc:creator&gt;anonymous&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1667 · 200100445</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Europeana</span>
-    <span class="v-meta-tag lic">http://creativecommons.org/licenses/by-nc-sa/4.0/</span>
+    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(160,152,144,0.28);color:#a09890;">Check source</span>
     
   </div>
 
@@ -756,9 +794,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Fotografie: Vorführung des Lilienthalschen Flugapparates am Fliegeberg</strong> — Vorführung des Flugapparates am Fuße des Fliegeberges vor zahlriechem Publikum.
-Von Lilienthals Versuchen berichten die Tageszeitungen, aber auch Fachpublikum wird von Lilienthal dort empfangen. 
-Silbergeatine-Papierabzug auf Firmenkarton: RS: &quot;Dieses Bild ist gefertigt mit Eastman’s Kodak Camera Ve…</div>
+  <div class="v-story"><strong>Schutterspenning van Leiden</strong> — Zilveren schutterspenning van Leiden. Voorzijde: een gekroonde klimmende leeuw met een zwaard in zijn rechter en een schild met het Leidse wapen in zijn linker klauw. Omschrift: PVGNO PRO PATRIA (ik vecht voor het vaderland). Keerzijde: twee gekruiste musketten tussen LEY en DEN. Omschrift: SCHVTTER…</div>
+  <div class="v-rights-note" style="border-color:rgba(160,152,144,0.28);">
+      <div class="v-rights-label" style="color:#a09890;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#a09890;font-weight:400;">Check source</strong> — Review the source record and item-level rights before reuse.</div>
+      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -791,12 +832,27 @@ Silbergeatine-Papierabzug auf Firmenkarton: RS: &quot;Dieses Bild ist gefertigt 
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">/2064125/Museu_ProvidedCHO_museum_digital_261__technical_number_</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">IMAGE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1895</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Museum-digital</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">IMAGE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">http://creativecommons.org/licenses/by-nc-sa/4.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">200100445</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">anoniem; anonymous</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">zilver</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">schutterspenning</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-02-14T04:18:14Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;261219&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+        &lt;setSpec&gt;2601&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:creator&gt;anoniem&lt;/dc:creator&gt;
+          &lt;dc:creator&gt;anonymous&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1667</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">schutterspenning</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Check source</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Review the source record and item-level rights before reuse.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +867,24 @@ Silbergeatine-Papierabzug auf Firmenkarton: RS: &quot;Dieses Bild ist gefertigt 
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC048.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/KCwRc/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van keizer Maximiliaan I</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010032</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/nVfXl/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Dukaat van de Bataafse Republiek op naam van Utrecht, 1800</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100088</div>
       </a>
       <a class="v-rel-card" href="NFC049.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/7116ac83-4ae5-0e5d-80f7-30b0d65fa205/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Nadar Elevating Photography to the Heights of Art, plate 367 from Souvenirs d’artistes</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 13617</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1949.186/1949.186_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Fight Between a Tiger and a Buffalo</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1949.186</div>
       </a>
       <a class="v-rel-card" href="NFC051.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP302551.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Cittern</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 504210</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2024NX9372/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Koto</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:AMERICASFOUNDATION.2131:1 to 4-2024</div>
       </a>
       <a class="v-rel-card" href="NFC052.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018KY2056/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Radio</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · W.45-1983</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/197519?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">textile piece, embroidery</div>
+        <div class="v-rel-meta">Auckland Museum · 1948.267</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +897,7 @@ Silbergeatine-Papierabzug auf Firmenkarton: RS: &quot;Dieses Bild ist gefertigt 
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.europeana.eu/item/2064125/Museu_ProvidedCHO_museum_digital_261__technical_number_?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/200100445" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,18 +928,27 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Fotografie: Vorführung des Lilienthalschen Flugapparates am Fliegeberg`,
-  type: `IMAGE`,
-  date: `1895`,
-  registration: `/2064125/Museu_ProvidedCHO_museum_digital_261__technical_number_`,
-  location: `Museum-digital`,
+  title: `Schutterspenning van Leiden`,
+  type: `schutterspenning`,
+  date: `2026-02-14T04:18:14Z</datestamp>
+        <setSpec>260239</setSpec>
+        <setSpec>261106</setSpec>
+        <setSpec>261219</setSpec>
+        <setSpec>260251</setSpec>
+        <setSpec>2601</setSpec>
+      </header>
+      <metadata>
+        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
+          <dc:creator>anoniem</dc:creator>
+          <dc:creator>anonymous</dc:creator>
+          <dc:date>1667`,
+  registration: `200100445`,
+  location: `Rijksmuseum, Amsterdam`,
   discipline: ``,
-  category: `IMAGE`,
-  description: `Vorführung des Flugapparates am Fuße des Fliegeberges vor zahlriechem Publikum.
-Von Lilienthals Versuchen berichten die Tageszeitungen, aber auch Fachpublikum wird von Lilienthal dort empfangen. 
-Silbergeatine-Papierabzug auf Firmenkarton: RS: "Dieses Bild ist gefertigt mit Eastman’s Kodak Camera Vertreter: Romain Talbot Berlin, C. Kaiser Wilhelm Str. 46."  (Otto-Lilienthal-Museum)`,
-  medium: ``,
-  artist: ``,
+  category: `schutterspenning`,
+  description: `Zilveren schutterspenning van Leiden. Voorzijde: een gekroonde klimmende leeuw met een zwaard in zijn rechter en een schild met het Leidse wapen in zijn linker klauw. Omschrift: PVGNO PRO PATRIA (ik vecht voor het vaderland). Keerzijde: twee gekruiste musketten tussen LEY en DEN. Omschrift: SCHVTTERS PENNING en daarachter het jaartal.`,
+  medium: `zilver`,
+  artist: `anoniem; anonymous`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -891,9 +956,9 @@ Silbergeatine-Papierabzug auf Firmenkarton: RS: "Dieses Bild ist gefertigt mit E
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `http://creativecommons.org/licenses/by-nc-sa/4.0/`,
-  source_url: `https://www.europeana.eu/item/2064125/Museu_ProvidedCHO_museum_digital_261__technical_number_?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb`,
-  institution: `Europeana`
+  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
+  source_url: `https://www.rijksmuseum.nl/en/collection/200100445`,
+  institution: `Rijksmuseum, Amsterdam`
 };
 
 // Build rich context from available fields
@@ -1175,7 +1240,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_europeana',
+      collection: 'archai_rijks',
       text,
       authorType: 'visitor',
     }),

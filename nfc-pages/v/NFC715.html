@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>table — ARCHAI</title>
+<title>Avebury — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/228033?rendering=standard.jpg" alt="table" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2025PJ3613/full/!600,600/0/default.jpg" alt="Avebury" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">table</div>
-  <div class="v-sub">Table · Circa 1690 · F102</div>
+  <div class="v-title">Avebury</div>
+  <div class="v-sub">digital art (visual works) · 2023 · E.309-2025</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Auckland Museum</span>
-    <span class="v-meta-tag lic">© Auckland Museum CC BY</span>
-    <span class="v-meta-tag">Applied Arts and Design</span>
+    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">digital art (visual works)</span>
   </div>
 
   <!-- SHARE -->
@@ -756,9 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>table</strong> — table, walnut with oyster walnut in square veneer on top, four spiral legs supported by stretcher.
-
-[table, walnut with oyster work on top, England, period of Queen Anne - gallery card]</div>
+  <div class="v-story"><strong>Avebury</strong> — Avebury. digital art (visual works). Made by Harrup, Claire. 2023. Made in Great Britain. In store</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -791,15 +821,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">F102</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">unknown</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Walnut, Hardwood, &lt;wood By Composition Or Origin&gt;, Wood, Botanical (arch), Archaeology</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Applied Arts and Design</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Table</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Circa 1690</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Table</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.309-2025</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Harrup, Claire</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">digital art (visual works)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">digital art (visual works)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2023</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In store</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">digital art (visual works)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -814,24 +845,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC713.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/kiBVW/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Engelse speelpenning type spade guinea 1800 S&amp;amp;T</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100043</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627820922/v2/prod/small/006501_007000/006804_004.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Proximity</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2016.480</div>
       </a>
       <a class="v-rel-card" href="NFC714.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018KY2030/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Radio</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.43-1977</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/615832/preview" loading="lazy"></div>
+        <div class="v-rel-title">Guerche</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · NU007070/1</div>
       </a>
       <a class="v-rel-card" href="NFC716.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/7afc9ad4-2666-a67b-aef8-5677edd03840/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Desert Fire #153 (Man with Rifle), from the series, &quot;Desert Cantos IV: The Fires&quot; (1983-85)</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 191456</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP216549.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Goqing</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 500637</div>
       </a>
       <a class="v-rel-card" href="NFC717.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2022NF4699/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Robin Hood Gardens, Woolmore Street, London E14 0HG (2018) </div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.503-2022</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/506757?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">textile</div>
+        <div class="v-rel-meta">Auckland Museum · 1986.63</div>
       </a></div>
   </div>
 </div>
@@ -844,7 +875,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/4235" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1805762/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -875,18 +906,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `table`,
-  type: `Table`,
-  date: `Circa 1690`,
-  registration: `F102`,
-  location: `Auckland Museum`,
-  discipline: `Applied Arts and Design`,
-  category: `Table`,
-  description: `table, walnut with oyster walnut in square veneer on top, four spiral legs supported by stretcher.
-
-[table, walnut with oyster work on top, England, period of Queen Anne - gallery card]`,
-  medium: `Walnut, Hardwood, <wood By Composition Or Origin>, Wood, Botanical (arch), Archaeology`,
-  artist: `unknown`,
+  title: `Avebury`,
+  type: `digital art (visual works)`,
+  date: `2023`,
+  registration: `E.309-2025`,
+  location: `In store`,
+  discipline: `digital art (visual works)`,
+  category: `digital art (visual works)`,
+  description: `Avebury. digital art (visual works). Made by Harrup, Claire. 2023. Made in Great Britain. In store`,
+  medium: ``,
+  artist: `Harrup, Claire`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -894,9 +923,9 @@ const OBJECT = {
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `© Auckland Museum CC BY`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/4235`,
-  institution: `Auckland Museum`
+  licence: `V&A Open Access`,
+  source_url: `https://collections.vam.ac.uk/item/O1805762/`,
+  institution: `Victoria and Albert Museum, London`
 };
 
 // Build rich context from available fields
@@ -1178,7 +1207,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_auckland',
+      collection: 'archai_va',
       text,
       authorType: 'visitor',
     }),

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>O Chalaça — ARCHAI</title>
+<title>Maria Christina en Albert-Kasimir, landvoogden der zuidelijke Nederlanden, penning vereerd door het gewest Brabant — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,30 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669503/default-37.jpg" alt="O Chalaça" loading="eager">
+  <img src="https://iiif.micr.io/eAHHt/full/max/0/default.jpg" alt="Maria Christina en Albert-Kasimir, landvoogden der zuidelijke Nederlanden, penning vereerd door het gewest Brabant" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">O Chalaça</div>
-  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · [18--] · o-chalaca</div>
+  <div class="v-title">Maria Christina en Albert-Kasimir, landvoogden der zuidelijke Nederlanden, penning vereerd door het gewest Brabant</div>
+  <div class="v-sub">historiepenning · 2026-01-26T21:13:09Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260241&lt;/setSpec&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;261217&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:coverage&gt;Brabant (hertogdom)&lt;/dc:coverage&gt;
+          &lt;dc:creator&gt;anoniem&lt;/dc:creator&gt;
+          &lt;dc:creator&gt;anonymous&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1786 · 20010041</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Brasiliana Museus</span>
-    <span class="v-meta-tag lic">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span>
-    <span class="v-meta-tag">Brasiliana Museus</span>
+    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(160,152,144,0.28);color:#a09890;">Check source</span>
+    <span class="v-meta-tag">Albert Casimir van Saksen-Teschen, Maria Christina van Oostenrijk (1742-1798)</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +795,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>O Chalaça</strong> — Busto de homem jovem, levemente direcionado para a esquerda. Rosto e nariz finos, compridos. Testa larga. Sobrancelhas espessas, unidas. Olhos castanhos claros. Boca pequena. Orelha esquerda visível. Cabelos castanhos, lisos e curtos. Sobretudo preto de gola alta; colete creme e jabô branco. Fundo a…</div>
+  <div class="v-story"><strong>Maria Christina en Albert-Kasimir, landvoogden der zuidelijke Nederlanden, penning vereerd door het gewest Brabant</strong> — Zilveren achthoekige penning met draagoog en draagring. Voorzijde: naar elkaar gewende borststukken van man en vrouw binnen omschrift. Keerzijde: opschrift onder lauwerkrans, boven gekroond wapenschild, omhangen met bladertakken</div>
+  <div class="v-rights-note" style="border-color:rgba(160,152,144,0.28);">
+      <div class="v-rights-label" style="color:#a09890;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#a09890;font-weight:400;">Check source</strong> — Review the source record and item-level rights before reuse.</div>
+      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,16 +833,29 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">o-chalaca</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">[18--]</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 31,00 cm · largura 25,00 cm</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">20010041</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">anoniem; anonymous</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">zilver</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Albert Casimir van Saksen-Teschen, Maria Christina van Oostenrijk (1742-1798)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">historiepenning</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-01-26T21:13:09Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260241&lt;/setSpec&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;261217&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:coverage&gt;Brabant (hertogdom)&lt;/dc:coverage&gt;
+          &lt;dc:creator&gt;anoniem&lt;/dc:creator&gt;
+          &lt;dc:creator&gt;anonymous&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1786</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">historiepenning</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Check source</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Review the source record and item-level rights before reuse.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -813,24 +870,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC718.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/DFbXB/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van Dirk III, graaf van Holland</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010003</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/395707/preview" loading="lazy"></div>
+        <div class="v-rel-title">Signature table cloth</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · PC000204/1</div>
       </a>
       <a class="v-rel-card" href="NFC719.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/GwLzv/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van Floris V, graaf van Holland en Zeeland</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010018</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2021MW3209/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Ericofon DBJ 500</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.3-2020</div>
       </a>
       <a class="v-rel-card" href="NFC721.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/152665/preview" loading="lazy"></div>
-        <div class="v-rel-title">Cello</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH012209</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/589176?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">[textile, fragment]</div>
+        <div class="v-rel-meta">Auckland Museum · 2012.x.8</div>
       </a>
       <a class="v-rel-card" href="NFC722.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/204941.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Klong mēng (ฆ้องเหม่ง)</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 500825</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669363/Desembarque_de_Cabral-scaled-1.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Desembarque de Cabral em Porto Seguro</div>
+        <div class="v-rel-meta">Brasiliana Museus · desembarque-de-cabral-em-porto-seguro</div>
       </a></div>
   </div>
 </div>
@@ -843,7 +900,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/o-chalaca/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/20010041" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -874,26 +931,38 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `O Chalaça`,
-  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  date: `[18--]`,
-  registration: `o-chalaca`,
-  location: `Brasiliana Museus`,
-  discipline: `Brasiliana Museus`,
-  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  description: `Busto de homem jovem, levemente direcionado para a esquerda. Rosto e nariz finos, compridos. Testa larga. Sobrancelhas espessas, unidas. Olhos castanhos claros. Boca pequena. Orelha esquerda visível. Cabelos castanhos, lisos e curtos. Sobretudo preto de gola alta; colete creme e jabô branco. Fundo azeitonado. Inscrição no dorso da lateral do chassi, à esquerda, à caneta: &#034;Hist. de Port. Damião Peres/Vol. 7 pag 52&#034;. Moldura em madeira dourada, com decoração fitomórfica estilizada, nos cantos, nos centros das laterais e das partes superior e inferior. Na parte inferior, pequena placa m…`,
-  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  artist: ``,
-  culture: `Brazil`,
-  dimensions: `altura 31,00 cm · largura 25,00 cm`,
-  wall_description: `Busto de homem jovem, levemente direcionado para a esquerda. Rosto e nariz finos, compridos. Testa larga. Sobrancelhas espessas, unidas. Olhos castanhos claros. Boca pequena. Orelha esquerda visível. Cabelos castanhos, lisos e curtos. Sobretudo preto de gola alta; colete creme e jabô branco. Fundo azeitonado. Inscrição no dorso da lateral do chassi, à esquerda, à caneta: &#034;Hist. de Port. Damião Peres/Vol. 7 pag 52&#034;. Moldura em madeira dourada, com decoração fitomórfica estilizada, nos c…`,
+  title: `Maria Christina en Albert-Kasimir, landvoogden der zuidelijke Nederlanden, penning vereerd door het gewest Brabant`,
+  type: `historiepenning`,
+  date: `2026-01-26T21:13:09Z</datestamp>
+        <setSpec>260241</setSpec>
+        <setSpec>260239</setSpec>
+        <setSpec>261106</setSpec>
+        <setSpec>261217</setSpec>
+        <setSpec>260251</setSpec>
+      </header>
+      <metadata>
+        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
+          <dc:coverage>Brabant (hertogdom)</dc:coverage>
+          <dc:creator>anoniem</dc:creator>
+          <dc:creator>anonymous</dc:creator>
+          <dc:date>1786`,
+  registration: `20010041`,
+  location: `Rijksmuseum, Amsterdam`,
+  discipline: `Albert Casimir van Saksen-Teschen, Maria Christina van Oostenrijk (1742-1798)`,
+  category: `historiepenning`,
+  description: `Zilveren achthoekige penning met draagoog en draagring. Voorzijde: naar elkaar gewende borststukken van man en vrouw binnen omschrift. Keerzijde: opschrift onder lauwerkrans, boven gekroond wapenschild, omhangen met bladertakken`,
+  medium: `zilver`,
+  artist: `anoniem; anonymous`,
+  culture: ``,
+  dimensions: ``,
+  wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `O Chalaça. [18--]. Brasiliana Museus`,
-  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
-  source_url: `https://brasiliana.museus.gov.br/acervos/o-chalaca/`,
-  institution: `Brasiliana Museus`
+  tombstone: ``,
+  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
+  source_url: `https://www.rijksmuseum.nl/en/collection/20010041`,
+  institution: `Rijksmuseum, Amsterdam`
 };
 
 // Build rich context from available fields
@@ -1175,7 +1244,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_brasiliana',
+      collection: 'archai_rijks',
       text,
       authorType: 'visitor',
     }),

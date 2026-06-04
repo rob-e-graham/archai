@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Vase — ARCHAI</title>
+<title>Sopa de Arroios — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2006AP5693/full/!600,600/0/default.jpg" alt="Vase" loading="eager">
+  <img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fwww.dropbox.com%2Fs%2Fqtp75ivna8iex4m%2FPortugal_sOPA%2520DE%2520aRROIOS.jpg%3Fraw%3D1&amp;type=IMAGE" alt="Sopa de Arroios" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Vase</div>
-  <div class="v-sub">Vase · 1904 · C.41-1972</div>
+  <div class="v-title">Sopa de Arroios</div>
+  <div class="v-sub">IMAGE · 1813 · /2063606/POR_280_009</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Vase</span>
+    <span class="v-meta-tag mv">Europeana</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(160,152,144,0.28);color:#a09890;">Check source</span>
+    
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Vase</strong> — Vase. Vase. Made by Kok, J. Juriaan. 1904. Made in Netherlands. Ceramics, Room 145</div>
+  <div class="v-story"><strong>Sopa de Arroios</strong> — A grande composição da autoria do pintor Domingos António Sequeira, aberta em gravura a água-forte por Gregório Francisco de Queirós, em 1813, como documenta a subscrição inscrita, é uma das primeiras cenas de género realizadas em Portugal. No desenho é patente o registo da observação direta das fig…</div>
+  <div class="v-rights-note" style="border-color:rgba(160,152,144,0.28);">
+      <div class="v-rights-label" style="color:#a09890;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#a09890;font-weight:400;">Check source</strong> — Review the source record and item-level rights before reuse.</div>
+      <div class="v-rights-detail">Licence / rights: http://creativecommons.org/publicdomain/mark/1.0/</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +821,15 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">C.41-1972</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Kok, J. Juriaan</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Vase</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Vase</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1904</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Ceramics, Room 145</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Vase</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">/2063606/POR_280_009</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Domingo António Sequeira</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">IMAGE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1813</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">National Museum of Ancient Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">IMAGE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Check source</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Review the source record and item-level rights before reuse.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">http://creativecommons.org/publicdomain/mark/1.0/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +844,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC769.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/78838fc9-42d7-6dae-51bc-663c2e107eca/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Bless N°26 Cable Jewelry</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 239651</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fbdh-rd.bne.es%2Fpdf.raw%3Fquery%3Did%3A0000183252%26page%3D1%26jpeg%3Dtrue&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">[Sacrifice of Isaac] [Graphic Material]</div>
+        <div class="v-rel-meta">Europeana · /2022717/bnesearch_detalle_bdh0000183252</div>
       </a>
       <a class="v-rel-card" href="NFC770.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669252/006256.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Jesus encontra Maria</div>
-        <div class="v-rel-meta">Brasiliana Museus · jesus-encontra-maria</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669033/006327.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Barão de Taquari (primeiro)</div>
+        <div class="v-rel-meta">Brasiliana Museus · barao-de-taquari-primeiro</div>
       </a>
       <a class="v-rel-card" href="NFC772.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/f46490bb-6e73-9ca6-ac4e-c268f977762e/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Chicago</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 103190</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2019LL8368/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Camera</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · RPS.869:1-2018</div>
       </a>
       <a class="v-rel-card" href="NFC773.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/dlanu/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Hollandse zilveren dukaat, 1673</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100254</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2007BM7780/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Technophone</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.19-2003</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +874,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O87867/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.europeana.eu/item/2063606/POR_280_009?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,16 +905,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Vase`,
-  type: `Vase`,
-  date: `1904`,
-  registration: `C.41-1972`,
-  location: `Ceramics, Room 145`,
-  discipline: `Vase`,
-  category: `Vase`,
-  description: `Vase. Vase. Made by Kok, J. Juriaan. 1904. Made in Netherlands. Ceramics, Room 145`,
+  title: `Sopa de Arroios`,
+  type: `IMAGE`,
+  date: `1813`,
+  registration: `/2063606/POR_280_009`,
+  location: `National Museum of Ancient Art`,
+  discipline: ``,
+  category: `IMAGE`,
+  description: `A grande composição da autoria do pintor Domingos António Sequeira, aberta em gravura a água-forte por Gregório Francisco de Queirós, em 1813, como documenta a subscrição inscrita, é uma das primeiras cenas de género realizadas em Portugal. No desenho é patente o registo da observação direta das figuras que povoam todo espaço vazio entre arquiteturas. Representa o dramático refúgio da população dos arredores de Lisboa na capital, espoliada das terras e haveres, à medida que avançavam as tropas francesas comandadas pelo General Massena, em 1810. No Largo de Arroios, cenário do desenho de Sequei…`,
   medium: ``,
-  artist: `Kok, J. Juriaan`,
+  artist: `Domingo António Sequeira`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -889,9 +922,9 @@ const OBJECT = {
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O87867/`,
-  institution: `Victoria and Albert Museum, London`
+  licence: `http://creativecommons.org/publicdomain/mark/1.0/`,
+  source_url: `https://www.europeana.eu/item/2063606/POR_280_009?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb`,
+  institution: `Europeana`
 };
 
 // Build rich context from available fields
@@ -1173,7 +1206,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_europeana',
       text,
       authorType: 'visitor',
     }),

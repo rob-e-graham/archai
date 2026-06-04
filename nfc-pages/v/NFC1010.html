@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Wijnpenning van Utrecht — ARCHAI</title>
+<title>The Thinker — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,29 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://iiif.micr.io/AOycf/full/max/0/default.jpg" alt="Wijnpenning van Utrecht" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1917.42/1917.42_web.jpg" alt="The Thinker" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Wijnpenning van Utrecht</div>
-  <div class="v-sub">schutterspenning · 2026-02-14T04:18:11Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
-        &lt;setSpec&gt;261219&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;anoniem&lt;/dc:creator&gt;
-          &lt;dc:creator&gt;anonymous&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1599 · 200100431</div>
+  <div class="v-title">The Thinker</div>
+  <div class="v-sub">Sculpture · 1880–81 · 1917.42</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
-    <span class="v-meta-tag lic">https://creativecommons.org/publicdomain/mark/1.0/</span>
-    
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
   </div>
 
   <!-- SHARE -->
@@ -767,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Wijnpenning van Utrecht</strong> — Zilveren wijn- en schutterspenning van Utrecht. Voorzijde: stadswapen, waarboven de beide schildhouders (leeuwen) een krans omhoog houden, met omschrift: CIVITATIS TRAJECTENSIS (Van de stad Utrecht). Keerzijde: een druiventros, met omschrift: VINUM HONORARIVM (Erewijn), met het jaartal 1599. Tussen …</div>
+  <div class="v-story"><strong>The Thinker</strong> — The Thinker was first developed as part of Rodin's The Gates of Hell, a sculptured doorway for a proposed museum of decorative arts in Paris. Intended to be part of a relief directly above the doors, the rugged figure was originally conceived as a generalized image of the Italian poet Dante Alighier…</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -800,25 +821,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">200100431</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">anoniem; anonymous</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">zilver</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">schutterspenning</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-02-14T04:18:11Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
-        &lt;setSpec&gt;261219&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;anoniem&lt;/dc:creator&gt;
-          &lt;dc:creator&gt;anonymous&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1599</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">schutterspenning</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1917.42</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Auguste Rodin (French, 1840–1917)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">bronze</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, 19th century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1880–81</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 182.9 x 98.4 x 142.2 cm (72 x 38 3/4 x 56 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">SE South Entrance</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -833,24 +848,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1008.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/157636?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">runner, table and wall pocket</div>
-        <div class="v-rel-meta">Auckland Museum · col.2619</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP302694.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Sō Sām Sāi</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 500928</div>
       </a>
       <a class="v-rel-card" href="NFC1009.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2013GK3857/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Tipografia, Studio di costume</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · S.1155-1982</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/44278?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">envelope</div>
+        <div class="v-rel-meta">Auckland Museum · 2004.47.7</div>
       </a>
       <a class="v-rel-card" href="NFC1011.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/bc03f8ff-68ed-b6d4-7e5f-edc26dc80c88/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Art Institute of Chicago II, Chicago</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 117271</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627902122/v2/prod/small/005501_006000/005791_009.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Schematic design model, Verbena Heights (1992–1997), Hong Kong</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2018.5</div>
       </a>
       <a class="v-rel-card" href="NFC1012.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/49/165099-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Lantern Slide - 'Mts. Tasman, Cook &amp; La Perouse, New Zealand'</div>
-        <div class="v-rel-meta">Museums Victoria · MM 69207</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2013GK3854/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Sintesi di Primavera &quot;Donna cielo&quot;</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · S.1152-1982</div>
       </a></div>
   </div>
 </div>
@@ -863,7 +878,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/200100431" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1917.42" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -894,37 +909,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Wijnpenning van Utrecht`,
-  type: `schutterspenning`,
-  date: `2026-02-14T04:18:11Z</datestamp>
-        <setSpec>260239</setSpec>
-        <setSpec>261106</setSpec>
-        <setSpec>261219</setSpec>
-        <setSpec>260251</setSpec>
-        <setSpec>2601</setSpec>
-      </header>
-      <metadata>
-        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
-          <dc:creator>anoniem</dc:creator>
-          <dc:creator>anonymous</dc:creator>
-          <dc:date>1599`,
-  registration: `200100431`,
-  location: `Rijksmuseum, Amsterdam`,
-  discipline: ``,
-  category: `schutterspenning`,
-  description: `Zilveren wijn- en schutterspenning van Utrecht. Voorzijde: stadswapen, waarboven de beide schildhouders (leeuwen) een krans omhoog houden, met omschrift: CIVITATIS TRAJECTENSIS (Van de stad Utrecht). Keerzijde: een druiventros, met omschrift: VINUM HONORARIVM (Erewijn), met het jaartal 1599. Tussen 15 en 99 is een wapen van Utrecht geslagen.`,
-  medium: `zilver`,
-  artist: `anoniem; anonymous`,
-  culture: ``,
-  dimensions: ``,
+  title: `The Thinker`,
+  type: `Sculpture`,
+  date: `1880–81`,
+  registration: `1917.42`,
+  location: `SE South Entrance`,
+  discipline: `Modern European Painting and Sculpture`,
+  category: `Sculpture`,
+  description: `The Thinker was first developed as part of Rodin's The Gates of Hell, a sculptured doorway for a proposed museum of decorative arts in Paris. Intended to be part of a relief directly above the doors, the rugged figure was originally conceived as a generalized image of the Italian poet Dante Alighieri (1265–1321), who wrote the Divine Comedy.`,
+  medium: `bronze`,
+  artist: `Auguste Rodin (French, 1840–1917)`,
+  culture: `France, 19th century`,
+  dimensions: `Overall: 182.9 x 98.4 x 142.2 cm (72 x 38 3/4 x 56 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
-  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
-  source_url: `https://www.rijksmuseum.nl/en/collection/200100431`,
-  institution: `Rijksmuseum, Amsterdam`
+  did_you_know: `This enlarged version of The Thinker is one of less than 10 cast during Rodin's lifetime.`,
+  provenance: `[{"description":"purchased from the artist in 1916.","citations":[],"footnotes":null,"date":null,"sortorder":null}]`,
+  tombstone: `The Thinker, 1880–81. Auguste Rodin (French, 1840–1917). Bronze; overall: 182.9 x 98.4 x 142.2 cm (72 x 38 3/4 x 56 in.). The Cleveland Museum of Art, Gift of Ralph King, 1917.42`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://clevelandart.org/art/1917.42`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1206,7 +1210,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_rijks',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

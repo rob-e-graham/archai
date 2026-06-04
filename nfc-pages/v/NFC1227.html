@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Chicago Landscape #150 — ARCHAI</title>
+<title>Cover for a Box — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/851b53f1-9a51-7339-1d84-f5091d319658/full/843,/0/default.jpg" alt="Chicago Landscape #150" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1970.127.b/1970.127.b_web.jpg" alt="Cover for a Box" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Chicago Landscape #150</div>
-  <div class="v-sub">Photograph · 1964 · 100082</div>
+  <div class="v-title">Cover for a Box</div>
+  <div class="v-sub">Glass · 1898–1901 · 1970.127.b</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Art Institute of Chicago</span>
-    <span class="v-meta-tag lic">All rights reserved</span>
-    <span class="v-meta-tag">Photography and Media</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Decorative Art and Design</span>
   </div>
 
   <!-- SHARE -->
@@ -756,8 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Chicago Landscape #150</strong> — Chicago Landscape #150. Photograph. Gelatin silver print. Photography and Media. Art Sinsabaugh
-American, 1924–1983. photography. 1964. United States. New Bauhaus (Institute of Design)</div>
+  <div class="v-story"><strong>Cover for a Box</strong> — By 1900 Tiffany had expanded his empire by increasing the firm’s production of “fancy goods,” including inkstands, candlesticks, clocks, small boxes, desk sets, tea screens, and other functional objects. Along with the array of artistic glass designs from his factory in Corona, Queens, works in cera…</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -790,18 +821,19 @@ American, 1924–1983. photography. 1964. United States. New Bauhaus (Institute 
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">100082</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Art Sinsabaugh
-American, 1924–1983</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Gelatin silver print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">United States</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography and Media</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">photography</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1964</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Image/paper: 29.7 × 49.7 cm (11 3/4 × 19 5/8 in.); Mount: 38.2 × 55.8 cm (15 1/16 × 22 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">All rights reserved</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1970.127.b</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Louis Comfort Tiffany (American, 1848–1933); Tiffany Glass &amp; Decorating Company (America, New York, 1892–1902)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">enamel on copper</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">America, New York</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Decorative Art and Design</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Glass</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1898–1901</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Diameter: 13.1 cm (5 3/16 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">209 Tiffany</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Glass</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -816,24 +848,24 @@ American, 1924–1983</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1225.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680942/470-scaled.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Maria I</div>
-        <div class="v-rel-meta">Brasiliana Museus · maria-i</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/668410/006473.jpg" loading="lazy"></div>
+        <div class="v-rel-title">[Cena campestre]</div>
+        <div class="v-rel-meta">Brasiliana Museus · cena-campestre</div>
       </a>
       <a class="v-rel-card" href="NFC1226.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669033/006327.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Barão de Taquari (primeiro)</div>
-        <div class="v-rel-meta">Brasiliana Museus · barao-de-taquari-primeiro</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fsammlungenonline.albertina.at%2Fcc%2Fimageproxy.ashx%3Fserver%3Dlocalhost%26port%3D15001%26filename%3Dimages%2FFotoKaGLV2000_374.jpg%26cache%3Dyes%26maxwidth%3D400&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Travel camera - 13 x 18 cm, with double anastigmat lens by Carl Zeiss, Jena, No. 484, 1: 12.5, F = 285 mm (D.R.P 56,109, No. 34103) and 1: 12.5 F = 224 mm (D.R.P. 56109, No. 30425) respectively, connected to Tubus D.R.P. 84 996; 3 bookcases with 5 (9 x 12) inserts, spare lens board, in Kofferetui</div>
+        <div class="v-rel-meta">Europeana · /15508/FotoKaGLV2000_374</div>
       </a>
       <a class="v-rel-card" href="NFC1228.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627855886/v2/prod/small/002001_002500/002001_007.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Approach by ramp, night view, the Peak project, Hong Kong (1983 Competition)</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2015.21</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/86669?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">stole, lace</div>
+        <div class="v-rel-meta">Auckland Museum · T98</div>
       </a>
       <a class="v-rel-card" href="NFC1229.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018KT0260/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Folding camera used by Herbert Ponting</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · RPS.3049:1-2017</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1714972380/v2/prod/small/002001_002500/002491_003.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Embroidered Portrait Series—Entertainer with Small White Dog</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2012.99</div>
       </a></div>
   </div>
 </div>
@@ -846,7 +878,7 @@ American, 1924–1983</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/100082" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1970.127.b" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -877,28 +909,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Chicago Landscape #150`,
-  type: `Photograph`,
-  date: `1964`,
-  registration: `100082`,
-  location: `Art Institute of Chicago`,
-  discipline: `Photography and Media`,
-  category: `photography`,
-  description: `Chicago Landscape #150. Photograph. Gelatin silver print. Photography and Media. Art Sinsabaugh
-American, 1924–1983. photography. 1964. United States. New Bauhaus (Institute of Design)`,
-  medium: `Gelatin silver print`,
-  artist: `Art Sinsabaugh
-American, 1924–1983`,
-  culture: `United States`,
-  dimensions: `Image/paper: 29.7 × 49.7 cm (11 3/4 × 19 5/8 in.); Mount: 38.2 × 55.8 cm (15 1/16 × 22 in.)`,
+  title: `Cover for a Box`,
+  type: `Glass`,
+  date: `1898–1901`,
+  registration: `1970.127.b`,
+  location: `209 Tiffany`,
+  discipline: `Decorative Art and Design`,
+  category: `Glass`,
+  description: `By 1900 Tiffany had expanded his empire by increasing the firm’s production of “fancy goods,” including inkstands, candlesticks, clocks, small boxes, desk sets, tea screens, and other functional objects. Along with the array of artistic glass designs from his factory in Corona, Queens, works in ceramic, bronze, other metals, and even jewelry abounded. These smaller, more affordable luxury items were designed with as much thought to artistry as the great stained glass windows and lamps through which the firm enjoyed unrivaled success.`,
+  medium: `enamel on copper`,
+  artist: `Louis Comfort Tiffany (American, 1848–1933); Tiffany Glass & Decorating Company (America, New York, 1892–1902)`,
+  culture: `America, New York`,
+  dimensions: `Diameter: 13.1 cm (5 3/16 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
-  licence: `All rights reserved`,
-  source_url: `https://www.artic.edu/artworks/100082`,
-  institution: `Art Institute of Chicago`
+  did_you_know: `Tiffany's artisans excelled at creating elaborate enameled patterns for luxurious accessories.`,
+  provenance: `[{"description":"William Ellery Greene [1914-1985], Bronxville, NY, given to the Cleveland Museum of Art","citations":[],"footnotes":[],"date":"?–1970","sortorder":1},{"description":"The Cleveland Museum of Art","citations":[],"footnotes":[],"date":"1970-","sortorder":2}]`,
+  tombstone: `Cover for a Box, 1898–1901. Louis Comfort Tiffany (American, 1848–1933), Tiffany Glass & Decorating Company (America, New York, 1892–1902). Enamel on copper; diameter: 13.1 cm (5 3/16 in.). The Cleveland Museum of Art, Gift of William Ellery Greene, 1970.127.b`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://clevelandart.org/art/1970.127.b`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1180,7 +1210,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_aic',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

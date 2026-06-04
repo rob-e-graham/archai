@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Clara — ARCHAI</title>
+<title>Personal computer — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/746982ab-9639-58f3-df1a-b10b01542212/full/843,/0/default.jpg" alt="Clara" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2013GV1959/full/!600,600/0/default.jpg" alt="Personal computer" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Clara</div>
-  <div class="v-sub">Photograph · 1997 · 150247</div>
+  <div class="v-title">Personal computer</div>
+  <div class="v-sub">Personal computer · 1984 · W.48:1-1984</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Art Institute of Chicago</span>
-    <span class="v-meta-tag lic">All rights reserved</span>
-    <span class="v-meta-tag">Photography and Media</span>
+    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Personal computer</span>
   </div>
 
   <!-- SHARE -->
@@ -756,8 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Clara</strong> — Clara. Photograph. Digital Iris print on Somerset paper. Photography and Media. Helena Chapellín Wilson
-American, born Venezuela 1941. digital print. 1997. United States</div>
+  <div class="v-story"><strong>Personal computer</strong> — Personal computer. Personal computer. Made by Apricot Computers, Ltd.. 1984. Made in Great Britain. In Store</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -790,18 +821,16 @@ American, born Venezuela 1941. digital print. 1997. United States</div>
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">150247</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Helena Chapellín Wilson
-American, born Venezuela 1941</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Digital Iris print on Somerset paper</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">United States</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography and Media</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">digital print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1997</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Image: 10.2 × 10.2 cm (4 1/16 × 4 1/16 in.); Paper: 20.4 × 20.4 cm (8 1/16 × 8 1/16 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">All rights reserved</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">W.48:1-1984</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Apricot Computers, Ltd.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Personal computer</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Personal computer</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1984</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In Store</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Personal computer</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -816,24 +845,24 @@ American, born Venezuela 1941</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1217.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/6252536c-0a9e-bdd9-b9ea-a38a31663d0f/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Carpet (Art Deco)</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 93056</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/910766/preview" loading="lazy"></div>
+        <div class="v-rel-title">Map of Kerguelen's Land called by C. Cook Island of Desolation. Accurately Engraved for Andersons' Large Folio Edition of the Whole of Captain Cook's Voyages &amp;c. CompletePlate 66. From the book New, authentic, and complete collection of voyages round the world.</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · RB000015/066a</div>
       </a>
       <a class="v-rel-card" href="NFC1218.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/HTgXB/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Hollandse leeuwendaalder, 1576</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100253</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018KU1730/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Ericofon 600</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.9-2003</div>
       </a>
       <a class="v-rel-card" href="NFC1220.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/222239/preview" loading="lazy"></div>
-        <div class="v-rel-title">Sporran</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · PC001695/4</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fcollection.mobilier-national.fr%2Fmedia%2Fxl%2FBIDEAU%2F2017%2F02%2FGMTT-11-008_9-2017.jpg&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">TAPISSERIE DE LICE - Histoire d'Artémise LE CHAR DES RHINOCEROS</div>
+        <div class="v-rel-meta">Europeana · /957/GMTT_11_008</div>
       </a>
       <a class="v-rel-card" href="NFC1221.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/60e97f16-9337-e5db-5e9d-98f438f19b33/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Chicago</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 103188</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/10825/preview" loading="lazy"></div>
+        <div class="v-rel-title">water jug</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · CG000342</div>
       </a></div>
   </div>
 </div>
@@ -846,7 +875,7 @@ American, born Venezuela 1941</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/150247" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O302252/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -877,28 +906,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Clara`,
-  type: `Photograph`,
-  date: `1997`,
-  registration: `150247`,
-  location: `Art Institute of Chicago`,
-  discipline: `Photography and Media`,
-  category: `digital print`,
-  description: `Clara. Photograph. Digital Iris print on Somerset paper. Photography and Media. Helena Chapellín Wilson
-American, born Venezuela 1941. digital print. 1997. United States`,
-  medium: `Digital Iris print on Somerset paper`,
-  artist: `Helena Chapellín Wilson
-American, born Venezuela 1941`,
-  culture: `United States`,
-  dimensions: `Image: 10.2 × 10.2 cm (4 1/16 × 4 1/16 in.); Paper: 20.4 × 20.4 cm (8 1/16 × 8 1/16 in.)`,
+  title: `Personal computer`,
+  type: `Personal computer`,
+  date: `1984`,
+  registration: `W.48:1-1984`,
+  location: `In Store`,
+  discipline: `Personal computer`,
+  category: `Personal computer`,
+  description: `Personal computer. Personal computer. Made by Apricot Computers, Ltd.. 1984. Made in Great Britain. In Store`,
+  medium: ``,
+  artist: `Apricot Computers, Ltd.`,
+  culture: ``,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `All rights reserved`,
-  source_url: `https://www.artic.edu/artworks/150247`,
-  institution: `Art Institute of Chicago`
+  licence: `V&A Open Access`,
+  source_url: `https://collections.vam.ac.uk/item/O302252/`,
+  institution: `Victoria and Albert Museum, London`
 };
 
 // Build rich context from available fields
@@ -1180,7 +1207,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_aic',
+      collection: 'archai_va',
       text,
       authorType: 'visitor',
     }),

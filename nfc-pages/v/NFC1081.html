@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>relief — ARCHAI</title>
+<title>Portret van Geertruida van Saksen — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,28 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/794136?rendering=standard.jpg" alt="relief" loading="eager">
+  <img src="https://iiif.micr.io/sbiLI/full/max/0/default.jpg" alt="Portret van Geertruida van Saksen" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">relief</div>
-  <div class="v-sub">ecrm:E22_Man-Made_Object · 2004-06-03T00:00:00.000Z · 1996x2.20</div>
+  <div class="v-title">Portret van Geertruida van Saksen</div>
+  <div class="v-sub">prent · 2026-01-27T04:44:32Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260241&lt;/setSpec&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;26151&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:coverage&gt;Graafschap Holland&lt;/dc:coverage&gt;
+          &lt;dc:creator&gt;Adriaen Matham&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1620 · 20010006</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Auckland Museum</span>
-    <span class="v-meta-tag lic">© Auckland Museum CC BY</span>
-    <span class="v-meta-tag">Social History</span>
+    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(160,152,144,0.28);color:#a09890;">Check source</span>
+    <span class="v-meta-tag">Dirk V (graaf van Holland), Geertruida van Saksen</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +793,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>relief</strong> — Framed cameo relief. This is a portrait of a man facing left carved in relief possibly out of bone. The relief is mounted on a dark grey base with a gilded interior frame and a circular wooden frame. There is a metal suspension ring at the top of the frame. On the back of the frame is a red label wi…</div>
+  <div class="v-story"><strong>Portret van Geertruida van Saksen</strong> — Portret van Geertruida van Saksen, weduwe van Floris I graaf van Holland, met aan haar hand haar zoon Dirk V, graaf van Holland. Prent uit een serie van 36 prenten met portretten ten voeten uit van graven en gravinnen van Holland.</div>
+  <div class="v-rights-note" style="border-color:rgba(160,152,144,0.28);">
+      <div class="v-rights-label" style="color:#a09890;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#a09890;font-weight:400;">Check source</strong> — Review the source record and item-level rights before reuse.</div>
+      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,13 +831,27 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1996x2.20</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2004-06-03T00:00:00.000Z</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">20010006</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Adriaen Matham</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">papier</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Dirk V (graaf van Holland), Geertruida van Saksen</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">prent</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-01-27T04:44:32Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260241&lt;/setSpec&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;26151&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:coverage&gt;Graafschap Holland&lt;/dc:coverage&gt;
+          &lt;dc:creator&gt;Adriaen Matham&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1620</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">prent</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Check source</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Review the source record and item-level rights before reuse.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -810,24 +866,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1079.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AL5003/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Pye Model 1108</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.394-1967</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/312893/preview" loading="lazy"></div>
+        <div class="v-rel-title">One Rupee</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · NU005367</div>
       </a>
       <a class="v-rel-card" href="NFC1080.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/TTTrn/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Engelse penning op het huwelijk van de Prince of Wales met Alexandra van Denemarken 1863</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100020</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP302548.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Nyonganyonga</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 503679</div>
       </a>
       <a class="v-rel-card" href="NFC1082.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2020MU2627/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Costume</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · S.161-2021</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP-39911-002.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Banjo</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 504951</div>
       </a>
       <a class="v-rel-card" href="NFC1083.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/235408?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">sampler</div>
-        <div class="v-rel-meta">Auckland Museum · col.1037</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/910839/preview" loading="lazy"></div>
+        <div class="v-rel-title">New, authentic, and complete collection of voyages round the world : undertaken and performed by royal authority. Containing a new, authentic, entertaining, instructive, full, and complete historical account of Captain Cook's first, second, third, and last voyages, undertaken by order of His present Majesty, for making new discoveries in geography, navigation, astronomy, &amp;c. in the Southern and Northern Hemispheres, &amp;c., &amp;c., &amp;c. ... To which will be added, complete and genuine narratives of other voyages of discovery round the world, &amp;c. ... Illustrated with all the elegant, splendid, and fine large folio copper-plates, belonging to Capt. Cook's first, second, third and last voyages ... / the whole of these voyages of Capt. James Cook, &amp;c., being newly written by the editors from the authentic journals of several principal officers and other gentlemen of the most distinguished naval and philosophical abilities, who sailed in the various ships and now publishing under the immediate direction of George William Anderson ... assisted, very materially, by a principal officer who sailed in the Resolution sloop, and by other gentlemen of the Royal Navy.</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · RB000015</div>
       </a></div>
   </div>
 </div>
@@ -840,7 +896,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/609329" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/20010006" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -871,16 +927,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `relief`,
-  type: `ecrm:E22_Man-Made_Object`,
-  date: `2004-06-03T00:00:00.000Z`,
-  registration: `1996x2.20`,
-  location: `Auckland Museum`,
-  discipline: `Social History`,
-  category: `ecrm:E22_Man-Made_Object`,
-  description: `Framed cameo relief. This is a portrait of a man facing left carved in relief possibly out of bone. The relief is mounted on a dark grey base with a gilded interior frame and a circular wooden frame. There is a metal suspension ring at the top of the frame. On the back of the frame is a red label with production details: "THOS. BLUNT/ Fancy Cabinet Maker/ From / D. Edwards London / MANUFACTURER to HER MAJESTY &c / Bridge Street / Sydney / Ladies & Gentlemen's Desks & Dressing Cases rapider. Ladies Work Boxes refitted / NB All sort of Fancy Goods made to Order / Picture Frame Manufacturer"`,
-  medium: ``,
-  artist: ``,
+  title: `Portret van Geertruida van Saksen`,
+  type: `prent`,
+  date: `2026-01-27T04:44:32Z</datestamp>
+        <setSpec>260241</setSpec>
+        <setSpec>260239</setSpec>
+        <setSpec>26151</setSpec>
+        <setSpec>260251</setSpec>
+      </header>
+      <metadata>
+        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
+          <dc:coverage>Graafschap Holland</dc:coverage>
+          <dc:creator>Adriaen Matham</dc:creator>
+          <dc:date>1620`,
+  registration: `20010006`,
+  location: `Rijksmuseum, Amsterdam`,
+  discipline: `Dirk V (graaf van Holland), Geertruida van Saksen`,
+  category: `prent`,
+  description: `Portret van Geertruida van Saksen, weduwe van Floris I graaf van Holland, met aan haar hand haar zoon Dirk V, graaf van Holland. Prent uit een serie van 36 prenten met portretten ten voeten uit van graven en gravinnen van Holland.`,
+  medium: `papier`,
+  artist: `Adriaen Matham`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -888,9 +954,9 @@ const OBJECT = {
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `© Auckland Museum CC BY`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/609329`,
-  institution: `Auckland Museum`
+  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
+  source_url: `https://www.rijksmuseum.nl/en/collection/20010006`,
+  institution: `Rijksmuseum, Amsterdam`
 };
 
 // Build rich context from available fields
@@ -1172,7 +1238,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_auckland',
+      collection: 'archai_rijks',
       text,
       authorType: 'visitor',
     }),

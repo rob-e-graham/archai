@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Shō — ARCHAI</title>
+<title>vävsked, vävning, bandgrind, njiskun (saN), bandvävning, textilt arbete — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/mi/original/DP321283.jpg" alt="Shō" loading="eager">
+  <img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fcollections.ajtte.com%2Fweb%2Fimage%2Fzoom%2F180308%2FAAAAXGQ.JPG&amp;type=IMAGE" alt="vävsked, vävning, bandgrind, njiskun (saN), bandvävning, textilt arbete" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Shō</div>
-  <div class="v-sub">Shō · 19th century · 502833</div>
+  <div class="v-title">vävsked, vävning, bandgrind, njiskun (saN), bandvävning, textilt arbete</div>
+  <div class="v-sub">IMAGE · 1984 · /91683/ajtte_objekt_14481</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
-    <span class="v-meta-tag lic">CC0 — Public Domain</span>
-    <span class="v-meta-tag">Musical Instruments</span>
+    <span class="v-meta-tag mv">Europeana</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Shō</strong> — Shō. Shō. Bamboo wood, metal. Musical Instruments. Japanese. Tokugawa. Aerophone-Free Reed-mouth organ. 19th century</div>
+  <div class="v-story"><strong>vävsked, vävning, bandgrind, njiskun (saN), bandvävning, textilt arbete</strong> — Bandgrind gjord av renhorn, fastnitad i övre och nedre kant med 28 st. metallnitar. Formen är rak med enkel gravyr på framsidan. N F och 1984 är graverat på baksidan. 43 st. hål, den mittersta spjälan är märkt med M både fram och bak.</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: http://creativecommons.org/licenses/by-nc-nd/2.5/</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,16 +821,15 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">502833</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Bamboo wood, metal</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Japanese</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Aerophone-Free Reed-mouth organ</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">19th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">19 × 2 3/4 in. (48.3 × 7 cm)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 681</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Shō</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">/91683/ajtte_objekt_14481</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Fankki Nikolaus [[tillverkning]]</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">IMAGE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1984</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Ájtte, Swedish Mountain and Sámi Museum</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">IMAGE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">http://creativecommons.org/licenses/by-nc-nd/2.5/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -813,24 +844,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC676.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/xFERr/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Philips de Schone, hertog van Bourgondi&amp;#235;, ingehuldigd als graaf van Holland, rekenpenning van de rekenkamer van Holland</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010036</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/MUS506A.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Horn</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 502299</div>
       </a>
       <a class="v-rel-card" href="NFC677.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/107383?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">dress, child's</div>
-        <div class="v-rel-meta">Auckland Museum · col.1678</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fbdh-rd.bne.es%2Fpdf.raw%3Fquery%3Did%3A0000016428%26page%3D1%26jpeg%3Dtrue&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">[Cabezas de querubines] [Material gráfico]</div>
+        <div class="v-rel-meta">Europeana · /2022717/bnesearch_detalle_bdh0000016428</div>
       </a>
       <a class="v-rel-card" href="NFC679.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1704990179/v2/prod/small/004001_004500/004132_004.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Presentation model, Wind and Water (wNw) Bar (2006–2008), Thủ Dầu Một, Vietnam</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2015.723</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/BPuqf/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Nederlandse gulden, 1938</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100270</div>
       </a>
       <a class="v-rel-card" href="NFC680.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fbdh-rd.bne.es%2Fpdf.raw%3Fquery%3Did%3A0000207817%26page%3D1%26jpeg%3Dtrue&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">[La Constancia y dos brazos] : [estudio de paños]</div>
-        <div class="v-rel-meta">Europeana · /2022717/bnesearch_detalle_bdh0000207817</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627820842/v2/prod/small/007001_007500/007109_002.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Toshiba Automatic Rice Cooker, model RC-10K</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2016.765</div>
       </a></div>
   </div>
 </div>
@@ -843,7 +874,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/502833" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.europeana.eu/item/91683/ajtte_objekt_14481?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -874,26 +905,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Shō`,
-  type: `Shō`,
-  date: `19th century`,
-  registration: `502833`,
-  location: `Gallery 681`,
-  discipline: `Musical Instruments`,
-  category: `Aerophone-Free Reed-mouth organ`,
-  description: `Shō. Shō. Bamboo wood, metal. Musical Instruments. Japanese. Tokugawa. Aerophone-Free Reed-mouth organ. 19th century`,
-  medium: `Bamboo wood, metal`,
-  artist: ``,
-  culture: `Japanese`,
-  dimensions: `19 × 2 3/4 in. (48.3 × 7 cm)`,
+  title: `vävsked, vävning, bandgrind, njiskun (saN), bandvävning, textilt arbete`,
+  type: `IMAGE`,
+  date: `1984`,
+  registration: `/91683/ajtte_objekt_14481`,
+  location: `Ájtte, Swedish Mountain and Sámi Museum`,
+  discipline: ``,
+  category: `IMAGE`,
+  description: `Bandgrind gjord av renhorn, fastnitad i övre och nedre kant med 28 st. metallnitar. Formen är rak med enkel gravyr på framsidan. N F och 1984 är graverat på baksidan. 43 st. hål, den mittersta spjälan är märkt med M både fram och bak.`,
+  medium: ``,
+  artist: `Fankki Nikolaus [[tillverkning]]`,
+  culture: ``,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/502833`,
-  institution: `The Metropolitan Museum of Art`
+  licence: `http://creativecommons.org/licenses/by-nc-nd/2.5/`,
+  source_url: `https://www.europeana.eu/item/91683/ajtte_objekt_14481?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb`,
+  institution: `Europeana`
 };
 
 // Build rich context from available fields
@@ -1175,7 +1206,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_met',
+      collection: 'archai_europeana',
       text,
       authorType: 'visitor',
     }),

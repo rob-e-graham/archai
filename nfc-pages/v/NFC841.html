@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Chain — ARCHAI</title>
+<title>Schutterspenning van Leiden — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,29 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://res.cloudinary.com/mplustms/image/upload/w_667/v1714185358/v2/prod/small/002501_003000/002758_003.jpg" alt="Chain" loading="eager">
+  <img src="https://iiif.micr.io/mvyio/full/max/0/default.jpg" alt="Schutterspenning van Leiden" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Chain</div>
-  <div class="v-sub">Sculpture · 1979 · 2012.34</div>
+  <div class="v-title">Schutterspenning van Leiden</div>
+  <div class="v-sub">schutterspenning · 2026-02-14T04:18:14Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;261219&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+        &lt;setSpec&gt;2601&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:creator&gt;anoniem&lt;/dc:creator&gt;
+          &lt;dc:creator&gt;anonymous&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1663 · 200100443</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">M+, Hong Kong</span>
-    <span class="v-meta-tag lic">CC0 metadata · M+ API service non-commercial · © Wang Keping</span>
-    <span class="v-meta-tag">Visual Art</span>
+    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(160,152,144,0.28);color:#a09890;">Check source</span>
+    
   </div>
 
   <!-- SHARE -->
@@ -756,7 +794,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Chain</strong> — Wooden sculpture. A carved hand grips a neck above its chain necklace on a knob of wood resembling the ornamental head on an oversized walking stick.</div>
+  <div class="v-story"><strong>Schutterspenning van Leiden</strong> — Zilveren schutterspenning van Leiden. Voorzijde: een gekroonde klimmende leeuw met een zwaard in zijn rechter en een schild met het Leidse wapen in zijn linker klauw. Omschrift: PVGNO PRO PATRIA (ik vecht voor het vaderland). Keerzijde: twee gekruiste musketten tussen LEY en DEN. Omschrift: SCHVTTER…</div>
+  <div class="v-rights-note" style="border-color:rgba(160,152,144,0.28);">
+      <div class="v-rights-label" style="color:#a09890;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#a09890;font-weight:400;">Check source</strong> — Review the source record and item-level rights before reuse.</div>
+      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,17 +832,27 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2012.34</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Wang Keping</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">wood</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Chinese</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Visual Art</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1979</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">overall: 53 × 37 × 13.2 cm</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Wang Keping</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">200100443</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">anoniem; anonymous</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">zilver</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">schutterspenning</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-02-14T04:18:14Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;261219&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+        &lt;setSpec&gt;2601&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:creator&gt;anoniem&lt;/dc:creator&gt;
+          &lt;dc:creator&gt;anonymous&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1663</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">schutterspenning</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Check source</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Review the source record and item-level rights before reuse.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -814,24 +867,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC839.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1629663070/v2/prod/small/001501_002000/001912_007.jpg" loading="lazy"></div>
-        <div class="v-rel-title">For Some Reasons</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2016.889</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1978.59/1978.59_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Red-Figure Lekythos (Oil Vessel): Athena Slaying Giant (body); Satyr between Maenads (shoulder)</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1978.59</div>
       </a>
       <a class="v-rel-card" href="NFC840.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1972.49/1972.49_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Bust of a Chinese</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1972.49</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1962.2/1962.2_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Mme L . . . (Laure Borreau)</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1962.2</div>
       </a>
       <a class="v-rel-card" href="NFC842.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2011EP0025/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Universal Electronic Vacuum, 1967</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.1217-1967</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fbdh-rd.bne.es%2Fpdf.raw%3Fquery%3Did%3A0000213737%26page%3D1%26jpeg%3Dtrue&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">[La Gloria o El triunfo de la Trinidad] [Material gráfico]</div>
+        <div class="v-rel-meta">Europeana · /2022717/bnesearch_detalle_bdh0000213737</div>
       </a>
       <a class="v-rel-card" href="NFC843.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/1f80a23f-a793-b73b-4143-ade1d1c22a74/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Flora of Kansas, Green Milkweed, 1886</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 157074</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/MzXxG/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Nederlandse cent, 1892</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100276</div>
       </a></div>
   </div>
 </div>
@@ -844,7 +897,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/chain-201234/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/200100443" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -875,26 +928,37 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Chain`,
-  type: `Sculpture`,
-  date: `1979`,
-  registration: `2012.34`,
-  location: `M+, Hong Kong`,
-  discipline: `Visual Art`,
-  category: `Sculpture`,
-  description: `Wooden sculpture. A carved hand grips a neck above its chain necklace on a knob of wood resembling the ornamental head on an oversized walking stick.`,
-  medium: `wood`,
-  artist: `Wang Keping`,
-  culture: `Chinese`,
-  dimensions: `overall: 53 × 37 × 13.2 cm`,
-  wall_description: `Wooden sculpture. A carved hand grips a neck above its chain necklace on a knob of wood resembling the ornamental head on an oversized walking stick.`,
+  title: `Schutterspenning van Leiden`,
+  type: `schutterspenning`,
+  date: `2026-02-14T04:18:14Z</datestamp>
+        <setSpec>260239</setSpec>
+        <setSpec>261106</setSpec>
+        <setSpec>261219</setSpec>
+        <setSpec>260251</setSpec>
+        <setSpec>2601</setSpec>
+      </header>
+      <metadata>
+        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
+          <dc:creator>anoniem</dc:creator>
+          <dc:creator>anonymous</dc:creator>
+          <dc:date>1663`,
+  registration: `200100443`,
+  location: `Rijksmuseum, Amsterdam`,
+  discipline: ``,
+  category: `schutterspenning`,
+  description: `Zilveren schutterspenning van Leiden. Voorzijde: een gekroonde klimmende leeuw met een zwaard in zijn rechter en een schild met het Leidse wapen in zijn linker klauw. Omschrift: PVGNO PRO PATRIA (ik vecht voor het vaderland). Keerzijde: twee gekruiste musketten tussen LEY en DEN. Omschrift: SCHVTTERS PENNING en daarachter het jaartal.`,
+  medium: `zilver`,
+  artist: `anoniem; anonymous`,
+  culture: ``,
+  dimensions: ``,
+  wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Chain. Wang Keping. 1979. M+, Hong Kong`,
-  licence: `CC0 metadata · M+ API service non-commercial · © Wang Keping`,
-  source_url: `https://www.mplus.org.hk/en/collection/objects/chain-201234/`,
-  institution: `M+, Hong Kong`
+  tombstone: ``,
+  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
+  source_url: `https://www.rijksmuseum.nl/en/collection/200100443`,
+  institution: `Rijksmuseum, Amsterdam`
 };
 
 // Build rich context from available fields
@@ -1176,7 +1240,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_mplus',
+      collection: 'archai_rijks',
       text,
       authorType: 'visitor',
     }),

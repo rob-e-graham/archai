@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>textile piece — ARCHAI</title>
+<title>chemise, doll's — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,17 +761,17 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/5757?rendering=standard.jpg" alt="textile piece" loading="eager">
+  <img src="https://api.aucklandmuseum.com/id/media/v/228077?rendering=standard.jpg" alt="chemise, doll's" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">textile piece</div>
-  <div class="v-sub">ecrm:E22_Man-Made_Object · 1780-1820 · T15</div>
+  <div class="v-title">chemise, doll's</div>
+  <div class="v-sub">Clothing, Doll · 1997-05-21T00:00:00.000Z · 1995X1.595</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Auckland Museum</span>
-    <span class="v-meta-tag lic">© Auckland Museum CC BY</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
     <span class="v-meta-tag">Applied Arts and Design</span>
   </div>
 
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>textile piece</strong> — textile piece, two figures in landscape with bamboo, plum blossom, house etc. multicoloured on white ground, black satin borders; unfinished? (part missing). Embroidered tent stitch, tapestry on cream ground</div>
+  <div class="v-story"><strong>chemise, doll's</strong> — chemise, doll's, (nightdress)</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
+      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,15 +821,15 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">T15</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">unknown</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">[silk], &lt;textile Materials By Composition Or Origin&gt;, &lt;textile Materials&gt;, &lt;fiber Products&gt;, &lt;fiber And Fiber Products&gt;, &lt;materials By Physical Form&gt;</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1995X1.595</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Applied Arts and Design</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1780-1820</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Clothing, Doll</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1997-05-21T00:00:00.000Z</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Clothing, Doll</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -812,24 +844,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC525.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/357692/preview" loading="lazy"></div>
-        <div class="v-rel-title">Tivaevae manu (applique quilt)</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · FE011049</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/774637?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">toy, cradle and doll</div>
+        <div class="v-rel-meta">Auckland Museum · 37580</div>
       </a>
       <a class="v-rel-card" href="NFC526.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1972.48/1972.48_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Branch Hill Pond, Hampstead</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1972.48</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/646932/21013-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Caminho na floresta</div>
+        <div class="v-rel-meta">Brasiliana Museus · caminho-na-floresta</div>
       </a>
       <a class="v-rel-card" href="NFC528.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2015HY0216/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Digitel 2000</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · W.16:1, 2-2003</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/374804/preview" loading="lazy"></div>
+        <div class="v-rel-title">Mocassins</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · FE003159</div>
       </a>
       <a class="v-rel-card" href="NFC529.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP-12679-041.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Soprano Helicon in B-flat</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 504667</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1977.168/1977.168_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Dressing Table Mirror</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1977.168</div>
       </a></div>
   </div>
 </div>
@@ -842,7 +874,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/11727" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/8143" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -873,16 +905,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `textile piece`,
-  type: `ecrm:E22_Man-Made_Object`,
-  date: `1780-1820`,
-  registration: `T15`,
+  title: `chemise, doll's`,
+  type: `Clothing, Doll`,
+  date: `1997-05-21T00:00:00.000Z`,
+  registration: `1995X1.595`,
   location: `Auckland Museum`,
   discipline: `Applied Arts and Design`,
-  category: `ecrm:E22_Man-Made_Object`,
-  description: `textile piece, two figures in landscape with bamboo, plum blossom, house etc. multicoloured on white ground, black satin borders; unfinished? (part missing). Embroidered tent stitch, tapestry on cream ground`,
-  medium: `[silk], <textile Materials By Composition Or Origin>, <textile Materials>, <fiber Products>, <fiber And Fiber Products>, <materials By Physical Form>`,
-  artist: `unknown`,
+  category: `Clothing, Doll`,
+  description: `chemise, doll's, (nightdress)`,
+  medium: ``,
+  artist: ``,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -891,7 +923,7 @@ const OBJECT = {
   provenance: ``,
   tombstone: ``,
   licence: `© Auckland Museum CC BY`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/11727`,
+  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/8143`,
   institution: `Auckland Museum`
 };
 

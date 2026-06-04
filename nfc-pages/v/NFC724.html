@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>mittens — ARCHAI</title>
+<title>Pedro II — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/40065?rendering=standard.jpg" alt="mittens" loading="eager">
+  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680046/823-scaled.jpg" alt="Pedro II" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">mittens</div>
-  <div class="v-sub">ecrm:E22_Man-Made_Object · 1996-11-11T00:00:00.000Z · col.2624</div>
+  <div class="v-title">Pedro II</div>
+  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · 1877 · pedro-ii-39</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Auckland Museum</span>
-    <span class="v-meta-tag lic">© Auckland Museum CC BY</span>
-    <span class="v-meta-tag">Social History</span>
+    <span class="v-meta-tag mv">Brasiliana Museus</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Brasiliana Museus</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>mittens</strong> — Pair of black machine made lace mittens.</div>
+  <div class="v-story"><strong>Pedro II</strong> — Retrato de Dom Pedro II de pé, ao centro da tela, de corpo inteiro ligeiramente voltado para a esquerda, perna esquerda à frente. Traja fardão ostentando ao peito o Tosão de Ouro, três ordens e banda azul e vermelha. Pende à cintura espada dourada embainhada. Observa-se a mão esquerda ao longo do co…</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,13 +821,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">col.2624</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1996-11-11T00:00:00.000Z</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">pedro-ii-39</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1877</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 283,50 cm · largura 192,00 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -810,24 +847,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC722.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/204941.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Klong mēng (ฆ้องเหม่ง)</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 500825</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669363/Desembarque_de_Cabral-scaled-1.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Desembarque de Cabral em Porto Seguro</div>
+        <div class="v-rel-meta">Brasiliana Museus · desembarque-de-cabral-em-porto-seguro</div>
       </a>
       <a class="v-rel-card" href="NFC723.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018LC0496/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Radio</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.559-1976</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1635631277/v2/prod/small/001501_002000/001687_065.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Artistic Chicken</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2013.485</div>
       </a>
       <a class="v-rel-card" href="NFC725.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HC3211/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Vype Reload</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CD.37:1 to 11-2014</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/AvOmO/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Filips de Goede, hertog van Bourgondi&amp;#235;</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010029</div>
       </a>
       <a class="v-rel-card" href="NFC726.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/KwJBk/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Duit van de Bataafse Republiek op naam van Zeeland, 1796, misslag</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100095</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%3A80%2Fwebclient%2FDeliveryManager%3Fpid%3D6355697%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Servizio fotografico Firenze, 1957-1956</div>
+        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6355697_custom_att_2_simple_viewer</div>
       </a></div>
   </div>
 </div>
@@ -840,7 +877,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/14678" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/pedro-ii-39/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -871,26 +908,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `mittens`,
-  type: `ecrm:E22_Man-Made_Object`,
-  date: `1996-11-11T00:00:00.000Z`,
-  registration: `col.2624`,
-  location: `Auckland Museum`,
-  discipline: `Social History`,
-  category: `ecrm:E22_Man-Made_Object`,
-  description: `Pair of black machine made lace mittens.`,
-  medium: ``,
+  title: `Pedro II`,
+  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  date: `1877`,
+  registration: `pedro-ii-39`,
+  location: `Brasiliana Museus`,
+  discipline: `Brasiliana Museus`,
+  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  description: `Retrato de Dom Pedro II de pé, ao centro da tela, de corpo inteiro ligeiramente voltado para a esquerda, perna esquerda à frente. Traja fardão ostentando ao peito o Tosão de Ouro, três ordens e banda azul e vermelha. Pende à cintura espada dourada embainhada. Observa-se a mão esquerda ao longo do corpo usando luvas e carregando chapéu armado. A mão direita pousa sobre livro vermelho com a inscrição &#034;Supremo Tribunal de Justiça e Relação&#034;, que se encontra à esquerda em mesa coberta por tecido verde debruado de dourado. Sobre a mesa, mais dois livros, um verde e um vermelho, respectiva…`,
+  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
   artist: ``,
-  culture: ``,
-  dimensions: ``,
-  wall_description: ``,
+  culture: `Brazil`,
+  dimensions: `altura 283,50 cm · largura 192,00 cm`,
+  wall_description: `Retrato de Dom Pedro II de pé, ao centro da tela, de corpo inteiro ligeiramente voltado para a esquerda, perna esquerda à frente. Traja fardão ostentando ao peito o Tosão de Ouro, três ordens e banda azul e vermelha. Pende à cintura espada dourada embainhada. Observa-se a mão esquerda ao longo do corpo usando luvas e carregando chapéu armado. A mão direita pousa sobre livro vermelho com a inscrição &#034;Supremo Tribunal de Justiça e Relação&#034;, que se encontra à esquerda em mesa coberta por …`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `© Auckland Museum CC BY`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/14678`,
-  institution: `Auckland Museum`
+  tombstone: `Pedro II. 1877. Brasiliana Museus`,
+  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
+  source_url: `https://brasiliana.museus.gov.br/acervos/pedro-ii-39/`,
+  institution: `Brasiliana Museus`
 };
 
 // Build rich context from available fields
@@ -1172,7 +1209,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_auckland',
+      collection: 'archai_brasiliana',
       text,
       authorType: 'visitor',
     }),

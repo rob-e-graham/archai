@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Mandolin — ARCHAI</title>
+<title>banknote — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/mi/original/DT679.jpg" alt="Mandolin" loading="eager">
+  <img src="https://api.aucklandmuseum.com/id/media/v/379330?rendering=standard.jpg" alt="banknote" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Mandolin</div>
-  <div class="v-sub">Mandolin · ca. 1900 · 503675</div>
+  <div class="v-title">banknote</div>
+  <div class="v-sub">banknote · 1809 · 30780</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
-    <span class="v-meta-tag lic">CC0 — Public Domain</span>
-    <span class="v-meta-tag">Musical Instruments</span>
+    <span class="v-meta-tag mv">Auckland Museum</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
+    <span class="v-meta-tag">Social History</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,13 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Mandolin</strong> — Mandolin. Mandolin. Spruce, tortoiseshell, ivory, nickel-silver, metal,. Musical Instruments. American. by Angelo Mannello. Chordophone-Lute-plucked-fretted. ca. 1900</div>
+  <div class="v-story"><strong>banknote</strong> — Newark Bank one pound note; printed in black then sections handwritten in.
+Dated 22 April 1809</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
+      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,17 +822,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">503675</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Angelo Mannello</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Spruce, tortoiseshell, ivory, nickel-silver, metal,</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">American</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Chordophone-Lute-plucked-fretted</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca. 1900</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">24 9/16 × 7 13/16 × 5 3/8 in. (62.4 × 19.8 × 13.6 cm)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 684</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Mandolin</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">30780</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Paper (fiber Product), &lt;fiber Products&gt;, &lt;fiber And Fiber Products&gt;, &lt;materials By Physical Form&gt;, &lt;materials By Form&gt;, Aat Materials</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Note, Bank</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1809</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">banknote</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -814,24 +846,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1292.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/5e18cbc7-2ef1-c20d-02de-2121b5e15532/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Colors</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 75031</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627863231/v2/prod/small/007001_007500/007266_004.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Game &amp; Watch Donkey Kong Jr. portable game device</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2016.586</div>
       </a>
       <a class="v-rel-card" href="NFC1293.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2022NE7718/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">MPMan F-10 MP3 player</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · FE.200-2022</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/7342/preview" loading="lazy"></div>
+        <div class="v-rel-title">Jar</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · CG000351</div>
       </a>
       <a class="v-rel-card" href="NFC1295.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2009BX6575/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Oscillon 40</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.958-2008</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2022NG0584/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Blacktransair.com / I CANT REMEMBER A TIME I DIDNT NEED YOU</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CD.3-2023</div>
       </a>
       <a class="v-rel-card" href="NFC1296.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627829863/v2/prod/small/004001_004500/004111_001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Spotted Nyonya—Platter Dish</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2015.297</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_568/v1627825888/v2/prod/small/010501_011000/010621_003.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Peking Brush Drawing</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2018.280</div>
       </a></div>
   </div>
 </div>
@@ -844,7 +876,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/503675" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/55259" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -875,26 +907,27 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Mandolin`,
-  type: `Mandolin`,
-  date: `ca. 1900`,
-  registration: `503675`,
-  location: `Gallery 684`,
-  discipline: `Musical Instruments`,
-  category: `Chordophone-Lute-plucked-fretted`,
-  description: `Mandolin. Mandolin. Spruce, tortoiseshell, ivory, nickel-silver, metal,. Musical Instruments. American. by Angelo Mannello. Chordophone-Lute-plucked-fretted. ca. 1900`,
-  medium: `Spruce, tortoiseshell, ivory, nickel-silver, metal,`,
-  artist: `Angelo Mannello`,
-  culture: `American`,
-  dimensions: `24 9/16 × 7 13/16 × 5 3/8 in. (62.4 × 19.8 × 13.6 cm)`,
+  title: `banknote`,
+  type: `banknote`,
+  date: `1809`,
+  registration: `30780`,
+  location: `Auckland Museum`,
+  discipline: `Social History`,
+  category: `Note, Bank`,
+  description: `Newark Bank one pound note; printed in black then sections handwritten in.
+Dated 22 April 1809`,
+  medium: `Paper (fiber Product), <fiber Products>, <fiber And Fiber Products>, <materials By Physical Form>, <materials By Form>, Aat Materials`,
+  artist: ``,
+  culture: ``,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/503675`,
-  institution: `The Metropolitan Museum of Art`
+  licence: `© Auckland Museum CC BY`,
+  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/55259`,
+  institution: `Auckland Museum`
 };
 
 // Build rich context from available fields
@@ -1176,7 +1209,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_met',
+      collection: 'archai_auckland',
       text,
       authorType: 'visitor',
     }),

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Camera — ARCHAI</title>
+<title>Folding camera used by Herbert Ponting — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,17 +761,17 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2018KR4603/full/!600,600/0/default.jpg" alt="Camera" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2018KT0260/full/!600,600/0/default.jpg" alt="Folding camera used by Herbert Ponting" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Camera</div>
-  <div class="v-sub">Camera · Date unknown · RPS.349-2018</div>
+  <div class="v-title">Folding camera used by Herbert Ponting</div>
+  <div class="v-sub">Camera · Date unknown · RPS.3049:1-2017</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
     <span class="v-meta-tag">Camera</span>
   </div>
 
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Camera</strong> — Camera. Camera. Made by Coronet Camera Co.. In store</div>
+  <div class="v-story"><strong>Folding camera used by Herbert Ponting</strong> — Folding camera used by Herbert Ponting. Camera. Made by A. E. Staley and Co. Made in London. In store</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +821,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">RPS.349-2018</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Coronet Camera Co.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">RPS.3049:1-2017</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">A. E. Staley and Co</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Camera</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Camera</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Date unknown</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In store</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Camera</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +845,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC057.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/679972/849-scaled.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Tenente-Coronel José Carlos de Carvalho</div>
-        <div class="v-rel-meta">Brasiliana Museus · tenente-coronel-jose-carlos-de-carvalho-2</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1966.114/1966.114_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">White-Ground Lekythos (Oil Vessel): Atalanta and Erotes</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1966.114</div>
       </a>
       <a class="v-rel-card" href="NFC058.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP-24268-001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Whistle</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 316714</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680062/default-43-1.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Nossa Senhora das Dores</div>
+        <div class="v-rel-meta">Brasiliana Museus · nossa-senhora-das-dores-18</div>
       </a>
       <a class="v-rel-card" href="NFC060.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627862696/v2/prod/small/007001_007500/007277_009.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Team Demi stationary set</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2016.625</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fcollections.smvk.se%2Fcarlotta-vkm%2Fweb%2Fimage%2Fzoom%2F1248982%2Fimage.jpg&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">docka, musikinstrument, kuliss, man, kvinna, fotografi, photograph</div>
+        <div class="v-rel-meta">Europeana · /91609/SMVK_VKM_fotografi_1248291</div>
       </a>
       <a class="v-rel-card" href="NFC061.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/0eb34b02-726f-71c9-3784-517c093051e9/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Ghosts</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 156063</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1960.81/1960.81_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Water Lilies (Agapanthus)</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1960.81</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +875,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1431457/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1427518/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,16 +906,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Camera`,
+  title: `Folding camera used by Herbert Ponting`,
   type: `Camera`,
   date: `Date unknown`,
-  registration: `RPS.349-2018`,
+  registration: `RPS.3049:1-2017`,
   location: `In store`,
   discipline: `Camera`,
   category: `Camera`,
-  description: `Camera. Camera. Made by Coronet Camera Co.. In store`,
+  description: `Folding camera used by Herbert Ponting. Camera. Made by A. E. Staley and Co. Made in London. In store`,
   medium: ``,
-  artist: `Coronet Camera Co.`,
+  artist: `A. E. Staley and Co`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -890,7 +924,7 @@ const OBJECT = {
   provenance: ``,
   tombstone: ``,
   licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1431457/`,
+  source_url: `https://collections.vam.ac.uk/item/O1427518/`,
   institution: `Victoria and Albert Museum, London`
 };
 

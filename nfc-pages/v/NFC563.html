@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Simon — ARCHAI</title>
+<title>STC Deltaphone (GPO Trimphone) — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2012FJ6886/full/!600,600/0/default.jpg" alt="Simon" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2018LC0505/full/!600,600/0/default.jpg" alt="STC Deltaphone (GPO Trimphone)" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Simon</div>
-  <div class="v-sub">Electronic game · 1978 · B.128:1 to 5-2011</div>
+  <div class="v-title">STC Deltaphone (GPO Trimphone)</div>
+  <div class="v-sub">Telephone · 1966 · CIRC.389-1967</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Electronic game</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Telephone</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Simon</strong> — Simon. Electronic game. Made by Ralph H Baer. 1978. Made in Republic of Ireland. Play Gallery, the Arcade, Case 1</div>
+  <div class="v-story"><strong>STC Deltaphone (GPO Trimphone)</strong> — STC Deltaphone (GPO Trimphone). Telephone. Made by Rowlands, Martyn. 1966. Made in Great Britain. In Store</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +821,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">B.128:1 to 5-2011</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Ralph H Baer</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Electronic game</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Electronic game</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1978</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Play Gallery, the Arcade, Case 1</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Electronic game</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">CIRC.389-1967</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Rowlands, Martyn</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Telephone</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Telephone</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1966</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In Store</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Telephone</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +845,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC561.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2011EP0143/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Horizon of Expectations</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.1209-1967</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1918.328/1918.328_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">The Age of Bronze</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1918.328</div>
       </a>
       <a class="v-rel-card" href="NFC562.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014GW4253/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Elegy</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · C.123:1 to 17-2011</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/24/415224-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Proof Coin - Halfpenny, Great Britain, 1972</div>
+        <div class="v-rel-meta">Museums Victoria · NU 47576</div>
       </a>
       <a class="v-rel-card" href="NFC564.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627872212/v2/prod/small/000501_001000/000627_010.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Rover Chair (3.5 litre one-seater)</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2012.1630</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1970.116/1970.116_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Vase</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1970.116</div>
       </a>
       <a class="v-rel-card" href="NFC565.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2022NH4242/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Sorting Song</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CD.2-2023</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/679930/859-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Ruínas de Humaitá</div>
+        <div class="v-rel-meta">Brasiliana Museus · ruinas-de-humaita</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +875,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1243092/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O372034/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,16 +906,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Simon`,
-  type: `Electronic game`,
-  date: `1978`,
-  registration: `B.128:1 to 5-2011`,
-  location: `Play Gallery, the Arcade, Case 1`,
-  discipline: `Electronic game`,
-  category: `Electronic game`,
-  description: `Simon. Electronic game. Made by Ralph H Baer. 1978. Made in Republic of Ireland. Play Gallery, the Arcade, Case 1`,
+  title: `STC Deltaphone (GPO Trimphone)`,
+  type: `Telephone`,
+  date: `1966`,
+  registration: `CIRC.389-1967`,
+  location: `In Store`,
+  discipline: `Telephone`,
+  category: `Telephone`,
+  description: `STC Deltaphone (GPO Trimphone). Telephone. Made by Rowlands, Martyn. 1966. Made in Great Britain. In Store`,
   medium: ``,
-  artist: `Ralph H Baer`,
+  artist: `Rowlands, Martyn`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -890,7 +924,7 @@ const OBJECT = {
   provenance: ``,
   tombstone: ``,
   licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1243092/`,
+  source_url: `https://collections.vam.ac.uk/item/O372034/`,
   institution: `Victoria and Albert Museum, London`
 };
 

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>O-daiko — ARCHAI</title>
+<title>Rabab — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,17 +761,17 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/mi/original/DP302725.jpg" alt="O-daiko" loading="eager">
+  <img src="https://images.metmuseum.org/CRDImages/mi/original/DP-14777-001.jpg" alt="Rabab" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">O-daiko</div>
-  <div class="v-sub">O-daiko · ca. 1873 · 501802</div>
+  <div class="v-title">Rabab</div>
+  <div class="v-sub">Rabab · ca. 1885 · 500716</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
-    <span class="v-meta-tag lic">CC0 — Public Domain</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
     <span class="v-meta-tag">Musical Instruments</span>
   </div>
 
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>O-daiko</strong> — O-daiko. O-daiko. Wood, metal, cloisonné, hide, silk, padding. Musical Instruments. Japanese. by Kodenji Hayashi. Membranophone-double-headed / barrel drum. ca. 1873</div>
+  <div class="v-story"><strong>Rabab</strong> — Rabab. Rabab. Tun wood. Musical Instruments. Indian (north). Chordophone-Lute-plucked-unfretted. ca. 1885</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,17 +821,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">501802</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Kodenji Hayashi</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Wood, metal, cloisonné, hide, silk, padding</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Japanese</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">500716</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Tun wood</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Indian (north)</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Membranophone-double-headed / barrel drum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca. 1873</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Total H. 62 3/16 × Drum diam 22 in. (158 × 55.9 cm)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 681</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">O-daiko</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Chordophone-Lute-plucked-unfretted</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca. 1885</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">L. 114.3 cm (45 in.); D. 29.8 cm (11-3/4 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 684</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Rabab</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -814,24 +847,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC275.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/619548/preview" loading="lazy"></div>
-        <div class="v-rel-title">1/4 Cent</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · NU007125</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/mi89.4.154.R.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Ghanti (bell)</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 500736</div>
       </a>
       <a class="v-rel-card" href="NFC276.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2024NX9617/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Marigolds</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.766-2024</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PJ3622/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">White Cliffs</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.358-2025</div>
       </a>
       <a class="v-rel-card" href="NFC278.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4345/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">GENTLY DOES IT</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.307-2020</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1958.32/1958.32_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Two Poplars in the Alpilles near Saint-Rémy</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1958.32</div>
       </a>
       <a class="v-rel-card" href="NFC279.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/es/original/DP210717.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Mantel clock with musical movement</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 202227</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/152665/preview" loading="lazy"></div>
+        <div class="v-rel-title">Cello</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH012209</div>
       </a></div>
   </div>
 </div>
@@ -844,7 +877,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/501802" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/500716" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -875,25 +908,25 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `O-daiko`,
-  type: `O-daiko`,
-  date: `ca. 1873`,
-  registration: `501802`,
-  location: `Gallery 681`,
+  title: `Rabab`,
+  type: `Rabab`,
+  date: `ca. 1885`,
+  registration: `500716`,
+  location: `Gallery 684`,
   discipline: `Musical Instruments`,
-  category: `Membranophone-double-headed / barrel drum`,
-  description: `O-daiko. O-daiko. Wood, metal, cloisonné, hide, silk, padding. Musical Instruments. Japanese. by Kodenji Hayashi. Membranophone-double-headed / barrel drum. ca. 1873`,
-  medium: `Wood, metal, cloisonné, hide, silk, padding`,
-  artist: `Kodenji Hayashi`,
-  culture: `Japanese`,
-  dimensions: `Total H. 62 3/16 × Drum diam 22 in. (158 × 55.9 cm)`,
+  category: `Chordophone-Lute-plucked-unfretted`,
+  description: `Rabab. Rabab. Tun wood. Musical Instruments. Indian (north). Chordophone-Lute-plucked-unfretted. ca. 1885`,
+  medium: `Tun wood`,
+  artist: ``,
+  culture: `Indian (north)`,
+  dimensions: `L. 114.3 cm (45 in.); D. 29.8 cm (11-3/4 in.)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
   licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/501802`,
+  source_url: `https://www.metmuseum.org/art/collection/search/500716`,
   institution: `The Metropolitan Museum of Art`
 };
 

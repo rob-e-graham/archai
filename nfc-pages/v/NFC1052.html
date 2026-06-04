@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Murphy A146CM — ARCHAI</title>
+<title>Karel de Stoute, hertog van Bourgondie, rekenpenning van het hertogdom Brabant — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,30 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2016JA3491/full/!600,600/0/default.jpg" alt="Murphy A146CM" loading="eager">
+  <img src="https://iiif.micr.io/gNFnS/full/max/0/default.jpg" alt="Karel de Stoute, hertog van Bourgondie, rekenpenning van het hertogdom Brabant" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Murphy A146CM</div>
-  <div class="v-sub">Radio · 1948 · CIRC.411-1975</div>
+  <div class="v-title">Karel de Stoute, hertog van Bourgondie, rekenpenning van het hertogdom Brabant</div>
+  <div class="v-sub">rekenpenning · 2026-01-27T09:08:34Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260241&lt;/setSpec&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;261217&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:coverage&gt;Brabant (hertogdom)&lt;/dc:coverage&gt;
+          &lt;dc:creator&gt;anoniem&lt;/dc:creator&gt;
+          &lt;dc:creator&gt;anonymous&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1467 - 1477 · 20010043</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Radio</span>
+    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(160,152,144,0.28);color:#a09890;">Check source</span>
+    <span class="v-meta-tag">Karel de Stoute (hertog van Bourgondi&amp;#235;)</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +795,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Murphy A146CM</strong> — Murphy A146CM. Radio. Made by Russell, R. D.. 1948. Made in Welwyn Garden City. In Store</div>
+  <div class="v-story"><strong>Karel de Stoute, hertog van Bourgondie, rekenpenning van het hertogdom Brabant</strong> — Koperen penning. Voorzijde: twee naar elkaar gebogen vuurslagen, waaraan orde van Gulden Vlies hangt binnen omschrift. Keerzijde: wapen van stad Antwerpen binnen omschrift</div>
+  <div class="v-rights-note" style="border-color:rgba(160,152,144,0.28);">
+      <div class="v-rights-label" style="color:#a09890;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#a09890;font-weight:400;">Check source</strong> — Review the source record and item-level rights before reuse.</div>
+      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +833,29 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">CIRC.411-1975</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Russell, R. D.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Radio</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Radio</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1948</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In Store</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Radio</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">20010043</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">anoniem; anonymous</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">koper</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Karel de Stoute (hertog van Bourgondi&amp;#235;)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">rekenpenning</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-01-27T09:08:34Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260241&lt;/setSpec&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;261217&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:coverage&gt;Brabant (hertogdom)&lt;/dc:coverage&gt;
+          &lt;dc:creator&gt;anoniem&lt;/dc:creator&gt;
+          &lt;dc:creator&gt;anonymous&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1467 - 1477</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">rekenpenning</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Check source</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Review the source record and item-level rights before reuse.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +870,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1050.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PG4180/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Synthesizer</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:AMERICASFOUNDATION.1190:1 to 4-2024</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fsammlungenonline.albertina.at%2Fcc%2Fimageproxy.ashx%3Fserver%3Dlocalhost%26port%3D15001%26filename%3Dimages%2FFotoGLV2000_7935.jpg%26cache%3Dyes%26maxwidth%3D400&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Photogrammetric camera</div>
+        <div class="v-rel-meta">Europeana · /15508/FotoGLV2000_7935</div>
       </a>
       <a class="v-rel-card" href="NFC1051.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/BPuqf/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Nederlandse gulden, 1938</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100270</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/KCwRc/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van keizer Maximiliaan I</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010032</div>
       </a>
       <a class="v-rel-card" href="NFC1053.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_754/v1627834605/v2/prod/small/002001_002500/002204_001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Chairman Mao in Discussion with the Peasants of Shaoshan</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2012.1309</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680260/775-1-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Maestro Francisco Braga (infância)</div>
+        <div class="v-rel-meta">Brasiliana Museus · maestro-francisco-braga-infancia</div>
       </a>
       <a class="v-rel-card" href="NFC1054.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2010.320/2010.320_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Rue Jean-de-Beauvais. Vue prise de la rue des Écoles vers la boulevard Saint-Germain, en travaux</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2010.320</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2010EB6290/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">time extended / distance extended</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.3532-2004</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +900,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O142229/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/20010043" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,16 +931,28 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Murphy A146CM`,
-  type: `Radio`,
-  date: `1948`,
-  registration: `CIRC.411-1975`,
-  location: `In Store`,
-  discipline: `Radio`,
-  category: `Radio`,
-  description: `Murphy A146CM. Radio. Made by Russell, R. D.. 1948. Made in Welwyn Garden City. In Store`,
-  medium: ``,
-  artist: `Russell, R. D.`,
+  title: `Karel de Stoute, hertog van Bourgondie, rekenpenning van het hertogdom Brabant`,
+  type: `rekenpenning`,
+  date: `2026-01-27T09:08:34Z</datestamp>
+        <setSpec>260241</setSpec>
+        <setSpec>260239</setSpec>
+        <setSpec>261106</setSpec>
+        <setSpec>261217</setSpec>
+        <setSpec>260251</setSpec>
+      </header>
+      <metadata>
+        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
+          <dc:coverage>Brabant (hertogdom)</dc:coverage>
+          <dc:creator>anoniem</dc:creator>
+          <dc:creator>anonymous</dc:creator>
+          <dc:date>1467 - 1477`,
+  registration: `20010043`,
+  location: `Rijksmuseum, Amsterdam`,
+  discipline: `Karel de Stoute (hertog van Bourgondi&#235;)`,
+  category: `rekenpenning`,
+  description: `Koperen penning. Voorzijde: twee naar elkaar gebogen vuurslagen, waaraan orde van Gulden Vlies hangt binnen omschrift. Keerzijde: wapen van stad Antwerpen binnen omschrift`,
+  medium: `koper`,
+  artist: `anoniem; anonymous`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -889,9 +960,9 @@ const OBJECT = {
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O142229/`,
-  institution: `Victoria and Albert Museum, London`
+  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
+  source_url: `https://www.rijksmuseum.nl/en/collection/20010043`,
+  institution: `Rijksmuseum, Amsterdam`
 };
 
 // Build rich context from available fields
@@ -1173,7 +1244,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_rijks',
       text,
       authorType: 'visitor',
     }),

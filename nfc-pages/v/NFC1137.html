@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>textile piece, plaid — ARCHAI</title>
+<title>Wilhelmina Koningin der Nederlanden — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,27 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/141847?rendering=standard.jpg" alt="textile piece, plaid" loading="eager">
+  <img src="https://iiif.micr.io/xswee/full/max/0/default.jpg" alt="Wilhelmina Koningin der Nederlanden" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">textile piece, plaid</div>
-  <div class="v-sub">ecrm:E22_Man-Made_Object · 1996-11-11T00:00:00.000Z · 1967.165</div>
+  <div class="v-title">Wilhelmina Koningin der Nederlanden</div>
+  <div class="v-sub">historiepenning · 2026-02-14T04:16:51Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+        &lt;setSpec&gt;2601&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:creator&gt;Wolfgang Lauer&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1890 - 1898 · 200100006</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Auckland Museum</span>
-    <span class="v-meta-tag lic">© Auckland Museum CC BY</span>
-    <span class="v-meta-tag">Social History</span>
+    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(160,152,144,0.28);color:#a09890;">Check source</span>
+    
   </div>
 
   <!-- SHARE -->
@@ -756,7 +792,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>textile piece, plaid</strong> — textile piece, plaid; belonged to donor's great grandmother</div>
+  <div class="v-story"><strong>Wilhelmina Koningin der Nederlanden</strong> — Goudkleurige messing penning met oog en draagring, op de voorzijde het borstbeeld van Wilhelmina met hangend haar naar links met omschrift, op de keerzijde een leeg veld tussen twee samengestrikte eikentakken.</div>
+  <div class="v-rights-note" style="border-color:rgba(160,152,144,0.28);">
+      <div class="v-rights-label" style="color:#a09890;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#a09890;font-weight:400;">Check source</strong> — Review the source record and item-level rights before reuse.</div>
+      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,13 +830,25 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1967.165</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1996-11-11T00:00:00.000Z</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">200100006</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Wolfgang Lauer</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">messing</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">historiepenning</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-02-14T04:16:51Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+        &lt;setSpec&gt;2601&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:creator&gt;Wolfgang Lauer&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1890 - 1898</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">historiepenning</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Check source</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Review the source record and item-level rights before reuse.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -810,24 +863,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1135.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018KT2121/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Camera</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · RPS.351-2018</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP-38692-002.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Fretted banjo with two short strings</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 919098</div>
       </a>
       <a class="v-rel-card" href="NFC1136.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627880851/v2/prod/small/000501_001000/000908_007.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Model, Hebei Education Publishing House (2000–2004), Hebei, China</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2013.76</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2019ME1311/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Hat</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · S.172-1983</div>
       </a>
       <a class="v-rel-card" href="NFC1138.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/185547/preview" loading="lazy"></div>
-        <div class="v-rel-title">Side notched point</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · FE000381/3</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2009.350/2009.350_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Venice: Saint Mark's Looking toward San Giorgio Maggiore, in Moonlight</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 2009.350</div>
       </a>
       <a class="v-rel-card" href="NFC1139.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/93066?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">curtain</div>
-        <div class="v-rel-meta">Auckland Museum · col.1521</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fgallica.bnf.fr%2Fiiif%2Fark%3A%2F12148%2Fbtv1b69365876%2Ff1%2Ffull%2F512%2C%2F0%2Fnative.jpg&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Crouching Venus: [drawing]</div>
+        <div class="v-rel-meta">Europeana · /9200518/ark__12148_btv1b69365876</div>
       </a></div>
   </div>
 </div>
@@ -840,7 +893,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/4566" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/200100006" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -871,16 +924,25 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `textile piece, plaid`,
-  type: `ecrm:E22_Man-Made_Object`,
-  date: `1996-11-11T00:00:00.000Z`,
-  registration: `1967.165`,
-  location: `Auckland Museum`,
-  discipline: `Social History`,
-  category: `ecrm:E22_Man-Made_Object`,
-  description: `textile piece, plaid; belonged to donor's great grandmother`,
-  medium: ``,
-  artist: ``,
+  title: `Wilhelmina Koningin der Nederlanden`,
+  type: `historiepenning`,
+  date: `2026-02-14T04:16:51Z</datestamp>
+        <setSpec>260239</setSpec>
+        <setSpec>261106</setSpec>
+        <setSpec>260251</setSpec>
+        <setSpec>2601</setSpec>
+      </header>
+      <metadata>
+        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
+          <dc:creator>Wolfgang Lauer</dc:creator>
+          <dc:date>1890 - 1898`,
+  registration: `200100006`,
+  location: `Rijksmuseum, Amsterdam`,
+  discipline: ``,
+  category: `historiepenning`,
+  description: `Goudkleurige messing penning met oog en draagring, op de voorzijde het borstbeeld van Wilhelmina met hangend haar naar links met omschrift, op de keerzijde een leeg veld tussen twee samengestrikte eikentakken.`,
+  medium: `messing`,
+  artist: `Wolfgang Lauer`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -888,9 +950,9 @@ const OBJECT = {
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `© Auckland Museum CC BY`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/4566`,
-  institution: `Auckland Museum`
+  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
+  source_url: `https://www.rijksmuseum.nl/en/collection/200100006`,
+  institution: `Rijksmuseum, Amsterdam`
 };
 
 // Build rich context from available fields
@@ -1172,7 +1234,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_auckland',
+      collection: 'archai_rijks',
       text,
       authorType: 'visitor',
     }),

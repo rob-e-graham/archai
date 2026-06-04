@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>ephemera — ARCHAI</title>
+<title>Architectural Frieze with Merman Playing Musical Instruments — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/383936?rendering=standard.jpg" alt="ephemera" loading="eager">
+  <img src="https://images.metmuseum.org/CRDImages/as/original/1993_192ab_O.jpg" alt="Architectural Frieze with Merman Playing Musical Instruments" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">ephemera</div>
-  <div class="v-sub">Pamphlet, Instruction · 2004-06-14T00:00:00.000Z · 1996x2.687</div>
+  <div class="v-title">Architectural Frieze with Merman Playing Musical Instruments</div>
+  <div class="v-sub">Architectural frieze · 2nd–3rd century · 38599</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Auckland Museum</span>
-    <span class="v-meta-tag lic">© Auckland Museum CC BY</span>
-    <span class="v-meta-tag">Social History</span>
+    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Asian Art</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>ephemera</strong> — Guide to Japan</div>
+  <div class="v-story"><strong>Architectural Frieze with Merman Playing Musical Instruments</strong> — Architectural Frieze with Merman Playing Musical Instruments. Architectural frieze. Red sandstone. Asian Art. India (Uttar Pradesh, Mathura). Sculpture. 2nd–3rd century</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,13 +821,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1996x2.687</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Pamphlet, Instruction</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2004-06-14T00:00:00.000Z</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Pamphlet, Instruction</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">38599</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Red sandstone</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">India (Uttar Pradesh, Mathura)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Asian Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2nd–3rd century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">H. 5 in. (12.7 cm); W. 9 in. (22.9 cm); L. 71 in. (180.3 cm)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 235</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Architectural frieze</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -810,24 +847,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1285.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/CHwKP/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">tien fen (0,1 yuan) met het gewicht van 772 candareens, uit de provincie Kwan-Tung [=Canton] in China, op naam van keizer Guangxu (1875-1908)</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100389</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PC0394/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Untitled</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · PH.560-2024</div>
       </a>
       <a class="v-rel-card" href="NFC1286.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PJ3595/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">White Cliffs</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.306-2025</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP-12679-017.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Ceramic Horn</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 501691</div>
       </a>
       <a class="v-rel-card" href="NFC1288.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%3A80%2Fwebclient%2FDeliveryManager%3Fpid%3D6346956%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Servizio fotografico Firenze, 1957-1956</div>
-        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6346956_custom_att_2_simple_viewer</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP-24269-001.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Whistle</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 316715</div>
       </a>
       <a class="v-rel-card" href="NFC1289.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%2Fwebclient%2FDeliveryManager%3Fpid%3D6342773%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Servizio fotografico Firenze, 1957-1956</div>
-        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6342773_custom_att_2_simple_viewer</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/157636?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">runner, table and wall pocket</div>
+        <div class="v-rel-meta">Auckland Museum · col.2619</div>
       </a></div>
   </div>
 </div>
@@ -840,7 +877,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/611942" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/38599" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -871,26 +908,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `ephemera`,
-  type: `Pamphlet, Instruction`,
-  date: `2004-06-14T00:00:00.000Z`,
-  registration: `1996x2.687`,
-  location: `Auckland Museum`,
-  discipline: `Social History`,
-  category: `Pamphlet, Instruction`,
-  description: `Guide to Japan`,
-  medium: ``,
+  title: `Architectural Frieze with Merman Playing Musical Instruments`,
+  type: `Architectural frieze`,
+  date: `2nd–3rd century`,
+  registration: `38599`,
+  location: `Gallery 235`,
+  discipline: `Asian Art`,
+  category: `Sculpture`,
+  description: `Architectural Frieze with Merman Playing Musical Instruments. Architectural frieze. Red sandstone. Asian Art. India (Uttar Pradesh, Mathura). Sculpture. 2nd–3rd century`,
+  medium: `Red sandstone`,
   artist: ``,
-  culture: ``,
-  dimensions: ``,
+  culture: `India (Uttar Pradesh, Mathura)`,
+  dimensions: `H. 5 in. (12.7 cm); W. 9 in. (22.9 cm); L. 71 in. (180.3 cm)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `© Auckland Museum CC BY`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/611942`,
-  institution: `Auckland Museum`
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.metmuseum.org/art/collection/search/38599`,
+  institution: `The Metropolitan Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1172,7 +1209,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_auckland',
+      collection: 'archai_met',
       text,
       authorType: 'visitor',
     }),

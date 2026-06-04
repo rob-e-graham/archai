@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Pī Chawā (ปี่ชวา) — ARCHAI</title>
+<title>Tenor cornett — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,17 +761,17 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/mi/original/MUS488A1.jpg" alt="Pī Chawā (ปี่ชวา)" loading="eager">
+  <img src="https://images.metmuseum.org/CRDImages/mi/original/DP-12679-027.jpg" alt="Tenor cornett" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Pī Chawā (ปี่ชวา)</div>
-  <div class="v-sub">Pī Chawā · late 19th century · 502025</div>
+  <div class="v-title">Tenor cornett</div>
+  <div class="v-sub">Tenor cornett · 19th century · 502232</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
-    <span class="v-meta-tag lic">CC0 — Public Domain</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
     <span class="v-meta-tag">Musical Instruments</span>
   </div>
 
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Pī Chawā (ปี่ชวา)</strong> — Pī Chawā (ปี่ชวา). Pī Chawā. Ivory. Musical Instruments. Thai. Aerophone-Reed Vibrated-double reed. late 19th century</div>
+  <div class="v-story"><strong>Tenor cornett</strong> — Tenor cornett. Tenor cornett. Brass. Musical Instruments. Probably French. Aerophone-Lip Vibrated-horn. 19th century</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,16 +821,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">502025</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Ivory</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Thai</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">502232</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Brass</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Probably French</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Aerophone-Reed Vibrated-double reed</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">late 19th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">8 3/16 × 2 1/2 × 2 1/2 in. (20.8 × 6.4 × 6.4 cm)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 681</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Pī Chawā</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Aerophone-Lip Vibrated-horn</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">19th century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">40 × 3 1/2 × 2 5/8 in. (101.6 × 8.9 × 6.7 cm)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 680</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Tenor cornett</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -813,24 +847,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC968.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/19/164919-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Lantern Slide - Men Pushing Car, circa 1930s-1940s</div>
-        <div class="v-rel-meta">Museums Victoria · MM 106292</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2009.276.66.b/2009.276.66.b_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Printed Book of Hours (Use of Rome): fol. 66v, Text</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 2009.276.66.b</div>
       </a>
       <a class="v-rel-card" href="NFC969.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/675164/003714-Francisco-Pedro-do-Amaral-atribuido-Marquesa-de-Santos-scaled.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Marquesa de Santos</div>
-        <div class="v-rel-meta">Brasiliana Museus · marquesa-de-santos</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/667995/6564-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Bernardo Belisário Soares de Souza Filho</div>
+        <div class="v-rel-meta">Brasiliana Museus · bernardo-belisario-soares-de-souza-filho</div>
       </a>
       <a class="v-rel-card" href="NFC971.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627874646/v2/prod/small/002501_003000/003000_006.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Floating Landscape</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2012.610</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/15/166165-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Leaflet - Independent Order of Rechabites, 'When to Stop', 1935</div>
+        <div class="v-rel-meta">Museums Victoria · SH 900837</div>
       </a>
       <a class="v-rel-card" href="NFC972.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/vGdVs/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Hollandse dukaat, 1738</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100255</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680172/792-1.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Atelier Bernardelli</div>
+        <div class="v-rel-meta">Brasiliana Museus · atelier-bernardelli</div>
       </a></div>
   </div>
 </div>
@@ -843,7 +877,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/502025" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/502232" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -874,25 +908,25 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Pī Chawā (ปี่ชวา)`,
-  type: `Pī Chawā`,
-  date: `late 19th century`,
-  registration: `502025`,
-  location: `Gallery 681`,
+  title: `Tenor cornett`,
+  type: `Tenor cornett`,
+  date: `19th century`,
+  registration: `502232`,
+  location: `Gallery 680`,
   discipline: `Musical Instruments`,
-  category: `Aerophone-Reed Vibrated-double reed`,
-  description: `Pī Chawā (ปี่ชวา). Pī Chawā. Ivory. Musical Instruments. Thai. Aerophone-Reed Vibrated-double reed. late 19th century`,
-  medium: `Ivory`,
+  category: `Aerophone-Lip Vibrated-horn`,
+  description: `Tenor cornett. Tenor cornett. Brass. Musical Instruments. Probably French. Aerophone-Lip Vibrated-horn. 19th century`,
+  medium: `Brass`,
   artist: ``,
-  culture: `Thai`,
-  dimensions: `8 3/16 × 2 1/2 × 2 1/2 in. (20.8 × 6.4 × 6.4 cm)`,
+  culture: `Probably French`,
+  dimensions: `40 × 3 1/2 × 2 5/8 in. (101.6 × 8.9 × 6.7 cm)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
   licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/502025`,
+  source_url: `https://www.metmuseum.org/art/collection/search/502232`,
   institution: `The Metropolitan Museum of Art`
 };
 

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Nederlandse gulden, 1938 — ARCHAI</title>
+<title>Portret van keizer Maximiliaan I — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,28 +761,28 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://iiif.micr.io/BPuqf/full/max/0/default.jpg" alt="Nederlandse gulden, 1938" loading="eager">
+  <img src="https://iiif.micr.io/KCwRc/full/max/0/default.jpg" alt="Portret van keizer Maximiliaan I" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Nederlandse gulden, 1938</div>
-  <div class="v-sub">munt · 2026-02-14T04:17:43Z&lt;/datestamp&gt;
+  <div class="v-title">Portret van keizer Maximiliaan I</div>
+  <div class="v-sub">prent · 2026-01-27T04:44:38Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260241&lt;/setSpec&gt;
         &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;26151&lt;/setSpec&gt;
         &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
       &lt;/header&gt;
       &lt;metadata&gt;
         &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;Wilhelmina (koningin der Nederlanden)&lt;/dc:creator&gt;
-          &lt;dc:creator&gt;Wilhelmina of the Netherlands&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1938 · 200100270</div>
+          &lt;dc:coverage&gt;Graafschap Holland&lt;/dc:coverage&gt;
+          &lt;dc:creator&gt;Adriaen Matham&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1620 · 20010032</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
-    <span class="v-meta-tag lic">https://creativecommons.org/publicdomain/mark/1.0/</span>
-    
+    <span class="v-meta-tag legal" style="border-color:rgba(160,152,144,0.28);color:#a09890;">Check source</span>
+    <span class="v-meta-tag">Maximiliaan I (Rooms-Duits keizer)</span>
   </div>
 
   <!-- SHARE -->
@@ -766,7 +793,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Nederlandse gulden, 1938</strong> — Zilveren munt. Voorzijde: hoofd naar links.Keerzijde: tussen waarde-aanduiding 1 G gekroond rijkswapenschild. Jaartal onderaan in omschrift. Randschrift.</div>
+  <div class="v-story"><strong>Portret van keizer Maximiliaan I</strong> — Portret van Maximiliaan I van Habsburg, Rooms-Duits keizer, staande met wapenschild, zwaard en in zijn hand een kroon. Prent uit een serie van 36 prenten met portretten ten voeten uit van graven en gravinnen van Holland.</div>
+  <div class="v-rights-note" style="border-color:rgba(160,152,144,0.28);">
+      <div class="v-rights-label" style="color:#a09890;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#a09890;font-weight:400;">Check source</strong> — Review the source record and item-level rights before reuse.</div>
+      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -799,24 +831,27 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">200100270</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Wilhelmina (koningin der Nederlanden); Wilhelmina of the Netherlands</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">zilver</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">munt</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-02-14T04:17:43Z&lt;/datestamp&gt;
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">20010032</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Adriaen Matham</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">papier</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Maximiliaan I (Rooms-Duits keizer)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">prent</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-01-27T04:44:38Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260241&lt;/setSpec&gt;
         &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;26151&lt;/setSpec&gt;
         &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
       &lt;/header&gt;
       &lt;metadata&gt;
         &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;Wilhelmina (koningin der Nederlanden)&lt;/dc:creator&gt;
-          &lt;dc:creator&gt;Wilhelmina of the Netherlands&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1938</span></div>
+          &lt;dc:coverage&gt;Graafschap Holland&lt;/dc:coverage&gt;
+          &lt;dc:creator&gt;Adriaen Matham&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1620</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">munt</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">prent</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Check source</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Review the source record and item-level rights before reuse.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -831,24 +866,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1049.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/5d2a5140-ae4f-42b9-c841-21eff08dc627/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Ding Dong Daddy Art Overload</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 187759</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/midp89.4.3561.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Oko (side-blown horn)</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 505712</div>
       </a>
       <a class="v-rel-card" href="NFC1050.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PG4180/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Synthesizer</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:AMERICASFOUNDATION.1190:1 to 4-2024</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fsammlungenonline.albertina.at%2Fcc%2Fimageproxy.ashx%3Fserver%3Dlocalhost%26port%3D15001%26filename%3Dimages%2FFotoGLV2000_7935.jpg%26cache%3Dyes%26maxwidth%3D400&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Photogrammetric camera</div>
+        <div class="v-rel-meta">Europeana · /15508/FotoGLV2000_7935</div>
       </a>
       <a class="v-rel-card" href="NFC1052.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2016JA3491/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Murphy A146CM</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.411-1975</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/gNFnS/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Karel de Stoute, hertog van Bourgondie, rekenpenning van het hertogdom Brabant</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010043</div>
       </a>
       <a class="v-rel-card" href="NFC1053.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_754/v1627834605/v2/prod/small/002001_002500/002204_001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Chairman Mao in Discussion with the Peasants of Shaoshan</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2012.1309</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680260/775-1-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Maestro Francisco Braga (infância)</div>
+        <div class="v-rel-meta">Brasiliana Museus · maestro-francisco-braga-infancia</div>
       </a></div>
   </div>
 </div>
@@ -861,7 +896,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/200100270" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/20010032" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -892,26 +927,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Nederlandse gulden, 1938`,
-  type: `munt`,
-  date: `2026-02-14T04:17:43Z</datestamp>
+  title: `Portret van keizer Maximiliaan I`,
+  type: `prent`,
+  date: `2026-01-27T04:44:38Z</datestamp>
+        <setSpec>260241</setSpec>
         <setSpec>260239</setSpec>
-        <setSpec>261106</setSpec>
+        <setSpec>26151</setSpec>
         <setSpec>260251</setSpec>
-        <setSpec>2601</setSpec>
       </header>
       <metadata>
         <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
-          <dc:creator>Wilhelmina (koningin der Nederlanden)</dc:creator>
-          <dc:creator>Wilhelmina of the Netherlands</dc:creator>
-          <dc:date>1938`,
-  registration: `200100270`,
+          <dc:coverage>Graafschap Holland</dc:coverage>
+          <dc:creator>Adriaen Matham</dc:creator>
+          <dc:date>1620`,
+  registration: `20010032`,
   location: `Rijksmuseum, Amsterdam`,
-  discipline: ``,
-  category: `munt`,
-  description: `Zilveren munt. Voorzijde: hoofd naar links.Keerzijde: tussen waarde-aanduiding 1 G gekroond rijkswapenschild. Jaartal onderaan in omschrift. Randschrift.`,
-  medium: `zilver`,
-  artist: `Wilhelmina (koningin der Nederlanden); Wilhelmina of the Netherlands`,
+  discipline: `Maximiliaan I (Rooms-Duits keizer)`,
+  category: `prent`,
+  description: `Portret van Maximiliaan I van Habsburg, Rooms-Duits keizer, staande met wapenschild, zwaard en in zijn hand een kroon. Prent uit een serie van 36 prenten met portretten ten voeten uit van graven en gravinnen van Holland.`,
+  medium: `papier`,
+  artist: `Adriaen Matham`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -920,7 +955,7 @@ const OBJECT = {
   provenance: ``,
   tombstone: ``,
   licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
-  source_url: `https://www.rijksmuseum.nl/en/collection/200100270`,
+  source_url: `https://www.rijksmuseum.nl/en/collection/20010032`,
   institution: `Rijksmuseum, Amsterdam`
 };
 

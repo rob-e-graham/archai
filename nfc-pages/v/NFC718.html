@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Portret van Dirk III, graaf van Holland — ARCHAI</title>
+<title>Signature table cloth — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,28 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://iiif.micr.io/DFbXB/full/max/0/default.jpg" alt="Portret van Dirk III, graaf van Holland" loading="eager">
+  <img src="https://media.tepapa.govt.nz/collection/395707/preview" alt="Signature table cloth" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Portret van Dirk III, graaf van Holland</div>
-  <div class="v-sub">prent · 2026-01-27T04:44:31Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260241&lt;/setSpec&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;26151&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:coverage&gt;Graafschap Holland&lt;/dc:coverage&gt;
-          &lt;dc:creator&gt;Adriaen Matham&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1620 · 20010003</div>
+  <div class="v-title">Signature table cloth</div>
+  <div class="v-sub">placemats · 1887-1915 · PC000204/1</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
-    <span class="v-meta-tag lic">https://creativecommons.org/publicdomain/mark/1.0/</span>
-    <span class="v-meta-tag">Dirk III (graaf van Holland)</span>
+    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">History</span>
   </div>
 
   <!-- SHARE -->
@@ -766,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Portret van Dirk III, graaf van Holland</strong> — Portret van Dirk III, graaf van Holland, staande naar rechts in een harnas met op zijn schouder het wapen van Holland en in zijn hand een zwaard. Prent uit een serie van 36 prenten met portretten ten voeten uit van graven en gravinnen van Holland.</div>
+  <div class="v-story"><strong>Signature table cloth</strong> — Ethel Brilliana Tweedie - adventurer, writer, needlewoman and hostess These embroidered table-cloths were created by Ethel Brilliana Tweedie, a successful journalist, novelist, travel writer and artist, who loved to entertain and embroider. Based in London, Ethel first began collecting signatures as…</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -799,25 +821,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">20010003</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Adriaen Matham</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">papier</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Dirk III (graaf van Holland)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">prent</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-01-27T04:44:31Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260241&lt;/setSpec&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;26151&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:coverage&gt;Graafschap Holland&lt;/dc:coverage&gt;
-          &lt;dc:creator&gt;Adriaen Matham&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1620</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">prent</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">PC000204/1</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Mrs Ethel Brilliana Tweedie</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Linen and cotton</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Entertaining, World War, 1914-1918</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">History</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">placemats</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1887-1915</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">515mm, 940mm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">placemats</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -832,24 +848,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC716.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/7afc9ad4-2666-a67b-aef8-5677edd03840/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Desert Fire #153 (Man with Rifle), from the series, &quot;Desert Cantos IV: The Fires&quot; (1983-85)</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 191456</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP216549.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Goqing</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 500637</div>
       </a>
       <a class="v-rel-card" href="NFC717.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2022NF4699/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Robin Hood Gardens, Woolmore Street, London E14 0HG (2018) </div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.503-2022</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/506757?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">textile</div>
+        <div class="v-rel-meta">Auckland Museum · 1986.63</div>
       </a>
       <a class="v-rel-card" href="NFC719.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/GwLzv/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van Floris V, graaf van Holland en Zeeland</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010018</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2021MW3209/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Ericofon DBJ 500</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.3-2020</div>
       </a>
       <a class="v-rel-card" href="NFC720.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669503/default-37.jpg" loading="lazy"></div>
-        <div class="v-rel-title">O Chalaça</div>
-        <div class="v-rel-meta">Brasiliana Museus · o-chalaca</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/eAHHt/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Maria Christina en Albert-Kasimir, landvoogden der zuidelijke Nederlanden, penning vereerd door het gewest Brabant</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010041</div>
       </a></div>
   </div>
 </div>
@@ -862,7 +878,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/20010003" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/1584086" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -893,36 +909,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Portret van Dirk III, graaf van Holland`,
-  type: `prent`,
-  date: `2026-01-27T04:44:31Z</datestamp>
-        <setSpec>260241</setSpec>
-        <setSpec>260239</setSpec>
-        <setSpec>26151</setSpec>
-        <setSpec>260251</setSpec>
-      </header>
-      <metadata>
-        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
-          <dc:coverage>Graafschap Holland</dc:coverage>
-          <dc:creator>Adriaen Matham</dc:creator>
-          <dc:date>1620`,
-  registration: `20010003`,
-  location: `Rijksmuseum, Amsterdam`,
-  discipline: `Dirk III (graaf van Holland)`,
-  category: `prent`,
-  description: `Portret van Dirk III, graaf van Holland, staande naar rechts in een harnas met op zijn schouder het wapen van Holland en in zijn hand een zwaard. Prent uit een serie van 36 prenten met portretten ten voeten uit van graven en gravinnen van Holland.`,
-  medium: `papier`,
-  artist: `Adriaen Matham`,
-  culture: ``,
-  dimensions: ``,
-  wall_description: ``,
+  title: `Signature table cloth`,
+  type: `placemats`,
+  date: `1887-1915`,
+  registration: `PC000204/1`,
+  location: `Te Papa Tongarewa, Wellington`,
+  discipline: `History`,
+  category: `placemats`,
+  description: `Ethel Brilliana Tweedie - adventurer, writer, needlewoman and hostess These embroidered table-cloths were created by Ethel Brilliana Tweedie, a successful journalist, novelist, travel writer and artist, who loved to entertain and embroider. Based in London, Ethel first began collecting signatures as a newly wed in 1887. Following her marriage to Alexander (Alec) Tweedie, a marine insurance broker, the well-heeled couple 'began at once giving many dinners, luncheons and other functions' at their Regent's Park home. Emboldened by the 'precocity of youth', Ethel 'conceived the idea of coaxing the…`,
+  medium: `Linen and cotton`,
+  artist: `Mrs Ethel Brilliana Tweedie`,
+  culture: `Entertaining, World War, 1914-1918`,
+  dimensions: `515mm, 940mm`,
+  wall_description: `Ethel Brilliana Tweedie - adventurer, writer, needlewoman and hostess These embroidered table-cloths were created by Ethel Brilliana Tweedie, a successful journalist, novelist, travel writer and artist, who loved to entertain and embroider. Based in London, Ethel first began collecting signatures as a newly wed in 1887. Following her marriage to Alexander (Alec) Tweedie, a marine insurance broker, the well-heeled couple 'began at once giving many dinners, luncheons and other functions' at their …`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
-  source_url: `https://www.rijksmuseum.nl/en/collection/20010003`,
-  institution: `Rijksmuseum, Amsterdam`
+  tombstone: `Signature table cloth, 1887-1915, England, by Mrs Ethel Brilliana Tweedie. Gift of Mrs Alec Tweedie, 1946. CC BY-NC-ND 4.0. Te Papa (PC000204/1)`,
+  licence: `CC BY-NC-ND 4.0 · metadata CC BY 4.0`,
+  source_url: `https://collections.tepapa.govt.nz/object/1584086`,
+  institution: `Museum of New Zealand Te Papa Tongarewa`
 };
 
 // Build rich context from available fields
@@ -1204,7 +1210,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_rijks',
+      collection: 'archai_tepapa',
       text,
       authorType: 'visitor',
     }),

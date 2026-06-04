@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Philips Television — ARCHAI</title>
+<title>Thoughts Across the Lands — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2026PP7677/full/!600,600/0/default.jpg" alt="Philips Television" loading="eager">
+  <img src="https://res.cloudinary.com/mplustms/image/upload/w_530/v1724382423/v2/prod/small/001501_002000/001716_003.jpg" alt="Thoughts Across the Lands" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Philips Television</div>
-  <div class="v-sub">Poster · 1967 · E.324-2026</div>
+  <div class="v-title">Thoughts Across the Lands</div>
+  <div class="v-sub">Ink Art · 1970 · 2013.271</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Poster</span>
+    <span class="v-meta-tag mv">M+, Hong Kong</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">Visual Art</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Philips Television</strong> — Philips Television. Poster. Made by Huveneers, Pieter. 1967. Made in France. Prints &amp; Drawings Study Room, level C</div>
+  <div class="v-story"><strong>Thoughts Across the Lands</strong> — Ink and colour painting on paper depicting two watery blue squares with blurred edges, one above the other, bridged by a smaller blue square at the centre of the vertical piece.</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © M+, Hong Kong · © M+, Hong Kong</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +821,20 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.324-2026</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Huveneers, Pieter</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Poster</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Poster</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1967</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, level C</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Poster</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2013.271</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Wucius Wong</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">ink and acrylic on paper</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Hong Kong</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Visual Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ink Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1970</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">sheet: 208 × 111.5 cm
+image: 183.6 × 95.2 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Ink Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © M+, Hong Kong · © M+, Hong Kong</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +849,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1232.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4303/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">ADDED CHARACTER</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.253-2020</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/pcmez/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Filips de Goede, hertog van Bourgondie, rekenpenning van het hertogdom Brabant</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010042</div>
       </a>
       <a class="v-rel-card" href="NFC1233.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AL4513/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Philips No. 2514</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · W.3&amp;A-1978</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2009BX6575/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Oscillon 40</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.958-2008</div>
       </a>
       <a class="v-rel-card" href="NFC1235.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AF3344/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Batger's Television Crackers</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.1038-2003</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fbdh-rd.bne.es%2Fpdf.raw%3Fquery%3Did%3A0000042362%26page%3D1%26jpeg%3Dtrue&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">[La Virgen del pez] [Material gráfico]</div>
+        <div class="v-rel-meta">Europeana · /2022717/bnesearch_detalle_bdh0000042362</div>
       </a>
       <a class="v-rel-card" href="NFC1236.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2013GK3855/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Sintesi di Primavera &quot;Angelo&quot;</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · S.1153-1982</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2019MA1838/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Kinetic effect lighting system</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.462-1973</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +879,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1808228/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/thoughts-across-the-lands-2013271/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,26 +910,27 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Philips Television`,
-  type: `Poster`,
-  date: `1967`,
-  registration: `E.324-2026`,
-  location: `Prints & Drawings Study Room, level C`,
-  discipline: `Poster`,
-  category: `Poster`,
-  description: `Philips Television. Poster. Made by Huveneers, Pieter. 1967. Made in France. Prints & Drawings Study Room, level C`,
-  medium: ``,
-  artist: `Huveneers, Pieter`,
-  culture: ``,
-  dimensions: ``,
-  wall_description: ``,
+  title: `Thoughts Across the Lands`,
+  type: `Ink Art`,
+  date: `1970`,
+  registration: `2013.271`,
+  location: `M+, Hong Kong`,
+  discipline: `Visual Art`,
+  category: `Ink Art`,
+  description: `Ink and colour painting on paper depicting two watery blue squares with blurred edges, one above the other, bridged by a smaller blue square at the centre of the vertical piece.`,
+  medium: `ink and acrylic on paper`,
+  artist: `Wucius Wong`,
+  culture: `Hong Kong`,
+  dimensions: `sheet: 208 × 111.5 cm
+image: 183.6 × 95.2 cm`,
+  wall_description: `Ink and colour painting on paper depicting two watery blue squares with blurred edges, one above the other, bridged by a smaller blue square at the centre of the vertical piece.`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1808228/`,
-  institution: `Victoria and Albert Museum, London`
+  tombstone: `Thoughts Across the Lands. Wucius Wong. 1970. M+, Hong Kong`,
+  licence: `CC0 metadata · M+ API service non-commercial · © M+, Hong Kong`,
+  source_url: `https://www.mplus.org.hk/en/collection/objects/thoughts-across-the-lands-2013271/`,
+  institution: `M+, Hong Kong`
 };
 
 // Build rich context from available fields
@@ -1173,7 +1212,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_mplus',
       text,
       authorType: 'visitor',
     }),

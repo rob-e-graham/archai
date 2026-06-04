@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Karnak, Les Pylônes d'Horus — ARCHAI</title>
+<title>Bass Ophicleide in B-flat — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/2018.252/2018.252_web.jpg" alt="Karnak, Les Pylônes d'Horus" loading="eager">
+  <img src="https://images.metmuseum.org/CRDImages/mi/original/DP-12679-101.jpg" alt="Bass Ophicleide in B-flat" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Karnak, Les Pylônes d'Horus</div>
-  <div class="v-sub">Photograph · 1860s · 2018.252</div>
+  <div class="v-title">Bass Ophicleide in B-flat</div>
+  <div class="v-sub">Bass Ophicleide in B-flat · ca. 1825 · 505034</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
-    <span class="v-meta-tag lic">CC0 — Public Domain</span>
-    <span class="v-meta-tag">Photography</span>
+    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Musical Instruments</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Karnak, Les Pylônes d'Horus</strong> — This desolate view of the remnants of the monumental gateway flanked by figures of the god Horus, usually depicted as a falcon-headed man, emphasizes the sense of discovery that must have been felt by tourists visiting Egypt in the 1860s. A tiny figure at the lower right testifies to the monumental …</div>
+  <div class="v-story"><strong>Bass Ophicleide in B-flat</strong> — Bass Ophicleide in B-flat. Bass Ophicleide in B-flat. Brass. Musical Instruments. European. Aerophone-Lip Vibrated-horn. ca. 1825</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,17 +821,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2018.252</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Henri Béchard (French)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Albumen print from wet collodion negative</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photograph</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1860s</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Image: 26 x 37.2 cm (10 1/4 x 14 5/8 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Cleveland Museum of Art</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">505034</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Brass</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">European</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Aerophone-Lip Vibrated-horn</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca. 1825</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">48 7/16 × 12 1/2 × 7 1/2 in., 10 lb. (123 × 31.8 × 19.1 cm, 4535.97g)
+Diameter: 15 3/8 in. (39 cm)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 680</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Bass Ophicleide in B-flat</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -814,24 +848,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC064.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2013GK3852/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Sintesi di Primavera (bozzetto completo)</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · S.1150-1982</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AF4919/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Electronic Command Centre</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · B.444:1 to 31-1996</div>
       </a>
       <a class="v-rel-card" href="NFC065.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP-24964-001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Santal or Munda Fiddle (Huka Banam)</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 883315</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PH9033/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Major Morgan</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · B.82:1 to 11-2011</div>
       </a>
       <a class="v-rel-card" href="NFC067.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP-41021-001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Shakuhachi</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 500684</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018KR4580/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Camera</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · RPS.329-2018</div>
       </a>
       <a class="v-rel-card" href="NFC068.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1993.38/1993.38_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portrait Bust</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1993.38</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PC0391/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Hand Behind Painted Glass</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · PH.557-2024</div>
       </a></div>
   </div>
 </div>
@@ -844,7 +878,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://clevelandart.org/art/2018.252" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/505034" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -875,26 +909,27 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Karnak, Les Pylônes d'Horus`,
-  type: `Photograph`,
-  date: `1860s`,
-  registration: `2018.252`,
-  location: `Cleveland Museum of Art`,
-  discipline: `Photography`,
-  category: `Photograph`,
-  description: `This desolate view of the remnants of the monumental gateway flanked by figures of the god Horus, usually depicted as a falcon-headed man, emphasizes the sense of discovery that must have been felt by tourists visiting Egypt in the 1860s. A tiny figure at the lower right testifies to the monumental scale of the ruins.`,
-  medium: `Albumen print from wet collodion negative`,
-  artist: `Henri Béchard (French)`,
-  culture: `France`,
-  dimensions: `Image: 26 x 37.2 cm (10 1/4 x 14 5/8 in.)`,
+  title: `Bass Ophicleide in B-flat`,
+  type: `Bass Ophicleide in B-flat`,
+  date: `ca. 1825`,
+  registration: `505034`,
+  location: `Gallery 680`,
+  discipline: `Musical Instruments`,
+  category: `Aerophone-Lip Vibrated-horn`,
+  description: `Bass Ophicleide in B-flat. Bass Ophicleide in B-flat. Brass. Musical Instruments. European. Aerophone-Lip Vibrated-horn. ca. 1825`,
+  medium: `Brass`,
+  artist: ``,
+  culture: `European`,
+  dimensions: `48 7/16 × 12 1/2 × 7 1/2 in., 10 lb. (123 × 31.8 × 19.1 cm, 4535.97g)
+Diameter: 15 3/8 in. (39 cm)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: `Karnak is the second most visited tourist site in Egypt after the pyramids of Giza.`,
-  provenance: `[{"description":"Charles Isaacs Photographs, Inc., New York, NY","citations":[],"footnotes":[],"date":"May 2011","sortorder":1},{"description":"Tom E. Hinson, Truth or Consequences, NM","citations":[],"footnotes":[],"date":"2011-2018","sortorder":2},{"description":"the Cleveland Museum of Art, Cleve…`,
-  tombstone: `Karnak, Les Pylônes d'Horus, 1860s. Henri Béchard (French). Albumen print from wet collodion negative; image: 26 x 37.2 cm (10 1/4 x 14 5/8 in.). The Cleveland Museum of Art, Gift of Tom E. Hinson and Diana S. Tittle, 2018.252`,
+  did_you_know: ``,
+  provenance: ``,
+  tombstone: ``,
   licence: `CC0 — Public Domain`,
-  source_url: `https://clevelandart.org/art/2018.252`,
-  institution: `Cleveland Museum of Art`
+  source_url: `https://www.metmuseum.org/art/collection/search/505034`,
+  institution: `The Metropolitan Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1176,7 +1211,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_cma',
+      collection: 'archai_met',
       text,
       authorType: 'visitor',
     }),

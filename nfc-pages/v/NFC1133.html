@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>ili (fan) — ARCHAI</title>
+<title>Schutterspenning van Leiden — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,29 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://media.tepapa.govt.nz/collection/924335/preview" alt="ili (fan)" loading="eager">
+  <img src="https://iiif.micr.io/QBzch/full/max/0/default.jpg" alt="Schutterspenning van Leiden" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">ili (fan)</div>
-  <div class="v-sub">fans · 1950 · FE013603</div>
+  <div class="v-title">Schutterspenning van Leiden</div>
+  <div class="v-sub">schutterspenning · 2026-02-14T04:18:11Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;261219&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+        &lt;setSpec&gt;2601&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:creator&gt;anoniem&lt;/dc:creator&gt;
+          &lt;dc:creator&gt;anonymous&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1646 · 200100435</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
-    <span class="v-meta-tag lic">All Rights Reserved · metadata CC BY 4.0</span>
-    <span class="v-meta-tag">Pacific Cultures</span>
+    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(160,152,144,0.28);color:#a09890;">Check source</span>
+    
   </div>
 
   <!-- SHARE -->
@@ -756,7 +794,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>ili (fan)</strong> — This is an ili (fan) made from plant material densely woven onto a coconut midrib structure. It is attributed to Tokelau and was probably made in the 1960s. Form and function Hand held fans are made throughout the Pacific Islands. People use them to keep cool in hot weather, they present them as gif…</div>
+  <div class="v-story"><strong>Schutterspenning van Leiden</strong> — Zilveren schutterspenning van Leiden. Voorzijde: een gekroonde klimmende leeuw met een zwaard in zijn rechter en een schild met het Leidse wapen in zijn linker klauw. Omschrift: PVGNO PRO PATRIA (ik vecht voor het vaderland). Keerzijde: twee gekruiste musketten tussen LEY en DEN. Omschrift: SCHVTTER…</div>
+  <div class="v-rights-note" style="border-color:rgba(160,152,144,0.28);">
+      <div class="v-rights-label" style="color:#a09890;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#a09890;font-weight:400;">Check source</strong> — Review the source record and item-level rights before reuse.</div>
+      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,16 +832,27 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">FE013603</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">plant fibre, palm leaf, Pandanus (textile)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Tokelau Islands (Tokelau), Polynesian, Tokelauan</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Pacific Cultures</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">fans</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1950</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 476mm (width), 530mm (length), 30mm (depth)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">fans</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">All Rights Reserved · metadata CC BY 4.0</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">200100435</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">anoniem; anonymous</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">zilver</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">schutterspenning</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-02-14T04:18:11Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;261219&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+        &lt;setSpec&gt;2601&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:creator&gt;anoniem&lt;/dc:creator&gt;
+          &lt;dc:creator&gt;anonymous&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1646</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">schutterspenning</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Check source</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Review the source record and item-level rights before reuse.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -813,24 +867,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1131.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AN1928/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Roberts Model R500</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · W.33-1992</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1991.162/1991.162_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Untitled (Farm Animals)</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1991.162</div>
       </a>
       <a class="v-rel-card" href="NFC1132.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/16673?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">container</div>
-        <div class="v-rel-meta">Auckland Museum · 1999.118.89</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/fWRxp/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Schutterspenning van Middelburg</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100430</div>
       </a>
       <a class="v-rel-card" href="NFC1134.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/817567/preview" loading="lazy"></div>
-        <div class="v-rel-title">Map of Waikato to illustrate &quot;The Maori King&quot;. Plate 2. From the book The Maori king, or, The story of our quarrel with the natives of New Zealand.</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · RB000401/002a</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2024PA8855/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Synthesizer</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:AMERICASFOUNDATION.2133:1 to 36-2024</div>
       </a>
       <a class="v-rel-card" href="NFC1135.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018KT2121/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Camera</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · RPS.351-2018</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP-38692-002.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Fretted banjo with two short strings</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 919098</div>
       </a></div>
   </div>
 </div>
@@ -843,7 +897,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/1659607" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/200100435" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -874,26 +928,37 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `ili (fan)`,
-  type: `fans`,
-  date: `1950`,
-  registration: `FE013603`,
-  location: `Te Papa Tongarewa, Wellington`,
-  discipline: `Pacific Cultures`,
-  category: `fans`,
-  description: `This is an ili (fan) made from plant material densely woven onto a coconut midrib structure. It is attributed to Tokelau and was probably made in the 1960s. Form and function Hand held fans are made throughout the Pacific Islands. People use them to keep cool in hot weather, they present them as gifts and sell them to tourists as souvenirs. They also use them decoratively as ornaments, and display them in their homes. In performances, dancers often use fans as accessories, to complement their costumes and accentuate their body movements. People make fans from a range of materials including coc…`,
-  medium: `plant fibre, palm leaf, Pandanus (textile)`,
-  artist: ``,
-  culture: `Tokelau Islands (Tokelau), Polynesian, Tokelauan`,
-  dimensions: `Overall: 476mm (width), 530mm (length), 30mm (depth)`,
-  wall_description: `This is an ili (fan) made from plant material densely woven onto a coconut midrib structure. It is attributed to Tokelau and was probably made in the 1960s. Form and function Hand held fans are made throughout the Pacific Islands. People use them to keep cool in hot weather, they present them as gifts and sell them to tourists as souvenirs. They also use them decoratively as ornaments, and display them in their homes. In performances, dancers often use fans as accessories, to complement their co…`,
+  title: `Schutterspenning van Leiden`,
+  type: `schutterspenning`,
+  date: `2026-02-14T04:18:11Z</datestamp>
+        <setSpec>260239</setSpec>
+        <setSpec>261106</setSpec>
+        <setSpec>261219</setSpec>
+        <setSpec>260251</setSpec>
+        <setSpec>2601</setSpec>
+      </header>
+      <metadata>
+        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
+          <dc:creator>anoniem</dc:creator>
+          <dc:creator>anonymous</dc:creator>
+          <dc:date>1646`,
+  registration: `200100435`,
+  location: `Rijksmuseum, Amsterdam`,
+  discipline: ``,
+  category: `schutterspenning`,
+  description: `Zilveren schutterspenning van Leiden. Voorzijde: een gekroonde klimmende leeuw met een zwaard in zijn rechter en een schild met het Leidse wapen in zijn linker klauw. Omschrift: PVGNO PRO PATRIA (ik vecht voor het vaderland). Keerzijde: twee gekruiste musketten tussen LEY en DEN. Omschrift: SCHVTTERS PENNING en daarachter het jaartal.`,
+  medium: `zilver`,
+  artist: `anoniem; anonymous`,
+  culture: ``,
+  dimensions: ``,
+  wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Ili (fan), Tokelau Islands, maker unknown. Gift of Victoria Corner, 2020. © The copyright holder. We are actively seeking the copyright holder. Contact copyright@tepapa.govt.nz if you can help. Te Papa (FE013603)`,
-  licence: `All Rights Reserved · metadata CC BY 4.0`,
-  source_url: `https://collections.tepapa.govt.nz/object/1659607`,
-  institution: `Museum of New Zealand Te Papa Tongarewa`
+  tombstone: ``,
+  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
+  source_url: `https://www.rijksmuseum.nl/en/collection/200100435`,
+  institution: `Rijksmuseum, Amsterdam`
 };
 
 // Build rich context from available fields
@@ -1175,7 +1240,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_tepapa',
+      collection: 'archai_rijks',
       text,
       authorType: 'visitor',
     }),

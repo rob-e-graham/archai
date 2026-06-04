@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>dress — ARCHAI</title>
+<title>Portret van Jacoba van Beieren, gravin van Holland, Zeeland en Henegouwen — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,28 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/93080?rendering=standard.jpg" alt="dress" loading="eager">
+  <img src="https://iiif.micr.io/knNKc/full/max/0/default.jpg" alt="Portret van Jacoba van Beieren, gravin van Holland, Zeeland en Henegouwen" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">dress</div>
-  <div class="v-sub">ecrm:E22_Man-Made_Object · Circa 1910 · col.2772</div>
+  <div class="v-title">Portret van Jacoba van Beieren, gravin van Holland, Zeeland en Henegouwen</div>
+  <div class="v-sub">prent · 2026-01-27T04:44:38Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260241&lt;/setSpec&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;26151&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:coverage&gt;Graafschap Holland&lt;/dc:coverage&gt;
+          &lt;dc:creator&gt;Adriaen Matham&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1620 · 20010028</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Auckland Museum</span>
-    <span class="v-meta-tag lic">© Auckland Museum CC BY</span>
-    <span class="v-meta-tag">Social History</span>
+    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(160,152,144,0.28);color:#a09890;">Check source</span>
+    <span class="v-meta-tag">Jacoba van Beieren (gravin van Holland, Zeeland en Henegouwen)</span>
   </div>
 
   <!-- SHARE -->
@@ -756,8 +793,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>dress</strong> — Black satin dress, c.1910, that belonged to Mrs William Henry Rogers.
-The dress is made from heavy black satin, full length with a simple collar and ¾ length sleeves with lace at the wrist. The front opening has a panel of ecru lace. The waistline is very large with tucks down the front and back of …</div>
+  <div class="v-story"><strong>Portret van Jacoba van Beieren, gravin van Holland, Zeeland en Henegouwen</strong> — Portret van Jacoba van Beieren, gravin van Holland, Zeeland en Henegouwen, staande naar links met achter een wapenschild. Prent uit een serie van 36 prenten met portretten ten voeten uit van graven en gravinnen van Holland.</div>
+  <div class="v-rights-note" style="border-color:rgba(160,152,144,0.28);">
+      <div class="v-rights-label" style="color:#a09890;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#a09890;font-weight:400;">Check source</strong> — Review the source record and item-level rights before reuse.</div>
+      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -790,13 +831,27 @@ The dress is made from heavy black satin, full length with a simple collar and �
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">col.2772</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Circa 1910</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">20010028</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Adriaen Matham</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">papier</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Jacoba van Beieren (gravin van Holland, Zeeland en Henegouwen)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">prent</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-01-27T04:44:38Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260241&lt;/setSpec&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;26151&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:coverage&gt;Graafschap Holland&lt;/dc:coverage&gt;
+          &lt;dc:creator&gt;Adriaen Matham&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1620</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">prent</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Check source</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Review the source record and item-level rights before reuse.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +866,24 @@ The dress is made from heavy black satin, full length with a simple collar and �
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC418.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Ffotothek.slub-dresden.de%2Ffotos%2Fdf_pj_0010781.jpg&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Deutsches Hygiene-Museum</div>
-        <div class="v-rel-meta">Europeana · /463/item_ZPAJK36L7COXL3IBW4TMY76UB7NXHUNS</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2017KD4674/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Computer Guess/</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.2800-2016</div>
       </a>
       <a class="v-rel-card" href="NFC419.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fceres.mcu.es%2Fpages%2FViewer%3Fraw%3Dy%26accion%3D42%26AMuseo%3DMPAS%26img%3D%2FMPAS%2Ffondos_pre%2FMPASFFM010943_P.JPG%26Ninv%3DFM010943&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Retrato de mi madre al cumplir 92 años - Cuadro</div>
-        <div class="v-rel-meta">Europeana · /2022703/pages_Main_idt_169331_inventary_FM010943_table_FMUS_museum_MPAS</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1991.163/1991.163_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">The Young Eastern Woman</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1991.163</div>
       </a>
       <a class="v-rel-card" href="NFC421.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2016HY8905/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Rhapsody TSR 8012C</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · W.15-2003</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PD0797/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Rolled Poster</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:AMERICASFOUNDATION.1869-2024</div>
       </a>
       <a class="v-rel-card" href="NFC422.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4321/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">MARSHMELLOW</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.272-2020</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%2Fwebclient%2FDeliveryManager%3Fpid%3D6346840%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Photographic reportage Florence, 1961-1956</div>
+        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6346840_custom_att_2_simple_viewer</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +896,7 @@ The dress is made from heavy black satin, full length with a simple collar and �
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/17164" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/20010028" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,17 +927,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `dress`,
-  type: `ecrm:E22_Man-Made_Object`,
-  date: `Circa 1910`,
-  registration: `col.2772`,
-  location: `Auckland Museum`,
-  discipline: `Social History`,
-  category: `ecrm:E22_Man-Made_Object`,
-  description: `Black satin dress, c.1910, that belonged to Mrs William Henry Rogers.
-The dress is made from heavy black satin, full length with a simple collar and ¾ length sleeves with lace at the wrist. The front opening has a panel of ecru lace. The waistline is very large with tucks down the front and back of the bodice. The skirt is nearly straight with a tuck down the centre. It is all lined.`,
-  medium: ``,
-  artist: ``,
+  title: `Portret van Jacoba van Beieren, gravin van Holland, Zeeland en Henegouwen`,
+  type: `prent`,
+  date: `2026-01-27T04:44:38Z</datestamp>
+        <setSpec>260241</setSpec>
+        <setSpec>260239</setSpec>
+        <setSpec>26151</setSpec>
+        <setSpec>260251</setSpec>
+      </header>
+      <metadata>
+        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
+          <dc:coverage>Graafschap Holland</dc:coverage>
+          <dc:creator>Adriaen Matham</dc:creator>
+          <dc:date>1620`,
+  registration: `20010028`,
+  location: `Rijksmuseum, Amsterdam`,
+  discipline: `Jacoba van Beieren (gravin van Holland, Zeeland en Henegouwen)`,
+  category: `prent`,
+  description: `Portret van Jacoba van Beieren, gravin van Holland, Zeeland en Henegouwen, staande naar links met achter een wapenschild. Prent uit een serie van 36 prenten met portretten ten voeten uit van graven en gravinnen van Holland.`,
+  medium: `papier`,
+  artist: `Adriaen Matham`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -890,9 +954,9 @@ The dress is made from heavy black satin, full length with a simple collar and �
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `© Auckland Museum CC BY`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/17164`,
-  institution: `Auckland Museum`
+  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
+  source_url: `https://www.rijksmuseum.nl/en/collection/20010028`,
+  institution: `Rijksmuseum, Amsterdam`
 };
 
 // Build rich context from available fields
@@ -1174,7 +1238,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_auckland',
+      collection: 'archai_rijks',
       text,
       authorType: 'visitor',
     }),

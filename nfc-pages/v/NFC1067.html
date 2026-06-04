@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>underskirt — ARCHAI</title>
+<title>Zen — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/363796?rendering=standard.jpg" alt="underskirt" loading="eager">
+  <img src="https://res.cloudinary.com/mplustms/image/upload/w_428/v1627882500/v2/prod/small/006501_007000/006521_005.jpg" alt="Zen" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">underskirt</div>
-  <div class="v-sub">ecrm:E22_Man-Made_Object · 1996-11-11T00:00:00.000Z · col.0871</div>
+  <div class="v-title">Zen</div>
+  <div class="v-sub">Ink Art · 1970 · 2016.812</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Auckland Museum</span>
-    <span class="v-meta-tag lic">© Auckland Museum CC BY</span>
-    <span class="v-meta-tag">Social History</span>
+    <span class="v-meta-tag mv">M+, Hong Kong</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">Visual Art</span>
   </div>
 
   <!-- SHARE -->
@@ -756,8 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>underskirt</strong> — White linen underskirt
-white underskirt with pin tucked trim at hem.</div>
+  <div class="v-story"><strong>Zen</strong> — Ink painting on paper of a vertical shape of black, grey, and red brushstrokes bursting forward from a background of white, grey, and light blue. A beam of light seems to emanate from the top of the shape.</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Helen C. Ting · © Helen C. Ting</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -790,13 +821,20 @@ white underskirt with pin tucked trim at hem.</div>
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">col.0871</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1996-11-11T00:00:00.000Z</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2016.812</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Lui Shou-kwan</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">ink and colour on paper</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Hong Kong</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Visual Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ink Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1970</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">frame: 306.5 × 144 cm
+sheet: 284 × 122 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Ink Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Helen C. Ting · © Helen C. Ting</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +849,24 @@ white underskirt with pin tucked trim at hem.</div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1065.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/d614d374-c405-35d1-f170-c0e009ca87cf/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Art Make-Up</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 47147</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669040/006325.jpg" loading="lazy"></div>
+        <div class="v-rel-title">[Menino holandês]</div>
+        <div class="v-rel-meta">Brasiliana Museus · menino-holandes</div>
       </a>
       <a class="v-rel-card" href="NFC1066.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_668/v1627832950/v2/prod/small/002001_002500/002029_001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">'Peacock Chair' for Imperial Hotel, Tokyo, Japan</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2013.237</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4338/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">EYE OF THE BULL</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.284-2020</div>
       </a>
       <a class="v-rel-card" href="NFC1068.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1991.162/1991.162_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Untitled (Farm Animals)</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1991.162</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fbdh-rd.bne.es%2Fpdf.raw%3Fquery%3Did%3A0000007768%26page%3D1%26jpeg%3Dtrue&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">[Aparición de Basilio de Borgoña a su discípulo Hugo de Lincoln] [Material gráfico]</div>
+        <div class="v-rel-meta">Europeana · /2022717/bnesearch_detalle_bdh0000007768</div>
       </a>
       <a class="v-rel-card" href="NFC1069.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669000/006335.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Baronesa de Teresopolis</div>
-        <div class="v-rel-meta">Brasiliana Museus · baronesa-de-teresopolis</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fgallica.bnf.fr%2Fiiif%2Fark%3A%2F12148%2Fbtv1b9031007b%2Ff1%2Ffull%2F512%2C%2F0%2Fnative.jpg&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Le Musée du Louvre pendant la guerre : la salle de sculpture moderne : (personne) : [photographie de presse] / Agence Meurisse</div>
+        <div class="v-rel-meta">Europeana · /9200518/ark__12148_btv1b9031007b</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +879,7 @@ white underskirt with pin tucked trim at hem.</div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/3185" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/zen-2016812/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,27 +910,27 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `underskirt`,
-  type: `ecrm:E22_Man-Made_Object`,
-  date: `1996-11-11T00:00:00.000Z`,
-  registration: `col.0871`,
-  location: `Auckland Museum`,
-  discipline: `Social History`,
-  category: `ecrm:E22_Man-Made_Object`,
-  description: `White linen underskirt
-white underskirt with pin tucked trim at hem.`,
-  medium: ``,
-  artist: ``,
-  culture: ``,
-  dimensions: ``,
-  wall_description: ``,
+  title: `Zen`,
+  type: `Ink Art`,
+  date: `1970`,
+  registration: `2016.812`,
+  location: `M+, Hong Kong`,
+  discipline: `Visual Art`,
+  category: `Ink Art`,
+  description: `Ink painting on paper of a vertical shape of black, grey, and red brushstrokes bursting forward from a background of white, grey, and light blue. A beam of light seems to emanate from the top of the shape.`,
+  medium: `ink and colour on paper`,
+  artist: `Lui Shou-kwan`,
+  culture: `Hong Kong`,
+  dimensions: `frame: 306.5 × 144 cm
+sheet: 284 × 122 cm`,
+  wall_description: `Ink painting on paper of a vertical shape of black, grey, and red brushstrokes bursting forward from a background of white, grey, and light blue. A beam of light seems to emanate from the top of the shape.`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `© Auckland Museum CC BY`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/3185`,
-  institution: `Auckland Museum`
+  tombstone: `Zen. Lui Shou-kwan. 1970. M+, Hong Kong`,
+  licence: `CC0 metadata · M+ API service non-commercial · © Helen C. Ting`,
+  source_url: `https://www.mplus.org.hk/en/collection/objects/zen-2016812/`,
+  institution: `M+, Hong Kong`
 };
 
 // Build rich context from available fields
@@ -1174,7 +1212,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_auckland',
+      collection: 'archai_mplus',
       text,
       authorType: 'visitor',
     }),

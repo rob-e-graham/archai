@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>bottle, whisky — ARCHAI</title>
+<title>Dechayotic — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/93226?rendering=standard.jpg" alt="bottle, whisky" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2021NB9593/full/!600,600/0/default.jpg" alt="Dechayotic" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">bottle, whisky</div>
-  <div class="v-sub">ecrm:E22_Man-Made_Object · 2004-06-04T00:00:00.000Z · 1996x2.110.1</div>
+  <div class="v-title">Dechayotic</div>
+  <div class="v-sub">Digital print · 2016 · E.43-2021</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Auckland Museum</span>
-    <span class="v-meta-tag lic">© Auckland Museum CC BY</span>
-    <span class="v-meta-tag">Social History</span>
+    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Digital print</span>
   </div>
 
   <!-- SHARE -->
@@ -756,8 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>bottle, whisky</strong> — Whisky bottle: 'Peter Dawson Scotland' (green glass); string rim lip, moulded; curved shoulder; circular base; impressed and embossed bubble design below neck and above base; cork within base
-marked on base: PETER DAWSON LTD / GLASGOW [around] NB / 143 / N / SCOTLAND / 2 / UGS / GLASGOW</div>
+  <div class="v-story"><strong>Dechayotic</strong> — Dechayotic. Digital print. Made by Dorpel, Harm van den. 2016. In store</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -790,13 +821,16 @@ marked on base: PETER DAWSON LTD / GLASGOW [around] NB / 143 / N / SCOTLAND / 2 
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1996x2.110.1</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2004-06-04T00:00:00.000Z</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.43-2021</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Dorpel, Harm van den</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Digital print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Digital print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2016</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In store</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Digital print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +845,24 @@ marked on base: PETER DAWSON LTD / GLASGOW [around] NB / 143 / N / SCOTLAND / 2 
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC707.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/nVfXl/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Dukaat van de Bataafse Republiek op naam van Utrecht, 1800</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100088</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/1979.206.361_a.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Drum (Teponaztli)</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 312583</div>
       </a>
       <a class="v-rel-card" href="NFC708.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fcollection.mobilier-national.fr%2Fmedia%2Fxl%2FBIDEAU%2F2017%2F02%2FGMTT-11-008_9-2017.jpg&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">TAPISSERIE DE LICE - Histoire d'Artémise LE CHAR DES RHINOCEROS</div>
-        <div class="v-rel-meta">Europeana · /957/GMTT_11_008</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1983.198/1983.198_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Alexandre Dumas père (1802–1870)</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1983.198</div>
       </a>
       <a class="v-rel-card" href="NFC710.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/sbiLI/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van Geertruida van Saksen</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010006</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/HTgXB/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Hollandse leeuwendaalder, 1576</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100253</div>
       </a>
       <a class="v-rel-card" href="NFC711.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/XOHPu/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Nederlandse &amp;#189; gulden, 1859</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100264</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1927.6/1927.6_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Geometric Neck-Handled Amphora (Storage Vessel): Prothesis (Laying out of Corpse), Mourners, Chariots</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1927.6</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +875,7 @@ marked on base: PETER DAWSON LTD / GLASGOW [around] NB / 143 / N / SCOTLAND / 2 
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/609815" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1547615/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,17 +906,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `bottle, whisky`,
-  type: `ecrm:E22_Man-Made_Object`,
-  date: `2004-06-04T00:00:00.000Z`,
-  registration: `1996x2.110.1`,
-  location: `Auckland Museum`,
-  discipline: `Social History`,
-  category: `ecrm:E22_Man-Made_Object`,
-  description: `Whisky bottle: 'Peter Dawson Scotland' (green glass); string rim lip, moulded; curved shoulder; circular base; impressed and embossed bubble design below neck and above base; cork within base
-marked on base: PETER DAWSON LTD / GLASGOW [around] NB / 143 / N / SCOTLAND / 2 / UGS / GLASGOW`,
+  title: `Dechayotic`,
+  type: `Digital print`,
+  date: `2016`,
+  registration: `E.43-2021`,
+  location: `In store`,
+  discipline: `Digital print`,
+  category: `Digital print`,
+  description: `Dechayotic. Digital print. Made by Dorpel, Harm van den. 2016. In store`,
   medium: ``,
-  artist: ``,
+  artist: `Dorpel, Harm van den`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -890,9 +923,9 @@ marked on base: PETER DAWSON LTD / GLASGOW [around] NB / 143 / N / SCOTLAND / 2 
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `© Auckland Museum CC BY`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/609815`,
-  institution: `Auckland Museum`
+  licence: `V&A Open Access`,
+  source_url: `https://collections.vam.ac.uk/item/O1547615/`,
+  institution: `Victoria and Albert Museum, London`
 };
 
 // Build rich context from available fields
@@ -1174,7 +1207,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_auckland',
+      collection: 'archai_va',
       text,
       authorType: 'visitor',
     }),

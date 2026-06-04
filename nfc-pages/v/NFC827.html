@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Vase — ARCHAI</title>
+<title>vessel — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/f37e7263-4b5c-de71-d398-40aa87548c54/full/843,/0/default.jpg" alt="Vase" loading="eager">
+  <img src="https://api.aucklandmuseum.com/id/media/v/93169?rendering=standard.jpg" alt="vessel" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Vase</div>
-  <div class="v-sub">Metalwork · 1920–30 · 120187</div>
+  <div class="v-title">vessel</div>
+  <div class="v-sub">ecrm:E22_Man-Made_Object · 2005-01-07T00:00:00.000Z · 1996x2.103.30</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Art Institute of Chicago</span>
-    <span class="v-meta-tag lic">All rights reserved</span>
-    <span class="v-meta-tag">Arts of the Americas</span>
+    <span class="v-meta-tag mv">Auckland Museum</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
+    <span class="v-meta-tag">Social History</span>
   </div>
 
   <!-- SHARE -->
@@ -756,9 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Vase</strong> — Vase. Metalwork. Silver and bronze. Arts of the Americas. Smith Metal Arts
-American, founded 1889
-Buffalo, New York. vase. 1920–30. Buffalo</div>
+  <div class="v-story"><strong>vessel</strong> — Pharmaceutical glass vessel, open ended; in shape of tube and rubber stopper</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
+      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -791,19 +821,15 @@ Buffalo, New York. vase. 1920–30. Buffalo</div>
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">120187</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Smith Metal Arts
-American, founded 1889
-Buffalo, New York</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Silver and bronze</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Buffalo</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Arts of the Americas</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">vase</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1920–30</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">21 × 6.5 cm (8 1/4 × 2 9/16 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Metalwork</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">All rights reserved</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1996x2.103.30</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2005-01-07T00:00:00.000Z</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -818,24 +844,24 @@ Buffalo, New York</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC825.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/358757?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">cloak, evening</div>
-        <div class="v-rel-meta">Auckland Museum · 1965.78.880</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fcollection.mobilier-national.fr%2Fmedia%2Fxl%2FDIVERS%2F2020%2FGoogle-Lab%2Fgmmp-21724-001_2019-1.jpg&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">SOIERIE - Bordures pour tenture destinées à la Grande Galerie du Louvre</div>
+        <div class="v-rel-meta">Europeana · /957/GMMP_21724_001</div>
       </a>
       <a class="v-rel-card" href="NFC826.html">
-        <div class="v-rel-thumb"><img src="https://www.mplus.org.hk/_nuxt/img/share.23eb426.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Ready-made Product of Media</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2012.1476</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627901854/v2/prod/small/002501_003000/002861_001.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Rainbow</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2012.1200</div>
       </a>
       <a class="v-rel-card" href="NFC828.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/ZWBPB/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Concours van de Koninklijke Liedertafel &quot;Kunst en Vriendschap&quot; te Amsterdam 1876</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100314</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1979.37/1979.37_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portrait of Napoléone Elisa Baciocchi, Niece of Napoleon I</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1979.37</div>
       </a>
       <a class="v-rel-card" href="NFC829.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/634889/preview" loading="lazy"></div>
-        <div class="v-rel-title">Drachm</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · NU006934</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2013GK3857/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Tipografia, Studio di costume</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · S.1155-1982</div>
       </a></div>
   </div>
 </div>
@@ -848,7 +874,7 @@ Buffalo, New York</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/120187" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/629444" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -879,30 +905,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Vase`,
-  type: `Metalwork`,
-  date: `1920–30`,
-  registration: `120187`,
-  location: `Art Institute of Chicago`,
-  discipline: `Arts of the Americas`,
-  category: `vase`,
-  description: `Vase. Metalwork. Silver and bronze. Arts of the Americas. Smith Metal Arts
-American, founded 1889
-Buffalo, New York. vase. 1920–30. Buffalo`,
-  medium: `Silver and bronze`,
-  artist: `Smith Metal Arts
-American, founded 1889
-Buffalo, New York`,
-  culture: `Buffalo`,
-  dimensions: `21 × 6.5 cm (8 1/4 × 2 9/16 in.)`,
+  title: `vessel`,
+  type: `ecrm:E22_Man-Made_Object`,
+  date: `2005-01-07T00:00:00.000Z`,
+  registration: `1996x2.103.30`,
+  location: `Auckland Museum`,
+  discipline: `Social History`,
+  category: `ecrm:E22_Man-Made_Object`,
+  description: `Pharmaceutical glass vessel, open ended; in shape of tube and rubber stopper`,
+  medium: ``,
+  artist: ``,
+  culture: ``,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `All rights reserved`,
-  source_url: `https://www.artic.edu/artworks/120187`,
-  institution: `Art Institute of Chicago`
+  licence: `© Auckland Museum CC BY`,
+  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/629444`,
+  institution: `Auckland Museum`
 };
 
 // Build rich context from available fields
@@ -1184,7 +1206,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_aic',
+      collection: 'archai_auckland',
       text,
       authorType: 'visitor',
     }),

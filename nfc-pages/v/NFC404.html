@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>PRISM — ARCHAI</title>
+<title>Spotted Nyonya—Platter Dish — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2014HD4334/full/!600,600/0/default.jpg" alt="PRISM" loading="eager">
+  <img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627829863/v2/prod/small/004001_004500/004111_001.jpg" alt="Spotted Nyonya—Platter Dish" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">PRISM</div>
-  <div class="v-sub">Computer-generated drawing · 1969 · E.290-2020</div>
+  <div class="v-title">Spotted Nyonya—Platter Dish</div>
+  <div class="v-sub">Design Object · 2011 · 2015.297</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Computer-generated drawing</span>
+    <span class="v-meta-tag mv">M+, Hong Kong</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">Design and Architecture</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>PRISM</strong> — PRISM. Computer-generated drawing. Made by Frederick Hammersley. 1969. Made in America. Prints &amp; Drawings Study Room, level C</div>
+  <div class="v-story"><strong>Spotted Nyonya—Platter Dish</strong> — Circular porcelain platter dish with a high foot. Small circles of coloured glaze radiate out from the centre of the piece and cover the entire dish.</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Hans Tan · © Hans Tan</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +821,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.290-2020</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Frederick Hammersley</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Computer-generated drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Computer-generated drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1969</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, level C</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Computer-generated drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2015.297</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Hans Tan</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">sandblasted porcelain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Singaporean</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Design and Architecture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Design Object</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2011</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">overall: 9.7 × 21.5 × 21.5 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Design Object</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Hans Tan · © Hans Tan</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +848,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC402.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2021NB9593/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Dechayotic</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.43-2021</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2019.69/2019.69_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Mosaique: The Imperial Court of Napoleon III</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 2019.69</div>
       </a>
       <a class="v-rel-card" href="NFC403.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1985.50/1985.50_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Red-Figure Fish Plate: Octopi, Mullet, Bream, Shellfish</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1985.50</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/lvjXP/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Willem III de Goede, graaf van Holland en Henegouwen</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010021</div>
       </a>
       <a class="v-rel-card" href="NFC405.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/589187?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">[textile, fragment]</div>
-        <div class="v-rel-meta">Auckland Museum · 2012.x.12</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2017KD4675/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Polar Coordinates</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.2801-2016</div>
       </a>
       <a class="v-rel-card" href="NFC406.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1977.72/1977.72_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Cupid Secretly Drawing an Arrow</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1977.72</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2007.180/2007.180_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Frogs and Lily Pads (Grenouilles et Nénuphars) Vase</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 2007.180</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +878,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1284386/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/spotted-nyonyaplatter-dish-2015297/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,26 +909,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `PRISM`,
-  type: `Computer-generated drawing`,
-  date: `1969`,
-  registration: `E.290-2020`,
-  location: `Prints & Drawings Study Room, level C`,
-  discipline: `Computer-generated drawing`,
-  category: `Computer-generated drawing`,
-  description: `PRISM. Computer-generated drawing. Made by Frederick Hammersley. 1969. Made in America. Prints & Drawings Study Room, level C`,
-  medium: ``,
-  artist: `Frederick Hammersley`,
-  culture: ``,
-  dimensions: ``,
-  wall_description: ``,
+  title: `Spotted Nyonya—Platter Dish`,
+  type: `Design Object`,
+  date: `2011`,
+  registration: `2015.297`,
+  location: `M+, Hong Kong`,
+  discipline: `Design and Architecture`,
+  category: `Design Object`,
+  description: `Circular porcelain platter dish with a high foot. Small circles of coloured glaze radiate out from the centre of the piece and cover the entire dish.`,
+  medium: `sandblasted porcelain`,
+  artist: `Hans Tan`,
+  culture: `Singaporean`,
+  dimensions: `overall: 9.7 × 21.5 × 21.5 cm`,
+  wall_description: `Circular porcelain platter dish with a high foot. Small circles of coloured glaze radiate out from the centre of the piece and cover the entire dish.`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1284386/`,
-  institution: `Victoria and Albert Museum, London`
+  tombstone: `Spotted Nyonya—Platter Dish. Hans Tan. 2011. M+, Hong Kong`,
+  licence: `CC0 metadata · M+ API service non-commercial · © Hans Tan`,
+  source_url: `https://www.mplus.org.hk/en/collection/objects/spotted-nyonyaplatter-dish-2015297/`,
+  institution: `M+, Hong Kong`
 };
 
 // Build rich context from available fields
@@ -1173,7 +1210,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_mplus',
       text,
       authorType: 'visitor',
     }),

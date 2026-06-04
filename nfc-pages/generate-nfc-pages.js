@@ -226,6 +226,15 @@ async function main() {
   // Create output directory
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
 
+  // LEGAL SAFETY: delete ALL existing NFC pages before regenerating so removed
+  // or rights-restricted objects can never linger as orphaned, publicly-reachable
+  // pages (a smaller regen used to leave stale high-numbered pages behind).
+  let purged = 0;
+  for (const f of fs.readdirSync(OUTPUT_DIR)) {
+    if (/^NFC\d+\.html$/.test(f)) { fs.unlinkSync(path.join(OUTPUT_DIR, f)); purged++; }
+  }
+  if (purged) console.log(`  ⊘ Purged ${purged} existing AUX.IO pages before regeneration`);
+
   // Copy captive portal
   if (fs.existsSync(PORTAL_PATH)) {
     const portalOut = path.join(path.dirname(OUTPUT_DIR), 'captive-portal.html');

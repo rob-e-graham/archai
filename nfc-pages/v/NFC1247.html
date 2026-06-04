@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Domestic Kinetic — ARCHAI</title>
+<title>au NEON — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2008BU3087/full/!600,600/0/default.jpg" alt="Domestic Kinetic" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2015HU1287/full/!600,600/0/default.jpg" alt="au NEON" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Domestic Kinetic</div>
-  <div class="v-sub">Watercolour · 2006 · E.3656-2007</div>
+  <div class="v-title">au NEON</div>
+  <div class="v-sub">Mobile telephone · 2006 · CD.38-2015</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Watercolour</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Mobile telephone</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Domestic Kinetic</strong> — Domestic Kinetic. Watercolour. Made by Martin, Barry. 2006. Made in London. Prints &amp; Drawings Study Room, room WS</div>
+  <div class="v-story"><strong>au NEON</strong> — au NEON. Mobile telephone. Made by Fukasawa, Naoto. 2006. in storage</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +821,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.3656-2007</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Martin, Barry</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Watercolour</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Watercolour</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">CD.38-2015</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Fukasawa, Naoto</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Mobile telephone</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Mobile telephone</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2006</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, room WS</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Watercolour</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">in storage</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Mobile telephone</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +845,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1245.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PJ8538/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Two Little Tykes</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:GILBERT.1015:1-2008</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fbdh-rd.bne.es%2Fpdf.raw%3Fquery%3Did%3A0000042253%26page%3D1%26jpeg%3Dtrue&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">[La Sagrada Familia con santa Isabel y san Juanito: La Perla]</div>
+        <div class="v-rel-meta">Europeana · /2022717/bnesearch_detalle_bdh0000042253</div>
       </a>
       <a class="v-rel-card" href="NFC1246.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/670086/default-38.jpg" loading="lazy"></div>
-        <div class="v-rel-title">José Bonifácio de Andrade e Silva</div>
-        <div class="v-rel-meta">Brasiliana Museus · jose-bonifacio-de-andrade-e-silva</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680039/825-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Revista naval</div>
+        <div class="v-rel-meta">Brasiliana Museus · revista-naval</div>
       </a>
       <a class="v-rel-card" href="NFC1248.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/45323?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">shirt, uniform, school</div>
-        <div class="v-rel-meta">Auckland Museum · 1999.183.4</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/660849/preview" loading="lazy"></div>
+        <div class="v-rel-title">Military Insignia - Corps of New Zealand Engineers</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH025610</div>
       </a>
       <a class="v-rel-card" href="NFC1249.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/668237/006511.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Primeira comunhão na América</div>
-        <div class="v-rel-meta">Brasiliana Museus · primeira-comunhao-na-america</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2008BT4245/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Muralla China Radio</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.10-1992</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +875,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O166582/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1324856/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,16 +906,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Domestic Kinetic`,
-  type: `Watercolour`,
+  title: `au NEON`,
+  type: `Mobile telephone`,
   date: `2006`,
-  registration: `E.3656-2007`,
-  location: `Prints & Drawings Study Room, room WS`,
-  discipline: `Watercolour`,
-  category: `Watercolour`,
-  description: `Domestic Kinetic. Watercolour. Made by Martin, Barry. 2006. Made in London. Prints & Drawings Study Room, room WS`,
+  registration: `CD.38-2015`,
+  location: `in storage`,
+  discipline: `Mobile telephone`,
+  category: `Mobile telephone`,
+  description: `au NEON. Mobile telephone. Made by Fukasawa, Naoto. 2006. in storage`,
   medium: ``,
-  artist: `Martin, Barry`,
+  artist: `Fukasawa, Naoto`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -890,7 +924,7 @@ const OBJECT = {
   provenance: ``,
   tombstone: ``,
   licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O166582/`,
+  source_url: `https://collections.vam.ac.uk/item/O1324856/`,
   institution: `Victoria and Albert Museum, London`
 };
 

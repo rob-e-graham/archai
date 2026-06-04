@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>German Little Set — ARCHAI</title>
+<title>Aerial III — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2006BC7888/full/!600,600/0/default.jpg" alt="German Little Set" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2019LX2139/full/!600,600/0/default.jpg" alt="Aerial III" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">German Little Set</div>
-  <div class="v-sub">Radio · 1933 · W.25-1992</div>
+  <div class="v-title">Aerial III</div>
+  <div class="v-sub">Photograph · 2011 · E.21-2014</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Radio</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Photograph</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>German Little Set</strong> — German Little Set. Radio. Made by Saba-Radio. 1933. Made in Villingen. In Store</div>
+  <div class="v-story"><strong>Aerial III</strong> — Aerial III. Photograph. Made by Jananne Al-Ani. 2011. Prints &amp; Drawings Study Room, room 315</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +821,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">W.25-1992</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Saba-Radio</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Radio</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Radio</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1933</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In Store</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Radio</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.21-2014</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Jananne Al-Ani</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2011</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, room 315</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +845,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC669.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680961/464-1-scaled.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Maria Leopoldina na Ilha da Madeira</div>
-        <div class="v-rel-meta">Brasiliana Museus · maria-leopoldina-na-ilha-da-madeira</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/668980/default-30.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Segundo Conde de Resende</div>
+        <div class="v-rel-meta">Brasiliana Museus · segundo-conde-de-resende</div>
       </a>
       <a class="v-rel-card" href="NFC670.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/831a05de-d3f6-f4fa-a460-23008dd58dda/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Nighthawks</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 111628</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1915.533.b/1915.533.b_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Fragment from Red-Figure Cup: Woman</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1915.533.b</div>
       </a>
       <a class="v-rel-card" href="NFC672.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2023NR4039/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">BBC Microcomputer</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · B.41-2022</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2017JY4361/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Rock and pop costume</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · S.1634-2010</div>
       </a>
       <a class="v-rel-card" href="NFC673.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/106765?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">bodice, infant's</div>
-        <div class="v-rel-meta">Auckland Museum · 37220</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2008BT4253/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portable transistor radio</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.21:&amp;2-1992</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +875,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O144934/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1264775/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,16 +906,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `German Little Set`,
-  type: `Radio`,
-  date: `1933`,
-  registration: `W.25-1992`,
-  location: `In Store`,
-  discipline: `Radio`,
-  category: `Radio`,
-  description: `German Little Set. Radio. Made by Saba-Radio. 1933. Made in Villingen. In Store`,
+  title: `Aerial III`,
+  type: `Photograph`,
+  date: `2011`,
+  registration: `E.21-2014`,
+  location: `Prints & Drawings Study Room, room 315`,
+  discipline: `Photograph`,
+  category: `Photograph`,
+  description: `Aerial III. Photograph. Made by Jananne Al-Ani. 2011. Prints & Drawings Study Room, room 315`,
   medium: ``,
-  artist: `Saba-Radio`,
+  artist: `Jananne Al-Ani`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -890,7 +924,7 @@ const OBJECT = {
   provenance: ``,
   tombstone: ``,
   licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O144934/`,
+  source_url: `https://collections.vam.ac.uk/item/O1264775/`,
   institution: `Victoria and Albert Museum, London`
 };
 

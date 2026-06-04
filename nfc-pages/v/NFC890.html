@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>As Elegant as a Swan — ARCHAI</title>
+<title>Photograph — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/4e9d2788-9cde-d271-72d6-07d5076726f8/full/843,/0/default.jpg" alt="As Elegant as a Swan" loading="eager">
+  <img src="https://media.tepapa.govt.nz/collection/165741/preview" alt="Photograph" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">As Elegant as a Swan</div>
-  <div class="v-sub">Photograph · 1987 · 121203</div>
+  <div class="v-title">Photograph</div>
+  <div class="v-sub">photographs · 1877 · GH002982/2</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Art Institute of Chicago</span>
-    <span class="v-meta-tag lic">All rights reserved</span>
-    <span class="v-meta-tag">Photography and Media</span>
+    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">History</span>
   </div>
 
   <!-- SHARE -->
@@ -756,8 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>As Elegant as a Swan</strong> — As Elegant as a Swan. Photograph. Jetgraph prints (5). Photography and Media. Robert Heinecken
-American, 1931–2006. impulse jet (drop on demand, phase chang. 1987. United States</div>
+  <div class="v-story"><strong>Photograph</strong> — Photograph , 1877, by Francis De Jongh. Gift of Miss Allison Mackay, 1968. Te Papa (GH002982/2)</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: No Known Copyright Restrictions · metadata CC BY 4.0 · No Known Copyright Restrictions</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -790,18 +821,18 @@ American, 1931–2006. impulse jet (drop on demand, phase chang. 1987. United St
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">121203</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Robert Heinecken
-American, 1931–2006</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Jetgraph prints (5)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">United States</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography and Media</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">impulse jet (drop on demand, phase chang</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1987</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Frame: 83 × 291.3 cm (32 11/16 × 114 11/16 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">All rights reserved</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">GH002982/2</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Francis De Jongh</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">paper</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">History</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">photographs</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1877</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 64mm (width), 105mm (length)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">photographs</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">No Known Copyright Restrictions · metadata CC BY 4.0 · No Known Copyright Restrictions</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -816,24 +847,24 @@ American, 1931–2006</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC888.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2019LL8383/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Camera</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · RPS.1123-2018</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669425/default-33.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Descobrimento da América</div>
+        <div class="v-rel-meta">Brasiliana Museus · descobrimento-da-america</div>
       </a>
       <a class="v-rel-card" href="NFC889.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2007BR3923/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Kolster-Brandes model FB10C</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.293-1976</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1635630712/v2/prod/small/006501_007000/006814_007.jpg" loading="lazy"></div>
+        <div class="v-rel-title">From Gulf to Gulf to Gulf</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2016.844</div>
       </a>
       <a class="v-rel-card" href="NFC891.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680284/000770-1.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Conselheiro Ferreira Viana</div>
-        <div class="v-rel-meta">Brasiliana Museus · conselheiro-ferreira-viana</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/10/659710-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Detector - Radial Electrical, Crystal, 1922-1925</div>
+        <div class="v-rel-meta">Museums Victoria · ST 15915</div>
       </a>
       <a class="v-rel-card" href="NFC892.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1978.22/1978.22_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Sir H. C. Englefield, Bart.</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1978.22</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PF9845/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Effects Unit</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:AMERICASFOUNDATION.1216-2024</div>
       </a></div>
   </div>
 </div>
@@ -846,7 +877,7 @@ American, 1931–2006</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/121203" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/867319" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -877,28 +908,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `As Elegant as a Swan`,
-  type: `Photograph`,
-  date: `1987`,
-  registration: `121203`,
-  location: `Art Institute of Chicago`,
-  discipline: `Photography and Media`,
-  category: `impulse jet (drop on demand, phase chang`,
-  description: `As Elegant as a Swan. Photograph. Jetgraph prints (5). Photography and Media. Robert Heinecken
-American, 1931–2006. impulse jet (drop on demand, phase chang. 1987. United States`,
-  medium: `Jetgraph prints (5)`,
-  artist: `Robert Heinecken
-American, 1931–2006`,
-  culture: `United States`,
-  dimensions: `Frame: 83 × 291.3 cm (32 11/16 × 114 11/16 in.)`,
+  title: `Photograph`,
+  type: `photographs`,
+  date: `1877`,
+  registration: `GH002982/2`,
+  location: `Te Papa Tongarewa, Wellington`,
+  discipline: `History`,
+  category: `photographs`,
+  description: `Photograph , 1877, by Francis De Jongh. Gift of Miss Allison Mackay, 1968. Te Papa (GH002982/2)`,
+  medium: `paper`,
+  artist: `Francis De Jongh`,
+  culture: ``,
+  dimensions: `Overall: 64mm (width), 105mm (length)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `All rights reserved`,
-  source_url: `https://www.artic.edu/artworks/121203`,
-  institution: `Art Institute of Chicago`
+  tombstone: `Photograph, 1877, by Francis De Jongh. Gift of Miss Allison Mackay, 1968. Te Papa (GH002982/2)`,
+  licence: `No Known Copyright Restrictions · metadata CC BY 4.0`,
+  source_url: `https://collections.tepapa.govt.nz/object/867319`,
+  institution: `Museum of New Zealand Te Papa Tongarewa`
 };
 
 // Build rich context from available fields
@@ -1180,7 +1209,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_aic',
+      collection: 'archai_tepapa',
       text,
       authorType: 'visitor',
     }),

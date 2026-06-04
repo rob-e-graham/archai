@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Banjo — ARCHAI</title>
+<title>toy car — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/mi/original/DP-39911-002.jpg" alt="Banjo" loading="eager">
+  <img src="https://api.aucklandmuseum.com/id/media/v/594047?rendering=standard.jpg" alt="toy car" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Banjo</div>
-  <div class="v-sub">Banjo · mid-19th century · 504951</div>
+  <div class="v-title">toy car</div>
+  <div class="v-sub">Toy Vehicle · 2003-07-16T00:00:00.000Z · 1996.165.396</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
-    <span class="v-meta-tag lic">CC0 — Public Domain</span>
-    <span class="v-meta-tag">Musical Instruments</span>
+    <span class="v-meta-tag mv">Auckland Museum</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
+    <span class="v-meta-tag">Social History</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,13 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Banjo</strong> — Banjo. Banjo. Wood, various materials. Musical Instruments. British. Chordophone-Lute-plucked. mid-19th century</div>
+  <div class="v-story"><strong>toy car</strong> — car
+cast aluminium toy car, red with tin plate wheels</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
+      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,18 +822,17 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">504951</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Wood, various materials</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">British</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Chordophone-Lute-plucked</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">mid-19th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">99.5cm x 31cm x 12cm
-
-Weight: under 40 lbs</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 199</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Banjo</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1996.165.396</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">unknown</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Aluminium, &lt;aluminum And Aluminum Alloy&gt;, Nonferrous Metal, &lt;metal By Composition Or Origin&gt;, Metal, &lt;metal And Metal Products&gt;</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Toy Vehicle</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2003-07-16T00:00:00.000Z</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Toy Vehicle</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -815,24 +847,24 @@ Weight: under 40 lbs</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC647.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/646925/21015-scaled.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Vista de Ouro Preto</div>
-        <div class="v-rel-meta">Brasiliana Museus · vista-de-ouro-preto-27</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1942.1065/1942.1065_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Romaine Lacaux</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1942.1065</div>
       </a>
       <a class="v-rel-card" href="NFC648.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/96441/preview" loading="lazy"></div>
-        <div class="v-rel-title">Musical Instrument (Sansa)</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · FE004906</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/33337?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">gloves</div>
+        <div class="v-rel-meta">Auckland Museum · col.1795</div>
       </a>
       <a class="v-rel-card" href="NFC650.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/679970/850-scaled.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Retrato de senhor em traje civil (atribuído)</div>
-        <div class="v-rel-meta">Brasiliana Museus · retrato-de-senhor-em-traje-civil-atribuido</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/InJZU/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Floris IV, graaf van Holland</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010016</div>
       </a>
       <a class="v-rel-card" href="NFC651.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1928.660/1928.660_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Red-Figure Lekythos (Oil Vessel): Warrior Cutting Hair</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1928.660</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fbdh-rd.bne.es%2Fpdf.raw%3Fquery%3Did%3A0000205874%26page%3D1%26jpeg%3Dtrue&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">[Trinidad de la tierra]</div>
+        <div class="v-rel-meta">Europeana · /2022717/bnesearch_detalle_bdh0000205874</div>
       </a></div>
   </div>
 </div>
@@ -845,7 +877,7 @@ Weight: under 40 lbs</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/504951" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/589021" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -876,28 +908,27 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Banjo`,
-  type: `Banjo`,
-  date: `mid-19th century`,
-  registration: `504951`,
-  location: `Gallery 199`,
-  discipline: `Musical Instruments`,
-  category: `Chordophone-Lute-plucked`,
-  description: `Banjo. Banjo. Wood, various materials. Musical Instruments. British. Chordophone-Lute-plucked. mid-19th century`,
-  medium: `Wood, various materials`,
-  artist: ``,
-  culture: `British`,
-  dimensions: `99.5cm x 31cm x 12cm
-
-Weight: under 40 lbs`,
+  title: `toy car`,
+  type: `Toy Vehicle`,
+  date: `2003-07-16T00:00:00.000Z`,
+  registration: `1996.165.396`,
+  location: `Auckland Museum`,
+  discipline: `Social History`,
+  category: `Toy Vehicle`,
+  description: `car
+cast aluminium toy car, red with tin plate wheels`,
+  medium: `Aluminium, <aluminum And Aluminum Alloy>, Nonferrous Metal, <metal By Composition Or Origin>, Metal, <metal And Metal Products>`,
+  artist: `unknown`,
+  culture: ``,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/504951`,
-  institution: `The Metropolitan Museum of Art`
+  licence: `© Auckland Museum CC BY`,
+  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/589021`,
+  institution: `Auckland Museum`
 };
 
 // Build rich context from available fields
@@ -1179,7 +1210,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_met',
+      collection: 'archai_auckland',
       text,
       authorType: 'visitor',
     }),

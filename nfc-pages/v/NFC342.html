@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Box — ARCHAI</title>
+<title>Print — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://media.tepapa.govt.nz/collection/292110/preview" alt="Box" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2009CD9461/full/!600,600/0/default.jpg" alt="Print" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Box</div>
-  <div class="v-sub">boxes · 1800s · GH002897</div>
+  <div class="v-title">Print</div>
+  <div class="v-sub">Print · 2009 · E.156-2009</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
-    <span class="v-meta-tag lic">CC BY-NC-ND 4.0 · metadata CC BY 4.0</span>
-    <span class="v-meta-tag">History</span>
+    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Print</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Box</strong> — Box , 1800s, Japan, maker unknown. Gift of Mrs I.M. Twist, 1967. CC BY-NC-ND 4.0 . Te Papa (GH002897)</div>
+  <div class="v-story"><strong>Print</strong> — Print. Print. Made by Faure Walker, James. 2009. Made in Britain. Prints &amp; Drawings Study Room, level E</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,16 +821,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">GH002897</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Unknown</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">lacquer, wood</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">boxes</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1800s</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 185mm (width), 90mm (height), 140mm (depth)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">boxes</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC BY-NC-ND 4.0 · metadata CC BY 4.0</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.156-2009</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Faure Walker, James</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2009</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, level E</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -813,24 +845,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC340.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fbdh-rd.bne.es%2Fpdf.raw%3Fquery%3Did%3A0000042813%26page%3D1%26jpeg%3Dtrue&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">[Caída de Jesús] [Material gráfico]</div>
-        <div class="v-rel-meta">Europeana · /2022717/bnesearch_detalle_bdh0000042813</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/65851/preview" loading="lazy"></div>
+        <div class="v-rel-title">Blue vase [2]</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · 1996-0033-29/2-4</div>
       </a>
       <a class="v-rel-card" href="NFC341.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2012FK3672/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Alhambra</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · 34775</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/fe8ddbbd-f0e2-dfea-990c-10652dca7a4b/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">The Celestial Art</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 108633</div>
       </a>
       <a class="v-rel-card" href="NFC343.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680263/774-1-scaled.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Romano</div>
-        <div class="v-rel-meta">Brasiliana Museus · romano</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2017JY9630/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Astral Onyx</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.14-2003</div>
       </a>
       <a class="v-rel-card" href="NFC344.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fgallica.bnf.fr%2Fiiif%2Fark%3A%2F12148%2Fbtv1b9030921d%2Ff1%2Ffull%2F512%2C%2F0%2Fnative.jpg&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Le Musée du Louvre pendant la guerre : la salle de sculpture ancienne : (Reims) : [photographie de presse] / Agence Meurisse</div>
-        <div class="v-rel-meta">Europeana · /9200518/ark__12148_btv1b9030921d</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_514/v1719852572/v2/prod/small/000001_000500/000240_004.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Stairs</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2013.255</div>
       </a></div>
   </div>
 </div>
@@ -843,7 +875,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/62123" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O239628/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -874,26 +906,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Box`,
-  type: `boxes`,
-  date: `1800s`,
-  registration: `GH002897`,
-  location: `Te Papa Tongarewa, Wellington`,
-  discipline: `History`,
-  category: `boxes`,
-  description: `Box , 1800s, Japan, maker unknown. Gift of Mrs I.M. Twist, 1967. CC BY-NC-ND 4.0 . Te Papa (GH002897)`,
-  medium: `lacquer, wood`,
-  artist: `Unknown`,
+  title: `Print`,
+  type: `Print`,
+  date: `2009`,
+  registration: `E.156-2009`,
+  location: `Prints & Drawings Study Room, level E`,
+  discipline: `Print`,
+  category: `Print`,
+  description: `Print. Print. Made by Faure Walker, James. 2009. Made in Britain. Prints & Drawings Study Room, level E`,
+  medium: ``,
+  artist: `Faure Walker, James`,
   culture: ``,
-  dimensions: `Overall: 185mm (width), 90mm (height), 140mm (depth)`,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Box, 1800s, Japan, maker unknown. Gift of Mrs I.M. Twist, 1967. CC BY-NC-ND 4.0. Te Papa (GH002897)`,
-  licence: `CC BY-NC-ND 4.0 · metadata CC BY 4.0`,
-  source_url: `https://collections.tepapa.govt.nz/object/62123`,
-  institution: `Museum of New Zealand Te Papa Tongarewa`
+  tombstone: ``,
+  licence: `V&A Open Access`,
+  source_url: `https://collections.vam.ac.uk/item/O239628/`,
+  institution: `Victoria and Albert Museum, London`
 };
 
 // Build rich context from available fields
@@ -1175,7 +1207,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_tepapa',
+      collection: 'archai_va',
       text,
       authorType: 'visitor',
     }),

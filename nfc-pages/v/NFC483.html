@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>textile — ARCHAI</title>
+<title>MARSHMELLOW — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/680823?rendering=standard.jpg" alt="textile" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2014HD4321/full/!600,600/0/default.jpg" alt="MARSHMELLOW" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">textile</div>
-  <div class="v-sub">Embroidery · 1868-1912? · T250</div>
+  <div class="v-title">MARSHMELLOW</div>
+  <div class="v-sub">Computer-generated drawing · 1969 · E.272-2020</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Auckland Museum</span>
-    <span class="v-meta-tag lic">© Auckland Museum CC BY</span>
-    <span class="v-meta-tag">Applied Arts and Design</span>
+    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Computer-generated drawing</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>textile</strong> — textile; panel; valence; coarse linen base with heavily embossed embroidery in thin silk thread; background is a gold metal thread; triangular shape with a panel of base fabric without embroidery along the top; embroidery depicts a male figure sitting on the back of a flying crane; the figure is wea…</div>
+  <div class="v-story"><strong>MARSHMELLOW</strong> — MARSHMELLOW. Computer-generated drawing. Made by Frederick Hammersley. 1969. Made in America. Prints &amp; Drawings Study Room, level C</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +821,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">T250</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Metallic Thread, Fibre, &lt;fiber And Fiber Products&gt;, &lt;materials By Physical Form&gt;, &lt;materials By Form&gt;, Aat Materials</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Applied Arts and Design</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Embroidery</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1868-1912?</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Embroidery</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.272-2020</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Frederick Hammersley</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Computer-generated drawing</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Computer-generated drawing</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1969</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, level C</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Computer-generated drawing</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +845,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC481.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/162e8095-996a-bb91-b2bd-acc0b5415fb9/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Shay Demonstrates Facetiously How He Runs Backwards and Covers Hurdlers</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 223837</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2018.290.a/2018.290.a_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Box</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 2018.290.a</div>
       </a>
       <a class="v-rel-card" href="NFC482.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/533489?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Carving</div>
-        <div class="v-rel-meta">Auckland Museum · 52460</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fgallica.bnf.fr%2Fiiif%2Fark%3A%2F12148%2Fbtv1b84114283%2Ff1%2Ffull%2F512%2C%2F0%2Fnative.jpg&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">L'Optique naturelle et artificielle : ou le microscope de la rage le telescope de l'orgueil et les yeux de la raison et du sens commun... : [estampe] / [non identifié]</div>
+        <div class="v-rel-meta">Europeana · /9200518/ark__12148_btv1b84114283</div>
       </a>
       <a class="v-rel-card" href="NFC484.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/88432434-d02a-9d63-330c-975eec457375/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Lake View of Chicago of Burns Harbor, Indiana, from the series “Revealing Chicago” (2003-2004)</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 184498</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/midp89.4.854side2.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Udäkki</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 501466</div>
       </a>
       <a class="v-rel-card" href="NFC485.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/BUEuA/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Duit van de Bataafse Republiek op naam van Zeeland, 1796</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100094</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/RfPCZ/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Prijspenning van het Zeeuws Genootschap van Wetenschappen, afgieting in tin zonder inscriptie</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100131</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +875,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/9348" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1279575/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,16 +906,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `textile`,
-  type: `Embroidery`,
-  date: `1868-1912?`,
-  registration: `T250`,
-  location: `Auckland Museum`,
-  discipline: `Applied Arts and Design`,
-  category: `Embroidery`,
-  description: `textile; panel; valence; coarse linen base with heavily embossed embroidery in thin silk thread; background is a gold metal thread; triangular shape with a panel of base fabric without embroidery along the top; embroidery depicts a male figure sitting on the back of a flying crane; the figure is wearing teal and gold coloured robes that have dimension along the folds in the robes; the figure is balding, has rosy cheeks, and wispy facial hair; the crane is white with small feathering of black thread along it's neck and face; the eye of the crane is a glass circle above an embroidered pupil; sur…`,
-  medium: `Metallic Thread, Fibre, <fiber And Fiber Products>, <materials By Physical Form>, <materials By Form>, Aat Materials`,
-  artist: ``,
+  title: `MARSHMELLOW`,
+  type: `Computer-generated drawing`,
+  date: `1969`,
+  registration: `E.272-2020`,
+  location: `Prints & Drawings Study Room, level C`,
+  discipline: `Computer-generated drawing`,
+  category: `Computer-generated drawing`,
+  description: `MARSHMELLOW. Computer-generated drawing. Made by Frederick Hammersley. 1969. Made in America. Prints & Drawings Study Room, level C`,
+  medium: ``,
+  artist: `Frederick Hammersley`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -889,9 +923,9 @@ const OBJECT = {
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `© Auckland Museum CC BY`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/9348`,
-  institution: `Auckland Museum`
+  licence: `V&A Open Access`,
+  source_url: `https://collections.vam.ac.uk/item/O1279575/`,
+  institution: `Victoria and Albert Museum, London`
 };
 
 // Build rich context from available fields
@@ -1173,7 +1207,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_auckland',
+      collection: 'archai_va',
       text,
       authorType: 'visitor',
     }),

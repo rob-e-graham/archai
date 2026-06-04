@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Polar Coordinates — ARCHAI</title>
+<title>Electronic clock — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2017KD4675/full/!600,600/0/default.jpg" alt="Polar Coordinates" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2018LC0094/full/!600,600/0/default.jpg" alt="Electronic clock" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Polar Coordinates</div>
-  <div class="v-sub">Drawing · 1970 · E.2801-2016</div>
+  <div class="v-title">Electronic clock</div>
+  <div class="v-sub">Electronic clock · 1940s · W.5-1982</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Drawing</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Electronic clock</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Polar Coordinates</strong> — Polar Coordinates. Drawing. Made by Katherine Nash. 1970. Made in United States. Prints &amp; Drawings Study Room, level E</div>
+  <div class="v-story"><strong>Electronic clock</strong> — Electronic clock. Electronic clock. Made by Vitascope Industries. 1940s. Made in Isle of Man. In Store</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +821,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.2801-2016</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Katherine Nash</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1970</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, level E</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">W.5-1982</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Vitascope Industries</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Electronic clock</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Electronic clock</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1940s</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In Store</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Electronic clock</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +845,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC172.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/197519?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">textile piece, embroidery</div>
-        <div class="v-rel-meta">Auckland Museum · 1948.267</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/Qjfyy/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Zilveren ropij van de VOC uit Java, 1783</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100086</div>
       </a>
       <a class="v-rel-card" href="NFC173.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/165741/preview" loading="lazy"></div>
-        <div class="v-rel-title">Photograph</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH002982/2</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP215406.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Lapa (Trumpet)</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 504717</div>
       </a>
       <a class="v-rel-card" href="NFC175.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/iCTjZ/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van Dirk VII, graaf van Holland</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010013</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/137530?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">mug, miniature</div>
+        <div class="v-rel-meta">Auckland Museum · 1983.83</div>
       </a>
       <a class="v-rel-card" href="NFC176.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/b400b538-c144-f28f-bd6c-3151277fd358/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Death by Suffocation</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 33403</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/668143/006534.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Homem em traje civil</div>
+        <div class="v-rel-meta">Brasiliana Museus · homem-em-traje-civil-5</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +875,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1371700/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O322018/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,16 +906,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Polar Coordinates`,
-  type: `Drawing`,
-  date: `1970`,
-  registration: `E.2801-2016`,
-  location: `Prints & Drawings Study Room, level E`,
-  discipline: `Drawing`,
-  category: `Drawing`,
-  description: `Polar Coordinates. Drawing. Made by Katherine Nash. 1970. Made in United States. Prints & Drawings Study Room, level E`,
+  title: `Electronic clock`,
+  type: `Electronic clock`,
+  date: `1940s`,
+  registration: `W.5-1982`,
+  location: `In Store`,
+  discipline: `Electronic clock`,
+  category: `Electronic clock`,
+  description: `Electronic clock. Electronic clock. Made by Vitascope Industries. 1940s. Made in Isle of Man. In Store`,
   medium: ``,
-  artist: `Katherine Nash`,
+  artist: `Vitascope Industries`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -890,7 +924,7 @@ const OBJECT = {
   provenance: ``,
   tombstone: ``,
   licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1371700/`,
+  source_url: `https://collections.vam.ac.uk/item/O322018/`,
   institution: `Victoria and Albert Museum, London`
 };
 

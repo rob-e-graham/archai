@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Marigolds — ARCHAI</title>
+<title>SEEMLY YOU — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2024NX9618/full/!600,600/0/default.jpg" alt="Marigolds" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2014HD4333/full/!600,600/0/default.jpg" alt="SEEMLY YOU" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Marigolds</div>
-  <div class="v-sub">Digital artwork · 2023 · E.767-2024</div>
+  <div class="v-title">SEEMLY YOU</div>
+  <div class="v-sub">Computer-generated drawing · 1969 · E.281-2020</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Digital artwork</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Computer-generated drawing</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Marigolds</strong> — Marigolds. Digital artwork. Made by Anand, Aditi. 2023. Made in India. In store</div>
+  <div class="v-story"><strong>SEEMLY YOU</strong> — SEEMLY YOU. Computer-generated drawing. Made by Frederick Hammersley. 1969. Made in America. Prints &amp; Drawings Study Room, level C</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +821,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.767-2024</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Anand, Aditi</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Digital artwork</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Digital artwork</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2023</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In store</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Digital artwork</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.281-2020</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Frederick Hammersley</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Computer-generated drawing</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Computer-generated drawing</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1969</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, level C</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Computer-generated drawing</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +845,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC915.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1696385938/v2/prod/small/001501_002000/001559_007.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Model, Digital Beijing (2004–2007), Beijing, China</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2013.95</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/120512?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">textile</div>
+        <div class="v-rel-meta">Auckland Museum · 56700</div>
       </a>
       <a class="v-rel-card" href="NFC916.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/Eqjej/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Filips de Goede, hertog van Bourgondie, rekenpenning van het hertogdom Brabant</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010044</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HH8835/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Wearable art ensemble</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · T.90:1-5-2013</div>
       </a>
       <a class="v-rel-card" href="NFC918.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2003.6.3/2003.6.3_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Apollo, God of Light, Eloquence, Poetry, and the Fine Arts with Urania, Muse of Astronomy</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2003.6.3</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1978.22/1978.22_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Sir H. C. Englefield, Bart.</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1978.22</div>
       </a>
       <a class="v-rel-card" href="NFC919.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/dadcb6dc-b333-4f9e-c2d6-3468e09893bb/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">57th Street Art Studios</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 53337</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/395731/preview" loading="lazy"></div>
+        <div class="v-rel-title">Signature table cloth</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · PC000204/4</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +875,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1785852/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1279620/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,16 +906,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Marigolds`,
-  type: `Digital artwork`,
-  date: `2023`,
-  registration: `E.767-2024`,
-  location: `In store`,
-  discipline: `Digital artwork`,
-  category: `Digital artwork`,
-  description: `Marigolds. Digital artwork. Made by Anand, Aditi. 2023. Made in India. In store`,
+  title: `SEEMLY YOU`,
+  type: `Computer-generated drawing`,
+  date: `1969`,
+  registration: `E.281-2020`,
+  location: `Prints & Drawings Study Room, level C`,
+  discipline: `Computer-generated drawing`,
+  category: `Computer-generated drawing`,
+  description: `SEEMLY YOU. Computer-generated drawing. Made by Frederick Hammersley. 1969. Made in America. Prints & Drawings Study Room, level C`,
   medium: ``,
-  artist: `Anand, Aditi`,
+  artist: `Frederick Hammersley`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -890,7 +924,7 @@ const OBJECT = {
   provenance: ``,
   tombstone: ``,
   licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1785852/`,
+  source_url: `https://collections.vam.ac.uk/item/O1279620/`,
   institution: `Victoria and Albert Museum, London`
 };
 

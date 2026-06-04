@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Photographic reportage, Florence, 1957-1956 — ARCHAI</title>
+<title>Flask — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%3A80%2Fwebclient%2FDeliveryManager%3Fpid%3D6355708%26custom_att_2%3Ddeeplink&amp;type=IMAGE" alt="Photographic reportage, Florence, 1957-1956" loading="eager">
+  <img src="https://media.tepapa.govt.nz/collection/10712/preview" alt="Flask" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Photographic reportage, Florence, 1957-1956</div>
-  <div class="v-sub">IMAGE · 1957 · /9200369/webclient_DeliveryManager_pid_6355708_custom_att_2_simple_viewer</div>
+  <div class="v-title">Flask</div>
+  <div class="v-sub">flasks · circa 100 BC · CG000017/2</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Europeana</span>
-    <span class="v-meta-tag lic">http://creativecommons.org/licenses/by-sa/4.0/</span>
-    
+    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">History</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Photographic reportage, Florence, 1957-1956</strong> — [Documentation of the restoration and accommodation of the Uffizi Gallery and for publication: “New order of the Uffizi Gallery [...],” in “Casabella,” no. 214, February-March 1957, Milan, Domus]</div>
+  <div class="v-story"><strong>Flask</strong> — Flask , circa 100 BC, maker unknown. Gift of Mrs G.L. Tacon, 1935. CC BY-NC-ND 4.0 . Te Papa (CG000017/2)</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,13 +821,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">/9200369/webclient_DeliveryManager_pid_6355708_custom_att_2_simple_viewer</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Monti, Paolo</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">IMAGE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1957</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">European Library of Information and Culture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">IMAGE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">http://creativecommons.org/licenses/by-sa/4.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">CG000017/2</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Unknown</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">glass</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">History</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">flasks</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">circa 100 BC</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 37mm (width), 58mm (height)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">flasks</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -810,24 +847,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC725.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HC3211/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Vype Reload</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CD.37:1 to 11-2014</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/AvOmO/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Filips de Goede, hertog van Bourgondi&amp;#235;</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010029</div>
       </a>
       <a class="v-rel-card" href="NFC726.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/KwJBk/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Duit van de Bataafse Republiek op naam van Zeeland, 1796, misslag</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100095</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%3A80%2Fwebclient%2FDeliveryManager%3Fpid%3D6355697%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Servizio fotografico Firenze, 1957-1956</div>
+        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6355697_custom_att_2_simple_viewer</div>
       </a>
       <a class="v-rel-card" href="NFC728.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627849051/v2/prod/small/002001_002500/002259_001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Soft Archive (letter to Zhang Lei)</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2012.1363</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/49/165099-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Lantern Slide - 'Mts. Tasman, Cook &amp; La Perouse, New Zealand'</div>
+        <div class="v-rel-meta">Museums Victoria · MM 69207</div>
       </a>
       <a class="v-rel-card" href="NFC729.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DT6746.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Double animal-head bell</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 316662</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/qCkeI/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Schutterspenning van Leiden</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100439</div>
       </a></div>
   </div>
 </div>
@@ -840,7 +877,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.europeana.eu/item/9200369/webclient_DeliveryManager_pid_6355708_custom_att_2_simple_viewer?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/48575" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -871,26 +908,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Photographic reportage, Florence, 1957-1956`,
-  type: `IMAGE`,
-  date: `1957`,
-  registration: `/9200369/webclient_DeliveryManager_pid_6355708_custom_att_2_simple_viewer`,
-  location: `European Library of Information and Culture`,
-  discipline: ``,
-  category: `IMAGE`,
-  description: `[Documentation of the restoration and accommodation of the Uffizi Gallery and for publication: “New order of the Uffizi Gallery [...],” in “Casabella,” no. 214, February-March 1957, Milan, Domus]`,
-  medium: ``,
-  artist: `Monti, Paolo`,
+  title: `Flask`,
+  type: `flasks`,
+  date: `circa 100 BC`,
+  registration: `CG000017/2`,
+  location: `Te Papa Tongarewa, Wellington`,
+  discipline: `History`,
+  category: `flasks`,
+  description: `Flask , circa 100 BC, maker unknown. Gift of Mrs G.L. Tacon, 1935. CC BY-NC-ND 4.0 . Te Papa (CG000017/2)`,
+  medium: `glass`,
+  artist: `Unknown`,
   culture: ``,
-  dimensions: ``,
+  dimensions: `Overall: 37mm (width), 58mm (height)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `http://creativecommons.org/licenses/by-sa/4.0/`,
-  source_url: `https://www.europeana.eu/item/9200369/webclient_DeliveryManager_pid_6355708_custom_att_2_simple_viewer?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb`,
-  institution: `Europeana`
+  tombstone: `Flask, circa 100 BC, maker unknown. Gift of Mrs G.L. Tacon, 1935. CC BY-NC-ND 4.0. Te Papa (CG000017/2)`,
+  licence: `CC BY-NC-ND 4.0 · metadata CC BY 4.0`,
+  source_url: `https://collections.tepapa.govt.nz/object/48575`,
+  institution: `Museum of New Zealand Te Papa Tongarewa`
 };
 
 // Build rich context from available fields
@@ -1172,7 +1209,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_europeana',
+      collection: 'archai_tepapa',
       text,
       authorType: 'visitor',
     }),

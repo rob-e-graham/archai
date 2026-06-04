@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Chicago Landscape #205 — ARCHAI</title>
+<title>Bow harp — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/79867088-7d38-b14c-eb7d-4390368d19a0/full/843,/0/default.jpg" alt="Chicago Landscape #205" loading="eager">
+  <img src="https://images.metmuseum.org/CRDImages/eg/original/DP345112.jpg" alt="Bow harp" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Chicago Landscape #205</div>
-  <div class="v-sub">Photograph · 1965 · 100084</div>
+  <div class="v-title">Bow harp</div>
+  <div class="v-sub">Music, harp · ca. 2030–1640 B.C. · 544242</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Art Institute of Chicago</span>
-    <span class="v-meta-tag lic">All rights reserved</span>
-    <span class="v-meta-tag">Photography and Media</span>
+    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Egyptian Art</span>
   </div>
 
   <!-- SHARE -->
@@ -756,8 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Chicago Landscape #205</strong> — Chicago Landscape #205. Photograph. Gelatin silver print. Photography and Media. Art Sinsabaugh
-American, 1924–1983. photography. 1965. United States. New Bauhaus (Institute of Design)</div>
+  <div class="v-story"><strong>Bow harp</strong> — Bow harp. Music, harp. Wood, paint. Egyptian Art. Middle Kingdom. ca. 2030–1640 B.C.</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -790,18 +821,16 @@ American, 1924–1983. photography. 1965. United States. New Bauhaus (Institute 
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">100084</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Art Sinsabaugh
-American, 1924–1983</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Gelatin silver print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">United States</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography and Media</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">photography</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1965</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Image/paper: 29.5 × 49.5 cm (11 5/8 × 19 1/2 in.); Mount: 38.2 × 55.9 cm (15 1/16 × 22 1/16 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">All rights reserved</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">544242</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Wood, paint</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Egyptian Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca. 2030–1640 B.C.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">L. 81.4 cm (32 1/16 in); W. 26.4 cm (10 3/8 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 109</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Music, harp</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -816,24 +845,24 @@ American, 1924–1983</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC793.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627830750/v2/prod/small/006501_007000/006784_001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Printing proof, 'No Matter What You’re Looking for…Take MTR', Mass Transit Railway Corporation (Eating Version)</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2017.143</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fbdh-rd.bne.es%2Fpdf.raw%3Fquery%3Did%3A0000174166%26page%3D1%26jpeg%3Dtrue&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">[Chained Prometheus in the Caucasus] [Graphic Material]</div>
+        <div class="v-rel-meta">Europeana · /2022717/bnesearch_detalle_bdh0000174166</div>
       </a>
       <a class="v-rel-card" href="NFC794.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AB0878/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Tankard</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · C.22-2006</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2015HU1287/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">au W11K</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CD.37-2015</div>
       </a>
       <a class="v-rel-card" href="NFC796.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669323/006236.jpg" loading="lazy"></div>
-        <div class="v-rel-title">[paisagem com lago e patos]</div>
-        <div class="v-rel-meta">Brasiliana Museus · paisagem-com-lago-e-patos</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018KY2056/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Radio</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.45-1983</div>
       </a>
       <a class="v-rel-card" href="NFC797.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/VnPKP/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Schutterspenning van Leiden</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100444</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2022NF4699/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Robin Hood Gardens, Woolmore Street, London E14 0HG (2018) </div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.503-2022</div>
       </a></div>
   </div>
 </div>
@@ -846,7 +875,7 @@ American, 1924–1983</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/100084" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/544242" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -877,28 +906,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Chicago Landscape #205`,
-  type: `Photograph`,
-  date: `1965`,
-  registration: `100084`,
-  location: `Art Institute of Chicago`,
-  discipline: `Photography and Media`,
-  category: `photography`,
-  description: `Chicago Landscape #205. Photograph. Gelatin silver print. Photography and Media. Art Sinsabaugh
-American, 1924–1983. photography. 1965. United States. New Bauhaus (Institute of Design)`,
-  medium: `Gelatin silver print`,
-  artist: `Art Sinsabaugh
-American, 1924–1983`,
-  culture: `United States`,
-  dimensions: `Image/paper: 29.5 × 49.5 cm (11 5/8 × 19 1/2 in.); Mount: 38.2 × 55.9 cm (15 1/16 × 22 1/16 in.)`,
+  title: `Bow harp`,
+  type: `Music, harp`,
+  date: `ca. 2030–1640 B.C.`,
+  registration: `544242`,
+  location: `Gallery 109`,
+  discipline: `Egyptian Art`,
+  category: ``,
+  description: `Bow harp. Music, harp. Wood, paint. Egyptian Art. Middle Kingdom. ca. 2030–1640 B.C.`,
+  medium: `Wood, paint`,
+  artist: ``,
+  culture: ``,
+  dimensions: `L. 81.4 cm (32 1/16 in); W. 26.4 cm (10 3/8 in.)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `All rights reserved`,
-  source_url: `https://www.artic.edu/artworks/100084`,
-  institution: `Art Institute of Chicago`
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.metmuseum.org/art/collection/search/544242`,
+  institution: `The Metropolitan Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1180,7 +1207,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_aic',
+      collection: 'archai_met',
       text,
       authorType: 'visitor',
     }),

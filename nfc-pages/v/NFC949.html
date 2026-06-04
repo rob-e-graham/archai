@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Drawing — ARCHAI</title>
+<title>Frieze of Dancers — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2011ER6465/full/!600,600/0/default.jpg" alt="Drawing" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1946.83/1946.83_web.jpg" alt="Frieze of Dancers" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Drawing</div>
-  <div class="v-sub">Drawing · 1967 · CIRC.1068-1967</div>
+  <div class="v-title">Frieze of Dancers</div>
+  <div class="v-sub">Painting · c. 1895 · 1946.83</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Drawing</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Drawing</strong> — Drawing. Drawing. Made by H.W. Kapitski. 1967. Prints &amp; Drawings Study Room, level C</div>
+  <div class="v-story"><strong>Frieze of Dancers</strong> — This painting may depict a single dancer seen from four different viewpoints. The young woman is placed in an undefined setting, surrounded by mere wisps of color, applied so spontaneously that the paint ran and dripped. Degas even added the circles in the foreground with his thumb. Such audacity, w…</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +821,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">CIRC.1068-1967</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">H.W. Kapitski</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1967</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, level C</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1946.83</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Edgar Degas (French, 1834–1917)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oil on fabric</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, 19th century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1895</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Framed: 103 x 233.5 x 7 cm (40 9/16 x 91 15/16 x 2 3/4 in.); Unframed: 70 x 200.5 cm (27 9/16 x 78 15/16 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">222 Impressionism &amp; Post-Impressionism</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +848,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC947.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/hjmvH/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Gulden voor Nederlands Indi&amp;#235;, 1802</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100085</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4322/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">LEAN ON FIVE</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.273-2020</div>
       </a>
       <a class="v-rel-card" href="NFC948.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1968.191/1968.191_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Solidarity</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1968.191</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HA5033/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Modern Lovers</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.268-2014</div>
       </a>
       <a class="v-rel-card" href="NFC950.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2015HU1287/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">au W11K</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CD.37-2015</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/634225/123274-1-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Paisagem</div>
+        <div class="v-rel-meta">Brasiliana Museus · paisagem-2</div>
       </a>
       <a class="v-rel-card" href="NFC951.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/619606/preview" loading="lazy"></div>
-        <div class="v-rel-title">One Sen</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · NU006390</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fbdh-rd.bne.es%2Fpdf.raw%3Fquery%3Did%3A0000033674%26page%3D1%26jpeg%3Dtrue&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Geographical Letter or Gerl Map. of the villages, mountains and their principals. groves. and extensions., justicias, guardas q. They guard them, neighbors., matris. and embars. q. They comprise the Province of Marina of Seville, according to the Ynspon. of year 1754, one of the q. They compose the Yntena. Gerl. de Cadiz, execuo. with Rl. Apron. pr. the Yngenro. Extracts. de S.M. Dn. Joseph Espelius [Mapping Material]</div>
+        <div class="v-rel-meta">Europeana · /2022717/bnesearch_detalle_bdh0000033674</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +878,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1033905/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1946.83" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,26 +909,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Drawing`,
-  type: `Drawing`,
-  date: `1967`,
-  registration: `CIRC.1068-1967`,
-  location: `Prints & Drawings Study Room, level C`,
-  discipline: `Drawing`,
-  category: `Drawing`,
-  description: `Drawing. Drawing. Made by H.W. Kapitski. 1967. Prints & Drawings Study Room, level C`,
-  medium: ``,
-  artist: `H.W. Kapitski`,
-  culture: ``,
-  dimensions: ``,
+  title: `Frieze of Dancers`,
+  type: `Painting`,
+  date: `c. 1895`,
+  registration: `1946.83`,
+  location: `222 Impressionism & Post-Impressionism`,
+  discipline: `Modern European Painting and Sculpture`,
+  category: `Painting`,
+  description: `This painting may depict a single dancer seen from four different viewpoints. The young woman is placed in an undefined setting, surrounded by mere wisps of color, applied so spontaneously that the paint ran and dripped. Degas even added the circles in the foreground with his thumb. Such audacity, while acceptable in a small sketch, must have shocked the artist's contemporaries when presented on a six-foot canvas. Equally radical is the idea of combining multiple views of a single figure. Degas's unusual presentation may have been inspired by the photographs of Eadweard Muybridge (1830-1904)`,
+  medium: `oil on fabric`,
+  artist: `Edgar Degas (French, 1834–1917)`,
+  culture: `France, 19th century`,
+  dimensions: `Framed: 103 x 233.5 x 7 cm (40 9/16 x 91 15/16 x 2 3/4 in.); Unframed: 70 x 200.5 cm (27 9/16 x 78 15/16 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1033905/`,
-  institution: `Victoria and Albert Museum, London`
+  did_you_know: `The ballet is a subject Degas returned to again and again over the course of his career. Rather than public performances, he often depicted dancers behind the curtain, practicing, waiting, or, as in this painting, lacing up their shoes.`,
+  provenance: `[{"description":"(Durand-Ruel, Paris, France, acquired from the artist and sold to Paul Cassier the same day)","citations":[],"footnotes":[],"date":"September 19,1904","sortorder":1},{"description":"(Paul Cassirer, Berlin Germany, sold to Max Liebermann)","citations":[],"footnotes":[],"date":"Novemb…`,
+  tombstone: `Frieze of Dancers, c. 1895. Edgar Degas (French, 1834–1917). Oil on fabric; framed: 103 x 233.5 x 7 cm (40 9/16 x 91 15/16 x 2 3/4 in.); unframed: 70 x 200.5 cm (27 9/16 x 78 15/16 in.). The Cleveland Museum of Art, Gift of the Hanna Fund, 1946.83`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://clevelandart.org/art/1946.83`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1173,7 +1210,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

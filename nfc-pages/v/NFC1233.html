@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Philips No. 2514 — ARCHAI</title>
+<title>Oscillon 40 — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2006AL4513/full/!600,600/0/default.jpg" alt="Philips No. 2514" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2009BX6575/full/!600,600/0/default.jpg" alt="Oscillon 40" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Philips No. 2514</div>
-  <div class="v-sub">Radio receiver · 1928 · W.3&amp;A-1978</div>
+  <div class="v-title">Oscillon 40</div>
+  <div class="v-sub">Photograph · 1952 · E.958-2008</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Radio receiver</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Photograph</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Philips No. 2514</strong> — Philips No. 2514. Radio receiver. Made by Kalff, Louis Christiaan. 1928. Made in Eindhoven. In Store</div>
+  <div class="v-story"><strong>Oscillon 40</strong> — Oscillon 40. Photograph. Made by Laposky, Ben. 1952. Made in United States. Prints &amp; Drawings Study Room, level C</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +821,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">W.3&amp;A-1978</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Kalff, Louis Christiaan</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Radio receiver</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Radio receiver</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1928</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In Store</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Radio receiver</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.958-2008</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Laposky, Ben</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1952</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, level C</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +845,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1231.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/MIDP89.4.2898.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Guanzi (管子 )</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 505407</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/80607?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">box</div>
+        <div class="v-rel-meta">Auckland Museum · 1995x2.171</div>
       </a>
       <a class="v-rel-card" href="NFC1232.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4303/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">ADDED CHARACTER</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.253-2020</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/pcmez/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Filips de Goede, hertog van Bourgondie, rekenpenning van het hertogdom Brabant</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010042</div>
       </a>
       <a class="v-rel-card" href="NFC1234.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2026PP7677/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Philips Television</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.324-2026</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_530/v1724382423/v2/prod/small/001501_002000/001716_003.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Thoughts Across the Lands</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2013.271</div>
       </a>
       <a class="v-rel-card" href="NFC1235.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AF3344/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Batger's Television Crackers</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.1038-2003</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fbdh-rd.bne.es%2Fpdf.raw%3Fquery%3Did%3A0000042362%26page%3D1%26jpeg%3Dtrue&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">[La Virgen del pez] [Material gráfico]</div>
+        <div class="v-rel-meta">Europeana · /2022717/bnesearch_detalle_bdh0000042362</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +875,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O321100/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O187634/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,16 +906,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Philips No. 2514`,
-  type: `Radio receiver`,
-  date: `1928`,
-  registration: `W.3&A-1978`,
-  location: `In Store`,
-  discipline: `Radio receiver`,
-  category: `Radio receiver`,
-  description: `Philips No. 2514. Radio receiver. Made by Kalff, Louis Christiaan. 1928. Made in Eindhoven. In Store`,
+  title: `Oscillon 40`,
+  type: `Photograph`,
+  date: `1952`,
+  registration: `E.958-2008`,
+  location: `Prints & Drawings Study Room, level C`,
+  discipline: `Photograph`,
+  category: `Photograph`,
+  description: `Oscillon 40. Photograph. Made by Laposky, Ben. 1952. Made in United States. Prints & Drawings Study Room, level C`,
   medium: ``,
-  artist: `Kalff, Louis Christiaan`,
+  artist: `Laposky, Ben`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -890,7 +924,7 @@ const OBJECT = {
   provenance: ``,
   tombstone: ``,
   licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O321100/`,
+  source_url: `https://collections.vam.ac.uk/item/O187634/`,
   institution: `Victoria and Albert Museum, London`
 };
 

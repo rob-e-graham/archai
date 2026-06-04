@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Tipografia, Studio di costume — ARCHAI</title>
+<title>envelope — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2013GK3857/full/!600,600/0/default.jpg" alt="Tipografia, Studio di costume" loading="eager">
+  <img src="https://api.aucklandmuseum.com/id/media/v/44278?rendering=standard.jpg" alt="envelope" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Tipografia, Studio di costume</div>
-  <div class="v-sub">Print · ca.1980 · S.1155-1982</div>
+  <div class="v-title">envelope</div>
+  <div class="v-sub">ecrm:E22_Man-Made_Object · 1938 · 2004.47.7</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Print</span>
+    <span class="v-meta-tag mv">Auckland Museum</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
+    <span class="v-meta-tag">Social History</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Tipografia, Studio di costume</strong> — Tipografia, Studio di costume. Print. Made by Giacomo Balla. ca.1980. Made in Pesaro. In Store</div>
+  <div class="v-story"><strong>envelope</strong> — envelope, opening day new Post Office, Devonport</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
+      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +821,15 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">S.1155-1982</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Giacomo Balla</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca.1980</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In Store</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2004.47.7</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1938</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +844,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1007.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP302568.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Clarinet in B-flat</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 503669</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2012FK3671/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Alhambra</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · 34773</div>
       </a>
       <a class="v-rel-card" href="NFC1008.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/157636?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">runner, table and wall pocket</div>
-        <div class="v-rel-meta">Auckland Museum · col.2619</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP302694.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Sō Sām Sāi</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 500928</div>
       </a>
       <a class="v-rel-card" href="NFC1010.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/AOycf/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Wijnpenning van Utrecht</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100431</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1917.42/1917.42_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">The Thinker</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1917.42</div>
       </a>
       <a class="v-rel-card" href="NFC1011.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/bc03f8ff-68ed-b6d4-7e5f-edc26dc80c88/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Art Institute of Chicago II, Chicago</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 117271</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627902122/v2/prod/small/005501_006000/005791_009.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Schematic design model, Verbena Heights (1992–1997), Hong Kong</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2018.5</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +874,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1260513/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/606282" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,16 +905,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Tipografia, Studio di costume`,
-  type: `Print`,
-  date: `ca.1980`,
-  registration: `S.1155-1982`,
-  location: `In Store`,
-  discipline: `Print`,
-  category: `Print`,
-  description: `Tipografia, Studio di costume. Print. Made by Giacomo Balla. ca.1980. Made in Pesaro. In Store`,
+  title: `envelope`,
+  type: `ecrm:E22_Man-Made_Object`,
+  date: `1938`,
+  registration: `2004.47.7`,
+  location: `Auckland Museum`,
+  discipline: `Social History`,
+  category: `ecrm:E22_Man-Made_Object`,
+  description: `envelope, opening day new Post Office, Devonport`,
   medium: ``,
-  artist: `Giacomo Balla`,
+  artist: ``,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -889,9 +922,9 @@ const OBJECT = {
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1260513/`,
-  institution: `Victoria and Albert Museum, London`
+  licence: `© Auckland Museum CC BY`,
+  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/606282`,
+  institution: `Auckland Museum`
 };
 
 // Build rich context from available fields
@@ -1173,7 +1206,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_auckland',
       text,
       authorType: 'visitor',
     }),

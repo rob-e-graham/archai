@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Tankard — ARCHAI</title>
+<title>au W11K — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2006AB0878/full/!600,600/0/default.jpg" alt="Tankard" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2015HU1287/full/!600,600/0/default.jpg" alt="au W11K" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Tankard</div>
-  <div class="v-sub">Tankard · ca. 1710-1713 · C.22-2006</div>
+  <div class="v-title">au W11K</div>
+  <div class="v-sub">Mobile telephone · 2003 · CD.37-2015</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Tankard</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Mobile telephone</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Tankard</strong> — Tankard. Tankard. Made by Meissen porcelain factory. ca. 1710-1713. Made in Meissen. Ceramics, Room 145</div>
+  <div class="v-story"><strong>au W11K</strong> — au W11K. Mobile telephone. Made by Fukasawa, Naoto. 2003. in storage</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +821,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">C.22-2006</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Meissen porcelain factory</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Tankard</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Tankard</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca. 1710-1713</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Ceramics, Room 145</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Tankard</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">CD.37-2015</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Fukasawa, Naoto</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Mobile telephone</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Mobile telephone</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2003</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">in storage</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Mobile telephone</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +845,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC792.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1665253825/v2/prod/small/007001_007500/007189_002.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Album cover, Elisa Chan: 'Elisa Chan'</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2017.206</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/EyChz/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Nederlandse gulden, 1848</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100262</div>
       </a>
       <a class="v-rel-card" href="NFC793.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627830750/v2/prod/small/006501_007000/006784_001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Printing proof, 'No Matter What You’re Looking for…Take MTR', Mass Transit Railway Corporation (Eating Version)</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2017.143</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fbdh-rd.bne.es%2Fpdf.raw%3Fquery%3Did%3A0000174166%26page%3D1%26jpeg%3Dtrue&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">[Chained Prometheus in the Caucasus] [Graphic Material]</div>
+        <div class="v-rel-meta">Europeana · /2022717/bnesearch_detalle_bdh0000174166</div>
       </a>
       <a class="v-rel-card" href="NFC795.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/79867088-7d38-b14c-eb7d-4390368d19a0/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Chicago Landscape #205</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 100084</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/eg/original/DP345112.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Bow harp</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 544242</div>
       </a>
       <a class="v-rel-card" href="NFC796.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669323/006236.jpg" loading="lazy"></div>
-        <div class="v-rel-title">[paisagem com lago e patos]</div>
-        <div class="v-rel-meta">Brasiliana Museus · paisagem-com-lago-e-patos</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018KY2056/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Radio</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.45-1983</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +875,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O227406/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1324855/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,16 +906,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Tankard`,
-  type: `Tankard`,
-  date: `ca. 1710-1713`,
-  registration: `C.22-2006`,
-  location: `Ceramics, Room 145`,
-  discipline: `Tankard`,
-  category: `Tankard`,
-  description: `Tankard. Tankard. Made by Meissen porcelain factory. ca. 1710-1713. Made in Meissen. Ceramics, Room 145`,
+  title: `au W11K`,
+  type: `Mobile telephone`,
+  date: `2003`,
+  registration: `CD.37-2015`,
+  location: `in storage`,
+  discipline: `Mobile telephone`,
+  category: `Mobile telephone`,
+  description: `au W11K. Mobile telephone. Made by Fukasawa, Naoto. 2003. in storage`,
   medium: ``,
-  artist: `Meissen porcelain factory`,
+  artist: `Fukasawa, Naoto`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -890,7 +924,7 @@ const OBJECT = {
   provenance: ``,
   tombstone: ``,
   licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O227406/`,
+  source_url: `https://collections.vam.ac.uk/item/O1324855/`,
   institution: `Victoria and Albert Museum, London`
 };
 

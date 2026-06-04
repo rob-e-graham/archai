@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Mehit-em-Wesekht and Sarcophagus — ARCHAI</title>
+<title>Chain — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://media.tepapa.govt.nz/collection/45564/preview" alt="Mehit-em-Wesekht and Sarcophagus" loading="eager">
+  <img src="https://res.cloudinary.com/mplustms/image/upload/w_667/v1714185358/v2/prod/small/002501_003000/002758_003.jpg" alt="Chain" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Mehit-em-Wesekht and Sarcophagus</div>
-  <div class="v-sub">sarcophagi · circa 300 BCE · FE003200</div>
+  <div class="v-title">Chain</div>
+  <div class="v-sub">Sculpture · 1979 · 2012.34</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
-    <span class="v-meta-tag lic">CC BY-NC-ND 4.0 · metadata CC BY 4.0</span>
-    <span class="v-meta-tag">History</span>
+    <span class="v-meta-tag mv">M+, Hong Kong</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">Visual Art</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Mehit-em-Wesekht and Sarcophagus</strong> — Mehit-em-Wesekht and Sarcophagus , circa 300 BCE, Egypt, maker unknown. Gift of Charles Rooking Carter, 1885. CC BY-NC-ND 4.0 . Te Papa (FE003200)</div>
+  <div class="v-story"><strong>Chain</strong> — Wooden sculpture. A carved hand grips a neck above its chain necklace on a knob of wood resembling the ornamental head on an oversized walking stick.</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Wang Keping · © Wang Keping</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,17 +821,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">FE003200</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Unknown</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">sycamore, gesso, linen, gold, pigment</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Egypt, Ptolemaic</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">sarcophagi</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">circa 300 BCE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 550mm (width), 1890mm (height), 460mm (length)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">sarcophagi</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC BY-NC-ND 4.0 · metadata CC BY 4.0</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2012.34</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Wang Keping</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">wood</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Chinese</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Visual Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1979</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">overall: 53 × 37 × 13.2 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Wang Keping · © Wang Keping</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -814,24 +848,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC084.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/HaChh/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Wijnpenning van Utrecht</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100434</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_986/v1719854106/v2/prod/small/007001_007500/007145_003.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Panchiao, Taiwan 1962</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2017.220</div>
       </a>
       <a class="v-rel-card" href="NFC085.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/39/377639-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Tray Five - Printing Type, Wood, 30 Line Gothic</div>
-        <div class="v-rel-meta">Museums Victoria · HT 25692</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2009BX5459/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Composite Oscillons</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.957-2008</div>
       </a>
       <a class="v-rel-card" href="NFC087.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/gNFnS/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Karel de Stoute, hertog van Bourgondie, rekenpenning van het hertogdom Brabant</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010043</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP-41021-001.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Shakuhachi</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 500684</div>
       </a>
       <a class="v-rel-card" href="NFC088.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/5f5c2382-32bd-da59-35b3-223b38e56f89/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Untitled</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 158461</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018LA6477/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Murphy A58V</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.41-1983</div>
       </a></div>
   </div>
 </div>
@@ -844,7 +878,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/149587" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/chain-201234/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -875,26 +909,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Mehit-em-Wesekht and Sarcophagus`,
-  type: `sarcophagi`,
-  date: `circa 300 BCE`,
-  registration: `FE003200`,
-  location: `Te Papa Tongarewa, Wellington`,
-  discipline: `History`,
-  category: `sarcophagi`,
-  description: `Mehit-em-Wesekht and Sarcophagus , circa 300 BCE, Egypt, maker unknown. Gift of Charles Rooking Carter, 1885. CC BY-NC-ND 4.0 . Te Papa (FE003200)`,
-  medium: `sycamore, gesso, linen, gold, pigment`,
-  artist: `Unknown`,
-  culture: `Egypt, Ptolemaic`,
-  dimensions: `Overall: 550mm (width), 1890mm (height), 460mm (length)`,
-  wall_description: ``,
+  title: `Chain`,
+  type: `Sculpture`,
+  date: `1979`,
+  registration: `2012.34`,
+  location: `M+, Hong Kong`,
+  discipline: `Visual Art`,
+  category: `Sculpture`,
+  description: `Wooden sculpture. A carved hand grips a neck above its chain necklace on a knob of wood resembling the ornamental head on an oversized walking stick.`,
+  medium: `wood`,
+  artist: `Wang Keping`,
+  culture: `Chinese`,
+  dimensions: `overall: 53 × 37 × 13.2 cm`,
+  wall_description: `Wooden sculpture. A carved hand grips a neck above its chain necklace on a knob of wood resembling the ornamental head on an oversized walking stick.`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Mehit-em-Wesekht and Sarcophagus, circa 300 BCE, Egypt, maker unknown. Gift of Charles Rooking Carter, 1885. CC BY-NC-ND 4.0. Te Papa (FE003200)`,
-  licence: `CC BY-NC-ND 4.0 · metadata CC BY 4.0`,
-  source_url: `https://collections.tepapa.govt.nz/object/149587`,
-  institution: `Museum of New Zealand Te Papa Tongarewa`
+  tombstone: `Chain. Wang Keping. 1979. M+, Hong Kong`,
+  licence: `CC0 metadata · M+ API service non-commercial · © Wang Keping`,
+  source_url: `https://www.mplus.org.hk/en/collection/objects/chain-201234/`,
+  institution: `M+, Hong Kong`
 };
 
 // Build rich context from available fields
@@ -1176,7 +1210,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_tepapa',
+      collection: 'archai_mplus',
       text,
       authorType: 'visitor',
     }),

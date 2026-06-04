@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Vila Rica — ARCHAI</title>
+<title>tea service — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680105/807-1-scaled.jpg" alt="Vila Rica" loading="eager">
+  <img src="https://api.aucklandmuseum.com/id/media/v/260834?rendering=standard.jpg" alt="tea service" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Vila Rica</div>
-  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · 1893 · vila-rica</div>
+  <div class="v-title">tea service</div>
+  <div class="v-sub">Service, Tea · 22 Apr 1913 · 2014.26.3</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Brasiliana Museus</span>
-    <span class="v-meta-tag lic">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span>
-    <span class="v-meta-tag">Brasiliana Museus</span>
+    <span class="v-meta-tag mv">Auckland Museum</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
+    <span class="v-meta-tag">Applied Arts and Design</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Vila Rica</strong> — Em primeiro plano, vegetação. Do lado esquerdo, igreja circundada por algumas moradias. Ao fundo, recortes de montanhas na cor marrom. Céu amarelado com nuvens vermelhas. Moldura em madeira dourada.</div>
+  <div class="v-story"><strong>tea service</strong> — Royal Paragon demitasse service, reproduction of a service made for Queen Mary, 22 April 1913. This consists of six cups, six saucers. One of the saucers has been repaired.</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
+      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,16 +821,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">vila-rica</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1893</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 22,00 cm · largura 10,00 cm</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2014.26.3</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Bone China, Porcelain, Ceramic, &lt;ceramic And Ceramic Products&gt;, &lt;clay Products&gt;, &lt;clay And Clay Products&gt;</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Applied Arts and Design</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Service, Tea</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">22 Apr 1913</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Service, Tea</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -813,24 +845,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC132.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fbdh-rd.bne.es%2Fpdf.raw%3Fquery%3Did%3A0000207646%26page%3D1%26jpeg%3Dtrue&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">[Ciro el Grande y torso masculino]</div>
-        <div class="v-rel-meta">Europeana · /2022717/bnesearch_detalle_bdh0000207646</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/BUXWc/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Godfried III met de Bult, hertog van Neder-Lotharingen</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010008</div>
       </a>
       <a class="v-rel-card" href="NFC133.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/e6182f28-0c22-6907-0d8f-ca14a32e653b/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Haunted</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 154149</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_668/v1627862558/v2/prod/small/007001_007500/007236_009.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Kikkoman soy sauce container</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2016.638</div>
       </a>
       <a class="v-rel-card" href="NFC135.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/qBJGT/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Schutterspenning van Leiden</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100438</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/MUS402A.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Orchestral Horn</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 501687</div>
       </a>
       <a class="v-rel-card" href="NFC136.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/1ed3922c-9644-acaf-7092-29c0d045fb53/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Field Museum, Jar of Bullsnakes, Various Dates</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 180592</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/668995/006336.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Barão de Teresópolis</div>
+        <div class="v-rel-meta">Brasiliana Museus · barao-de-teresopolis</div>
       </a></div>
   </div>
 </div>
@@ -843,7 +875,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/vila-rica/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/760071" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -874,26 +906,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Vila Rica`,
-  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  date: `1893`,
-  registration: `vila-rica`,
-  location: `Brasiliana Museus`,
-  discipline: `Brasiliana Museus`,
-  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  description: `Em primeiro plano, vegetação. Do lado esquerdo, igreja circundada por algumas moradias. Ao fundo, recortes de montanhas na cor marrom. Céu amarelado com nuvens vermelhas. Moldura em madeira dourada.`,
-  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  title: `tea service`,
+  type: `Service, Tea`,
+  date: `22 Apr 1913`,
+  registration: `2014.26.3`,
+  location: `Auckland Museum`,
+  discipline: `Applied Arts and Design`,
+  category: `Service, Tea`,
+  description: `Royal Paragon demitasse service, reproduction of a service made for Queen Mary, 22 April 1913. This consists of six cups, six saucers. One of the saucers has been repaired.`,
+  medium: `Bone China, Porcelain, Ceramic, <ceramic And Ceramic Products>, <clay Products>, <clay And Clay Products>`,
   artist: ``,
-  culture: `Brazil`,
-  dimensions: `altura 22,00 cm · largura 10,00 cm`,
-  wall_description: `Em primeiro plano, vegetação. Do lado esquerdo, igreja circundada por algumas moradias. Ao fundo, recortes de montanhas na cor marrom. Céu amarelado com nuvens vermelhas. Moldura em madeira dourada.`,
+  culture: ``,
+  dimensions: ``,
+  wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Vila Rica. 1893. Brasiliana Museus`,
-  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
-  source_url: `https://brasiliana.museus.gov.br/acervos/vila-rica/`,
-  institution: `Brasiliana Museus`
+  tombstone: ``,
+  licence: `© Auckland Museum CC BY`,
+  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/760071`,
+  institution: `Auckland Museum`
 };
 
 // Build rich context from available fields
@@ -1175,7 +1207,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_brasiliana',
+      collection: 'archai_auckland',
       text,
       authorType: 'visitor',
     }),

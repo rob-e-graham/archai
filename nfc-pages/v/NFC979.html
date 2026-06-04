@@ -207,6 +207,33 @@ body::after {
 }
 .v-story strong { color: var(--text); font-weight: 400; }
 
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
+
 /* ── DIVIDER ── */
 .v-divider {
   height: 1px;
@@ -744,7 +771,7 @@ body::after {
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Brasiliana Museus</span>
-    <span class="v-meta-tag lic">Domínio público, ver http://museuregionalcasadosottoni.acervos.museus.gov.br/reproducao-de-imagens/</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
     <span class="v-meta-tag">Brasiliana Museus</span>
   </div>
 
@@ -757,6 +784,11 @@ body::after {
   </div>
 
   <div class="v-story"><strong>Estampa religiosa</strong> — Litogravura colorida, representando sacra central, com a Glória, o Credo, o Ofertório, a Consagração e as três orações da comunhão, de formato horizontal, com três textos inseridos em estruturas quadrangular e retangulares, encimados por cenas religiosas com parte superior  parte central, em primeir…</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://museuregionalcasadosottoni.acervos.museus.gov.br/reproducao-de-imagens/</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -797,7 +829,9 @@ body::after {
     <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Século XIX</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.4 estampa</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">Domínio público, ver http://museuregionalcasadosottoni.acervos.museus.gov.br/reproducao-de-imagens/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://museuregionalcasadosottoni.acervos.museus.gov.br/reproducao-de-imagens/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -812,24 +846,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC977.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2022.342/2022.342_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Untitled (Semi-Circle of Children, Central Girl Dressed as an Angel Holding the Baby Jesus)</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2022.342</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fbdh-rd.bne.es%2Fpdf.raw%3Fquery%3Did%3A0000207901%26page%3D1%26jpeg%3Dtrue&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">[La abundancia]</div>
+        <div class="v-rel-meta">Europeana · /2022717/bnesearch_detalle_bdh0000207901</div>
       </a>
       <a class="v-rel-card" href="NFC978.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fsammlungenonline.albertina.at%2Fcc%2Fimageproxy.ashx%3Fserver%3Dlocalhost%26port%3D15001%26filename%3Dimages%2FFotoKaGLV2000_374.jpg%26cache%3Dyes%26maxwidth%3D400&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Travel camera - 13 x 18 cm, with double anastigmat lens by Carl Zeiss, Jena, No. 484, 1: 12.5, F = 285 mm (D.R.P 56,109, No. 34103) and 1: 12.5 F = 224 mm (D.R.P. 56109, No. 30425) respectively, connected to Tubus D.R.P. 84 996; 3 bookcases with 5 (9 x 12) inserts, spare lens board, in Kofferetui</div>
-        <div class="v-rel-meta">Europeana · /15508/FotoKaGLV2000_374</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%2Fwebclient%2FDeliveryManager%3Fpid%3D6355695%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Servizio fotografico Firenze, 1957-1956</div>
+        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6355695_custom_att_2_simple_viewer</div>
       </a>
       <a class="v-rel-card" href="NFC980.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669499/6193-scaled.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Juramento Constitucional da Princesa Isabel</div>
-        <div class="v-rel-meta">Brasiliana Museus · juramento-constitucional-da-princesa-isabel</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP-12679-081.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Parade Trumpet</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 504061</div>
       </a>
       <a class="v-rel-card" href="NFC981.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fbdh-rd.bne.es%2Fpdf.raw%3Fquery%3Did%3A0000174166%26page%3D1%26jpeg%3Dtrue&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">[Chained Prometheus in the Caucasus] [Graphic Material]</div>
-        <div class="v-rel-meta">Europeana · /2022717/bnesearch_detalle_bdh0000174166</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2019.244/2019.244_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Jack-in-the-Pulpit Vase</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 2019.244</div>
       </a></div>
   </div>
 </div>

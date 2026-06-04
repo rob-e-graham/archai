@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>banknote — ARCHAI</title>
+<title>jug — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/379330?rendering=standard.jpg" alt="banknote" loading="eager">
+  <img src="https://api.aucklandmuseum.com/id/media/v/15127?rendering=standard.jpg" alt="jug" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">banknote</div>
-  <div class="v-sub">banknote · 1809 · 30780</div>
+  <div class="v-title">jug</div>
+  <div class="v-sub">Jug, Serving · 1997-04-03T00:00:00.000Z · 1994X1.229</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Auckland Museum</span>
-    <span class="v-meta-tag lic">© Auckland Museum CC BY</span>
-    <span class="v-meta-tag">Social History</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
+    <span class="v-meta-tag">Applied Arts and Design</span>
   </div>
 
   <!-- SHARE -->
@@ -756,8 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>banknote</strong> — Newark Bank one pound note; printed in black then sections handwritten in.
-Dated 22 April 1809</div>
+  <div class="v-story"><strong>jug</strong> — jug, moulded, floral decoration, gilt rim</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
+      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -790,14 +821,16 @@ Dated 22 April 1809</div>
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">30780</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Paper (fiber Product), &lt;fiber Products&gt;, &lt;fiber And Fiber Products&gt;, &lt;materials By Physical Form&gt;, &lt;materials By Form&gt;, Aat Materials</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Note, Bank</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1809</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1994X1.229</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Ceramic, &lt;ceramic And Ceramic Products&gt;, &lt;clay Products&gt;, &lt;clay And Clay Products&gt;, Inorganic Material, &lt;materials By Composition&gt;</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Applied Arts and Design</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Jug, Serving</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1997-04-03T00:00:00.000Z</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">banknote</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Jug, Serving</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -812,24 +845,24 @@ Dated 22 April 1809</div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC011.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1991.163/1991.163_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">The Young Eastern Woman</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1991.163</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669046/006323.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Maria Isabel de Albuquerque Maranhão</div>
+        <div class="v-rel-meta">Brasiliana Museus · maria-isabel-de-albuquerque-maranhao</div>
       </a>
       <a class="v-rel-card" href="NFC012.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/eFveJ/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Afslag op zilveren Brabantse patagon uit 1622 van een duit voor Nederlands Indi&amp;#235; uit Gelderland, 1805</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100083</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/345934/preview" loading="lazy"></div>
+        <div class="v-rel-title">Soldier doll</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH016389</div>
       </a>
       <a class="v-rel-card" href="NFC014.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627822927/v2/prod/small/008001_008500/008351_003.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Kowloon Walled City—Children on Rooftop</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2018.2</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/124658/preview" loading="lazy"></div>
+        <div class="v-rel-title">Musket, flintlock, British, &quot;India Pattern&quot;, 1805</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · DM000006</div>
       </a>
       <a class="v-rel-card" href="NFC015.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/yzUTT/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Dukaat van de Bataafse Republiek op naam van Holland, 1802</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100089</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/45564/preview" loading="lazy"></div>
+        <div class="v-rel-title">Mehit-em-Wesekht and Sarcophagus</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · FE003200</div>
       </a></div>
   </div>
 </div>
@@ -842,7 +875,7 @@ Dated 22 April 1809</div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/55259" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/17834" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -873,16 +906,15 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `banknote`,
-  type: `banknote`,
-  date: `1809`,
-  registration: `30780`,
+  title: `jug`,
+  type: `Jug, Serving`,
+  date: `1997-04-03T00:00:00.000Z`,
+  registration: `1994X1.229`,
   location: `Auckland Museum`,
-  discipline: `Social History`,
-  category: `Note, Bank`,
-  description: `Newark Bank one pound note; printed in black then sections handwritten in.
-Dated 22 April 1809`,
-  medium: `Paper (fiber Product), <fiber Products>, <fiber And Fiber Products>, <materials By Physical Form>, <materials By Form>, Aat Materials`,
+  discipline: `Applied Arts and Design`,
+  category: `Jug, Serving`,
+  description: `jug, moulded, floral decoration, gilt rim`,
+  medium: `Ceramic, <ceramic And Ceramic Products>, <clay Products>, <clay And Clay Products>, Inorganic Material, <materials By Composition>`,
   artist: ``,
   culture: ``,
   dimensions: ``,
@@ -892,7 +924,7 @@ Dated 22 April 1809`,
   provenance: ``,
   tombstone: ``,
   licence: `© Auckland Museum CC BY`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/55259`,
+  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/17834`,
   institution: `Auckland Museum`
 };
 

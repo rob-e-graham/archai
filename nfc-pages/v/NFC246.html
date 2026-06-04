@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Artistic Chicken — ARCHAI</title>
+<title>textile piece, edging — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1635631277/v2/prod/small/001501_002000/001687_065.jpg" alt="Artistic Chicken" loading="eager">
+  <img src="https://api.aucklandmuseum.com/id/media/v/92813?rendering=standard.jpg" alt="textile piece, edging" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Artistic Chicken</div>
-  <div class="v-sub">Sculpture · 2002 · 2013.485</div>
+  <div class="v-title">textile piece, edging</div>
+  <div class="v-sub">ecrm:E22_Man-Made_Object · 19th Century · 1931.521</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">M+, Hong Kong</span>
-    <span class="v-meta-tag lic">CC0 metadata · M+ API service non-commercial · © Duan Jianyu</span>
-    <span class="v-meta-tag">Visual Art</span>
+    <span class="v-meta-tag mv">Auckland Museum</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
+    <span class="v-meta-tag">Social History</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Artistic Chicken</strong> — Eight chicken sculptures made out of fibreglass and resin with a steel armature and acrylic paint. Four chickens stand with their right foot in front, two squat on the ground, and two lie on their back with their feet in the air.</div>
+  <div class="v-story"><strong>textile piece, edging</strong> — textile piece, lace edging, cut from edging of needlerun net, sprigged leaf pattern</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
+      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,17 +821,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2013.485</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Duan Jianyu</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">fiberglass, resin, acrylic paint, and steel armature</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Chinese</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Visual Art</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2002</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">dimensions variable</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Duan Jianyu</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1931.521</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">unknown</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">19th Century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -814,24 +845,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC244.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/675290/003672-1.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Princesa Isabel</div>
-        <div class="v-rel-meta">Brasiliana Museus · princesa-isabel-6</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680178/000791-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Bambual (atribuído)</div>
+        <div class="v-rel-meta">Brasiliana Museus · bambual-atribuido</div>
       </a>
       <a class="v-rel-card" href="NFC245.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/681747/default-49-1-2.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Embarque do Príncipe Regente para o Brasil</div>
-        <div class="v-rel-meta">Brasiliana Museus · embarque-do-principe-regente-para-o-brasil</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/MI19.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Hurdy-Gurdy</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 501646</div>
       </a>
       <a class="v-rel-card" href="NFC247.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PJ3618/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Avebury</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.357-2025</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018LC0483/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Radio</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.20-1977</div>
       </a>
       <a class="v-rel-card" href="NFC248.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/0f9d00f0-3b27-1d9a-3398-4021406f1d12/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Art Conscious</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 120289</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/myyPj/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Cent van Cura&amp;#231;ao, 1943</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100384</div>
       </a></div>
   </div>
 </div>
@@ -844,7 +875,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/artistic-chicken-2013485/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/67871" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -875,26 +906,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Artistic Chicken`,
-  type: `Sculpture`,
-  date: `2002`,
-  registration: `2013.485`,
-  location: `M+, Hong Kong`,
-  discipline: `Visual Art`,
-  category: `Sculpture`,
-  description: `Eight chicken sculptures made out of fibreglass and resin with a steel armature and acrylic paint. Four chickens stand with their right foot in front, two squat on the ground, and two lie on their back with their feet in the air.`,
-  medium: `fiberglass, resin, acrylic paint, and steel armature`,
-  artist: `Duan Jianyu`,
-  culture: `Chinese`,
-  dimensions: `dimensions variable`,
-  wall_description: `Eight chicken sculptures made out of fibreglass and resin with a steel armature and acrylic paint. Four chickens stand with their right foot in front, two squat on the ground, and two lie on their back with their feet in the air.`,
+  title: `textile piece, edging`,
+  type: `ecrm:E22_Man-Made_Object`,
+  date: `19th Century`,
+  registration: `1931.521`,
+  location: `Auckland Museum`,
+  discipline: `Social History`,
+  category: `ecrm:E22_Man-Made_Object`,
+  description: `textile piece, lace edging, cut from edging of needlerun net, sprigged leaf pattern`,
+  medium: ``,
+  artist: `unknown`,
+  culture: ``,
+  dimensions: ``,
+  wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Artistic Chicken. Duan Jianyu. 2002. M+, Hong Kong`,
-  licence: `CC0 metadata · M+ API service non-commercial · © Duan Jianyu`,
-  source_url: `https://www.mplus.org.hk/en/collection/objects/artistic-chicken-2013485/`,
-  institution: `M+, Hong Kong`
+  tombstone: ``,
+  licence: `© Auckland Museum CC BY`,
+  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/67871`,
+  institution: `Auckland Museum`
 };
 
 // Build rich context from available fields
@@ -1176,7 +1207,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_mplus',
+      collection: 'archai_auckland',
       text,
       authorType: 'visitor',
     }),

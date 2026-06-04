@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Electronic clock — ARCHAI</title>
+<title>mittens — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2018LC0094/full/!600,600/0/default.jpg" alt="Electronic clock" loading="eager">
+  <img src="https://api.aucklandmuseum.com/id/media/v/40065?rendering=standard.jpg" alt="mittens" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Electronic clock</div>
-  <div class="v-sub">Electronic clock · 1940s · W.5-1982</div>
+  <div class="v-title">mittens</div>
+  <div class="v-sub">ecrm:E22_Man-Made_Object · 1996-11-11T00:00:00.000Z · col.2624</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Electronic clock</span>
+    <span class="v-meta-tag mv">Auckland Museum</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
+    <span class="v-meta-tag">Social History</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Electronic clock</strong> — Electronic clock. Electronic clock. Made by Vitascope Industries. 1940s. Made in Isle of Man. In Store</div>
+  <div class="v-story"><strong>mittens</strong> — Pair of black machine made lace mittens.</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
+      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +821,15 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">W.5-1982</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Vitascope Industries</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Electronic clock</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Electronic clock</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1940s</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In Store</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Electronic clock</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">col.2624</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1996-11-11T00:00:00.000Z</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +844,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC023.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/40382?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">table, dining</div>
-        <div class="v-rel-meta">Auckland Museum · 1994.112</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fwww.museum-digital.de%2Fdata%2Fmeckpomm%2Fimages%2F201707%2F24125037383.jpg&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Photograph of a flight test by Otto Lilienthal</div>
+        <div class="v-rel-meta">Europeana · /2064125/Museu_ProvidedCHO_museum_digital_143__technical_number_</div>
       </a>
       <a class="v-rel-card" href="NFC024.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1993.236/1993.236_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">The Seine at Bas-Meudon</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1993.236</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/744943/preview" loading="lazy"></div>
+        <div class="v-rel-title">Photograph</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH007298/1</div>
       </a>
       <a class="v-rel-card" href="NFC026.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fbdh-rd.bne.es%2Fpdf.raw%3Fquery%3Did%3A0000198924%26page%3D1%26jpeg%3Dtrue&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Variedad de Trages Españoles y Estrángeros, demostrados en un Bayle. [Material gráfico]</div>
-        <div class="v-rel-meta">Europeana · /2022717/bnesearch_detalle_bdh0000198924</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/wVxmx/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Dirk VI, graaf van Holland</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010011</div>
       </a>
       <a class="v-rel-card" href="NFC027.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/660839/preview" loading="lazy"></div>
-        <div class="v-rel-title">Telegram to Dorothy Broad</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH025613</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/590005?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">textile</div>
+        <div class="v-rel-meta">Auckland Museum · 55420</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +874,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O322018/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/14678" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,16 +905,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Electronic clock`,
-  type: `Electronic clock`,
-  date: `1940s`,
-  registration: `W.5-1982`,
-  location: `In Store`,
-  discipline: `Electronic clock`,
-  category: `Electronic clock`,
-  description: `Electronic clock. Electronic clock. Made by Vitascope Industries. 1940s. Made in Isle of Man. In Store`,
+  title: `mittens`,
+  type: `ecrm:E22_Man-Made_Object`,
+  date: `1996-11-11T00:00:00.000Z`,
+  registration: `col.2624`,
+  location: `Auckland Museum`,
+  discipline: `Social History`,
+  category: `ecrm:E22_Man-Made_Object`,
+  description: `Pair of black machine made lace mittens.`,
   medium: ``,
-  artist: `Vitascope Industries`,
+  artist: ``,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -889,9 +922,9 @@ const OBJECT = {
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O322018/`,
-  institution: `Victoria and Albert Museum, London`
+  licence: `© Auckland Museum CC BY`,
+  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/14678`,
+  institution: `Auckland Museum`
 };
 
 // Build rich context from available fields
@@ -1173,7 +1206,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_auckland',
       text,
       authorType: 'visitor',
     }),

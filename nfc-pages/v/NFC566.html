@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Pont des Arts in Fog and Mist — ARCHAI</title>
+<title>Wallet — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/e0e7456f-dab4-3e60-42f9-3924bd86be2d/full/843,/0/default.jpg" alt="Pont des Arts in Fog and Mist" loading="eager">
+  <img src="https://media.tepapa.govt.nz/collection/75833/preview" alt="Wallet" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Pont des Arts in Fog and Mist</div>
-  <div class="v-sub">Photograph · 1934 · 82586</div>
+  <div class="v-title">Wallet</div>
+  <div class="v-sub">wallets · 1914-1918 · GH003313</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Art Institute of Chicago</span>
-    <span class="v-meta-tag lic">All rights reserved</span>
-    <span class="v-meta-tag">Photography and Media</span>
+    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">History</span>
   </div>
 
   <!-- SHARE -->
@@ -756,8 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Pont des Arts in Fog and Mist</strong> — Pont des Arts in Fog and Mist. Photograph. Gelatin silver print. Photography and Media. Brassaï (Gyula Halász)
-French, born Hungary (now Romania), 1899–1984. gelatin silver (developing-out-paper) pr. 1934. France</div>
+  <div class="v-story"><strong>Wallet</strong> — This leather wallet was collected as a souvenir during the First World War. The front is embossed with the image of the Sphinx and pyramids of Egypt. The back is embossed with a depiction of the 'Mehemed-Aly Mosque Cairo' [Mosque of Muhammad Ali in the Citadel of Cairo].</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -790,18 +821,19 @@ French, born Hungary (now Romania), 1899–1984. gelatin silver (developing-out-
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">82586</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Brassaï (Gyula Halász)
-French, born Hungary (now Romania), 1899–1984</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Gelatin silver print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography and Media</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">gelatin silver (developing-out-paper) pr</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1934</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Image/paper/mount: 49.6 × 40.2 cm (19 9/16 × 15 7/8 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">All rights reserved</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">GH003313</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Unknown</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">leather</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">world wars</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">History</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">wallets</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1914-1918</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 95mm (height), 135mm (length), 8mm (depth)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">wallets</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -816,24 +848,24 @@ French, born Hungary (now Romania), 1899–1984</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC564.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627872212/v2/prod/small/000501_001000/000627_010.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Rover Chair (3.5 litre one-seater)</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2012.1630</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1970.116/1970.116_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Vase</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1970.116</div>
       </a>
       <a class="v-rel-card" href="NFC565.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2022NH4242/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Sorting Song</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CD.2-2023</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/679930/859-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Ruínas de Humaitá</div>
+        <div class="v-rel-meta">Brasiliana Museus · ruinas-de-humaita</div>
       </a>
       <a class="v-rel-card" href="NFC567.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2009CD9461/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Print</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.156-2009</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/64057?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">vase, small</div>
+        <div class="v-rel-meta">Auckland Museum · 22419.1</div>
       </a>
       <a class="v-rel-card" href="NFC568.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP218817.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Flute (Putorino)</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 313818</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/eFveJ/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Afslag op zilveren Brabantse patagon uit 1622 van een duit voor Nederlands Indi&amp;#235; uit Gelderland, 1805</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100083</div>
       </a></div>
   </div>
 </div>
@@ -846,7 +878,7 @@ French, born Hungary (now Romania), 1899–1984</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/82586" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/64958" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -877,28 +909,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Pont des Arts in Fog and Mist`,
-  type: `Photograph`,
-  date: `1934`,
-  registration: `82586`,
-  location: `Art Institute of Chicago`,
-  discipline: `Photography and Media`,
-  category: `gelatin silver (developing-out-paper) pr`,
-  description: `Pont des Arts in Fog and Mist. Photograph. Gelatin silver print. Photography and Media. Brassaï (Gyula Halász)
-French, born Hungary (now Romania), 1899–1984. gelatin silver (developing-out-paper) pr. 1934. France`,
-  medium: `Gelatin silver print`,
-  artist: `Brassaï (Gyula Halász)
-French, born Hungary (now Romania), 1899–1984`,
-  culture: `France`,
-  dimensions: `Image/paper/mount: 49.6 × 40.2 cm (19 9/16 × 15 7/8 in.)`,
-  wall_description: ``,
+  title: `Wallet`,
+  type: `wallets`,
+  date: `1914-1918`,
+  registration: `GH003313`,
+  location: `Te Papa Tongarewa, Wellington`,
+  discipline: `History`,
+  category: `wallets`,
+  description: `This leather wallet was collected as a souvenir during the First World War. The front is embossed with the image of the Sphinx and pyramids of Egypt. The back is embossed with a depiction of the 'Mehemed-Aly Mosque Cairo' [Mosque of Muhammad Ali in the Citadel of Cairo].`,
+  medium: `leather`,
+  artist: `Unknown`,
+  culture: `world wars`,
+  dimensions: `Overall: 95mm (height), 135mm (length), 8mm (depth)`,
+  wall_description: `This leather wallet was collected as a souvenir during the First World War. The front is embossed with the image of the Sphinx and pyramids of Egypt. The back is embossed with a depiction of the 'Mehemed-Aly Mosque Cairo' [Mosque of Muhammad Ali in the Citadel of Cairo].`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `All rights reserved`,
-  source_url: `https://www.artic.edu/artworks/82586`,
-  institution: `Art Institute of Chicago`
+  tombstone: `Wallet, 1914-1918, Egypt, maker unknown. Gift of Mrs M Parsonage, date unknown. CC BY-NC-ND 4.0. Te Papa (GH003313)`,
+  licence: `CC BY-NC-ND 4.0 · metadata CC BY 4.0`,
+  source_url: `https://collections.tepapa.govt.nz/object/64958`,
+  institution: `Museum of New Zealand Te Papa Tongarewa`
 };
 
 // Build rich context from available fields
@@ -1180,7 +1210,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_aic',
+      collection: 'archai_tepapa',
       text,
       authorType: 'visitor',
     }),

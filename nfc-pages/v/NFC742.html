@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Deutsches Hygiene-Museum — ARCHAI</title>
+<title>Flight Patterns — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Ffotothek.slub-dresden.de%2Ffotos%2Fdf_pj_0010830.jpg&amp;type=IMAGE" alt="Deutsches Hygiene-Museum" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2013GC9473/full/!600,600/0/default.jpg" alt="Flight Patterns" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Deutsches Hygiene-Museum</div>
-  <div class="v-sub">IMAGE · Date unknown · /188/item_6BHNIMWZ7OSZVL5GLJPDMGV4QHZO5ERV</div>
+  <div class="v-title">Flight Patterns</div>
+  <div class="v-sub">Art · 2009 · E.1185-2012</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Europeana</span>
-    <span class="v-meta-tag lic">http://rightsstatements.org/vocab/InC-EDU/1.0/</span>
-    
+    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Art</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Deutsches Hygiene-Museum</strong> — Dresden-Altstadt, Lingnerplatz 1 (Deutsches Hygiene-Museum). Serie &quot;Kongreß der Gesellschaften für perinatale Medizin und Pädiatrie der DDR Dresden 1970&quot;. Junge Frau vor der Tür eines Tagungsraumes stehend</div>
+  <div class="v-story"><strong>Flight Patterns</strong> — Flight Patterns. Art. Made by Aaron Koblin. 2009. Made in USA. In store</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,13 +821,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">/188/item_6BHNIMWZ7OSZVL5GLJPDMGV4QHZO5ERV</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Peter, Richard jun. (Herstellung) (Fotograf)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">IMAGE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Date unknown</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Deutsche Fotothek</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">IMAGE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">http://rightsstatements.org/vocab/InC-EDU/1.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.1185-2012</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Aaron Koblin</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2009</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In store</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -810,24 +845,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC740.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP-14777-001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Rabab</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 500716</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP-12679-119.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Trombone</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 504686</div>
       </a>
       <a class="v-rel-card" href="NFC741.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/668829/6379-scaled.jpg" loading="lazy"></div>
-        <div class="v-rel-title">[Choupana com sol ao fundo]</div>
-        <div class="v-rel-meta">Brasiliana Museus · choupana-com-sol-ao-fundo</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627820858/v2/prod/small/007001_007500/007292_013.jpg" loading="lazy"></div>
+        <div class="v-rel-title">my first Sony stereo walkman, model WM-3500</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2016.553</div>
       </a>
       <a class="v-rel-card" href="NFC743.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/e989a1bd-ec49-8bc1-365d-49b3abe32f6c/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Prototype of Social Housing Unit Drawing</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 234674</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/ImHZS/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Holland, zilveren rijder, 1673</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100252</div>
       </a>
       <a class="v-rel-card" href="NFC744.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AE9154/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Furby</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · B.176-2000</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/UelyU/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Schutterspenning van Leiden</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100446</div>
       </a></div>
   </div>
 </div>
@@ -840,7 +875,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.europeana.eu/item/188/item_6BHNIMWZ7OSZVL5GLJPDMGV4QHZO5ERV?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1247173/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -871,16 +906,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Deutsches Hygiene-Museum`,
-  type: `IMAGE`,
-  date: `Date unknown`,
-  registration: `/188/item_6BHNIMWZ7OSZVL5GLJPDMGV4QHZO5ERV`,
-  location: `Deutsche Fotothek`,
-  discipline: ``,
-  category: `IMAGE`,
-  description: `Dresden-Altstadt, Lingnerplatz 1 (Deutsches Hygiene-Museum). Serie "Kongreß der Gesellschaften für perinatale Medizin und Pädiatrie der DDR Dresden 1970". Junge Frau vor der Tür eines Tagungsraumes stehend`,
+  title: `Flight Patterns`,
+  type: `Art`,
+  date: `2009`,
+  registration: `E.1185-2012`,
+  location: `In store`,
+  discipline: `Art`,
+  category: `Art`,
+  description: `Flight Patterns. Art. Made by Aaron Koblin. 2009. Made in USA. In store`,
   medium: ``,
-  artist: `Peter, Richard jun. (Herstellung) (Fotograf)`,
+  artist: `Aaron Koblin`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -888,9 +923,9 @@ const OBJECT = {
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `http://rightsstatements.org/vocab/InC-EDU/1.0/`,
-  source_url: `https://www.europeana.eu/item/188/item_6BHNIMWZ7OSZVL5GLJPDMGV4QHZO5ERV?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb`,
-  institution: `Europeana`
+  licence: `V&A Open Access`,
+  source_url: `https://collections.vam.ac.uk/item/O1247173/`,
+  institution: `Victoria and Albert Museum, London`
 };
 
 // Build rich context from available fields
@@ -1172,7 +1207,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_europeana',
+      collection: 'archai_va',
       text,
       authorType: 'visitor',
     }),

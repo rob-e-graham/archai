@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Uli Sigg (Newspaper Reader) — ARCHAI</title>
+<title>Claude Monet — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://res.cloudinary.com/mplustms/image/upload/w_667/v1627871101/v2/prod/small/002501_003000/002853_008.jpg" alt="Uli Sigg (Newspaper Reader)" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1980.275/1980.275_web.jpg" alt="Claude Monet" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Uli Sigg (Newspaper Reader)</div>
-  <div class="v-sub">Sculpture · 2004 · 2012.59</div>
+  <div class="v-title">Claude Monet</div>
+  <div class="v-sub">Sculpture · late 1800s-early 1900s · 1980.275</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">M+, Hong Kong</span>
-    <span class="v-meta-tag lic">CC0 metadata · M+ API service non-commercial · © Ai Weiwei</span>
-    <span class="v-meta-tag">Visual Art</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Uli Sigg (Newspaper Reader)</strong> — Sculpture made out of waxwork, newspaper, fabric, plastic, and leather depicting art collector Uli Sigg seated on a wooden crate. The figure is in a black shirt, grey suit, and black shoes, and looks down at a folded newspaper resting on his right hand.</div>
+  <div class="v-story"><strong>Claude Monet</strong> — Paul Paulin was a renowned Parisian dentist who had a passion for sculpting and was encouraged by Edgar Degas to pursue an artistic career. Paulin is best known for his portrait busts of notable Impressionists. There are related versions of this portrait bust of the celebrated painter Claude Monet a…</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,17 +821,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2012.59</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Ai Weiwei</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">waxwork, newspaper, fabric, plastic and leather</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Chinese</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Visual Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1980.275</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Paul Paulin (French, 1852–1937)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">bronze, marble base</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, 20th century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2004</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">overall: 108 × 75 × 58 cm</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">late 1800s-early 1900s</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 45.1 cm (17 3/4 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Cleveland Museum of Art</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Ai Weiwei</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -814,24 +848,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC200.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/goxLI/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Vijftigjarige herdenking van de Slag bij Waterloo 1865</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100135</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2011ER6465/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Drawing</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.1068-1967</div>
       </a>
       <a class="v-rel-card" href="NFC201.html">
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2022.42/2022.42_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Black-Figure White-Ground Lekythos (Oil Vessel): Athena between Cocks and Hieropoioi (Officials)</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 2022.42</div>
+      </a>
+      <a class="v-rel-card" href="NFC203.html">
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2024NX9618/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Marigolds</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.767-2024</div>
+      </a>
+      <a class="v-rel-card" href="NFC204.html">
         <div class="v-rel-thumb"><img src="https://iiif.micr.io/QuSod/full/max/0/default.jpg" loading="lazy"></div>
         <div class="v-rel-title">Maximiliaan, aartshertog van Oostenrijk, en Maria, hertogin van Bourgondie, rekenpenning van het hertogdom Brabant</div>
         <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010046</div>
-      </a>
-      <a class="v-rel-card" href="NFC203.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/40307/preview" loading="lazy"></div>
-        <div class="v-rel-title">Shawl</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · PC000149</div>
-      </a>
-      <a class="v-rel-card" href="NFC204.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/xswee/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Wilhelmina Koningin der Nederlanden</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100006</div>
       </a></div>
   </div>
 </div>
@@ -844,7 +878,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/uli-sigg-newspaper-reader-201259/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1980.275" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -875,26 +909,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Uli Sigg (Newspaper Reader)`,
+  title: `Claude Monet`,
   type: `Sculpture`,
-  date: `2004`,
-  registration: `2012.59`,
-  location: `M+, Hong Kong`,
-  discipline: `Visual Art`,
+  date: `late 1800s-early 1900s`,
+  registration: `1980.275`,
+  location: `Cleveland Museum of Art`,
+  discipline: `Modern European Painting and Sculpture`,
   category: `Sculpture`,
-  description: `Sculpture made out of waxwork, newspaper, fabric, plastic, and leather depicting art collector Uli Sigg seated on a wooden crate. The figure is in a black shirt, grey suit, and black shoes, and looks down at a folded newspaper resting on his right hand.`,
-  medium: `waxwork, newspaper, fabric, plastic and leather`,
-  artist: `Ai Weiwei`,
-  culture: `Chinese`,
-  dimensions: `overall: 108 × 75 × 58 cm`,
-  wall_description: `Sculpture made out of waxwork, newspaper, fabric, plastic, and leather depicting art collector Uli Sigg seated on a wooden crate. The figure is in a black shirt, grey suit, and black shoes, and looks down at a folded newspaper resting on his right hand.`,
+  description: `Paul Paulin was a renowned Parisian dentist who had a passion for sculpting and was encouraged by Edgar Degas to pursue an artistic career. Paulin is best known for his portrait busts of notable Impressionists. There are related versions of this portrait bust of the celebrated painter Claude Monet at three museums in Paris: the Petit Palais (plaster), the Musée d'Orsay (bronze), and the Musée Rodin (bronze).`,
+  medium: `bronze, marble base`,
+  artist: `Paul Paulin (French, 1852–1937)`,
+  culture: `France, 20th century`,
+  dimensions: `Overall: 45.1 cm (17 3/4 in.)`,
+  wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: `Uli Sigg (Newspaper Reader). Ai Weiwei. 2004. M+, Hong Kong`,
-  licence: `CC0 metadata · M+ API service non-commercial · © Ai Weiwei`,
-  source_url: `https://www.mplus.org.hk/en/collection/objects/uli-sigg-newspaper-reader-201259/`,
-  institution: `M+, Hong Kong`
+  did_you_know: `In addition to Claude Monet, Paul Paulin also made portrait busts of Edgar Degas, August Renoir, Camille Pissarro, and Auguste Rodin.`,
+  provenance: `[{"description":"Noah L. Butkin [1918-1980] Cleveland, OH, bequeathed to the Cleveland Museum of Art","citations":[],"footnotes":[],"date":"?-1980","sortorder":null},{"description":"The Cleveland Museum of Art, Cleveland, OH","citations":[],"footnotes":[],"date":"1980-","sortorder":2}]`,
+  tombstone: `Claude Monet, late 1800s-early 1900s. Paul Paulin (French, 1852–1937). Bronze, marble base; overall: 45.1 cm (17 3/4 in.). The Cleveland Museum of Art, Bequest of Noah L. Butkin, 1980.275`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://clevelandart.org/art/1980.275`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1176,7 +1210,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_mplus',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

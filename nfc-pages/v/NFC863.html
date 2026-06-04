@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>toy soldier — ARCHAI</title>
+<title>ENOUGH IS PLENTY — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/579878?rendering=standard.jpg" alt="toy soldier" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2014HD4320/full/!600,600/0/default.jpg" alt="ENOUGH IS PLENTY" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">toy soldier</div>
-  <div class="v-sub">ecrm:E22_Man-Made_Object · 2003-07-16T00:00:00.000Z · 1996.165.388</div>
+  <div class="v-title">ENOUGH IS PLENTY</div>
+  <div class="v-sub">Computer-generated drawing · 1969 · E.268-2020</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Auckland Museum</span>
-    <span class="v-meta-tag lic">© Auckland Museum CC BY</span>
-    <span class="v-meta-tag">Social History</span>
+    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Computer-generated drawing</span>
   </div>
 
   <!-- SHARE -->
@@ -756,8 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>toy soldier</strong> — soldier with sword
- semi-flat lead soldier, red jacket, blue trousers, gold trim, cream face, white headdress, blue base.</div>
+  <div class="v-story"><strong>ENOUGH IS PLENTY</strong> — ENOUGH IS PLENTY. Computer-generated drawing. Made by Frederick Hammersley. 1969. Made in America. Prints &amp; Drawings Study Room, level C</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -790,13 +821,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1996.165.388</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2003-07-16T00:00:00.000Z</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.268-2020</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Frederick Hammersley</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Computer-generated drawing</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Computer-generated drawing</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1969</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, level C</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Computer-generated drawing</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +845,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC861.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP-12679-119.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Trombone</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 504686</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/681747/default-49-1-2.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Embarque do Príncipe Regente para o Brasil</div>
+        <div class="v-rel-meta">Brasiliana Museus · embarque-do-principe-regente-para-o-brasil</div>
       </a>
       <a class="v-rel-card" href="NFC862.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/d0f060fd-8ca4-b76a-da94-255027084130/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Installation Plan for Art Institute Exhibition</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 142566</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/BUEuA/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Duit van de Bataafse Republiek op naam van Zeeland, 1796</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100094</div>
       </a>
       <a class="v-rel-card" href="NFC864.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/82bdd399-6d47-5eb4-6897-58cf60795ba2/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Art Institute by the Elevated Lines</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 184018</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fsammlungenonline.albertina.at%2Fcc%2Fimageproxy.ashx%3Fserver%3Dlocalhost%26port%3D15001%26filename%3Dimages%2FFotoGLV2000_7937.jpg%26cache%3Dyes%26maxwidth%3D400&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Kriminalistische Tatbestandsaufnahme und die zugehörige Kamera</div>
+        <div class="v-rel-meta">Europeana · /15508/FotoGLV2000_7937d</div>
       </a>
       <a class="v-rel-card" href="NFC865.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669016/006331.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Maria Soares Marcelly Peixoto de Brito e Mello</div>
-        <div class="v-rel-meta">Brasiliana Museus · maria-soares-marcelly-peixoto-de-brito-e-mello</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4328/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">CHINESE BOXERS</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.287-2020</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +875,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/589013" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1279566/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,17 +906,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `toy soldier`,
-  type: `ecrm:E22_Man-Made_Object`,
-  date: `2003-07-16T00:00:00.000Z`,
-  registration: `1996.165.388`,
-  location: `Auckland Museum`,
-  discipline: `Social History`,
-  category: `ecrm:E22_Man-Made_Object`,
-  description: `soldier with sword
- semi-flat lead soldier, red jacket, blue trousers, gold trim, cream face, white headdress, blue base.`,
+  title: `ENOUGH IS PLENTY`,
+  type: `Computer-generated drawing`,
+  date: `1969`,
+  registration: `E.268-2020`,
+  location: `Prints & Drawings Study Room, level C`,
+  discipline: `Computer-generated drawing`,
+  category: `Computer-generated drawing`,
+  description: `ENOUGH IS PLENTY. Computer-generated drawing. Made by Frederick Hammersley. 1969. Made in America. Prints & Drawings Study Room, level C`,
   medium: ``,
-  artist: ``,
+  artist: `Frederick Hammersley`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -890,9 +923,9 @@ const OBJECT = {
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `© Auckland Museum CC BY`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/589013`,
-  institution: `Auckland Museum`
+  licence: `V&A Open Access`,
+  source_url: `https://collections.vam.ac.uk/item/O1279566/`,
+  institution: `Victoria and Albert Museum, London`
 };
 
 // Build rich context from available fields
@@ -1174,7 +1207,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_auckland',
+      collection: 'archai_va',
       text,
       authorType: 'visitor',
     }),

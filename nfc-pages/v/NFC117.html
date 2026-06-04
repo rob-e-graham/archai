@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>vessel — ARCHAI</title>
+<title>Blue vase [1] — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/93169?rendering=standard.jpg" alt="vessel" loading="eager">
+  <img src="https://media.tepapa.govt.nz/collection/65848/preview" alt="Blue vase [1]" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">vessel</div>
-  <div class="v-sub">ecrm:E22_Man-Made_Object · 2005-01-07T00:00:00.000Z · 1996x2.103.30</div>
+  <div class="v-title">Blue vase [1]</div>
+  <div class="v-sub">ceramics · 1991 · 1996-0033-29/1-4</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Auckland Museum</span>
-    <span class="v-meta-tag lic">© Auckland Museum CC BY</span>
-    <span class="v-meta-tag">Social History</span>
+    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">Art</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>vessel</strong> — Pharmaceutical glass vessel, open ended; in shape of tube and rubber stopper</div>
+  <div class="v-story"><strong>Blue vase [1]</strong> — I was given the task of paying homage to the clay history of the Expo site and making a site-specific work that was visible over a mezzanine rail from the floor below. I wanted to make the clay fly and develop a life of its own. I was helped by a happy accident. I had a collapse in the kiln of some …</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,13 +821,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1996x2.103.30</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2005-01-07T00:00:00.000Z</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1996-0033-29/1-4</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Richard Parker</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">earthenware, hand coiled, white slip, turquoise glaze</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Spain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ceramics</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1991</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">205mm, 450mm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ceramics</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -810,24 +848,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC115.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/157366/preview" loading="lazy"></div>
-        <div class="v-rel-title">Oil Lamp</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · FE000432</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/358546/preview" loading="lazy"></div>
+        <div class="v-rel-title">Work-Box or Jewellery Box</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH002180</div>
       </a>
       <a class="v-rel-card" href="NFC116.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PG7082/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Synthesizer</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:AMERICASFOUNDATION.2082-2024</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627880851/v2/prod/small/000501_001000/000908_007.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Model, Hebei Education Publishing House (2000–2004), Hebei, China</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2013.76</div>
       </a>
       <a class="v-rel-card" href="NFC118.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2008BT4837/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Analog-Grafik P2 (Pendular Oscillogram)</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.100-2008</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%2Fwebclient%2FDeliveryManager%3Fpid%3D6355702%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Photographic reportage, Florence, 1957-1956</div>
+        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6355702_custom_att_2_simple_viewer</div>
       </a>
       <a class="v-rel-card" href="NFC119.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/DmlTC/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Kalenderpenning op naam van Stadhouder Wiillem V 1767</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100029</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/619970/preview" loading="lazy"></div>
+        <div class="v-rel-title">One Cent</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · NU005369</div>
       </a></div>
   </div>
 </div>
@@ -840,7 +878,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/629444" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/790739" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -871,26 +909,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `vessel`,
-  type: `ecrm:E22_Man-Made_Object`,
-  date: `2005-01-07T00:00:00.000Z`,
-  registration: `1996x2.103.30`,
-  location: `Auckland Museum`,
-  discipline: `Social History`,
-  category: `ecrm:E22_Man-Made_Object`,
-  description: `Pharmaceutical glass vessel, open ended; in shape of tube and rubber stopper`,
-  medium: ``,
-  artist: ``,
-  culture: ``,
-  dimensions: ``,
-  wall_description: ``,
+  title: `Blue vase [1]`,
+  type: `ceramics`,
+  date: `1991`,
+  registration: `1996-0033-29/1-4`,
+  location: `Te Papa Tongarewa, Wellington`,
+  discipline: `Art`,
+  category: `ceramics`,
+  description: `I was given the task of paying homage to the clay history of the Expo site and making a site-specific work that was visible over a mezzanine rail from the floor below. I wanted to make the clay fly and develop a life of its own. I was helped by a happy accident. I had a collapse in the kiln of some smaller pots that left them bent. it rendered them fluid and relieved them of their visual weight. They started to point their toes and raise their chins, so I COULD get these pots to dance. As I worked on the project I assembled a rich soup of ideas that moved backwards and forwards through time. T…`,
+  medium: `earthenware, hand coiled, white slip, turquoise glaze`,
+  artist: `Richard Parker`,
+  culture: `Spain`,
+  dimensions: `205mm, 450mm`,
+  wall_description: `I was given the task of paying homage to the clay history of the Expo site and making a site-specific work that was visible over a mezzanine rail from the floor below. I wanted to make the clay fly and develop a life of its own. I was helped by a happy accident. I had a collapse in the kiln of some smaller pots that left them bent. it rendered them fluid and relieved them of their visual weight. They started to point their toes and raise their chins, so I COULD get these pots to dance. As I work…`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `© Auckland Museum CC BY`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/629444`,
-  institution: `Auckland Museum`
+  tombstone: `Blue vase [1], 1991, Kāeo, by Richard Parker. Commissioned 1991, in partnership with Expo NZ 1992 Ltd and the Queen Elizabeth II Arts Council of New Zealand. © Te Papa. CC BY-NC-ND 4.0. Te Papa (1996-0033-29/1-4)`,
+  licence: `CC BY-NC-ND 4.0 · metadata CC BY 4.0`,
+  source_url: `https://collections.tepapa.govt.nz/object/790739`,
+  institution: `Museum of New Zealand Te Papa Tongarewa`
 };
 
 // Build rich context from available fields
@@ -1172,7 +1210,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_auckland',
+      collection: 'archai_tepapa',
       text,
       authorType: 'visitor',
     }),

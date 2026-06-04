@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>stool — ARCHAI</title>
+<title>fork — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/1081963?rendering=standard.jpg" alt="stool" loading="eager">
+  <img src="https://api.aucklandmuseum.com/id/media/v/140116?rendering=standard.jpg" alt="fork" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">stool</div>
-  <div class="v-sub">Stool · 1884-1907 · 13720</div>
+  <div class="v-title">fork</div>
+  <div class="v-sub">ecrm:E22_Man-Made_Object · 2001-01-05T00:00:00.000Z · 1965.96</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Auckland Museum</span>
-    <span class="v-meta-tag lic">© Auckland Museum CC BY</span>
-    <span class="v-meta-tag">Applied Arts and Design</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
+    <span class="v-meta-tag">Social History</span>
   </div>
 
   <!-- SHARE -->
@@ -756,9 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>stool</strong> — mahogany, scoop-shaped seat on three curved legs in Arts and Crafts style, known as the &quot;Thebes&quot; stool.
-William Birch, a furniture maker of High Wycombe, provided Liberty &amp; Co with chairs and some cabinet furniture at the turn of the century. In 1901 he was joined by E.G. Punnett
-most likely made by…</div>
+  <div class="v-story"><strong>fork</strong> — fork; two pronged carving fork; guard and ring handle; said to have been used as a carving fork</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
+      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -791,14 +821,15 @@ most likely made by…</div>
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">13720</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Mahogany, Hardwood, &lt;wood By Composition Or Origin&gt;, Wood, Botanical (arch), Archaeology</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Applied Arts and Design</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Stool</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1884-1907</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1965.96</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2001-01-05T00:00:00.000Z</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Stool</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -813,24 +844,24 @@ most likely made by…</div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC264.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/77569?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">textile</div>
-        <div class="v-rel-meta">Auckland Museum · T71</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1998.273/1998.273_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Young Girl Seated on Straw, Leaning on a Basket</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1998.273</div>
       </a>
       <a class="v-rel-card" href="NFC265.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fbdh-rd.bne.es%2Fpdf.raw%3Fquery%3Did%3A0000033674%26page%3D1%26jpeg%3Dtrue&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Geographical Letter or Gerl Map. of the villages, mountains and their principals. groves. and extensions., justicias, guardas q. They guard them, neighbors., matris. and embars. q. They comprise the Province of Marina of Seville, according to the Ynspon. of year 1754, one of the q. They compose the Yntena. Gerl. de Cadiz, execuo. with Rl. Apron. pr. the Yngenro. Extracts. de S.M. Dn. Joseph Espelius [Mapping Material]</div>
-        <div class="v-rel-meta">Europeana · /2022717/bnesearch_detalle_bdh0000033674</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2019MA1837/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Kinetic effect lighting system, projector</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.459-1973</div>
       </a>
       <a class="v-rel-card" href="NFC267.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/CUpzO/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Voltooiing van de sluizen te Katwijk 1807, afdruk in karton</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100052</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006BG0459/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Dynatron TV23A Falcon</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.47-1980</div>
       </a>
       <a class="v-rel-card" href="NFC268.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/fWRxp/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Schutterspenning van Middelburg</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100430</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/cdKUq/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van keizer Karel V</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010034</div>
       </a></div>
   </div>
 </div>
@@ -843,7 +874,7 @@ most likely made by…</div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/41" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/66275" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -874,17 +905,15 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `stool`,
-  type: `Stool`,
-  date: `1884-1907`,
-  registration: `13720`,
+  title: `fork`,
+  type: `ecrm:E22_Man-Made_Object`,
+  date: `2001-01-05T00:00:00.000Z`,
+  registration: `1965.96`,
   location: `Auckland Museum`,
-  discipline: `Applied Arts and Design`,
-  category: `Stool`,
-  description: `mahogany, scoop-shaped seat on three curved legs in Arts and Crafts style, known as the "Thebes" stool.
-William Birch, a furniture maker of High Wycombe, provided Liberty & Co with chairs and some cabinet furniture at the turn of the century. In 1901 he was joined by E.G. Punnett
-most likely made by Leonard Wyburd for Liberty & Co c1884`,
-  medium: `Mahogany, Hardwood, <wood By Composition Or Origin>, Wood, Botanical (arch), Archaeology`,
+  discipline: `Social History`,
+  category: `ecrm:E22_Man-Made_Object`,
+  description: `fork; two pronged carving fork; guard and ring handle; said to have been used as a carving fork`,
+  medium: ``,
   artist: ``,
   culture: ``,
   dimensions: ``,
@@ -894,7 +923,7 @@ most likely made by Leonard Wyburd for Liberty & Co c1884`,
   provenance: ``,
   tombstone: ``,
   licence: `© Auckland Museum CC BY`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/41`,
+  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/66275`,
   institution: `Auckland Museum`
 };
 

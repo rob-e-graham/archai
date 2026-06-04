@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Musical box — ARCHAI</title>
+<title>Suzu — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/es/original/ES226.jpg" alt="Musical box" loading="eager">
+  <img src="https://images.metmuseum.org/CRDImages/mi/original/DP353272.jpg" alt="Suzu" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Musical box</div>
-  <div class="v-sub">Musical box · ca. 1820 · 191140</div>
+  <div class="v-title">Suzu</div>
+  <div class="v-sub">Suzu · 17th century · 500655</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
-    <span class="v-meta-tag lic">CC0 — Public Domain</span>
-    <span class="v-meta-tag">European Sculpture and Decorative Arts</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Musical Instruments</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Musical box</strong> — Musical box. Musical box. Gold, enamel, diamonds. European Sculpture and Decorative Arts. Metalwork-Gold and Platinum. ca. 1820</div>
+  <div class="v-story"><strong>Suzu</strong> — Suzu. Suzu. Wood, metal. Musical Instruments. Japanese. Idiophone-Shaken-crotal bell. 17th century</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,15 +821,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">191140</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Gold, enamel, diamonds</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">European Sculpture and Decorative Arts</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Metalwork-Gold and Platinum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca. 1820</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">1 3/8 x 3 1/2 in. (3.5 x 8.9 cm)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 554</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Musical box</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">500655</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Wood, metal</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Japanese</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Idiophone-Shaken-crotal bell</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">17th century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">H. 13 1/2 × Diam. 7 1/2 in. (34.3 × 19 cm)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">The Met, New York</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Suzu</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -812,24 +847,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1235.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AF3344/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Batger's Television Crackers</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.1038-2003</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fbdh-rd.bne.es%2Fpdf.raw%3Fquery%3Did%3A0000042362%26page%3D1%26jpeg%3Dtrue&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">[La Virgen del pez] [Material gráfico]</div>
+        <div class="v-rel-meta">Europeana · /2022717/bnesearch_detalle_bdh0000042362</div>
       </a>
       <a class="v-rel-card" href="NFC1236.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2013GK3855/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Sintesi di Primavera &quot;Angelo&quot;</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · S.1153-1982</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2019MA1838/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Kinetic effect lighting system</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.462-1973</div>
       </a>
       <a class="v-rel-card" href="NFC1238.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680062/default-43-1.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Nossa Senhora das Dores</div>
-        <div class="v-rel-meta">Brasiliana Museus · nossa-senhora-das-dores-18</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627821984/v2/prod/small/005501_006000/005792_007.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Competition model, Shui Chuen O Housing (2000–2001), Hong Kong</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2018.6</div>
       </a>
       <a class="v-rel-card" href="NFC1239.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Ffotothek.slub-dresden.de%2Ffotos%2Fdf_pj_0010782.jpg&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Deutsches Hygiene-Museum</div>
-        <div class="v-rel-meta">Europeana · /188/item_4D37FQQJH4GGV4TSXL752467XYZR6T7S</div>
+        <div class="v-rel-thumb"><img src="https://museuregionalcasadosottoni.acervos.museus.gov.br/wp-content/uploads/2019/04/171_A-2-1-1-4.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Estampa religiosa</div>
+        <div class="v-rel-meta">Brasiliana Museus · 5368641-2</div>
       </a></div>
   </div>
 </div>
@@ -842,7 +877,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/191140" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/500655" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -873,25 +908,25 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Musical box`,
-  type: `Musical box`,
-  date: `ca. 1820`,
-  registration: `191140`,
-  location: `Gallery 554`,
-  discipline: `European Sculpture and Decorative Arts`,
-  category: `Metalwork-Gold and Platinum`,
-  description: `Musical box. Musical box. Gold, enamel, diamonds. European Sculpture and Decorative Arts. Metalwork-Gold and Platinum. ca. 1820`,
-  medium: `Gold, enamel, diamonds`,
+  title: `Suzu`,
+  type: `Suzu`,
+  date: `17th century`,
+  registration: `500655`,
+  location: `The Met, New York`,
+  discipline: `Musical Instruments`,
+  category: `Idiophone-Shaken-crotal bell`,
+  description: `Suzu. Suzu. Wood, metal. Musical Instruments. Japanese. Idiophone-Shaken-crotal bell. 17th century`,
+  medium: `Wood, metal`,
   artist: ``,
-  culture: ``,
-  dimensions: `1 3/8 x 3 1/2 in. (3.5 x 8.9 cm)`,
+  culture: `Japanese`,
+  dimensions: `H. 13 1/2 × Diam. 7 1/2 in. (34.3 × 19 cm)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
   licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/191140`,
+  source_url: `https://www.metmuseum.org/art/collection/search/500655`,
   institution: `The Metropolitan Museum of Art`
 };
 

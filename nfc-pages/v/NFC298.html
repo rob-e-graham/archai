@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Wijnpenning van Utrecht — ARCHAI</title>
+<title>Felix Peixoto de Brito e Mello — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,29 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://iiif.micr.io/kBpAN/full/max/0/default.jpg" alt="Wijnpenning van Utrecht" loading="eager">
+  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669021/006330.jpg" alt="Felix Peixoto de Brito e Mello" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Wijnpenning van Utrecht</div>
-  <div class="v-sub">schutterspenning · 2026-02-14T04:18:12Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
-        &lt;setSpec&gt;261219&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;anoniem&lt;/dc:creator&gt;
-          &lt;dc:creator&gt;anonymous&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1661 · 200100433</div>
+  <div class="v-title">Felix Peixoto de Brito e Mello</div>
+  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · 1861 · felix-peixoto-de-brito-e-mello</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
-    <span class="v-meta-tag lic">https://creativecommons.org/publicdomain/mark/1.0/</span>
-    
+    <span class="v-meta-tag mv">Brasiliana Museus</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Brasiliana Museus</span>
   </div>
 
   <!-- SHARE -->
@@ -767,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Wijnpenning van Utrecht</strong> — Zilveren wijn- en schutterspenning van Utrecht. Voorzijde: het stadswapen met leeuwen als schildhouders en kroon. Boven in een banderol: VIN [um] HON [orarium]. Onderaan: URB [is] TRA [jectensis] (erewijn der stad Utrecht). Keerzijde: verschillende trofee&amp;#235;n met daarboven een grote druiventros. …</div>
+  <div class="v-story"><strong>Felix Peixoto de Brito e Mello</strong> — Figura masculina, de meia idade, em meio corpo, voltado para a esquerda, olhando para frente. Rosto comprido, testa ampla, cabelos, sobrancelhas, bigode e barba grisalhos; olhos castanhos; nariz curto; lábio inferior aparente, orelha esquerda visível. Veste casaca preta com abotoamento duplo, dezess…</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -800,25 +821,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">200100433</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">anoniem; anonymous</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">zilver</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">schutterspenning</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-02-14T04:18:12Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
-        &lt;setSpec&gt;261219&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;anoniem&lt;/dc:creator&gt;
-          &lt;dc:creator&gt;anonymous&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1661</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">schutterspenning</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">felix-peixoto-de-brito-e-mello</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1861</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 116,70 cm · largura 99,30 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -833,24 +847,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC296.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/436525?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Tweezers</div>
-        <div class="v-rel-meta">Auckland Museum · H507</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/kvWPk/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Het Athenaeum Illustre te Amsterdam wordt universiteit 1877</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100315</div>
       </a>
       <a class="v-rel-card" href="NFC297.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/MrMmz/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Javase dukaat van de VOC, 1744</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100084</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/as/original/23_225_61_O1_sf.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Chinese child with musical instrument</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 45827</div>
       </a>
       <a class="v-rel-card" href="NFC299.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1974.10/1974.10_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Black-Figure Nikosthenic Amphora (Storage Vessel): Dancing Youths; Sphinxes and Lions; Satyrs and Maenads</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1974.10</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2017KA5915/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Rock and pop costume</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · S.1621-2010</div>
       </a>
       <a class="v-rel-card" href="NFC300.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP-12679-101.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Bass Ophicleide in B-flat</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 505034</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/midp89.4.212.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Nagphani</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 500781</div>
       </a></div>
   </div>
 </div>
@@ -863,7 +877,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/200100433" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/felix-peixoto-de-brito-e-mello/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -894,37 +908,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Wijnpenning van Utrecht`,
-  type: `schutterspenning`,
-  date: `2026-02-14T04:18:12Z</datestamp>
-        <setSpec>260239</setSpec>
-        <setSpec>261106</setSpec>
-        <setSpec>261219</setSpec>
-        <setSpec>260251</setSpec>
-        <setSpec>2601</setSpec>
-      </header>
-      <metadata>
-        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
-          <dc:creator>anoniem</dc:creator>
-          <dc:creator>anonymous</dc:creator>
-          <dc:date>1661`,
-  registration: `200100433`,
-  location: `Rijksmuseum, Amsterdam`,
-  discipline: ``,
-  category: `schutterspenning`,
-  description: `Zilveren wijn- en schutterspenning van Utrecht. Voorzijde: het stadswapen met leeuwen als schildhouders en kroon. Boven in een banderol: VIN [um] HON [orarium]. Onderaan: URB [is] TRA [jectensis] (erewijn der stad Utrecht). Keerzijde: verschillende trofee&#235;n met daarboven een grote druiventros. Onderaan het jaartal 1661.`,
-  medium: `zilver`,
-  artist: `anoniem; anonymous`,
-  culture: ``,
-  dimensions: ``,
-  wall_description: ``,
+  title: `Felix Peixoto de Brito e Mello`,
+  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  date: `1861`,
+  registration: `felix-peixoto-de-brito-e-mello`,
+  location: `Brasiliana Museus`,
+  discipline: `Brasiliana Museus`,
+  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  description: `Figura masculina, de meia idade, em meio corpo, voltado para a esquerda, olhando para frente. Rosto comprido, testa ampla, cabelos, sobrancelhas, bigode e barba grisalhos; olhos castanhos; nariz curto; lábio inferior aparente, orelha esquerda visível. Veste casaca preta com abotoamento duplo, dezesseis botões dourados; dragonas douradas, de canutões. No alto do peito esquerdo, da esquerda para a direita: comenda da Imperial Ordem do Cruzeiro, com passador vermelho; comenda não identificada e comenda da Ordem da Rosa, com passador branco. Abaixo destas, placa em brilhantes da Ordem de Cristo. T…`,
+  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  artist: ``,
+  culture: `Brazil`,
+  dimensions: `altura 116,70 cm · largura 99,30 cm`,
+  wall_description: `Figura masculina, de meia idade, em meio corpo, voltado para a esquerda, olhando para frente. Rosto comprido, testa ampla, cabelos, sobrancelhas, bigode e barba grisalhos; olhos castanhos; nariz curto; lábio inferior aparente, orelha esquerda visível. Veste casaca preta com abotoamento duplo, dezesseis botões dourados; dragonas douradas, de canutões. No alto do peito esquerdo, da esquerda para a direita: comenda da Imperial Ordem do Cruzeiro, com passador vermelho; comenda não identificada e com…`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
-  source_url: `https://www.rijksmuseum.nl/en/collection/200100433`,
-  institution: `Rijksmuseum, Amsterdam`
+  tombstone: `Felix Peixoto de Brito e Mello. 1861. Brasiliana Museus`,
+  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
+  source_url: `https://brasiliana.museus.gov.br/acervos/felix-peixoto-de-brito-e-mello/`,
+  institution: `Brasiliana Museus`
 };
 
 // Build rich context from available fields
@@ -1206,7 +1209,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_rijks',
+      collection: 'archai_brasiliana',
       text,
       authorType: 'visitor',
     }),

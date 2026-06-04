@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>collars — ARCHAI</title>
+<title>Tié — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/40138?rendering=standard.jpg" alt="collars" loading="eager">
+  <img src="https://res.cloudinary.com/mplustms/image/upload/w_668/v1706892866/v2/prod/small/001501_002000/001515_002.jpg" alt="Tié" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">collars</div>
-  <div class="v-sub">ecrm:E22_Man-Made_Object · 1996-11-11T00:00:00.000Z · 1979.42</div>
+  <div class="v-title">Tié</div>
+  <div class="v-sub">Furniture · 2012 · 2013.31</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Auckland Museum</span>
-    <span class="v-meta-tag lic">© Auckland Museum CC BY</span>
-    <span class="v-meta-tag">Social History</span>
+    <span class="v-meta-tag mv">M+, Hong Kong</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">Design and Architecture</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>collars</strong> — packet of three semi-stiff collars</div>
+  <div class="v-story"><strong>Tié</strong> — Chair with a wooden seat and a white back that goes all the way down to become the stand on which the seat sits. The back is covered in large pieces of torn Xuan paper.</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © PINWU · © PINWU</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,13 +821,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1979.42</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1996-11-11T00:00:00.000Z</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2013.31</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">PINWU</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Xuan paper, wood, foam, and silk</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Chinese</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Design and Architecture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Furniture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2012</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">overall: 79 × 56 × 86 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Furniture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © PINWU · © PINWU</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -810,24 +848,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC236.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/b9301862-923f-01bc-5962-932a62c291bb/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Brambles and Nightingales</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 184065</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2021NB9575/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Soft Boundaries</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.18-2021</div>
       </a>
       <a class="v-rel-card" href="NFC237.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2007BM7780/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Technophone</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · W.19-2003</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2007BR3923/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Kolster-Brandes model FB10C</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.293-1976</div>
       </a>
       <a class="v-rel-card" href="NFC239.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP215406.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Lapa (Trumpet)</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 504717</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/667817/6623-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Glorificação de Anchieta</div>
+        <div class="v-rel-meta">Brasiliana Museus · glorificacao-de-anchieta</div>
       </a>
       <a class="v-rel-card" href="NFC240.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2023NR4047/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Apollon</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.209-2018</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/3/164753-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Lantern Slide - 'Ramona', Part 4, circa 1928-1956</div>
+        <div class="v-rel-meta">Museums Victoria · MM 97239</div>
       </a></div>
   </div>
 </div>
@@ -840,7 +878,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/16996" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/tie-201331/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -871,26 +909,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `collars`,
-  type: `ecrm:E22_Man-Made_Object`,
-  date: `1996-11-11T00:00:00.000Z`,
-  registration: `1979.42`,
-  location: `Auckland Museum`,
-  discipline: `Social History`,
-  category: `ecrm:E22_Man-Made_Object`,
-  description: `packet of three semi-stiff collars`,
-  medium: ``,
-  artist: ``,
-  culture: ``,
-  dimensions: ``,
-  wall_description: ``,
+  title: `Tié`,
+  type: `Furniture`,
+  date: `2012`,
+  registration: `2013.31`,
+  location: `M+, Hong Kong`,
+  discipline: `Design and Architecture`,
+  category: `Furniture`,
+  description: `Chair with a wooden seat and a white back that goes all the way down to become the stand on which the seat sits. The back is covered in large pieces of torn Xuan paper.`,
+  medium: `Xuan paper, wood, foam, and silk`,
+  artist: `PINWU`,
+  culture: `Chinese`,
+  dimensions: `overall: 79 × 56 × 86 cm`,
+  wall_description: `Chair with a wooden seat and a white back that goes all the way down to become the stand on which the seat sits. The back is covered in large pieces of torn Xuan paper.`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `© Auckland Museum CC BY`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/16996`,
-  institution: `Auckland Museum`
+  tombstone: `Tié. PINWU. 2012. M+, Hong Kong`,
+  licence: `CC0 metadata · M+ API service non-commercial · © PINWU`,
+  source_url: `https://www.mplus.org.hk/en/collection/objects/tie-201331/`,
+  institution: `M+, Hong Kong`
 };
 
 // Build rich context from available fields
@@ -1172,7 +1210,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_auckland',
+      collection: 'archai_mplus',
       text,
       authorType: 'visitor',
     }),

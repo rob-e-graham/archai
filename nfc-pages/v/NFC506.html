@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Calliope — ARCHAI</title>
+<title>Studio per Balletto Futurista, 1925 — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2018LG5945/full/!600,600/0/default.jpg" alt="Calliope" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2013GK3858/full/!600,600/0/default.jpg" alt="Studio per Balletto Futurista, 1925" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Calliope</div>
-  <div class="v-sub">Digital print · 2014 · E.205-2018</div>
+  <div class="v-title">Studio per Balletto Futurista, 1925</div>
+  <div class="v-sub">Print · ca.1980 · S.1156-1982</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Digital print</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Print</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Calliope</strong> — Calliope. Digital print. Made by Fabrizio Augusto Poltronieri. 2014. Made in Brazil. Prints &amp; Drawings Study Room, level C</div>
+  <div class="v-story"><strong>Studio per Balletto Futurista, 1925</strong> — Studio per Balletto Futurista, 1925. Print. Made by Giacomo Balla. ca.1980. Made in Pesaro. In Store</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +821,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.205-2018</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Fabrizio Augusto Poltronieri</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Digital print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Digital print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2014</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, level C</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Digital print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">S.1156-1982</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Giacomo Balla</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca.1980</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In Store</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +845,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC504.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/ayRjI/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Honderdjarig bestaan van het Gymnasium te Stuttgart 1786 (?)</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100139</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2009BX6051/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portrait Virus</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.987:22-2008</div>
       </a>
       <a class="v-rel-card" href="NFC505.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/371088/preview" loading="lazy"></div>
-        <div class="v-rel-title">Jewellery box</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH011740</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_802/v1714972143/v2/prod/small/002001_002500/002083_003.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Got Money</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2012.95</div>
       </a>
       <a class="v-rel-card" href="NFC507.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/641424/preview" loading="lazy"></div>
-        <div class="v-rel-title">One Cent</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · NU000930</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2013GK3850/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Fuochi d'Articio (bozzetto)</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · S.1148-1982</div>
       </a>
       <a class="v-rel-card" href="NFC508.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/MUS413A1.JPG" loading="lazy"></div>
-        <div class="v-rel-title">Cavalry Trumpet in C</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 501680</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627855402/v2/prod/small/002001_002500/002206_004.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Han Dynasty Urn with Coca Cola Logo</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2012.49</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +875,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1427018/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1260518/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,16 +906,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Calliope`,
-  type: `Digital print`,
-  date: `2014`,
-  registration: `E.205-2018`,
-  location: `Prints & Drawings Study Room, level C`,
-  discipline: `Digital print`,
-  category: `Digital print`,
-  description: `Calliope. Digital print. Made by Fabrizio Augusto Poltronieri. 2014. Made in Brazil. Prints & Drawings Study Room, level C`,
+  title: `Studio per Balletto Futurista, 1925`,
+  type: `Print`,
+  date: `ca.1980`,
+  registration: `S.1156-1982`,
+  location: `In Store`,
+  discipline: `Print`,
+  category: `Print`,
+  description: `Studio per Balletto Futurista, 1925. Print. Made by Giacomo Balla. ca.1980. Made in Pesaro. In Store`,
   medium: ``,
-  artist: `Fabrizio Augusto Poltronieri`,
+  artist: `Giacomo Balla`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -890,7 +924,7 @@ const OBJECT = {
   provenance: ``,
   tombstone: ``,
   licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1427018/`,
+  source_url: `https://collections.vam.ac.uk/item/O1260518/`,
   institution: `Victoria and Albert Museum, London`
 };
 

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Portret van Floris III, graaf van Holland — ARCHAI</title>
+<title>harmonium — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,28 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://iiif.micr.io/Gwxvw/full/max/0/default.jpg" alt="Portret van Floris III, graaf van Holland" loading="eager">
+  <img src="https://api.aucklandmuseum.com/id/media/v/228190?rendering=standard.jpg" alt="harmonium" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Portret van Floris III, graaf van Holland</div>
-  <div class="v-sub">prent · 2026-01-27T04:44:33Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260241&lt;/setSpec&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;26151&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:coverage&gt;Graafschap Holland&lt;/dc:coverage&gt;
-          &lt;dc:creator&gt;Adriaen Matham&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1620 · 20010012</div>
+  <div class="v-title">harmonium</div>
+  <div class="v-sub">ecrm:E22_Man-Made_Object · Circa 1870 · col.3319</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
-    <span class="v-meta-tag lic">https://creativecommons.org/publicdomain/mark/1.0/</span>
-    <span class="v-meta-tag">Floris III (graaf van Holland)</span>
+    <span class="v-meta-tag mv">Auckland Museum</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
+    <span class="v-meta-tag">Social History</span>
   </div>
 
   <!-- SHARE -->
@@ -766,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Portret van Floris III, graaf van Holland</strong> — Portret van Floris III, graaf van Holland, staande met op zijn schouder het wapen van Holland en in zijn hand een zwaard. Prent uit een serie van 36 prenten met portretten ten voeten uit van graven en gravinnen van Holland.</div>
+  <div class="v-story"><strong>harmonium</strong> — Harmonium, 5 octaves, New Zealand made. 7 straps, sordine, bourdon 16ft, diapasasn 8ft, clarinette 16ft, viox celeste, tremold, forte. Wood and metal. Circa 1870</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
+      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -799,25 +821,15 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">20010012</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Adriaen Matham</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">papier</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Floris III (graaf van Holland)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">prent</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-01-27T04:44:33Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260241&lt;/setSpec&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;26151&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:coverage&gt;Graafschap Holland&lt;/dc:coverage&gt;
-          &lt;dc:creator&gt;Adriaen Matham&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1620</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">prent</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">col.3319</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Circa 1870</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -832,24 +844,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC544.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627823867/v2/prod/small/004001_004500/004149_006.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Competition model, Duxton Plain Housing Competition (2001), Singapore</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2015.255</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2024NX9616/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Marigolds</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.765-2024</div>
       </a>
       <a class="v-rel-card" href="NFC545.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/dab6f219-8ffa-c125-7585-43a3f59cac30/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Madison St. on Sunday Morning</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 191357</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2006.6/2006.6_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Opéra (Rostral Column)</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 2006.6</div>
       </a>
       <a class="v-rel-card" href="NFC547.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1951.356/1951.356_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Edge of the Woods Near L'Hermitage, Pontoise</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1951.356</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/UTcEd/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Penning over de honderdjarige herdenking van de Vrede van Munster</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100154</div>
       </a>
       <a class="v-rel-card" href="NFC548.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2011ER6466/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Print</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.1069-1967</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DT10869.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Rectangular Octave Virginal</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 502325</div>
       </a></div>
   </div>
 </div>
@@ -862,7 +874,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/20010012" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/51159" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -893,26 +905,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Portret van Floris III, graaf van Holland`,
-  type: `prent`,
-  date: `2026-01-27T04:44:33Z</datestamp>
-        <setSpec>260241</setSpec>
-        <setSpec>260239</setSpec>
-        <setSpec>26151</setSpec>
-        <setSpec>260251</setSpec>
-      </header>
-      <metadata>
-        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
-          <dc:coverage>Graafschap Holland</dc:coverage>
-          <dc:creator>Adriaen Matham</dc:creator>
-          <dc:date>1620`,
-  registration: `20010012`,
-  location: `Rijksmuseum, Amsterdam`,
-  discipline: `Floris III (graaf van Holland)`,
-  category: `prent`,
-  description: `Portret van Floris III, graaf van Holland, staande met op zijn schouder het wapen van Holland en in zijn hand een zwaard. Prent uit een serie van 36 prenten met portretten ten voeten uit van graven en gravinnen van Holland.`,
-  medium: `papier`,
-  artist: `Adriaen Matham`,
+  title: `harmonium`,
+  type: `ecrm:E22_Man-Made_Object`,
+  date: `Circa 1870`,
+  registration: `col.3319`,
+  location: `Auckland Museum`,
+  discipline: `Social History`,
+  category: `ecrm:E22_Man-Made_Object`,
+  description: `Harmonium, 5 octaves, New Zealand made. 7 straps, sordine, bourdon 16ft, diapasasn 8ft, clarinette 16ft, viox celeste, tremold, forte. Wood and metal. Circa 1870`,
+  medium: ``,
+  artist: ``,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -920,9 +922,9 @@ const OBJECT = {
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
-  source_url: `https://www.rijksmuseum.nl/en/collection/20010012`,
-  institution: `Rijksmuseum, Amsterdam`
+  licence: `© Auckland Museum CC BY`,
+  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/51159`,
+  institution: `Auckland Museum`
 };
 
 // Build rich context from available fields
@@ -1204,7 +1206,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_rijks',
+      collection: 'archai_auckland',
       text,
       authorType: 'visitor',
     }),

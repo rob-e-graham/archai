@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Whistle — ARCHAI</title>
+<title>[Felipe IV a caballo] [Material gráfico] — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/ao/original/DP-24267-001.jpg" alt="Whistle" loading="eager">
+  <img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fbdh-rd.bne.es%2Fpdf.raw%3Fquery%3Did%3A0000184108%26page%3D1%26jpeg%3Dtrue&amp;type=IMAGE" alt="[Felipe IV a caballo] [Material gráfico]" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Whistle</div>
-  <div class="v-sub">Whistle · 1200–500 BCE · 316713</div>
+  <div class="v-title">[Felipe IV a caballo] [Material gráfico]</div>
+  <div class="v-sub">IMAGE · 1851 · /2022717/bnesearch_detalle_bdh0000184108</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
-    <span class="v-meta-tag lic">CC0 — Public Domain</span>
-    <span class="v-meta-tag">The Michael C. Rockefeller Wing</span>
+    <span class="v-meta-tag mv">Europeana</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Whistle</strong> — Whistle. Whistle. Ceramic. The Michael C. Rockefeller Wing. Cupisnique. by Cupisnique artist(s). Ceramics-Musical Instruments. 1200–500 BCE</div>
+  <div class="v-story"><strong>[Felipe IV a caballo] [Material gráfico]</strong> — Inscripciones manuscritas a tinta gris a pie de línea de encuadre: &quot;D.D. Velázquez p.&quot; y &quot;R. Ribera f.t 1851&quot;</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: http://creativecommons.org/licenses/by-nc-sa/4.0/</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,17 +821,15 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">316713</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Cupisnique artist(s)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Ceramic</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Cupisnique</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">The Michael C. Rockefeller Wing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ceramics-Musical Instruments</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1200–500 BCE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">H. 2 1/8 × W. 1 3/8 × D. 1 1/4 in. (5.4 × 3.5 × 3.2 cm)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 362</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Whistle</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">/2022717/bnesearch_detalle_bdh0000184108</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">http://datos.bne.es/resource/XX1628029</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">IMAGE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1851</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">National Library of Spain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">IMAGE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">http://creativecommons.org/licenses/by-nc-sa/4.0/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -814,24 +844,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1098.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/bb5e3048-64e5-be99-c575-f89607cd55a9/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Nelson Algren Amuses a New Friend</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 191355</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2011ER6461/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Print</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.1073-1967</div>
       </a>
       <a class="v-rel-card" href="NFC1099.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/29/165129-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Lantern Slide - 'Size', circa 1930s-1940s</div>
-        <div class="v-rel-meta">Museums Victoria · MM 68961</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/634278/preview" loading="lazy"></div>
+        <div class="v-rel-title">Textile swatchbook</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH009584</div>
       </a>
       <a class="v-rel-card" href="NFC1101.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2019MA2520/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Progetti scenic per ‘sintesi futuriste’ 1915/1925</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · S.1147-1982</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/44abac03-4d36-aac6-f44e-ffe1d57dfb03/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Oinochoe (Pitcher)</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 246</div>
       </a>
       <a class="v-rel-card" href="NFC1102.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP318718.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Alto Recorder in F</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 501520</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/559024?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">cup and saucer</div>
+        <div class="v-rel-meta">Auckland Museum · 1932.233</div>
       </a></div>
   </div>
 </div>
@@ -844,7 +874,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/316713" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.europeana.eu/item/2022717/bnesearch_detalle_bdh0000184108?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -875,26 +905,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Whistle`,
-  type: `Whistle`,
-  date: `1200–500 BCE`,
-  registration: `316713`,
-  location: `Gallery 362`,
-  discipline: `The Michael C. Rockefeller Wing`,
-  category: `Ceramics-Musical Instruments`,
-  description: `Whistle. Whistle. Ceramic. The Michael C. Rockefeller Wing. Cupisnique. by Cupisnique artist(s). Ceramics-Musical Instruments. 1200–500 BCE`,
-  medium: `Ceramic`,
-  artist: `Cupisnique artist(s)`,
-  culture: `Cupisnique`,
-  dimensions: `H. 2 1/8 × W. 1 3/8 × D. 1 1/4 in. (5.4 × 3.5 × 3.2 cm)`,
+  title: `[Felipe IV a caballo] [Material gráfico]`,
+  type: `IMAGE`,
+  date: `1851`,
+  registration: `/2022717/bnesearch_detalle_bdh0000184108`,
+  location: `National Library of Spain`,
+  discipline: ``,
+  category: `IMAGE`,
+  description: `Inscripciones manuscritas a tinta gris a pie de línea de encuadre: "D.D. Velázquez p." y "R. Ribera f.t 1851"`,
+  medium: ``,
+  artist: `http://datos.bne.es/resource/XX1628029`,
+  culture: ``,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/316713`,
-  institution: `The Metropolitan Museum of Art`
+  licence: `http://creativecommons.org/licenses/by-nc-sa/4.0/`,
+  source_url: `https://www.europeana.eu/item/2022717/bnesearch_detalle_bdh0000184108?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb`,
+  institution: `Europeana`
 };
 
 // Build rich context from available fields
@@ -1176,7 +1206,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_met',
+      collection: 'archai_europeana',
       text,
       authorType: 'visitor',
     }),

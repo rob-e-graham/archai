@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>LEAN ON FIVE — ARCHAI</title>
+<title>Portret van Albrecht van Beieren, graaf van Holland en Henegouwen — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,28 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2014HD4322/full/!600,600/0/default.jpg" alt="LEAN ON FIVE" loading="eager">
+  <img src="https://iiif.micr.io/DVtzh/full/max/0/default.jpg" alt="Portret van Albrecht van Beieren, graaf van Holland en Henegouwen" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">LEAN ON FIVE</div>
-  <div class="v-sub">Computer-generated drawing · 1969 · E.273-2020</div>
+  <div class="v-title">Portret van Albrecht van Beieren, graaf van Holland en Henegouwen</div>
+  <div class="v-sub">prent · 2026-01-27T04:44:36Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260241&lt;/setSpec&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;26151&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:coverage&gt;Graafschap Holland&lt;/dc:coverage&gt;
+          &lt;dc:creator&gt;Adriaen Matham&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1620 · 20010025</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Computer-generated drawing</span>
+    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(160,152,144,0.28);color:#a09890;">Check source</span>
+    <span class="v-meta-tag">Albrecht van Beieren (graaf van Holland, Henegouwen en Zeeland)</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +793,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>LEAN ON FIVE</strong> — LEAN ON FIVE. Computer-generated drawing. Made by Frederick Hammersley. 1969. Made in America. Prints &amp; Drawings Study Room, level C</div>
+  <div class="v-story"><strong>Portret van Albrecht van Beieren, graaf van Holland en Henegouwen</strong> — Portret van Albrecht van Beieren, graaf van Holland en Henegouwen, staande met op zijn schouder een wapenschild en in zijn hand een zwaard. Prent uit een serie van 36 prenten met portretten ten voeten uit van graven en gravinnen van Holland.</div>
+  <div class="v-rights-note" style="border-color:rgba(160,152,144,0.28);">
+      <div class="v-rights-label" style="color:#a09890;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#a09890;font-weight:400;">Check source</strong> — Review the source record and item-level rights before reuse.</div>
+      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +831,27 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.273-2020</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Frederick Hammersley</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Computer-generated drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Computer-generated drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1969</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, level C</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Computer-generated drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">20010025</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Adriaen Matham</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">papier</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Albrecht van Beieren (graaf van Holland, Henegouwen en Zeeland)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">prent</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-01-27T04:44:36Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260241&lt;/setSpec&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;26151&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:coverage&gt;Graafschap Holland&lt;/dc:coverage&gt;
+          &lt;dc:creator&gt;Adriaen Matham&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1620</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">prent</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Check source</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Review the source record and item-level rights before reuse.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +866,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC610.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/64727e06-4356-c6b2-7546-6b5c7b99a153/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Dance Duo</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 223839</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/615830/preview" loading="lazy"></div>
+        <div class="v-rel-title">Guerche</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · NU007070/2</div>
       </a>
       <a class="v-rel-card" href="NFC611.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fwww.museothyssen.org%2Feuropeana%2Fpermurl%3Fcode%3DMTB-IOM-1954.1&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">The Annunciation</div>
-        <div class="v-rel-meta">Europeana · /2058501/MTB_AW_1954_1</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018KU4434/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Camera</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · RPS.464-2018</div>
       </a>
       <a class="v-rel-card" href="NFC613.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4309/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">TO AMAZE</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.262-2020</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AT9582/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Murphy A104</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.44-1978</div>
       </a>
       <a class="v-rel-card" href="NFC614.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP302548.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Nyonganyonga</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 503679</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/5/27155-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Kite Model - Lawrence Hargrave Design, Soaring Kite Type Q, Sydney, New South Wales, circa 1898</div>
+        <div class="v-rel-meta">Museums Victoria · ST 29213</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +896,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1279576/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/20010025" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,16 +927,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `LEAN ON FIVE`,
-  type: `Computer-generated drawing`,
-  date: `1969`,
-  registration: `E.273-2020`,
-  location: `Prints & Drawings Study Room, level C`,
-  discipline: `Computer-generated drawing`,
-  category: `Computer-generated drawing`,
-  description: `LEAN ON FIVE. Computer-generated drawing. Made by Frederick Hammersley. 1969. Made in America. Prints & Drawings Study Room, level C`,
-  medium: ``,
-  artist: `Frederick Hammersley`,
+  title: `Portret van Albrecht van Beieren, graaf van Holland en Henegouwen`,
+  type: `prent`,
+  date: `2026-01-27T04:44:36Z</datestamp>
+        <setSpec>260241</setSpec>
+        <setSpec>260239</setSpec>
+        <setSpec>26151</setSpec>
+        <setSpec>260251</setSpec>
+      </header>
+      <metadata>
+        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
+          <dc:coverage>Graafschap Holland</dc:coverage>
+          <dc:creator>Adriaen Matham</dc:creator>
+          <dc:date>1620`,
+  registration: `20010025`,
+  location: `Rijksmuseum, Amsterdam`,
+  discipline: `Albrecht van Beieren (graaf van Holland, Henegouwen en Zeeland)`,
+  category: `prent`,
+  description: `Portret van Albrecht van Beieren, graaf van Holland en Henegouwen, staande met op zijn schouder een wapenschild en in zijn hand een zwaard. Prent uit een serie van 36 prenten met portretten ten voeten uit van graven en gravinnen van Holland.`,
+  medium: `papier`,
+  artist: `Adriaen Matham`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -889,9 +954,9 @@ const OBJECT = {
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1279576/`,
-  institution: `Victoria and Albert Museum, London`
+  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
+  source_url: `https://www.rijksmuseum.nl/en/collection/20010025`,
+  institution: `Rijksmuseum, Amsterdam`
 };
 
 // Build rich context from available fields
@@ -1173,7 +1238,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_rijks',
       text,
       authorType: 'visitor',
     }),

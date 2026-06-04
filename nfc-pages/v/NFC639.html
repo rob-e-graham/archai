@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Print — ARCHAI</title>
+<title>Sporran — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2011ER6468/full/!600,600/0/default.jpg" alt="Print" loading="eager">
+  <img src="https://media.tepapa.govt.nz/collection/222239/preview" alt="Sporran" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Print</div>
-  <div class="v-sub">Print · Date unknown · CIRC.1072-1967</div>
+  <div class="v-title">Sporran</div>
+  <div class="v-sub">sporrans · 1880s-1890s · PC001695/4</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Print</span>
+    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">History</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Print</strong> — Print. Print. Prints &amp; Drawings Study Room, level C</div>
+  <div class="v-story"><strong>Sporran</strong> — Sporran , 1880s-1890s, Kingussie, by McFarlane. Gift of Mrs Beatrice Simpkins, 1971. CC BY-NC-ND 4.0 . Te Papa (PC001695/4)</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,13 +821,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">CIRC.1072-1967</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Date unknown</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, level C</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">PC001695/4</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">McFarlane</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">leather, metal, horsehair</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">History</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">sporrans</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1880s-1890s</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 200mm (width), 475mm (length), 50mm (depth)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">sporrans</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -810,24 +847,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC637.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1706495405/v2/prod/small/008501_009000/008520_022.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Model, Singapore Conference Hall and Trade Union House (1961–1965), Singapore</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2017.236</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP338985.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Fanfare trumpet in E-flat</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 502191</div>
       </a>
       <a class="v-rel-card" href="NFC638.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1982.142/1982.142_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Red-Figure Squat Lekythos (Oil Vessel): Birth of Erichthonios</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1982.142</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1924.872/1924.872_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Black-Figure Neck-Amphora (Storage Vessel): Animal Friezes</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1924.872</div>
       </a>
       <a class="v-rel-card" href="NFC640.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%2Fwebclient%2FDeliveryManager%3Fpid%3D6355705%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Photographic reportage, Florence, 1957-1956</div>
-        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6355705_custom_att_2_simple_viewer</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2008BT4236/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Deltaphone</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.65:1-2002</div>
       </a>
       <a class="v-rel-card" href="NFC641.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/DeIgV/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Zilveren dukaat van de Bataafse Republiek op naam van Zeeland, 1795</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100090</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2008BU9263/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">St Anthony of Padua with a Nun</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · 528-1870</div>
       </a></div>
   </div>
 </div>
@@ -840,7 +877,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1033902/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/1140842" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -871,26 +908,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Print`,
-  type: `Print`,
-  date: `Date unknown`,
-  registration: `CIRC.1072-1967`,
-  location: `Prints & Drawings Study Room, level C`,
-  discipline: `Print`,
-  category: `Print`,
-  description: `Print. Print. Prints & Drawings Study Room, level C`,
-  medium: ``,
-  artist: ``,
+  title: `Sporran`,
+  type: `sporrans`,
+  date: `1880s-1890s`,
+  registration: `PC001695/4`,
+  location: `Te Papa Tongarewa, Wellington`,
+  discipline: `History`,
+  category: `sporrans`,
+  description: `Sporran , 1880s-1890s, Kingussie, by McFarlane. Gift of Mrs Beatrice Simpkins, 1971. CC BY-NC-ND 4.0 . Te Papa (PC001695/4)`,
+  medium: `leather, metal, horsehair`,
+  artist: `McFarlane`,
   culture: ``,
-  dimensions: ``,
+  dimensions: `Overall: 200mm (width), 475mm (length), 50mm (depth)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1033902/`,
-  institution: `Victoria and Albert Museum, London`
+  tombstone: `Sporran, 1880s-1890s, Kingussie, by McFarlane. Gift of Mrs Beatrice Simpkins, 1971. CC BY-NC-ND 4.0. Te Papa (PC001695/4)`,
+  licence: `CC BY-NC-ND 4.0 · metadata CC BY 4.0`,
+  source_url: `https://collections.tepapa.govt.nz/object/1140842`,
+  institution: `Museum of New Zealand Te Papa Tongarewa`
 };
 
 // Build rich context from available fields
@@ -1172,7 +1209,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_tepapa',
       text,
       authorType: 'visitor',
     }),

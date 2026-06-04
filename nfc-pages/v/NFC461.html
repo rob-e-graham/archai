@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>CHINESE BOXERS — ARCHAI</title>
+<title>Ring — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2014HD4328/full/!600,600/0/default.jpg" alt="CHINESE BOXERS" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2009CR7359/full/!600,600/0/default.jpg" alt="Ring" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">CHINESE BOXERS</div>
-  <div class="v-sub">Computer-generated drawing · 1969 · E.287-2020</div>
+  <div class="v-title">Ring</div>
+  <div class="v-sub">Ring · 2005 · M.47-2009</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Computer-generated drawing</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Ring</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>CHINESE BOXERS</strong> — CHINESE BOXERS. Computer-generated drawing. Made by Frederick Hammersley. 1969. Made in America. Prints &amp; Drawings Study Room, level C</div>
+  <div class="v-story"><strong>Ring</strong> — Ring. Ring. Made by Ryan, Jacqueline. 2005. Made in Italy. Jewellery, Rooms 91, The William and Judith Bollinger Gallery</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +821,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.287-2020</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Frederick Hammersley</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Computer-generated drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Computer-generated drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1969</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, level C</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Computer-generated drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">M.47-2009</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Ryan, Jacqueline</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Ring</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ring</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2005</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Jewellery, Rooms 91, The William and Judith Bollinger Gallery</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Ring</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +845,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC459.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/75833/preview" loading="lazy"></div>
-        <div class="v-rel-title">Wallet</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH003313</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP302552.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Archlute</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 503613</div>
       </a>
       <a class="v-rel-card" href="NFC460.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_546/v1707909396/v2/prod/small/004501_005000/004849_001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Cheung Kong Center against Bank of China</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2015.79</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1927.433/1927.433_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Black-Figure Amphora (Type B; Storage Vessel): Battling Warriors (A); Dionysos and Satyrs (B)</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1927.433</div>
       </a>
       <a class="v-rel-card" href="NFC462.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/mi89.4.926.AV1.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Ennanga</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 501536</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2024NU4123/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Community Basket</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.23-2024</div>
       </a>
       <a class="v-rel-card" href="NFC463.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fwww.dropbox.com%2Fs%2Fqtp75ivna8iex4m%2FPortugal_sOPA%2520DE%2520aRROIOS.jpg%3Fraw%3D1&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Sopa de Arroios</div>
-        <div class="v-rel-meta">Europeana · /2063606/POR_280_009</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4315/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">HALF A BUFFERIN'</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.265-2020</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +875,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1279646/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1158145/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,16 +906,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `CHINESE BOXERS`,
-  type: `Computer-generated drawing`,
-  date: `1969`,
-  registration: `E.287-2020`,
-  location: `Prints & Drawings Study Room, level C`,
-  discipline: `Computer-generated drawing`,
-  category: `Computer-generated drawing`,
-  description: `CHINESE BOXERS. Computer-generated drawing. Made by Frederick Hammersley. 1969. Made in America. Prints & Drawings Study Room, level C`,
+  title: `Ring`,
+  type: `Ring`,
+  date: `2005`,
+  registration: `M.47-2009`,
+  location: `Jewellery, Rooms 91, The William and Judith Bollinger Gallery`,
+  discipline: `Ring`,
+  category: `Ring`,
+  description: `Ring. Ring. Made by Ryan, Jacqueline. 2005. Made in Italy. Jewellery, Rooms 91, The William and Judith Bollinger Gallery`,
   medium: ``,
-  artist: `Frederick Hammersley`,
+  artist: `Ryan, Jacqueline`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -890,7 +924,7 @@ const OBJECT = {
   provenance: ``,
   tombstone: ``,
   licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1279646/`,
+  source_url: `https://collections.vam.ac.uk/item/O1158145/`,
   institution: `Victoria and Albert Museum, London`
 };
 

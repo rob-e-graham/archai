@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>The Palace on the Sea — ARCHAI</title>
+<title>figure, man — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627850068/v2/prod/small/005001_005500/005170_001.jpg" alt="The Palace on the Sea" loading="eager">
+  <img src="https://api.aucklandmuseum.com/id/media/v/80790?rendering=standard.jpg" alt="figure, man" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">The Palace on the Sea</div>
-  <div class="v-sub">Video · 2013 · 2015.563</div>
+  <div class="v-title">figure, man</div>
+  <div class="v-sub">Figurine · 19th Century · 1933.213</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">M+, Hong Kong</span>
-    <span class="v-meta-tag lic">CC0 metadata · M+ API service non-commercial · © Midi Z</span>
-    <span class="v-meta-tag">Moving Image</span>
+    <span class="v-meta-tag mv">Auckland Museum</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
+    <span class="v-meta-tag">Applied Arts and Design</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>The Palace on the Sea</strong> — Video still depicting a woman, seen from the back, in a light yellow top and skirt walking along a paved area with enormous rusted anchors and chains lying in piles next to her.</div>
+  <div class="v-story"><strong>figure, man</strong> — figure, ivory, man with basket on back and three pronged rake in right hand.</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
+      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,17 +821,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2015.563</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Midi Z</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">single-channel digital video (colour, sound)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Taiwanese</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Moving Image</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Video</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2013</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">duration: 15 min. 26 sec.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Video</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Midi Z</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1933.213</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Ivory, Dentin, &lt;tooth Components&gt;, &lt;tooth And Tooth Components&gt;, &lt;bone By Form&gt;, Bone</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Applied Arts and Design</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Figurine</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">19th Century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Figurine</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -814,24 +845,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC681.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/796802?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">press</div>
-        <div class="v-rel-meta">Auckland Museum · 1995x2.165</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2013.357/2013.357_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Sheriff of Pecos </div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 2013.357</div>
       </a>
       <a class="v-rel-card" href="NFC682.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fbdh-rd.bne.es%2Fpdf.raw%3Fquery%3Did%3A0000034157%26page%3D1%26jpeg%3Dtrue&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">[Retrato de Josefa Bayeu] [Material gráfico]</div>
-        <div class="v-rel-meta">Europeana · /2022717/bnesearch_detalle_bdh0000034157</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/vGdVs/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Hollandse dukaat, 1738</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100255</div>
       </a>
       <a class="v-rel-card" href="NFC684.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_428/v1627882500/v2/prod/small/006501_007000/006521_005.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Zen</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2016.812</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669016/006331.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Maria Soares Marcelly Peixoto de Brito e Mello</div>
+        <div class="v-rel-meta">Brasiliana Museus · maria-soares-marcelly-peixoto-de-brito-e-mello</div>
       </a>
       <a class="v-rel-card" href="NFC685.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018KR4599/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Camera</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · RPS.344-2018</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/670572/5768-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Pedro II</div>
+        <div class="v-rel-meta">Brasiliana Museus · pedro-ii-35</div>
       </a></div>
   </div>
 </div>
@@ -844,7 +875,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/the-palace-on-the-sea-2015563/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/5226" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -875,26 +906,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `The Palace on the Sea`,
-  type: `Video`,
-  date: `2013`,
-  registration: `2015.563`,
-  location: `M+, Hong Kong`,
-  discipline: `Moving Image`,
-  category: `Video`,
-  description: `Video still depicting a woman, seen from the back, in a light yellow top and skirt walking along a paved area with enormous rusted anchors and chains lying in piles next to her.`,
-  medium: `single-channel digital video (colour, sound)`,
-  artist: `Midi Z`,
-  culture: `Taiwanese`,
-  dimensions: `duration: 15 min. 26 sec.`,
-  wall_description: `Video still depicting a woman, seen from the back, in a light yellow top and skirt walking along a paved area with enormous rusted anchors and chains lying in piles next to her.`,
+  title: `figure, man`,
+  type: `Figurine`,
+  date: `19th Century`,
+  registration: `1933.213`,
+  location: `Auckland Museum`,
+  discipline: `Applied Arts and Design`,
+  category: `Figurine`,
+  description: `figure, ivory, man with basket on back and three pronged rake in right hand.`,
+  medium: `Ivory, Dentin, <tooth Components>, <tooth And Tooth Components>, <bone By Form>, Bone`,
+  artist: ``,
+  culture: ``,
+  dimensions: ``,
+  wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `The Palace on the Sea. Midi Z. 2013. M+, Hong Kong`,
-  licence: `CC0 metadata · M+ API service non-commercial · © Midi Z`,
-  source_url: `https://www.mplus.org.hk/en/collection/objects/the-palace-on-the-sea-2015563/`,
-  institution: `M+, Hong Kong`
+  tombstone: ``,
+  licence: `© Auckland Museum CC BY`,
+  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/5226`,
+  institution: `Auckland Museum`
 };
 
 // Build rich context from available fields
@@ -1176,7 +1207,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_mplus',
+      collection: 'archai_auckland',
       text,
       authorType: 'visitor',
     }),

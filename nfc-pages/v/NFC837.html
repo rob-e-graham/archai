@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Telephone — ARCHAI</title>
+<title>Kinetic effect lighting system — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2025PJ2781/full/!600,600/0/default.jpg" alt="Telephone" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2019MA2822/full/!600,600/0/default.jpg" alt="Kinetic effect lighting system" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Telephone</div>
-  <div class="v-sub">Telephone · 1986 · WE.18172-2014</div>
+  <div class="v-title">Kinetic effect lighting system</div>
+  <div class="v-sub">Projector · 1972-1973 · CIRC.463-1973</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Telephone</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Projector</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Telephone</strong> — Telephone. Telephone. Made by Josiah Wedgwood and Sons. 1986. Made in Barlaston. V&amp;A Wedgwood Collection, Temporary exhibition space</div>
+  <div class="v-story"><strong>Kinetic effect lighting system</strong> — Kinetic effect lighting system. Projector. Made by Concord Lighting International. 1972-1973. Made in Newhaven. In Store</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +821,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">WE.18172-2014</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Josiah Wedgwood and Sons</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Telephone</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Telephone</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1986</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">V&amp;A Wedgwood Collection, Temporary exhibition space</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Telephone</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">CIRC.463-1973</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Concord Lighting International</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Projector</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Projector</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1972-1973</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In Store</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Projector</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +845,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC835.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP105130.jpg" loading="lazy"></div>
-        <div class="v-rel-title">&quot;Antonius&quot; Violin</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 503008</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP302664.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Bala</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 501109</div>
       </a>
       <a class="v-rel-card" href="NFC836.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fceres.mcu.es%2Fpages%2FViewer%3Fraw%3Dy%26accion%3D42%26AMuseo%3DMPAS%26img%3D%2FMPAS%2Ffondos_pre%2FMPASFRDM1342_P.JPG%26Ninv%3DRDM1342&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Retrato de Evaristo Martínez Radío - Cuadro</div>
-        <div class="v-rel-meta">Europeana · /2022703/pages_Main_idt_245076_inventary_RDM1342_table_FMUS_museum_MPAS</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680050/000822-1.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Cena de interior - um café (atribuído)</div>
+        <div class="v-rel-meta">Brasiliana Museus · cena-de-interior-um-cafe-atribuido</div>
       </a>
       <a class="v-rel-card" href="NFC838.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/258114?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">television set</div>
-        <div class="v-rel-meta">Auckland Museum · #1828</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680043/824-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Cruzador Barroso</div>
+        <div class="v-rel-meta">Brasiliana Museus · cruzador-barroso</div>
       </a>
       <a class="v-rel-card" href="NFC839.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1629663070/v2/prod/small/001501_002000/001912_007.jpg" loading="lazy"></div>
-        <div class="v-rel-title">For Some Reasons</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2016.889</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1978.59/1978.59_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Red-Figure Lekythos (Oil Vessel): Athena Slaying Giant (body); Satyr between Maenads (shoulder)</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1978.59</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +875,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1803179/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1194709/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,16 +906,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Telephone`,
-  type: `Telephone`,
-  date: `1986`,
-  registration: `WE.18172-2014`,
-  location: `V&A Wedgwood Collection, Temporary exhibition space`,
-  discipline: `Telephone`,
-  category: `Telephone`,
-  description: `Telephone. Telephone. Made by Josiah Wedgwood and Sons. 1986. Made in Barlaston. V&A Wedgwood Collection, Temporary exhibition space`,
+  title: `Kinetic effect lighting system`,
+  type: `Projector`,
+  date: `1972-1973`,
+  registration: `CIRC.463-1973`,
+  location: `In Store`,
+  discipline: `Projector`,
+  category: `Projector`,
+  description: `Kinetic effect lighting system. Projector. Made by Concord Lighting International. 1972-1973. Made in Newhaven. In Store`,
   medium: ``,
-  artist: `Josiah Wedgwood and Sons`,
+  artist: `Concord Lighting International`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -890,7 +924,7 @@ const OBJECT = {
   provenance: ``,
   tombstone: ``,
   licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1803179/`,
+  source_url: `https://collections.vam.ac.uk/item/O1194709/`,
   institution: `Victoria and Albert Museum, London`
 };
 

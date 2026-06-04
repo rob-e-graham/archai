@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Panel Emblematical of the Arts — ARCHAI</title>
+<title>Uli Sigg (Newspaper Reader) — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/3ea0c68a-f785-7f25-e91f-04a7001503c0/full/843,/0/default.jpg" alt="Panel Emblematical of the Arts" loading="eager">
+  <img src="https://res.cloudinary.com/mplustms/image/upload/w_667/v1627871101/v2/prod/small/002501_003000/002853_008.jpg" alt="Uli Sigg (Newspaper Reader)" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Panel Emblematical of the Arts</div>
-  <div class="v-sub">Sculpture · 1600–1700 · 15291</div>
+  <div class="v-title">Uli Sigg (Newspaper Reader)</div>
+  <div class="v-sub">Sculpture · 2004 · 2012.59</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Art Institute of Chicago</span>
-    <span class="v-meta-tag lic">CC0 — Public Domain</span>
-    <span class="v-meta-tag">Painting and Sculpture of Europe</span>
+    <span class="v-meta-tag mv">M+, Hong Kong</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">Visual Art</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Panel Emblematical of the Arts</strong> — Panel Emblematical of the Arts. Sculpture. Wood. Painting and Sculpture of Europe. French. relief. 1600–1700. France. Rococo</div>
+  <div class="v-story"><strong>Uli Sigg (Newspaper Reader)</strong> — Sculpture made out of waxwork, newspaper, fabric, plastic, and leather depicting art collector Uli Sigg seated on a wooden crate. The figure is in a black shirt, grey suit, and black shoes, and looks down at a folded newspaper resting on his right hand.</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Ai Weiwei · © Ai Weiwei</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,17 +821,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">15291</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">French</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Wood</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Painting and Sculpture of Europe</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">relief</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1600–1700</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">60 × 96.5 cm (23 1/2 × 38 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2012.59</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Ai Weiwei</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">waxwork, newspaper, fabric, plastic and leather</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Chinese</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Visual Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2004</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">overall: 108 × 75 × 58 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Ai Weiwei · © Ai Weiwei</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -814,24 +848,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC467.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Ffotothek.slub-dresden.de%2Ffotos%2Fdf_pj_0010828.jpg&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Deutsches Hygiene-Museum</div>
-        <div class="v-rel-meta">Europeana · /437/item_LFQIWPQWWQLB3SMQXK7G2OVNVFHVV5WC</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/XOHPu/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Nederlandse &amp;#189; gulden, 1859</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100264</div>
       </a>
       <a class="v-rel-card" href="NFC468.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018KR4534/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Camera</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · RPS.322-2018</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669290/6245-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">La madonna della sedia</div>
+        <div class="v-rel-meta">Brasiliana Museus · la-madonna-della-sedia</div>
       </a>
       <a class="v-rel-card" href="NFC470.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP218832.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Ipu Hula (gourd drum)</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 501369</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/93066?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">curtain</div>
+        <div class="v-rel-meta">Auckland Museum · col.1521</div>
       </a>
       <a class="v-rel-card" href="NFC471.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DT1271.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Drum</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 310563</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PJ3618/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Avebury</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.357-2025</div>
       </a></div>
   </div>
 </div>
@@ -844,7 +878,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/15291" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/uli-sigg-newspaper-reader-201259/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -875,26 +909,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Panel Emblematical of the Arts`,
+  title: `Uli Sigg (Newspaper Reader)`,
   type: `Sculpture`,
-  date: `1600–1700`,
-  registration: `15291`,
-  location: `Art Institute of Chicago`,
-  discipline: `Painting and Sculpture of Europe`,
-  category: `relief`,
-  description: `Panel Emblematical of the Arts. Sculpture. Wood. Painting and Sculpture of Europe. French. relief. 1600–1700. France. Rococo`,
-  medium: `Wood`,
-  artist: `French`,
-  culture: `France`,
-  dimensions: `60 × 96.5 cm (23 1/2 × 38 in.)`,
-  wall_description: ``,
+  date: `2004`,
+  registration: `2012.59`,
+  location: `M+, Hong Kong`,
+  discipline: `Visual Art`,
+  category: `Sculpture`,
+  description: `Sculpture made out of waxwork, newspaper, fabric, plastic, and leather depicting art collector Uli Sigg seated on a wooden crate. The figure is in a black shirt, grey suit, and black shoes, and looks down at a folded newspaper resting on his right hand.`,
+  medium: `waxwork, newspaper, fabric, plastic and leather`,
+  artist: `Ai Weiwei`,
+  culture: `Chinese`,
+  dimensions: `overall: 108 × 75 × 58 cm`,
+  wall_description: `Sculpture made out of waxwork, newspaper, fabric, plastic, and leather depicting art collector Uli Sigg seated on a wooden crate. The figure is in a black shirt, grey suit, and black shoes, and looks down at a folded newspaper resting on his right hand.`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://www.artic.edu/artworks/15291`,
-  institution: `Art Institute of Chicago`
+  tombstone: `Uli Sigg (Newspaper Reader). Ai Weiwei. 2004. M+, Hong Kong`,
+  licence: `CC0 metadata · M+ API service non-commercial · © Ai Weiwei`,
+  source_url: `https://www.mplus.org.hk/en/collection/objects/uli-sigg-newspaper-reader-201259/`,
+  institution: `M+, Hong Kong`
 };
 
 // Build rich context from available fields
@@ -1176,7 +1210,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_aic',
+      collection: 'archai_mplus',
       text,
       authorType: 'visitor',
     }),

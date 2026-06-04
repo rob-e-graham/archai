@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Avebury — ARCHAI</title>
+<title>One Cent — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2025PJ3609/full/!600,600/0/default.jpg" alt="Avebury" loading="eager">
+  <img src="https://media.tepapa.govt.nz/collection/619968/preview" alt="One Cent" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Avebury</div>
-  <div class="v-sub">digital art (visual works) · 2023 · E.307-2025</div>
+  <div class="v-title">One Cent</div>
+  <div class="v-sub">coins · 1845 · NU005370</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">digital art (visual works)</span>
+    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">History</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Avebury</strong> — Avebury. digital art (visual works). Made by Harrup, Claire. 2023. Made in Great Britain. In store</div>
+  <div class="v-story"><strong>One Cent</strong> — One Cent , 1845, India, by East India Company. Gift of Miss M Sutherland, date unknown. CC BY-NC-ND 4.0 . Te Papa (NU005370)</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +821,17 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.307-2025</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Harrup, Claire</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">digital art (visual works)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">digital art (visual works)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2023</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In store</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">digital art (visual works)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">NU005370</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">East India Company</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">bronze</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">History</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">coins</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1845</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">coins</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +846,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1167.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/a65a93bc-0850-d8c1-c234-4c560796d479/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Lead Pipe Sunday</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 117704</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1977.179/1977.179_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Red-Figure Situla (Deep Bucket): Bellerophon Slaying Chimaera (A); Dionysos, Maenads, Eros (B)</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1977.179</div>
       </a>
       <a class="v-rel-card" href="NFC1168.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PJ1589/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Drum Machine</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:AMERICASFOUNDATION.1157:1, 2-2024</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/588470?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">[textile, fragment]</div>
+        <div class="v-rel-meta">Auckland Museum · 2012.x.6</div>
       </a>
       <a class="v-rel-card" href="NFC1170.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669054/006320.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Frei Domingos da Encarnação Pontevel, 4º bispo de Mariana</div>
-        <div class="v-rel-meta">Brasiliana Museus · frei-domingos-da-encarnacao-pontevel-4o-bispo-de-mariana</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AT9584/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Bush DAC90</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.288-1976</div>
       </a>
       <a class="v-rel-card" href="NFC1171.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2024PA4615/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Award</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:AMERICASFOUNDATION.771-2024</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1929.134/1929.134_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Black-Figure Lekythos (Oil Vessel): Seated Men, Warriors and Horse</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1929.134</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +876,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1805761/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/110119" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,26 +907,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Avebury`,
-  type: `digital art (visual works)`,
-  date: `2023`,
-  registration: `E.307-2025`,
-  location: `In store`,
-  discipline: `digital art (visual works)`,
-  category: `digital art (visual works)`,
-  description: `Avebury. digital art (visual works). Made by Harrup, Claire. 2023. Made in Great Britain. In store`,
-  medium: ``,
-  artist: `Harrup, Claire`,
+  title: `One Cent`,
+  type: `coins`,
+  date: `1845`,
+  registration: `NU005370`,
+  location: `Te Papa Tongarewa, Wellington`,
+  discipline: `History`,
+  category: `coins`,
+  description: `One Cent , 1845, India, by East India Company. Gift of Miss M Sutherland, date unknown. CC BY-NC-ND 4.0 . Te Papa (NU005370)`,
+  medium: `bronze`,
+  artist: `East India Company`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1805761/`,
-  institution: `Victoria and Albert Museum, London`
+  tombstone: `One Cent, 1845, India, by East India Company. Gift of Miss M Sutherland, date unknown. CC BY-NC-ND 4.0. Te Papa (NU005370)`,
+  licence: `CC BY-NC-ND 4.0 · metadata CC BY 4.0`,
+  source_url: `https://collections.tepapa.govt.nz/object/110119`,
+  institution: `Museum of New Zealand Te Papa Tongarewa`
 };
 
 // Build rich context from available fields
@@ -1173,7 +1208,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_tepapa',
       text,
       authorType: 'visitor',
     }),

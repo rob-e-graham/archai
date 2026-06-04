@@ -183,6 +183,10 @@ async function main() {
         a.description
       ].filter(Boolean).join('. ');
 
+      // LEGAL GATE: AIC marks non-public-domain works "All rights reserved".
+      // Never ingest those — we cannot publish copyrighted media.
+      if (!a.is_public_domain) { errors++; continue; }
+
       const imgUrl = `${IIIF_BASE}/${a.image_id}/full/843,/0/default.jpg`;
       const thumbUrl = `${IIIF_BASE}/${a.image_id}/full/200,/0/default.jpg`;
 

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Digital Prints — ARCHAI</title>
+<title>Conselheiro Ferreira Viana — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/356a3da5-8f4e-8e6f-b558-634b172e844a/full/843,/0/default.jpg" alt="Digital Prints" loading="eager">
+  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680284/000770-1.jpg" alt="Conselheiro Ferreira Viana" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Digital Prints</div>
-  <div class="v-sub">Print · 1996 · 148408</div>
+  <div class="v-title">Conselheiro Ferreira Viana</div>
+  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · 18-- · conselheiro-ferreira-viana</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Art Institute of Chicago</span>
-    <span class="v-meta-tag lic">All rights reserved</span>
-    <span class="v-meta-tag">Prints and Drawings</span>
+    <span class="v-meta-tag mv">Brasiliana Museus</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Brasiliana Museus</span>
   </div>
 
   <!-- SHARE -->
@@ -756,8 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Digital Prints</strong> — Digital Prints. Print. Portfolio box with 30 prints in various media, in presentation mats with title page and book of essays. Prints and Drawings. Adam Lowe
-English, born 1959. prints and drawing. 1996. England</div>
+  <div class="v-story"><strong>Conselheiro Ferreira Viana</strong> — Sobre fundo bege, ao centro, figura masculina em meio corpo, 3/4, voltado à esquerda. Cabelos e barba grisalhos. Traja paletó e gravata em laço na cor preta e camisa branca com colarinho alto, tendo abotoamento na cor bege. Moldura em madeira dourada.</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -790,18 +821,18 @@ English, born 1959. prints and drawing. 1996. England</div>
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">148408</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Adam Lowe
-English, born 1959</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Portfolio box with 30 prints in various media, in presentation mats with title page and book of essays</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">England</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Prints and Drawings</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">prints and drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1996</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Each mat: 40.2 × 50.6 cm (15 7/8 × 19 15/16 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">All rights reserved</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">conselheiro-ferreira-viana</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">18--</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 85,00 cm · largura 74,00 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -816,24 +847,24 @@ English, born 1959</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC778.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/VnvuP/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Hollandse gulden, 1793</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100257</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fsgdap.girona.cat%2Fsdam%2Fimatges%2F085287.jpg&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">[Aparell fotogràfic]</div>
+        <div class="v-rel-meta">Europeana · /2024914/photography_ProvidedCHO_Ajuntament_de_Girona_085287</div>
       </a>
       <a class="v-rel-card" href="NFC779.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2009BY2163/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Contribution to V&amp;A's 150th anniversary album</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.477:4-2008</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/107383?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">dress, child's</div>
+        <div class="v-rel-meta">Auckland Museum · col.1678</div>
       </a>
       <a class="v-rel-card" href="NFC781.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fgallica.bnf.fr%2Fiiif%2Fark%3A%2F12148%2Fbtv1b69366226%2Ff1%2Ffull%2F512%2C%2F0%2Fnative.jpg&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">[Premier sénateur] : [dessin]</div>
-        <div class="v-rel-meta">Europeana · /9200518/ark__12148_btv1b69366226</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1635629617/v2/prod/small/002501_003000/002746_012.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Looking, looking, looking for...</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2012.524</div>
       </a>
       <a class="v-rel-card" href="NFC782.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_715/v1627827606/v2/prod/small/002001_002500/002033_001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Poster, 'Peaceful Use of Atomic Energy'</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2014.44</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2026PN3479/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Poster</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:AMERICASFOUNDATION.1870-2024</div>
       </a></div>
   </div>
 </div>
@@ -846,7 +877,7 @@ English, born 1959</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/148408" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/conselheiro-ferreira-viana/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -877,28 +908,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Digital Prints`,
-  type: `Print`,
-  date: `1996`,
-  registration: `148408`,
-  location: `Art Institute of Chicago`,
-  discipline: `Prints and Drawings`,
-  category: `prints and drawing`,
-  description: `Digital Prints. Print. Portfolio box with 30 prints in various media, in presentation mats with title page and book of essays. Prints and Drawings. Adam Lowe
-English, born 1959. prints and drawing. 1996. England`,
-  medium: `Portfolio box with 30 prints in various media, in presentation mats with title page and book of essays`,
-  artist: `Adam Lowe
-English, born 1959`,
-  culture: `England`,
-  dimensions: `Each mat: 40.2 × 50.6 cm (15 7/8 × 19 15/16 in.)`,
-  wall_description: ``,
+  title: `Conselheiro Ferreira Viana`,
+  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  date: `18--`,
+  registration: `conselheiro-ferreira-viana`,
+  location: `Brasiliana Museus`,
+  discipline: `Brasiliana Museus`,
+  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  description: `Sobre fundo bege, ao centro, figura masculina em meio corpo, 3/4, voltado à esquerda. Cabelos e barba grisalhos. Traja paletó e gravata em laço na cor preta e camisa branca com colarinho alto, tendo abotoamento na cor bege. Moldura em madeira dourada.`,
+  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  artist: ``,
+  culture: `Brazil`,
+  dimensions: `altura 85,00 cm · largura 74,00 cm`,
+  wall_description: `Sobre fundo bege, ao centro, figura masculina em meio corpo, 3/4, voltado à esquerda. Cabelos e barba grisalhos. Traja paletó e gravata em laço na cor preta e camisa branca com colarinho alto, tendo abotoamento na cor bege. Moldura em madeira dourada.`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `All rights reserved`,
-  source_url: `https://www.artic.edu/artworks/148408`,
-  institution: `Art Institute of Chicago`
+  tombstone: `Conselheiro Ferreira Viana. 18--. Brasiliana Museus`,
+  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
+  source_url: `https://brasiliana.museus.gov.br/acervos/conselheiro-ferreira-viana/`,
+  institution: `Brasiliana Museus`
 };
 
 // Build rich context from available fields
@@ -1180,7 +1209,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_aic',
+      collection: 'archai_brasiliana',
       text,
       authorType: 'visitor',
     }),

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>edging, lace — ARCHAI</title>
+<title>textile piece — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,17 +761,17 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/217836?rendering=standard.jpg" alt="edging, lace" loading="eager">
+  <img src="https://api.aucklandmuseum.com/id/media/v/84410?rendering=standard.jpg" alt="textile piece" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">edging, lace</div>
-  <div class="v-sub">Trim, Textile · (18th Century) · 1987.744</div>
+  <div class="v-title">textile piece</div>
+  <div class="v-sub">ecrm:E22_Man-Made_Object · Late 19th Century-Early 20th Century · T11</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Auckland Museum</span>
-    <span class="v-meta-tag lic">© Auckland Museum CC BY</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
     <span class="v-meta-tag">Applied Arts and Design</span>
   </div>
 
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>edging, lace</strong> — linen, Mechlin bobbin lace, small piece, scalloped edging, very fine, flower heads design with little ground</div>
+  <div class="v-story"><strong>textile piece</strong> — textile piece, embroidered silk satin square; red ground, multi-coloured design with chrysanthemums and butterflies on centre and corners; possibly rank badge (LJ)</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
+      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,15 +821,17 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1987.744</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">T11</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">unknown</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Linen (material), &lt;textile Materials By Composition Or Origin&gt;, &lt;textile Materials&gt;, &lt;fiber Products&gt;, &lt;fiber And Fiber Products&gt;, &lt;materials By Physical Form&gt;</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Satin, &lt;textile Materials By Weaving Technique&gt;, &lt;textile Materials By Process Or Technique&gt;, &lt;textile Materials&gt;, &lt;fiber Products&gt;, &lt;fiber And Fiber Products&gt;</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Applied Arts and Design</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Trim, Textile</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">(18th Century)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Late 19th Century-Early 20th Century</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Trim, Textile</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -812,24 +846,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC691.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/cd40d01c-d24f-888d-bcf2-b426374d1fbc/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Wounded Tree: I'm Meant to Symbolize Strength</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 184066</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP-12659-001.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Seated female figure</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 312595</div>
       </a>
       <a class="v-rel-card" href="NFC692.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%3A80%2Fwebclient%2FDeliveryManager%3Fpid%3D6355694%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Photographic reportage, Florence, 1957-1956</div>
-        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6355694_custom_att_2_simple_viewer</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018LF5300/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Art</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · S.553-2018</div>
       </a>
       <a class="v-rel-card" href="NFC694.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/374804/preview" loading="lazy"></div>
-        <div class="v-rel-title">Mocassins</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · FE003159</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DT9416.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Crocodile whistle and rattle</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 313335</div>
       </a>
       <a class="v-rel-card" href="NFC695.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/b9258d10-7514-501f-80c6-50cafaf81fe3/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Art Critics</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 31784</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/laKFk/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Vijftigjarig bestaan van de loge La Vertu te Leiden 1807 memorerende de buskruitramp, afdruk in karton</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100142</div>
       </a></div>
   </div>
 </div>
@@ -842,7 +876,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/3241" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/4643" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -873,15 +907,15 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `edging, lace`,
-  type: `Trim, Textile`,
-  date: `(18th Century)`,
-  registration: `1987.744`,
+  title: `textile piece`,
+  type: `ecrm:E22_Man-Made_Object`,
+  date: `Late 19th Century-Early 20th Century`,
+  registration: `T11`,
   location: `Auckland Museum`,
   discipline: `Applied Arts and Design`,
-  category: `Trim, Textile`,
-  description: `linen, Mechlin bobbin lace, small piece, scalloped edging, very fine, flower heads design with little ground`,
-  medium: `Linen (material), <textile Materials By Composition Or Origin>, <textile Materials>, <fiber Products>, <fiber And Fiber Products>, <materials By Physical Form>`,
+  category: `ecrm:E22_Man-Made_Object`,
+  description: `textile piece, embroidered silk satin square; red ground, multi-coloured design with chrysanthemums and butterflies on centre and corners; possibly rank badge (LJ)`,
+  medium: `Satin, <textile Materials By Weaving Technique>, <textile Materials By Process Or Technique>, <textile Materials>, <fiber Products>, <fiber And Fiber Products>`,
   artist: `unknown`,
   culture: ``,
   dimensions: ``,
@@ -891,7 +925,7 @@ const OBJECT = {
   provenance: ``,
   tombstone: ``,
   licence: `© Auckland Museum CC BY`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/3241`,
+  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/4643`,
   institution: `Auckland Museum`
 };
 

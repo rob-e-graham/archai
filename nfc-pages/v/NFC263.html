@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Model TR 70 — ARCHAI</title>
+<title>Radio — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,17 +761,17 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2011EU0493/full/!600,600/0/default.jpg" alt="Model TR 70" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2011ER1926/full/!600,600/0/default.jpg" alt="Radio" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Model TR 70</div>
-  <div class="v-sub">Radio · 1961 · CIRC.293-1963</div>
+  <div class="v-title">Radio</div>
+  <div class="v-sub">Radio · ca.1950-70 · C.40-2009</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
     <span class="v-meta-tag">Radio</span>
   </div>
 
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Model TR 70</strong> — Model TR 70. Radio. Made by Marshall, Eric. 1961. Made in Great Britain. In Store</div>
+  <div class="v-story"><strong>Radio</strong> — Radio. Radio. Made by Roberts Radio. ca.1950-70. Made in England. Ceramics, Room 143, The Timothy Sainsbury Gallery</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +821,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">CIRC.293-1963</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Marshall, Eric</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">C.40-2009</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Roberts Radio</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Radio</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Radio</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1961</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In Store</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca.1950-70</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Ceramics, Room 143, The Timothy Sainsbury Gallery</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Radio</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +845,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC261.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/910839/preview" loading="lazy"></div>
-        <div class="v-rel-title">New, authentic, and complete collection of voyages round the world : undertaken and performed by royal authority. Containing a new, authentic, entertaining, instructive, full, and complete historical account of Captain Cook's first, second, third, and last voyages, undertaken by order of His present Majesty, for making new discoveries in geography, navigation, astronomy, &amp;c. in the Southern and Northern Hemispheres, &amp;c., &amp;c., &amp;c. ... To which will be added, complete and genuine narratives of other voyages of discovery round the world, &amp;c. ... Illustrated with all the elegant, splendid, and fine large folio copper-plates, belonging to Capt. Cook's first, second, third and last voyages ... / the whole of these voyages of Capt. James Cook, &amp;c., being newly written by the editors from the authentic journals of several principal officers and other gentlemen of the most distinguished naval and philosophical abilities, who sailed in the various ships and now publishing under the immediate direction of George William Anderson ... assisted, very materially, by a principal officer who sailed in the Resolution sloop, and by other gentlemen of the Royal Navy.</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · RB000015</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PH9468/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Philips Superinductance model 634A</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.24-1981</div>
       </a>
       <a class="v-rel-card" href="NFC262.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP234912.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Charango</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 505397</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/38/164788-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Lantern Slide - 'Old Father Thames', Part 1, circa 1933-1956</div>
+        <div class="v-rel-meta">Museums Victoria · MM 97276</div>
       </a>
       <a class="v-rel-card" href="NFC264.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/77569?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">textile</div>
-        <div class="v-rel-meta">Auckland Museum · T71</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1998.273/1998.273_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Young Girl Seated on Straw, Leaning on a Basket</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1998.273</div>
       </a>
       <a class="v-rel-card" href="NFC265.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fbdh-rd.bne.es%2Fpdf.raw%3Fquery%3Did%3A0000033674%26page%3D1%26jpeg%3Dtrue&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Geographical Letter or Gerl Map. of the villages, mountains and their principals. groves. and extensions., justicias, guardas q. They guard them, neighbors., matris. and embars. q. They comprise the Province of Marina of Seville, according to the Ynspon. of year 1754, one of the q. They compose the Yntena. Gerl. de Cadiz, execuo. with Rl. Apron. pr. the Yngenro. Extracts. de S.M. Dn. Joseph Espelius [Mapping Material]</div>
-        <div class="v-rel-meta">Europeana · /2022717/bnesearch_detalle_bdh0000033674</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2019MA1837/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Kinetic effect lighting system, projector</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.459-1973</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +875,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O368658/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1140200/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,16 +906,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Model TR 70`,
+  title: `Radio`,
   type: `Radio`,
-  date: `1961`,
-  registration: `CIRC.293-1963`,
-  location: `In Store`,
+  date: `ca.1950-70`,
+  registration: `C.40-2009`,
+  location: `Ceramics, Room 143, The Timothy Sainsbury Gallery`,
   discipline: `Radio`,
   category: `Radio`,
-  description: `Model TR 70. Radio. Made by Marshall, Eric. 1961. Made in Great Britain. In Store`,
+  description: `Radio. Radio. Made by Roberts Radio. ca.1950-70. Made in England. Ceramics, Room 143, The Timothy Sainsbury Gallery`,
   medium: ``,
-  artist: `Marshall, Eric`,
+  artist: `Roberts Radio`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -890,7 +924,7 @@ const OBJECT = {
   provenance: ``,
   tombstone: ``,
   licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O368658/`,
+  source_url: `https://collections.vam.ac.uk/item/O1140200/`,
   institution: `Victoria and Albert Museum, London`
 };
 

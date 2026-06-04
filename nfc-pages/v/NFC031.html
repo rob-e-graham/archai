@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>au Infobar — ARCHAI</title>
+<title>Print — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2015HU1287/full/!600,600/0/default.jpg" alt="au Infobar" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2009CD9463/full/!600,600/0/default.jpg" alt="Print" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">au Infobar</div>
-  <div class="v-sub">Mobile telephone · 2001 · CD.36.2015</div>
+  <div class="v-title">Print</div>
+  <div class="v-sub">Print · 2009 · E.160-2009</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag lic">V&A Open Access</span>
-    <span class="v-meta-tag">Mobile telephone</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Print</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>au Infobar</strong> — au Infobar. Mobile telephone. Made by Fukasawa, Naoto. 2001. in storage</div>
+  <div class="v-story"><strong>Print</strong> — Print. Print. Made by Faure Walker, James. 2009. Made in Great Britain. Prints &amp; Drawings Study Room, level E</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,14 +821,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">CD.36.2015</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Fukasawa, Naoto</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Mobile telephone</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Mobile telephone</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2001</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">in storage</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Mobile telephone</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.160-2009</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Faure Walker, James</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2009</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, level E</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -811,24 +845,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC029.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/125927/preview" loading="lazy"></div>
-        <div class="v-rel-title">Textile swatchbook</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH009582</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2012FK3677/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Alhambra</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · 34779</div>
       </a>
       <a class="v-rel-card" href="NFC030.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/137530?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">mug, miniature</div>
-        <div class="v-rel-meta">Auckland Museum · 1983.83</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/eg/original/LC-25_3_306_EGDP026451.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Harp</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 555866</div>
       </a>
       <a class="v-rel-card" href="NFC032.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/65856/preview" loading="lazy"></div>
-        <div class="v-rel-title">Blue vase [4]</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · 1996-0033-29/4-4</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2022NF0994/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Ubislate 7CZ</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CD.3:1 to 5-2013</div>
       </a>
       <a class="v-rel-card" href="NFC033.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669040/006325.jpg" loading="lazy"></div>
-        <div class="v-rel-title">[Menino holandês]</div>
-        <div class="v-rel-meta">Brasiliana Museus · menino-holandes</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/SNmzO/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Filips de Schone, hertog van Bourgondie, ingehuldigd als graaf van Holland, rekenpenning van de rekenkamer van Holland</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010037</div>
       </a></div>
   </div>
 </div>
@@ -841,7 +875,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1324854/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O239624/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -872,16 +906,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `au Infobar`,
-  type: `Mobile telephone`,
-  date: `2001`,
-  registration: `CD.36.2015`,
-  location: `in storage`,
-  discipline: `Mobile telephone`,
-  category: `Mobile telephone`,
-  description: `au Infobar. Mobile telephone. Made by Fukasawa, Naoto. 2001. in storage`,
+  title: `Print`,
+  type: `Print`,
+  date: `2009`,
+  registration: `E.160-2009`,
+  location: `Prints & Drawings Study Room, level E`,
+  discipline: `Print`,
+  category: `Print`,
+  description: `Print. Print. Made by Faure Walker, James. 2009. Made in Great Britain. Prints & Drawings Study Room, level E`,
   medium: ``,
-  artist: `Fukasawa, Naoto`,
+  artist: `Faure Walker, James`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -890,7 +924,7 @@ const OBJECT = {
   provenance: ``,
   tombstone: ``,
   licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1324854/`,
+  source_url: `https://collections.vam.ac.uk/item/O239624/`,
   institution: `Victoria and Albert Museum, London`
 };
 

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>The Untitled Book — ARCHAI</title>
+<title>First colour broadcast by Associated Television — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/66fc4477-6095-69b7-4b7c-c22455f6ac9b/full/843,/0/default.jpg" alt="The Untitled Book" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2014HD6615/full/!600,600/0/default.jpg" alt="First colour broadcast by Associated Television" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">The Untitled Book</div>
-  <div class="v-sub">Photograph · 2003 · 182031</div>
+  <div class="v-title">First colour broadcast by Associated Television</div>
+  <div class="v-sub">Costume design · 1969 · S.170-1980</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Art Institute of Chicago</span>
-    <span class="v-meta-tag lic">All rights reserved</span>
-    <span class="v-meta-tag">Photography and Media</span>
+    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Costume design</span>
   </div>
 
   <!-- SHARE -->
@@ -756,8 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>The Untitled Book</strong> — The Untitled Book. Photograph. Artist book containing 12 digital inkjet prints and one artist statement. Photography and Media. Matt Siber
-American, born 1972. book. 2003. United States. 21st Century</div>
+  <div class="v-story"><strong>First colour broadcast by Associated Television</strong> — First colour broadcast by Associated Television. Costume design. Made by unknown. 1969. Made in Great Britain. In Store</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -790,18 +821,16 @@ American, born 1972. book. 2003. United States. 21st Century</div>
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">182031</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Matt Siber
-American, born 1972</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Artist book containing 12 digital inkjet prints and one artist statement</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">United States</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography and Media</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">book</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2003</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Each image: 28 × 35.6 cm (11 × 14 in.); Book: 33.1 × 44.5 cm (13 × 17 1/2 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">All rights reserved</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">S.170-1980</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">unknown</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Costume design</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Costume design</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1969</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In Store</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Costume design</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -816,24 +845,24 @@ American, born 1972</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC911.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018KU1730/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Ericofon 600</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · W.9-2003</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1985.1/1985.1_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Black-Figure Lekythos (Oil Vessel): Pan Presenting Hare to Woman</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1985.1</div>
       </a>
       <a class="v-rel-card" href="NFC912.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PC0394/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Untitled</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · PH.560-2024</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fbdh-rd.bne.es%2Fpdf.raw%3Fquery%3Did%3A0000207688%26page%3D1%26jpeg%3Dtrue&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Title of Barcia: Study for figure of a ceiling</div>
+        <div class="v-rel-meta">Europeana · /2022717/bnesearch_detalle_bdh0000207688</div>
       </a>
       <a class="v-rel-card" href="NFC914.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2019.244/2019.244_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Jack-in-the-Pulpit Vase</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2019.244</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2011EP0065/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Murphy Television see for yourself</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.521-1985</div>
       </a>
       <a class="v-rel-card" href="NFC915.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1696385938/v2/prod/small/001501_002000/001559_007.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Model, Digital Beijing (2004–2007), Beijing, China</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2013.95</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/120512?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">textile</div>
+        <div class="v-rel-meta">Auckland Museum · 56700</div>
       </a></div>
   </div>
 </div>
@@ -846,7 +875,7 @@ American, born 1972</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/182031" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1295200/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -877,28 +906,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `The Untitled Book`,
-  type: `Photograph`,
-  date: `2003`,
-  registration: `182031`,
-  location: `Art Institute of Chicago`,
-  discipline: `Photography and Media`,
-  category: `book`,
-  description: `The Untitled Book. Photograph. Artist book containing 12 digital inkjet prints and one artist statement. Photography and Media. Matt Siber
-American, born 1972. book. 2003. United States. 21st Century`,
-  medium: `Artist book containing 12 digital inkjet prints and one artist statement`,
-  artist: `Matt Siber
-American, born 1972`,
-  culture: `United States`,
-  dimensions: `Each image: 28 × 35.6 cm (11 × 14 in.); Book: 33.1 × 44.5 cm (13 × 17 1/2 in.)`,
+  title: `First colour broadcast by Associated Television`,
+  type: `Costume design`,
+  date: `1969`,
+  registration: `S.170-1980`,
+  location: `In Store`,
+  discipline: `Costume design`,
+  category: `Costume design`,
+  description: `First colour broadcast by Associated Television. Costume design. Made by unknown. 1969. Made in Great Britain. In Store`,
+  medium: ``,
+  artist: `unknown`,
+  culture: ``,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `All rights reserved`,
-  source_url: `https://www.artic.edu/artworks/182031`,
-  institution: `Art Institute of Chicago`
+  licence: `V&A Open Access`,
+  source_url: `https://collections.vam.ac.uk/item/O1295200/`,
+  institution: `Victoria and Albert Museum, London`
 };
 
 // Build rich context from available fields
@@ -1180,7 +1207,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_aic',
+      collection: 'archai_va',
       text,
       authorType: 'visitor',
     }),

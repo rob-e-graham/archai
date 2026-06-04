@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Lyon. Viaduc du Rhône — ARCHAI</title>
+<title>textile piece — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,18 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/2022.33/2022.33_web.jpg" alt="Lyon. Viaduc du Rhône" loading="eager">
+  <img src="https://api.aucklandmuseum.com/id/media/v/85283?rendering=standard.jpg" alt="textile piece" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Lyon. Viaduc du Rhône</div>
-  <div class="v-sub">Photograph · c. 1860 · 2022.33</div>
+  <div class="v-title">textile piece</div>
+  <div class="v-sub">ecrm:E22_Man-Made_Object · Late 19th Century · 1966.181</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
-    <span class="v-meta-tag lic">CC0 — Public Domain</span>
-    <span class="v-meta-tag">Photography</span>
+    <span class="v-meta-tag mv">Auckland Museum</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
+    <span class="v-meta-tag">Applied Arts and Design</span>
   </div>
 
   <!-- SHARE -->
@@ -756,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Lyon. Viaduc du Rhône</strong> — Edouard Baldus, one of the greatest French architectural photographers, documented many of the engineering projects and economic growth that accompanied the construction of the railroads in France. Bridges and viaducts were examples of advancing engineering technology and critical structures for com…</div>
+  <div class="v-story"><strong>textile piece</strong> — two identical panels mounted as one circular panel, coloured gold thread embroidery on black satin ground, ey pattern border, scarlet satin lining. &quot;design of peaches symbolising longevity&quot;</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
+      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -789,17 +821,17 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2022.33</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Édouard Baldus (French, 1813–1889)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">albumen print from collodion negative</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, 19th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photograph</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1860</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Image: 22.8 x 42.5 cm (9 x 16 3/4 in.); Paper: 22.8 x 42.5 cm (9 x 16 3/4 in.); Mounted: 45.7 x 60.9 cm (18 x 24 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Cleveland Museum of Art</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1966.181</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">unknown</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Satin, &lt;textile Materials By Weaving Technique&gt;, &lt;textile Materials By Process Or Technique&gt;, &lt;textile Materials&gt;, &lt;fiber Products&gt;, &lt;fiber And Fiber Products&gt;</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Applied Arts and Design</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Late 19th Century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -814,24 +846,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC749.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1929.951/1929.951_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Outskirts of Paris</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1929.951</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627821547/v2/prod/small/005501_006000/005638_003.jpg" loading="lazy"></div>
+        <div class="v-rel-title">A Requiem: Theater of Creativity / Self-portrait as Marcel Duchamp (Based on the photo by Julian Wasser)</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2015.558</div>
       </a>
       <a class="v-rel-card" href="NFC750.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/bNonH/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Aansprekersoproer 1696 (1697)</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100155</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP-37845-001.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Oliphant (side-blown horn)</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 883968</div>
       </a>
       <a class="v-rel-card" href="NFC752.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4351/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">COOKIE CUTTER</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.306-2020</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/uXJlQ/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Dirk II, graaf van Holland</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010001</div>
       </a>
       <a class="v-rel-card" href="NFC753.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2009CR7359/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Ring</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · M.47-2009</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/f6093dc6-a3c2-f783-f921-a9bb8449c6c6/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">&quot;The Arts&quot; Ewer and Basin</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 618</div>
       </a></div>
   </div>
 </div>
@@ -844,7 +876,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://clevelandart.org/art/2022.33" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/16945" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -875,26 +907,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Lyon. Viaduc du Rhône`,
-  type: `Photograph`,
-  date: `c. 1860`,
-  registration: `2022.33`,
-  location: `Cleveland Museum of Art`,
-  discipline: `Photography`,
-  category: `Photograph`,
-  description: `Edouard Baldus, one of the greatest French architectural photographers, documented many of the engineering projects and economic growth that accompanied the construction of the railroads in France. Bridges and viaducts were examples of advancing engineering technology and critical structures for commerce. In this view by Baldus, the viaduct’s repeating arches form a soothing rhythm suggestive of classical balance and symmetry at odds with its modern role.`,
-  medium: `albumen print from collodion negative`,
-  artist: `Édouard Baldus (French, 1813–1889)`,
-  culture: `France, 19th century`,
-  dimensions: `Image: 22.8 x 42.5 cm (9 x 16 3/4 in.); Paper: 22.8 x 42.5 cm (9 x 16 3/4 in.); Mounted: 45.7 x 60.9 cm (18 x 24 in.)`,
+  title: `textile piece`,
+  type: `ecrm:E22_Man-Made_Object`,
+  date: `Late 19th Century`,
+  registration: `1966.181`,
+  location: `Auckland Museum`,
+  discipline: `Applied Arts and Design`,
+  category: `ecrm:E22_Man-Made_Object`,
+  description: `two identical panels mounted as one circular panel, coloured gold thread embroidery on black satin ground, ey pattern border, scarlet satin lining. "design of peaches symbolising longevity"`,
+  medium: `Satin, <textile Materials By Weaving Technique>, <textile Materials By Process Or Technique>, <textile Materials>, <fiber Products>, <fiber And Fiber Products>`,
+  artist: `unknown`,
+  culture: ``,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: `This cast-iron railway bridge, completed in 1857, still carries trains today.`,
-  provenance: `[{"description":"Harry Lunn, Washington, D.C., sold to Michael Mattis and Judith Hochberg, Scarsdale, NY","citations":[],"footnotes":null,"date":null,"sortorder":1},{"description":"Michael Mattis & Judith Hochberg, Scarsdale, NY, given to The Cleveland Museum of Art","citations":[],"footnotes":null,…`,
-  tombstone: `Lyon. Viaduc du Rhône, c. 1860. Édouard Baldus (French, 1813–1889). Albumen print from collodion negative; image: 22.8 x 42.5 cm (9 x 16 3/4 in.); paper: 22.8 x 42.5 cm (9 x 16 3/4 in.); mounted: 45.7 x 60.9 cm (18 x 24 in.). The Cleveland Museum of Art, Gift of Michael Mattis and Judith Hochberg, 2022.33`,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://clevelandart.org/art/2022.33`,
-  institution: `Cleveland Museum of Art`
+  did_you_know: ``,
+  provenance: ``,
+  tombstone: ``,
+  licence: `© Auckland Museum CC BY`,
+  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/16945`,
+  institution: `Auckland Museum`
 };
 
 // Build rich context from available fields
@@ -1176,7 +1208,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_cma',
+      collection: 'archai_auckland',
       text,
       authorType: 'visitor',
     }),

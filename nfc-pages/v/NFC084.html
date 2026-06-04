@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Wijnpenning van Utrecht — ARCHAI</title>
+<title>Panchiao, Taiwan 1962 — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -206,6 +206,33 @@ body::after {
   animation: slideUp 0.6s ease 0.3s both;
 }
 .v-story strong { color: var(--text); font-weight: 400; }
+
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
 
 /* ── DIVIDER ── */
 .v-divider {
@@ -734,29 +761,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://iiif.micr.io/HaChh/full/max/0/default.jpg" alt="Wijnpenning van Utrecht" loading="eager">
+  <img src="https://res.cloudinary.com/mplustms/image/upload/w_986/v1719854106/v2/prod/small/007001_007500/007145_003.jpg" alt="Panchiao, Taiwan 1962" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Wijnpenning van Utrecht</div>
-  <div class="v-sub">schutterspenning · 2026-02-14T04:18:11Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
-        &lt;setSpec&gt;261219&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;anoniem&lt;/dc:creator&gt;
-          &lt;dc:creator&gt;anonymous&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1661 · 200100434</div>
+  <div class="v-title">Panchiao, Taiwan 1962</div>
+  <div class="v-sub">Photography · 1962 · 2017.220</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
-    <span class="v-meta-tag lic">https://creativecommons.org/publicdomain/mark/1.0/</span>
-    
+    <span class="v-meta-tag mv">M+, Hong Kong</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">Visual Art</span>
   </div>
 
   <!-- SHARE -->
@@ -767,7 +783,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Wijnpenning van Utrecht</strong> — Zilveren wijn- en schutterspenning van Utrecht. Voorzijde: het stadswapen met leeuwen als schildhouders en kroon. Boven in een banderol: VIN [um] HON [orarium]. Onderaan: URB [is] TRA [jectensis] (erewijn der stad Utrecht). Keerzijde: verschillende trofee&amp;#235;n met daarboven een grote druiventros. …</div>
+  <div class="v-story"><strong>Panchiao, Taiwan 1962</strong> — Monochrome photograph showing the silhouette of a headless figure in the foreground, in front of an open space resembling a body of water that reaches distant mountains in the upper half. The figure stands with its weight on one foot and arms by the side.</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Chang Chao-Tang · © Chang Chao-Tang</div>
+    </div>
 
   <div class="v-divider"></div>
 
@@ -800,25 +821,20 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">200100434</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">anoniem; anonymous</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">zilver</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">schutterspenning</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-02-14T04:18:11Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
-        &lt;setSpec&gt;261219&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;anoniem&lt;/dc:creator&gt;
-          &lt;dc:creator&gt;anonymous&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1661</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">schutterspenning</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2017.220</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Chang Chao-Tang</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">gelatin silver print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Taiwanese</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Visual Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photography</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1962</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">frame: 61 × 76.2 × 3.5 cm
+image: 50.8 × 61 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photography</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Chang Chao-Tang · © Chang Chao-Tang</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -833,24 +849,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC082.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1970.127/1970.127_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Covered Box</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1970.127</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/es/original/DP210717.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Mantel clock with musical movement</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 202227</div>
       </a>
       <a class="v-rel-card" href="NFC083.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1998.273/1998.273_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Young Girl Seated on Straw, Leaning on a Basket</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1998.273</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680057/820-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Tocador de sanfona</div>
+        <div class="v-rel-meta">Brasiliana Museus · tocador-de-sanfona</div>
       </a>
       <a class="v-rel-card" href="NFC085.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/39/377639-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Tray Five - Printing Type, Wood, 30 Line Gothic</div>
-        <div class="v-rel-meta">Museums Victoria · HT 25692</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2009BX5459/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Composite Oscillons</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.957-2008</div>
       </a>
       <a class="v-rel-card" href="NFC086.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/45564/preview" loading="lazy"></div>
-        <div class="v-rel-title">Mehit-em-Wesekht and Sarcophagus</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · FE003200</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_667/v1714185358/v2/prod/small/002501_003000/002758_003.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Chain</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2012.34</div>
       </a></div>
   </div>
 </div>
@@ -863,7 +879,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/200100434" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/panchiao-taiwan-1962-2017220/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -894,37 +910,27 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Wijnpenning van Utrecht`,
-  type: `schutterspenning`,
-  date: `2026-02-14T04:18:11Z</datestamp>
-        <setSpec>260239</setSpec>
-        <setSpec>261106</setSpec>
-        <setSpec>261219</setSpec>
-        <setSpec>260251</setSpec>
-        <setSpec>2601</setSpec>
-      </header>
-      <metadata>
-        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
-          <dc:creator>anoniem</dc:creator>
-          <dc:creator>anonymous</dc:creator>
-          <dc:date>1661`,
-  registration: `200100434`,
-  location: `Rijksmuseum, Amsterdam`,
-  discipline: ``,
-  category: `schutterspenning`,
-  description: `Zilveren wijn- en schutterspenning van Utrecht. Voorzijde: het stadswapen met leeuwen als schildhouders en kroon. Boven in een banderol: VIN [um] HON [orarium]. Onderaan: URB [is] TRA [jectensis] (erewijn der stad Utrecht). Keerzijde: verschillende trofee&#235;n met daarboven een grote druiventros. Onderaan het jaartal 1661.`,
-  medium: `zilver`,
-  artist: `anoniem; anonymous`,
-  culture: ``,
-  dimensions: ``,
-  wall_description: ``,
+  title: `Panchiao, Taiwan 1962`,
+  type: `Photography`,
+  date: `1962`,
+  registration: `2017.220`,
+  location: `M+, Hong Kong`,
+  discipline: `Visual Art`,
+  category: `Photography`,
+  description: `Monochrome photograph showing the silhouette of a headless figure in the foreground, in front of an open space resembling a body of water that reaches distant mountains in the upper half. The figure stands with its weight on one foot and arms by the side.`,
+  medium: `gelatin silver print`,
+  artist: `Chang Chao-Tang`,
+  culture: `Taiwanese`,
+  dimensions: `frame: 61 × 76.2 × 3.5 cm
+image: 50.8 × 61 cm`,
+  wall_description: `Monochrome photograph showing the silhouette of a headless figure in the foreground, in front of an open space resembling a body of water that reaches distant mountains in the upper half. The figure stands with its weight on one foot and arms by the side.`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
-  source_url: `https://www.rijksmuseum.nl/en/collection/200100434`,
-  institution: `Rijksmuseum, Amsterdam`
+  tombstone: `Panchiao, Taiwan 1962. Chang Chao-Tang. 1962. M+, Hong Kong`,
+  licence: `CC0 metadata · M+ API service non-commercial · © Chang Chao-Tang`,
+  source_url: `https://www.mplus.org.hk/en/collection/objects/panchiao-taiwan-1962-2017220/`,
+  institution: `M+, Hong Kong`
 };
 
 // Build rich context from available fields
@@ -1206,7 +1212,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_rijks',
+      collection: 'archai_mplus',
       text,
       authorType: 'visitor',
     }),
