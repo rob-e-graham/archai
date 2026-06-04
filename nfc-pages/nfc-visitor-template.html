@@ -918,8 +918,9 @@ function resolveApiOrigin() {
   if (!USE_PROXY) return '';
   if (BACKEND_PROXY !== '__SELF__') return BACKEND_PROXY;
 
-  // Static frontend pages run on :8000 while the API lives on :8787.
-  if (window.location.port === '8000') {
+  // Static AUX.IO pages can be served from preview ports like :8000 or :8002 while
+  // the backend API lives on :8787.
+  if (window.location.port && window.location.port !== '8787') {
     return `${window.location.protocol}//${window.location.hostname}:8787`;
   }
 

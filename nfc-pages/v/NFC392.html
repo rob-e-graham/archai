@@ -817,7 +817,7 @@ body::after {
 <!-- CONTENT -->
 <div class="v-content">
   <div class="v-title">Kriminalistische Tatbestandsaufnahme und die zugehörige Kamera. Criminalist crime shooting and the associated camera</div>
-  <div class="v-sub">IMAGE · Date unknown · /15508/FotoGLV2000_7937c</div>
+  <div class="v-sub">IMAGE · Date unknown · /15508/FotoGLV2000_7937a</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Europeana</span>
@@ -881,7 +881,7 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">/15508/FotoGLV2000_7937c</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">/15508/FotoGLV2000_7937a</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">#Franz_Eichberg_Künstler_in. Franz Eichberg (Künstler_in)</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">IMAGE</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Date unknown</span></div>
@@ -904,24 +904,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC390.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/ca2932b4-6c0c-5482-2ae5-8b74926d7b73/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Young Spartan Girls Challenging Boys</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 13487</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/InJZU/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Floris IV, graaf van Holland</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010016</div>
       </a>
       <a class="v-rel-card" href="NFC391.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2024NX9617/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Marigolds</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.766-2024</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP168843.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Lute</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 503357</div>
       </a>
       <a class="v-rel-card" href="NFC393.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/51b5e908-743a-04a2-b080-9f9f2a33e502/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Marie de’ Medici</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 78591</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4320/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">ENOUGH IS PLENTY</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.268-2020</div>
       </a>
       <a class="v-rel-card" href="NFC394.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PC0391/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Hand Behind Painted Glass</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · PH.557-2024</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/761826?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">hatpin</div>
+        <div class="v-rel-meta">Auckland Museum · 2019.x.44</div>
       </a></div>
   </div>
 </div>
@@ -934,7 +934,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.europeana.eu/item/15508/FotoGLV2000_7937c?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.europeana.eu/item/15508/FotoGLV2000_7937a?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -952,8 +952,9 @@ function resolveApiOrigin() {
   if (!USE_PROXY) return '';
   if (BACKEND_PROXY !== '__SELF__') return BACKEND_PROXY;
 
-  // Static frontend pages run on :8000 while the API lives on :8787.
-  if (window.location.port === '8000') {
+  // Static AUX.IO pages can be served from preview ports like :8000 or :8002 while
+  // the backend API lives on :8787.
+  if (window.location.port && window.location.port !== '8787') {
     return `${window.location.protocol}//${window.location.hostname}:8787`;
   }
 
@@ -968,7 +969,7 @@ const OBJECT = {
   title: `Kriminalistische Tatbestandsaufnahme und die zugehörige Kamera. Criminalist crime shooting and the associated camera`,
   type: `IMAGE`,
   date: `Date unknown`,
-  registration: `/15508/FotoGLV2000_7937c`,
+  registration: `/15508/FotoGLV2000_7937a`,
   location: `The Albertina Museum`,
   discipline: ``,
   category: `IMAGE`,
@@ -983,7 +984,7 @@ const OBJECT = {
   provenance: ``,
   tombstone: ``,
   licence: `http://creativecommons.org/publicdomain/mark/1.0/`,
-  source_url: `https://www.europeana.eu/item/15508/FotoGLV2000_7937c?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb`,
+  source_url: `https://www.europeana.eu/item/15508/FotoGLV2000_7937a?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb`,
   institution: `Europeana`
 };
 

@@ -909,24 +909,24 @@ image: 40 × 59.9 cm</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC107.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/910766/preview" loading="lazy"></div>
-        <div class="v-rel-title">Map of Kerguelen's Land called by C. Cook Island of Desolation. Accurately Engraved for Andersons' Large Folio Edition of the Whole of Captain Cook's Voyages &amp;c. CompletePlate 66. From the book New, authentic, and complete collection of voyages round the world.</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · RB000015/066a</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D17450399&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Ansicht vom Neuen Museum, Schnitt durch den Übergang vom Neuen Museum</div>
+        <div class="v-rel-meta">Europeana · /08535/item_P6JONKBRNCEGHJYGKK4YXJMSYSKO7SRK</div>
       </a>
       <a class="v-rel-card" href="NFC108.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018KT2121/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Camera</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · RPS.351-2018</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%3A80%2Fwebclient%2FDeliveryManager%3Fpid%3D6331293%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Servizio fotografico Firenze, 1973</div>
+        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6331293_custom_att_2_simple_viewer</div>
       </a>
       <a class="v-rel-card" href="NFC110.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AT9626/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Murphy A100</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.273-1976</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/681747/default-49-1-2.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Embarque do Príncipe Regente para o Brasil</div>
+        <div class="v-rel-meta">Brasiliana Museus · embarque-do-principe-regente-para-o-brasil</div>
       </a>
       <a class="v-rel-card" href="NFC111.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2024NX9619/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Marigolds</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.768-2024</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1962.2/1962.2_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Mme L . . . (Laure Borreau)</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1962.2</div>
       </a></div>
   </div>
 </div>
@@ -957,8 +957,9 @@ function resolveApiOrigin() {
   if (!USE_PROXY) return '';
   if (BACKEND_PROXY !== '__SELF__') return BACKEND_PROXY;
 
-  // Static frontend pages run on :8000 while the API lives on :8787.
-  if (window.location.port === '8000') {
+  // Static AUX.IO pages can be served from preview ports like :8000 or :8002 while
+  // the backend API lives on :8787.
+  if (window.location.port && window.location.port !== '8787') {
     return `${window.location.protocol}//${window.location.hostname}:8787`;
   }
 

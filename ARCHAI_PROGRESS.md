@@ -648,3 +648,33 @@ Next production step:
 - replace browser speech with a backend voice layer:
   - Whisper / faster-whisper / whisper.cpp for speech-to-text
   - Coqui or a lighter local TTS stack for speech output
+
+## Phone testing route for AUX.IO / main app voice demo — 2026-06-04
+
+What was fixed:
+
+- [ARCHAI_v10_8.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ARCHAI_v10_8.html) now routes backend API calls to the host Mac over LAN / Tailscale instead of incorrectly calling `localhost` from the phone
+- [nfc-pages/nfc-visitor-template.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/nfc-visitor-template.html) now rewrites preview ports such as `:8000` or `:8002` to backend port `:8787`, so generated AUX.IO pages can talk back to the backend correctly from phones
+- AUX.IO pages were regenerated again after the routing fix
+
+Important truth:
+
+- this enables **phone testing for the browser speech demo**
+- it is **not yet real Whisper / Coqui backend speech**
+- current voice path is still browser-native:
+  - `SpeechRecognition` / `webkitSpeechRecognition`
+  - `speechSynthesis`
+
+Phone test URLs on the local network:
+
+- main app:
+  - `http://192.168.1.113:8002/ARCHAI_v10_8.html`
+- AUX.IO sample page:
+  - `http://192.168.1.113:8002/nfc-pages/v/NFC001.html`
+
+Supporting research note:
+
+- [docs/ARCHAI_R_AND_D_2026-06-04.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/ARCHAI_R_AND_D_2026-06-04.md)
+  - maps ARCHAI against CMS / DAM / IIIF / preservation patterns
+  - identifies born-digital / web-art directions
+  - outlines the likely Whisper + Coqui production path
