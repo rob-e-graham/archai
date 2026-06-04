@@ -31,12 +31,27 @@ import {
   collectLanguages,
   buildDisplayTexts
 } from './lib/multilingual.js';
+import { execSync } from 'child_process';
 
-const API_KEY = process.env.EUROPEANA_API_KEY;
+// Key resolution: env var first, then the macOS Keychain (KeyTec vault:
+// service=famtec, account=EUROPEANA_API_KEY) so the secret never lives in .env
+// or the repo. Falls through to a clear error if neither is available.
+function resolveApiKey() {
+  if (process.env.EUROPEANA_API_KEY) return process.env.EUROPEANA_API_KEY;
+  try {
+    const k = execSync('security find-generic-password -s famtec -a EUROPEANA_API_KEY -w', {
+      stdio: ['ignore', 'pipe', 'ignore'],
+    }).toString().trim();
+    if (k) { console.log('  ✓ Europeana key loaded from Keychain (KeyTec)'); return k; }
+  } catch (_) { /* not on macOS or not in keychain */ }
+  return '';
+}
+
+const API_KEY = resolveApiKey();
 if (!API_KEY) {
-  console.error('\n  ✗ EUROPEANA_API_KEY not set');
-  console.error('  → Register free at https://pro.europeana.eu/page/get-api');
-  console.error('  → Then: EUROPEANA_API_KEY=your-key node europeana-harvester.js\n');
+  console.error('\n  ✗ EUROPEANA_API_KEY not set (env or Keychain)');
+  console.error('  → Store it: famtec add europeana   (or)   security add-generic-password -s famtec -a EUROPEANA_API_KEY -w');
+  console.error('  → Or pass inline: EUROPEANA_API_KEY=your-key node europeana-harvester.js\n');
   process.exit(1);
 }
 
