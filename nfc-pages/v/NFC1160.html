@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Radio — ARCHAI</title>
+<title>Pedro I — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2018KY2056/full/!600,600/0/default.jpg" alt="Radio" loading="eager">
+  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680954/000465a-scaled-1.jpg" alt="Pedro I" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Radio</div>
-  <div class="v-sub">Radio · ca. 1956 · W.45-1983</div>
+  <div class="v-title">Pedro I</div>
+  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · 1826 · pedro-i-13</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
+    <span class="v-meta-tag mv">Brasiliana Museus</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Radio</span>
+    <span class="v-meta-tag">Brasiliana Museus</span>
   </div>
 
   <!-- SHARE -->
@@ -783,11 +833,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Radio</strong> — Radio. Radio. Made by Murphy Radio. ca. 1956. Made in England. In Store</div>
+  <div class="v-story"><strong>Pedro I</strong> — Retrato de homem em meio corpo, de pé, com corpo voltado para a esquerda e a cabeça para a direita, olhando para frente. Fardado, traz pendente ao pescoço o Tosão de Ouro e, ao peito, condecorações da Imperial Ordem do Cruzeiro, Ordem de Nossa Senhora da Conceição de Vila Viçosa, Imperial Ordem de P…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</div>
     </div>
 
   <div class="v-divider"></div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,16 +881,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">W.45-1983</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Murphy Radio</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Radio</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Radio</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca. 1956</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In Store</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Radio</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">pedro-i-13</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1826</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 141,00 cm · largura 123,00 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -845,25 +907,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1158.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1949.186/1949.186_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Fight Between a Tiger and a Buffalo</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1949.186</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/uGgyY/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Vrede van Aken 1668</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100018</div>
       </a>
       <a class="v-rel-card" href="NFC1159.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680263/774-1-scaled.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Romano</div>
-        <div class="v-rel-meta">Brasiliana Museus · romano</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/395731/preview" loading="lazy"></div>
+        <div class="v-rel-title">Signature table cloth</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · PC000204/4</div>
       </a>
       <a class="v-rel-card" href="NFC1161.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680178/000791-scaled.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Bambual (atribuído)</div>
-        <div class="v-rel-meta">Brasiliana Museus · bambual-atribuido</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD6615/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">First colour broadcast by Associated Television</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · S.170-1980</div>
       </a>
       <a class="v-rel-card" href="NFC1162.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fmm.dimu.org%2Fimage%2F012uP23Jp8Up%3Fdimension%3D1200x1200&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Stockholm. Nationalmuseum.
-430 Ensamrätt: Ljungrens Konstförlag Stockholm.</div>
-        <div class="v-rel-meta">Europeana · /916109/smm_sm_photo_Fo184615AF</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/47/383147-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Coin - Guinea, Charles II, Great Britain, 1679</div>
+        <div class="v-rel-meta">Museums Victoria · NU 540</div>
       </a></div>
   </div>
 </div>
@@ -876,7 +937,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O371990/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/pedro-i-13/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -907,26 +968,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Radio`,
-  type: `Radio`,
-  date: `ca. 1956`,
-  registration: `W.45-1983`,
-  location: `In Store`,
-  discipline: `Radio`,
-  category: `Radio`,
-  description: `Radio. Radio. Made by Murphy Radio. ca. 1956. Made in England. In Store`,
-  medium: ``,
-  artist: `Murphy Radio`,
-  culture: ``,
-  dimensions: ``,
-  wall_description: ``,
+  title: `Pedro I`,
+  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  date: `1826`,
+  registration: `pedro-i-13`,
+  location: `Brasiliana Museus`,
+  discipline: `Brasiliana Museus`,
+  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  description: `Retrato de homem em meio corpo, de pé, com corpo voltado para a esquerda e a cabeça para a direita, olhando para frente. Fardado, traz pendente ao pescoço o Tosão de Ouro e, ao peito, condecorações da Imperial Ordem do Cruzeiro, Ordem de Nossa Senhora da Conceição de Vila Viçosa, Imperial Ordem de Pedro Primeiro, Ordem de Carlos III e três ordens portuguesas. A tiracolo, banda verde orlada de branco sobre banda de todas as ordens. Com a mão direita segura livro, em cuja lombada verde vê-se o título &#034;Constituição&#034;, apoiado sobre folhas do jornal &#034;Diário do Senado&#034; dispostas …`,
+  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  artist: ``,
+  culture: `Brazil`,
+  dimensions: `altura 141,00 cm · largura 123,00 cm`,
+  wall_description: `Retrato de homem em meio corpo, de pé, com corpo voltado para a esquerda e a cabeça para a direita, olhando para frente. Fardado, traz pendente ao pescoço o Tosão de Ouro e, ao peito, condecorações da Imperial Ordem do Cruzeiro, Ordem de Nossa Senhora da Conceição de Vila Viçosa, Imperial Ordem de Pedro Primeiro, Ordem de Carlos III e três ordens portuguesas. A tiracolo, banda verde orlada de branco sobre banda de todas as ordens. Com a mão direita segura livro, em cuja lombada verde vê-se o tít…`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O371990/`,
-  institution: `Victoria and Albert Museum, London`
+  tombstone: `Pedro I. 1826. Brasiliana Museus`,
+  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
+  source_url: `https://brasiliana.museus.gov.br/acervos/pedro-i-13/`,
+  institution: `Brasiliana Museus`
 };
 
 // Build rich context from available fields
@@ -954,6 +1015,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -995,6 +1060,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1070,15 +1249,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1101,6 +1286,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1208,7 +1394,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_brasiliana',
       text,
       authorType: 'visitor',
     }),

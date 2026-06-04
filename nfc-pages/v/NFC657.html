@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>[Choupana com sol ao fundo] — ARCHAI</title>
+<title>Edge of the Woods Near L'Hermitage, Pontoise — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/668829/6379-scaled.jpg" alt="[Choupana com sol ao fundo]" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1951.356/1951.356_web.jpg" alt="Edge of the Woods Near L'Hermitage, Pontoise" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">[Choupana com sol ao fundo]</div>
-  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · [189-] · choupana-com-sol-ao-fundo</div>
+  <div class="v-title">Edge of the Woods Near L'Hermitage, Pontoise</div>
+  <div class="v-sub">Painting · 1879 · 1951.356</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Brasiliana Museus</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Brasiliana Museus</span>
+    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
   </div>
 
   <!-- SHARE -->
@@ -783,11 +833,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>[Choupana com sol ao fundo]</strong> — Em primeiro plano, à esquerda, caminho em terra avermelhada. À direita, pequena cabana em tons marrons, tendo puxado avançado com telhado cinza na lateral. Ao fundo, morro, árvores e folhagens. Céu azul. Assinatura do autor no canto inferior direito: &amp;#034;De Servi&amp;#034;.</div>
+  <div class="v-story"><strong>Edge of the Woods Near L'Hermitage, Pontoise</strong> — Born to a French-Jewish family on St. Thomas island in the Caribbean, Pissarro painted this monumental landscape when he was desperately poor and struggling to sell his paintings. It depicts a man slumbering in the sun-dappled backwoods of the Hermitage, a rural village near Pontoise, where the arti…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,18 +881,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">choupana-com-sol-ao-fundo</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">[189-]</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 12,50 cm · largura 19,50 cm</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1951.356</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Camille Pissarro (French, 1830–1903)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oil on fabric</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, 19th century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1879</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Framed: 166 x 204 x 16.5 cm (65 3/8 x 80 5/16 x 6 1/2 in.); Unframed: 125 x 163 cm (49 3/16 x 64 3/16 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">222 Impressionism &amp; Post-Impressionism</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -847,24 +908,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC655.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP105123.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Soprano Recorder in B</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 501523</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/265742/preview" loading="lazy"></div>
+        <div class="v-rel-title">Wurst. From Gesamtkunsthandwerk.</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · 2011-0034-1/19-19</div>
       </a>
       <a class="v-rel-card" href="NFC656.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669384/6220-scaled.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Pedro I</div>
-        <div class="v-rel-meta">Brasiliana Museus · pedro-i-11</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1972.119/1972.119_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Noah:  The Eve of the Deluge</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1972.119</div>
       </a>
       <a class="v-rel-card" href="NFC658.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_809/v1627881189/v2/prod/small/000501_001000/000987_009.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Model, ATL Container Freight Station (now ATL Logistics Centre) (1979–1994), Hong Kong</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2013.135</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/85275?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">textile piece</div>
+        <div class="v-rel-meta">Auckland Museum · T16</div>
       </a>
       <a class="v-rel-card" href="NFC659.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2011ER6461/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Print</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.1073-1967</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/589176?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">[textile, fragment]</div>
+        <div class="v-rel-meta">Auckland Museum · 2012.x.8</div>
       </a></div>
   </div>
 </div>
@@ -877,7 +938,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/choupana-com-sol-ao-fundo/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1951.356" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -908,26 +969,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `[Choupana com sol ao fundo]`,
-  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  date: `[189-]`,
-  registration: `choupana-com-sol-ao-fundo`,
-  location: `Brasiliana Museus`,
-  discipline: `Brasiliana Museus`,
-  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  description: `Em primeiro plano, à esquerda, caminho em terra avermelhada. À direita, pequena cabana em tons marrons, tendo puxado avançado com telhado cinza na lateral. Ao fundo, morro, árvores e folhagens. Céu azul. Assinatura do autor no canto inferior direito: &#034;De Servi&#034;.`,
-  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  artist: ``,
-  culture: `Brazil`,
-  dimensions: `altura 12,50 cm · largura 19,50 cm`,
-  wall_description: `Em primeiro plano, à esquerda, caminho em terra avermelhada. À direita, pequena cabana em tons marrons, tendo puxado avançado com telhado cinza na lateral. Ao fundo, morro, árvores e folhagens. Céu azul. Assinatura do autor no canto inferior direito: &#034;De Servi&#034;.`,
+  title: `Edge of the Woods Near L'Hermitage, Pontoise`,
+  type: `Painting`,
+  date: `1879`,
+  registration: `1951.356`,
+  location: `222 Impressionism & Post-Impressionism`,
+  discipline: `Modern European Painting and Sculpture`,
+  category: `Painting`,
+  description: `Born to a French-Jewish family on St. Thomas island in the Caribbean, Pissarro painted this monumental landscape when he was desperately poor and struggling to sell his paintings. It depicts a man slumbering in the sun-dappled backwoods of the Hermitage, a rural village near Pontoise, where the artist had been living since 1872. Restricting his palette to pure hues, Pissarro applied brushstrokes in systematic diagonal patterns, producing an effect that he likened to knitting. This canvas was included in the fourth Impressionist exhibition of 1879.`,
+  medium: `oil on fabric`,
+  artist: `Camille Pissarro (French, 1830–1903)`,
+  culture: `France, 19th century`,
+  dimensions: `Framed: 166 x 204 x 16.5 cm (65 3/8 x 80 5/16 x 6 1/2 in.); Unframed: 125 x 163 cm (49 3/16 x 64 3/16 in.)`,
+  wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: `[Choupana com sol ao fundo]. [189-]. Brasiliana Museus`,
-  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
-  source_url: `https://brasiliana.museus.gov.br/acervos/choupana-com-sol-ao-fundo/`,
-  institution: `Brasiliana Museus`
+  did_you_know: `A goat seen from the back standing next to the figure in blue laying in the grass invites the viewer to step inside this serene and beautiful setting.`,
+  provenance: `[{"description":"Family of the artist, sold to Bernheim-Jeune","citations":[],"footnotes":[],"date":"1903-1913","sortorder":1},{"description":"(Bernheim-Jeune, Paris, sold to L’Art Moderne)","citations":[],"footnotes":["<div><!--block-->Bernheim-Jeune purchased the painting (stock number 20114) from…`,
+  tombstone: `Edge of the Woods Near L'Hermitage, Pontoise, 1879. Camille Pissarro (French, 1830–1903). Oil on fabric; framed: 166 x 204 x 16.5 cm (65 3/8 x 80 5/16 x 6 1/2 in.); unframed: 125 x 163 cm (49 3/16 x 64 3/16 in.). The Cleveland Museum of Art, Gift of the Hanna Fund, 1951.356`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://clevelandart.org/art/1951.356`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -955,6 +1016,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -996,6 +1061,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1071,15 +1250,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1102,6 +1287,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1209,7 +1395,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_brasiliana',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

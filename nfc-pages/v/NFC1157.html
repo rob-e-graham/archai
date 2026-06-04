@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Pye Model 1108 — ARCHAI</title>
+<title>Portrait of a Man with a Pink — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2006AL5003/full/!600,600/0/default.jpg" alt="Pye Model 1108" loading="eager">
+  <img src="https://www.artic.edu/iiif/2/f731615e-ee25-f8e5-b957-69635e1e2d60/full/843,/0/default.jpg" alt="Portrait of a Man with a Pink" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Pye Model 1108</div>
-  <div class="v-sub">Radio · 1965 · CIRC.394-1967</div>
+  <div class="v-title">Portrait of a Man with a Pink</div>
+  <div class="v-sub">Painting · 1500–10 · 864</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
+    <span class="v-meta-tag mv">Art Institute of Chicago</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Radio</span>
+    <span class="v-meta-tag">Painting and Sculpture of Europe</span>
   </div>
 
   <!-- SHARE -->
@@ -783,11 +833,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Pye Model 1108</strong> — Pye Model 1108. Radio. Made by Day, Robin. 1965. Made in Cambridge. In Store</div>
+  <div class="v-story"><strong>Portrait of a Man with a Pink</strong> — Portrait of a Man with a Pink. Painting. Oil on panel. Painting and Sculpture of Europe. Quentin Massys (Netherlandish, 1466-1530). oil on panel. 1500–10. Netherlands. 16th Century. &lt;p&gt;In this portrait from relatively early in his career, Quentin Massys followed stylistic conventions that appealed t…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,16 +881,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">CIRC.394-1967</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Day, Robin</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Radio</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Radio</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1965</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In Store</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Radio</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">864</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Quentin Massys (Netherlandish, 1466-1530)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Oil on panel</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Netherlands</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Painting and Sculpture of Europe</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">oil on panel</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1500–10</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">43.8 × 29.2 cm (17 1/4 × 11 1/2 in.); Framed: 51.8 × 36.9 × 4.5 cm (20 3/8 × 14 1/2 × 1 3/4 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 207</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -845,24 +908,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1155.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HA1146/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">BAFTA Special Lifetime Achievement Award</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · S.179-2012</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4329/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">ROUND PEG</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.291-2020</div>
       </a>
       <a class="v-rel-card" href="NFC1156.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%2Fwebclient%2FDeliveryManager%3Fpid%3D6355700%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Photographic reportage, Florence, 1957-1956. Servizio fotografico Firenze, 1957-1956</div>
-        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6355700_custom_att_2_simple_viewer</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/6f61a6fc-dcd8-e801-0ad8-5f7e561d91b6/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Waterloo Bridge, Gray Weather</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 103139</div>
       </a>
       <a class="v-rel-card" href="NFC1158.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1949.186/1949.186_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Fight Between a Tiger and a Buffalo</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1949.186</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/uGgyY/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Vrede van Aken 1668</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100018</div>
       </a>
       <a class="v-rel-card" href="NFC1159.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680263/774-1-scaled.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Romano</div>
-        <div class="v-rel-meta">Brasiliana Museus · romano</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/395731/preview" loading="lazy"></div>
+        <div class="v-rel-title">Signature table cloth</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · PC000204/4</div>
       </a></div>
   </div>
 </div>
@@ -875,7 +938,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O48613/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.artic.edu/artworks/864" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -906,26 +969,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Pye Model 1108`,
-  type: `Radio`,
-  date: `1965`,
-  registration: `CIRC.394-1967`,
-  location: `In Store`,
-  discipline: `Radio`,
-  category: `Radio`,
-  description: `Pye Model 1108. Radio. Made by Day, Robin. 1965. Made in Cambridge. In Store`,
-  medium: ``,
-  artist: `Day, Robin`,
-  culture: ``,
-  dimensions: ``,
+  title: `Portrait of a Man with a Pink`,
+  type: `Painting`,
+  date: `1500–10`,
+  registration: `864`,
+  location: `Gallery 207`,
+  discipline: `Painting and Sculpture of Europe`,
+  category: `oil on panel`,
+  description: `Portrait of a Man with a Pink. Painting. Oil on panel. Painting and Sculpture of Europe. Quentin Massys (Netherlandish, 1466-1530). oil on panel. 1500–10. Netherlands. 16th Century. <p>In this portrait from relatively early in his career, Quentin Massys followed stylistic conventions that appealed to Antwerp’s growing market of patrons while also exhibiting the bold innovations that ultimately made him one of city’s most influential painters. The sitter appears frozen in a somewhat unnatural pose, as was the fashion for half-length portraits at the time, and the positioning of his left hand on…`,
+  medium: `Oil on panel`,
+  artist: `Quentin Massys (Netherlandish, 1466-1530)`,
+  culture: `Netherlands`,
+  dimensions: `43.8 × 29.2 cm (17 1/4 × 11 1/2 in.); Framed: 51.8 × 36.9 × 4.5 cm (20 3/8 × 14 1/2 × 1 3/4 in.)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O48613/`,
-  institution: `Victoria and Albert Museum, London`
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.artic.edu/artworks/864`,
+  institution: `Art Institute of Chicago`
 };
 
 // Build rich context from available fields
@@ -953,6 +1016,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -994,6 +1061,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1069,15 +1250,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1100,6 +1287,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1207,7 +1395,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_aic',
       text,
       authorType: 'visitor',
     }),

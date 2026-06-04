@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Trombone — ARCHAI</title>
+<title>A voyage to the Pacific Ocean. : Undertaken, by the command of His Majesty, for making discoveries in the northern hemisphere ... : Performed under the direction of Captains Cook, Clerke, and Gore, in His Majesty's ships the Resolution and Discovery. : In the years 1776, 1777, 1778, 1779, and 1780 / Vol. I and II written by Captain James Cook ; vol. III by Captain James King. - Atlas — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/mi/original/DP-12679-119.jpg" alt="Trombone" loading="eager">
+  <img src="https://media.tepapa.govt.nz/collection/370570/preview" alt="A voyage to the Pacific Ocean. : Undertaken, by the command of His Majesty, for making discoveries in the northern hemisphere ... : Performed under the direction of Captains Cook, Clerke, and Gore, in His Majesty's ships the Resolution and Discovery. : In the years 1776, 1777, 1778, 1779, and 1780 / Vol. I and II written by Captain James Cook ; vol. III by Captain James King. - Atlas" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Trombone</div>
-  <div class="v-sub">Trombone · mid-19th century · 504686</div>
+  <div class="v-title">A voyage to the Pacific Ocean. : Undertaken, by the command of His Majesty, for making discoveries in the northern hemisphere ... : Performed under the direction of Captains Cook, Clerke, and Gore, in His Majesty's ships the Resolution and Discovery. : In the years 1776, 1777, 1778, 1779, and 1780 / Vol. I and II written by Captain James Cook ; vol. III by Captain James King. - Atlas</div>
+  <div class="v-sub">rare books · 1784 · RB000261</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Musical Instruments</span>
+    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">Rare Books</span>
   </div>
 
   <!-- SHARE -->
@@ -783,11 +833,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Trombone</strong> — Trombone. Trombone. Brass. Musical Instruments. European. Aerophone. mid-19th century</div>
-  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
-      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+  <div class="v-story"><strong>A voyage to the Pacific Ocean. : Undertaken, by the command of His Majesty, for making discoveries in the northern hemisphere ... : Performed under the direction of Captains Cook, Clerke, and Gore, in His Majesty's ships the Resolution and Discovery. : In the years 1776, 1777, 1778, 1779, and 1780 / Vol. I and II written by Captain James Cook ; vol. III by Captain James King. - Atlas</strong> — A voyage to the Pacific Ocean. : Undertaken, by the command of His Majesty, for making discoveries in the northern hemisphere ... : Performed under the direction of Captains Cook, Clerke, and Gore, in His Majesty's ships the Resolution and Discovery. : In the years 1776, 1777, 1778, 1779, and 1780 /…</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: No Known Copyright Restrictions · metadata CC BY 4.0 · No Known Copyright Restrictions</div>
     </div>
 
   <div class="v-divider"></div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,19 +881,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">504686</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Brass</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">European</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Aerophone</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">mid-19th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">8 1/2 × 13 × 43 11/16 in. (21.6 × 33 × 111 cm)
-Diameter (Of bell): 8 7/16 in. (21.4 cm)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 680</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Trombone</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">RB000261</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Lords Commissioners of the Admiralty, John Webber</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">leather bound book</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Rare Books</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">rare books</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1784</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 560mm (height), 469mm (length), 36mm (depth)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">rare books</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">No Known Copyright Restrictions · metadata CC BY 4.0 · No Known Copyright Restrictions</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -848,24 +907,24 @@ Diameter (Of bell): 8 7/16 in. (21.4 cm)</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC473.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2003.6.5/2003.6.5_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Clio, Muse of History</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2003.6.5</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/PAbqn/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Schutterspenning van Leiden</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100441</div>
       </a>
       <a class="v-rel-card" href="NFC474.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627889545/v2/prod/small/002001_002500/002261_003.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Study of Perspective: White House</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2012.53</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627827290/v2/prod/small/006501_007000/006529_011.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Low Chair, model 5016</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2016.447</div>
       </a>
       <a class="v-rel-card" href="NFC476.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2023NR4047/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Apollon</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.209-2018</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_514/v1719852572/v2/prod/small/000001_000500/000240_004.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Stairs</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2013.255</div>
       </a>
       <a class="v-rel-card" href="NFC477.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2011ER6468/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Print</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.1072-1967</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/239e0072-de08-cb26-1484-4776fc27b0fb/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portrait Vessel</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 91620</div>
       </a></div>
   </div>
 </div>
@@ -878,7 +937,7 @@ Diameter (Of bell): 8 7/16 in. (21.4 cm)</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/504686" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/1417082" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -909,27 +968,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Trombone`,
-  type: `Trombone`,
-  date: `mid-19th century`,
-  registration: `504686`,
-  location: `Gallery 680`,
-  discipline: `Musical Instruments`,
-  category: `Aerophone`,
-  description: `Trombone. Trombone. Brass. Musical Instruments. European. Aerophone. mid-19th century`,
-  medium: `Brass`,
-  artist: ``,
-  culture: `European`,
-  dimensions: `8 1/2 × 13 × 43 11/16 in. (21.6 × 33 × 111 cm)
-Diameter (Of bell): 8 7/16 in. (21.4 cm)`,
+  title: `A voyage to the Pacific Ocean. : Undertaken, by the command of His Majesty, for making discoveries in the northern hemisphere ... : Performed under the direction of Captains Cook, Clerke, and Gore, in His Majesty's ships the Resolution and Discovery. : In the years 1776, 1777, 1778, 1779, and 1780 / Vol. I and II written by Captain James Cook ; vol. III by Captain James King. - Atlas`,
+  type: `rare books`,
+  date: `1784`,
+  registration: `RB000261`,
+  location: `Te Papa Tongarewa, Wellington`,
+  discipline: `Rare Books`,
+  category: `rare books`,
+  description: `A voyage to the Pacific Ocean. : Undertaken, by the command of His Majesty, for making discoveries in the northern hemisphere ... : Performed under the direction of Captains Cook, Clerke, and Gore, in His Majesty's ships the Resolution and Discovery. : In the years 1776, 1777, 1778, 1779, and 1780 / Vol. I and II written by Captain James Cook ; vol. III by Captain James King. - Atlas , 1784, United Kingdom, by Lords Commissioners of the Admiralty, John Webber. Gift of Charles Rooking Carter. Te Papa (RB000261)`,
+  medium: `leather bound book`,
+  artist: `Lords Commissioners of the Admiralty, John Webber`,
+  culture: ``,
+  dimensions: `Overall: 560mm (height), 469mm (length), 36mm (depth)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/504686`,
-  institution: `The Metropolitan Museum of Art`
+  tombstone: `A voyage to the Pacific Ocean. : Undertaken, by the command of His Majesty, for making discoveries in the northern hemisphere ... : Performed under the direction of Captains Cook, Clerke, and Gore, in His Majesty's ships the Resolution and Discovery. : In the years 1776, 1777, 1778, 1779, and 1780 / Vol. I and II written by Captain James Cook ; vol. III by Captain James King. - Atlas, 1784, United Kingdom, by Lords Commissioners of the Admiralty, John Webber. Gift of Charles Rooking Carter. Te Papa (RB000261)`,
+  licence: `No Known Copyright Restrictions · metadata CC BY 4.0`,
+  source_url: `https://collections.tepapa.govt.nz/object/1417082`,
+  institution: `Museum of New Zealand Te Papa Tongarewa`
 };
 
 // Build rich context from available fields
@@ -957,6 +1015,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -998,6 +1060,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1073,15 +1249,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1104,6 +1286,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1211,7 +1394,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_met',
+      collection: 'archai_tepapa',
       text,
       authorType: 'visitor',
     }),

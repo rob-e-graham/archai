@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Pergamonsaal, Rückseite vom Altar (aus: Museum im Werden) — ARCHAI</title>
+<title>Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Deutsches Museum: Barocksaal im nördlichen Kopfbau (aus: Museum im Werden) — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,13 +811,13 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15935399&amp;type=IMAGE" alt="Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Pergamonsaal, Rückseite vom Altar (aus: Museum im Werden)" loading="eager">
+  <img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15935099&amp;type=IMAGE" alt="Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Deutsches Museum: Barocksaal im nördlichen Kopfbau (aus: Museum im Werden)" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Pergamonsaal, Rückseite vom Altar (aus: Museum im Werden)</div>
-  <div class="v-sub">IMAGE · Date unknown · /08535/item_EAC2URCLYR5AM3ZYDNH6F52PXIHF6FBX</div>
+  <div class="v-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Deutsches Museum: Barocksaal im nördlichen Kopfbau (aus: Museum im Werden)</div>
+  <div class="v-sub">IMAGE · Date unknown · /08535/item_LDZVUX3ECA3EJXXSKMIXLMDE3U36KZTO</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Europeana</span>
@@ -783,7 +833,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Pergamonsaal, Rückseite vom Altar (aus: Museum im Werden)</strong> — Architekturmuseum der TU Berlin, Inv. Nr. 11662,20. Werk und Digitalisat sind gemeinfrei, aber wir freuen uns über einen Bildnachweis. (Bemerkung)</div>
+  <div class="v-story"><strong>Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Deutsches Museum: Barocksaal im nördlichen Kopfbau (aus: Museum im Werden)</strong> — Architekturmuseum der TU Berlin, Inv. Nr. 11662,17. Werk und Digitalisat sind gemeinfrei, aber wir freuen uns über einen Bildnachweis. (Bemerkung)</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,8 +881,8 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">/08535/item_EAC2URCLYR5AM3ZYDNH6F52PXIHF6FBX</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Wilhelm Wille (1877-1929). Paul Walther (1848-1925, als Zeichner)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">/08535/item_LDZVUX3ECA3EJXXSKMIXLMDE3U36KZTO</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">https://d-nb.info/gnd/116914009</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">IMAGE</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Date unknown</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Museum of Architecture at Berlin Institute of Technology</span></div>
@@ -844,24 +904,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC883.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/151763?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">shawl</div>
-        <div class="v-rel-meta">Auckland Museum · 1970.236</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_941/v1775699628/v2/prod/small/010501_011000/010601_005.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Presentation model, Bank of Asia Headquarters (now United Overseas Bank Bangkok Headquarters) (1983–1986), Bangkok, Thailand</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2018.41</div>
       </a>
       <a class="v-rel-card" href="NFC884.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2010.320/2010.320_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Rue Jean-de-Beauvais. Vue prise de la rue des Écoles vers la boulevard Saint-Germain, en travaux</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2010.320</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP351504.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Ceremonial axe with headrest</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 635754</div>
       </a>
       <a class="v-rel-card" href="NFC886.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_668/v1627822188/v2/prod/small/000001_000500/000426_003.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Harmony—Little Circle Chair</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2013.74</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fnationalmuseumse.iiifhosting.com%2Fiiif%2F995a16746f61c755025abf26295bea27d901cc7e15830076594787da14b78f6a%2Ffull%2Ffull%2F0%2Fdefault.jpg&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Vanitasstilleben med astronomiska instrument. Vanitas Still Life with Astronomical Instruments</div>
+        <div class="v-rel-meta">Europeana · /2064116/Museu_ProvidedCHO_Nationalmuseum__Sweden_23920</div>
       </a>
       <a class="v-rel-card" href="NFC887.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018KT2148/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Camera</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · RPS.356-2018</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_801/v1627893431/v2/prod/small/002001_002500/002384_002.jpg" loading="lazy"></div>
+        <div class="v-rel-title">East Village, Beijing, No.21</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2012.850</div>
       </a></div>
   </div>
 </div>
@@ -874,7 +934,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.europeana.eu/item/08535/item_EAC2URCLYR5AM3ZYDNH6F52PXIHF6FBX?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.europeana.eu/item/08535/item_LDZVUX3ECA3EJXXSKMIXLMDE3U36KZTO?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -905,16 +965,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Pergamonsaal, Rückseite vom Altar (aus: Museum im Werden)`,
+  title: `Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Deutsches Museum: Barocksaal im nördlichen Kopfbau (aus: Museum im Werden)`,
   type: `IMAGE`,
   date: `Date unknown`,
-  registration: `/08535/item_EAC2URCLYR5AM3ZYDNH6F52PXIHF6FBX`,
+  registration: `/08535/item_LDZVUX3ECA3EJXXSKMIXLMDE3U36KZTO`,
   location: `Museum of Architecture at Berlin Institute of Technology`,
   discipline: ``,
   category: `IMAGE`,
-  description: `Architekturmuseum der TU Berlin, Inv. Nr. 11662,20. Werk und Digitalisat sind gemeinfrei, aber wir freuen uns über einen Bildnachweis. (Bemerkung)`,
+  description: `Architekturmuseum der TU Berlin, Inv. Nr. 11662,17. Werk und Digitalisat sind gemeinfrei, aber wir freuen uns über einen Bildnachweis. (Bemerkung)`,
   medium: ``,
-  artist: `Wilhelm Wille (1877-1929). Paul Walther (1848-1925, als Zeichner)`,
+  artist: `https://d-nb.info/gnd/116914009`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -923,7 +983,7 @@ const OBJECT = {
   provenance: ``,
   tombstone: ``,
   licence: `http://creativecommons.org/publicdomain/zero/1.0/`,
-  source_url: `https://www.europeana.eu/item/08535/item_EAC2URCLYR5AM3ZYDNH6F52PXIHF6FBX?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb`,
+  source_url: `https://www.europeana.eu/item/08535/item_LDZVUX3ECA3EJXXSKMIXLMDE3U36KZTO?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb`,
   institution: `Europeana`
 };
 
@@ -952,6 +1012,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -993,6 +1057,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1068,15 +1246,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1099,6 +1283,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE

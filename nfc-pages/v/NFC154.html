@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Ruin by the Sea — ARCHAI</title>
+<title>Black-Figure Amphora (Type B; Storage Vessel): Battling Warriors (A); Dionysos and Satyrs (B) — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/1979.57/1979.57_web.jpg" alt="Ruin by the Sea" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1927.433/1927.433_web.jpg" alt="Black-Figure Amphora (Type B; Storage Vessel): Battling Warriors (A); Dionysos and Satyrs (B)" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Ruin by the Sea</div>
-  <div class="v-sub">Painting · 1881 · 1979.57</div>
+  <div class="v-title">Black-Figure Amphora (Type B; Storage Vessel): Battling Warriors (A); Dionysos and Satyrs (B)</div>
+  <div class="v-sub">Ceramic · c. 530–520 BCE · 1927.433</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
+    <span class="v-meta-tag">Greek and Roman Art</span>
   </div>
 
   <!-- SHARE -->
@@ -783,7 +833,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Ruin by the Sea</strong> — The dark, ruined villa in this painting is made especially mysterious by the strange cypress trees tossed by the wind. A nervous green light flickers through the scene. Influenced by German Romantic art of the early 1800s, Böcklin was preoccupied with dreamlike images suggestive of death.</div>
+  <div class="v-story"><strong>Black-Figure Amphora (Type B; Storage Vessel): Battling Warriors (A); Dionysos and Satyrs (B)</strong> — Formerly owned by John Bateman, Esq., this amphora provided a name for the Bateman Group, five amphorae likely decorated by a single painter. On either side, a reserved panel holds a carefully composed scene: four striding soldiers above a fallen warrior; and four dancing satyrs around the wine god …</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,16 +881,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1979.57</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Arnold Böcklin (Swiss, 1827–1901)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oil on fabric</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Switzerland</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Painting</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1881</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Framed: 132.1 x 102.9 x 8.3 cm (52 x 40 1/2 x 3 1/4 in.); Unframed: 111 x 82 cm (43 11/16 x 32 5/16 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">219 19th Century European</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1927.433</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">The Bateman Group; Lysippides Painter (Greek, Attic, active c. 530–515 BCE)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">ceramic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Greek, Attic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Greek and Roman Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ceramic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 530–520 BCE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 49.5 cm (19 1/2 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">102B Greek</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Ceramic</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
@@ -848,24 +908,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC152.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP-12679-097.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Tenor Bugle in B-flat</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 504938</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/910706/preview" loading="lazy"></div>
+        <div class="v-rel-title">Mr Banks receiving a visit from the king of Duke of York's Island; View of a perforated rock, in Tolago Bay; View of a town in the island of Terra del Fuego. Plate 7. From the book New, authentic, and complete collection of voyages round the world.</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · RB000015/007a</div>
       </a>
       <a class="v-rel-card" href="NFC153.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/es/original/ES226.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Musical box</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 191140</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP302548.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Nyonganyonga</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 503679</div>
       </a>
       <a class="v-rel-card" href="NFC155.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP-24269-001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Whistle</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 316715</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HB8619/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Poster</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · S.3502-1994</div>
       </a>
       <a class="v-rel-card" href="NFC156.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AP5693/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Vase</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · C.41-1972</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669000/006335.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Baronesa de Teresopolis</div>
+        <div class="v-rel-meta">Brasiliana Museus · baronesa-de-teresopolis</div>
       </a></div>
   </div>
 </div>
@@ -878,7 +938,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://clevelandart.org/art/1979.57" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1927.433" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -909,25 +969,25 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Ruin by the Sea`,
-  type: `Painting`,
-  date: `1881`,
-  registration: `1979.57`,
-  location: `219 19th Century European`,
-  discipline: `Modern European Painting and Sculpture`,
-  category: `Painting`,
-  description: `The dark, ruined villa in this painting is made especially mysterious by the strange cypress trees tossed by the wind. A nervous green light flickers through the scene. Influenced by German Romantic art of the early 1800s, Böcklin was preoccupied with dreamlike images suggestive of death.`,
-  medium: `oil on fabric`,
-  artist: `Arnold Böcklin (Swiss, 1827–1901)`,
-  culture: `Switzerland`,
-  dimensions: `Framed: 132.1 x 102.9 x 8.3 cm (52 x 40 1/2 x 3 1/4 in.); Unframed: 111 x 82 cm (43 11/16 x 32 5/16 in.)`,
+  title: `Black-Figure Amphora (Type B; Storage Vessel): Battling Warriors (A); Dionysos and Satyrs (B)`,
+  type: `Ceramic`,
+  date: `c. 530–520 BCE`,
+  registration: `1927.433`,
+  location: `102B Greek`,
+  discipline: `Greek and Roman Art`,
+  category: `Ceramic`,
+  description: `Formerly owned by John Bateman, Esq., this amphora provided a name for the Bateman Group, five amphorae likely decorated by a single painter. On either side, a reserved panel holds a carefully composed scene: four striding soldiers above a fallen warrior; and four dancing satyrs around the wine god Dionysos. Similar scenes appear on other Bateman Group vases, as well as in the much larger body of work attributed to the more well-known Lysippides Painter.`,
+  medium: `ceramic`,
+  artist: `The Bateman Group; Lysippides Painter (Greek, Attic, active c. 530–515 BCE)`,
+  culture: `Greek, Attic`,
+  dimensions: `Overall: 49.5 cm (19 1/2 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: `Who used to live in this crumbling villa on a lonely shore? Böcklin's eerie painting seems to beg the question of the building's history and the circumstances of its ruin. Haunted by the past, this scene also contains premonitions of future peril.`,
-  provenance: `[{"description":"C. Wetter-Rüsch, St. Gallen, by 1893. Hermann Nabel, Berlin 1897. Kunsthandel Eduard Schulte, Berlin 1902. E. Junghanns, Schramberg. Paul Landenberger Jr., Schramberg. Zürich sale, Max G. Bollag, 23 March 1933 (lot 107), Ruine am Meer, reproduced. Private collection, Zürich. Fischer…`,
-  tombstone: `Ruin by the Sea, 1881. Arnold Böcklin (Swiss, 1827–1901). Oil on fabric; framed: 132.1 x 102.9 x 8.3 cm (52 x 40 1/2 x 3 1/4 in.); unframed: 111 x 82 cm (43 11/16 x 32 5/16 in.). The Cleveland Museum of Art, Mr. and Mrs. William H. Marlatt Fund, 1979.57`,
+  did_you_know: `This vase was already old-fashioned when first made; its shape was preferred by earlier generations of vase painters.`,
+  provenance: `[{"description":"Bateman Collection, London","citations":[],"footnotes":[],"date":null,"sortorder":1},{"description":"C. Fongoli, Florence, Italy","citations":[],"footnotes":[],"date":null,"sortorder":2},{"description":"G. Egidi, Florence, Italy, sold to the Cleveland Museum of Art","citations":[],"…`,
+  tombstone: `Black-Figure Amphora (Type B; Storage Vessel): Battling Warriors (A); Dionysos and Satyrs (B), c. 530–520 BCE. Attributed to The Bateman Group, manner of Lysippides Painter (Greek, Attic, active c. 530–515 BCE). Ceramic; overall: 49.5 cm (19 1/2 in.). The Cleveland Museum of Art, The A. W. Ellenberger, Sr., Endowment Fund, 1927.433`,
   licence: `CC0 — Public Domain`,
-  source_url: `https://clevelandart.org/art/1979.57`,
+  source_url: `https://clevelandart.org/art/1927.433`,
   institution: `Cleveland Museum of Art`
 };
 
@@ -956,6 +1016,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -997,6 +1061,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1072,15 +1250,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1103,6 +1287,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE

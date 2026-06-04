@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Guitar — ARCHAI</title>
+<title>Alexandre Dumas père (1802–1870) — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/mi/original/DP217184.jpg" alt="Guitar" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1983.198/1983.198_web.jpg" alt="Alexandre Dumas père (1802–1870)" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Guitar</div>
-  <div class="v-sub">Guitar · ca. 1800 · 503932</div>
+  <div class="v-title">Alexandre Dumas père (1802–1870)</div>
+  <div class="v-sub">Photograph · 1855 · 1983.198</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Musical Instruments</span>
+    <span class="v-meta-tag">Photography</span>
   </div>
 
   <!-- SHARE -->
@@ -783,7 +833,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Guitar</strong> — Guitar. Guitar. Spruce, ebony, ivory, tortoiseshell, mother-of-pearl, brass. Musical Instruments. Italian. Chordophone-Lute-plucked-fretted. ca. 1800</div>
+  <div class="v-story"><strong>Alexandre Dumas père (1802–1870)</strong> — Celebrities he photographed included his friend, the wildly successful  French novelist and playwright Alexandre Dumas, the author of The Count of Monte Cristo and The Three Musketeers. In 1874, Nadar loaned his studio to a group of artists so they could mount the first exhibition of Impressionist p…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,15 +881,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">503932</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Spruce, ebony, ivory, tortoiseshell, mother-of-pearl, brass</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Italian</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Chordophone-Lute-plucked-fretted</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca. 1800</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">H. 36 × W. 10 5/8 × D. 3 7/8 in. (91.4 × 27 × 9.8 cm)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 681</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Guitar</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1983.198</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Nadar (French, 1820–1910)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">salted paper print from wet collodion negative</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, 19th century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1855</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Image: 23.8 x 17.8 cm (9 3/8 x 7 in.); Matted: 45.7 x 35.6 cm (18 x 14 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">230 Photography</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
@@ -847,24 +908,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC074.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680733/014b.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Visita de uma esquadra inglesa ao Rio de Janeiro</div>
-        <div class="v-rel-meta">Brasiliana Museus · visita-de-uma-esquadra-inglesa-ao-rio-de-janeiro</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD6568/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">First colour broadcast by Associated Television</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · S.172-1980</div>
       </a>
       <a class="v-rel-card" href="NFC075.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/817353/preview" loading="lazy"></div>
-        <div class="v-rel-title">Electric oven</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH025308</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fsammlungenonline.albertina.at%2Fcc%2Fimageproxy.ashx%3Fserver%3Dlocalhost%26port%3D15001%26filename%3Dimages%2FFotoGLV2000_7935.jpg%26cache%3Dyes%26maxwidth%3D400&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Photogrammetric camera. Photogrammetrische Kamera</div>
+        <div class="v-rel-meta">Europeana · /15508/FotoGLV2000_7935</div>
       </a>
       <a class="v-rel-card" href="NFC077.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/28/24678-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Cable Samples - Submarine Telegraph, Victoria &amp; Tasmania, 1875 to 1905</div>
-        <div class="v-rel-meta">Museums Victoria · ST 7068</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PJ2781/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Telephone</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · WE.18172-2014</div>
       </a>
       <a class="v-rel-card" href="NFC078.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/641428/preview" loading="lazy"></div>
-        <div class="v-rel-title">One Cent</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · NU000928</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP302694.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Sō Sām Sāi</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 500928</div>
       </a></div>
   </div>
 </div>
@@ -877,7 +938,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/503932" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1983.198" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -908,26 +969,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Guitar`,
-  type: `Guitar`,
-  date: `ca. 1800`,
-  registration: `503932`,
-  location: `Gallery 681`,
-  discipline: `Musical Instruments`,
-  category: `Chordophone-Lute-plucked-fretted`,
-  description: `Guitar. Guitar. Spruce, ebony, ivory, tortoiseshell, mother-of-pearl, brass. Musical Instruments. Italian. Chordophone-Lute-plucked-fretted. ca. 1800`,
-  medium: `Spruce, ebony, ivory, tortoiseshell, mother-of-pearl, brass`,
-  artist: ``,
-  culture: `Italian`,
-  dimensions: `H. 36 × W. 10 5/8 × D. 3 7/8 in. (91.4 × 27 × 9.8 cm)`,
+  title: `Alexandre Dumas père (1802–1870)`,
+  type: `Photograph`,
+  date: `1855`,
+  registration: `1983.198`,
+  location: `230 Photography`,
+  discipline: `Photography`,
+  category: `Photograph`,
+  description: `Celebrities he photographed included his friend, the wildly successful  French novelist and playwright Alexandre Dumas, the author of The Count of Monte Cristo and The Three Musketeers. In 1874, Nadar loaned his studio to a group of artists so they could mount the first exhibition of Impressionist painting, which included works by Berthe Morisot.`,
+  medium: `salted paper print from wet collodion negative`,
+  artist: `Nadar (French, 1820–1910)`,
+  culture: `France, 19th century`,
+  dimensions: `Image: 23.8 x 17.8 cm (9 3/8 x 7 in.); Matted: 45.7 x 35.6 cm (18 x 14 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
+  did_you_know: `Nadar was an alias for Gaspard-Félix Tournachon, a prominent and well-connected photographer, caricaturist, and writer who photographed many of the cultural and political celebrities of the age.`,
+  provenance: `[{"description":"Bibliothèque Nationale","citations":[],"footnotes":null,"date":null,"sortorder":null}]`,
+  tombstone: `Alexandre Dumas père (1802–1870), 1855. Nadar (French, 1820–1910). Salted paper print from wet collodion negative; image: 23.8 x 17.8 cm (9 3/8 x 7 in.); matted: 45.7 x 35.6 cm (18 x 14 in.). The Cleveland Museum of Art, John L. Severance Fund, 1983.198`,
   licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/503932`,
-  institution: `The Metropolitan Museum of Art`
+  source_url: `https://clevelandart.org/art/1983.198`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -955,6 +1016,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -996,6 +1061,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1071,15 +1250,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1102,6 +1287,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1209,7 +1395,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_met',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

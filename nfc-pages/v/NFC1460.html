@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Studio per Balletto Futurista, 1925 — ARCHAI</title>
+<title>Robin Hood Gardens, Woolmore Street, London E14 0HG (2018) — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2013GK3858/full/!600,600/0/default.jpg" alt="Studio per Balletto Futurista, 1925" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2022NF4699/full/!600,600/0/default.jpg" alt="Robin Hood Gardens, Woolmore Street, London E14 0HG (2018)" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Studio per Balletto Futurista, 1925</div>
-  <div class="v-sub">Print · ca.1980 · S.1156-1982</div>
+  <div class="v-title">Robin Hood Gardens, Woolmore Street, London E14 0HG (2018)</div>
+  <div class="v-sub">Video piece · 2018 · E.503-2022</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Print</span>
+    <span class="v-meta-tag">Video piece</span>
   </div>
 
   <!-- SHARE -->
@@ -783,7 +833,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Studio per Balletto Futurista, 1925</strong> — Studio per Balletto Futurista, 1925. Print. Made by Giacomo Balla. ca.1980. Made in Pesaro. In Store</div>
+  <div class="v-story"><strong>Robin Hood Gardens, Woolmore Street, London E14 0HG (2018)</strong> — Robin Hood Gardens, Woolmore Street, London E14 0HG (2018) . Video piece. Made by Do Ho Suh. 2018. Made in London. Storage Displays, Level 3</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,13 +881,13 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">S.1156-1982</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Giacomo Balla</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca.1980</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In Store</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.503-2022</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Do Ho Suh</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Video piece</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Video piece</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2018</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Storage Displays, Level 3</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Video piece</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
@@ -845,24 +905,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1458.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1962.37/1962.37_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Cupid and Psyche</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1962.37</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018LC0483/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Radio</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.20-1977</div>
       </a>
       <a class="v-rel-card" href="NFC1459.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/680823?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">textile</div>
-        <div class="v-rel-meta">Auckland Museum · T250</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1960.186/1960.186_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Vase</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1960.186</div>
       </a>
       <a class="v-rel-card" href="NFC1461.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/6644829f-f292-c5c4-a73c-0356a6fdbf0d/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">The Bedroom</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 28560</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/3ef69544-a84c-dfa4-df6a-346b4b59c351/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">October Day</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 876</div>
       </a>
       <a class="v-rel-card" href="NFC1462.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4310/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">SAFETY DEPOSIT</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.255-2020</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/midp89.4.77.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Tsuridaiko (釣り太鼓 )</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 500706</div>
       </a></div>
   </div>
 </div>
@@ -875,7 +935,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1260518/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1497441/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -906,16 +966,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Studio per Balletto Futurista, 1925`,
-  type: `Print`,
-  date: `ca.1980`,
-  registration: `S.1156-1982`,
-  location: `In Store`,
-  discipline: `Print`,
-  category: `Print`,
-  description: `Studio per Balletto Futurista, 1925. Print. Made by Giacomo Balla. ca.1980. Made in Pesaro. In Store`,
+  title: `Robin Hood Gardens, Woolmore Street, London E14 0HG (2018)`,
+  type: `Video piece`,
+  date: `2018`,
+  registration: `E.503-2022`,
+  location: `Storage Displays, Level 3`,
+  discipline: `Video piece`,
+  category: `Video piece`,
+  description: `Robin Hood Gardens, Woolmore Street, London E14 0HG (2018) . Video piece. Made by Do Ho Suh. 2018. Made in London. Storage Displays, Level 3`,
   medium: ``,
-  artist: `Giacomo Balla`,
+  artist: `Do Ho Suh`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -924,7 +984,7 @@ const OBJECT = {
   provenance: ``,
   tombstone: ``,
   licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1260518/`,
+  source_url: `https://collections.vam.ac.uk/item/O1497441/`,
   institution: `Victoria and Albert Museum, London`
 };
 
@@ -953,6 +1013,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -994,6 +1058,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1069,15 +1247,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1100,6 +1284,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>O Chalaça — ARCHAI</title>
+<title>Nederlandse 10 cent, 1903 — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,28 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669503/default-37.jpg" alt="O Chalaça" loading="eager">
+  <img src="https://iiif.micr.io/isxkZ/full/max/0/default.jpg" alt="Nederlandse 10 cent, 1903" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">O Chalaça</div>
-  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · [18--] · o-chalaca</div>
+  <div class="v-title">Nederlandse 10 cent, 1903</div>
+  <div class="v-sub">munt · 2026-02-14T04:17:44Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+        &lt;setSpec&gt;2601&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:creator&gt;Wilhelmina (koningin der Nederlanden)&lt;/dc:creator&gt;
+          &lt;dc:creator&gt;Wilhelmina of the Netherlands&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1903 · 200100273</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Brasiliana Museus</span>
+    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Brasiliana Museus</span>
+    
   </div>
 
   <!-- SHARE -->
@@ -783,11 +843,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>O Chalaça</strong> — Busto de homem jovem, levemente direcionado para a esquerda. Rosto e nariz finos, compridos. Testa larga. Sobrancelhas espessas, unidas. Olhos castanhos claros. Boca pequena. Orelha esquerda visível. Cabelos castanhos, lisos e curtos. Sobretudo preto de gola alta; colete creme e jabô branco. Fundo a…</div>
+  <div class="v-story"><strong>Nederlandse 10 cent, 1903</strong> — Zilveren munt. Voorzijde: (groter) hoofd met diadeem naar links. Keerzijde: binnen twee samengebonden eiketakken waarde-aanduiding 10 cents en jaartal. Kartelrand.</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</div>
+      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
     </div>
 
   <div class="v-divider"></div>
@@ -813,6 +873,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,18 +891,26 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">o-chalaca</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">[18--]</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 31,00 cm · largura 25,00 cm</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">200100273</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Wilhelmina (koningin der Nederlanden); Wilhelmina of the Netherlands</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">zilver</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">munt</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-02-14T04:17:44Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+        &lt;setSpec&gt;2601&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:creator&gt;Wilhelmina (koningin der Nederlanden)&lt;/dc:creator&gt;
+          &lt;dc:creator&gt;Wilhelmina of the Netherlands&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1903</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">munt</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -847,24 +925,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC254.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627820093/v2/prod/small/007001_007500/007158_004.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Album cover, Tat Ming Pair: I'm Waiting for Your Return</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2018.46</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669363/Desembarque_de_Cabral-scaled-1.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Desembarque de Cabral em Porto Seguro</div>
+        <div class="v-rel-meta">Brasiliana Museus · desembarque-de-cabral-em-porto-seguro</div>
       </a>
       <a class="v-rel-card" href="NFC255.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/157601?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">pillowcase, child's</div>
-        <div class="v-rel-meta">Auckland Museum · 1956.188</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/615832/preview" loading="lazy"></div>
+        <div class="v-rel-title">Guerche</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · NU007070/1</div>
       </a>
       <a class="v-rel-card" href="NFC257.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627829296/v2/prod/small/005501_006000/005646_001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Red A cup, no. 578</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2015.420</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669021/006330.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Felix Peixoto de Brito e Mello</div>
+        <div class="v-rel-meta">Brasiliana Museus · felix-peixoto-de-brito-e-mello</div>
       </a>
       <a class="v-rel-card" href="NFC258.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15935099&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Deutsches Museum: Barocksaal im nördlichen Kopfbau (aus: Museum im Werden)</div>
-        <div class="v-rel-meta">Europeana · /08535/item_LDZVUX3ECA3EJXXSKMIXLMDE3U36KZTO</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1915.533.d/1915.533.d_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Fragment from Red-Figure Oinochoe (Wine Jug) or Hydria (Water Jar): Woman Holding Box</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1915.533.d</div>
       </a></div>
   </div>
 </div>
@@ -877,7 +955,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/o-chalaca/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/200100273" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -908,26 +986,36 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `O Chalaça`,
-  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  date: `[18--]`,
-  registration: `o-chalaca`,
-  location: `Brasiliana Museus`,
-  discipline: `Brasiliana Museus`,
-  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  description: `Busto de homem jovem, levemente direcionado para a esquerda. Rosto e nariz finos, compridos. Testa larga. Sobrancelhas espessas, unidas. Olhos castanhos claros. Boca pequena. Orelha esquerda visível. Cabelos castanhos, lisos e curtos. Sobretudo preto de gola alta; colete creme e jabô branco. Fundo azeitonado. Inscrição no dorso da lateral do chassi, à esquerda, à caneta: &#034;Hist. de Port. Damião Peres/Vol. 7 pag 52&#034;. Moldura em madeira dourada, com decoração fitomórfica estilizada, nos cantos, nos centros das laterais e das partes superior e inferior. Na parte inferior, pequena placa m…`,
-  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  artist: ``,
-  culture: `Brazil`,
-  dimensions: `altura 31,00 cm · largura 25,00 cm`,
-  wall_description: `Busto de homem jovem, levemente direcionado para a esquerda. Rosto e nariz finos, compridos. Testa larga. Sobrancelhas espessas, unidas. Olhos castanhos claros. Boca pequena. Orelha esquerda visível. Cabelos castanhos, lisos e curtos. Sobretudo preto de gola alta; colete creme e jabô branco. Fundo azeitonado. Inscrição no dorso da lateral do chassi, à esquerda, à caneta: &#034;Hist. de Port. Damião Peres/Vol. 7 pag 52&#034;. Moldura em madeira dourada, com decoração fitomórfica estilizada, nos c…`,
+  title: `Nederlandse 10 cent, 1903`,
+  type: `munt`,
+  date: `2026-02-14T04:17:44Z</datestamp>
+        <setSpec>260239</setSpec>
+        <setSpec>261106</setSpec>
+        <setSpec>260251</setSpec>
+        <setSpec>2601</setSpec>
+      </header>
+      <metadata>
+        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
+          <dc:creator>Wilhelmina (koningin der Nederlanden)</dc:creator>
+          <dc:creator>Wilhelmina of the Netherlands</dc:creator>
+          <dc:date>1903`,
+  registration: `200100273`,
+  location: `Rijksmuseum, Amsterdam`,
+  discipline: ``,
+  category: `munt`,
+  description: `Zilveren munt. Voorzijde: (groter) hoofd met diadeem naar links. Keerzijde: binnen twee samengebonden eiketakken waarde-aanduiding 10 cents en jaartal. Kartelrand.`,
+  medium: `zilver`,
+  artist: `Wilhelmina (koningin der Nederlanden); Wilhelmina of the Netherlands`,
+  culture: ``,
+  dimensions: ``,
+  wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `O Chalaça. [18--]. Brasiliana Museus`,
-  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
-  source_url: `https://brasiliana.museus.gov.br/acervos/o-chalaca/`,
-  institution: `Brasiliana Museus`
+  tombstone: ``,
+  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
+  source_url: `https://www.rijksmuseum.nl/en/collection/200100273`,
+  institution: `Rijksmuseum, Amsterdam`
 };
 
 // Build rich context from available fields
@@ -955,6 +1043,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -996,6 +1088,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1071,15 +1277,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1102,6 +1314,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1209,7 +1422,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_brasiliana',
+      collection: 'archai_rijks',
       text,
       authorType: 'visitor',
     }),

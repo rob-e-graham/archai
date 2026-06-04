@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Vijftigjarig bestaan van de loge La Vertu te Leiden 1807 memorerende de buskruitramp, afdruk in karton — ARCHAI</title>
+<title>Ohotniche Rogi sounding A — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,28 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://iiif.micr.io/laKFk/full/max/0/default.jpg" alt="Vijftigjarig bestaan van de loge La Vertu te Leiden 1807 memorerende de buskruitramp, afdruk in karton" loading="eager">
+  <img src="https://images.metmuseum.org/CRDImages/mi/original/DP-12679-032.jpg" alt="Ohotniche Rogi sounding A" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Vijftigjarig bestaan van de loge La Vertu te Leiden 1807 memorerende de buskruitramp, afdruk in karton</div>
-  <div class="v-sub">historiepenning · 2026-02-14T04:17:21Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;anoniem&lt;/dc:creator&gt;
-          &lt;dc:creator&gt;anonymous&lt;/dc:creator&gt;
-          &lt;dc:date&gt;ca. 1807 · 200100142</div>
+  <div class="v-title">Ohotniche Rogi sounding A</div>
+  <div class="v-sub">Ohotniche Rogi sounding A · 1873–89 · 502343</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
+    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    
+    <span class="v-meta-tag">Musical Instruments</span>
   </div>
 
   <!-- SHARE -->
@@ -793,11 +833,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Vijftigjarig bestaan van de loge La Vertu te Leiden 1807 memorerende de buskruitramp, afdruk in karton</strong> — Afdruk in karton van de ovalen penning, met acht regels tekst onder een Leids stadswapenschildje, met omschrift.</div>
+  <div class="v-story"><strong>Ohotniche Rogi sounding A</strong> — Ohotniche Rogi sounding A. Ohotniche Rogi sounding A. Brass. Musical Instruments. Russian. by N. N. Federov. Aerophone-Lip Vibrated-horn. 1873–89</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -823,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -831,26 +881,20 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">200100142</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">anoniem; anonymous</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">karton</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">historiepenning</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-02-14T04:17:21Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;anoniem&lt;/dc:creator&gt;
-          &lt;dc:creator&gt;anonymous&lt;/dc:creator&gt;
-          &lt;dc:date&gt;ca. 1807</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">historiepenning</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">502343</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">N. N. Federov</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Brass</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Russian</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Aerophone-Lip Vibrated-horn</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1873–89</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Height (Perpendicular to bell): 63 1/16 in. (160.2 cm)
+Diameter (Of bell): 5 3/16 in. (13.1 cm)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 680</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Ohotniche Rogi sounding A</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -865,24 +909,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC968.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1998.273/1998.273_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Young Girl Seated on Straw, Leaning on a Basket</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1998.273</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/midp89.4.419.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Gunibri</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 501037</div>
       </a>
       <a class="v-rel-card" href="NFC969.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/64.228.188_a.JPG" loading="lazy"></div>
-        <div class="v-rel-title">Drum, Monkey Figures</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 308721</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/kvWPk/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Het Athenaeum Illustre te Amsterdam wordt universiteit 1877</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100315</div>
       </a>
       <a class="v-rel-card" href="NFC971.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/838d8c33-a3b4-68ea-587b-87ceec2011af/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Branch of the Seine near Giverny (Mist)</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 16564</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1972.49/1972.49_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Bust of a Chinese</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1972.49</div>
       </a>
       <a class="v-rel-card" href="NFC972.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/8bcc9188-1d3d-14be-6ae7-ed211e089c0f/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portrait of Mme Lisle and Mme Loubens</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 79586</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680271/000772-1.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Simón Bolívar</div>
+        <div class="v-rel-meta">Brasiliana Museus · simon-bolivar</div>
       </a></div>
   </div>
 </div>
@@ -895,7 +939,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/200100142" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/502343" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -926,36 +970,27 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Vijftigjarig bestaan van de loge La Vertu te Leiden 1807 memorerende de buskruitramp, afdruk in karton`,
-  type: `historiepenning`,
-  date: `2026-02-14T04:17:21Z</datestamp>
-        <setSpec>260239</setSpec>
-        <setSpec>261106</setSpec>
-        <setSpec>260251</setSpec>
-        <setSpec>2601</setSpec>
-      </header>
-      <metadata>
-        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
-          <dc:creator>anoniem</dc:creator>
-          <dc:creator>anonymous</dc:creator>
-          <dc:date>ca. 1807`,
-  registration: `200100142`,
-  location: `Rijksmuseum, Amsterdam`,
-  discipline: ``,
-  category: `historiepenning`,
-  description: `Afdruk in karton van de ovalen penning, met acht regels tekst onder een Leids stadswapenschildje, met omschrift.`,
-  medium: `karton`,
-  artist: `anoniem; anonymous`,
-  culture: ``,
-  dimensions: ``,
+  title: `Ohotniche Rogi sounding A`,
+  type: `Ohotniche Rogi sounding A`,
+  date: `1873–89`,
+  registration: `502343`,
+  location: `Gallery 680`,
+  discipline: `Musical Instruments`,
+  category: `Aerophone-Lip Vibrated-horn`,
+  description: `Ohotniche Rogi sounding A. Ohotniche Rogi sounding A. Brass. Musical Instruments. Russian. by N. N. Federov. Aerophone-Lip Vibrated-horn. 1873–89`,
+  medium: `Brass`,
+  artist: `N. N. Federov`,
+  culture: `Russian`,
+  dimensions: `Height (Perpendicular to bell): 63 1/16 in. (160.2 cm)
+Diameter (Of bell): 5 3/16 in. (13.1 cm)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
-  source_url: `https://www.rijksmuseum.nl/en/collection/200100142`,
-  institution: `Rijksmuseum, Amsterdam`
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.metmuseum.org/art/collection/search/502343`,
+  institution: `The Metropolitan Museum of Art`
 };
 
 // Build rich context from available fields
@@ -983,6 +1018,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -1024,6 +1063,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1099,15 +1252,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1130,6 +1289,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1237,7 +1397,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_rijks',
+      collection: 'archai_met',
       text,
       authorType: 'visitor',
     }),

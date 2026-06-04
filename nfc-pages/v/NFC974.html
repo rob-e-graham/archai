@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Model, Hebei Education Publishing House (2000–2004), Hebei, China — ARCHAI</title>
+<title>Red-Figure Bail Amphora (Storage Vessel): Draped Women — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627880851/v2/prod/small/000501_001000/000908_007.jpg" alt="Model, Hebei Education Publishing House (2000–2004), Hebei, China" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1967.245/1967.245_web.jpg" alt="Red-Figure Bail Amphora (Storage Vessel): Draped Women" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Model, Hebei Education Publishing House (2000–2004), Hebei, China</div>
-  <div class="v-sub">Architectural Model · 2004 · 2013.76</div>
+  <div class="v-title">Red-Figure Bail Amphora (Storage Vessel): Draped Women</div>
+  <div class="v-sub">Ceramic · 330–320 BCE · 1967.245</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">M+, Hong Kong</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
-    <span class="v-meta-tag">Design and Architecture</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Greek and Roman Art</span>
   </div>
 
   <!-- SHARE -->
@@ -783,11 +833,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Model, Hebei Education Publishing House (2000–2004), Hebei, China</strong> — Wooden model of a building on a small wooden platform. The building consists of two equally tall structures side by side with a third structure lying horizontally across them. Multiple walkways connect the two.</div>
-  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
-      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Atelier FCJZ · © Atelier FCJZ</div>
+  <div class="v-story"><strong>Red-Figure Bail Amphora (Storage Vessel): Draped Women</strong> — The bail amphora, named for the tall handle arching over the mouth, is a shape made primarily in Campania, where red-figure vases were produced at both Capua and Cumae in the 4th century BC. The anonymous painter of this vase is known as the CA Painter, for Cumae A, the first significant artist in t…</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,20 +881,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2013.76</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Atelier FCJZ, Yung Ho Chang</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">wood and acrylic</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Chinese-American, Chinese</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Design and Architecture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Architectural Model</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2004</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">overall (model): 34.7 × 45.1 × 60 cm
-overall (vitrine): 36.8 × 46.5 × 61.2 cm</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Architectural Model</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Atelier FCJZ · © Atelier FCJZ</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1967.245</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">CA Painter, Walters Sub-group (South Italian, Campanian, active at Cumae, c. 350–320 BCE)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">ceramic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">South Italian, Campanian, Cumaean</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Greek and Roman Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ceramic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">330–320 BCE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Diameter: 12.2 cm (4 13/16 in.); Overall: 54.6 cm (21 1/2 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">102D Pre-Roman</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Ceramic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -849,24 +908,24 @@ overall (vitrine): 36.8 × 46.5 × 61.2 cm</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC972.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/8bcc9188-1d3d-14be-6ae7-ed211e089c0f/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portrait of Mme Lisle and Mme Loubens</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 79586</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680271/000772-1.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Simón Bolívar</div>
+        <div class="v-rel-meta">Brasiliana Museus · simon-bolivar</div>
       </a>
       <a class="v-rel-card" href="NFC973.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D17450499&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Ansicht Pergamonaltar</div>
-        <div class="v-rel-meta">Europeana · /08535/item_HRJ4DDOUMGBUHNOAVZ2OHX6U2FS55YXD</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014GX3511/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Dream Still</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.77-2013</div>
       </a>
       <a class="v-rel-card" href="NFC975.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1942.1065/1942.1065_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Romaine Lacaux</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1942.1065</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/3eaab3a3-2b47-9fdd-121c-050f6b8d9ccb/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Old Man with a Gold Chain</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 95998</div>
       </a>
       <a class="v-rel-card" href="NFC976.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/910786/preview" loading="lazy"></div>
-        <div class="v-rel-title">Portrait of Potatow; Portrait of Omai. Plate 86. From the book New, authentic, and complete collection of voyages round the world.</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · RB000015/086a</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/caUrP/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Duit van de Bataafse Republiek op naam van Zeeland, 1797</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100096</div>
       </a></div>
   </div>
 </div>
@@ -879,7 +938,7 @@ overall (vitrine): 36.8 × 46.5 × 61.2 cm</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/model-hebei-education-publishing-house-20002004-hebei-china-201376/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1967.245" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -910,27 +969,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Model, Hebei Education Publishing House (2000–2004), Hebei, China`,
-  type: `Architectural Model`,
-  date: `2004`,
-  registration: `2013.76`,
-  location: `M+, Hong Kong`,
-  discipline: `Design and Architecture`,
-  category: `Architectural Model`,
-  description: `Wooden model of a building on a small wooden platform. The building consists of two equally tall structures side by side with a third structure lying horizontally across them. Multiple walkways connect the two.`,
-  medium: `wood and acrylic`,
-  artist: `Atelier FCJZ, Yung Ho Chang`,
-  culture: `Chinese-American, Chinese`,
-  dimensions: `overall (model): 34.7 × 45.1 × 60 cm
-overall (vitrine): 36.8 × 46.5 × 61.2 cm`,
-  wall_description: `Wooden model of a building on a small wooden platform. The building consists of two equally tall structures side by side with a third structure lying horizontally across them. Multiple walkways connect the two.`,
+  title: `Red-Figure Bail Amphora (Storage Vessel): Draped Women`,
+  type: `Ceramic`,
+  date: `330–320 BCE`,
+  registration: `1967.245`,
+  location: `102D Pre-Roman`,
+  discipline: `Greek and Roman Art`,
+  category: `Ceramic`,
+  description: `The bail amphora, named for the tall handle arching over the mouth, is a shape made primarily in Campania, where red-figure vases were produced at both Capua and Cumae in the 4th century BC. The anonymous painter of this vase is known as the CA Painter, for Cumae A, the first significant artist in this area. The seated and standing women on both sides of the vase, some only partially draped (and their white skin now largely lost), recall those on many of the painter’s other vases, as do the elaborate palmette patterns on either side.`,
+  medium: `ceramic`,
+  artist: `CA Painter, Walters Sub-group (South Italian, Campanian, active at Cumae, c. 350–320 BCE)`,
+  culture: `South Italian, Campanian, Cumaean`,
+  dimensions: `Diameter: 12.2 cm (4 13/16 in.); Overall: 54.6 cm (21 1/2 in.)`,
+  wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: `Model, Hebei Education Publishing House (2000–2004), Hebei, China. Atelier FCJZ, Yung Ho Chang. 2004. M+, Hong Kong`,
-  licence: `CC0 metadata · M+ API service non-commercial · © Atelier FCJZ`,
-  source_url: `https://www.mplus.org.hk/en/collection/objects/model-hebei-education-publishing-house-20002004-hebei-china-201376/`,
-  institution: `M+, Hong Kong`
+  did_you_know: `This vase once belonged to the famous opera singer Evan Gorga.`,
+  provenance: `[{"description":"Gorga Collection","citations":[],"footnotes":[],"date":null,"sortorder":null},{"description":"Museo Nationale di Villa Giulia, Rome, Italy","citations":[],"footnotes":[],"date":null,"sortorder":null},{"description":"Italian Ministry of Public Education, gifted to the Cleveland Museu…`,
+  tombstone: `Red-Figure Bail Amphora (Storage Vessel): Draped Women, 330–320 BCE. Attributed to CA Painter, Walters Sub-group (South Italian, Campanian, active at Cumae, c. 350–320 BCE). Ceramic; diameter: 12.2 cm (4 13/16 in.); overall: 54.6 cm (21 1/2 in.). The Cleveland Museum of Art, Gift of Italian Ministry of Public Education, 1967.245`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://clevelandart.org/art/1967.245`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -958,6 +1016,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -999,6 +1061,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1074,15 +1250,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1105,6 +1287,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1212,7 +1395,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_mplus',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

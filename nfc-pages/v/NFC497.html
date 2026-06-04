@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Stacks of Wheat (End of Day, Autumn) — ARCHAI</title>
+<title>Whistle — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/4c364c64-2108-4e19-5fc5-1ab26ba924a7/full/843,/0/default.jpg" alt="Stacks of Wheat (End of Day, Autumn)" loading="eager">
+  <img src="https://images.metmuseum.org/CRDImages/ao/original/DP-24269-001.jpg" alt="Whistle" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Stacks of Wheat (End of Day, Autumn)</div>
-  <div class="v-sub">Painting · 1890–91 · 14624</div>
+  <div class="v-title">Whistle</div>
+  <div class="v-sub">Whistle · 1200–500 BCE · 316715</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Art Institute of Chicago</span>
+    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Painting and Sculpture of Europe</span>
+    <span class="v-meta-tag">The Michael C. Rockefeller Wing</span>
   </div>
 
   <!-- SHARE -->
@@ -783,7 +833,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Stacks of Wheat (End of Day, Autumn)</strong> — Stacks of Wheat (End of Day, Autumn). Painting. Oil on canvas. Painting and Sculpture of Europe. Claude Monet (French, 1840–1926). oil on canvas. 1890–91. France. Impressionism. &lt;p&gt;The monumental stacks that Claude Monet depicted in his series &lt;a href=&quot;https://www.youtube.com/watch?v=NFPs_cRRGdM&amp;fea…</div>
+  <div class="v-story"><strong>Whistle</strong> — Whistle. Whistle. Ceramic. The Michael C. Rockefeller Wing. Cupisnique. by Cupisnique artist(s). Ceramics-Musical Instruments. 1200–500 BCE</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,16 +881,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">14624</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Claude Monet (French, 1840–1926)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Oil on canvas</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Painting and Sculpture of Europe</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">oil on canvas</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1890–91</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">65.8 × 101 cm (27 7/8 × 39 3/4 in.); Framed: 90.9 × 125.5 × 123.2 cm (35 3/4 × 49 3/8 × 48 1/2 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 243</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">316715</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Cupisnique artist(s)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Ceramic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Cupisnique</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">The Michael C. Rockefeller Wing</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ceramics-Musical Instruments</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1200–500 BCE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">H. 2 3/8 × W. 1 1/2 × D. 1 1/4 in. (6 × 3.8 × 3.2 cm)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 362</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Whistle</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
@@ -848,24 +908,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC495.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4314/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">JELLY CENTERS</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.270-2020</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/VsvQz/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Schutterspenning van Middelburg</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100427</div>
       </a>
       <a class="v-rel-card" href="NFC496.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2019MA2822/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Kinetic effect lighting system</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.463-1973</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680284/000770-1.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Conselheiro Ferreira Viana</div>
+        <div class="v-rel-meta">Brasiliana Museus · conselheiro-ferreira-viana</div>
       </a>
       <a class="v-rel-card" href="NFC498.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/fXNzJ/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">2&amp;#189; cent van Curacao, 1947</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100280</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DT6746.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Double animal-head bell</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 316662</div>
       </a>
       <a class="v-rel-card" href="NFC499.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2011ER6470/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Screenprint</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.1071-1967</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/mi89.4.926.AV1.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Ennanga</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 501536</div>
       </a></div>
   </div>
 </div>
@@ -878,7 +938,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/14624" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/316715" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -909,26 +969,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Stacks of Wheat (End of Day, Autumn)`,
-  type: `Painting`,
-  date: `1890–91`,
-  registration: `14624`,
-  location: `Gallery 243`,
-  discipline: `Painting and Sculpture of Europe`,
-  category: `oil on canvas`,
-  description: `Stacks of Wheat (End of Day, Autumn). Painting. Oil on canvas. Painting and Sculpture of Europe. Claude Monet (French, 1840–1926). oil on canvas. 1890–91. France. Impressionism. <p>The monumental stacks that Claude Monet depicted in his series <a href="https://www.youtube.com/watch?v=NFPs_cRRGdM&feature=youtu.be"><em>Stacks of Wheat</em></a> rose fifteen to twenty feet and stood just outside the artist’s farmhouse at Giverny. Through 1890 and 1891, he worked on this series both in the field, painting simultaneously at several easels, and in the studio, refining pictorial harmonies. In May 1891…`,
-  medium: `Oil on canvas`,
-  artist: `Claude Monet (French, 1840–1926)`,
-  culture: `France`,
-  dimensions: `65.8 × 101 cm (27 7/8 × 39 3/4 in.); Framed: 90.9 × 125.5 × 123.2 cm (35 3/4 × 49 3/8 × 48 1/2 in.)`,
+  title: `Whistle`,
+  type: `Whistle`,
+  date: `1200–500 BCE`,
+  registration: `316715`,
+  location: `Gallery 362`,
+  discipline: `The Michael C. Rockefeller Wing`,
+  category: `Ceramics-Musical Instruments`,
+  description: `Whistle. Whistle. Ceramic. The Michael C. Rockefeller Wing. Cupisnique. by Cupisnique artist(s). Ceramics-Musical Instruments. 1200–500 BCE`,
+  medium: `Ceramic`,
+  artist: `Cupisnique artist(s)`,
+  culture: `Cupisnique`,
+  dimensions: `H. 2 3/8 × W. 1 1/2 × D. 1 1/4 in. (6 × 3.8 × 3.2 cm)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
   licence: `CC0 — Public Domain`,
-  source_url: `https://www.artic.edu/artworks/14624`,
-  institution: `Art Institute of Chicago`
+  source_url: `https://www.metmuseum.org/art/collection/search/316715`,
+  institution: `The Metropolitan Museum of Art`
 };
 
 // Build rich context from available fields
@@ -956,6 +1016,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -997,6 +1061,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1072,15 +1250,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1103,6 +1287,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1210,7 +1395,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_aic',
+      collection: 'archai_met',
       text,
       authorType: 'visitor',
     }),

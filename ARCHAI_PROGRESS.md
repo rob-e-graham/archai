@@ -569,3 +569,82 @@ Notes:
 - this is a display-layer cleanup, not a rewrite of the raw source record
 - the screenshot showing Greek + English title text and a long Europeana aggregator id is a good reminder that raw heritage records and public display records need to stay distinct
 - next cleanup pass should move this kind of source-specific normalization further upstream into onboarding so ARCHAI and AUX.IO read cleaner display metadata by default
+
+## Speech / accessibility R&D note — 2026-06-04
+
+Direction:
+
+- likely `Whisper` for speech-to-text
+- likely `Coqui TTS` for richer text-to-speech
+- keep an eye on lighter offline deployment options such as `whisper.cpp`, `faster-whisper`, and lightweight local TTS fallbacks for kiosk installs
+
+Why it fits:
+
+- supports the long-term AUX.IO direction around accessibility, spoken interaction, and multilingual visitor support
+- keeps ARCHAI aligned with the sovereignty goal by favouring local inference rather than cloud-only voice services
+- creates a clean path for future neutral narration, interpretive voice, and accessible read-aloud modes
+
+Important design note:
+
+- keep a clear distinction between:
+  - neutral accessibility narration
+  - staff / curatorial interpretation
+  - performative or fictional object voice
+
+Next likely focus:
+
+- port the same Europeana display cleanup into the website demo wrapper
+- continue onboarding-quality normalization so raw aggregator strings do not surface in public-facing object views
+- map a first-pass speech architecture into:
+  - AUX.IO visitor input
+  - ARCHAI staff-facing conversational search
+  - translation-aware response output
+
+## Browser speech demo added to ARCHAI + AUX.IO — 2026-06-04
+
+What changed:
+
+- [ARCHAI_v10_8.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ARCHAI_v10_8.html) object detail now includes a lightweight browser speech demo:
+  - `Start Voice Question`
+  - `Stop Listening`
+  - `Read Reply`
+  - `Stop Audio`
+- the object-detail legal status note was also moved lower in the flow so it no longer interrupts the object introduction too aggressively
+- [nfc-pages/nfc-visitor-template.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/nfc-visitor-template.html) now includes the same browser speech demo controls for AUX.IO
+- AUX.IO pages were regenerated from the updated template, so the controls are now live in:
+  - [nfc-pages/v](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v)
+  - [nfc-pages/v/index.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v/index.html)
+
+What it is:
+
+- browser-native speech only for now, using `SpeechRecognition` / `webkitSpeechRecognition` and `speechSynthesis`
+- this is a safe demo step for testing conversational flow without committing to backend Whisper / Coqui plumbing yet
+
+What it is not:
+
+- not yet Whisper-backed
+- not yet Coqui-backed
+- not yet guaranteed across every browser or kiosk shell
+- not yet translation-aware beyond the browser's own language settings
+
+Verification:
+
+- inline script parse passed for:
+  - [ARCHAI_v10_8.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ARCHAI_v10_8.html)
+  - [nfc-pages/nfc-visitor-template.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/nfc-visitor-template.html)
+- AUX.IO regeneration completed successfully to `1519` visitor pages
+- local live page check confirmed the voice controls render on:
+  - `http://127.0.0.1:8002/nfc-pages/v/NFC001.html`
+
+Morning test points:
+
+- main app object detail:
+  - `http://127.0.0.1:8002/ARCHAI_v10_8.html`
+- AUX.IO sample page:
+  - `http://127.0.0.1:8002/nfc-pages/v/NFC001.html`
+
+Next production step:
+
+- replace browser speech with a backend voice layer:
+  - Whisper / faster-whisper / whisper.cpp for speech-to-text
+  - Coqui or a lighter local TTS stack for speech output

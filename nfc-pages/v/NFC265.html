@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Heroic Head of Pierre de Wissant, One of the Burghers of Calais — ARCHAI</title>
+<title>Maria Leopoldina na Ilha da Madeira — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/1920.120/1920.120_web.jpg" alt="Heroic Head of Pierre de Wissant, One of the Burghers of Calais" loading="eager">
+  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680961/464-1-scaled.jpg" alt="Maria Leopoldina na Ilha da Madeira" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Heroic Head of Pierre de Wissant, One of the Burghers of Calais</div>
-  <div class="v-sub">Sculpture · 1886 · 1920.120</div>
+  <div class="v-title">Maria Leopoldina na Ilha da Madeira</div>
+  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · 1817 · maria-leopoldina-na-ilha-da-madeira</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
+    <span class="v-meta-tag mv">Brasiliana Museus</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
+    <span class="v-meta-tag">Brasiliana Museus</span>
   </div>
 
   <!-- SHARE -->
@@ -783,11 +833,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Heroic Head of Pierre de Wissant, One of the Burghers of Calais</strong> — This sculpture depicts one of the figures in Rodin’s large public monument The Burghers of Calais (1884–89), featuring six French men who volunteered to be taken prisoner by the English in exchange for lifting the siege of Calais during the Hundred Years War (1337–1453). Pierre de Wissant’s anguishe…</div>
+  <div class="v-story"><strong>Maria Leopoldina na Ilha da Madeira</strong> — Dona Leopoldina, arquiduquesa da Áustria e primeira imperatriz do Brasil, aparece a meio corpo para a direita, olhando para a frente, a cabeça coberta por um grande chapéu de palha, tendo na mão esquerda uma flor e na outra um bastão. Na cartela, à direita, sob a coroa real, lê-se: &amp;#034;Arquiduques…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</div>
     </div>
 
   <div class="v-divider"></div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,19 +881,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1920.120</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Auguste Rodin (French, 1840–1917)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">bronze</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, 19th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1886</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 83.5 x 47 x 55.3 cm (32 7/8 x 18 1/2 x 21 3/4 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Cleveland Museum of Art</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">maria-leopoldina-na-ilha-da-madeira</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1817</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 103,00 cm · largura 82,50 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -848,24 +907,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC263.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/e7f7d1fb-9b18-45b4-1279-204a150279f5/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Winged Figure</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 59798</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%2Fwebclient%2FDeliveryManager%3Fpid%3D6331294%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Servizio fotografico Firenze, 1973</div>
+        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6331294_custom_att_2_simple_viewer</div>
       </a>
       <a class="v-rel-card" href="NFC264.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Femuseumplus.lsh.se%2FeMuseumPlus%3Fservice%3DImageAsset%26module%3Dcollection%26objectId%3D37805%26resolution%3DhighImageResolution&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Instrumentring. Instrument Ring</div>
-        <div class="v-rel-meta">Europeana · /2064105/Museu_ProvidedCHO_Livrustkammaren_37805</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/95be2572-b53d-8e7b-abc9-10eb48d4fa5d/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">The Beach at Sainte-Adresse</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 14598</div>
       </a>
       <a class="v-rel-card" href="NFC266.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/24841/preview" loading="lazy"></div>
-        <div class="v-rel-title">Coptic textile: tunic fragment</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · FE001731/2</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2003.6.5/2003.6.5_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Clio, Muse of History</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 2003.6.5</div>
       </a>
       <a class="v-rel-card" href="NFC267.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/2765aee9-3d78-ec6c-5c66-a1d9dc8173f6/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Rocks at Port-Goulphar, Belle-Île</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 20545</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1997.260/1997.260_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Vase</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1997.260</div>
       </a></div>
   </div>
 </div>
@@ -878,7 +937,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://clevelandart.org/art/1920.120" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/maria-leopoldina-na-ilha-da-madeira/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -909,26 +968,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Heroic Head of Pierre de Wissant, One of the Burghers of Calais`,
-  type: `Sculpture`,
-  date: `1886`,
-  registration: `1920.120`,
-  location: `Cleveland Museum of Art`,
-  discipline: `Modern European Painting and Sculpture`,
-  category: `Sculpture`,
-  description: `This sculpture depicts one of the figures in Rodin’s large public monument The Burghers of Calais (1884–89), featuring six French men who volunteered to be taken prisoner by the English in exchange for lifting the siege of Calais during the Hundred Years War (1337–1453). Pierre de Wissant’s anguished expression suggests extreme mental suffering as he contemplates his expected execution. Rodin exhibited a life-size version of the figure as an independent work before completing the monument. He later made multiple versions in various sizes and media.`,
-  medium: `bronze`,
-  artist: `Auguste Rodin (French, 1840–1917)`,
-  culture: `France, 19th century`,
-  dimensions: `Overall: 83.5 x 47 x 55.3 cm (32 7/8 x 18 1/2 x 21 3/4 in.)`,
-  wall_description: ``,
+  title: `Maria Leopoldina na Ilha da Madeira`,
+  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  date: `1817`,
+  registration: `maria-leopoldina-na-ilha-da-madeira`,
+  location: `Brasiliana Museus`,
+  discipline: `Brasiliana Museus`,
+  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  description: `Dona Leopoldina, arquiduquesa da Áustria e primeira imperatriz do Brasil, aparece a meio corpo para a direita, olhando para a frente, a cabeça coberta por um grande chapéu de palha, tendo na mão esquerda uma flor e na outra um bastão. Na cartela, à direita, sob a coroa real, lê-se: &#034;Arquiduquesa/Leopoldina Princesa/Real do Reino Unido de/Portugal, Brazil e Algar/Ves &amp; c Paceando na/Quinta do Vale Formoso/Morada Actual do Bispo/Prezente na Ilha da Ma/Deira em 12 de 7bro (setembro) 1817&#034;. O retrato foi feito na ocasião em que a futura imperatriz se achava em viagem para o Brasil.`,
+  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  artist: ``,
+  culture: `Brazil`,
+  dimensions: `altura 103,00 cm · largura 82,50 cm`,
+  wall_description: `Dona Leopoldina, arquiduquesa da Áustria e primeira imperatriz do Brasil, aparece a meio corpo para a direita, olhando para a frente, a cabeça coberta por um grande chapéu de palha, tendo na mão esquerda uma flor e na outra um bastão. Na cartela, à direita, sob a coroa real, lê-se: &#034;Arquiduquesa/Leopoldina Princesa/Real do Reino Unido de/Portugal, Brazil e Algar/Ves &amp; c Paceando na/Quinta do Vale Formoso/Morada Actual do Bispo/Prezente na Ilha da Ma/Deira em 12 de 7bro (setembro) 1817&#…`,
   fun_fact: ``,
-  did_you_know: `This sculpture depicts the head of a figure from Rodin's large public monument The Burghers of Calais (1884-89). The CMA also owns a plaster version of the head.`,
-  provenance: `[{"description":"Purchased by Mrs. Emery May Holden Norweb in 1917, but held in Paris and sent to the CMA in 1920.","citations":[],"footnotes":null,"date":null,"sortorder":null}]`,
-  tombstone: `Heroic Head of Pierre de Wissant, One of the Burghers of Calais, 1886. Auguste Rodin (French, 1840–1917). Bronze; overall: 83.5 x 47 x 55.3 cm (32 7/8 x 18 1/2 x 21 3/4 in.). The Cleveland Museum of Art, The Norweb Collection, 1920.120`,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://clevelandart.org/art/1920.120`,
-  institution: `Cleveland Museum of Art`
+  did_you_know: ``,
+  provenance: ``,
+  tombstone: `Maria Leopoldina na Ilha da Madeira. 1817. Brasiliana Museus`,
+  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
+  source_url: `https://brasiliana.museus.gov.br/acervos/maria-leopoldina-na-ilha-da-madeira/`,
+  institution: `Brasiliana Museus`
 };
 
 // Build rich context from available fields
@@ -956,6 +1015,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -997,6 +1060,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1072,15 +1249,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1103,6 +1286,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1210,7 +1394,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_cma',
+      collection: 'archai_brasiliana',
       text,
       authorType: 'visitor',
     }),

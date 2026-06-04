@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Cabeca de flamengo — ARCHAI</title>
+<title>Arc de Triomphe de l'Etoile, Paris — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/668965/006343.jpg" alt="Cabeca de flamengo" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/2022.16/2022.16_web.jpg" alt="Arc de Triomphe de l'Etoile, Paris" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Cabeca de flamengo</div>
-  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · 17-- · cabeca-de-flamengo</div>
+  <div class="v-title">Arc de Triomphe de l'Etoile, Paris</div>
+  <div class="v-sub">Photograph · c. 1860s · 2022.16</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Brasiliana Museus</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Brasiliana Museus</span>
+    <span class="v-meta-tag">Photography</span>
   </div>
 
   <!-- SHARE -->
@@ -783,11 +833,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Cabeca de flamengo</strong> — Campo oval inserido em retângulo, tendo ao centro busto de homem, voltado para a esquerda; rosto comprido; testa alta; nariz fino; cabelos castanhos ralos; sobrancelhas e olhos escuros; bigode grande de pontas viradas, cobrindo lábio superior; barba cheia e curta, castanha com reflexos grisalhos; go…</div>
+  <div class="v-story"><strong>Arc de Triomphe de l'Etoile, Paris</strong> — For three decades starting in 1854, Paris was a construction site as Baron Haussmann replaced the crooked streets and crumbling buildings of medieval Paris with a modern city. The cobblestones in the foreground were for paving the newly expanded set of broad avenues that radiated from the Arc, part …</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,18 +881,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">cabeca-de-flamengo</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">17--</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 76,00 cm · largura 66,00 cm</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2022.16</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Édouard Baldus (French, 1813–1889)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">albumen print from collodion negative</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, 19th century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1860s</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Image: 21.5 x 28.2 cm (8 7/16 x 11 1/8 in.); Paper: 21.5 x 28.2 cm (8 7/16 x 11 1/8 in.); Mounted: 32.6 x 43.5 cm (12 13/16 x 17 1/8 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">230 Photography</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -847,24 +908,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC403.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1672675873/v2/prod/small/002001_002500/002171_008.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Great Criticism: Chanel</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2012.972</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/vs1994_35_776.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Stone Musical Instrument</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 317640</div>
       </a>
       <a class="v-rel-card" href="NFC404.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/800751?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">watch</div>
-        <div class="v-rel-meta">Auckland Museum · 1932.233</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/87439/preview" loading="lazy"></div>
+        <div class="v-rel-title">Falling through the Antipodes III</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · 1996-0033-26</div>
       </a>
       <a class="v-rel-card" href="NFC406.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/AOycf/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Wijnpenning van Utrecht</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100431</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/668829/6379-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">[Choupana com sol ao fundo]</div>
+        <div class="v-rel-meta">Brasiliana Museus · choupana-com-sol-ao-fundo</div>
       </a>
       <a class="v-rel-card" href="NFC407.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15936299&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Halle im Südlichen Kopfbau (aus: Museum im Werden)</div>
-        <div class="v-rel-meta">Europeana · /08535/item_YJ4OJRZP4ZWZKGQO2Q7H2DH4UABIU7LL</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2008BU3016/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Oscillon 520</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.1096-2008</div>
       </a></div>
   </div>
 </div>
@@ -877,7 +938,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/cabeca-de-flamengo/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/2022.16" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -908,26 +969,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Cabeca de flamengo`,
-  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  date: `17--`,
-  registration: `cabeca-de-flamengo`,
-  location: `Brasiliana Museus`,
-  discipline: `Brasiliana Museus`,
-  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  description: `Campo oval inserido em retângulo, tendo ao centro busto de homem, voltado para a esquerda; rosto comprido; testa alta; nariz fino; cabelos castanhos ralos; sobrancelhas e olhos escuros; bigode grande de pontas viradas, cobrindo lábio superior; barba cheia e curta, castanha com reflexos grisalhos; gola de renda branca sobre traje preto. À esquerda, detalhe de corrente dourada. Fundo verde escuro. Moldura em madeira dourada; talha vasada com decorações de volutas e folhagens.`,
-  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  artist: ``,
-  culture: `Brazil`,
-  dimensions: `altura 76,00 cm · largura 66,00 cm`,
-  wall_description: `Campo oval inserido em retângulo, tendo ao centro busto de homem, voltado para a esquerda; rosto comprido; testa alta; nariz fino; cabelos castanhos ralos; sobrancelhas e olhos escuros; bigode grande de pontas viradas, cobrindo lábio superior; barba cheia e curta, castanha com reflexos grisalhos; gola de renda branca sobre traje preto. À esquerda, detalhe de corrente dourada. Fundo verde escuro. Moldura em madeira dourada; talha vasada com decorações de volutas e folhagens.`,
+  title: `Arc de Triomphe de l'Etoile, Paris`,
+  type: `Photograph`,
+  date: `c. 1860s`,
+  registration: `2022.16`,
+  location: `230 Photography`,
+  discipline: `Photography`,
+  category: `Photograph`,
+  description: `For three decades starting in 1854, Paris was a construction site as Baron Haussmann replaced the crooked streets and crumbling buildings of medieval Paris with a modern city. The cobblestones in the foreground were for paving the newly expanded set of broad avenues that radiated from the Arc, part of Baron Haussmann’s urban renewal plans. Exposure times for film in the 1860s were usually too long to capture people in the street, but a man—perhaps the paver—paused long enough to leave his “ghost” to the left of the cobblestones.`,
+  medium: `albumen print from collodion negative`,
+  artist: `Édouard Baldus (French, 1813–1889)`,
+  culture: `France, 19th century`,
+  dimensions: `Image: 21.5 x 28.2 cm (8 7/16 x 11 1/8 in.); Paper: 21.5 x 28.2 cm (8 7/16 x 11 1/8 in.); Mounted: 32.6 x 43.5 cm (12 13/16 x 17 1/8 in.)`,
+  wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: `Cabeca de flamengo. 17--. Brasiliana Museus`,
-  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
-  source_url: `https://brasiliana.museus.gov.br/acervos/cabeca-de-flamengo/`,
-  institution: `Brasiliana Museus`
+  did_you_know: `Completed in 1836, the Arc is dedicated to the armies of the French Revolution and the Second Empire and has gained additional symbolic force with each war fought by the French.`,
+  provenance: `[{"description":"Harry Lunn, Washington, D.C., sold to Michael Mattis and Judith Hochberg, Scarsdale, NY","citations":[],"footnotes":null,"date":null,"sortorder":1},{"description":"Michael Mattis & Judith Hochberg, Scarsdale, NY, sold to The Cleveland Museum of Art, Cleveland, OH","citations":[],"fo…`,
+  tombstone: `Arc de Triomphe de l'Etoile, Paris, c. 1860s. Édouard Baldus (French, 1813–1889). Albumen print from collodion negative; image: 21.5 x 28.2 cm (8 7/16 x 11 1/8 in.); paper: 21.5 x 28.2 cm (8 7/16 x 11 1/8 in.); mounted: 32.6 x 43.5 cm (12 13/16 x 17 1/8 in.). The Cleveland Museum of Art, Severance and Greta Millikin Purchase Fund, 2022.16`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://clevelandart.org/art/2022.16`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -955,6 +1016,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -996,6 +1061,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1071,15 +1250,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1102,6 +1287,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1209,7 +1395,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_brasiliana',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

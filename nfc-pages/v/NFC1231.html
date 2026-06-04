@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Overdracht van het graafschap Culemborg aan Stadhouder Willem IV 1748 — ARCHAI</title>
+<title>Natural Trumpet in D — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,27 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://iiif.micr.io/IEHcn/full/max/0/default.jpg" alt="Overdracht van het graafschap Culemborg aan Stadhouder Willem IV 1748" loading="eager">
+  <img src="https://images.metmuseum.org/CRDImages/mi/original/DP220756.jpg" alt="Natural Trumpet in D" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Overdracht van het graafschap Culemborg aan Stadhouder Willem IV 1748</div>
-  <div class="v-sub">historiepenning · 2026-02-14T04:16:59Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;Johan George Holtzhey&lt;/dc:creator&gt;
-          &lt;dc:date&gt;ca. 1748 · 200100048</div>
+  <div class="v-title">Natural Trumpet in D</div>
+  <div class="v-sub">Natural Trumpet in E-flat · 1790 · 501675</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
+    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    
+    <span class="v-meta-tag">Musical Instruments</span>
   </div>
 
   <!-- SHARE -->
@@ -792,11 +833,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Overdracht van het graafschap Culemborg aan Stadhouder Willem IV 1748</strong> — Afslag in karton van het voorzijdstempel, waarop het borstbeeld van Stadhouder Willem IV naar rechts met omschrift en afsnedetekst.</div>
+  <div class="v-story"><strong>Natural Trumpet in D</strong> — Natural Trumpet in D. Natural Trumpet in E-flat. Brass, colored rock. Musical Instruments. German. by Andreas Naeplaesnigg. Aerophone-Lip Vibrated-trumpet / trombone. 1790</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -822,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -830,25 +881,20 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">200100048</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Johan George Holtzhey</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">karton</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">historiepenning</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-02-14T04:16:59Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;Johan George Holtzhey&lt;/dc:creator&gt;
-          &lt;dc:date&gt;ca. 1748</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">historiepenning</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">501675</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Andreas Naeplaesnigg</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Brass, colored rock</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">German</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Aerophone-Lip Vibrated-trumpet / trombone</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1790</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Height (Perpendicular to bell): 26 7/16 in. (67.2 cm)
+Diameter (Of bell): 4 5/8 in. (11.7 cm)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 680</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Natural Trumpet in E-flat</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -863,24 +909,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1229.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP218832.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Ipu Hula (gourd drum)</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 501369</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fcollection.mobilier-national.fr%2Fmedia%2Fxl%2FCINQPEYRES%2F2014%2F06%2Fgob-25-001_2014.jpg&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">CARTON DE GARNITURE DE MOBILIER - Modèle de dossier de canapé : Les Amours tirant à l'arc</div>
+        <div class="v-rel-meta">Europeana · /957/GOB_25_001</div>
       </a>
       <a class="v-rel-card" href="NFC1230.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1929.951/1929.951_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Outskirts of Paris</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1929.951</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018LC0505/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">STC Deltaphone (GPO Trimphone)</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.389-1967</div>
       </a>
       <a class="v-rel-card" href="NFC1232.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/392771?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">medal, athletic</div>
-        <div class="v-rel-meta">Auckland Museum · 2016.12.1</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/laKFk/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Vijftigjarig bestaan van de loge La Vertu te Leiden 1807 memorerende de buskruitramp, afdruk in karton</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100142</div>
       </a>
       <a class="v-rel-card" href="NFC1233.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2016JA3491/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Murphy A146CM</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.411-1975</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/44278?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">envelope</div>
+        <div class="v-rel-meta">Auckland Museum · 2004.47.7</div>
       </a></div>
   </div>
 </div>
@@ -893,7 +939,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/200100048" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/501675" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -924,35 +970,27 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Overdracht van het graafschap Culemborg aan Stadhouder Willem IV 1748`,
-  type: `historiepenning`,
-  date: `2026-02-14T04:16:59Z</datestamp>
-        <setSpec>260239</setSpec>
-        <setSpec>261106</setSpec>
-        <setSpec>260251</setSpec>
-        <setSpec>2601</setSpec>
-      </header>
-      <metadata>
-        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
-          <dc:creator>Johan George Holtzhey</dc:creator>
-          <dc:date>ca. 1748`,
-  registration: `200100048`,
-  location: `Rijksmuseum, Amsterdam`,
-  discipline: ``,
-  category: `historiepenning`,
-  description: `Afslag in karton van het voorzijdstempel, waarop het borstbeeld van Stadhouder Willem IV naar rechts met omschrift en afsnedetekst.`,
-  medium: `karton`,
-  artist: `Johan George Holtzhey`,
-  culture: ``,
-  dimensions: ``,
+  title: `Natural Trumpet in D`,
+  type: `Natural Trumpet in E-flat`,
+  date: `1790`,
+  registration: `501675`,
+  location: `Gallery 680`,
+  discipline: `Musical Instruments`,
+  category: `Aerophone-Lip Vibrated-trumpet / trombone`,
+  description: `Natural Trumpet in D. Natural Trumpet in E-flat. Brass, colored rock. Musical Instruments. German. by Andreas Naeplaesnigg. Aerophone-Lip Vibrated-trumpet / trombone. 1790`,
+  medium: `Brass, colored rock`,
+  artist: `Andreas Naeplaesnigg`,
+  culture: `German`,
+  dimensions: `Height (Perpendicular to bell): 26 7/16 in. (67.2 cm)
+Diameter (Of bell): 4 5/8 in. (11.7 cm)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
-  source_url: `https://www.rijksmuseum.nl/en/collection/200100048`,
-  institution: `Rijksmuseum, Amsterdam`
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.metmuseum.org/art/collection/search/501675`,
+  institution: `The Metropolitan Museum of Art`
 };
 
 // Build rich context from available fields
@@ -980,6 +1018,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -1021,6 +1063,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1096,15 +1252,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1127,6 +1289,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1234,7 +1397,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_rijks',
+      collection: 'archai_met',
       text,
       authorType: 'visitor',
     }),

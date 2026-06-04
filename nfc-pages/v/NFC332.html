@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Miss Blanche — ARCHAI</title>
+<title>Shawl — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://res.cloudinary.com/mplustms/image/upload/w_667/v1627886757/v2/prod/small/001501_002000/001542_006.jpg" alt="Miss Blanche" loading="eager">
+  <img src="https://media.tepapa.govt.nz/collection/371092/preview" alt="Shawl" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Miss Blanche</div>
-  <div class="v-sub">Furniture · designed 1988, made 2013 · 2013.66</div>
+  <div class="v-title">Shawl</div>
+  <div class="v-sub">shawls · 1930s · GH015855</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">M+, Hong Kong</span>
+    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
     <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
-    <span class="v-meta-tag">Design and Architecture</span>
+    <span class="v-meta-tag">History</span>
   </div>
 
   <!-- SHARE -->
@@ -783,11 +833,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Miss Blanche</strong> — Acrylic resin, plastic, and epoxy-coated aluminium chair with an angular backrest, curved armrests, and seat, which are transparent. Red roses with green leaves are suspended in the seat and armrests. The upper parts of the four purple tubular legs are inserted in the bottom of the armrests.</div>
+  <div class="v-story"><strong>Shawl</strong> — This shawl was made by Alma Reissar (1910-1986), a migrant from southern Estonia who came to New Zealand via Germany in 1949 as a displaced person after the Second World War (1930-45). She made the shawl herself from wool grown on her father's farm in southern Estonia. He also grew flax. Alma would …</div>
   <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
       <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Kuramata Design Office · © Kuramata Design Office</div>
+      <div class="v-rights-detail">Licence / rights: CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</div>
     </div>
 
   <div class="v-divider"></div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,19 +881,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2013.66</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Kuramata Shiro, Ishimaru Co. Ltd.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">acrylic resin, plastic, and epoxy-coated anodised aluminium</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Japanese</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Design and Architecture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Furniture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">designed 1988, made 2013</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">overall: 90.5 × 62.5 × 60 cm</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Furniture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">GH015855</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Alma Reissar</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Naturally dyed and handwoven shawl</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Estonia</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">History</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">shawls</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1930s</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 840mm (height), 830mm (length)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">shawls</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Kuramata Design Office · © Kuramata Design Office</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -848,25 +908,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC330.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fmm.dimu.org%2Fimage%2F012uN1bvqQ2j%3Fdimension%3D1200x1200&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Stockholm, Nationalmuseum.
-439 K. Holmström, Sth. Imp</div>
-        <div class="v-rel-meta">Europeana · /916109/smm_sm_photo_Fo195832</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1985.203/1985.203_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Untitled</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1985.203</div>
       </a>
       <a class="v-rel-card" href="NFC331.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/668967/default-29.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Dama da Corte</div>
-        <div class="v-rel-meta">Brasiliana Museus · dama-da-corte-6</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/exlkP/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Schutterspenning Middelburg St. Joris</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100426</div>
       </a>
       <a class="v-rel-card" href="NFC333.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP-38691-003.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Fretless tackhead banjo</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 919097</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627825927/v2/prod/small/007001_007500/007173_012.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Watermelon ball</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2016.764</div>
       </a>
       <a class="v-rel-card" href="NFC334.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/PAbqn/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Schutterspenning van Leiden</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100441</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018LG5969/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Visual Theogonies: images of the computational god</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.204-2018</div>
       </a></div>
   </div>
 </div>
@@ -879,7 +938,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/miss-blanche-201366/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/770230" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -910,26 +969,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Miss Blanche`,
-  type: `Furniture`,
-  date: `designed 1988, made 2013`,
-  registration: `2013.66`,
-  location: `M+, Hong Kong`,
-  discipline: `Design and Architecture`,
-  category: `Furniture`,
-  description: `Acrylic resin, plastic, and epoxy-coated aluminium chair with an angular backrest, curved armrests, and seat, which are transparent. Red roses with green leaves are suspended in the seat and armrests. The upper parts of the four purple tubular legs are inserted in the bottom of the armrests.`,
-  medium: `acrylic resin, plastic, and epoxy-coated anodised aluminium`,
-  artist: `Kuramata Shiro, Ishimaru Co. Ltd.`,
-  culture: `Japanese`,
-  dimensions: `overall: 90.5 × 62.5 × 60 cm`,
-  wall_description: `Acrylic resin, plastic, and epoxy-coated aluminium chair with an angular backrest, curved armrests, and seat, which are transparent. Red roses with green leaves are suspended in the seat and armrests. The upper parts of the four purple tubular legs are inserted in the bottom of the armrests.`,
+  title: `Shawl`,
+  type: `shawls`,
+  date: `1930s`,
+  registration: `GH015855`,
+  location: `Te Papa Tongarewa, Wellington`,
+  discipline: `History`,
+  category: `shawls`,
+  description: `This shawl was made by Alma Reissar (1910-1986), a migrant from southern Estonia who came to New Zealand via Germany in 1949 as a displaced person after the Second World War (1930-45). She made the shawl herself from wool grown on her father's farm in southern Estonia. He also grew flax. Alma would wash, spin and dye the wool with natural dyes. During the winter months she would weave fabrics on the loom her father had made. She wove all her furnishing fabrics and household linen. This shawl is a treasured memento of all the 'lovely things' she had to leave behind, when in 1944, her family (in…`,
+  medium: `Naturally dyed and handwoven shawl`,
+  artist: `Alma Reissar`,
+  culture: `Estonia`,
+  dimensions: `Overall: 840mm (height), 830mm (length)`,
+  wall_description: `This shawl was made by Alma Reissar (1910-1986), a migrant from southern Estonia who came to New Zealand via Germany in 1949 as a displaced person after the Second World War (1930-45). She made the shawl herself from wool grown on her father's farm in southern Estonia. He also grew flax. Alma would wash, spin and dye the wool with natural dyes. During the winter months she would weave fabrics on the loom her father had made. She wove all her furnishing fabrics and household linen. This shawl is …`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Miss Blanche. Kuramata Shiro, Ishimaru Co. Ltd.. designed 1988, made 2013. M+, Hong Kong`,
-  licence: `CC0 metadata · M+ API service non-commercial · © Kuramata Design Office`,
-  source_url: `https://www.mplus.org.hk/en/collection/objects/miss-blanche-201366/`,
-  institution: `M+, Hong Kong`
+  tombstone: `Shawl, 1930s, Estonia, by Alma Reissar. Gift of Tiiu Reissar, 2008. © Te Papa. CC BY-NC-ND 4.0. Te Papa (GH015855)`,
+  licence: `CC BY-NC-ND 4.0 · metadata CC BY 4.0`,
+  source_url: `https://collections.tepapa.govt.nz/object/770230`,
+  institution: `Museum of New Zealand Te Papa Tongarewa`
 };
 
 // Build rich context from available fields
@@ -957,6 +1016,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -998,6 +1061,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1073,15 +1250,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1104,6 +1287,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1211,7 +1395,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_mplus',
+      collection: 'archai_tepapa',
       text,
       authorType: 'visitor',
     }),

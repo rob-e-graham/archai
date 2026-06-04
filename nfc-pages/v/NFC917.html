@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Black-Figure Trefoil Oinochoe (Wine Jug): Europa on Bull — ARCHAI</title>
+<title>First colour broadcast by Associated Television — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/1929.978/1929.978_web.jpg" alt="Black-Figure Trefoil Oinochoe (Wine Jug): Europa on Bull" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2014HD6577/full/!600,600/0/default.jpg" alt="First colour broadcast by Associated Television" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Black-Figure Trefoil Oinochoe (Wine Jug): Europa on Bull</div>
-  <div class="v-sub">Ceramic · c. 530 BCE · 1929.978</div>
+  <div class="v-title">First colour broadcast by Associated Television</div>
+  <div class="v-sub">Costume design · 1969 · S.213-1980</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
+    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Greek and Roman Art</span>
+    <span class="v-meta-tag">Costume design</span>
   </div>
 
   <!-- SHARE -->
@@ -783,11 +833,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Black-Figure Trefoil Oinochoe (Wine Jug): Europa on Bull</strong> — Calmly seated sidesaddle on a bull, the woman depicted on the front of this small wine jug probably represents Europa, the Phoenician princess abducted by the Greek god Zeus. According to myth, Zeus either sent a bull or transformed himself into one, then carried Europa across the sea to Crete. Ther…</div>
+  <div class="v-story"><strong>First colour broadcast by Associated Television</strong> — First colour broadcast by Associated Television. Costume design. Made by unknown. 1969. Made in Great Britain. In Store</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
     </div>
 
   <div class="v-divider"></div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,19 +881,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1929.978</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Class of Vatican 440 (Greek, Attic)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">ceramic</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Greek, Attic</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Greek and Roman Art</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ceramic</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 530 BCE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 23.6 cm (9 5/16 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">102B Greek</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Ceramic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">S.213-1980</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">unknown</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Costume design</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Costume design</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1969</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In Store</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Costume design</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -848,24 +905,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC915.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/329130?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">sherd</div>
-        <div class="v-rel-meta">Auckland Museum · K2484</div>
+        <div class="v-rel-thumb"><img src="https://museuregionalcasadosottoni.acervos.museus.gov.br/wp-content/uploads/2019/04/171_A-2-1-1-4.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Estampa religiosa</div>
+        <div class="v-rel-meta">Brasiliana Museus · 5368641-2</div>
       </a>
       <a class="v-rel-card" href="NFC916.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PC0397/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Broken Glass Ball and Shadow</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · PH.562-2024</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/c210a649-8de9-866e-2a5f-0a506a02b19b/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portrait of Magdalena of Saxony, Wife of Elector Joachim II of Brandenburg</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 87760</div>
       </a>
       <a class="v-rel-card" href="NFC918.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4330/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">SEEMS AINT</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.293-2020</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/222239/preview" loading="lazy"></div>
+        <div class="v-rel-title">Sporran</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · PC001695/4</div>
       </a>
       <a class="v-rel-card" href="NFC919.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1972.48/1972.48_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Branch Hill Pond, Hampstead</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1972.48</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%2Fwebclient%2FDeliveryManager%3Fpid%3D6355700%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Photographic reportage, Florence, 1957-1956. Servizio fotografico Firenze, 1957-1956</div>
+        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6355700_custom_att_2_simple_viewer</div>
       </a></div>
   </div>
 </div>
@@ -878,7 +935,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://clevelandart.org/art/1929.978" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1295237/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -909,26 +966,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Black-Figure Trefoil Oinochoe (Wine Jug): Europa on Bull`,
-  type: `Ceramic`,
-  date: `c. 530 BCE`,
-  registration: `1929.978`,
-  location: `102B Greek`,
-  discipline: `Greek and Roman Art`,
-  category: `Ceramic`,
-  description: `Calmly seated sidesaddle on a bull, the woman depicted on the front of this small wine jug probably represents Europa, the Phoenician princess abducted by the Greek god Zeus. According to myth, Zeus either sent a bull or transformed himself into one, then carried Europa across the sea to Crete. There, she bore Zeus two or three sons, including the legendary king Minos. The bull ascended to the sky as the constellation Taurus.`,
-  medium: `ceramic`,
-  artist: `Class of Vatican 440 (Greek, Attic)`,
-  culture: `Greek, Attic`,
-  dimensions: `Overall: 23.6 cm (9 5/16 in.)`,
+  title: `First colour broadcast by Associated Television`,
+  type: `Costume design`,
+  date: `1969`,
+  registration: `S.213-1980`,
+  location: `In Store`,
+  discipline: `Costume design`,
+  category: `Costume design`,
+  description: `First colour broadcast by Associated Television. Costume design. Made by unknown. 1969. Made in Great Britain. In Store`,
+  medium: ``,
+  artist: `unknown`,
+  culture: ``,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: `The continent of Europe takes its name from Europa, a Phoenician princess abducted by Zeus.`,
-  provenance: `[{"description":"(Mr. Mario de Ciccio, Naples, Italy, sold to the Cleveland Museum of Art)","citations":[],"footnotes":[],"date":"?-1929","sortorder":1},{"description":"The Cleveland Museum of Art, Cleveland, OH","citations":[],"footnotes":[],"date":"1929-","sortorder":2}]`,
-  tombstone: `Black-Figure Trefoil Oinochoe (Wine Jug): Europa on Bull, c. 530 BCE. Attributed to Class of Vatican 440 (Greek, Attic). Ceramic; overall: 23.6 cm (9 5/16 in.). The Cleveland Museum of Art, Purchase from the J. H. Wade Fund, 1929.978`,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://clevelandart.org/art/1929.978`,
-  institution: `Cleveland Museum of Art`
+  did_you_know: ``,
+  provenance: ``,
+  tombstone: ``,
+  licence: `V&A Open Access`,
+  source_url: `https://collections.vam.ac.uk/item/O1295237/`,
+  institution: `Victoria and Albert Museum, London`
 };
 
 // Build rich context from available fields
@@ -956,6 +1013,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -997,6 +1058,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1072,15 +1247,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1103,6 +1284,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1210,7 +1392,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_cma',
+      collection: 'archai_va',
       text,
       authorType: 'visitor',
     }),

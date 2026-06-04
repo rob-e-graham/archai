@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Electronic Command Centre — ARCHAI</title>
+<title>Ushabti Figurine — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2006AF4919/full/!600,600/0/default.jpg" alt="Electronic Command Centre" loading="eager">
+  <img src="https://media.tepapa.govt.nz/collection/45532/preview" alt="Ushabti Figurine" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Electronic Command Centre</div>
-  <div class="v-sub">Action figure set · 1975-1980 · B.444:1 to 31-1996</div>
+  <div class="v-title">Ushabti Figurine</div>
+  <div class="v-sub">ushabti · Date unknown · CG002396</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Action figure set</span>
+    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">History</span>
   </div>
 
   <!-- SHARE -->
@@ -783,11 +833,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Electronic Command Centre</strong> — Electronic Command Centre. Action figure set. Made by Palitoy Company Ltd (Palitoy Bradgate). 1975-1980. Made in England. In Store</div>
-  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
-      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+  <div class="v-story"><strong>Ushabti Figurine</strong> — Ushabti Figurine , Egypt, maker unknown. Gift of Miss Sylvia Lysaght, 1974. CC BY-NC-ND 4.0 . Te Papa (CG002396)</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</div>
     </div>
 
   <div class="v-divider"></div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,16 +881,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">B.444:1 to 31-1996</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Palitoy Company Ltd (Palitoy Bradgate)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Action figure set</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Action figure set</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1975-1980</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In Store</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Action figure set</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">CG002396</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Unknown</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">ceramic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">History</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ushabti</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Date unknown</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 56mm (width), 146mm (height)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ushabti</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -845,24 +907,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC747.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2026PP7677/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Philips Television</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.324-2026</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/261455/preview" loading="lazy"></div>
+        <div class="v-rel-title">Photograph</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH003434</div>
       </a>
       <a class="v-rel-card" href="NFC748.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2011ER6462/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Print</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.1074-1967</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2016HY8907/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Ericofon 700</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.10-2003</div>
       </a>
       <a class="v-rel-card" href="NFC750.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_874/v1627901165/v2/prod/small/000501_001000/000506_003.jpg" loading="lazy"></div>
-        <div class="v-rel-title">The Bone Setting Clinic</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2012.1620</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/679920/862-1-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Teófilo Ottoni</div>
+        <div class="v-rel-meta">Brasiliana Museus · teofilo-ottoni</div>
       </a>
       <a class="v-rel-card" href="NFC751.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2003.6.3/2003.6.3_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Apollo, God of Light, Eloquence, Poetry, and the Fine Arts with Urania, Muse of Astronomy</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2003.6.3</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/b55d836c-ee20-59f8-1f0c-a95e09905361/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Interior of St. Mark's, Venice</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 9</div>
       </a></div>
   </div>
 </div>
@@ -875,7 +937,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O36904/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/233312" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -906,26 +968,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Electronic Command Centre`,
-  type: `Action figure set`,
-  date: `1975-1980`,
-  registration: `B.444:1 to 31-1996`,
-  location: `In Store`,
-  discipline: `Action figure set`,
-  category: `Action figure set`,
-  description: `Electronic Command Centre. Action figure set. Made by Palitoy Company Ltd (Palitoy Bradgate). 1975-1980. Made in England. In Store`,
-  medium: ``,
-  artist: `Palitoy Company Ltd (Palitoy Bradgate)`,
+  title: `Ushabti Figurine`,
+  type: `ushabti`,
+  date: `Date unknown`,
+  registration: `CG002396`,
+  location: `Te Papa Tongarewa, Wellington`,
+  discipline: `History`,
+  category: `ushabti`,
+  description: `Ushabti Figurine , Egypt, maker unknown. Gift of Miss Sylvia Lysaght, 1974. CC BY-NC-ND 4.0 . Te Papa (CG002396)`,
+  medium: `ceramic`,
+  artist: `Unknown`,
   culture: ``,
-  dimensions: ``,
+  dimensions: `Overall: 56mm (width), 146mm (height)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O36904/`,
-  institution: `Victoria and Albert Museum, London`
+  tombstone: `Ushabti Figurine, Egypt, maker unknown. Gift of Miss Sylvia Lysaght, 1974. CC BY-NC-ND 4.0. Te Papa (CG002396)`,
+  licence: `CC BY-NC-ND 4.0 · metadata CC BY 4.0`,
+  source_url: `https://collections.tepapa.govt.nz/object/233312`,
+  institution: `Museum of New Zealand Te Papa Tongarewa`
 };
 
 // Build rich context from available fields
@@ -953,6 +1015,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -994,6 +1060,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1069,15 +1249,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1100,6 +1286,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1207,7 +1394,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_tepapa',
       text,
       authorType: 'visitor',
     }),

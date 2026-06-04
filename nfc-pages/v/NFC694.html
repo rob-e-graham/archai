@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Jar — ARCHAI</title>
+<title>The Battle between the Gods and the Giants — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://media.tepapa.govt.nz/collection/380334/preview" alt="Jar" loading="eager">
+  <img src="https://www.artic.edu/iiif/2/8111acce-c8ce-2ef3-5f32-61cd63905c7d/full/843,/0/default.jpg" alt="The Battle between the Gods and the Giants" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Jar</div>
-  <div class="v-sub">vases · 1991BCE–1778 BCE · FE000427</div>
+  <div class="v-title">The Battle between the Gods and the Giants</div>
+  <div class="v-sub">Painting · c. 1608 · 105466</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
-    <span class="v-meta-tag">History</span>
+    <span class="v-meta-tag mv">Art Institute of Chicago</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Painting and Sculpture of Europe</span>
   </div>
 
   <!-- SHARE -->
@@ -783,11 +833,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Jar</strong> — Fit for purpose Ancient Egyptians made vessels like these in different shapes for everyday purposes, using clay dug from close to the Nile. Flat-bottomed containers could stand easily, and vessels with tapered bases could be nestled into soft earth. Form followed function. Compare the large, two-han…</div>
-  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
-      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
-      <div class="v-rights-detail">Licence / rights: CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</div>
+  <div class="v-story"><strong>The Battle between the Gods and the Giants</strong> — The Battle between the Gods and the Giants. Painting. Oil on copper. Painting and Sculpture of Europe. Joachim Antonisz. Wtewael (Dutch, c. 1566–1638). oil on copper. c. 1608. Netherlands. 17th Century. &lt;p&gt;The subject of the victory of the gods of Olympus over the ancient race of giants provided Joa…</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,19 +881,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">FE000427</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Unknown</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">pottery, slip</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Twelfth Dynasty</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">vases</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1991BCE–1778 BCE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 118mm (width), 170mm (height), 121mm (depth)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">vases</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">105466</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Joachim Antonisz. Wtewael (Dutch, c. 1566–1638)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Oil on copper</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Netherlands</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Painting and Sculpture of Europe</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">oil on copper</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1608</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">15.6 × 20.3 cm (6 1/8 × 8 in.); Framed: 24.1 × 27.3 × 3.5 cm (9 1/2 × 10 3/4 × 1 3/8 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -848,24 +908,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC692.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/kaCkm/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Nederlandse dukaat, 1927</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100268</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DT9416.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Crocodile whistle and rattle</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 313335</div>
       </a>
       <a class="v-rel-card" href="NFC693.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2002.45/2002.45_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Sand Dunes, Carson Desert, Nevada</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2002.45</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D17450699&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Ansicht Pergamonaltar</div>
+        <div class="v-rel-meta">Europeana · /08535/item_WJKQS6633QR4JGDQ4UQP7ACMGPL3LG3L</div>
       </a>
       <a class="v-rel-card" href="NFC695.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/371092/preview" loading="lazy"></div>
-        <div class="v-rel-title">Shawl</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH015855</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/GwLzv/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Floris V, graaf van Holland en Zeeland</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010018</div>
       </a>
       <a class="v-rel-card" href="NFC696.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2020.209/2020.209_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Perumal Temple Vimana from Corner of Court, Madurai</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2020.209</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP-24963-001.jpg" loading="lazy"></div>
+        <div class="v-rel-title">A Santal Fiddle (Dhodro Banam)</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 882870</div>
       </a></div>
   </div>
 </div>
@@ -878,7 +938,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/188888" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.artic.edu/artworks/105466" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -909,26 +969,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Jar`,
-  type: `vases`,
-  date: `1991BCE–1778 BCE`,
-  registration: `FE000427`,
-  location: `Te Papa Tongarewa, Wellington`,
-  discipline: `History`,
-  category: `vases`,
-  description: `Fit for purpose Ancient Egyptians made vessels like these in different shapes for everyday purposes, using clay dug from close to the Nile. Flat-bottomed containers could stand easily, and vessels with tapered bases could be nestled into soft earth. Form followed function. Compare the large, two-handled amphora with Ann Verdcourt’s milk cartons. Their form may be different, but their purpose is similar. In ancient times, amphorae were often designed for transporting wine or oil. They were packed tight into a ship’s hull for trading, and were sometimes thrown away when empty.`,
-  medium: `pottery, slip`,
-  artist: `Unknown`,
-  culture: `Twelfth Dynasty`,
-  dimensions: `Overall: 118mm (width), 170mm (height), 121mm (depth)`,
-  wall_description: `Fit for purpose Ancient Egyptians made vessels like these in different shapes for everyday purposes, using clay dug from close to the Nile. Flat-bottomed containers could stand easily, and vessels with tapered bases could be nestled into soft earth. Form followed function. Compare the large, two-handled amphora with Ann Verdcourt’s milk cartons. Their form may be different, but their purpose is similar. In ancient times, amphorae were often designed for transporting wine or oil. They were packed…`,
+  title: `The Battle between the Gods and the Giants`,
+  type: `Painting`,
+  date: `c. 1608`,
+  registration: `105466`,
+  location: `Art Institute of Chicago`,
+  discipline: `Painting and Sculpture of Europe`,
+  category: `oil on copper`,
+  description: `The Battle between the Gods and the Giants. Painting. Oil on copper. Painting and Sculpture of Europe. Joachim Antonisz. Wtewael (Dutch, c. 1566–1638). oil on copper. c. 1608. Netherlands. 17th Century. <p>The subject of the victory of the gods of Olympus over the ancient race of giants provided Joachim Wtewael with the opportunity to depict exaggerated athletic poses and striking contrasts of space and light. From the clouds, the Olympian gods wield their attributes as weapons: Jupiter hurls thunderbolts; Neptune brandishes his triton; and Mercury uses his caduceus as a spear. The helmeted fi…`,
+  medium: `Oil on copper`,
+  artist: `Joachim Antonisz. Wtewael (Dutch, c. 1566–1638)`,
+  culture: `Netherlands`,
+  dimensions: `15.6 × 20.3 cm (6 1/8 × 8 in.); Framed: 24.1 × 27.3 × 3.5 cm (9 1/2 × 10 3/4 × 1 3/8 in.)`,
+  wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Jar, 1991BCE–1778 BCE, Egypt, maker unknown. Gift of the Egypt Exploration Fund, 1912. CC BY-NC-ND 4.0. Te Papa (FE000427)`,
-  licence: `CC BY-NC-ND 4.0 · metadata CC BY 4.0`,
-  source_url: `https://collections.tepapa.govt.nz/object/188888`,
-  institution: `Museum of New Zealand Te Papa Tongarewa`
+  tombstone: ``,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.artic.edu/artworks/105466`,
+  institution: `Art Institute of Chicago`
 };
 
 // Build rich context from available fields
@@ -956,6 +1016,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -997,6 +1061,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1072,15 +1250,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1103,6 +1287,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1210,7 +1395,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_tepapa',
+      collection: 'archai_aic',
       text,
       authorType: 'visitor',
     }),

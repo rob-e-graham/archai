@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Kowloon Walled City—Children on Rooftop — ARCHAI</title>
+<title>box — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627822927/v2/prod/small/008001_008500/008351_003.jpg" alt="Kowloon Walled City—Children on Rooftop" loading="eager">
+  <img src="https://api.aucklandmuseum.com/id/media/v/80607?rendering=standard.jpg" alt="box" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Kowloon Walled City—Children on Rooftop</div>
-  <div class="v-sub">Architectural Photography · 1989, printed 2015 · 2018.2</div>
+  <div class="v-title">box</div>
+  <div class="v-sub">ecrm:E22_Man-Made_Object · 2004-06-18T00:00:00.000Z · 1995x2.171</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">M+, Hong Kong</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
-    <span class="v-meta-tag">Design and Architecture</span>
+    <span class="v-meta-tag mv">Auckland Museum</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
+    <span class="v-meta-tag">Social History</span>
   </div>
 
   <!-- SHARE -->
@@ -783,11 +833,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Kowloon Walled City—Children on Rooftop</strong> — Photograph of three children on a rooftop, surrounded by television antennae. In the centre, a barefoot girl holding a vertical pole looks at the camera with an amused expression. A boy farther behind, on the viewer's left, stands with hands on his hips. Buildings and mountains feature in the backgr…</div>
-  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
-      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Greg Girard · © Greg Girard</div>
+  <div class="v-story"><strong>box</strong> — wooden box : hinged door; keyhole; brass handle</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
+      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
     </div>
 
   <div class="v-divider"></div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,20 +881,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2018.2</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Greg Girard</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">inkjet print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Canadian</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Design and Architecture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Architectural Photography</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1989, printed 2015</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">sheet: 55 × 74.8 cm
-image: 40 × 59.9 cm</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Architectural Photography</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Greg Girard · © Greg Girard</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1995x2.171</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">unknown</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2004-06-18T00:00:00.000Z</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -849,25 +905,24 @@ image: 40 × 59.9 cm</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1330.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/65856/preview" loading="lazy"></div>
-        <div class="v-rel-title">Blue vase [4]</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · 1996-0033-29/4-4</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%3A80%2Fwebclient%2FDeliveryManager%3Fpid%3D6331293%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Servizio fotografico Firenze, 1973</div>
+        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6331293_custom_att_2_simple_viewer</div>
       </a>
       <a class="v-rel-card" href="NFC1331.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fmm.dimu.org%2Fimage%2F012uN1bvqQ2k%3Fdimension%3D1200x1200&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Stockholm, Nationalmuseum.
-439 K. Holmström, Sth. Imp</div>
-        <div class="v-rel-meta">Europeana · /916109/smm_sm_photo_Fo195833</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/DYgkP/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Brandspuitpenning van Amsterdam, wijk 7 nummer D4</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100013</div>
       </a>
       <a class="v-rel-card" href="NFC1333.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/xFERr/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Philips de Schone, hertog van Bourgondi&amp;#235;, ingehuldigd als graaf van Holland, rekenpenning van de rekenkamer van Holland</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010036</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/mi89.4.154.R.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Ghanti (bell)</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 500736</div>
       </a>
       <a class="v-rel-card" href="NFC1334.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP302664.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Bala</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 501109</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%3A80%2Fwebclient%2FDeliveryManager%3Fpid%3D6355703%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Photographic reportage, Florence, 1957-1956. Servizio fotografico Firenze, 1957-1956</div>
+        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6355703_custom_att_2_simple_viewer</div>
       </a></div>
   </div>
 </div>
@@ -880,7 +935,7 @@ image: 40 × 59.9 cm</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/kowloon-walled-citychildren-on-rooftop-20182/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/613431" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -911,27 +966,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Kowloon Walled City—Children on Rooftop`,
-  type: `Architectural Photography`,
-  date: `1989, printed 2015`,
-  registration: `2018.2`,
-  location: `M+, Hong Kong`,
-  discipline: `Design and Architecture`,
-  category: `Architectural Photography`,
-  description: `Photograph of three children on a rooftop, surrounded by television antennae. In the centre, a barefoot girl holding a vertical pole looks at the camera with an amused expression. A boy farther behind, on the viewer's left, stands with hands on his hips. Buildings and mountains feature in the background.`,
-  medium: `inkjet print`,
-  artist: `Greg Girard`,
-  culture: `Canadian`,
-  dimensions: `sheet: 55 × 74.8 cm
-image: 40 × 59.9 cm`,
-  wall_description: `Photograph of three children on a rooftop, surrounded by television antennae. In the centre, a barefoot girl holding a vertical pole looks at the camera with an amused expression. A boy farther behind, on the viewer's left, stands with hands on his hips. Buildings and mountains feature in the background.`,
+  title: `box`,
+  type: `ecrm:E22_Man-Made_Object`,
+  date: `2004-06-18T00:00:00.000Z`,
+  registration: `1995x2.171`,
+  location: `Auckland Museum`,
+  discipline: `Social History`,
+  category: `ecrm:E22_Man-Made_Object`,
+  description: `wooden box : hinged door; keyhole; brass handle`,
+  medium: ``,
+  artist: `unknown`,
+  culture: ``,
+  dimensions: ``,
+  wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Kowloon Walled City—Children on Rooftop. Greg Girard. 1989, printed 2015. M+, Hong Kong`,
-  licence: `CC0 metadata · M+ API service non-commercial · © Greg Girard`,
-  source_url: `https://www.mplus.org.hk/en/collection/objects/kowloon-walled-citychildren-on-rooftop-20182/`,
-  institution: `M+, Hong Kong`
+  tombstone: ``,
+  licence: `© Auckland Museum CC BY`,
+  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/613431`,
+  institution: `Auckland Museum`
 };
 
 // Build rich context from available fields
@@ -959,6 +1013,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -1000,6 +1058,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1075,15 +1247,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1106,6 +1284,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1213,7 +1392,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_mplus',
+      collection: 'archai_auckland',
       text,
       authorType: 'visitor',
     }),

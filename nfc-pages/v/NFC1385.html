@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Grensafbakening in Yperen 1777 — ARCHAI</title>
+<title>Poppy Inkwell — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,27 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://iiif.micr.io/MlrCi/full/max/0/default.jpg" alt="Grensafbakening in Yperen 1777" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/2018.289/2018.289_web.jpg" alt="Poppy Inkwell" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Grensafbakening in Yperen 1777</div>
-  <div class="v-sub">historiepenning · 2026-02-14T04:16:51Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;Theodorus Victor van Berckel&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1777 · 200100011</div>
+  <div class="v-title">Poppy Inkwell</div>
+  <div class="v-sub">Glass · c. 1898–1906 · 2018.289</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    
+    <span class="v-meta-tag">Decorative Art and Design</span>
   </div>
 
   <!-- SHARE -->
@@ -792,11 +833,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Grensafbakening in Yperen 1777</strong> — Zilveren penning, op de voorzijde het borstbeeld van Maria Theresia naar rechts, met omschrift, op de keerzijde een leeuw met grenspaal en ovaal wapenschild, in afsnede SPQI.</div>
+  <div class="v-story"><strong>Poppy Inkwell</strong> — By 1900 Louis Comfort Tiffany had expanded his empire by increasing the firm’s production of “fancy goods,” including inkstands, candlesticks, clocks, small boxes, desk sets, tea screens, and other functional objects. Along with the array of artistic glass designs from his factory in Corona, Queens,…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -822,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -830,25 +881,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">200100011</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Theodorus Victor van Berckel</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">zilver</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">historiepenning</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-02-14T04:16:51Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;Theodorus Victor van Berckel&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1777</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">historiepenning</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2018.289</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Clara Wolcott Driscoll (American, 1861–1944); Tiffany Glass &amp; Decorating Company (America, New York, 1892–1902); Tiffany Studios (United States, New York, 1902–32)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">favrile glass mosaic, bronze</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">America, New York</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Decorative Art and Design</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Glass</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1898–1906</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 8 x 10.5 cm (3 1/8 x 4 1/8 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Cleveland Museum of Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Glass</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -863,24 +908,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1383.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1696385938/v2/prod/small/001501_002000/001559_007.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Model, Digital Beijing (2004–2007), Beijing, China</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2013.95</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PJ1589/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Drum Machine</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:AMERICASFOUNDATION.1157:1, 2-2024</div>
       </a>
       <a class="v-rel-card" href="NFC1384.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%3A80%2Fwebclient%2FDeliveryManager%3Fpid%3D6331285%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Servizio fotografico Firenze, 1972</div>
-        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6331285_custom_att_2_simple_viewer</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1979.57/1979.57_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Ruin by the Sea</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1979.57</div>
       </a>
       <a class="v-rel-card" href="NFC1386.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/12491/preview" loading="lazy"></div>
-        <div class="v-rel-title">Jar</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · CG000350</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fcollection.mobilier-national.fr%2Fmedia%2Fxl%2FBIDEAU%2F2015%2F07%2FGMLC-33-000_9-2015.jpg&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">ORFEVRERIE - Bénitier et goupillon</div>
+        <div class="v-rel-meta">Europeana · /957/GMLC_33_000</div>
       </a>
       <a class="v-rel-card" href="NFC1387.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_930/v1627827222/v2/prod/small/006501_007000/006734_006.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Flying saucer chair</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2016.374</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2019MD9380/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Radiograph of telephone handset</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · RPS.1078-2019</div>
       </a></div>
   </div>
 </div>
@@ -893,7 +938,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/200100011" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/2018.289" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -924,35 +969,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Grensafbakening in Yperen 1777`,
-  type: `historiepenning`,
-  date: `2026-02-14T04:16:51Z</datestamp>
-        <setSpec>260239</setSpec>
-        <setSpec>261106</setSpec>
-        <setSpec>260251</setSpec>
-        <setSpec>2601</setSpec>
-      </header>
-      <metadata>
-        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
-          <dc:creator>Theodorus Victor van Berckel</dc:creator>
-          <dc:date>1777`,
-  registration: `200100011`,
-  location: `Rijksmuseum, Amsterdam`,
-  discipline: ``,
-  category: `historiepenning`,
-  description: `Zilveren penning, op de voorzijde het borstbeeld van Maria Theresia naar rechts, met omschrift, op de keerzijde een leeuw met grenspaal en ovaal wapenschild, in afsnede SPQI.`,
-  medium: `zilver`,
-  artist: `Theodorus Victor van Berckel`,
-  culture: ``,
-  dimensions: ``,
+  title: `Poppy Inkwell`,
+  type: `Glass`,
+  date: `c. 1898–1906`,
+  registration: `2018.289`,
+  location: `Cleveland Museum of Art`,
+  discipline: `Decorative Art and Design`,
+  category: `Glass`,
+  description: `By 1900 Louis Comfort Tiffany had expanded his empire by increasing the firm’s production of “fancy goods,” including inkstands, candlesticks, clocks, small boxes, desk sets, tea screens, and other functional objects. Along with the array of artistic glass designs from his factory in Corona, Queens, works in ceramic, bronze, other metals, and even jewelry abounded. These smaller, more affordable luxury items were designed with as much thought to artistry as the great stained glass windows and lamps through which the firm enjoyed unrivaled success.`,
+  medium: `favrile glass mosaic, bronze`,
+  artist: `Clara Wolcott Driscoll (American, 1861–1944); Tiffany Glass & Decorating Company (America, New York, 1892–1902); Tiffany Studios (United States, New York, 1902–32)`,
+  culture: `America, New York`,
+  dimensions: `Overall: 8 x 10.5 cm (3 1/8 x 4 1/8 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
-  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
-  source_url: `https://www.rijksmuseum.nl/en/collection/200100011`,
-  institution: `Rijksmuseum, Amsterdam`
+  did_you_know: `More than a thousand tiny pieces of glass form the mosaic design of this inkwell.`,
+  provenance: `[{"description":"Charles Maurer [1929-2016], Cleveland, OH, bequest to the Cleveland Museum of Art","citations":[],"footnotes":[],"date":"?–2018","sortorder":1},{"description":"The Cleveland Museum of Art, Cleveland, OH","citations":[],"footnotes":null,"date":"2018–","sortorder":2}]`,
+  tombstone: `Poppy Inkwell, c. 1898–1906. Attributed to Clara Wolcott Driscoll (American, 1861–1944), Tiffany Glass & Decorating Company (America, New York, 1892–1902), Tiffany Studios (United States, New York, 1902–32). Favrile glass mosaic, bronze; overall: 8 x 10.5 cm (3 1/8 x 4 1/8 in.). The Cleveland Museum of Art, Bequest of Charles Maurer, 2018.289`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://clevelandart.org/art/2018.289`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -980,6 +1016,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -1021,6 +1061,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1096,15 +1250,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1127,6 +1287,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1234,7 +1395,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_rijks',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

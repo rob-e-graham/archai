@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Sopa de Arroios. Soup of the poors in Arroios — ARCHAI</title>
+<title>Houses of Parliament, London — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fwww.dropbox.com%2Fs%2Fqtp75ivna8iex4m%2FPortugal_sOPA%2520DE%2520aRROIOS.jpg%3Fraw%3D1&amp;type=IMAGE" alt="Sopa de Arroios. Soup of the poors in Arroios" loading="eager">
+  <img src="https://www.artic.edu/iiif/2/03930df3-1e6c-eeca-8660-c0b22ca477ff/full/843,/0/default.jpg" alt="Houses of Parliament, London" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Sopa de Arroios. Soup of the poors in Arroios</div>
-  <div class="v-sub">IMAGE · 1813 · /2063606/POR_280_009</div>
+  <div class="v-title">Houses of Parliament, London</div>
+  <div class="v-sub">Painting · 1900–1 · 16584</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Europeana</span>
+    <span class="v-meta-tag mv">Art Institute of Chicago</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    
+    <span class="v-meta-tag">Painting and Sculpture of Europe</span>
   </div>
 
   <!-- SHARE -->
@@ -783,11 +833,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Sopa de Arroios. Soup of the poors in Arroios</strong> — A grande composição da autoria do pintor Domingos António Sequeira, aberta em gravura a água-forte por Gregório Francisco de Queirós, em 1813, como documenta a subscrição inscrita, é uma das primeiras cenas de género realizadas em Portugal. No desenho é patente o registo da observação direta das fig…</div>
+  <div class="v-story"><strong>Houses of Parliament, London</strong> — Houses of Parliament, London. Painting. Oil on canvas. Painting and Sculpture of Europe. Claude Monet (French, 1840–1926). painting. 1900–1. France. Impressionism. &lt;p&gt;During his &lt;a href=&quot;https://www.youtube.com/watch?v=NFPs_cRRGdM&amp;t=4s&quot;&gt;London&lt;/a&gt; campaigns, Claude Monet painted the Houses of Parlia…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: http://creativecommons.org/publicdomain/mark/1.0/</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,15 +881,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">/2063606/POR_280_009</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Domingo António Sequeira</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">IMAGE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1813</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">National Museum of Ancient Art</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">IMAGE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">16584</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Claude Monet (French, 1840–1926)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Oil on canvas</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Painting and Sculpture of Europe</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1900–1</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">81.2 × 92.8 cm (32 × 36 9/16 in.); Framed: 103.6 × 115 × 10.8 cm (40 3/4 × 45 1/4 × 4 1/4 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 243</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">http://creativecommons.org/publicdomain/mark/1.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -844,25 +908,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC012.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/uhpXx/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">&quot;Windsor Castle&quot; doosje met miniatuurpenningen met het portret van leden van de Engelse koninklijke familie</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100402</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1997.302/1997.302_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Cypriot Vase</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1997.302</div>
       </a>
       <a class="v-rel-card" href="NFC013.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PK1365/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">SPLIT SECOND</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · B.1224:1 to 7-1999</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PG5545/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Electronic Organizer</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:AMERICASFOUNDATION.1394:1 to 3-2024</div>
       </a>
       <a class="v-rel-card" href="NFC015.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/681709?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">bottle, saki</div>
-        <div class="v-rel-meta">Auckland Museum · K1418</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2003.6.4/2003.6.4_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Calliope, Muse of Epic Poetry</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 2003.6.4</div>
       </a>
       <a class="v-rel-card" href="NFC016.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fmm.dimu.org%2Fimage%2F042uM2jpyRMa%3Fdimension%3D1200x1200&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Stockholm. Motiv från Södra Blasieholmshamnen med Nationalmuseum.
-Förlag Nordisk Konst Stockholm.</div>
-        <div class="v-rel-meta">Europeana · /916109/smm_sm_photo_Fo184326AF</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/midp89.4.1378.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Tabl Šamī</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 501944</div>
       </a></div>
   </div>
 </div>
@@ -875,7 +938,7 @@ Förlag Nordisk Konst Stockholm.</div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.europeana.eu/item/2063606/POR_280_009?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.artic.edu/artworks/16584" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -906,26 +969,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Sopa de Arroios. Soup of the poors in Arroios`,
-  type: `IMAGE`,
-  date: `1813`,
-  registration: `/2063606/POR_280_009`,
-  location: `National Museum of Ancient Art`,
-  discipline: ``,
-  category: `IMAGE`,
-  description: `A grande composição da autoria do pintor Domingos António Sequeira, aberta em gravura a água-forte por Gregório Francisco de Queirós, em 1813, como documenta a subscrição inscrita, é uma das primeiras cenas de género realizadas em Portugal. No desenho é patente o registo da observação direta das figuras que povoam todo espaço vazio entre arquiteturas. Representa o dramático refúgio da população dos arredores de Lisboa na capital, espoliada das terras e haveres, à medida que avançavam as tropas francesas comandadas pelo General Massena, em 1810. No Largo de Arroios, cenário do desenho de Sequei…`,
-  medium: ``,
-  artist: `Domingo António Sequeira`,
-  culture: ``,
-  dimensions: ``,
+  title: `Houses of Parliament, London`,
+  type: `Painting`,
+  date: `1900–1`,
+  registration: `16584`,
+  location: `Gallery 243`,
+  discipline: `Painting and Sculpture of Europe`,
+  category: `painting`,
+  description: `Houses of Parliament, London. Painting. Oil on canvas. Painting and Sculpture of Europe. Claude Monet (French, 1840–1926). painting. 1900–1. France. Impressionism. <p>During his <a href="https://www.youtube.com/watch?v=NFPs_cRRGdM&t=4s">London</a> campaigns, Claude Monet painted the Houses of Parliament in the late afternoon and at sunset from a terrace at Saint Thomas’s Hospital. This viewpoint was close to that of the English artist <a href="https://www.artic.edu/artists/37043">J. M. W. Turner</a> in his visionary paintings of the fire that had destroyed much of the old Parliament complex in…`,
+  medium: `Oil on canvas`,
+  artist: `Claude Monet (French, 1840–1926)`,
+  culture: `France`,
+  dimensions: `81.2 × 92.8 cm (32 × 36 9/16 in.); Framed: 103.6 × 115 × 10.8 cm (40 3/4 × 45 1/4 × 4 1/4 in.)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `http://creativecommons.org/publicdomain/mark/1.0/`,
-  source_url: `https://www.europeana.eu/item/2063606/POR_280_009?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb`,
-  institution: `Europeana`
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.artic.edu/artworks/16584`,
+  institution: `Art Institute of Chicago`
 };
 
 // Build rich context from available fields
@@ -953,6 +1016,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -994,6 +1061,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1069,15 +1250,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1100,6 +1287,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1207,7 +1395,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_europeana',
+      collection: 'archai_aic',
       text,
       authorType: 'visitor',
     }),

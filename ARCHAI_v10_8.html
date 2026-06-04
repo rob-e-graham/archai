@@ -413,6 +413,13 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 .od-lang-buttons button:disabled,.od-translate-btn:disabled{opacity:0.45;cursor:not-allowed;background:transparent;color:var(--text3);border-color:var(--border2);}
 .od-lang-note{margin-top:8px;color:var(--text3);font-size:0.72rem;line-height:1.6;}
 .od-lang-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
+.od-voice-wrap{margin-top:14px;padding:12px;border:1px solid var(--border);background:rgba(255,255,255,0.015);}
+.od-voice-label{font-family:var(--mono);font-size:0.56rem;letter-spacing:1.4px;text-transform:uppercase;color:var(--text3);margin-bottom:8px;}
+.od-voice-buttons{display:flex;gap:6px;flex-wrap:wrap;}
+.od-voice-buttons button{font-family:var(--mono);font-size:0.54rem;padding:7px 10px;border:1px solid var(--border2);background:transparent;color:var(--text2);letter-spacing:0.5px;text-transform:uppercase;cursor:pointer;transition:all 0.15s;}
+.od-voice-buttons button:hover,.od-voice-buttons button.active{border-color:var(--accent2);color:var(--accent2);background:rgba(143,188,176,0.06);}
+.od-voice-buttons button:disabled{opacity:0.45;cursor:not-allowed;color:var(--text3);}
+.od-voice-status{margin-top:8px;color:var(--text3);font-size:0.7rem;line-height:1.6;}
 .od-chat-row{display:flex;gap:7px;}
 .od-chat-in{flex:1;background:var(--surface);border:1px solid var(--border2);color:var(--text);font-family:var(--mono);font-size:0.62rem;padding:8px 10px;outline:none;}
 .od-chat-in:focus{border-color:var(--accent);}
@@ -988,6 +995,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
       <div class="section-label" style="margin-bottom:10px;">Full Metadata Record — Qdrant Payload</div>
       <div id="od-full-meta" class="od-full-meta-grid"></div>
     </div>
+    <div id="od-rights-note-wrap"></div>
 
     <div class="od-lower">
       <div class="od-chat-col">
@@ -1006,6 +1014,16 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
           <div class="od-lang-actions">
             <button class="od-translate-btn" id="od-translate-btn" onclick="odTranslateRecord()" disabled>Translate Record</button>
             <button class="od-translate-btn" id="od-translate-reset-btn" onclick="odRestoreRecordText()" style="display:none;">Show Original</button>
+          </div>
+          <div class="od-voice-wrap">
+            <div class="od-voice-label">Speech Demo</div>
+            <div class="od-voice-buttons">
+              <button id="od-voice-start-btn" onclick="odStartVoiceQuestion()">Start Voice Question</button>
+              <button id="od-voice-stop-btn" onclick="odStopVoiceQuestion()" disabled>Stop Listening</button>
+              <button id="od-voice-read-btn" onclick="odSpeakLatestReply()">Read Reply</button>
+              <button id="od-voice-silence-btn" onclick="odStopSpeaking()" disabled>Stop Audio</button>
+            </div>
+            <div class="od-voice-status" id="od-voice-status">Browser speech demo for now. Backend Whisper + Coqui route is the next production step.</div>
           </div>
         </div>
         <div id="od-chat-msgs" class="od-chat-msgs">
@@ -1144,6 +1162,10 @@ window._odChatHistory = [];
 window._odResponseLanguage = 'english';
 window._odRecordTranslated = false;
 window._odLanguageStatus = '';
+window._odLastAssistantReply = '';
+window._odSpeechRecognition = null;
+window._odSpeechListening = false;
+window._odSpeechStatus = '';
 
 const RESPONSE_LANGUAGES = {
   english: {
@@ -1348,6 +1370,134 @@ function odTranslateRecord() {
     .finally(() => {
       if (translateBtn) translateBtn.disabled = false;
     });
+}
+
+function getOdSpeechLanguageCode() {
+  const languageKey = window._odResponseLanguage || 'english';
+  const codes = {
+    english: 'en-AU',
+    arabic: 'ar',
+    spanish: 'es',
+    french: 'fr-FR',
+    portuguese: 'pt-BR',
+    japanese: 'ja-JP'
+  };
+  return codes[languageKey] || 'en-AU';
+}
+
+function updateOdSpeechUI(message = '') {
+  if (message) window._odSpeechStatus = message;
+  const statusEl = document.getElementById('od-voice-status');
+  const startBtn = document.getElementById('od-voice-start-btn');
+  const stopBtn = document.getElementById('od-voice-stop-btn');
+  const readBtn = document.getElementById('od-voice-read-btn');
+  const silenceBtn = document.getElementById('od-voice-silence-btn');
+
+  if (statusEl) {
+    statusEl.textContent = window._odSpeechStatus || 'Browser speech demo for now. Backend Whisper + Coqui route is the next production step.';
+  }
+  if (startBtn) {
+    startBtn.disabled = !!window._odSpeechListening;
+    startBtn.classList.toggle('active', !!window._odSpeechListening);
+  }
+  if (stopBtn) stopBtn.disabled = !window._odSpeechListening;
+  if (readBtn) readBtn.disabled = !window._odLastAssistantReply;
+  if (silenceBtn) silenceBtn.disabled = !window.speechSynthesis || !window.speechSynthesis.speaking;
+}
+
+function ensureOdSpeechRecognition() {
+  if (window._odSpeechRecognition) return window._odSpeechRecognition;
+  const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!Recognition) return null;
+
+  const recognition = new Recognition();
+  recognition.lang = getOdSpeechLanguageCode();
+  recognition.continuous = false;
+  recognition.interimResults = true;
+
+  recognition.onstart = () => {
+    window._odSpeechListening = true;
+    updateOdSpeechUI('Listening… Speak your question, then pause.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = Array.from(event.results)
+      .map(result => result[0]?.transcript || '')
+      .join(' ')
+      .trim();
+    const input = document.getElementById('od-chat-in');
+    if (input) input.value = transcript;
+
+    const finalResult = Array.from(event.results).some(result => result.isFinal);
+    if (finalResult && transcript) {
+      window._odSpeechStatus = 'Question captured. Sending to ARCHAI…';
+      updateOdSpeechUI();
+      odChat();
+    }
+  };
+
+  recognition.onerror = event => {
+    const code = event?.error || 'speech error';
+    window._odSpeechListening = false;
+    updateOdSpeechUI(code === 'not-allowed'
+      ? 'Microphone access was blocked in the browser.'
+      : `Speech demo error: ${code}.`);
+  };
+
+  recognition.onend = () => {
+    window._odSpeechListening = false;
+    updateOdSpeechUI(window._odSpeechStatus || 'Voice question complete.');
+  };
+
+  window._odSpeechRecognition = recognition;
+  return recognition;
+}
+
+function odStartVoiceQuestion() {
+  const recognition = ensureOdSpeechRecognition();
+  if (!recognition) {
+    updateOdSpeechUI('Speech recognition is not available in this browser. Backend Whisper is the next step.');
+    return;
+  }
+  recognition.lang = getOdSpeechLanguageCode();
+  try {
+    recognition.start();
+  } catch (err) {
+    updateOdSpeechUI('Voice capture is already running.');
+  }
+}
+
+function odStopVoiceQuestion() {
+  if (!window._odSpeechRecognition) return;
+  try { window._odSpeechRecognition.stop(); } catch {}
+  window._odSpeechListening = false;
+  updateOdSpeechUI('Voice capture stopped.');
+}
+
+function odSpeakLatestReply() {
+  if (!window.speechSynthesis) {
+    updateOdSpeechUI('Speech playback is not available in this browser. Coqui is the next production step.');
+    return;
+  }
+  const text = window._odLastAssistantReply || '';
+  if (!text) {
+    updateOdSpeechUI('There is no reply to read aloud yet.');
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getOdSpeechLanguageCode();
+  utterance.onstart = () => updateOdSpeechUI('Reading the latest ARCHAI reply aloud…');
+  utterance.onend = () => updateOdSpeechUI('Audio playback finished.');
+  utterance.onerror = () => updateOdSpeechUI('Speech playback failed in this browser.');
+  window.speechSynthesis.speak(utterance);
+  updateOdSpeechUI('Reading the latest ARCHAI reply aloud…');
+}
+
+function odStopSpeaking() {
+  if (!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  updateOdSpeechUI('Audio playback stopped.');
 }
 
 // ── ROLE DEFINITIONS ────────────────────────────────────────────
@@ -2716,6 +2866,9 @@ function openObjectDetail(objKey) {
 
   window._odCurrentId = objKey;
   window._odChatHistory = [];
+  window._odLastAssistantReply = '';
+  window._odSpeechStatus = '';
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
 
   // Show and activate tab
   const tab = document.getElementById('tab-objdetail');
@@ -2772,14 +2925,13 @@ function openObjectDetail(objKey) {
   // Description
   const descEl = document.getElementById('od-description');
   descEl.textContent = p.description || o.ai || '—';
-  document.getElementById('od-rights-note')?.remove();
-  descEl.insertAdjacentHTML('afterend',
+  const rightsWrap = document.getElementById('od-rights-note-wrap');
+  if (rightsWrap) rightsWrap.innerHTML =
     `<div id="od-rights-note" style="margin-top:16px;max-width:880px;padding:12px 14px;border:1px solid ${rights.color};background:rgba(255,255,255,0.02);">
       <div style="font-family:var(--mono);font-size:0.56rem;letter-spacing:1.8px;text-transform:uppercase;color:${rights.color};margin-bottom:6px;">Legal Status</div>
       <div style="font-size:0.76rem;color:var(--text2);line-height:1.7;"><strong style="color:var(--text);font-weight:400;">${rights.status}</strong> — ${rights.guidance}</div>
       <div style="font-family:var(--mono);font-size:0.54rem;color:var(--text3);line-height:1.7;margin-top:6px;">Licence / rights: ${escQ(rights.detail)}</div>
-    </div>`
-  );
+    </div>`;
 
   // Full metadata — show ALL _mv fields
   const fullEl = document.getElementById('od-full-meta');
@@ -2805,6 +2957,7 @@ function openObjectDetail(objKey) {
     `<div class="od-chip" onclick="document.getElementById('od-chat-in').value='${escQ(c)}';odChat();">${c}</div>`
   ).join('');
   document.getElementById('od-chat-in').value = '';
+  updateOdSpeechUI();
 
   // Related objects
   document.getElementById('od-related').innerHTML = '<div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);padding:4px 0;">Finding related objects via Qdrant…</div>';
@@ -2868,6 +3021,8 @@ RULES:
   .then(data => {
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     window._odChatHistory.push({ role: 'assistant', content: reply });
+    window._odLastAssistantReply = reply;
+    window._odSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     const t = document.getElementById(thinkId);
     if (t) { t.textContent = reply; t.style.color = ''; t.classList.remove('thinking'); }
     msgs.scrollTop = msgs.scrollHeight;
@@ -2876,6 +3031,8 @@ RULES:
     console.warn('Ollama unreachable, using metadata fallback:', e.message);
     const reply = generateMetadataResponse(o, q);
     window._odChatHistory.push({ role: 'assistant', content: reply });
+    window._odLastAssistantReply = reply;
+    window._odSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     const t = document.getElementById(thinkId);
     if (t) {
       t.innerHTML = reply + '<div style="font-family:var(--mono);font-size:0.48rem;color:var(--text3);margin-top:6px;border-top:1px solid var(--border);padding-top:4px;">⚡ Metadata response — Ollama offline. Fix: run <code>launchctl setenv OLLAMA_ORIGINS "*"</code> then restart Ollama.</div>';
@@ -2883,7 +3040,7 @@ RULES:
     }
     msgs.scrollTop = msgs.scrollHeight;
   })
-  .finally(() => { inEl.disabled = false; inEl.focus(); });
+  .finally(() => { inEl.disabled = false; inEl.focus(); updateOdSpeechUI(); });
 }
 
 // ── Smart metadata-based response generator (Ollama fallback) ──────

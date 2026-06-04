@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Marie de’ Medici — ARCHAI</title>
+<title>Water Lily Pond — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,13 +811,13 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/51b5e908-743a-04a2-b080-9f9f2a33e502/full/843,/0/default.jpg" alt="Marie de’ Medici" loading="eager">
+  <img src="https://www.artic.edu/iiif/2/7a23ad22-2044-6d7d-6315-9b101dadc559/full/843,/0/default.jpg" alt="Water Lily Pond" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Marie de’ Medici</div>
-  <div class="v-sub">Painting · 1616 · 78591</div>
+  <div class="v-title">Water Lily Pond</div>
+  <div class="v-sub">Painting · 1917–19 · 97933</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Art Institute of Chicago</span>
@@ -783,7 +833,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Marie de’ Medici</strong> — Marie de’ Medici. Painting. Oil on canvas. Painting and Sculpture of Europe. Frans Pourbus the Younger (Flemish, 1569-1622). oil on canvas. 1616. Flanders. 17th Century. &lt;p&gt;Though Frans Pourbus the Younger descended from a dynasty of portrait painters in the Spanish Netherlands, he, like &lt;a href=&quot;ht…</div>
+  <div class="v-story"><strong>Water Lily Pond</strong> — Water Lily Pond. Painting. Oil on canvas. Painting and Sculpture of Europe. Claude Monet (French, 1840–1926). painting. 1917–19. France. Impressionism. &lt;p&gt;During World War I, after several years of inactivity because of bad health and grief over the death of his second wife, Claude Monet embarked on…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,15 +881,15 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">78591</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Frans Pourbus the Younger (Flemish, 1569-1622)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">97933</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Claude Monet (French, 1840–1926)</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Oil on canvas</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Flanders</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Painting and Sculpture of Europe</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">oil on canvas</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1616</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">99.7 × 77.5 cm (39 1/4 × 30 1/2 in.); Framed: 140.3 × 119.4 × 10.2 cm (55 1/4 × 47 × 4 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 208</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1917–19</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">130.2 × 201.9 cm (51 1/2 × 79 1/2 in.); Framed: 147.4 × 218.5 × 9.9 cm (58 × 86 × 3 7/8 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 243</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
@@ -848,24 +908,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1298.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/594099?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">toy boat</div>
-        <div class="v-rel-meta">Auckland Museum · 1996.165.405</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/CaSsJ/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Nederlandse 10 gulden, 1889</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100263</div>
       </a>
       <a class="v-rel-card" href="NFC1299.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/96441/preview" loading="lazy"></div>
-        <div class="v-rel-title">Musical Instrument (Sansa)</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · FE004906</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP302568.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Clarinet in B-flat</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 503669</div>
       </a>
       <a class="v-rel-card" href="NFC1301.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/228033?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">table</div>
-        <div class="v-rel-meta">Auckland Museum · F102</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2011ER6461/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Print</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.1073-1967</div>
       </a>
       <a class="v-rel-card" href="NFC1302.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/619830/preview" loading="lazy"></div>
-        <div class="v-rel-title">One Sen</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · NU005750</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP-12679-027.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Tenor cornett</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 502232</div>
       </a></div>
   </div>
 </div>
@@ -878,7 +938,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/78591" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.artic.edu/artworks/97933" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -909,25 +969,25 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Marie de’ Medici`,
+  title: `Water Lily Pond`,
   type: `Painting`,
-  date: `1616`,
-  registration: `78591`,
-  location: `Gallery 208`,
+  date: `1917–19`,
+  registration: `97933`,
+  location: `Gallery 243`,
   discipline: `Painting and Sculpture of Europe`,
-  category: `oil on canvas`,
-  description: `Marie de’ Medici. Painting. Oil on canvas. Painting and Sculpture of Europe. Frans Pourbus the Younger (Flemish, 1569-1622). oil on canvas. 1616. Flanders. 17th Century. <p>Though Frans Pourbus the Younger descended from a dynasty of portrait painters in the Spanish Netherlands, he, like <a href="https://www.artic.edu/artists/35818/anthonis-mor">Antonis Mor</a>, served courts across Europe, including those in Brussels, Mantua, and Paris. This likeness of Marie de’ Medici, queen mother of Louis XIII of France, was executed six years after she appointed Pourbus her personal portraitist. His meti…`,
+  category: `painting`,
+  description: `Water Lily Pond. Painting. Oil on canvas. Painting and Sculpture of Europe. Claude Monet (French, 1840–1926). painting. 1917–19. France. Impressionism. <p>During World War I, after several years of inactivity because of bad health and grief over the death of his second wife, Claude Monet embarked on a period of intense work. Building a large studio and improving his garden, he began a group of monumental paintings of <a href="https://www.youtube.com/watch?v=NFPs_cRRGdM&feature=youtu.be">water lilies</a> that he would later offer to the French state. Alongside this project, he painted a suite o…`,
   medium: `Oil on canvas`,
-  artist: `Frans Pourbus the Younger (Flemish, 1569-1622)`,
-  culture: `Flanders`,
-  dimensions: `99.7 × 77.5 cm (39 1/4 × 30 1/2 in.); Framed: 140.3 × 119.4 × 10.2 cm (55 1/4 × 47 × 4 in.)`,
+  artist: `Claude Monet (French, 1840–1926)`,
+  culture: `France`,
+  dimensions: `130.2 × 201.9 cm (51 1/2 × 79 1/2 in.); Framed: 147.4 × 218.5 × 9.9 cm (58 × 86 × 3 7/8 in.)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
   licence: `CC0 — Public Domain`,
-  source_url: `https://www.artic.edu/artworks/78591`,
+  source_url: `https://www.artic.edu/artworks/97933`,
   institution: `Art Institute of Chicago`
 };
 
@@ -956,6 +1016,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -997,6 +1061,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1072,15 +1250,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1103,6 +1287,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE

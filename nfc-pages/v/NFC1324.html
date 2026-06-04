@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>One Sen — ARCHAI</title>
+<title>Male Nude — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://media.tepapa.govt.nz/collection/620046/preview" alt="One Sen" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1996.357/1996.357_web.jpg" alt="Male Nude" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">One Sen</div>
-  <div class="v-sub">coins · 1916 · NU002166</div>
+  <div class="v-title">Male Nude</div>
+  <div class="v-sub">Photograph · c. 1870–75 · 1996.357</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
-    <span class="v-meta-tag">History</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Photography</span>
   </div>
 
   <!-- SHARE -->
@@ -783,11 +833,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>One Sen</strong> — One Sen , 1916, Japan, maker unknown. CC BY-NC-ND 4.0 . Te Papa (NU002166)</div>
-  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
-      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
-      <div class="v-rights-detail">Licence / rights: CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</div>
+  <div class="v-story"><strong>Male Nude</strong> — Guglielmo Marconi specialized in nude studies for use by painters and sculptors. Using children, women, and men as models, he photographed a variety of poses traditionally employed by models in academic studios. Artists purchased them because working from a photograph was much cheaper than hiring a …</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,17 +881,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">NU002166</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">bronze</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Taisho</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">coins</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1916</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">coins</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1996.357</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Guglielmo Marconi (French, 1842–after 1885)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">albumen print from wet collodion negative</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, 19th century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1870–75</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Image: 27.2 x 18.8 cm (10 11/16 x 7 3/8 in.); Matted: 55.9 x 45.7 cm (22 x 18 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">230 Photography</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -846,24 +908,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1322.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2022NH4242/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Sorting Song</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CD.2-2023</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%3A80%2Fwebclient%2FDeliveryManager%3Fpid%3D6355697%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Servizio fotografico Firenze, 1957-1956. Photographic reportage, Florence, 1957-1956</div>
+        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6355697_custom_att_2_simple_viewer</div>
       </a>
       <a class="v-rel-card" href="NFC1323.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/265742/preview" loading="lazy"></div>
-        <div class="v-rel-title">Wurst. From Gesamtkunsthandwerk.</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · 2011-0034-1/19-19</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2009BY2163/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Contribution to V&amp;A's 150th anniversary album</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.477:4-2008</div>
       </a>
       <a class="v-rel-card" href="NFC1325.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/19/164919-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Lantern Slide - Men Pushing Car, circa 1930s-1940s</div>
-        <div class="v-rel-meta">Museums Victoria · MM 106292</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627820858/v2/prod/small/007001_007500/007292_013.jpg" loading="lazy"></div>
+        <div class="v-rel-title">my first Sony stereo walkman, model WM-3500</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2016.553</div>
       </a>
       <a class="v-rel-card" href="NFC1326.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/6f3ca8b9-fef6-edfc-a71c-3e7b471d5f6c/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Madame Roulin Rocking the Cradle (La berceuse)</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 27949</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/86669?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">stole, lace</div>
+        <div class="v-rel-meta">Auckland Museum · T98</div>
       </a></div>
   </div>
 </div>
@@ -876,7 +938,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/102828" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1996.357" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -907,26 +969,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `One Sen`,
-  type: `coins`,
-  date: `1916`,
-  registration: `NU002166`,
-  location: `Te Papa Tongarewa, Wellington`,
-  discipline: `History`,
-  category: `coins`,
-  description: `One Sen , 1916, Japan, maker unknown. CC BY-NC-ND 4.0 . Te Papa (NU002166)`,
-  medium: `bronze`,
-  artist: ``,
-  culture: `Taisho`,
-  dimensions: ``,
+  title: `Male Nude`,
+  type: `Photograph`,
+  date: `c. 1870–75`,
+  registration: `1996.357`,
+  location: `230 Photography`,
+  discipline: `Photography`,
+  category: `Photograph`,
+  description: `Guglielmo Marconi specialized in nude studies for use by painters and sculptors. Using children, women, and men as models, he photographed a variety of poses traditionally employed by models in academic studios. Artists purchased them because working from a photograph was much cheaper than hiring a live model.`,
+  medium: `albumen print from wet collodion negative`,
+  artist: `Guglielmo Marconi (French, 1842–after 1885)`,
+  culture: `France, 19th century`,
+  dimensions: `Image: 27.2 x 18.8 cm (10 11/16 x 7 3/8 in.); Matted: 55.9 x 45.7 cm (22 x 18 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: `One Sen, 1916, Japan, maker unknown. CC BY-NC-ND 4.0. Te Papa (NU002166)`,
-  licence: `CC BY-NC-ND 4.0 · metadata CC BY 4.0`,
-  source_url: `https://collections.tepapa.govt.nz/object/102828`,
-  institution: `Museum of New Zealand Te Papa Tongarewa`
+  did_you_know: `This photograph illustrates the developing close association in the late 1800s between photographers and artists.`,
+  provenance: `[{"description":"(Charles Isaacs Photographs, Inc., New York, NY), sold to The Cleveland Museum of Art, Cleveland, OH","citations":[],"footnotes":null,"date":"?–1996","sortorder":1},{"description":"The Cleveland Museum of Art, Cleveland, OH","citations":[],"footnotes":null,"date":"December 2, 1996–"…`,
+  tombstone: `Male Nude, c. 1870–75. Guglielmo Marconi (French, 1842–after 1885). Albumen print from wet collodion negative; image: 27.2 x 18.8 cm (10 11/16 x 7 3/8 in.); matted: 55.9 x 45.7 cm (22 x 18 in.). The Cleveland Museum of Art, John L. Severance Fund, 1996.357`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://clevelandart.org/art/1996.357`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -954,6 +1016,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -995,6 +1061,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1070,15 +1250,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1101,6 +1287,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1208,7 +1395,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_tepapa',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

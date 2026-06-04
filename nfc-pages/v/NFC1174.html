@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Chain — ARCHAI</title>
+<title>Francisco Lacerda do Rego Barros — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://res.cloudinary.com/mplustms/image/upload/w_667/v1714185358/v2/prod/small/002501_003000/002758_003.jpg" alt="Chain" loading="eager">
+  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/668985/006338.jpg" alt="Francisco Lacerda do Rego Barros" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Chain</div>
-  <div class="v-sub">Sculpture · 1979 · 2012.34</div>
+  <div class="v-title">Francisco Lacerda do Rego Barros</div>
+  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · [1895] · francisco-lacerda-do-rego-barros</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">M+, Hong Kong</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
-    <span class="v-meta-tag">Visual Art</span>
+    <span class="v-meta-tag mv">Brasiliana Museus</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Brasiliana Museus</span>
   </div>
 
   <!-- SHARE -->
@@ -783,11 +833,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Chain</strong> — Wooden sculpture. A carved hand grips a neck above its chain necklace on a knob of wood resembling the ornamental head on an oversized walking stick.</div>
-  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
-      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Wang Keping · © Wang Keping</div>
+  <div class="v-story"><strong>Francisco Lacerda do Rego Barros</strong> — Busto de homem jovem, direcionado para a esquerda. Rosto comprido, testa larga. Nariz pequeno. Cabelos castanhos, curtos e ralos. Sobrancelhas e olhos castanhos. Bigode cheio cobrindo parte da boca e, sob esta, mosca. Orelha esquerda aparente. paletó e gravata em laço na cor preta. Camisa branca. Fu…</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</div>
     </div>
 
   <div class="v-divider"></div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,19 +881,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2012.34</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Wang Keping</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">wood</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Chinese</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Visual Art</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1979</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">overall: 53 × 37 × 13.2 cm</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Wang Keping · © Wang Keping</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">francisco-lacerda-do-rego-barros</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">[1895]</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 65,90 cm · largura 55,10 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -848,24 +907,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1172.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PJ3595/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">White Cliffs</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.306-2025</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/87881?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">radio, valve</div>
+        <div class="v-rel-meta">Auckland Museum · 1999.40.3</div>
       </a>
       <a class="v-rel-card" href="NFC1173.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP302725.jpg" loading="lazy"></div>
-        <div class="v-rel-title">O-daiko</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 501802</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_644/v1642991307/v2/prod/small/000501_001000/000821_006.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Homage to Josef Hoffmann, Begin the Beguine</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2014.66</div>
       </a>
       <a class="v-rel-card" href="NFC1175.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%3A80%2Fwebclient%2FDeliveryManager%3Fpid%3D6355708%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Photographic reportage, Florence, 1957-1956. Servizio fotografico Firenze, 1957-1956</div>
-        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6355708_custom_att_2_simple_viewer</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/676252?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">kozuka</div>
+        <div class="v-rel-meta">Auckland Museum · M858</div>
       </a>
       <a class="v-rel-card" href="NFC1176.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4320/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">ENOUGH IS PLENTY</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.268-2020</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/fae6d055-fe95-17e2-a00a-c2307ace531c/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Bust of Anne-Marie-Louise Thomas de Domangeville de Sérilly, Comtesse de Pange</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 144965</div>
       </a></div>
   </div>
 </div>
@@ -878,7 +937,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/chain-201234/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/francisco-lacerda-do-rego-barros/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -909,26 +968,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Chain`,
-  type: `Sculpture`,
-  date: `1979`,
-  registration: `2012.34`,
-  location: `M+, Hong Kong`,
-  discipline: `Visual Art`,
-  category: `Sculpture`,
-  description: `Wooden sculpture. A carved hand grips a neck above its chain necklace on a knob of wood resembling the ornamental head on an oversized walking stick.`,
-  medium: `wood`,
-  artist: `Wang Keping`,
-  culture: `Chinese`,
-  dimensions: `overall: 53 × 37 × 13.2 cm`,
-  wall_description: `Wooden sculpture. A carved hand grips a neck above its chain necklace on a knob of wood resembling the ornamental head on an oversized walking stick.`,
+  title: `Francisco Lacerda do Rego Barros`,
+  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  date: `[1895]`,
+  registration: `francisco-lacerda-do-rego-barros`,
+  location: `Brasiliana Museus`,
+  discipline: `Brasiliana Museus`,
+  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  description: `Busto de homem jovem, direcionado para a esquerda. Rosto comprido, testa larga. Nariz pequeno. Cabelos castanhos, curtos e ralos. Sobrancelhas e olhos castanhos. Bigode cheio cobrindo parte da boca e, sob esta, mosca. Orelha esquerda aparente. paletó e gravata em laço na cor preta. Camisa branca. Fundo esverdeado. Ver peça 6341.`,
+  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  artist: ``,
+  culture: `Brazil`,
+  dimensions: `altura 65,90 cm · largura 55,10 cm`,
+  wall_description: `Busto de homem jovem, direcionado para a esquerda. Rosto comprido, testa larga. Nariz pequeno. Cabelos castanhos, curtos e ralos. Sobrancelhas e olhos castanhos. Bigode cheio cobrindo parte da boca e, sob esta, mosca. Orelha esquerda aparente. paletó e gravata em laço na cor preta. Camisa branca. Fundo esverdeado. Ver peça 6341.`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Chain. Wang Keping. 1979. M+, Hong Kong`,
-  licence: `CC0 metadata · M+ API service non-commercial · © Wang Keping`,
-  source_url: `https://www.mplus.org.hk/en/collection/objects/chain-201234/`,
-  institution: `M+, Hong Kong`
+  tombstone: `Francisco Lacerda do Rego Barros. [1895]. Brasiliana Museus`,
+  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
+  source_url: `https://brasiliana.museus.gov.br/acervos/francisco-lacerda-do-rego-barros/`,
+  institution: `Brasiliana Museus`
 };
 
 // Build rich context from available fields
@@ -956,6 +1015,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -997,6 +1060,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1072,15 +1249,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1103,6 +1286,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1210,7 +1394,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_mplus',
+      collection: 'archai_brasiliana',
       text,
       authorType: 'visitor',
     }),

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Fishmarket — ARCHAI</title>
+<title>Rope Chair — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/2020.113/2020.113_web.jpg" alt="Fishmarket" loading="eager">
+  <img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627833866/v2/prod/small/014501_015000/014996_010.jpg" alt="Rope Chair" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Fishmarket</div>
-  <div class="v-sub">Painting · 1902 · 2020.113</div>
+  <div class="v-title">Rope Chair</div>
+  <div class="v-sub">Furniture · 1952 · 2019.178</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
+    <span class="v-meta-tag mv">M+, Hong Kong</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">Design and Architecture</span>
   </div>
 
   <!-- SHARE -->
@@ -783,11 +833,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Fishmarket</strong> — This impressive view of a bustling fish market belongs to a series of paintings that Pissarro made during the summer of 1902 depicting the harbor at Dieppe. Borrowing from the Impressionist method of portraying a modern city from a high vantage point, he enlivened the scene with rich, vibrant colors…</div>
-  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
-      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+  <div class="v-story"><strong>Rope Chair</strong> — Low chair made of Japanese oak, cotton rope, and metal with tapered, splayed legs. Cotton rope is strung vertically on the light brown wooden frame of the seat and back, with a lattice weave for the rear section of the seat.</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Kyoko Tsukada · © Kyoko Tsukada</div>
     </div>
 
   <div class="v-divider"></div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,19 +881,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2020.113</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Camille Pissarro (French, 1830–1903)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oil on canvas</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, 20th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Painting</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1902</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Unframed: 66 x 81.3 cm (26 x 32 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Cleveland Museum of Art</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2019.178</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Watanabe Riki, Yokoyama Industry</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Japanese oak, cotton rope, and metal</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Japanese</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Design and Architecture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Furniture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1952</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">overall: 72.6 × 52.5 × 72.5 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Furniture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Kyoko Tsukada · © Kyoko Tsukada</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -848,24 +908,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC642.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4346/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">HICCUP</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.308-2020</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680134/799-1-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Trecho da Rua D. Manuel</div>
+        <div class="v-rel-meta">Brasiliana Museus · trecho-da-rua-d-manuel</div>
       </a>
       <a class="v-rel-card" href="NFC643.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627825927/v2/prod/small/007001_007500/007173_012.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Watermelon ball</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2016.764</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/670572/5768-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Pedro II</div>
+        <div class="v-rel-meta">Brasiliana Museus · pedro-ii-35</div>
       </a>
       <a class="v-rel-card" href="NFC645.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/675164/003714-Francisco-Pedro-do-Amaral-atribuido-Marquesa-de-Santos-scaled.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Marquesa de Santos</div>
-        <div class="v-rel-meta">Brasiliana Museus · marquesa-de-santos</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/c68f33ec-feb1-5277-334b-b71ac15ae394/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Painting with Green Center</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 8987</div>
       </a>
       <a class="v-rel-card" href="NFC646.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669036/006326.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Marques de paranagua (primeiro)</div>
-        <div class="v-rel-meta">Brasiliana Museus · marques-de-paranagua-primeiro</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1960.81/1960.81_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Water Lilies (Agapanthus)</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1960.81</div>
       </a></div>
   </div>
 </div>
@@ -878,7 +938,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://clevelandart.org/art/2020.113" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/rope-chair-2019178/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -909,26 +969,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Fishmarket`,
-  type: `Painting`,
-  date: `1902`,
-  registration: `2020.113`,
-  location: `Cleveland Museum of Art`,
-  discipline: `Modern European Painting and Sculpture`,
-  category: `Painting`,
-  description: `This impressive view of a bustling fish market belongs to a series of paintings that Pissarro made during the summer of 1902 depicting the harbor at Dieppe. Borrowing from the Impressionist method of portraying a modern city from a high vantage point, he enlivened the scene with rich, vibrant colors applied with energetic, broken brushstrokes. Ever concerned with the fleeting effects of atmosphere, Pissarro painted the interpenetration of industrial steam with the clouds in the brilliant, sunlit sky.`,
-  medium: `oil on canvas`,
-  artist: `Camille Pissarro (French, 1830–1903)`,
-  culture: `France, 20th century`,
-  dimensions: `Unframed: 66 x 81.3 cm (26 x 32 in.)`,
-  wall_description: ``,
+  title: `Rope Chair`,
+  type: `Furniture`,
+  date: `1952`,
+  registration: `2019.178`,
+  location: `M+, Hong Kong`,
+  discipline: `Design and Architecture`,
+  category: `Furniture`,
+  description: `Low chair made of Japanese oak, cotton rope, and metal with tapered, splayed legs. Cotton rope is strung vertically on the light brown wooden frame of the seat and back, with a lattice weave for the rear section of the seat.`,
+  medium: `Japanese oak, cotton rope, and metal`,
+  artist: `Watanabe Riki, Yokoyama Industry`,
+  culture: `Japanese`,
+  dimensions: `overall: 72.6 × 52.5 × 72.5 cm`,
+  wall_description: `Low chair made of Japanese oak, cotton rope, and metal with tapered, splayed legs. Cotton rope is strung vertically on the light brown wooden frame of the seat and back, with a lattice weave for the rear section of the seat.`,
   fun_fact: ``,
-  did_you_know: `Pissarro painted this work from an upper level hotel room in Dieppe. He was suffering from a recurring eye infection at the time that prevented him from working outdoors.`,
-  provenance: `[{"description":"Possibly Georges Petit [1856-1920] Paris, France","citations":[],"footnotes":null,"date":null,"sortorder":1},{"description":"(possibly sold to dealer Duval-Fleury, Paris, France, February 14, 1918)","citations":[],"footnotes":["<div><!--block-->Provenance until 1918 is according to …`,
-  tombstone: `Fishmarket, 1902. Camille Pissarro (French, 1830–1903). Oil on canvas; unframed: 66 x 81.3 cm (26 x 32 in.). The Cleveland Museum of Art, Nancy F. and Joseph P. Keithley Collection Gift, 2020.113`,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://clevelandart.org/art/2020.113`,
-  institution: `Cleveland Museum of Art`
+  did_you_know: ``,
+  provenance: ``,
+  tombstone: `Rope Chair. Watanabe Riki, Yokoyama Industry. 1952. M+, Hong Kong`,
+  licence: `CC0 metadata · M+ API service non-commercial · © Kyoko Tsukada`,
+  source_url: `https://www.mplus.org.hk/en/collection/objects/rope-chair-2019178/`,
+  institution: `M+, Hong Kong`
 };
 
 // Build rich context from available fields
@@ -956,6 +1016,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -997,6 +1061,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1072,15 +1250,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1103,6 +1287,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1210,7 +1395,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_cma',
+      collection: 'archai_mplus',
       text,
       authorType: 'visitor',
     }),

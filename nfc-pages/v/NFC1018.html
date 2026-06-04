@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Red-Figure Squat Lekythos (Oil Vessel): Birth of Erichthonios — ARCHAI</title>
+<title>Outskirts of Paris — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/1982.142/1982.142_web.jpg" alt="Red-Figure Squat Lekythos (Oil Vessel): Birth of Erichthonios" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1929.951/1929.951_web.jpg" alt="Outskirts of Paris" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Red-Figure Squat Lekythos (Oil Vessel): Birth of Erichthonios</div>
-  <div class="v-sub">Ceramic · c. 420–410 BCE · 1982.142</div>
+  <div class="v-title">Outskirts of Paris</div>
+  <div class="v-sub">Painting · c. 1897–1905 · 1929.951</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Greek and Roman Art</span>
+    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
   </div>
 
   <!-- SHARE -->
@@ -783,7 +833,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Red-Figure Squat Lekythos (Oil Vessel): Birth of Erichthonios</strong> — The central group on this vase shows the seated earth goddess Ge (also known as Gaia) handing her baby, Erichthonios, to Athena. Conceived from the seed of Hephaistos, Erichthonios would go on to become a king of Athens, and the story of his birth became popular in Athenian art of the fifth century …</div>
+  <div class="v-story"><strong>Outskirts of Paris</strong> — In addition to his large jungle scenes, Rousseau also painted small landscapes, including this view of a river or canal on the outskirts of Paris. While retaining a sharp, detailed rendering of objects, Rousseau has abandoned the flat tonality of his earlier works for more blended modeling and freer…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,16 +881,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1982.142</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Meidias Painter (Greek, Attic, active c. 420–400 BCE)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">ceramic, with gilding</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Greek, Attic</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Greek and Roman Art</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ceramic</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 420–410 BCE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Diameter: 18.6 cm (7 5/16 in.); Diameter of mouth: 8.7 cm (3 7/16 in.); Overall: 30.3 cm (11 15/16 in.); Diameter of foot: 14.5 cm (5 11/16 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">102B Greek</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Ceramic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1929.951</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Henri Rousseau (French, 1844–1910)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oil on fabric</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, late 19th Century-early 20th Century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1897–1905</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Framed: 56.5 x 65.5 x 8 cm (22 1/4 x 25 13/16 x 3 1/8 in.); Unframed: 37.8 x 45.8 cm (14 7/8 x 18 1/16 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Cleveland Museum of Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
@@ -848,24 +908,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1016.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/es/original/DP210717.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Mantel clock with musical movement</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 202227</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/kiBVW/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Engelse speelpenning type spade guinea 1800 S&amp;amp;T</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100043</div>
       </a>
       <a class="v-rel-card" href="NFC1017.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/5/27155-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Kite Model - Lawrence Hargrave Design, Soaring Kite Type Q, Sydney, New South Wales, circa 1898</div>
-        <div class="v-rel-meta">Museums Victoria · ST 29213</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1924.259/1924.259_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Geometric Pitcher: Swans</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1924.259</div>
       </a>
       <a class="v-rel-card" href="NFC1019.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/uGgyY/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Vrede van Aken 1668</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100018</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%3A80%2Fwebclient%2FDeliveryManager%3Fpid%3D6331283%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Servizio fotografico Firenze, 1972</div>
+        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6331283_custom_att_2_simple_viewer</div>
       </a>
       <a class="v-rel-card" href="NFC1020.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/44269?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">envelope</div>
-        <div class="v-rel-meta">Auckland Museum · 2004.47.4</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1997.45/1997.45_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Algerian Woman</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1997.45</div>
       </a></div>
   </div>
 </div>
@@ -878,7 +938,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://clevelandart.org/art/1982.142" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1929.951" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -909,25 +969,25 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Red-Figure Squat Lekythos (Oil Vessel): Birth of Erichthonios`,
-  type: `Ceramic`,
-  date: `c. 420–410 BCE`,
-  registration: `1982.142`,
-  location: `102B Greek`,
-  discipline: `Greek and Roman Art`,
-  category: `Ceramic`,
-  description: `The central group on this vase shows the seated earth goddess Ge (also known as Gaia) handing her baby, Erichthonios, to Athena. Conceived from the seed of Hephaistos, Erichthonios would go on to become a king of Athens, and the story of his birth became popular in Athenian art of the fifth century BC. Other representations include Hephaistos as well as Kekrops, the mythical first king of Athens, sometimes together with Zeus and other deities. But this one includes only female onlookers—likely the three daughters of Kekrops watching from above, with Aphrodite and several abstract personificati…`,
-  medium: `ceramic, with gilding`,
-  artist: `Meidias Painter (Greek, Attic, active c. 420–400 BCE)`,
-  culture: `Greek, Attic`,
-  dimensions: `Diameter: 18.6 cm (7 5/16 in.); Diameter of mouth: 8.7 cm (3 7/16 in.); Overall: 30.3 cm (11 15/16 in.); Diameter of foot: 14.5 cm (5 11/16 in.)`,
+  title: `Outskirts of Paris`,
+  type: `Painting`,
+  date: `c. 1897–1905`,
+  registration: `1929.951`,
+  location: `Cleveland Museum of Art`,
+  discipline: `Modern European Painting and Sculpture`,
+  category: `Painting`,
+  description: `In addition to his large jungle scenes, Rousseau also painted small landscapes, including this view of a river or canal on the outskirts of Paris. While retaining a sharp, detailed rendering of objects, Rousseau has abandoned the flat tonality of his earlier works for more blended modeling and freer brushwork. The volumes of the clouds, trees, and houses occupy distinct areas in space, revealing the serenity of an organized world. A self-taught painter who, at the age of 41, quit his job in the Paris municipal toll or tax service to devote himself entirely to art, Rousseau was widely admired b…`,
+  medium: `oil on fabric`,
+  artist: `Henri Rousseau (French, 1844–1910)`,
+  culture: `France, late 19th Century-early 20th Century`,
+  dimensions: `Framed: 56.5 x 65.5 x 8 cm (22 1/4 x 25 13/16 x 3 1/8 in.); Unframed: 37.8 x 45.8 cm (14 7/8 x 18 1/16 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: `A lead rivet sits at the junction of handle and neck, probably an ancient repair.`,
-  provenance: `[{"description":"The Cleveland Museum of Art, Cleveland, OH","citations":[],"footnotes":[],"date":"1982-","sortorder":3}]`,
-  tombstone: `Red-Figure Squat Lekythos (Oil Vessel): Birth of Erichthonios, c. 420–410 BCE. Attributed to Meidias Painter (Greek, Attic, active c. 420–400 BCE). Ceramic, with gilding; diameter: 18.6 cm (7 5/16 in.); diameter of mouth: 8.7 cm (3 7/16 in.); overall: 30.3 cm (11 15/16 in.); diameter of foot: 14.5 cm (5 11/16 in.). The Cleveland Museum of Art, Leonard C. Hanna Jr. Fund, 1982.142`,
+  did_you_know: `Rousseau once said to Picasso: "We are the two greatest artists of this era, you in the Egyptian style, I in the modern style."`,
+  provenance: `[{"description":"Henri Rousseau","citations":[],"footnotes":null,"date":null,"sortorder":null},{"description":"M. Lefèbvre, Paris. His collection sale, Paris, Drouot, 3 March 1927 (lot 117, repr.), Paysage de banlieue, for ff 55,000, sold to Émile Level.","citations":[],"footnotes":null,"date":"1927…`,
+  tombstone: `Outskirts of Paris, c. 1897–1905. Henri Rousseau (French, 1844–1910). Oil on fabric; framed: 56.5 x 65.5 x 8 cm (22 1/4 x 25 13/16 x 3 1/8 in.); unframed: 37.8 x 45.8 cm (14 7/8 x 18 1/16 in.). The Cleveland Museum of Art, Purchase from the J. H. Wade Fund, 1929.951`,
   licence: `CC0 — Public Domain`,
-  source_url: `https://clevelandart.org/art/1982.142`,
+  source_url: `https://clevelandart.org/art/1929.951`,
   institution: `Cleveland Museum of Art`
 };
 
@@ -956,6 +1016,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -997,6 +1061,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1072,15 +1250,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1103,6 +1287,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE

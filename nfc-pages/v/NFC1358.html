@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Schutterspenning van Leiden — ARCHAI</title>
+<title>BT Synergy 1500 Digital Cordless Telephone with Answering machine — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,29 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://iiif.micr.io/zpzYq/full/max/0/default.jpg" alt="Schutterspenning van Leiden" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2006BC1318/full/!600,600/0/default.jpg" alt="BT Synergy 1500 Digital Cordless Telephone with Answering machine" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Schutterspenning van Leiden</div>
-  <div class="v-sub">schutterspenning · 2026-02-14T04:18:14Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
-        &lt;setSpec&gt;261219&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;anoniem&lt;/dc:creator&gt;
-          &lt;dc:creator&gt;anonymous&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1667 · 200100445</div>
+  <div class="v-title">BT Synergy 1500 Digital Cordless Telephone with Answering machine</div>
+  <div class="v-sub">Telephone · 1998 · E.148:1-2000</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
+    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    
+    <span class="v-meta-tag">Telephone</span>
   </div>
 
   <!-- SHARE -->
@@ -794,11 +833,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Schutterspenning van Leiden</strong> — Zilveren schutterspenning van Leiden. Voorzijde: een gekroonde klimmende leeuw met een zwaard in zijn rechter en een schild met het Leidse wapen in zijn linker klauw. Omschrift: PVGNO PRO PATRIA (ik vecht voor het vaderland). Keerzijde: twee gekruiste musketten tussen LEY en DEN. Omschrift: SCHVTTER…</div>
+  <div class="v-story"><strong>BT Synergy 1500 Digital Cordless Telephone with Answering machine</strong> — BT Synergy 1500 Digital Cordless Telephone with Answering machine. Telephone. Made by British Telecom. 1998. Made in China. Prints &amp; Drawings Study Room, level D</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
     </div>
 
   <div class="v-divider"></div>
@@ -824,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -832,27 +881,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">200100445</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">anoniem; anonymous</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">zilver</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">schutterspenning</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-02-14T04:18:14Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
-        &lt;setSpec&gt;261219&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;anoniem&lt;/dc:creator&gt;
-          &lt;dc:creator&gt;anonymous&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1667</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">schutterspenning</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.148:1-2000</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">British Telecom</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Telephone</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Telephone</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1998</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, level D</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Telephone</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -867,24 +905,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1356.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15925799&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Grundriss Erdgeschoss 1:500 (aus: Museum im Werden)</div>
-        <div class="v-rel-meta">Europeana · /08535/item_HIGRUUE27HE7F4G3444WPLKLQWQSHGQD</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/LqMDX/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Dirk V, graaf van Holland</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010009</div>
       </a>
       <a class="v-rel-card" href="NFC1357.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/oTqgO/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van Jan I, graaf van Holland</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010019</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2008BT4837/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Analog-Grafik P2 (Pendular Oscillogram)</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.100-2008</div>
       </a>
       <a class="v-rel-card" href="NFC1359.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/HMCum/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">1/10 gulden van Curacao, 1900</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100383</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/bCXwZ/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Nederlandse 2&amp;#189; gulden voor Nederlands-Indi&amp;#235;, 1943</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100269</div>
       </a>
       <a class="v-rel-card" href="NFC1360.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2019LL8299/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Camera</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · RPS.342-2018</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/ONQcR/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Schutterspenning van Leiden</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100442</div>
       </a></div>
   </div>
 </div>
@@ -897,7 +935,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/200100445" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O63865/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -928,27 +966,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Schutterspenning van Leiden`,
-  type: `schutterspenning`,
-  date: `2026-02-14T04:18:14Z</datestamp>
-        <setSpec>260239</setSpec>
-        <setSpec>261106</setSpec>
-        <setSpec>261219</setSpec>
-        <setSpec>260251</setSpec>
-        <setSpec>2601</setSpec>
-      </header>
-      <metadata>
-        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
-          <dc:creator>anoniem</dc:creator>
-          <dc:creator>anonymous</dc:creator>
-          <dc:date>1667`,
-  registration: `200100445`,
-  location: `Rijksmuseum, Amsterdam`,
-  discipline: ``,
-  category: `schutterspenning`,
-  description: `Zilveren schutterspenning van Leiden. Voorzijde: een gekroonde klimmende leeuw met een zwaard in zijn rechter en een schild met het Leidse wapen in zijn linker klauw. Omschrift: PVGNO PRO PATRIA (ik vecht voor het vaderland). Keerzijde: twee gekruiste musketten tussen LEY en DEN. Omschrift: SCHVTTERS PENNING en daarachter het jaartal.`,
-  medium: `zilver`,
-  artist: `anoniem; anonymous`,
+  title: `BT Synergy 1500 Digital Cordless Telephone with Answering machine`,
+  type: `Telephone`,
+  date: `1998`,
+  registration: `E.148:1-2000`,
+  location: `Prints & Drawings Study Room, level D`,
+  discipline: `Telephone`,
+  category: `Telephone`,
+  description: `BT Synergy 1500 Digital Cordless Telephone with Answering machine. Telephone. Made by British Telecom. 1998. Made in China. Prints & Drawings Study Room, level D`,
+  medium: ``,
+  artist: `British Telecom`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -956,9 +983,9 @@ const OBJECT = {
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
-  source_url: `https://www.rijksmuseum.nl/en/collection/200100445`,
-  institution: `Rijksmuseum, Amsterdam`
+  licence: `V&A Open Access`,
+  source_url: `https://collections.vam.ac.uk/item/O63865/`,
+  institution: `Victoria and Albert Museum, London`
 };
 
 // Build rich context from available fields
@@ -986,6 +1013,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -1027,6 +1058,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1102,15 +1247,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1133,6 +1284,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1240,7 +1392,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_rijks',
+      collection: 'archai_va',
       text,
       authorType: 'visitor',
     }),

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Adeline Ravoux — ARCHAI</title>
+<title>Branch Hill Pond, Hampstead — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,13 +811,13 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/1958.31/1958.31_web.jpg" alt="Adeline Ravoux" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1972.48/1972.48_web.jpg" alt="Branch Hill Pond, Hampstead" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Adeline Ravoux</div>
-  <div class="v-sub">Painting · 1890 · 1958.31</div>
+  <div class="v-title">Branch Hill Pond, Hampstead</div>
+  <div class="v-sub">Painting · 1828 · 1972.48</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Cleveland Museum of Art</span>
@@ -783,7 +833,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Adeline Ravoux</strong> — In May 1890, Vincent van Gogh arrived in Auvers, a small town north of Paris, where he rented a room at the inn of Arthur Ravoux. This portrait, completed during the last months of the artist’s life, depicts Ravoux’s 13-year-old daughter, Adeline. Van Gogh wrote that rather than photographic resembl…</div>
+  <div class="v-story"><strong>Branch Hill Pond, Hampstead</strong> — An amateur meteorologist, John Constable was most at home painting meticulously observed cloud formations, weather conditions, and natural light effects. He believed an accurate rendering of these constantly shifting elements could convey his vision of the vitality and magnificence of the English co…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,15 +881,15 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1958.31</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Vincent van Gogh (Dutch, 1853–1890)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oil on fabric</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Netherlands</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1972.48</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">John Constable (British, 1776–1837)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oil on canvas</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">England, 19th century</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Painting</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1890</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Framed: 72.5 x 73.5 x 8.5 cm (28 9/16 x 28 15/16 x 3 3/8 in.); Unframed: 50.2 x 50.5 cm (19 3/4 x 19 7/8 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">222 Impressionism &amp; Post-Impressionism</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1828</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Framed: 89 x 105.5 x 11.5 cm (35 1/16 x 41 9/16 x 4 1/2 in.); Unframed: 60.6 x 78.1 cm (23 7/8 x 30 3/4 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">203A British Painting and Decorative Arts</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
@@ -848,24 +908,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC611.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/675426/003610.jpg" loading="lazy"></div>
-        <div class="v-rel-title">D. Mariana Baptista de Carvalho e Souza</div>
-        <div class="v-rel-meta">Brasiliana Museus · d-mariana-baptista-de-carvalho-e-souza</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/826741?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">picture, silhouette</div>
+        <div class="v-rel-meta">Auckland Museum · col.1022.2</div>
       </a>
       <a class="v-rel-card" href="NFC612.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/ca2932b4-6c0c-5482-2ae5-8b74926d7b73/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Young Spartan Girls Challenging Boys</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 13487</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627902539/v2/prod/small/006501_007000/006939_002.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Like the eternal orbiting of the Heavens that fortify the man of principles, I shall fortify myself without cease</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2017.233</div>
       </a>
       <a class="v-rel-card" href="NFC614.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2006.6/2006.6_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Opéra (Rostral Column)</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2006.6</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/248347/preview" loading="lazy"></div>
+        <div class="v-rel-title">Wedding photograph</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH020674</div>
       </a>
       <a class="v-rel-card" href="NFC615.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4339/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">GEE AND THE BULL</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.286-2020</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/679972/849-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Tenente-Coronel José Carlos de Carvalho</div>
+        <div class="v-rel-meta">Brasiliana Museus · tenente-coronel-jose-carlos-de-carvalho-2</div>
       </a></div>
   </div>
 </div>
@@ -878,7 +938,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://clevelandart.org/art/1958.31" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1972.48" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -909,25 +969,25 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Adeline Ravoux`,
+  title: `Branch Hill Pond, Hampstead`,
   type: `Painting`,
-  date: `1890`,
-  registration: `1958.31`,
-  location: `222 Impressionism & Post-Impressionism`,
+  date: `1828`,
+  registration: `1972.48`,
+  location: `203A British Painting and Decorative Arts`,
   discipline: `Modern European Painting and Sculpture`,
   category: `Painting`,
-  description: `In May 1890, Vincent van Gogh arrived in Auvers, a small town north of Paris, where he rented a room at the inn of Arthur Ravoux. This portrait, completed during the last months of the artist’s life, depicts Ravoux’s 13-year-old daughter, Adeline. Van Gogh wrote that rather than photographic resemblance, he wanted his portraits to convey the “impassioned aspects” of contemporary life through the “modern taste for color.”`,
-  medium: `oil on fabric`,
-  artist: `Vincent van Gogh (Dutch, 1853–1890)`,
-  culture: `Netherlands`,
-  dimensions: `Framed: 72.5 x 73.5 x 8.5 cm (28 9/16 x 28 15/16 x 3 3/8 in.); Unframed: 50.2 x 50.5 cm (19 3/4 x 19 7/8 in.)`,
+  description: `An amateur meteorologist, John Constable was most at home painting meticulously observed cloud formations, weather conditions, and natural light effects. He believed an accurate rendering of these constantly shifting elements could convey his vision of the vitality and magnificence of the English countryside. Working from the summerhouse he rented at Hampstead from 1819–26, Constable painted a landscape focusing more on the dark rain clouds than on the laborers in the foreground, keeping the details of their backbreaking work at a picturesque distance.`,
+  medium: `oil on canvas`,
+  artist: `John Constable (British, 1776–1837)`,
+  culture: `England, 19th century`,
+  dimensions: `Framed: 89 x 105.5 x 11.5 cm (35 1/16 x 41 9/16 x 4 1/2 in.); Unframed: 60.6 x 78.1 cm (23 7/8 x 30 3/4 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: `Adeline Ravoux, at age 13, was not pleased with her portrait and did not think the image resembled her. Today, a photograph exists of Adeline in her late seventies and the resemblance is truly remarkable.`,
-  provenance: `[{"description":"Johanna Van Gogh-Bonger [1862-1925], the wife of Theo van Gogh, Amsterdam, Netherlands.","citations":[],"footnotes":[],"date":null,"sortorder":1},{"description":"(Artz and de Bois, The Hague, Netherlands)","citations":[],"footnotes":null,"date":"1912","sortorder":2},{"description":"…`,
-  tombstone: `Adeline Ravoux, 1890. Vincent van Gogh (Dutch, 1853–1890). Oil on fabric; framed: 72.5 x 73.5 x 8.5 cm (28 9/16 x 28 15/16 x 3 3/8 in.); unframed: 50.2 x 50.5 cm (19 3/4 x 19 7/8 in.). The Cleveland Museum of Art, Bequest of Leonard C. Hanna Jr., 1958.31`,
+  did_you_know: `In 1820, Constable found a retreat in Hampstead where he completed 100 studies of cloud formations, referring to the process as "skying."`,
+  provenance: `[{"description":"Painted by the artist for Henry Hebbert [1783-1864], London, United Kingdom, by descent to his son, Henry Hebbert","citations":[],"footnotes":[],"date":"1828-1864","sortorder":1},{"description":"Henry Hebbert [1814-1893], London, United Kingdom","citations":[],"footnotes":[],"date":…`,
+  tombstone: `Branch Hill Pond, Hampstead, 1828. John Constable (British, 1776–1837). Oil on canvas; framed: 89 x 105.5 x 11.5 cm (35 1/16 x 41 9/16 x 4 1/2 in.); unframed: 60.6 x 78.1 cm (23 7/8 x 30 3/4 in.). The Cleveland Museum of Art, Leonard C. Hanna Jr. Fund, 1972.48`,
   licence: `CC0 — Public Domain`,
-  source_url: `https://clevelandart.org/art/1958.31`,
+  source_url: `https://clevelandart.org/art/1972.48`,
   institution: `Cleveland Museum of Art`
 };
 
@@ -956,6 +1016,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -997,6 +1061,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1072,15 +1250,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1103,6 +1287,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE

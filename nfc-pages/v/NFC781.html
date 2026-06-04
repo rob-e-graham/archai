@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Community Basket — ARCHAI</title>
+<title>Polynesian Woman with Children — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2024NU4123/full/!600,600/0/default.jpg" alt="Community Basket" loading="eager">
+  <img src="https://www.artic.edu/iiif/2/cc5cdb81-14cf-27e9-eda8-94c08244ebaa/full/843,/0/default.jpg" alt="Polynesian Woman with Children" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Community Basket</div>
-  <div class="v-sub">Community Basket · 2020 · W.23-2024</div>
+  <div class="v-title">Polynesian Woman with Children</div>
+  <div class="v-sub">Painting · 1901 · 34461</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
+    <span class="v-meta-tag mv">Art Institute of Chicago</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Community Basket</span>
+    <span class="v-meta-tag">Painting and Sculpture of Europe</span>
   </div>
 
   <!-- SHARE -->
@@ -783,11 +833,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Community Basket</strong> — Community Basket. Community Basket. Made by Stephen Burks. 2020. Made in Berea. In store</div>
+  <div class="v-story"><strong>Polynesian Woman with Children</strong> — Polynesian Woman with Children. Painting. Oil on linen canvas. Painting and Sculpture of Europe. Paul Gauguin (French, 1848–1903). oil on canvas. 1901. France. Post-Impressionism. &lt;p&gt;The three figures in this work have never been identified. Their familial pose and other details, such as the woman’s…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,16 +881,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">W.23-2024</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Stephen Burks</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Community Basket</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Community Basket</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2020</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In store</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Community Basket</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">34461</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Paul Gauguin (French, 1848–1903)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Oil on linen canvas</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Painting and Sculpture of Europe</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">oil on canvas</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1901</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">97 × 74 cm (38 3/16 × 29 1/8 in.); Framed: 111.2 × 88.3 × 5.8 cm (43 3/4 × 34 3/4 × 2 1/4 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 247</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -845,24 +908,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC779.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/ONQcR/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Schutterspenning van Leiden</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100442</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/ayRjI/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Honderdjarig bestaan van het Gymnasium te Stuttgart 1786 (?)</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100139</div>
       </a>
       <a class="v-rel-card" href="NFC780.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1983.198/1983.198_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Alexandre Dumas père (1802–1870)</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1983.198</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1629663070/v2/prod/small/001501_002000/001912_007.jpg" loading="lazy"></div>
+        <div class="v-rel-title">For Some Reasons</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2016.889</div>
       </a>
       <a class="v-rel-card" href="NFC782.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15926399&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Querschnitte, Längsschnitt durch Forum und Antiken-Museum 1:500 (aus: Museum im Werden)</div>
-        <div class="v-rel-meta">Europeana · /08535/item_NC2B4LOUU2JZJX3VJCIEXQCX2HL37RNA</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/625158?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">snuff bottle</div>
+        <div class="v-rel-meta">Auckland Museum · 36438.1</div>
       </a>
       <a class="v-rel-card" href="NFC783.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/7b7a6f39-1cd8-ea2f-9811-18b0e23edac0/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Self-Portrait</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 11</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1966.114/1966.114_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">White-Ground Lekythos (Oil Vessel): Atalanta and Erotes</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1966.114</div>
       </a></div>
   </div>
 </div>
@@ -875,7 +938,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1773863/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.artic.edu/artworks/34461" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -906,26 +969,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Community Basket`,
-  type: `Community Basket`,
-  date: `2020`,
-  registration: `W.23-2024`,
-  location: `In store`,
-  discipline: `Community Basket`,
-  category: `Community Basket`,
-  description: `Community Basket. Community Basket. Made by Stephen Burks. 2020. Made in Berea. In store`,
-  medium: ``,
-  artist: `Stephen Burks`,
-  culture: ``,
-  dimensions: ``,
+  title: `Polynesian Woman with Children`,
+  type: `Painting`,
+  date: `1901`,
+  registration: `34461`,
+  location: `Gallery 247`,
+  discipline: `Painting and Sculpture of Europe`,
+  category: `oil on canvas`,
+  description: `Polynesian Woman with Children. Painting. Oil on linen canvas. Painting and Sculpture of Europe. Paul Gauguin (French, 1848–1903). oil on canvas. 1901. France. Post-Impressionism. <p>The three figures in this work have never been identified. Their familial pose and other details, such as the woman’s gold ring and the red mark on the girl’s hand, invite speculation as to their relationship to each other and to the artist. Technical analysis has revealed that Paul Gauguin reworked the position of the woman’s hands to align diagonally with those of the young girl standing behind her. Together, th…`,
+  medium: `Oil on linen canvas`,
+  artist: `Paul Gauguin (French, 1848–1903)`,
+  culture: `France`,
+  dimensions: `97 × 74 cm (38 3/16 × 29 1/8 in.); Framed: 111.2 × 88.3 × 5.8 cm (43 3/4 × 34 3/4 × 2 1/4 in.)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1773863/`,
-  institution: `Victoria and Albert Museum, London`
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.artic.edu/artworks/34461`,
+  institution: `Art Institute of Chicago`
 };
 
 // Build rich context from available fields
@@ -953,6 +1016,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -994,6 +1061,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1069,15 +1250,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1100,6 +1287,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1207,7 +1395,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_aic',
       text,
       authorType: 'visitor',
     }),

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>dress — ARCHAI</title>
+<title>hatpin — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,13 +811,13 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/93080?rendering=standard.jpg" alt="dress" loading="eager">
+  <img src="https://api.aucklandmuseum.com/id/media/v/761826?rendering=standard.jpg" alt="hatpin" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">dress</div>
-  <div class="v-sub">ecrm:E22_Man-Made_Object · Circa 1910 · col.2772</div>
+  <div class="v-title">hatpin</div>
+  <div class="v-sub">ecrm:E22_Man-Made_Object · 2019-03-25T00:00:00.000Z · 2019.x.44</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Auckland Museum</span>
@@ -783,8 +833,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>dress</strong> — Black satin dress, c.1910, that belonged to Mrs William Henry Rogers.
-The dress is made from heavy black satin, full length with a simple collar and ¾ length sleeves with lace at the wrist. The front opening has a panel of ecru lace. The waistline is very large with tucks down the front and back of …</div>
+  <div class="v-story"><strong>hatpin</strong> — Hatpin. Silver metal pin. Pointed tip. Spherical ball at top made from metal, painted to look like black pearl, some colour has come away.</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
@@ -814,6 +863,16 @@ The dress is made from heavy black satin, full length with a simple collar and �
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -822,10 +881,10 @@ The dress is made from heavy black satin, full length with a simple collar and �
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">col.2772</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2019.x.44</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Circa 1910</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2019-03-25T00:00:00.000Z</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
@@ -845,24 +904,24 @@ The dress is made from heavy black satin, full length with a simple collar and �
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC561.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/5/745405-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Certificate - Radium Certificate of Purity, Union Miniere du Haut Katanga, Brussels, 1928</div>
-        <div class="v-rel-meta">Museums Victoria · HT 36999</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/a4bef587-48a4-d186-813d-f297441b1ab3/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Mahana no atua (Day of the God)</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 27943</div>
       </a>
       <a class="v-rel-card" href="NFC562.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/85283?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">textile piece</div>
-        <div class="v-rel-meta">Auckland Museum · 1966.181</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AN1928/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Roberts Model R500</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.33-1992</div>
       </a>
       <a class="v-rel-card" href="NFC564.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1924.259/1924.259_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Geometric Pitcher: Swans</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1924.259</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/679970/850-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Retrato de senhor em traje civil (atribuído)</div>
+        <div class="v-rel-meta">Brasiliana Museus · retrato-de-senhor-em-traje-civil-atribuido</div>
       </a>
       <a class="v-rel-card" href="NFC565.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1966.114/1966.114_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">White-Ground Lekythos (Oil Vessel): Atalanta and Erotes</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1966.114</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/1979.206.361_a.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Drum (Teponaztli)</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 312583</div>
       </a></div>
   </div>
 </div>
@@ -875,7 +934,7 @@ The dress is made from heavy black satin, full length with a simple collar and �
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/17164" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/891040" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -906,15 +965,14 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `dress`,
+  title: `hatpin`,
   type: `ecrm:E22_Man-Made_Object`,
-  date: `Circa 1910`,
-  registration: `col.2772`,
+  date: `2019-03-25T00:00:00.000Z`,
+  registration: `2019.x.44`,
   location: `Auckland Museum`,
   discipline: `Social History`,
   category: `ecrm:E22_Man-Made_Object`,
-  description: `Black satin dress, c.1910, that belonged to Mrs William Henry Rogers.
-The dress is made from heavy black satin, full length with a simple collar and ¾ length sleeves with lace at the wrist. The front opening has a panel of ecru lace. The waistline is very large with tucks down the front and back of the bodice. The skirt is nearly straight with a tuck down the centre. It is all lined.`,
+  description: `Hatpin. Silver metal pin. Pointed tip. Spherical ball at top made from metal, painted to look like black pearl, some colour has come away.`,
   medium: ``,
   artist: ``,
   culture: ``,
@@ -925,7 +983,7 @@ The dress is made from heavy black satin, full length with a simple collar and �
   provenance: ``,
   tombstone: ``,
   licence: `© Auckland Museum CC BY`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/17164`,
+  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/891040`,
   institution: `Auckland Museum`
 };
 
@@ -954,6 +1012,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -995,6 +1057,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1070,15 +1246,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1101,6 +1283,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE

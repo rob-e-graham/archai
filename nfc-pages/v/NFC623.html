@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Black-Figure Hydria (Water Vessel): Frontal Quadriga (Body); Theseus and Minotaur (Shoulder) — ARCHAI</title>
+<title>The Red Kerchief — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/1975.1/1975.1_web.jpg" alt="Black-Figure Hydria (Water Vessel): Frontal Quadriga (Body); Theseus and Minotaur (Shoulder)" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1958.39/1958.39_web.jpg" alt="The Red Kerchief" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Black-Figure Hydria (Water Vessel): Frontal Quadriga (Body); Theseus and Minotaur (Shoulder)</div>
-  <div class="v-sub">Ceramic · c. 520 BCE · 1975.1</div>
+  <div class="v-title">The Red Kerchief</div>
+  <div class="v-sub">Painting · c. 1868–73 · 1958.39</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Greek and Roman Art</span>
+    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
   </div>
 
   <!-- SHARE -->
@@ -783,7 +833,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Black-Figure Hydria (Water Vessel): Frontal Quadriga (Body); Theseus and Minotaur (Shoulder)</strong> — Although their subjects differ, the three fields of figured decoration on this vessel relate to one another metaphorically through the theme of victory. Just as Theseus defeats the Minotaur on the shoulder, two lions converge on a deer in the predella (the small, lowermost panel). In the largest pan…</div>
+  <div class="v-story"><strong>The Red Kerchief</strong> — This painting depicts Monet's first wife, Camille, outside on a snowy day passing by the French doors of their home at Argenteuil. Her face is rendered in a radically bold Impressionist technique of mere daubs of paint quickly applied, just as the snow and trees are defined by broad, broken strokes …</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,16 +881,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1975.1</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Antimenes Painter (Greek, Attic, active c. 530–510 BCE)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">ceramic</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Greece, Attic</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Greek and Roman Art</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ceramic</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 520 BCE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 43.2 cm (17 in.); Diameter of rim: 24.7 cm (9 3/4 in.); Diameter of foot: 15.2 cm (6 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">102B Greek</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Ceramic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1958.39</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Claude Monet (French, 1840–1926)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oil on fabric</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, 19th century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1868–73</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Framed: 128.3 x 105.7 x 14.6 cm (50 1/2 x 41 5/8 x 5 3/4 in.); Unframed: 99 x 79.8 cm (39 x 31 7/16 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">222 Impressionism &amp; Post-Impressionism</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
@@ -848,24 +908,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC621.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/358757?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">cloak, evening</div>
-        <div class="v-rel-meta">Auckland Museum · 1965.78.880</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2022NH4242/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Sorting Song</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CD.2-2023</div>
       </a>
       <a class="v-rel-card" href="NFC622.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP164634.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Bass Viola da Gamba</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 503359</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fwww.dropbox.com%2Fs%2Fqtp75ivna8iex4m%2FPortugal_sOPA%2520DE%2520aRROIOS.jpg%3Fraw%3D1&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Sopa de Arroios. Soup of the poors in Arroios</div>
+        <div class="v-rel-meta">Europeana · /2063606/POR_280_009</div>
       </a>
       <a class="v-rel-card" href="NFC624.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/gSzcw/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Beloningspenning van de Leidse burgemeesters voor promoties &quot;met de kap&quot;, afdruk keerzijde</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100143</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/72977?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">chair, dining</div>
+        <div class="v-rel-meta">Auckland Museum · 1994.112</div>
       </a>
       <a class="v-rel-card" href="NFC625.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/565dd29f-6c02-3f31-3db2-46902059f047/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Wounded Lioness</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 883</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_668/v1627832950/v2/prod/small/002001_002500/002029_001.jpg" loading="lazy"></div>
+        <div class="v-rel-title">'Peacock Chair' for Imperial Hotel, Tokyo, Japan</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2013.237</div>
       </a></div>
   </div>
 </div>
@@ -878,7 +938,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://clevelandart.org/art/1975.1" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1958.39" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -909,25 +969,25 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Black-Figure Hydria (Water Vessel): Frontal Quadriga (Body); Theseus and Minotaur (Shoulder)`,
-  type: `Ceramic`,
-  date: `c. 520 BCE`,
-  registration: `1975.1`,
-  location: `102B Greek`,
-  discipline: `Greek and Roman Art`,
-  category: `Ceramic`,
-  description: `Although their subjects differ, the three fields of figured decoration on this vessel relate to one another metaphorically through the theme of victory. Just as Theseus defeats the Minotaur on the shoulder, two lions converge on a deer in the predella (the small, lowermost panel). In the largest panel, victory is still to come, presumably for all three warriors shown: one in the chariot behind his driver, and one on foot on either side. Somewhat unusually, two of the warriors look directly out at the viewer, their frontal faces an interesting complement to the much more common frontal chariot.`,
-  medium: `ceramic`,
-  artist: `Antimenes Painter (Greek, Attic, active c. 530–510 BCE)`,
-  culture: `Greece, Attic`,
-  dimensions: `Overall: 43.2 cm (17 in.); Diameter of rim: 24.7 cm (9 3/4 in.); Diameter of foot: 15.2 cm (6 in.)`,
+  title: `The Red Kerchief`,
+  type: `Painting`,
+  date: `c. 1868–73`,
+  registration: `1958.39`,
+  location: `222 Impressionism & Post-Impressionism`,
+  discipline: `Modern European Painting and Sculpture`,
+  category: `Painting`,
+  description: `This painting depicts Monet's first wife, Camille, outside on a snowy day passing by the French doors of their home at Argenteuil. Her face is rendered in a radically bold Impressionist technique of mere daubs of paint quickly applied, just as the snow and trees are defined by broad, broken strokes of pure white and green.`,
+  medium: `oil on fabric`,
+  artist: `Claude Monet (French, 1840–1926)`,
+  culture: `France, 19th century`,
+  dimensions: `Framed: 128.3 x 105.7 x 14.6 cm (50 1/2 x 41 5/8 x 5 3/4 in.); Unframed: 99 x 79.8 cm (39 x 31 7/16 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: `This type of water vessel, a hydria, takes its name from hudor, Greek for water (and still familiar in the English root hydro).`,
-  provenance: `[{"description":"The Cleveland Museum of Art, Cleveland, OH","citations":[],"footnotes":[],"date":"1975-","sortorder":3}]`,
-  tombstone: `Black-Figure Hydria (Water Vessel): Frontal Quadriga (Body); Theseus and Minotaur (Shoulder), c. 520 BCE. Attributed to Antimenes Painter (Greek, Attic, active c. 530–510 BCE). Ceramic; overall: 43.2 cm (17 in.); diameter of rim: 24.7 cm (9 3/4 in.); diameter of foot: 15.2 cm (6 in.). The Cleveland Museum of Art, Purchase from the J. H. Wade Fund, 1975.1`,
+  did_you_know: `Madame Monet’s red cape draws the viewer’s attention beyond the glass of the French doors capturing her glance, a brief moment frozen in time. This painting was very special to Monet and he kept it with him for his entire life.`,
+  provenance: `[{"description":"Michel Monet [1878-1966] Giverny, France, bequeathed from the artist's estate to his son, 1931","citations":[],"footnotes":[],"date":"1931-1939","sortorder":1},{"description":"Edouard Molyneux [1891-1974] Paris, France, 1939","citations":[],"footnotes":[],"date":"1939-1948","sortord…`,
+  tombstone: `The Red Kerchief, c. 1868–73. Claude Monet (French, 1840–1926). Oil on fabric; framed: 128.3 x 105.7 x 14.6 cm (50 1/2 x 41 5/8 x 5 3/4 in.); unframed: 99 x 79.8 cm (39 x 31 7/16 in.). The Cleveland Museum of Art, Bequest of Leonard C. Hanna Jr., 1958.39`,
   licence: `CC0 — Public Domain`,
-  source_url: `https://clevelandart.org/art/1975.1`,
+  source_url: `https://clevelandart.org/art/1958.39`,
   institution: `Cleveland Museum of Art`
 };
 
@@ -956,6 +1016,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -997,6 +1061,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1072,15 +1250,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1103,6 +1287,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Portret van Willem VI van Beieren, graaf van Holland en Zeeland — ARCHAI</title>
+<title>The Seine at Bas-Meudon — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,28 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://iiif.micr.io/QIkaJ/full/max/0/default.jpg" alt="Portret van Willem VI van Beieren, graaf van Holland en Zeeland" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1993.236/1993.236_web.jpg" alt="The Seine at Bas-Meudon" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Portret van Willem VI van Beieren, graaf van Holland en Zeeland</div>
-  <div class="v-sub">prent · 2026-01-27T04:44:36Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260241&lt;/setSpec&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;26151&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:coverage&gt;Graafschap Holland&lt;/dc:coverage&gt;
-          &lt;dc:creator&gt;Adriaen Matham&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1620 · 20010026</div>
+  <div class="v-title">The Seine at Bas-Meudon</div>
+  <div class="v-sub">Painting · 1865 · 1993.236</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Holland en Zeeland Willem VI van Henegouwen</span>
+    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
   </div>
 
   <!-- SHARE -->
@@ -793,11 +833,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Portret van Willem VI van Beieren, graaf van Holland en Zeeland</strong> — Portret van Willem VI van Beieren, graaf van Holland en Zeeland, staande in een harnas met op zijn schouder het wapen van Holland en in zijn hand een zwaard. Prent uit een serie van 36 prenten met portretten ten voeten uit van graven en gravinnen van Holland.</div>
+  <div class="v-story"><strong>The Seine at Bas-Meudon</strong> — Although born and trained in Holland, Jongkind spent much of his life painting outdoors in France. In this depiction of Bas-Meudon near Paris, the artist applied paint in small patches of bright color to suggest the intensity of outdoor light. Although typcially finished in the studio from open-air …</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -823,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -831,27 +881,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">20010026</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Adriaen Matham</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">papier</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Holland en Zeeland Willem VI van Henegouwen</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">prent</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-01-27T04:44:36Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260241&lt;/setSpec&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;26151&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:coverage&gt;Graafschap Holland&lt;/dc:coverage&gt;
-          &lt;dc:creator&gt;Adriaen Matham&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1620</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">prent</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1993.236</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Johan Barthold Jongkind (Dutch, 1819–1891)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oil on fabric</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, 19th century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1865</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Framed: 55.6 x 69.5 x 11.1 cm (21 7/8 x 27 3/8 x 4 3/8 in.); Unframed: 34.1 x 48.1 cm (13 7/16 x 18 15/16 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">222 Impressionism &amp; Post-Impressionism</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -866,24 +908,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC121.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1963.251/1963.251_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Satyress and Child</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1963.251</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/DiHWr/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Willem II, graaf van Holland, rooms-koning</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010017</div>
       </a>
       <a class="v-rel-card" href="NFC122.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/10/659710-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Detector - Radial Electrical, Crystal, 1922-1925</div>
-        <div class="v-rel-meta">Museums Victoria · ST 15915</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2019MJ0216/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Interior of a Murphy Radio</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.646-1985</div>
       </a>
       <a class="v-rel-card" href="NFC124.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PJ3609/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Avebury</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.307-2025</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2007BR3935/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">RT1</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.20-2003</div>
       </a>
       <a class="v-rel-card" href="NFC125.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2013GK3851/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Fuochi d'Articio (particolare)</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · S.1149-1982</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2016JA3568/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Decette</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.560-1976</div>
       </a></div>
   </div>
 </div>
@@ -896,7 +938,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/20010026" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1993.236" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -927,36 +969,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Portret van Willem VI van Beieren, graaf van Holland en Zeeland`,
-  type: `prent`,
-  date: `2026-01-27T04:44:36Z</datestamp>
-        <setSpec>260241</setSpec>
-        <setSpec>260239</setSpec>
-        <setSpec>26151</setSpec>
-        <setSpec>260251</setSpec>
-      </header>
-      <metadata>
-        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
-          <dc:coverage>Graafschap Holland</dc:coverage>
-          <dc:creator>Adriaen Matham</dc:creator>
-          <dc:date>1620`,
-  registration: `20010026`,
-  location: `Rijksmuseum, Amsterdam`,
-  discipline: `Holland en Zeeland Willem VI van Henegouwen`,
-  category: `prent`,
-  description: `Portret van Willem VI van Beieren, graaf van Holland en Zeeland, staande in een harnas met op zijn schouder het wapen van Holland en in zijn hand een zwaard. Prent uit een serie van 36 prenten met portretten ten voeten uit van graven en gravinnen van Holland.`,
-  medium: `papier`,
-  artist: `Adriaen Matham`,
-  culture: ``,
-  dimensions: ``,
+  title: `The Seine at Bas-Meudon`,
+  type: `Painting`,
+  date: `1865`,
+  registration: `1993.236`,
+  location: `222 Impressionism & Post-Impressionism`,
+  discipline: `Modern European Painting and Sculpture`,
+  category: `Painting`,
+  description: `Although born and trained in Holland, Jongkind spent much of his life painting outdoors in France. In this depiction of Bas-Meudon near Paris, the artist applied paint in small patches of bright color to suggest the intensity of outdoor light. Although typcially finished in the studio from open-air sketches, Jongkind's oil paintings achieve a convincing immediacy that greatly impressed the young Claude Monet. The two met in the early 1860s and spent part of a summer painting together along the coast of Normandy. "From that time he was my real master," Monet later acknowledged, "it was to him t…`,
+  medium: `oil on fabric`,
+  artist: `Johan Barthold Jongkind (Dutch, 1819–1891)`,
+  culture: `France, 19th century`,
+  dimensions: `Framed: 55.6 x 69.5 x 11.1 cm (21 7/8 x 27 3/8 x 4 3/8 in.); Unframed: 34.1 x 48.1 cm (13 7/16 x 18 15/16 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
-  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
-  source_url: `https://www.rijksmuseum.nl/en/collection/20010026`,
-  institution: `Rijksmuseum, Amsterdam`
+  did_you_know: `Fellow artist Edouard Manet considered Jongkind the "father of modern landscape painting."`,
+  provenance: `[{"description":"(Possibly Hotel Drouot, Paris, France, April 12-14, 1883, lot 84, sale Bascle Collection, sold to Paul Dutrimont)","citations":[],"footnotes":[],"date":"1883","sortorder":1},{"description":"(Galerie George Petit, Paris, France, December 3-4, 1906, sale, Alexandre Blanc Collection, s…`,
+  tombstone: `The Seine at Bas-Meudon, 1865. Johan Barthold Jongkind (Dutch, 1819–1891). Oil on fabric; framed: 55.6 x 69.5 x 11.1 cm (21 7/8 x 27 3/8 x 4 3/8 in.); unframed: 34.1 x 48.1 cm (13 7/16 x 18 15/16 in.). The Cleveland Museum of Art, Gift of the family of Constance Mather Bishop, 1993.236`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://clevelandart.org/art/1993.236`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -984,6 +1016,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -1025,6 +1061,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1100,15 +1250,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1131,6 +1287,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1238,7 +1395,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_rijks',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

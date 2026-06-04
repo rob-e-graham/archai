@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Water Lily Pond — ARCHAI</title>
+<title>Schutterspenning van Leiden — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,29 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/8534685d-1102-e1e3-e194-94f6e925e8b0/full/843,/0/default.jpg" alt="Water Lily Pond" loading="eager">
+  <img src="https://iiif.micr.io/QBzch/full/max/0/default.jpg" alt="Schutterspenning van Leiden" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Water Lily Pond</div>
-  <div class="v-sub">Painting · 1900 · 87088</div>
+  <div class="v-title">Schutterspenning van Leiden</div>
+  <div class="v-sub">schutterspenning · 2026-02-14T04:18:11Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;261219&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+        &lt;setSpec&gt;2601&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:creator&gt;anoniem&lt;/dc:creator&gt;
+          &lt;dc:creator&gt;anonymous&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1646 · 200100435</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Art Institute of Chicago</span>
+    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Painting and Sculpture of Europe</span>
+    
   </div>
 
   <!-- SHARE -->
@@ -783,11 +844,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Water Lily Pond</strong> — Water Lily Pond. Painting. Oil on canvas. Painting and Sculpture of Europe. Claude Monet (French, 1840–1926). painting. 1900. France. Impressionism. &lt;p&gt;In 1893, three years after buying property at Giverny, Claude Monet began transforming the marshy ground behind his home into a pond, on the narrow …</div>
+  <div class="v-story"><strong>Schutterspenning van Leiden</strong> — Zilveren schutterspenning van Leiden. Voorzijde: een gekroonde klimmende leeuw met een zwaard in zijn rechter en een schild met het Leidse wapen in zijn linker klauw. Omschrift: PVGNO PRO PATRIA (ik vecht voor het vaderland). Keerzijde: twee gekruiste musketten tussen LEY en DEN. Omschrift: SCHVTTER…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
     </div>
 
   <div class="v-divider"></div>
@@ -813,6 +874,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,19 +892,27 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">87088</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Claude Monet (French, 1840–1926)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Oil on canvas</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Painting and Sculpture of Europe</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">painting</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1900</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">89.8 × 101 cm (35 3/8 × 39 3/4 in.); Framed: 112.4 × 122.6 × 10.2 cm (44 1/4 × 48 1/4 × 4 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">200100435</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">anoniem; anonymous</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">zilver</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">schutterspenning</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-02-14T04:18:11Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;261219&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+        &lt;setSpec&gt;2601&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:creator&gt;anoniem&lt;/dc:creator&gt;
+          &lt;dc:creator&gt;anonymous&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1646</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">schutterspenning</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -848,24 +927,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1238.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD6577/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">First colour broadcast by Associated Television</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · S.213-1980</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PJ3613/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Avebury</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.309-2025</div>
       </a>
       <a class="v-rel-card" href="NFC1239.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/12662645-5164-4bb1-cfec-3517a4c9779c/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Are They Thinking about the Grape? (Pensent-ils au raisin?)</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 44742</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/5/745405-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Certificate - Radium Certificate of Purity, Union Miniere du Haut Katanga, Brussels, 1928</div>
+        <div class="v-rel-meta">Museums Victoria · HT 36999</div>
       </a>
       <a class="v-rel-card" href="NFC1241.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PJ2545/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Mini Sensory Chess Challenger</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · B.64:1 to 37-2015</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/14/165164-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Lantern Slide - 'I Wonder Who's Kissing Her Now', circa 1940s</div>
+        <div class="v-rel-meta">Museums Victoria · MM 69185</div>
       </a>
       <a class="v-rel-card" href="NFC1242.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/5df51c9d-dac5-d962-4d4b-300339219e54/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portrait of Edouard Molé</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 24</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/c95d58bf-fe9e-e5bb-2c71-ab8bad984759/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portrait of an Artist</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 862</div>
       </a></div>
   </div>
 </div>
@@ -878,7 +957,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/87088" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/200100435" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -909,26 +988,37 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Water Lily Pond`,
-  type: `Painting`,
-  date: `1900`,
-  registration: `87088`,
-  location: `Art Institute of Chicago`,
-  discipline: `Painting and Sculpture of Europe`,
-  category: `painting`,
-  description: `Water Lily Pond. Painting. Oil on canvas. Painting and Sculpture of Europe. Claude Monet (French, 1840–1926). painting. 1900. France. Impressionism. <p>In 1893, three years after buying property at Giverny, Claude Monet began transforming the marshy ground behind his home into a pond, on the narrow end of which he built a Japanese-style wood bridge. Adding both exotic and domestic plantings, including his famous water lilies, the artist created the garden that would be one of his principal subjects for the rest of his life. <em>Water Lily Pond</em> was among the 18 similar versions of the moti…`,
-  medium: `Oil on canvas`,
-  artist: `Claude Monet (French, 1840–1926)`,
-  culture: `France`,
-  dimensions: `89.8 × 101 cm (35 3/8 × 39 3/4 in.); Framed: 112.4 × 122.6 × 10.2 cm (44 1/4 × 48 1/4 × 4 in.)`,
+  title: `Schutterspenning van Leiden`,
+  type: `schutterspenning`,
+  date: `2026-02-14T04:18:11Z</datestamp>
+        <setSpec>260239</setSpec>
+        <setSpec>261106</setSpec>
+        <setSpec>261219</setSpec>
+        <setSpec>260251</setSpec>
+        <setSpec>2601</setSpec>
+      </header>
+      <metadata>
+        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
+          <dc:creator>anoniem</dc:creator>
+          <dc:creator>anonymous</dc:creator>
+          <dc:date>1646`,
+  registration: `200100435`,
+  location: `Rijksmuseum, Amsterdam`,
+  discipline: ``,
+  category: `schutterspenning`,
+  description: `Zilveren schutterspenning van Leiden. Voorzijde: een gekroonde klimmende leeuw met een zwaard in zijn rechter en een schild met het Leidse wapen in zijn linker klauw. Omschrift: PVGNO PRO PATRIA (ik vecht voor het vaderland). Keerzijde: twee gekruiste musketten tussen LEY en DEN. Omschrift: SCHVTTERS PENNING en daarachter het jaartal.`,
+  medium: `zilver`,
+  artist: `anoniem; anonymous`,
+  culture: ``,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://www.artic.edu/artworks/87088`,
-  institution: `Art Institute of Chicago`
+  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
+  source_url: `https://www.rijksmuseum.nl/en/collection/200100435`,
+  institution: `Rijksmuseum, Amsterdam`
 };
 
 // Build rich context from available fields
@@ -956,6 +1046,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -997,6 +1091,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1072,15 +1280,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1103,6 +1317,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1210,7 +1425,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_aic',
+      collection: 'archai_rijks',
       text,
       authorType: 'visitor',
     }),

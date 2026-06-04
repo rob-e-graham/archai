@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Behind the Troglodyte Farm — ARCHAI</title>
+<title>Kriminalistische Tatbestandsaufnahme und die zugehörige Kamera. Criminalist crime shooting and the associated camera — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/2004.32/2004.32_web.jpg" alt="Behind the Troglodyte Farm" loading="eager">
+  <img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fsammlungenonline.albertina.at%2Fcc%2Fimageproxy.ashx%3Fserver%3Dlocalhost%26port%3D15001%26filename%3Dimages%2FFotoGLV2000_7937.jpg%26cache%3Dyes%26maxwidth%3D400&amp;type=IMAGE" alt="Kriminalistische Tatbestandsaufnahme und die zugehörige Kamera. Criminalist crime shooting and the associated camera" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Behind the Troglodyte Farm</div>
-  <div class="v-sub">Photograph · c. 1853 · 2004.32</div>
+  <div class="v-title">Kriminalistische Tatbestandsaufnahme und die zugehörige Kamera. Criminalist crime shooting and the associated camera</div>
+  <div class="v-sub">IMAGE · Date unknown · /15508/FotoGLV2000_7937c</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
+    <span class="v-meta-tag mv">Europeana</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Photography</span>
+    
   </div>
 
   <!-- SHARE -->
@@ -783,11 +833,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Behind the Troglodyte Farm</strong> — This large-scale print, exceptional for the period, belongs to a small group of photographs by Le Secq of troglodyte, or cave, dwellings in western France near the Loire River. Around the 1400s, the term troglodyte referred to groups of political activists who lived underground in order to avoid pro…</div>
+  <div class="v-story"><strong>Kriminalistische Tatbestandsaufnahme und die zugehörige Kamera. Criminalist crime shooting and the associated camera</strong> — Beschriftung: Untersatzkarton für GLV/7937a bis 7937d zusammen: recto: M.o. &quot;Kriminalistische Tatbestandsaufnahmen / ausgeführt mit dem photogrammetrischen Apparate des / k. k. Polizei-Oberkommissärs Dr. Franz Eichberg in Wien / (Ost. Patent Nr. 45169 ex 1910).&quot; (schwarz gedrucktes Klebeschild); M.u…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+      <div class="v-rights-detail">Licence / rights: http://creativecommons.org/publicdomain/mark/1.0/</div>
     </div>
 
   <div class="v-divider"></div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,19 +881,15 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2004.32</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Henri Le Secq (French, 1818–1882)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">salted paper print from waxed paper negative</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, 19th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photograph</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1853</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Image: 50.9 x 31.1 cm (20 1/16 x 12 1/4 in.); Matted: 76.2 x 61 cm (30 x 24 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">230 Photography</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">/15508/FotoGLV2000_7937c</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">#Franz_Eichberg_Künstler_in. Franz Eichberg (Künstler_in)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">IMAGE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Date unknown</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">The Albertina Museum</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">IMAGE</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">http://creativecommons.org/publicdomain/mark/1.0/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -848,24 +904,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC390.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014GW4253/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Elegy</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · C.123:1 to 17-2011</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/ca2932b4-6c0c-5482-2ae5-8b74926d7b73/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Young Spartan Girls Challenging Boys</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 13487</div>
       </a>
       <a class="v-rel-card" href="NFC391.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/49/165099-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Lantern Slide - 'Mts. Tasman, Cook &amp; La Perouse, New Zealand'</div>
-        <div class="v-rel-meta">Museums Victoria · MM 69207</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2024NX9617/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Marigolds</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.766-2024</div>
       </a>
       <a class="v-rel-card" href="NFC393.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2013GU3404/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">The Revolution Will Not Be Televised</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.160-2011</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/51b5e908-743a-04a2-b080-9f9f2a33e502/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Marie de’ Medici</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 78591</div>
       </a>
       <a class="v-rel-card" href="NFC394.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/730ab90f-45c3-ca32-77d0-a43858cdbbab/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portrait of a Lady</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 105945</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PC0391/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Hand Behind Painted Glass</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · PH.557-2024</div>
       </a></div>
   </div>
 </div>
@@ -878,7 +934,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://clevelandart.org/art/2004.32" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.europeana.eu/item/15508/FotoGLV2000_7937c?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -909,26 +965,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Behind the Troglodyte Farm`,
-  type: `Photograph`,
-  date: `c. 1853`,
-  registration: `2004.32`,
-  location: `230 Photography`,
-  discipline: `Photography`,
-  category: `Photograph`,
-  description: `This large-scale print, exceptional for the period, belongs to a small group of photographs by Le Secq of troglodyte, or cave, dwellings in western France near the Loire River. Around the 1400s, the term troglodyte referred to groups of political activists who lived underground in order to avoid property taxes, which only applied to above-ground dwellings.`,
-  medium: `salted paper print from waxed paper negative`,
-  artist: `Henri Le Secq (French, 1818–1882)`,
-  culture: `France, 19th century`,
-  dimensions: `Image: 50.9 x 31.1 cm (20 1/16 x 12 1/4 in.); Matted: 76.2 x 61 cm (30 x 24 in.)`,
+  title: `Kriminalistische Tatbestandsaufnahme und die zugehörige Kamera. Criminalist crime shooting and the associated camera`,
+  type: `IMAGE`,
+  date: `Date unknown`,
+  registration: `/15508/FotoGLV2000_7937c`,
+  location: `The Albertina Museum`,
+  discipline: ``,
+  category: `IMAGE`,
+  description: `Beschriftung: Untersatzkarton für GLV/7937a bis 7937d zusammen: recto: M.o. "Kriminalistische Tatbestandsaufnahmen / ausgeführt mit dem photogrammetrischen Apparate des / k. k. Polizei-Oberkommissärs Dr. Franz Eichberg in Wien / (Ost. Patent Nr. 45169 ex 1910)." (schwarz gedrucktes Klebeschild); M.u. "Eine zu metrischen Aufnahmen adaptierte Kamera, Methode Dr. Eichberg in Wien." (Feder in Schwarzbraun); verso: M. "56x70 cm" (Bleistift, vertikal); l.u. "Öst C/E" (Bleistift, vertikal). Inscription: underset cardboard for GLV/7937a to 7937d together: recto: M.o. "Criminalist detachments/executed …`,
+  medium: ``,
+  artist: `#Franz_Eichberg_Künstler_in. Franz Eichberg (Künstler_in)`,
+  culture: ``,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: `Trained as a painter, Henri Le Secq was drawn to the new invention of photography in the late 1840s, less than a decade after its invention.`,
-  provenance: `[{"description":"Anonymous American art historian from a flea market, Paris, France","citations":[],"footnotes":null,"date":"1973–74","sortorder":1},{"description":"(Hans P. Kraus Jr. Fine Photographs, New York, NY, sold to Robert Hershkowitz, Ltd., London, England)","citations":[],"footnotes":null,…`,
-  tombstone: `Behind the Troglodyte Farm, c. 1853. Henri Le Secq (French, 1818–1882). Salted paper print from waxed paper negative; image: 50.9 x 31.1 cm (20 1/16 x 12 1/4 in.); matted: 76.2 x 61 cm (30 x 24 in.). The Cleveland Museum of Art, Norman O. Stone and Ella A. Stone Memorial Fund, 2004.32`,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://clevelandart.org/art/2004.32`,
-  institution: `Cleveland Museum of Art`
+  did_you_know: ``,
+  provenance: ``,
+  tombstone: ``,
+  licence: `http://creativecommons.org/publicdomain/mark/1.0/`,
+  source_url: `https://www.europeana.eu/item/15508/FotoGLV2000_7937c?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb`,
+  institution: `Europeana`
 };
 
 // Build rich context from available fields
@@ -956,6 +1012,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -997,6 +1057,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1072,15 +1246,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1103,6 +1283,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1210,7 +1391,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_cma',
+      collection: 'archai_europeana',
       text,
       authorType: 'visitor',
     }),

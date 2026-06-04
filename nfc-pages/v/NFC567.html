@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Bustle — ARCHAI</title>
+<title>Blue vase [3] — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://media.tepapa.govt.nz/collection/14588/preview" alt="Bustle" loading="eager">
+  <img src="https://media.tepapa.govt.nz/collection/65853/preview" alt="Blue vase [3]" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Bustle</div>
-  <div class="v-sub">bustles · 1880s · PC001103</div>
+  <div class="v-title">Blue vase [3]</div>
+  <div class="v-sub">ceramics · 1991 · 1996-0033-29/3-4</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
     <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
-    <span class="v-meta-tag">History</span>
+    <span class="v-meta-tag">Art</span>
   </div>
 
   <!-- SHARE -->
@@ -783,7 +833,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Bustle</strong> — This bustle has been made from&amp;nbsp;twill fabric woven of black horsehair and cream cotton, and is padded with horsehair. It helped the wearer achieve the fashionable silhouette of the period where the bulk of the skirt was drawn to the back of the body. &amp;nbsp;</div>
+  <div class="v-story"><strong>Blue vase [3]</strong> — I was given the task of paying homage to the clay history of the Expo site and making a site-specific work that was visible over a mezzanine rail from the floor below. I wanted to make the clay fly and develop a life of its own. I was helped by a happy accident. I had a collapse in the kiln of some …</div>
   <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
       <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,14 +881,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">PC001103</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Unknown</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Cotton and horsehair</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">bustles</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1880s</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1996-0033-29/3-4</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Richard Parker</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">hand coiled, earthenware, white slip, turquoise glaze</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Spain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ceramics</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1991</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">195mm, 470mm</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">bustles</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ceramics</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</span></div>
@@ -846,24 +908,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC565.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1966.114/1966.114_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">White-Ground Lekythos (Oil Vessel): Atalanta and Erotes</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1966.114</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/1979.206.361_a.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Drum (Teponaztli)</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 312583</div>
       </a>
       <a class="v-rel-card" href="NFC566.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/as/original/36_100_159ab_O.JPG" loading="lazy"></div>
-        <div class="v-rel-title">Round Box with Design of Bugaku Dance Hat and Musical Instrument</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 45497</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%2Fwebclient%2FDeliveryManager%3Fpid%3D6355696%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Photographic reportage, Florence, 1957-1956. Servizio fotografico Firenze, 1957-1956</div>
+        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6355696_custom_att_2_simple_viewer</div>
       </a>
       <a class="v-rel-card" href="NFC568.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/c2a4b60c-bf43-6a37-e001-a91cba741168/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portrait of Jeanne Wenz</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 42949</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/23/164923-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Lantern Slide - Man &amp; Woman Film Actors, circa 1930s-1940s</div>
+        <div class="v-rel-meta">Museums Victoria · MM 106295</div>
       </a>
       <a class="v-rel-card" href="NFC569.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D17450699&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Ansicht Pergamonaltar</div>
-        <div class="v-rel-meta">Europeana · /08535/item_WJKQS6633QR4JGDQ4UQP7ACMGPL3LG3L</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_667/v1627871101/v2/prod/small/002501_003000/002853_008.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Uli Sigg (Newspaper Reader)</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2012.59</div>
       </a></div>
   </div>
 </div>
@@ -876,7 +938,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/47221" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/790747" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -907,25 +969,25 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Bustle`,
-  type: `bustles`,
-  date: `1880s`,
-  registration: `PC001103`,
+  title: `Blue vase [3]`,
+  type: `ceramics`,
+  date: `1991`,
+  registration: `1996-0033-29/3-4`,
   location: `Te Papa Tongarewa, Wellington`,
-  discipline: `History`,
-  category: `bustles`,
-  description: `This bustle has been made from&nbsp;twill fabric woven of black horsehair and cream cotton, and is padded with horsehair. It helped the wearer achieve the fashionable silhouette of the period where the bulk of the skirt was drawn to the back of the body. &nbsp;`,
-  medium: `Cotton and horsehair`,
-  artist: `Unknown`,
-  culture: ``,
-  dimensions: ``,
-  wall_description: `This bustle has been made from&nbsp;twill fabric woven of black horsehair and cream cotton, and is padded with horsehair. It helped the wearer achieve the fashionable silhouette of the period where the bulk of the skirt was drawn to the back of the body. &nbsp;`,
+  discipline: `Art`,
+  category: `ceramics`,
+  description: `I was given the task of paying homage to the clay history of the Expo site and making a site-specific work that was visible over a mezzanine rail from the floor below. I wanted to make the clay fly and develop a life of its own. I was helped by a happy accident. I had a collapse in the kiln of some smaller pots that left them bent. it rendered them fluid and relieved them of their visual weight. They started to point their toes and raise their chins, so I COULD get these pots to dance. As I worked on the project I assembled a rich soup of ideas that moved backwards and forwards through time. T…`,
+  medium: `hand coiled, earthenware, white slip, turquoise glaze`,
+  artist: `Richard Parker`,
+  culture: `Spain`,
+  dimensions: `195mm, 470mm`,
+  wall_description: `I was given the task of paying homage to the clay history of the Expo site and making a site-specific work that was visible over a mezzanine rail from the floor below. I wanted to make the clay fly and develop a life of its own. I was helped by a happy accident. I had a collapse in the kiln of some smaller pots that left them bent. it rendered them fluid and relieved them of their visual weight. They started to point their toes and raise their chins, so I COULD get these pots to dance. As I work…`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Bustle, 1880s, maker unknown. Gift of Mrs P Cousins & Mrs Newman, 1965. CC BY-NC-ND 4.0. Te Papa (PC001103)`,
+  tombstone: `Blue vase [3], 1991, Kāeo, by Richard Parker. Commissioned 1991, in partnership with Expo NZ 1992 Ltd and the Queen Elizabeth II Arts Council of New Zealand. © Te Papa. CC BY-NC-ND 4.0. Te Papa (1996-0033-29/3-4)`,
   licence: `CC BY-NC-ND 4.0 · metadata CC BY 4.0`,
-  source_url: `https://collections.tepapa.govt.nz/object/47221`,
+  source_url: `https://collections.tepapa.govt.nz/object/790747`,
   institution: `Museum of New Zealand Te Papa Tongarewa`
 };
 
@@ -954,6 +1016,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -995,6 +1061,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1070,15 +1250,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1101,6 +1287,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE

@@ -6,8 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Stockholm.
-Strömkajen, Grand Hotel och Nationalmuseum. — ARCHAI</title>
+<title>Two Poplars in the Alpilles near Saint-Rémy — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -357,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -762,20 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fmm.dimu.org%2Fimage%2F012uP2GaHPJP%3Fdimension%3D1200x1200&amp;type=IMAGE" alt="Stockholm.
-Strömkajen, Grand Hotel och Nationalmuseum." loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1958.32/1958.32_web.jpg" alt="Two Poplars in the Alpilles near Saint-Rémy" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Stockholm.
-Strömkajen, Grand Hotel och Nationalmuseum.</div>
-  <div class="v-sub">IMAGE · Date unknown · /916109/smm_sm_photo_Fo76815</div>
+  <div class="v-title">Two Poplars in the Alpilles near Saint-Rémy</div>
+  <div class="v-sub">Painting · 1889 · 1958.32</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Europeana</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    
+    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
   </div>
 
   <!-- SHARE -->
@@ -786,13 +833,11 @@ Strömkajen, Grand Hotel och Nationalmuseum.</div>
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Stockholm.
-Strömkajen, Grand Hotel och Nationalmuseum.</strong> — Stockholm.
-Strömkajen, Grand Hotel och Nationalmuseum.</div>
+  <div class="v-story"><strong>Two Poplars in the Alpilles near Saint-Rémy</strong> — Vincent van Gogh painted this autumnal landscape while interned at a psychiatric hospital near Saint-Rémy in southern France. Although initially restricted to painting in his room, he soon resumed working outdoors. This painting reveals the full power of his mature style. Trees twist and lean agains…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: http://creativecommons.org/publicdomain/mark/1.0/</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -818,6 +863,16 @@ Strömkajen, Grand Hotel och Nationalmuseum.</div>
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -826,15 +881,19 @@ Strömkajen, Grand Hotel och Nationalmuseum.</div>
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">/916109/smm_sm_photo_Fo76815</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Okänd fotograf</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">IMAGE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Date unknown</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">National Maritime Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">IMAGE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1958.32</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Vincent van Gogh (Dutch, 1853–1890)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oil on fabric</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Netherlands</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1889</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Framed: 81 x 66.7 x 7.3 cm (31 7/8 x 26 1/4 x 2 7/8 in.); Unframed: 61.6 x 45.7 cm (24 1/4 x 18 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">222 Impressionism &amp; Post-Impressionism</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">http://creativecommons.org/publicdomain/mark/1.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -849,24 +908,24 @@ Strömkajen, Grand Hotel och Nationalmuseum.</div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1252.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/24/415224-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Proof Coin - Halfpenny, Great Britain, 1972</div>
-        <div class="v-rel-meta">Museums Victoria · NU 47576</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669050/006321.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Viscondessa de Castro</div>
+        <div class="v-rel-meta">Brasiliana Museus · viscondessa-de-castro</div>
       </a>
       <a class="v-rel-card" href="NFC1253.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627902122/v2/prod/small/005501_006000/005791_009.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Schematic design model, Verbena Heights (1992–1997), Hong Kong</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2018.5</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4305/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">A FIFTH ON A MAZE</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.263-2020</div>
       </a>
       <a class="v-rel-card" href="NFC1255.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/668654/006416.jpg" loading="lazy"></div>
-        <div class="v-rel-title">General João Guilherme de Bruce</div>
-        <div class="v-rel-meta">Brasiliana Museus · general-joao-guilherme-de-bruce</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/as/original/23_225_57_O1_sf.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Chinese child with musical instrument</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 45823</div>
       </a>
       <a class="v-rel-card" href="NFC1256.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/YzaVF/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Nederlandse 10 cent, 1944</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100275</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680062/default-43-1.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Nossa Senhora das Dores</div>
+        <div class="v-rel-meta">Brasiliana Museus · nossa-senhora-das-dores-18</div>
       </a></div>
   </div>
 </div>
@@ -879,7 +938,7 @@ Strömkajen, Grand Hotel och Nationalmuseum.</div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.europeana.eu/item/916109/smm_sm_photo_Fo76815?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1958.32" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -910,28 +969,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Stockholm.
-Strömkajen, Grand Hotel och Nationalmuseum.`,
-  type: `IMAGE`,
-  date: `Date unknown`,
-  registration: `/916109/smm_sm_photo_Fo76815`,
-  location: `National Maritime Museum`,
-  discipline: ``,
-  category: `IMAGE`,
-  description: `Stockholm.
-Strömkajen, Grand Hotel och Nationalmuseum.`,
-  medium: ``,
-  artist: `Okänd fotograf`,
-  culture: ``,
-  dimensions: ``,
+  title: `Two Poplars in the Alpilles near Saint-Rémy`,
+  type: `Painting`,
+  date: `1889`,
+  registration: `1958.32`,
+  location: `222 Impressionism & Post-Impressionism`,
+  discipline: `Modern European Painting and Sculpture`,
+  category: `Painting`,
+  description: `Vincent van Gogh painted this autumnal landscape while interned at a psychiatric hospital near Saint-Rémy in southern France. Although initially restricted to painting in his room, he soon resumed working outdoors. This painting reveals the full power of his mature style. Trees twist and lean against a darkening sky, while the intense colors applied with charged brushstrokes convey his emotional reaction to the subject.`,
+  medium: `oil on fabric`,
+  artist: `Vincent van Gogh (Dutch, 1853–1890)`,
+  culture: `Netherlands`,
+  dimensions: `Framed: 81 x 66.7 x 7.3 cm (31 7/8 x 26 1/4 x 2 7/8 in.); Unframed: 61.6 x 45.7 cm (24 1/4 x 18 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
-  licence: `http://creativecommons.org/publicdomain/mark/1.0/`,
-  source_url: `https://www.europeana.eu/item/916109/smm_sm_photo_Fo76815?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb`,
-  institution: `Europeana`
+  did_you_know: `During his Saint-Rémy period, Van Gogh painted 150 canvases and some 100 drawings. He painted nature as he saw it without enhancement and felt that painting would help cure him of his illness.`,
+  provenance: `[{"description":"Theo van Gogh [1857-1891] Paris, France, by descent to the artist's brother from the artist's estate.","citations":[],"footnotes":null,"date":"1889–1891","sortorder":1},{"description":"Johanna van Gogh-Bonger [1862-1915] his wife, Amsterdam, Netherlands, by gift to Willem Steenhoff.…`,
+  tombstone: `Two Poplars in the Alpilles near Saint-Rémy, 1889. Vincent van Gogh (Dutch, 1853–1890). Oil on fabric; framed: 81 x 66.7 x 7.3 cm (31 7/8 x 26 1/4 x 2 7/8 in.); unframed: 61.6 x 45.7 cm (24 1/4 x 18 in.). The Cleveland Museum of Art, Bequest of Leonard C. Hanna Jr., 1958.32`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://clevelandart.org/art/1958.32`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -959,6 +1016,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -1000,6 +1061,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1075,15 +1250,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1106,6 +1287,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1213,7 +1395,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_europeana',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

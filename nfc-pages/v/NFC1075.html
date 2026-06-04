@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Idiophone with an iyọ́bà — ARCHAI</title>
+<title>The Call — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/ao/original/DT6580.jpg" alt="Idiophone with an iyọ́bà" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1943.392/1943.392_web.jpg" alt="The Call" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Idiophone with an iyọ́bà</div>
-  <div class="v-sub">Idiophone · 18th–19th century · 316558</div>
+  <div class="v-title">The Call</div>
+  <div class="v-sub">Painting · 1902 · 1943.392</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">The Michael C. Rockefeller Wing</span>
+    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
   </div>
 
   <!-- SHARE -->
@@ -783,7 +833,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Idiophone with an iyọ́bà</strong> — Idiophone with an iyọ́bà. Idiophone. Ivory. The Michael C. Rockefeller Wing. Edo peoples. by Ìgbèsànmwà (ivory- and wood- carving guild) artists. Bone/Ivory-Musical Instruments. 18th–19th century</div>
+  <div class="v-story"><strong>The Call</strong> — Painted on a remote island in Polynesia a year before the artist's death, The Call belongs to a series of late works that explore the mysteries of life and death. Two women stand with bare feet, as if on sacred ground. One woman gestures to someone outside the picture, perhaps responding to a &quot;call&quot;…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,16 +881,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">316558</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Ìgbèsànmwà (ivory- and wood- carving guild) artists</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Ivory</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Edo peoples</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">The Michael C. Rockefeller Wing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Bone/Ivory-Musical Instruments</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">18th–19th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">H. 12 1/4 in. × W. 2 in. × D. 1 3/4 in. (31.1 × 5.1 × 4.5 cm)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 342</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Idiophone</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1943.392</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Paul Gauguin (French, 1848–1903)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oil on fabric</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, late 19th-early 20th Century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1902</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Framed: 160.5 x 119 x 9.5 cm (63 3/16 x 46 7/8 x 3 3/4 in.); Unframed: 131.3 x 89.5 cm (51 11/16 x 35 1/4 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">222 Impressionism &amp; Post-Impressionism</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
@@ -848,24 +908,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1073.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/C4491 89.4.2035.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Ubo akwara (pluriarc)</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 502613</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/6ddbfb36-be11-1691-c6fc-384fb6fc2671/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Mademoiselle Jubin</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 157221</div>
       </a>
       <a class="v-rel-card" href="NFC1074.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669028/006328.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Baronesa de Taquari (primeira)</div>
-        <div class="v-rel-meta">Brasiliana Museus · baronesa-de-taquari-primeira</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/565dd29f-6c02-3f31-3db2-46902059f047/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Wounded Lioness</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 883</div>
       </a>
       <a class="v-rel-card" href="NFC1076.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2023NR4039/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">BBC Microcomputer</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · B.41-2022</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP318718.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Alto Recorder in F</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 501520</div>
       </a>
       <a class="v-rel-card" href="NFC1077.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680895/000490a-2-scaled-1.jpg" loading="lazy"></div>
-        <div class="v-rel-title">João VI e Carlota Joaquina</div>
-        <div class="v-rel-meta">Brasiliana Museus · joao-vi-e-carlota-joaquina</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/348697/preview" loading="lazy"></div>
+        <div class="v-rel-title">Barrister's wig</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH017822/1</div>
       </a></div>
   </div>
 </div>
@@ -878,7 +938,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/316558" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1943.392" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -909,26 +969,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Idiophone with an iyọ́bà`,
-  type: `Idiophone`,
-  date: `18th–19th century`,
-  registration: `316558`,
-  location: `Gallery 342`,
-  discipline: `The Michael C. Rockefeller Wing`,
-  category: `Bone/Ivory-Musical Instruments`,
-  description: `Idiophone with an iyọ́bà. Idiophone. Ivory. The Michael C. Rockefeller Wing. Edo peoples. by Ìgbèsànmwà (ivory- and wood- carving guild) artists. Bone/Ivory-Musical Instruments. 18th–19th century`,
-  medium: `Ivory`,
-  artist: `Ìgbèsànmwà (ivory- and wood- carving guild) artists`,
-  culture: `Edo peoples`,
-  dimensions: `H. 12 1/4 in. × W. 2 in. × D. 1 3/4 in. (31.1 × 5.1 × 4.5 cm)`,
+  title: `The Call`,
+  type: `Painting`,
+  date: `1902`,
+  registration: `1943.392`,
+  location: `222 Impressionism & Post-Impressionism`,
+  discipline: `Modern European Painting and Sculpture`,
+  category: `Painting`,
+  description: `Painted on a remote island in Polynesia a year before the artist's death, The Call belongs to a series of late works that explore the mysteries of life and death. Two women stand with bare feet, as if on sacred ground. One woman gestures to someone outside the picture, perhaps responding to a "call" from fate or destiny. Gauguin realized his ambition of painting from memory and the imagination through such mysterious, dreamlike images.`,
+  medium: `oil on fabric`,
+  artist: `Paul Gauguin (French, 1848–1903)`,
+  culture: `France, late 19th-early 20th Century`,
+  dimensions: `Framed: 160.5 x 119 x 9.5 cm (63 3/16 x 46 7/8 x 3 3/4 in.); Unframed: 131.3 x 89.5 cm (51 11/16 x 35 1/4 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
+  did_you_know: `Although known as one of the founders of modern art, Gauguin found inspiration in ancient Greek, Roman, and Egyptian art. The woman with the pointing finger on the right side of this painting was taken from a figure on the Parthenon frieze.`,
+  provenance: `[{"description":"Ambroise Vollard [1866-1939], Paris, France","citations":[],"footnotes":[],"date":null,"sortorder":null},{"description":"Baron Wolf Kohner [1866-1937], Budapest, Hungary","citations":[],"footnotes":[],"date":"by 1912-1933","sortorder":2},{"description":"(Wildenstein & Co., New York,…`,
+  tombstone: `The Call, 1902. Paul Gauguin (French, 1848–1903). Oil on fabric; framed: 160.5 x 119 x 9.5 cm (63 3/16 x 46 7/8 x 3 3/4 in.); unframed: 131.3 x 89.5 cm (51 11/16 x 35 1/4 in.). The Cleveland Museum of Art, Gift of the Hanna Fund, 1943.392`,
   licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/316558`,
-  institution: `The Metropolitan Museum of Art`
+  source_url: `https://clevelandart.org/art/1943.392`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -956,6 +1016,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -997,6 +1061,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1072,15 +1250,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1103,6 +1287,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1210,7 +1395,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_met',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Primeira comunhão na América — ARCHAI</title>
+<title>The Burning of the Houses of Lords and Commons, 16 October 1834 — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/668237/006511.jpg" alt="Primeira comunhão na América" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1942.647/1942.647_web.jpg" alt="The Burning of the Houses of Lords and Commons, 16 October 1834" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Primeira comunhão na América</div>
-  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · 1892 · primeira-comunhao-na-america</div>
+  <div class="v-title">The Burning of the Houses of Lords and Commons, 16 October 1834</div>
+  <div class="v-sub">Painting · 1835 · 1942.647</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Brasiliana Museus</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Brasiliana Museus</span>
+    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
   </div>
 
   <!-- SHARE -->
@@ -783,11 +833,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Primeira comunhão na América</strong> — A figura central representa provavelmente Cristóvão Colombo comungando na primeira missa celebrada na América. Ele veste roupa vermelha com orla branca. Está ajoelhado em almofada verde, segurando a alva para receber a comunhão. Do lado esquerdo, altar armado ao ar livre, coberto com toalha rosa bor…</div>
+  <div class="v-story"><strong>The Burning of the Houses of Lords and Commons, 16 October 1834</strong> — Fire consumed London’s famous Houses of Parliament on the night of October 16, 1834, and people gathered along the banks of the river Thames to gaze in awe at the horrifying spectacle. Initially, a low tide made it difficult to pump water to land and hampered steamers towing firefighting equipment a…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -813,6 +863,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,18 +881,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">primeira-comunhao-na-america</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1892</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 220,00 cm · largura 251,00 cm</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1942.647</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Joseph Mallord William Turner (British, 1775–1851)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oil on canvas</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">England, 19th century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1835</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Framed: 123.5 x 153.5 x 12 cm (48 5/8 x 60 7/16 x 4 3/4 in.); Unframed: 92 x 123.2 cm (36 1/4 x 48 1/2 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">203B British Painting and Decorative Arts</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -847,24 +908,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC689.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15925599&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Mappe (aus: Museum im Werden)</div>
-        <div class="v-rel-meta">Europeana · /08535/item_K5CCLMHCDVCNZB4DXXVWDHU6KJYTV7CR</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1976.89/1976.89_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Red-Figure Eye Cup: Warriors (A), Musician and Youths (B)</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1976.89</div>
       </a>
       <a class="v-rel-card" href="NFC690.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1958.39/1958.39_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">The Red Kerchief</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1958.39</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/BUXWc/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Godfried III met de Bult, hertog van Neder-Lotharingen</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010008</div>
       </a>
       <a class="v-rel-card" href="NFC692.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/kaCkm/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Nederlandse dukaat, 1927</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100268</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DT9416.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Crocodile whistle and rattle</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 313335</div>
       </a>
       <a class="v-rel-card" href="NFC693.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2002.45/2002.45_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Sand Dunes, Carson Desert, Nevada</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2002.45</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D17450699&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Ansicht Pergamonaltar</div>
+        <div class="v-rel-meta">Europeana · /08535/item_WJKQS6633QR4JGDQ4UQP7ACMGPL3LG3L</div>
       </a></div>
   </div>
 </div>
@@ -877,7 +938,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/primeira-comunhao-na-america/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1942.647" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -908,26 +969,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Primeira comunhão na América`,
-  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  date: `1892`,
-  registration: `primeira-comunhao-na-america`,
-  location: `Brasiliana Museus`,
-  discipline: `Brasiliana Museus`,
-  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  description: `A figura central representa provavelmente Cristóvão Colombo comungando na primeira missa celebrada na América. Ele veste roupa vermelha com orla branca. Está ajoelhado em almofada verde, segurando a alva para receber a comunhão. Do lado esquerdo, altar armado ao ar livre, coberto com toalha rosa bordada em dourado; por trás do altar, uma cruz em madeira, dois castiçais dourados com velas acesas, vaso com flores silvestres, um cálice, a patena e o livro de missa. O padre segura a Santa Hóstia na mão e voltado para a tripulação prepara-se para dar a comunhão. Próximo ao altar, dois homens indíge…`,
-  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  artist: ``,
-  culture: `Brazil`,
-  dimensions: `altura 220,00 cm · largura 251,00 cm`,
-  wall_description: `A figura central representa provavelmente Cristóvão Colombo comungando na primeira missa celebrada na América. Ele veste roupa vermelha com orla branca. Está ajoelhado em almofada verde, segurando a alva para receber a comunhão. Do lado esquerdo, altar armado ao ar livre, coberto com toalha rosa bordada em dourado; por trás do altar, uma cruz em madeira, dois castiçais dourados com velas acesas, vaso com flores silvestres, um cálice, a patena e o livro de missa. O padre segura a Santa Hóstia na …`,
+  title: `The Burning of the Houses of Lords and Commons, 16 October 1834`,
+  type: `Painting`,
+  date: `1835`,
+  registration: `1942.647`,
+  location: `203B British Painting and Decorative Arts`,
+  discipline: `Modern European Painting and Sculpture`,
+  category: `Painting`,
+  description: `Fire consumed London’s famous Houses of Parliament on the night of October 16, 1834, and people gathered along the banks of the river Thames to gaze in awe at the horrifying spectacle. Initially, a low tide made it difficult to pump water to land and hampered steamers towing firefighting equipment along the river. The blaze burned uncontrollably for hours.J. M. W. Turner records the struggle as the boats in the lower-right corner head toward the flames. Although Turner based the painting on an actual event, he magnified the height of the flames, using the disaster as the starting point to expr…`,
+  medium: `oil on canvas`,
+  artist: `Joseph Mallord William Turner (British, 1775–1851)`,
+  culture: `England, 19th century`,
+  dimensions: `Framed: 123.5 x 153.5 x 12 cm (48 5/8 x 60 7/16 x 4 3/4 in.); Unframed: 92 x 123.2 cm (36 1/4 x 48 1/2 in.)`,
+  wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: `Primeira comunhão na América. 1892. Brasiliana Museus`,
-  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
-  source_url: `https://brasiliana.museus.gov.br/acervos/primeira-comunhao-na-america/`,
-  institution: `Brasiliana Museus`
+  did_you_know: `Turner painted two versions of this event. Cleveland's painting views the fire downriver, from the southeast bank of the Thames, while the second version at the Philadelphia Museum of Art views the fire from directly across Westminster Bridge.`,
+  provenance: `[{"description":"Bought from the artist by John Garth Marshall [1765-1845], Headingly House, Leeds, United Kingdom, and by descent.","citations":[],"footnotes":null,"date":null,"sortorder":null},{"description":"(Christie's, London, United Kingdom, April 28, 1888, under the name of Ponsford.","citati…`,
+  tombstone: `The Burning of the Houses of Lords and Commons, 16 October 1834, 1835. Joseph Mallord William Turner (British, 1775–1851). Oil on canvas; framed: 123.5 x 153.5 x 12 cm (48 5/8 x 60 7/16 x 4 3/4 in.); unframed: 92 x 123.2 cm (36 1/4 x 48 1/2 in.). The Cleveland Museum of Art, Bequest of John L. Severance, 1942.647`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://clevelandart.org/art/1942.647`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -955,6 +1016,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -996,6 +1061,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1071,15 +1250,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1102,6 +1287,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1209,7 +1395,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_brasiliana',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

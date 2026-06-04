@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Madame Léon Clapisson — ARCHAI</title>
+<title>Franse button voor juryleden bij onbekende gelegenheid, 1900 — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -356,6 +356,56 @@ body::after {
   -webkit-tap-highlight-color: transparent;
 }
 .v-chat-send:active { background: #a5d0c4; }
+
+.v-voice-wrap {
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+}
+.v-voice-label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-voice-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.v-voice-buttons button {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  padding: 8px 10px;
+  border: 1px solid var(--border2);
+  background: transparent;
+  color: var(--text2);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-buttons button.active,
+.v-voice-buttons button:active {
+  border-color: var(--accent2);
+  color: var(--accent2);
+  background: rgba(143,188,176,0.06);
+}
+.v-voice-buttons button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  color: var(--text3);
+}
+.v-voice-status {
+  margin-top: 8px;
+  color: var(--text3);
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
 
 .v-response {
   display: none;
@@ -761,18 +811,27 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/a7af09dc-5743-062e-4802-b6435e67eaa5/full/843,/0/default.jpg" alt="Madame Léon Clapisson" loading="eager">
+  <img src="https://iiif.micr.io/zxvEg/full/max/0/default.jpg" alt="Franse button voor juryleden bij onbekende gelegenheid, 1900" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Madame Léon Clapisson</div>
-  <div class="v-sub">Painting · 1883 · 16622</div>
+  <div class="v-title">Franse button voor juryleden bij onbekende gelegenheid, 1900</div>
+  <div class="v-sub">historiepenning · 2026-02-14T04:16:52Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+        &lt;setSpec&gt;2601&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:creator&gt;Christofle&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1900 · 200100016</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Art Institute of Chicago</span>
+    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Painting and Sculpture of Europe</span>
+    
   </div>
 
   <!-- SHARE -->
@@ -783,11 +842,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Madame Léon Clapisson</strong> — Madame Léon Clapisson. Painting. Oil on canvas. Painting and Sculpture of Europe. Pierre-Auguste Renoir (French, 1841–1919). painting. 1883. France. Impressionism</div>
+  <div class="v-story"><strong>Franse button voor juryleden bij onbekende gelegenheid, 1900</strong> — Verguld zilveren plaatje met knoop aan de achterkant, met afbeelding van een vrouw, met palmtak en hoorn, zittend onder een stralende mercuriusstaf, met opschriften 1900 en JURY</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
     </div>
 
   <div class="v-divider"></div>
@@ -813,6 +872,16 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
+    <div class="v-voice-wrap">
+      <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-buttons">
+        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+      </div>
+      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+    </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -821,19 +890,25 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">16622</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Pierre-Auguste Renoir (French, 1841–1919)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Oil on canvas</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Painting and Sculpture of Europe</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">painting</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1883</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">81.2 × 65.3 cm (32 × 25 3/4 in.); Framed: 103.2 × 87 × 10.8 cm (40 5/8 × 34 1/4 × 4 1/4 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">200100016</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Christofle</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">zilver</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">historiepenning</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-02-14T04:16:52Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+        &lt;setSpec&gt;2601&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:creator&gt;Christofle&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1900</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">historiepenning</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -848,24 +923,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1284.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2008BT4219/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Telephone</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · W.67:1-2002</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/379330?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">banknote</div>
+        <div class="v-rel-meta">Auckland Museum · 30780</div>
       </a>
       <a class="v-rel-card" href="NFC1285.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018LA6477/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Murphy A58V</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · W.41-1983</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/910705/preview" loading="lazy"></div>
+        <div class="v-rel-title">View of the Indians of Terra del Fuego, with a representation of a hut, and their domestic mode of living. Plate 6. From the book New, authentic, and complete collection of voyages round the world.</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · RB000015/006a</div>
       </a>
       <a class="v-rel-card" href="NFC1287.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669058/006319.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Barão de São Borja</div>
-        <div class="v-rel-meta">Brasiliana Museus · barao-de-sao-borja</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/646968/21006-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Corcovado</div>
+        <div class="v-rel-meta">Brasiliana Museus · corcovado</div>
       </a>
       <a class="v-rel-card" href="NFC1288.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%2Fwebclient%2FDeliveryManager%3Fpid%3D6331294%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Servizio fotografico Firenze, 1973</div>
-        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6331294_custom_att_2_simple_viewer</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/h2_1979.206.1097.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Drum</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 313290</div>
       </a></div>
   </div>
 </div>
@@ -878,7 +953,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/16622" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/200100016" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -909,26 +984,35 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Madame Léon Clapisson`,
-  type: `Painting`,
-  date: `1883`,
-  registration: `16622`,
-  location: `Art Institute of Chicago`,
-  discipline: `Painting and Sculpture of Europe`,
-  category: `painting`,
-  description: `Madame Léon Clapisson. Painting. Oil on canvas. Painting and Sculpture of Europe. Pierre-Auguste Renoir (French, 1841–1919). painting. 1883. France. Impressionism`,
-  medium: `Oil on canvas`,
-  artist: `Pierre-Auguste Renoir (French, 1841–1919)`,
-  culture: `France`,
-  dimensions: `81.2 × 65.3 cm (32 × 25 3/4 in.); Framed: 103.2 × 87 × 10.8 cm (40 5/8 × 34 1/4 × 4 1/4 in.)`,
+  title: `Franse button voor juryleden bij onbekende gelegenheid, 1900`,
+  type: `historiepenning`,
+  date: `2026-02-14T04:16:52Z</datestamp>
+        <setSpec>260239</setSpec>
+        <setSpec>261106</setSpec>
+        <setSpec>260251</setSpec>
+        <setSpec>2601</setSpec>
+      </header>
+      <metadata>
+        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
+          <dc:creator>Christofle</dc:creator>
+          <dc:date>1900`,
+  registration: `200100016`,
+  location: `Rijksmuseum, Amsterdam`,
+  discipline: ``,
+  category: `historiepenning`,
+  description: `Verguld zilveren plaatje met knoop aan de achterkant, met afbeelding van een vrouw, met palmtak en hoorn, zittend onder een stralende mercuriusstaf, met opschriften 1900 en JURY`,
+  medium: `zilver`,
+  artist: `Christofle`,
+  culture: ``,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://www.artic.edu/artworks/16622`,
-  institution: `Art Institute of Chicago`
+  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
+  source_url: `https://www.rijksmuseum.nl/en/collection/200100016`,
+  institution: `Rijksmuseum, Amsterdam`
 };
 
 // Build rich context from available fields
@@ -956,6 +1040,10 @@ const OBJECT_RECORD = [
 ].filter(Boolean).join('\n');
 
 let visitorTone = 'guide';
+let visitorLastReply = '';
+let visitorSpeechRecognition = null;
+let visitorSpeechListening = false;
+let visitorSpeechStatus = '';
 
 const VISITOR_TONES = {
   guide: {
@@ -997,6 +1085,120 @@ function setVisitorTone(tone) {
   if (!VISITOR_TONES[tone]) return;
   visitorTone = tone;
   updateVisitorToneUI();
+}
+
+function getVisitorSpeechLanguageCode() {
+  return document.documentElement.lang || navigator.language || 'en-AU';
+}
+
+function updateVisitorSpeechUI(message = '') {
+  if (message) visitorSpeechStatus = message;
+  const statusEl = document.getElementById('v-voice-status');
+  const startBtn = document.getElementById('v-voice-start-btn');
+  const stopBtn = document.getElementById('v-voice-stop-btn');
+  const readBtn = document.getElementById('v-voice-read-btn');
+  const silenceBtn = document.getElementById('v-voice-silence-btn');
+  const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+
+  if (statusEl) {
+    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening;
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (readBtn) readBtn.disabled = !visitorLastReply;
+  if (silenceBtn) silenceBtn.disabled = !speaking;
+}
+
+function ensureVisitorSpeechRecognition() {
+  if (visitorSpeechRecognition) return visitorSpeechRecognition;
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) return null;
+
+  const recognition = new SpeechRecognition();
+  recognition.lang = getVisitorSpeechLanguageCode();
+  recognition.interimResults = false;
+  recognition.maxAlternatives = 1;
+
+  recognition.onstart = () => {
+    visitorSpeechListening = true;
+    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = event.results?.[0]?.[0]?.transcript?.trim();
+    if (!transcript) return;
+    const input = document.getElementById('chatInput');
+    if (input) input.value = transcript;
+    visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+    updateVisitorSpeechUI();
+    askObject(transcript);
+  };
+
+  recognition.onerror = event => {
+    const label = event?.error === 'not-allowed'
+      ? 'Microphone access was blocked in this browser.'
+      : 'Voice capture ran into a browser issue. You can still type your question.';
+    visitorSpeechStatus = label;
+    updateVisitorSpeechUI();
+  };
+
+  recognition.onend = () => {
+    visitorSpeechListening = false;
+    updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
+  };
+
+  visitorSpeechRecognition = recognition;
+  return recognition;
+}
+
+function startVisitorVoiceQuestion() {
+  const recognition = ensureVisitorSpeechRecognition();
+  if (!recognition) {
+    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    return;
+  }
+  recognition.lang = getVisitorSpeechLanguageCode();
+  visitorSpeechStatus = 'Starting microphone…';
+  updateVisitorSpeechUI();
+  try {
+    recognition.start();
+  } catch {
+    updateVisitorSpeechUI('Microphone is already active. Try again in a moment.');
+  }
+}
+
+function stopVisitorVoiceQuestion() {
+  if (!visitorSpeechRecognition) return;
+  visitorSpeechStatus = 'Stopping microphone…';
+  updateVisitorSpeechUI();
+  visitorSpeechRecognition.stop();
+}
+
+function speakVisitorReply() {
+  if (typeof speechSynthesis === 'undefined') {
+    updateVisitorSpeechUI('This browser does not support speech playback.');
+    return;
+  }
+  const text = visitorLastReply || '';
+  if (!text) {
+    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    return;
+  }
+  speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getVisitorSpeechLanguageCode();
+  utterance.rate = 0.98;
+  utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
+  utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
+  utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
+  speechSynthesis.speak(utterance);
+  updateVisitorSpeechUI();
+}
+
+function stopVisitorSpeech() {
+  if (typeof speechSynthesis === 'undefined') return;
+  speechSynthesis.cancel();
+  updateVisitorSpeechUI('Audio stopped.');
 }
 
 function buildSystemPrompt() {
@@ -1072,15 +1274,21 @@ function askObject(presetQ) {
     clearInterval(thinkingInterval);
     const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   })
   .catch(() => {
     clearInterval(thinkingInterval);
     // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
     const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
+    updateVisitorSpeechUI();
   });
 }
 
@@ -1103,6 +1311,7 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
   if (e.key === 'Enter') { e.preventDefault(); askObject(); }
 });
 updateVisitorToneUI();
+updateVisitorSpeechUI();
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1210,7 +1419,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_aic',
+      collection: 'archai_rijks',
       text,
       authorType: 'visitor',
     }),
