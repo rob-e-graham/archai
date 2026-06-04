@@ -207,6 +207,33 @@ body::after {
 }
 .v-story strong { color: var(--text); font-weight: 400; }
 
+.v-rights-note {
+  margin: -8px 0 24px;
+  padding: 14px 16px;
+  border: 1px solid rgba(143,188,176,0.24);
+  background: rgba(255,255,255,0.02);
+  animation: slideUp 0.6s ease 0.34s both;
+}
+.v-rights-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+.v-rights-text {
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+}
+.v-rights-detail {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  line-height: 1.7;
+  margin-top: 8px;
+}
+
 /* ── DIVIDER ── */
 .v-divider {
   height: 1px;
@@ -744,7 +771,7 @@ body::after {
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">{{SOURCE_INSTITUTION}}</span>
-    <span class="v-meta-tag lic">{{OBJECT_LICENCE}}</span>
+    {{LEGAL_STATUS_TAG}}
     {{DISCIPLINE_TAG}}
   </div>
 
@@ -757,6 +784,7 @@ body::after {
   </div>
 
   <div class="v-story">{{OBJECT_STORY}}</div>
+  {{RIGHTS_NOTE}}
 
   <div class="v-divider"></div>
 

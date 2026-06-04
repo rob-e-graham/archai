@@ -1,6 +1,6 @@
 # ARCHAI Progress Log
 
-Last updated: 2026-06-03
+Last updated: 2026-06-04
 Maintained as an active handoff note so Claude, Codex, and Rob can quickly see where the work is up to if a session ends or tokens run out.
 
 ## Current focus
@@ -101,6 +101,18 @@ Latest collection harvests were run successfully and AUX.IO pages were regenerat
 Last noted AUX.IO output:
 - `1311` generated visitor pages in [nfc-pages/v](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v)
 - live source spread: MV 39, Met 42, V&A 150, AIC 150, CMA 150, Rijks 150, Europeana 150, Auckland 120, Te Papa 120, M+ 120, Brasiliana 120
+
+### Rights visibility
+
+Legal status is now being surfaced more clearly across the public-facing stack:
+
+- [ARCHAI_v10_8.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ARCHAI_v10_8.html) now normalizes raw licence / rights fields into visitor-readable statuses such as `Open access`, `Attribution required`, `Share alike`, `Restricted / mixed`, `Restricted`, and `Check source`
+- the public website demo at [fineartmedia-tech-web/archai.html](/Users/robgraham/Desktop/APPS/fineartmedia-tech-web/archai.html) now shows the same legal status language on result cards and object views
+- AUX.IO generation now carries legal status, reuse guidance, and raw licence / rights detail into the visitor page output instead of only a raw licence label
+
+Important note:
+- item-level rights still matter more than collection-level branding
+- this normalized status layer is a display layer, not a substitute for preserving the original source licence / rights metadata
 
 ### Europeana / Keytec
 

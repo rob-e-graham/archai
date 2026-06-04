@@ -74,6 +74,58 @@ function truncate(s, len = 300) {
   return s.length > len ? s.substring(0, len) + '…' : s;
 }
 
+function getObjectRightsInfo(payload = {}) {
+  const licence = String(payload?.licence || '').trim();
+  const mediaRightsTitle = String(payload?.media_rights_title || '').trim();
+  const rightsMode = String(payload?.media_rights_mode || '').trim();
+  const rightsNotes = Array.isArray(payload?.rights_notes)
+    ? payload.rights_notes.filter(Boolean).join(' · ')
+    : String(payload?.rights_notes || '').trim();
+  const combined = [licence, mediaRightsTitle, rightsMode, rightsNotes].filter(Boolean).join(' · ');
+  const normalized = combined.toLowerCase();
+  const detailParts = [];
+
+  if (licence) detailParts.push(licence);
+  if (mediaRightsTitle && mediaRightsTitle !== licence) detailParts.push(mediaRightsTitle);
+  if (rightsMode === 'api_preview_only') detailParts.push('API preview only');
+
+  const detail = detailParts.join(' · ') || rightsNotes || 'Source rights not yet specified';
+
+  let status = 'Check source';
+  let guidance = 'Review the source record and item-level rights before reuse.';
+  let color = '#a09890';
+  let border = 'rgba(160,152,144,0.28)';
+
+  if (/all rights reserved|rights reserved|in copyright|http:\/\/rightsstatements\.org\/vocab\/inc|api_preview_only/.test(normalized)) {
+    status = 'Restricted';
+    guidance = 'Do not reuse the media without permission from the rights holder or source institution.';
+    color = '#d18d78';
+    border = 'rgba(209,141,120,0.28)';
+  } else if (/cc by-nc|by-nc|non-commercial|metadata cc by|cc0 metadata|m\+ api service non-commercial/.test(normalized)) {
+    status = 'Restricted / mixed';
+    guidance = 'Metadata may be open, but media reuse is limited, non-commercial, or preview-only.';
+    color = '#c8a96e';
+    border = 'rgba(200,169,110,0.28)';
+  } else if (/cc by-sa|by-sa/.test(normalized)) {
+    status = 'Share alike';
+    guidance = 'Reusable with attribution, and derivative use should keep the same licence terms.';
+    color = '#9b8fbf';
+    border = 'rgba(155,143,191,0.28)';
+  } else if (/cc by|creative commons attribution|© auckland museum cc by/.test(normalized)) {
+    status = 'Attribution required';
+    guidance = 'Reusable with attribution to the source institution and creator where required.';
+    color = '#8fbcb0';
+    border = 'rgba(143,188,176,0.28)';
+  } else if (/cc0|public domain|public domain mark|dom[ií]nio p[úu]blico|no known copyright restrictions|open access/.test(normalized)) {
+    status = 'Open access';
+    guidance = 'Appears reusable under open-access or public-domain terms.';
+    color = '#8fbcb0';
+    border = 'rgba(143,188,176,0.28)';
+  }
+
+  return { status, guidance, detail, color, border };
+}
+
 // ── MAIN ────────────────────────────────────────────────────────
 async function main() {
   console.log('\n  ╔══════════════════════════════════════════════╗');
@@ -216,6 +268,7 @@ async function main() {
     const provenance = p.provenance || '';
     const tombstone = p.tombstone || '';
     const licence = p.licence || 'Open Access';
+    const rights = getObjectRightsInfo(p);
     const sourceUrl = p.source_url || '#';
     const imgMedium = p.media_medium || p.media_thumbnail || '';
     const imgThumb = p.media_thumbnail || '';
@@ -234,9 +287,15 @@ async function main() {
     const discTag = discipline
       ? `<span class="v-meta-tag">${escHtml(discipline)}</span>`
       : '';
+    const legalStatusTag = `<span class="v-meta-tag legal" style="border-color:${rights.border};color:${rights.color};">${escHtml(rights.status)}</span>`;
 
     // Story
     const story = `<strong>${escHtml(title)}</strong> — ${escHtml(truncate(description, 300))}`;
+    const rightsNote = `<div class="v-rights-note" style="border-color:${rights.border};">
+      <div class="v-rights-label" style="color:${rights.color};">Legal status</div>
+      <div class="v-rights-text"><strong style="color:${rights.color};font-weight:400;">${escHtml(rights.status)}</strong> — ${escHtml(rights.guidance)}</div>
+      <div class="v-rights-detail">Licence / rights: ${escHtml(rights.detail)}</div>
+    </div>`;
 
     // Chips
     const chips = ['What are you?', 'Tell me your history', 'How were you used?', 'What are you made of?'];
@@ -256,7 +315,9 @@ async function main() {
       ['Dimensions', dimensions],
       ['Location', location],
       ['Object Type', type],
-      ['Licence', licence],
+      ['Legal Status', rights.status],
+      ['Reuse Guidance', rights.guidance],
+      ['Licence / Rights', rights.detail],
     ].filter(([, v]) => v);
 
     const metaRowsHtml = metaFields.map(([k, v]) =>
@@ -322,6 +383,8 @@ async function main() {
       .replace(/\{\{SOURCE_INSTITUTION\}\}/g, escHtml(sourceInstitution))
       .replace(/\{\{HERO_IMAGE\}\}/g, heroHtml)
       .replace(/\{\{DISCIPLINE_TAG\}\}/g, discTag)
+      .replace(/\{\{LEGAL_STATUS_TAG\}\}/g, legalStatusTag)
+      .replace(/\{\{RIGHTS_NOTE\}\}/g, rightsNote)
       .replace(/\{\{CHIPS_HTML\}\}/g, chipsHtml)
       .replace(/\{\{META_ROWS\}\}/g, metaRowsHtml)
       .replace(/\{\{RELATED_HTML\}\}/g, relatedHtml);

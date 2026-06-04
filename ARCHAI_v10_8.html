@@ -1542,6 +1542,50 @@ function getCollectionSummary(counts, keys) {
     .join(' + ');
 }
 
+function getObjectRightsInfo(payload = {}) {
+  const licence = String(payload?.licence || '').trim();
+  const mediaRightsTitle = String(payload?.media_rights_title || '').trim();
+  const rightsMode = String(payload?.media_rights_mode || '').trim();
+  const rightsNotes = Array.isArray(payload?.rights_notes)
+    ? payload.rights_notes.filter(Boolean).join(' · ')
+    : String(payload?.rights_notes || '').trim();
+  const combined = [licence, mediaRightsTitle, rightsMode, rightsNotes].filter(Boolean).join(' · ');
+  const normalized = combined.toLowerCase();
+  const detailParts = [];
+  if (licence) detailParts.push(licence);
+  if (mediaRightsTitle && mediaRightsTitle !== licence) detailParts.push(mediaRightsTitle);
+  if (rightsMode === 'api_preview_only') detailParts.push('API preview only');
+  const detail = detailParts.join(' · ') || rightsNotes || 'Source rights not yet specified';
+
+  let status = 'Check source';
+  let guidance = 'Review the source record and item-level rights before reuse.';
+  let color = 'var(--text2)';
+
+  if (/all rights reserved|rights reserved|in copyright|http:\/\/rightsstatements\.org\/vocab\/inc|api_preview_only/.test(normalized)) {
+    status = 'Restricted';
+    guidance = 'Do not reuse the media without permission from the rights holder or source institution.';
+    color = 'var(--warn)';
+  } else if (/cc by-nc|by-nc|non-commercial|metadata cc by|cc0 metadata|m\+ api service non-commercial/.test(normalized)) {
+    status = 'Restricted / mixed';
+    guidance = 'Metadata may be open, but media reuse is limited, non-commercial, or preview-only.';
+    color = 'var(--nodel)';
+  } else if (/cc by-sa|by-sa/.test(normalized)) {
+    status = 'Share alike';
+    guidance = 'Reusable with attribution, and derivative use should keep the same licence terms.';
+    color = 'var(--accent3)';
+  } else if (/cc by|creative commons attribution|© auckland museum cc by/.test(normalized)) {
+    status = 'Attribution required';
+    guidance = 'Reusable with attribution to the source institution and creator where required.';
+    color = 'var(--accent2)';
+  } else if (/cc0|public domain|public domain mark|dom[ií]nio p[úu]blico|no known copyright restrictions|open access/.test(normalized)) {
+    status = 'Open access';
+    guidance = 'Appears reusable under open-access or public-domain terms.';
+    color = 'var(--ok)';
+  }
+
+  return { status, guidance, detail, color };
+}
+
 function loadMVObjects() {
   document.getElementById('collectionVal').textContent = 'Loading…';
   document.getElementById('resultsLabel').textContent = 'Connecting to Qdrant — fetching collections…';
@@ -2145,6 +2189,7 @@ function renderResultCards() {
     const p = o._mv || {};
     const src = o._source || 'archai_pilot';
     const label = COLLECTION_LABELS[src] || COLLECTION_LABELS.archai_pilot;
+    const rights = getObjectRightsInfo(p);
     return `<div class="result-card" onclick="openObj('${id}')">
       <div class="thumb"><div class="thumb-live"></div>${thumbHTML(o)}</div>
       <div>
@@ -2153,7 +2198,7 @@ function renderResultCards() {
         <div class="r-summary">${(o.ai || '').substring(0, 120)}${(o.ai || '').length > 120 ? '…' : ''}</div>
         <div class="tag-row">
           <span class="tag" style="border-color:${label.border};color:${label.colour}">${label.short}</span>
-          <span class="tag">${p.licence || 'CC BY 4.0'}</span>
+          <span class="tag" style="border-color:${rights.color};color:${rights.color}">${rights.status}</span>
           ${p.discipline ? '<span class="tag">' + p.discipline + '</span>' : ''}
           <span class="tag">${(o.location || '').substring(0, 24)}</span>
           ${nfcAssigned(id) ? '<span class="tag nfc-tag">AUX.IO</span>' : ''}
@@ -2259,6 +2304,7 @@ function renderConvoResults(objects) {
   const container = document.getElementById('resultsContainer');
   container.innerHTML = objects.map(obj => {
     const label = COLLECTION_LABELS[obj.collection] || COLLECTION_LABELS.archai_pilot;
+    const rights = getObjectRightsInfo(obj);
     const objKey = (obj.collection || 'archai_pilot') + '_c_' + (obj.registration || Math.random().toString(36).slice(2,8));
     const thumbInner = obj.image
       ? `<img src="${obj.image}" style="width:100%;height:100%;object-fit:cover" loading="lazy" onerror="this.style.display='none'">`
@@ -2271,6 +2317,7 @@ function renderConvoResults(objects) {
         <div class="r-summary">${obj.date || ''}</div>
         <div class="tag-row">
           <span class="tag" style="border-color:${label.border};color:${label.colour}">${label.short}</span>
+          ${rights.detail !== 'Source rights not yet specified' ? `<span class="tag" style="border-color:${rights.color};color:${rights.color}">${rights.status}</span>` : ''}
         </div>
       </div>
       <div>
@@ -2322,6 +2369,7 @@ function doSearch() {
       const p = r.payload;
       const col = r._col;
       const label = COLLECTION_LABELS[col] || COLLECTION_LABELS.archai_pilot;
+      const rights = getObjectRightsInfo(p);
       const score = r.score.toFixed(3);
       const existingKey = Object.keys(OBJECTS).find(k => OBJECTS[k].id === p.canonical_id);
       const objKey = existingKey || (col.replace('archai_', '') + '_s_' + (p.registration_number || Math.random().toString(36).slice(2,8)));
@@ -2345,7 +2393,7 @@ function doSearch() {
           <div class="r-summary">${(p.description || '').slice(0, 120)}${(p.description || '').length > 120 ? '…' : ''}</div>
           <div class="tag-row">
             <span class="tag" style="border-color:${label.border};color:${label.colour}">${label.short}</span>
-            <span class="tag">${p.licence || 'CC BY'}</span>
+            <span class="tag" style="border-color:${rights.color};color:${rights.color}">${rights.status}</span>
             ${p.discipline ? '<span class="tag">' + p.discipline + '</span>' : ''}
           </div>
         </div>
@@ -2382,6 +2430,7 @@ function doSearch() {
       const p = o._mv || {};
       const src = o._source || 'archai_pilot';
       const label = COLLECTION_LABELS[src] || COLLECTION_LABELS.archai_pilot;
+      const rights = getObjectRightsInfo(p);
       return `<div class="result-card" onclick="openObj('${id}')">
         <div class="thumb"><div class="thumb-live"></div>${thumbHTML(o)}</div>
         <div>
@@ -2390,6 +2439,7 @@ function doSearch() {
           <div class="r-summary">${(o.ai || '').substring(0, 120)}${(o.ai || '').length > 120 ? '…' : ''}</div>
           <div class="tag-row">
             <span class="tag" style="border-color:${label.border};color:${label.colour}">${label.short}</span>
+            <span class="tag" style="border-color:${rights.color};color:${rights.color}">${rights.status}</span>
             <span class="tag" style="border-color:rgba(232,168,64,0.3);color:rgba(232,168,64,0.7)">Text Match</span>
           </div>
         </div>
@@ -2426,6 +2476,7 @@ function openObjectDetail(objKey) {
   switchTab('objdetail', tab);
 
   const p = o._mv || {};
+  const rights = getObjectRightsInfo(p);
 
   // Image
   const imgSrc = p.media_large || p.media_medium || p.media_thumbnail || null;
@@ -2450,7 +2501,9 @@ function openObjectDetail(objKey) {
     ['Location', p.museum_location || o.location || '—'],
     ['Category', p.category || '—'],
     ['Object Type', p.object_type || '—'],
-    ['Licence', p.licence || 'CC BY 4.0'],
+    ['Legal Status', rights.status],
+    ['Reuse Guidance', rights.guidance],
+    ['Licence / Rights', rights.detail],
     ['Canonical ID', p.canonical_id || o.id || '—'],
   ];
   document.getElementById('od-meta-grid').innerHTML = keyMeta.map(([k, v]) =>
@@ -2469,7 +2522,16 @@ function openObjectDetail(objKey) {
   linksEl.innerHTML += `<a href="http://localhost:8055/admin" target="_blank" class="btn" style="font-size:0.55rem">Edit in Directus →</a>`;
 
   // Description
-  document.getElementById('od-description').textContent = p.description || o.ai || '—';
+  const descEl = document.getElementById('od-description');
+  descEl.textContent = p.description || o.ai || '—';
+  document.getElementById('od-rights-note')?.remove();
+  descEl.insertAdjacentHTML('afterend',
+    `<div id="od-rights-note" style="margin-top:16px;max-width:880px;padding:12px 14px;border:1px solid ${rights.color};background:rgba(255,255,255,0.02);">
+      <div style="font-family:var(--mono);font-size:0.56rem;letter-spacing:1.8px;text-transform:uppercase;color:${rights.color};margin-bottom:6px;">Legal Status</div>
+      <div style="font-size:0.76rem;color:var(--text2);line-height:1.7;"><strong style="color:var(--text);font-weight:400;">${rights.status}</strong> — ${rights.guidance}</div>
+      <div style="font-family:var(--mono);font-size:0.54rem;color:var(--text3);line-height:1.7;margin-top:6px;">Licence / rights: ${escQ(rights.detail)}</div>
+    </div>`
+  );
 
   // Full metadata — show ALL _mv fields
   const fullEl = document.getElementById('od-full-meta');
