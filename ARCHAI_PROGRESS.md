@@ -80,27 +80,44 @@ Why:
 
 ### Known collection counts at last check
 
-- `archai_pilot`: 80
+- `archai_pilot`: 40
 - `archai_met`: 135
-- `archai_va`: 150
+- `archai_va`: 300
 - `archai_aic`: 150
 - `archai_cma`: 150
 - `archai_rijks`: 150
 - `archai_europeana`: 150
 - `archai_auckland`: 120
-- `archai_tepapa`: 120
-- `archai_mplus`: 120
+- `archai_tepapa`: 95
+- `archai_mplus`: 110
 - `archai_brasiliana`: 120
 
-Total live source objects in the current working set: `1445`
+Total live source objects in the current working set: `1520`
 
 ### AUX.IO generation
 
 Latest collection harvests were run successfully and AUX.IO pages were regenerated.
 
 Last noted AUX.IO output:
-- `1311` generated visitor pages in [nfc-pages/v](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v)
-- live source spread: MV 39, Met 42, V&A 150, AIC 150, CMA 150, Rijks 150, Europeana 150, Auckland 120, Te Papa 120, M+ 120, Brasiliana 120
+- `1519` generated visitor pages in [nfc-pages/v](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v)
+- live source spread: MV 39, Met 42, V&A 300, AIC 150, CMA 150, Rijks 150, Europeana 150, Auckland 120, Te Papa 95, M+ 110, Brasiliana 120
+
+### Legal cleanup and open-only backfill
+
+This is the current highest-trust public-demo state:
+
+- `208` rights-restricted objects and `8` unevaluated / copyright-not-evaluated objects were removed from the live public-facing stack
+- Art Institute of Chicago was re-harvested public-domain only
+- Europeana was re-harvested with `reusability=open`
+- AUX.IO generation now purges stale pages before regeneration, so removed records cannot linger as orphaned public HTML pages
+
+Current live outcome:
+
+- `1520` live source objects
+- `1520` curator vectors
+- `1519` AUX.IO pages
+- public object views now surface a normalized legal status plus raw licence / rights detail
+- current audited rights mix resolves to `1091` open, `165` attribution, `59` share-alike, `205` mixed / non-commercial, `0` restricted, `0` unknown
 
 ### Rights visibility
 

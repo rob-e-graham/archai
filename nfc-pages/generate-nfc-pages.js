@@ -96,27 +96,27 @@ function getObjectRightsInfo(payload = {}) {
   let color = '#a09890';
   let border = 'rgba(160,152,144,0.28)';
 
-  if (/all rights reserved|rights reserved|in copyright|http:\/\/rightsstatements\.org\/vocab\/inc|api_preview_only/.test(normalized)) {
+  if (/all rights reserved|rights reserved|in copyright|rightsstatements\.org\/vocab\/inc|api_preview_only/.test(normalized)) {
     status = 'Restricted';
     guidance = 'Do not reuse the media without permission from the rights holder or source institution.';
     color = '#d18d78';
     border = 'rgba(209,141,120,0.28)';
-  } else if (/cc by-nc|by-nc|non-commercial|metadata cc by|cc0 metadata|m\+ api service non-commercial/.test(normalized)) {
+  } else if (/cc by-nc|by-nc|non-commercial|metadata cc by|cc0 metadata|m\+ api service non-commercial|public_object_page_preview|preview media/.test(normalized)) {
     status = 'Restricted / mixed';
     guidance = 'Metadata may be open, but media reuse is limited, non-commercial, or preview-only.';
     color = '#c8a96e';
     border = 'rgba(200,169,110,0.28)';
-  } else if (/cc by-sa|by-sa/.test(normalized)) {
+  } else if (/cc by-sa|creativecommons\.org\/licenses\/by-sa\//.test(normalized)) {
     status = 'Share alike';
     guidance = 'Reusable with attribution, and derivative use should keep the same licence terms.';
     color = '#9b8fbf';
     border = 'rgba(155,143,191,0.28)';
-  } else if (/cc by|creative commons attribution|© auckland museum cc by/.test(normalized)) {
+  } else if (/cc by|creativecommons\.org\/licenses\/by\/|creative commons attribution|© auckland museum cc by/.test(normalized)) {
     status = 'Attribution required';
     guidance = 'Reusable with attribution to the source institution and creator where required.';
     color = '#8fbcb0';
     border = 'rgba(143,188,176,0.28)';
-  } else if (/cc0|public domain|public domain mark|dom[ií]nio p[úu]blico|no known copyright restrictions|open access/.test(normalized)) {
+  } else if (/cc0|creativecommons\.org\/publicdomain\/zero|creativecommons\.org\/publicdomain\/mark|public domain|public domain mark|rightsstatements\.org\/vocab\/noc|dom[ií]nio p[úu]blico|no known copyright restrictions|open access/.test(normalized)) {
     status = 'Open access';
     guidance = 'Appears reusable under open-access or public-domain terms.';
     color = '#8fbcb0';

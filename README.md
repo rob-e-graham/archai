@@ -2,9 +2,9 @@
 
 > "Museums are not silent repositories of Memory; they are living, thinking organisms, where imagination and knowledge, tradition and innovation meet." — Gayane Umerova, UNESCO, 2025
 
-**Version:** 11.3
+**Version:** 11.4
 **Author:** Rob Graham · FAMTEC (Fine Art Media Tech) / RMIT University
-**Status:** Working prototype — multi-institution semantic search + LLM object chat + AUX.IO visitor pages
+**Status:** Working prototype — rights-aware multi-institution semantic search + LLM object chat + AUX.IO visitor pages
 **Target:** ISEA2026 Dubai, 6th Summit on New Media Art Archiving (April 11–12)
 **Paper:** `docs/ARCHAI_ISEA2026_Rob_Graham.pdf`
 **Licence:** MPL-2.0 (code) · CC BY 4.0 (MV data) · CC0 (Met data) · V&A Open Access — see [NOTICE](NOTICE) for IP and trademark details
@@ -23,6 +23,23 @@ ARCHAI is a working research prototype, not a finished commercial product. FAMTE
 For research, funding, testing, or development enquiries: rob@fineartmedia.tech
 
 Third-party collection data, trademarks, institutional names, and external systems remain the property of their respective owners. Use of the software does not imply endorsement by any institution represented within the project datasets.
+
+### Public demo rights policy
+
+ARCHAI preserves source licence and rights metadata per object. Public-facing ARCHAI and AUX.IO surfaces are intended to display only media that passes the current item-level legal gate for the research/demo stack.
+
+- source metadata may be ingested more broadly for research and systems testing
+- public-facing media should only be shown when the item resolves to an acceptable public/demo status
+- all object views now surface a normalized legal status and the underlying licence / rights detail
+- non-commercial / preview-first objects remain clearly labeled and should be treated as research/demo media, not general commercial reuse assets
+
+Current audited public-demo mix:
+- `1091` open / public-domain objects
+- `165` attribution-required objects
+- `59` share-alike objects
+- `205` mixed / non-commercial / preview-first objects
+- `0` rights-restricted objects
+- `0` unknown-rights objects
 
 ---
 
@@ -55,17 +72,17 @@ Eleven live collection sources are in Qdrant right now, searchable simultaneousl
 
 | Collection | Source | Objects | Licence | Status |
 |-----------|--------|---------|---------|--------|
-| `archai_pilot` | Museums Victoria | ~80 | CC BY 4.0 | ✅ Live |
-| `archai_met` | The Metropolitan Museum of Art, NYC | ~135 | CC0 | ✅ Live |
-| `archai_va` | Victoria and Albert Museum, London | ~150 | V&A Open Access | ✅ Live |
-| `archai_aic` | Art Institute of Chicago | ~150 | Open API / source rights apply | ✅ Live |
-| `archai_cma` | Cleveland Museum of Art | ~150 | Open API / source rights apply | ✅ Live |
-| `archai_rijks` | Rijksmuseum | ~150 | Rijksmuseum API / source rights apply | ✅ Live |
-| `archai_europeana` | Europeana | ~150 | Mixed / per-record | ✅ Live |
-| `archai_auckland` | Auckland Museum | ~120 | Mixed / per-record | ✅ Live |
-| `archai_tepapa` | Museum of New Zealand Te Papa Tongarewa | ~120 | Metadata CC BY 4.0 · images mixed / per-item | ✅ Live |
-| `archai_mplus` | M+, Hong Kong | ~120 | CC0 metadata · preview media / source rights apply | ✅ Live |
-| `archai_brasiliana` | Brasiliana Museus | ~120 | Public domain / open-access, item-checked | ✅ Live |
+| `archai_pilot` | Museums Victoria | 40 | CC BY 4.0 | ✅ Live |
+| `archai_met` | The Metropolitan Museum of Art, NYC | 135 | CC0 | ✅ Live |
+| `archai_va` | Victoria and Albert Museum, London | 300 | V&A Open Access | ✅ Live |
+| `archai_aic` | Art Institute of Chicago | 150 | CC0 / public-domain only | ✅ Live |
+| `archai_cma` | Cleveland Museum of Art | 150 | CC0 / public-domain only | ✅ Live |
+| `archai_rijks` | Rijksmuseum | 150 | Public Domain Mark / open API | ✅ Live |
+| `archai_europeana` | Europeana | 150 | Reusability=open / per-item | ✅ Live |
+| `archai_auckland` | Auckland Museum | 120 | CC BY / open item-filtered | ✅ Live |
+| `archai_tepapa` | Museum of New Zealand Te Papa Tongarewa | 95 | Non-commercial / preview-first, item rights attached | ✅ Live |
+| `archai_mplus` | M+, Hong Kong | 110 | CC0 metadata · non-commercial preview media | ✅ Live |
+| `archai_brasiliana` | Brasiliana Museus | 120 | Public domain / open-access, item-checked | ✅ Live |
 | `archai_curator` | All live collections + comments | Built on demand | Mixed | ✅ Live |
 
 - Query → embedded via nomic-embed-text → vector searched across all live collections → results merged by cosine similarity
@@ -74,10 +91,13 @@ Eleven live collection sources are in Qdrant right now, searchable simultaneousl
 - Sort by: name, date, discipline, source
 - Filter: with images (default), all, or source-specific subsets
 - Deduplicated by canonical_id across collections
-- Curator collection currently rebuilds across `1445` live objects
+- Curator collection currently rebuilds across `1520` live objects
 - Auckland Museum, Te Papa, M+, and Brasiliana now extend the live stack into Aotearoa, Asia, and South America
+- Art Institute of Chicago is now harvested public-domain only at the API layer
+- Europeana is currently harvested with `reusability=open`
 - Te Papa media is ingested preview-first with item-level rights preserved for public-safe display
 - Brasiliana onboarding only admits public-domain / open-access records that pass item-level rights checks
+- Legal status is shown on object records in the main app, the public demo, and AUX.IO visitor pages
 
 ### ✅ Object-as-Speaker LLM Chat
 Each object speaks in first person via the local Qwen 2.5 stack, grounded in verified metadata:
@@ -278,7 +298,7 @@ archai/
 │   ├── generate-nfc-pages.js      ← AUX.IO page generator from all live collections
 │   ├── nfc-visitor-template.html  ← AUX.IO mobile template
 │   ├── captive-portal.html
-│   └── v/                         ← Generated pages (~1311, not in git)
+│   └── v/                         ← Generated pages (~1519, versioned for demo deployment)
 ├── docs/
 │   └── ARCHAI_ISEA2026_Rob_Graham.pdf
 └── docker-compose.yml
@@ -326,6 +346,7 @@ Mac Studio M2 Max · 64GB · 1TB. Base institutional deployment: ~$3,500–5,000
 | **v11.1** | **Te Papa Tongarewa onboarded as the ninth live collection, guest-token and registered-key API access supported, curator vectors rebuilt to 1205 live objects, AUX.IO default cap lifted, and 1071 public-facing visitor pages regenerated across 9 collections** |
 | **v11.2** | **M+ Hong Kong onboarded as the tenth live collection with bilingual metadata preserved, public preview media attached from the source object pages, and the curator layer expanded to include Asia-focused visual culture records** |
 | **v11.3** | **Brasiliana Museus onboarded as the eleventh live collection using a public-domain / open-access legal gate, curator vectors rebuilt to 1445 live objects, and 1311 AUX.IO visitor pages regenerated across 11 collections** |
+| **v11.4** | **Legal cleanup and open-only backfill: 208 rights-restricted and 8 unevaluated objects removed from the live public stack, AIC re-harvested public-domain only, Europeana re-harvested with `reusability=open`, curator rebuilt to 1520 live objects, and AUX.IO regenerated with per-object legal status shown** |
 
 ---
 
