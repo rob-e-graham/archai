@@ -264,33 +264,39 @@ Source:
 
 ## Speech, accessibility, and conversational interfaces
 
+**Status as of 2026-06-05**: A full voice audit has been completed. See [VOICE_AUDIT_2026-06-05.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/VOICE_AUDIT_2026-06-05.md) for the detailed findings and implementation plan.
+
+### Current state
+
+- Browser-native speech demo is live on both ARCHAI main app and AUX.IO
+- Uses Web Speech API for STT (Chrome sends audio to Google — not sovereign)
+- Uses browser speechSynthesis for TTS (inconsistent voice quality across devices)
+- Core flow works: mic → transcript → ARCHAI question → response → read aloud
+- No backend voice endpoints exist yet
+
 ### Whisper
 
 - OpenAI Whisper remains a strong speech-to-text baseline
 - multilingual recognition, translation, and language identification make it relevant for museums and multilingual visitor contexts
+- **Recommended path**: whisper.cpp for Mac Studio deployment (Apple Silicon native, Metal GPU, zero cloud dependency)
+- medium model (~1.5 GB) is the sweet spot for multilingual museum context
 
-Source:
+Sources:
 
 - https://github.com/openai/whisper
-
-### whisper.cpp
-
-- very strong local / edge deployment option
-- especially relevant for Apple Silicon, kiosk hardware, and offline systems
-
-Source:
-
 - https://github.com/ggml-org/whisper.cpp
 
 ### Coqui TTS
 
 - useful path for richer multilingual speech output
 - XTTS-v2 supports multiple languages and voice cloning scenarios
+- heavier (~2 GB model), slower inference
 
 Important caution:
 
 - voice cloning should be treated very carefully in museums
 - neutral accessibility narration is safer than theatrical or mimetic “object voices” unless clearly framed
+- any voice cloning requires ethics clearance
 
 Source:
 
@@ -298,12 +304,20 @@ Source:
 
 ### Piper
 
-- strong lightweight local TTS fallback
-- likely better for low-overhead deployment than a heavier voice stack
+- **Recommended as the first production TTS**: lightweight, fast, clear narration
+- C++ native, small models (~50-100 MB per voice), very fast on CPU
+- best for clean accessibility narration before adding richer Coqui voices later
 
 Source:
 
 - https://github.com/rhasspy/piper
+
+### Implementation plan
+
+1. **Phase 1**: whisper.cpp STT backend (`/api/voice/stt`) — replace Google dependency
+2. **Phase 2**: Piper TTS backend (`/api/voice/tts`) — consistent, sovereign voice output
+3. **Phase 3**: Integration polish — mic indicators, privacy notices, streaming TTS, browser fallback
+4. **Phase 4**: Coqui XTTS-v2 evaluation for richer object voice profiles (optional, ethics-dependent)
 
 ## Open data and international collection growth
 

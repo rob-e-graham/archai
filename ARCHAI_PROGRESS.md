@@ -1,6 +1,6 @@
 # ARCHAI Progress Log
 
-Last updated: 2026-06-04
+Last updated: 2026-06-05
 Maintained as an active handoff note so Claude, Codex, and Rob can quickly see where the work is up to if a session ends or tokens run out.
 
 ## Current focus
@@ -11,6 +11,12 @@ Keep the system clean, fast, and aligned with the ARCHAI white paper:
 - build a clean canonical metadata layer above it
 - build translation, display text, embeddings, and interaction as regenerable layers
 - keep ARCHAI and AUX.IO reading from structured derived data, not from messy raw payloads
+
+Protect what is already working while we improve it:
+
+- keep the current phone/browser voice path stable
+- treat desktop microphone selection and Whisper capture as an additive next layer
+- avoid replacing the live phone experience until a better path is genuinely proven
 
 ## Core architectural direction
 
@@ -131,6 +137,29 @@ Important note:
 - item-level rights still matter more than collection-level branding
 - this normalized status layer is a display layer, not a substitute for preserving the original source licence / rights metadata
 
+### Voice baseline to protect
+
+Current working voice reality:
+
+- the live speech demo is browser-native, not full Whisper/Coqui yet
+- phone/browser testing is currently the strongest and most reliable path, especially for AUX.IO
+- the main app object detail currently exposes explicit response languages:
+  - English
+  - Arabic
+  - Spanish
+  - French
+  - Portuguese
+  - Japanese
+- both the main app and AUX.IO now expose playback voice choices:
+  - `ARCHAI Neutral (recommended)`
+  - `Browser Default`
+  - browser/system voices exposed by the current device
+- desktop Chrome still does not offer an in-app microphone picker in the current browser demo; it uses the browser or system default microphone
+
+Important implementation rule:
+
+- do not replace the current phone/browser path until recorded audio + Whisper + selectable microphone input is working as well or better
+
 ### Europeana / Keytec
 
 The Europeana key is already available through Keytec / macOS Keychain and was wired into the `archai` profile.
@@ -193,6 +222,22 @@ This partial work currently exists only in:
 
 No matching AUX.IO template translation implementation has been completed yet in:
 - [nfc-pages/nfc-visitor-template.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/nfc-visitor-template.html)
+
+## Research and audit docs worth keeping
+
+These are the strongest current research / audit docs and should be treated as active working references:
+
+- [docs/VOICE_AUDIT_2026-06-05.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/VOICE_AUDIT_2026-06-05.md)
+- [docs/VOICE_BROWSER_DEMO.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/VOICE_BROWSER_DEMO.md)
+- [docs/APP_FUNCTIONAL_AUDIT_2026-06-03.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/APP_FUNCTIONAL_AUDIT_2026-06-03.md)
+- [docs/ARCHAI_R_AND_D_2026-06-04.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/ARCHAI_R_AND_D_2026-06-04.md)
+- [docs/RESEARCH_INDEX.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/RESEARCH_INDEX.md)
+- [docs/historical-design/HISTORICAL_DESIGN_BRIEF.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/historical-design/HISTORICAL_DESIGN_BRIEF.md)
+- [docs/historical-design/ARCHAI_AND_HISTORICAL_DESIGN.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/historical-design/ARCHAI_AND_HISTORICAL_DESIGN.md)
+- [docs/historical-design/FIELD_SIGNALS_AND_KEY_TERMS.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/historical-design/FIELD_SIGNALS_AND_KEY_TERMS.md)
+- [docs/historical-design/INSTITUTIONAL_EXPECTATIONS_MAP.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/historical-design/INSTITUTIONAL_EXPECTATIONS_MAP.md)
+- [docs/historical-design/ETHICS_APPLICATION_NOTES.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/historical-design/ETHICS_APPLICATION_NOTES.md)
+- [docs/historical-design/HCI_CORPUS_PLAN.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/historical-design/HCI_CORPUS_PLAN.md)
 
 ## Recommended next move
 
@@ -678,3 +723,103 @@ Supporting research note:
   - maps ARCHAI against CMS / DAM / IIIF / preservation patterns
   - identifies born-digital / web-art directions
   - outlines the likely Whisper + Coqui production path
+
+## Neutral voice control added to main app + AUX.IO — 2026-06-05
+
+What changed:
+
+- [ARCHAI_v10_8.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ARCHAI_v10_8.html) now includes a `Playback Voice` selector in object detail
+- [nfc-pages/nfc-visitor-template.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/nfc-visitor-template.html) now includes the same selector for AUX.IO
+- generated AUX.IO pages were rebuilt so the selector is present in:
+  - [nfc-pages/v](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v)
+
+How it works:
+
+- `ARCHAI Neutral (recommended)` tries to choose a more modern browser voice
+- it penalizes older legacy voices such as `Alex` and similar novelty / older system voices
+- `Browser Default` remains available
+- users can also manually choose any voice the current browser exposes
+
+Why:
+
+- the previous browser default could sound like an older male voice on some systems
+- this gives immediate control now, before full Whisper / Coqui voice output is added
+
+## Voice audit completed — 2026-06-05
+
+Full technical audit of the browser-native speech demo across both ARCHAI main app and AUX.IO.
+
+See [VOICE_AUDIT_2026-06-05.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/VOICE_AUDIT_2026-06-05.md) for the complete document.
+
+Key findings:
+
+- browser demo flow is correct: mic → transcript → ARCHAI question → response → read aloud
+- 10 issues identified, most significant:
+  - Chrome SpeechRecognition sends audio to Google (not sovereign)
+  - TTS voice quality varies across devices
+  - no mic-active visual indicator
+  - no speech privacy notice for users
+- no backend voice endpoints exist yet — zero `/api/voice/*` routes
+- backend currently has 17 route groups, none speech-related
+
+Recommended production path:
+
+1. **STT**: whisper.cpp on Mac Studio (Apple Silicon native, medium model, local, sovereign)
+2. **TTS**: Piper first (lightweight, fast, clear narration), Coqui XTTS-v2 later for richer voices
+3. **Routes**: `/api/voice/stt`, `/api/voice/tts`, `/api/voice/status`
+4. **Frontend**: Replace Web Speech API with MediaRecorder + backend POST; replace speechSynthesis with audio element playback
+5. **Fallback**: Keep browser demo as fallback when backend voice is unavailable
+
+Privacy and ethics:
+
+- current Chrome path sends audio to Google — contradicts sovereignty principle
+- backend Whisper path keeps all audio local
+- ethics application needs speech privacy disclosure before public testing
+- voice cloning (Coqui) requires separate ethics clearance
+
+Updated docs:
+
+- [VOICE_BROWSER_DEMO.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/VOICE_BROWSER_DEMO.md) — added audit reference
+- [ARCHAI_R_AND_D_2026-06-04.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/ARCHAI_R_AND_D_2026-06-04.md) — updated speech section with current state and plan
+- [RESEARCH_INDEX.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/RESEARCH_INDEX.md) — added voice audit entry
+
+## Historical design and HCI research completed — 2026-06-05
+
+Responding to Chris Barker's supervisor notes, three substantive research documents written in `docs/historical-design/`:
+
+### ARCHAI_AND_HISTORICAL_DESIGN.md
+
+Maps ARCHAI against foundational HCI design principles:
+
+- Shneiderman's Eight Golden Rules and direct manipulation (1985)
+- Norman's affordances, signifiers, conceptual models (1988/2013)
+- Dourish's embodied interaction and phenomenological computing (2001)
+- Suchman's situated action (1987)
+- Bill Brown's Thing Theory and object agency (2001–2024)
+- More-than-human design movement (2024–2025 Design Museum exhibition, DRS manifesto)
+- Digital repatriation and Indigenous data sovereignty (2024–2025)
+
+Key finding: ARCHAI's combination of sovereign infrastructure, semantic interpretation, NFC-bridged physicality, first-person object voice, and institutional data governance does not appear in any system described in the current HCI or heritage technology literature surveyed.
+
+### FIELD_SIGNALS_AND_KEY_TERMS.md
+
+Mapped 15+ recent papers from ACM CHI, DIS, TEI, IUI, JOCCH (2021–2026) against ARCHAI's key terms. Notable:
+
+- Wang et al. 2025 (UTS/Australian Museum): conversational AI over 1.7M specimen records — similar goals but opposite sovereignty model (cloud GPT vs local LLM)
+- Su et al. 2025 (HKUST): SimViews multi-agent visitor simulation — different paradigm (multiple human perspectives vs object agency)
+- JOCCH 2024 survey: tangible/embodied interactions in museums — explicitly notes screen-based devices disengage visitors from objects
+- Multiple 2025 papers on affect/emotion in heritage interaction — ARCHAI's personality/tone system maps directly to this research
+
+Field signals: growing demand for AI transparency, grounded responses, multilingual access, data sovereignty. "Object agency" and "curatorial AI" are underexplored terms — ARCHAI may be defining them.
+
+### INSTITUTIONAL_EXPECTATIONS_MAP.md
+
+Maps what GLAM institutions expect from digital platforms (Dublin Core, SPECTRUM, IIIF, rights management, accessibility) and where ARCHAI aligns or deliberately diverges. Identifies five risk areas for institutional adoption: AI trust, curatorial authority, IT approval, cultural sensitivity, and post-PhD sustainability.
+
+### Ethics application updated
+
+ETHICS_APPLICATION_NOTES.md now includes RMIT Research Ethics Platform (REP) process detail: CHEAN (low risk) vs HREC (more than low risk) review tiers. ARCHAI likely needs HREC review given AI interpretation, speech capture, visitor interaction, and institutional collaboration.
+
+### Updated indexes
+
+- [RESEARCH_INDEX.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/RESEARCH_INDEX.md) — all new documents indexed
