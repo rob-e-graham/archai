@@ -160,6 +160,12 @@ Important implementation rule:
 
 - do not replace the current phone/browser path until recorded audio + Whisper + selectable microphone input is working as well or better
 
+Latest UI stabilization:
+
+- main app voice status now preserves its visual indicator instead of wiping it out during status updates
+- AUX.IO now shows the same listening / pending / error status dot alongside the speech text
+- regenerated AUX.IO pages now carry that cue through to the public visitor page output
+
 ### Europeana / Keytec
 
 The Europeana key is already available through Keytec / macOS Keychain and was wired into the `archai` profile.

@@ -6,7 +6,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Hollandse leeuwendaalder, 1576 — ARCHAI</title>
+<title>Stockholm, Nationalmuseum.
+439 K. Holmström, Sth. Imp — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -371,6 +372,39 @@ body::after {
   color: var(--text3);
   margin-bottom: 8px;
 }
+.v-voice-select-row {
+  display: grid;
+  grid-template-columns: 108px minmax(0,1fr);
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.v-voice-select-row label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+.v-voice-select {
+  width: 100%;
+  padding: 8px 10px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border2);
+  color: var(--text2);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  outline: none;
+}
+.v-voice-select:focus {
+  border-color: var(--accent2);
+}
+.v-voice-note {
+  margin-bottom: 10px;
+  color: var(--text3);
+  font-size: 0.68rem;
+  line-height: 1.5;
+}
 .v-voice-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -405,6 +439,43 @@ body::after {
   color: var(--text3);
   font-size: 0.76rem;
   line-height: 1.6;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.v-voice-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(143,188,176,0.35);
+  background: rgba(255,255,255,0.06);
+  box-shadow: 0 0 0 0 rgba(143,188,176,0);
+  margin-top: 3px;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+.v-voice-indicator.live {
+  background: var(--accent2);
+  border-color: var(--accent2);
+  animation: voicePulse 1.2s ease-out infinite;
+}
+.v-voice-indicator.pending {
+  background: rgba(200,169,110,0.9);
+  border-color: rgba(200,169,110,0.9);
+  animation: voicePulse 1.2s ease-out infinite;
+}
+.v-voice-indicator.error {
+  background: rgba(210,110,110,0.9);
+  border-color: rgba(210,110,110,0.9);
+}
+.v-voice-status-text {
+  display: block;
+  min-height: 1.2em;
+}
+@keyframes voicePulse {
+  0% { box-shadow: 0 0 0 0 rgba(143,188,176,0.28); transform: scale(1); }
+  70% { box-shadow: 0 0 0 10px rgba(143,188,176,0); transform: scale(1.04); }
+  100% { box-shadow: 0 0 0 0 rgba(143,188,176,0); transform: scale(1); }
 }
 
 .v-response {
@@ -811,25 +882,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://iiif.micr.io/HTgXB/full/max/0/default.jpg" alt="Hollandse leeuwendaalder, 1576" loading="eager">
+  <img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fmm.dimu.org%2Fimage%2F012uN1bvqQ2j%3Fdimension%3D1200x1200&amp;type=IMAGE" alt="Stockholm, Nationalmuseum.
+439 K. Holmström, Sth. Imp" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Hollandse leeuwendaalder, 1576</div>
-  <div class="v-sub">leeuwendaalder · 2026-02-14T04:17:39Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;Provincie Holland&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1576 · 200100253</div>
+  <div class="v-title">Stockholm, Nationalmuseum.
+439 K. Holmström, Sth. Imp</div>
+  <div class="v-sub">IMAGE · Date unknown · /916109/smm_sm_photo_Fo195832</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
+    <span class="v-meta-tag mv">Europeana</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
     
   </div>
@@ -842,11 +906,13 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Hollandse leeuwendaalder, 1576</strong> — Zilveren munt. Voorzijde: ridder met helm met pluim naar rechts kijkend met voor zich wapenschild van Holland. Jaartal rondom wapenschild onderaan. Keerzijde: klimmende leeuw naar links.</div>
+  <div class="v-story"><strong>Stockholm, Nationalmuseum.
+439 K. Holmström, Sth. Imp</strong> — Stockholm, Nationalmuseum.
+439 K. Holmström, Sth. Imp</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
+      <div class="v-rights-detail">Licence / rights: http://creativecommons.org/publicdomain/mark/1.0/</div>
     </div>
 
   <div class="v-divider"></div>
@@ -874,13 +940,21 @@ body::after {
     </div>
     <div class="v-voice-wrap">
       <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-select-row">
+        <label for="v-voice-select">Playback Voice</label>
+        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+          <option value="browser-default">Browser Default</option>
+        </select>
+      </div>
+      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
       <div class="v-voice-buttons">
         <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
         <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
         <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
         <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
       </div>
-      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
     </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
@@ -890,25 +964,15 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">200100253</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Provincie Holland</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">zilver</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">leeuwendaalder</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-02-14T04:17:39Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;Provincie Holland&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1576</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">leeuwendaalder</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">/916109/smm_sm_photo_Fo195832</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Holmström, G. H.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">IMAGE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Date unknown</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">National Maritime Museum</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">IMAGE</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">http://creativecommons.org/publicdomain/mark/1.0/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -923,24 +987,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC351.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1985.50/1985.50_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Red-Figure Fish Plate: Octopi, Mullet, Bream, Shellfish</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1985.50</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4344/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title"> TEA TALK</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.300-2020</div>
       </a>
       <a class="v-rel-card" href="NFC352.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2019MD8168/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Rolleiflex camera and case owned by William Houston Rogers</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · S.306:1 to 2-2019</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/defb4004-b500-218d-3d9b-9a02423f097d/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">At the Moulin Rouge</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 61128</div>
       </a>
       <a class="v-rel-card" href="NFC354.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/3fa3855e-d7e7-d2a4-0f95-a38268026bad/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Pardon in Brittany</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 111656</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DT10869.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Rectangular Octave Virginal</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 502325</div>
       </a>
       <a class="v-rel-card" href="NFC355.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/MUS402A.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Orchestral Horn</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 501687</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP-30075-001.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Altar bell with a mudfish-legged ọ́bà</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 316556</div>
       </a></div>
   </div>
 </div>
@@ -953,7 +1017,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/200100253" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.europeana.eu/item/916109/smm_sm_photo_Fo195832?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -985,25 +1049,18 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Hollandse leeuwendaalder, 1576`,
-  type: `leeuwendaalder`,
-  date: `2026-02-14T04:17:39Z</datestamp>
-        <setSpec>260239</setSpec>
-        <setSpec>261106</setSpec>
-        <setSpec>260251</setSpec>
-        <setSpec>2601</setSpec>
-      </header>
-      <metadata>
-        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
-          <dc:creator>Provincie Holland</dc:creator>
-          <dc:date>1576`,
-  registration: `200100253`,
-  location: `Rijksmuseum, Amsterdam`,
+  title: `Stockholm, Nationalmuseum.
+439 K. Holmström, Sth. Imp`,
+  type: `IMAGE`,
+  date: `Date unknown`,
+  registration: `/916109/smm_sm_photo_Fo195832`,
+  location: `National Maritime Museum`,
   discipline: ``,
-  category: `leeuwendaalder`,
-  description: `Zilveren munt. Voorzijde: ridder met helm met pluim naar rechts kijkend met voor zich wapenschild van Holland. Jaartal rondom wapenschild onderaan. Keerzijde: klimmende leeuw naar links.`,
-  medium: `zilver`,
-  artist: `Provincie Holland`,
+  category: `IMAGE`,
+  description: `Stockholm, Nationalmuseum.
+439 K. Holmström, Sth. Imp`,
+  medium: ``,
+  artist: `Holmström, G. H.`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -1011,9 +1068,9 @@ const OBJECT = {
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
-  source_url: `https://www.rijksmuseum.nl/en/collection/200100253`,
-  institution: `Rijksmuseum, Amsterdam`
+  licence: `http://creativecommons.org/publicdomain/mark/1.0/`,
+  source_url: `https://www.europeana.eu/item/916109/smm_sm_photo_Fo195832?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb`,
+  institution: `Europeana`
 };
 
 // Build rich context from available fields
@@ -1045,6 +1102,26 @@ let visitorLastReply = '';
 let visitorSpeechRecognition = null;
 let visitorSpeechListening = false;
 let visitorSpeechStatus = '';
+let visitorVoiceChoice = 'archai-neutral';
+
+const VISITOR_LEGACY_VOICE_PATTERNS = [
+  /alex/i, /fred/i, /bruce/i, /ralph/i, /albert/i,
+  /bad news/i, /bahh/i, /bells/i, /boing/i, /bubbles/i, /cellos/i,
+  /deranged/i, /good news/i, /hysterical/i, /pipe organ/i, /trinoids/i, /whisper/i, /zarvox/i
+];
+
+const VISITOR_NEUTRAL_VOICE_PREFERENCES = [
+  /neutral/i,
+  /aria/i,
+  /google us english/i,
+  /google uk english/i,
+  /google english/i,
+  /siri voice 4/i,
+  /siri voice/i,
+  /english \(australia\)/i,
+  /australian english/i,
+  /natural/i
+];
 
 const VISITOR_TONES = {
   guide: {
@@ -1092,20 +1169,154 @@ function getVisitorSpeechLanguageCode() {
   return document.documentElement.lang || navigator.language || 'en-AU';
 }
 
+function visitorSupportsSpeechRecognition() {
+  return Boolean(window.SpeechRecognition || window.webkitSpeechRecognition);
+}
+
+function getVisitorSpeechUnavailableMessage() {
+  const ua = navigator.userAgent || '';
+  if (/iPhone|iPad|iPod/i.test(ua)) {
+    return 'Live voice capture is not supported in iPhone browsers yet. You can still type your question or use Read Reply. Whisper backend capture is the next step.';
+  }
+  return 'This browser does not support live speech capture yet.';
+}
+
+function getVisitorVoices() {
+  if (typeof speechSynthesis === 'undefined' || !speechSynthesis.getVoices) return [];
+  return speechSynthesis.getVoices() || [];
+}
+
+function scoreVisitorVoice(voice, languageCode) {
+  const target = (languageCode || 'en-AU').toLowerCase();
+  const targetBase = target.split('-')[0];
+  const lang = (voice.lang || '').toLowerCase();
+  const name = `${voice.name || ''} ${voice.voiceURI || ''}`.trim();
+
+  let score = 0;
+  if (lang === target) score += 80;
+  else if (lang.startsWith(`${targetBase}-`)) score += 60;
+  else if (lang.startsWith(targetBase)) score += 40;
+
+  VISITOR_NEUTRAL_VOICE_PREFERENCES.forEach((pattern, index) => {
+    if (pattern.test(name)) score += Math.max(30 - index * 4, 8);
+  });
+
+  if (/male|female|man|woman|boy|girl/i.test(name)) score -= 8;
+  if (VISITOR_LEGACY_VOICE_PATTERNS.some(pattern => pattern.test(name))) score -= 80;
+  if (voice.default) score += 4;
+  if (voice.localService) score += 2;
+
+  return score;
+}
+
+function resolveVisitorSpeechVoice(languageCode) {
+  const voices = getVisitorVoices();
+  if (!voices.length) return null;
+
+  if (visitorVoiceChoice && visitorVoiceChoice !== 'archai-neutral' && visitorVoiceChoice !== 'browser-default') {
+    return voices.find(voice => voice.voiceURI === visitorVoiceChoice || voice.name === visitorVoiceChoice) || null;
+  }
+
+  if (visitorVoiceChoice === 'browser-default') return null;
+
+  const ranked = voices
+    .map(voice => ({ voice, score: scoreVisitorVoice(voice, languageCode) }))
+    .sort((a, b) => b.score - a.score);
+
+  return ranked[0]?.voice || null;
+}
+
+function updateVisitorVoiceNote() {
+  const note = document.getElementById('v-voice-note');
+  if (!note) return;
+  if (visitorVoiceChoice === 'browser-default') {
+    note.textContent = 'Using the browser default voice for speech playback.';
+    return;
+  }
+  const voice = resolveVisitorSpeechVoice(getVisitorSpeechLanguageCode());
+  if (voice) {
+    note.textContent = `ARCHAI Neutral is using: ${voice.name} (${voice.lang || 'default locale'}).`;
+  } else {
+    note.textContent = 'ARCHAI Neutral will use the best available modern browser voice when playback starts.';
+  }
+}
+
+function populateVisitorVoiceSelect() {
+  const select = document.getElementById('v-voice-select');
+  if (!select) return;
+  const voices = getVisitorVoices();
+  const current = visitorVoiceChoice || 'archai-neutral';
+
+  select.innerHTML = '';
+  [
+    { value: 'archai-neutral', label: 'ARCHAI Neutral (recommended)' },
+    { value: 'browser-default', label: 'Browser Default' }
+  ].forEach(meta => {
+    const option = document.createElement('option');
+    option.value = meta.value;
+    option.textContent = meta.label;
+    select.appendChild(option);
+  });
+
+  voices.forEach(voice => {
+    const option = document.createElement('option');
+    option.value = voice.voiceURI || voice.name;
+    option.textContent = `${voice.name} (${voice.lang || 'default'})`;
+    select.appendChild(option);
+  });
+
+  select.value = current;
+  updateVisitorVoiceNote();
+}
+
+function setVisitorVoicePreference(value) {
+  visitorVoiceChoice = value || 'archai-neutral';
+  updateVisitorVoiceNote();
+}
+
+function getVisitorVoiceIndicatorState(message = '') {
+  const text = String(message || visitorSpeechStatus || '').toLowerCase();
+  if (visitorSpeechListening || text.includes('listening')) return 'live';
+  if (
+    text.includes('reading') ||
+    text.includes('audio finished') ||
+    text.includes('starting microphone') ||
+    text.includes('question captured') ||
+    text.includes('sending to archai')
+  ) return 'pending';
+  if (
+    text.includes('blocked') ||
+    text.includes('interrupted') ||
+    text.includes('error') ||
+    text.includes('not support') ||
+    text.includes('issue')
+  ) return 'error';
+  return '';
+}
+
 function updateVisitorSpeechUI(message = '') {
   if (message) visitorSpeechStatus = message;
-  const statusEl = document.getElementById('v-voice-status');
+  const statusEl = document.getElementById('v-voice-status-text') || document.getElementById('v-voice-status');
+  const indicatorEl = document.getElementById('v-voice-indicator');
   const startBtn = document.getElementById('v-voice-start-btn');
   const stopBtn = document.getElementById('v-voice-stop-btn');
   const readBtn = document.getElementById('v-voice-read-btn');
   const silenceBtn = document.getElementById('v-voice-silence-btn');
   const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+  const statusMessage = visitorSpeechStatus || (visitorSupportsSpeechRecognition()
+    ? 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.'
+    : getVisitorSpeechUnavailableMessage());
 
   if (statusEl) {
-    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+    statusEl.textContent = statusMessage;
   }
-  if (startBtn) startBtn.disabled = visitorSpeechListening;
-  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (indicatorEl) {
+    const indicatorState = getVisitorVoiceIndicatorState(statusMessage);
+    indicatorEl.classList.remove('live', 'pending', 'error');
+    if (indicatorState) indicatorEl.classList.add(indicatorState);
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening || !visitorSupportsSpeechRecognition();
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening || !visitorSupportsSpeechRecognition();
   if (readBtn) readBtn.disabled = !visitorLastReply;
   if (silenceBtn) silenceBtn.disabled = !speaking;
 }
@@ -1155,7 +1366,7 @@ function ensureVisitorSpeechRecognition() {
 function startVisitorVoiceQuestion() {
   const recognition = ensureVisitorSpeechRecognition();
   if (!recognition) {
-    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    updateVisitorSpeechUI(getVisitorSpeechUnavailableMessage());
     return;
   }
   recognition.lang = getVisitorSpeechLanguageCode();
@@ -1188,7 +1399,13 @@ function speakVisitorReply() {
   speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = getVisitorSpeechLanguageCode();
+  const selectedVoice = resolveVisitorSpeechVoice(utterance.lang);
+  if (selectedVoice) {
+    utterance.voice = selectedVoice;
+    utterance.lang = selectedVoice.lang || utterance.lang;
+  }
   utterance.rate = 0.98;
+  utterance.pitch = 1.0;
   utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
   utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
   utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
@@ -1313,6 +1530,10 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
 });
 updateVisitorToneUI();
 updateVisitorSpeechUI();
+populateVisitorVoiceSelect();
+if (typeof speechSynthesis !== 'undefined') {
+  speechSynthesis.onvoiceschanged = () => populateVisitorVoiceSelect();
+}
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1420,7 +1641,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_rijks',
+      collection: 'archai_europeana',
       text,
       authorType: 'visitor',
     }),

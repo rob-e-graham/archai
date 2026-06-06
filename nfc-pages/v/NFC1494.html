@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Idiophone with an iyọ́bà — ARCHAI</title>
+<title>Alhambra — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -371,6 +371,39 @@ body::after {
   color: var(--text3);
   margin-bottom: 8px;
 }
+.v-voice-select-row {
+  display: grid;
+  grid-template-columns: 108px minmax(0,1fr);
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.v-voice-select-row label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+.v-voice-select {
+  width: 100%;
+  padding: 8px 10px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border2);
+  color: var(--text2);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  outline: none;
+}
+.v-voice-select:focus {
+  border-color: var(--accent2);
+}
+.v-voice-note {
+  margin-bottom: 10px;
+  color: var(--text3);
+  font-size: 0.68rem;
+  line-height: 1.5;
+}
 .v-voice-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -405,6 +438,43 @@ body::after {
   color: var(--text3);
   font-size: 0.76rem;
   line-height: 1.6;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.v-voice-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(143,188,176,0.35);
+  background: rgba(255,255,255,0.06);
+  box-shadow: 0 0 0 0 rgba(143,188,176,0);
+  margin-top: 3px;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+.v-voice-indicator.live {
+  background: var(--accent2);
+  border-color: var(--accent2);
+  animation: voicePulse 1.2s ease-out infinite;
+}
+.v-voice-indicator.pending {
+  background: rgba(200,169,110,0.9);
+  border-color: rgba(200,169,110,0.9);
+  animation: voicePulse 1.2s ease-out infinite;
+}
+.v-voice-indicator.error {
+  background: rgba(210,110,110,0.9);
+  border-color: rgba(210,110,110,0.9);
+}
+.v-voice-status-text {
+  display: block;
+  min-height: 1.2em;
+}
+@keyframes voicePulse {
+  0% { box-shadow: 0 0 0 0 rgba(143,188,176,0.28); transform: scale(1); }
+  70% { box-shadow: 0 0 0 10px rgba(143,188,176,0); transform: scale(1.04); }
+  100% { box-shadow: 0 0 0 0 rgba(143,188,176,0); transform: scale(1); }
 }
 
 .v-response {
@@ -811,18 +881,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/ao/original/DT6580.jpg" alt="Idiophone with an iyọ́bà" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2012FK3677/full/!600,600/0/default.jpg" alt="Alhambra" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Idiophone with an iyọ́bà</div>
-  <div class="v-sub">Idiophone · 18th–19th century · 316558</div>
+  <div class="v-title">Alhambra</div>
+  <div class="v-sub">Photograph · 1853 ca. · 34779</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
+    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">The Michael C. Rockefeller Wing</span>
+    <span class="v-meta-tag">Photograph</span>
   </div>
 
   <!-- SHARE -->
@@ -833,11 +903,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Idiophone with an iyọ́bà</strong> — Idiophone with an iyọ́bà. Idiophone. Ivory. The Michael C. Rockefeller Wing. Edo peoples. by Ìgbèsànmwà (ivory- and wood- carving guild) artists. Bone/Ivory-Musical Instruments. 18th–19th century</div>
+  <div class="v-story"><strong>Alhambra</strong> — Alhambra. Photograph. Made by Bisson. 1853 ca.. Made in Granada. Prints &amp; Drawings Study Room, room 512M</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
     </div>
 
   <div class="v-divider"></div>
@@ -865,13 +935,21 @@ body::after {
     </div>
     <div class="v-voice-wrap">
       <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-select-row">
+        <label for="v-voice-select">Playback Voice</label>
+        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+          <option value="browser-default">Browser Default</option>
+        </select>
+      </div>
+      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
       <div class="v-voice-buttons">
         <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
         <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
         <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
         <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
       </div>
-      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
     </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
@@ -881,19 +959,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">316558</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Ìgbèsànmwà (ivory- and wood- carving guild) artists</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Ivory</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Edo peoples</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">The Michael C. Rockefeller Wing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Bone/Ivory-Musical Instruments</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">18th–19th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">H. 12 1/4 in. × W. 2 in. × D. 1 3/4 in. (31.1 × 5.1 × 4.5 cm)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 342</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Idiophone</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">34779</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Bisson</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1853 ca.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, room 512M</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -908,24 +983,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1492.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/369360?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">bomb, boomerang</div>
-        <div class="v-rel-meta">Auckland Museum · W0894</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2008BT4238/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Telephone</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.66-2002</div>
       </a>
       <a class="v-rel-card" href="NFC1493.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/44/164894-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Lantern Slide - 'Anytime You're Brisbane Way', circa 1940s</div>
-        <div class="v-rel-meta">Museums Victoria · MM 69187</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680046/823-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Pedro II</div>
+        <div class="v-rel-meta">Brasiliana Museus · pedro-ii-39</div>
       </a>
       <a class="v-rel-card" href="NFC1495.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP218817.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Flute (Putorino)</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 313818</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/1f925e43-ff81-5ad7-da75-b28ea651c09f/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Irises</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 4887</div>
       </a>
       <a class="v-rel-card" href="NFC1496.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2022ND5264/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Anakin Skywalker / Darth Vader Electronic Lightsaber</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · B.221:1, 2-2009</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/AOycf/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Wijnpenning van Utrecht</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100431</div>
       </a></div>
   </div>
 </div>
@@ -938,7 +1013,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/316558" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1076104/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -970,26 +1045,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Idiophone with an iyọ́bà`,
-  type: `Idiophone`,
-  date: `18th–19th century`,
-  registration: `316558`,
-  location: `Gallery 342`,
-  discipline: `The Michael C. Rockefeller Wing`,
-  category: `Bone/Ivory-Musical Instruments`,
-  description: `Idiophone with an iyọ́bà. Idiophone. Ivory. The Michael C. Rockefeller Wing. Edo peoples. by Ìgbèsànmwà (ivory- and wood- carving guild) artists. Bone/Ivory-Musical Instruments. 18th–19th century`,
-  medium: `Ivory`,
-  artist: `Ìgbèsànmwà (ivory- and wood- carving guild) artists`,
-  culture: `Edo peoples`,
-  dimensions: `H. 12 1/4 in. × W. 2 in. × D. 1 3/4 in. (31.1 × 5.1 × 4.5 cm)`,
+  title: `Alhambra`,
+  type: `Photograph`,
+  date: `1853 ca.`,
+  registration: `34779`,
+  location: `Prints & Drawings Study Room, room 512M`,
+  discipline: `Photograph`,
+  category: `Photograph`,
+  description: `Alhambra. Photograph. Made by Bisson. 1853 ca.. Made in Granada. Prints & Drawings Study Room, room 512M`,
+  medium: ``,
+  artist: `Bisson`,
+  culture: ``,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/316558`,
-  institution: `The Metropolitan Museum of Art`
+  licence: `V&A Open Access`,
+  source_url: `https://collections.vam.ac.uk/item/O1076104/`,
+  institution: `Victoria and Albert Museum, London`
 };
 
 // Build rich context from available fields
@@ -1021,6 +1096,26 @@ let visitorLastReply = '';
 let visitorSpeechRecognition = null;
 let visitorSpeechListening = false;
 let visitorSpeechStatus = '';
+let visitorVoiceChoice = 'archai-neutral';
+
+const VISITOR_LEGACY_VOICE_PATTERNS = [
+  /alex/i, /fred/i, /bruce/i, /ralph/i, /albert/i,
+  /bad news/i, /bahh/i, /bells/i, /boing/i, /bubbles/i, /cellos/i,
+  /deranged/i, /good news/i, /hysterical/i, /pipe organ/i, /trinoids/i, /whisper/i, /zarvox/i
+];
+
+const VISITOR_NEUTRAL_VOICE_PREFERENCES = [
+  /neutral/i,
+  /aria/i,
+  /google us english/i,
+  /google uk english/i,
+  /google english/i,
+  /siri voice 4/i,
+  /siri voice/i,
+  /english \(australia\)/i,
+  /australian english/i,
+  /natural/i
+];
 
 const VISITOR_TONES = {
   guide: {
@@ -1068,20 +1163,154 @@ function getVisitorSpeechLanguageCode() {
   return document.documentElement.lang || navigator.language || 'en-AU';
 }
 
+function visitorSupportsSpeechRecognition() {
+  return Boolean(window.SpeechRecognition || window.webkitSpeechRecognition);
+}
+
+function getVisitorSpeechUnavailableMessage() {
+  const ua = navigator.userAgent || '';
+  if (/iPhone|iPad|iPod/i.test(ua)) {
+    return 'Live voice capture is not supported in iPhone browsers yet. You can still type your question or use Read Reply. Whisper backend capture is the next step.';
+  }
+  return 'This browser does not support live speech capture yet.';
+}
+
+function getVisitorVoices() {
+  if (typeof speechSynthesis === 'undefined' || !speechSynthesis.getVoices) return [];
+  return speechSynthesis.getVoices() || [];
+}
+
+function scoreVisitorVoice(voice, languageCode) {
+  const target = (languageCode || 'en-AU').toLowerCase();
+  const targetBase = target.split('-')[0];
+  const lang = (voice.lang || '').toLowerCase();
+  const name = `${voice.name || ''} ${voice.voiceURI || ''}`.trim();
+
+  let score = 0;
+  if (lang === target) score += 80;
+  else if (lang.startsWith(`${targetBase}-`)) score += 60;
+  else if (lang.startsWith(targetBase)) score += 40;
+
+  VISITOR_NEUTRAL_VOICE_PREFERENCES.forEach((pattern, index) => {
+    if (pattern.test(name)) score += Math.max(30 - index * 4, 8);
+  });
+
+  if (/male|female|man|woman|boy|girl/i.test(name)) score -= 8;
+  if (VISITOR_LEGACY_VOICE_PATTERNS.some(pattern => pattern.test(name))) score -= 80;
+  if (voice.default) score += 4;
+  if (voice.localService) score += 2;
+
+  return score;
+}
+
+function resolveVisitorSpeechVoice(languageCode) {
+  const voices = getVisitorVoices();
+  if (!voices.length) return null;
+
+  if (visitorVoiceChoice && visitorVoiceChoice !== 'archai-neutral' && visitorVoiceChoice !== 'browser-default') {
+    return voices.find(voice => voice.voiceURI === visitorVoiceChoice || voice.name === visitorVoiceChoice) || null;
+  }
+
+  if (visitorVoiceChoice === 'browser-default') return null;
+
+  const ranked = voices
+    .map(voice => ({ voice, score: scoreVisitorVoice(voice, languageCode) }))
+    .sort((a, b) => b.score - a.score);
+
+  return ranked[0]?.voice || null;
+}
+
+function updateVisitorVoiceNote() {
+  const note = document.getElementById('v-voice-note');
+  if (!note) return;
+  if (visitorVoiceChoice === 'browser-default') {
+    note.textContent = 'Using the browser default voice for speech playback.';
+    return;
+  }
+  const voice = resolveVisitorSpeechVoice(getVisitorSpeechLanguageCode());
+  if (voice) {
+    note.textContent = `ARCHAI Neutral is using: ${voice.name} (${voice.lang || 'default locale'}).`;
+  } else {
+    note.textContent = 'ARCHAI Neutral will use the best available modern browser voice when playback starts.';
+  }
+}
+
+function populateVisitorVoiceSelect() {
+  const select = document.getElementById('v-voice-select');
+  if (!select) return;
+  const voices = getVisitorVoices();
+  const current = visitorVoiceChoice || 'archai-neutral';
+
+  select.innerHTML = '';
+  [
+    { value: 'archai-neutral', label: 'ARCHAI Neutral (recommended)' },
+    { value: 'browser-default', label: 'Browser Default' }
+  ].forEach(meta => {
+    const option = document.createElement('option');
+    option.value = meta.value;
+    option.textContent = meta.label;
+    select.appendChild(option);
+  });
+
+  voices.forEach(voice => {
+    const option = document.createElement('option');
+    option.value = voice.voiceURI || voice.name;
+    option.textContent = `${voice.name} (${voice.lang || 'default'})`;
+    select.appendChild(option);
+  });
+
+  select.value = current;
+  updateVisitorVoiceNote();
+}
+
+function setVisitorVoicePreference(value) {
+  visitorVoiceChoice = value || 'archai-neutral';
+  updateVisitorVoiceNote();
+}
+
+function getVisitorVoiceIndicatorState(message = '') {
+  const text = String(message || visitorSpeechStatus || '').toLowerCase();
+  if (visitorSpeechListening || text.includes('listening')) return 'live';
+  if (
+    text.includes('reading') ||
+    text.includes('audio finished') ||
+    text.includes('starting microphone') ||
+    text.includes('question captured') ||
+    text.includes('sending to archai')
+  ) return 'pending';
+  if (
+    text.includes('blocked') ||
+    text.includes('interrupted') ||
+    text.includes('error') ||
+    text.includes('not support') ||
+    text.includes('issue')
+  ) return 'error';
+  return '';
+}
+
 function updateVisitorSpeechUI(message = '') {
   if (message) visitorSpeechStatus = message;
-  const statusEl = document.getElementById('v-voice-status');
+  const statusEl = document.getElementById('v-voice-status-text') || document.getElementById('v-voice-status');
+  const indicatorEl = document.getElementById('v-voice-indicator');
   const startBtn = document.getElementById('v-voice-start-btn');
   const stopBtn = document.getElementById('v-voice-stop-btn');
   const readBtn = document.getElementById('v-voice-read-btn');
   const silenceBtn = document.getElementById('v-voice-silence-btn');
   const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+  const statusMessage = visitorSpeechStatus || (visitorSupportsSpeechRecognition()
+    ? 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.'
+    : getVisitorSpeechUnavailableMessage());
 
   if (statusEl) {
-    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+    statusEl.textContent = statusMessage;
   }
-  if (startBtn) startBtn.disabled = visitorSpeechListening;
-  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (indicatorEl) {
+    const indicatorState = getVisitorVoiceIndicatorState(statusMessage);
+    indicatorEl.classList.remove('live', 'pending', 'error');
+    if (indicatorState) indicatorEl.classList.add(indicatorState);
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening || !visitorSupportsSpeechRecognition();
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening || !visitorSupportsSpeechRecognition();
   if (readBtn) readBtn.disabled = !visitorLastReply;
   if (silenceBtn) silenceBtn.disabled = !speaking;
 }
@@ -1131,7 +1360,7 @@ function ensureVisitorSpeechRecognition() {
 function startVisitorVoiceQuestion() {
   const recognition = ensureVisitorSpeechRecognition();
   if (!recognition) {
-    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    updateVisitorSpeechUI(getVisitorSpeechUnavailableMessage());
     return;
   }
   recognition.lang = getVisitorSpeechLanguageCode();
@@ -1164,7 +1393,13 @@ function speakVisitorReply() {
   speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = getVisitorSpeechLanguageCode();
+  const selectedVoice = resolveVisitorSpeechVoice(utterance.lang);
+  if (selectedVoice) {
+    utterance.voice = selectedVoice;
+    utterance.lang = selectedVoice.lang || utterance.lang;
+  }
   utterance.rate = 0.98;
+  utterance.pitch = 1.0;
   utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
   utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
   utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
@@ -1289,6 +1524,10 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
 });
 updateVisitorToneUI();
 updateVisitorSpeechUI();
+populateVisitorVoiceSelect();
+if (typeof speechSynthesis !== 'undefined') {
+  speechSynthesis.onvoiceschanged = () => populateVisitorVoiceSelect();
+}
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1396,7 +1635,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_met',
+      collection: 'archai_va',
       text,
       authorType: 'visitor',
     }),

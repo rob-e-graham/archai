@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Hinds House Window — ARCHAI</title>
+<title>Naslag van Maria Theresia-daalder met jaartal 1780, bestemd voor Noord-Oost-Afrika — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -371,6 +371,39 @@ body::after {
   color: var(--text3);
   margin-bottom: 8px;
 }
+.v-voice-select-row {
+  display: grid;
+  grid-template-columns: 108px minmax(0,1fr);
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.v-voice-select-row label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+.v-voice-select {
+  width: 100%;
+  padding: 8px 10px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border2);
+  color: var(--text2);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  outline: none;
+}
+.v-voice-select:focus {
+  border-color: var(--accent2);
+}
+.v-voice-note {
+  margin-bottom: 10px;
+  color: var(--text3);
+  font-size: 0.68rem;
+  line-height: 1.5;
+}
 .v-voice-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -405,6 +438,43 @@ body::after {
   color: var(--text3);
   font-size: 0.76rem;
   line-height: 1.6;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.v-voice-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(143,188,176,0.35);
+  background: rgba(255,255,255,0.06);
+  box-shadow: 0 0 0 0 rgba(143,188,176,0);
+  margin-top: 3px;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+.v-voice-indicator.live {
+  background: var(--accent2);
+  border-color: var(--accent2);
+  animation: voicePulse 1.2s ease-out infinite;
+}
+.v-voice-indicator.pending {
+  background: rgba(200,169,110,0.9);
+  border-color: rgba(200,169,110,0.9);
+  animation: voicePulse 1.2s ease-out infinite;
+}
+.v-voice-indicator.error {
+  background: rgba(210,110,110,0.9);
+  border-color: rgba(210,110,110,0.9);
+}
+.v-voice-status-text {
+  display: block;
+  min-height: 1.2em;
+}
+@keyframes voicePulse {
+  0% { box-shadow: 0 0 0 0 rgba(143,188,176,0.28); transform: scale(1); }
+  70% { box-shadow: 0 0 0 10px rgba(143,188,176,0); transform: scale(1.04); }
+  100% { box-shadow: 0 0 0 0 rgba(143,188,176,0); transform: scale(1); }
 }
 
 .v-response {
@@ -811,18 +881,26 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/1966.432/1966.432_web.jpg" alt="Hinds House Window" loading="eager">
+  <img src="https://iiif.micr.io/gHYwM/full/max/0/default.jpg" alt="Naslag van Maria Theresia-daalder met jaartal 1780, bestemd voor Noord-Oost-Afrika" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Hinds House Window</div>
-  <div class="v-sub">Glass · c. 1900 · 1966.432</div>
+  <div class="v-title">Naslag van Maria Theresia-daalder met jaartal 1780, bestemd voor Noord-Oost-Afrika</div>
+  <div class="v-sub">munt · 2026-02-14T04:17:28Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+        &lt;setSpec&gt;2601&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:date&gt;1780 - 1975 · 200100194</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
+    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Decorative Art and Design</span>
+    <span class="v-meta-tag">Maria Theresia (Rooms-Duits keizerin)</span>
   </div>
 
   <!-- SHARE -->
@@ -833,11 +911,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Hinds House Window</strong> — In this window commissioned for the Howell Hinds house around 1900, thousands of richly colored glass pieces have been arranged and layered to paint an idyllic three-dimensional scene that would have warmly glowed in the afternoon sunlight. Located at 2200 Overlook Road in Cleveland, Ohio, the house…</div>
+  <div class="v-story"><strong>Naslag van Maria Theresia-daalder met jaartal 1780, bestemd voor Noord-Oost-Afrika</strong> — Zilveren munt. Voorzijde: borstbeeld van keizerin Maria-Theresia van Oostenrijk-Hongarije met sluier, naar rechts. Onder borstbeeld lettters S. en F. {aanduidingen van muntmeesters in Gunzburg in Oostenrijks gebied Burgau bij Ulm]. Keerzijde: met keizerskroon gekroonde tweekoppige adelaar met op zij…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
     </div>
 
   <div class="v-divider"></div>
@@ -865,13 +943,21 @@ body::after {
     </div>
     <div class="v-voice-wrap">
       <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-select-row">
+        <label for="v-voice-select">Playback Voice</label>
+        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+          <option value="browser-default">Browser Default</option>
+        </select>
+      </div>
+      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
       <div class="v-voice-buttons">
         <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
         <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
         <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
         <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
       </div>
-      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
     </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
@@ -881,19 +967,24 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1966.432</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Tiffany Glass &amp; Decorating Company (America, New York, 1892–1902)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">leaded glass</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">America, New York</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Decorative Art and Design</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Glass</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1900</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Unframed: 227.3 x 114.3 cm (89 1/2 x 45 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">209 Tiffany</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Glass</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">200100194</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">zilver</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Maria Theresia (Rooms-Duits keizerin)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">munt</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-02-14T04:17:28Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+        &lt;setSpec&gt;2601&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:date&gt;1780 - 1975</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">munt</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -908,24 +999,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC411.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680260/775-1-scaled.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Maestro Francisco Braga (infância)</div>
-        <div class="v-rel-meta">Brasiliana Museus · maestro-francisco-braga-infancia</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/26/659726-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Inductance Coils - AWA, Low Frequency, 1913-1916</div>
+        <div class="v-rel-meta">Museums Victoria · ST 21406</div>
       </a>
       <a class="v-rel-card" href="NFC412.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Femuseumplus.lsh.se%2FeMuseumPlus%3Fservice%3DImageAsset%26module%3Dcollection%26objectId%3D36792%26resolution%3DhighImageResolution&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Svart kikare, Carl Zeiss</div>
-        <div class="v-rel-meta">Europeana · /2064105/Museu_ProvidedCHO_Livrustkammaren_36792</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/641424/preview" loading="lazy"></div>
+        <div class="v-rel-title">One Cent</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · NU000930</div>
       </a>
       <a class="v-rel-card" href="NFC414.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/248347/preview" loading="lazy"></div>
-        <div class="v-rel-title">Wedding photograph</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH020674</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HA5033/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Modern Lovers</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.268-2014</div>
       </a>
       <a class="v-rel-card" href="NFC415.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/668969/006341.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Josefa de Barros Barreto do Rego Barros</div>
-        <div class="v-rel-meta">Brasiliana Museus · josefa-de-barros-barreto-do-rego-barros</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2019LK7256/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Jardiniere</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · M.40-2018</div>
       </a></div>
   </div>
 </div>
@@ -938,7 +1029,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://clevelandart.org/art/1966.432" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/200100194" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -970,26 +1061,34 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Hinds House Window`,
-  type: `Glass`,
-  date: `c. 1900`,
-  registration: `1966.432`,
-  location: `209 Tiffany`,
-  discipline: `Decorative Art and Design`,
-  category: `Glass`,
-  description: `In this window commissioned for the Howell Hinds house around 1900, thousands of richly colored glass pieces have been arranged and layered to paint an idyllic three-dimensional scene that would have warmly glowed in the afternoon sunlight. Located at 2200 Overlook Road in Cleveland, Ohio, the house was demolished in 1930 in a similar fate as other nearby estates. Photographs show the placement of the window in the drawing room next to the fireplace as well as the opulent interiors Louis Comfort Tiffany designed for the library and dining room.`,
-  medium: `leaded glass`,
-  artist: `Tiffany Glass & Decorating Company (America, New York, 1892–1902)`,
-  culture: `America, New York`,
-  dimensions: `Unframed: 227.3 x 114.3 cm (89 1/2 x 45 in.)`,
+  title: `Naslag van Maria Theresia-daalder met jaartal 1780, bestemd voor Noord-Oost-Afrika`,
+  type: `munt`,
+  date: `2026-02-14T04:17:28Z</datestamp>
+        <setSpec>260239</setSpec>
+        <setSpec>261106</setSpec>
+        <setSpec>260251</setSpec>
+        <setSpec>2601</setSpec>
+      </header>
+      <metadata>
+        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
+          <dc:date>1780 - 1975`,
+  registration: `200100194`,
+  location: `Rijksmuseum, Amsterdam`,
+  discipline: `Maria Theresia (Rooms-Duits keizerin)`,
+  category: `munt`,
+  description: `Zilveren munt. Voorzijde: borstbeeld van keizerin Maria-Theresia van Oostenrijk-Hongarije met sluier, naar rechts. Onder borstbeeld lettters S. en F. {aanduidingen van muntmeesters in Gunzburg in Oostenrijks gebied Burgau bij Ulm]. Keerzijde: met keizerskroon gekroonde tweekoppige adelaar met op zijn borst van twee kronen voorzien samengesteld wapenschild van Oostenrijk-Hongarije. Aan het eind van het opschrift bevroren jaartal 1780, waarachter kruis van knoestige stokken. Randschrift. Deze naslagen zijn vooral in Wenen geslagen.`,
+  medium: `zilver`,
+  artist: ``,
+  culture: ``,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: `This window incorporates layered pieces of glass, producing shadows and creating a multidimensional quality.`,
-  provenance: `[{"description":"Howell Hinds, [1857-1926], Cleveland, OH, by descent to his daughter Mrs. Robert M. Fallon (formerly Alice W. Hinds, 1893–1967), the daughter of Howell Hinds and Nellie Price Hinds","citations":[],"footnotes":[],"date":null,"sortorder":null},{"description":"Mrs. Robert M. Fallon [18…`,
-  tombstone: `Hinds House Window, c. 1900. Tiffany Glass & Decorating Company (America, New York, 1892–1902). Leaded glass; unframed: 227.3 x 114.3 cm (89 1/2 x 45 in.). The Cleveland Museum of Art, Gift of Mrs. Robert M. Fallon, 1966.432`,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://clevelandart.org/art/1966.432`,
-  institution: `Cleveland Museum of Art`
+  did_you_know: ``,
+  provenance: ``,
+  tombstone: ``,
+  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
+  source_url: `https://www.rijksmuseum.nl/en/collection/200100194`,
+  institution: `Rijksmuseum, Amsterdam`
 };
 
 // Build rich context from available fields
@@ -1021,6 +1120,26 @@ let visitorLastReply = '';
 let visitorSpeechRecognition = null;
 let visitorSpeechListening = false;
 let visitorSpeechStatus = '';
+let visitorVoiceChoice = 'archai-neutral';
+
+const VISITOR_LEGACY_VOICE_PATTERNS = [
+  /alex/i, /fred/i, /bruce/i, /ralph/i, /albert/i,
+  /bad news/i, /bahh/i, /bells/i, /boing/i, /bubbles/i, /cellos/i,
+  /deranged/i, /good news/i, /hysterical/i, /pipe organ/i, /trinoids/i, /whisper/i, /zarvox/i
+];
+
+const VISITOR_NEUTRAL_VOICE_PREFERENCES = [
+  /neutral/i,
+  /aria/i,
+  /google us english/i,
+  /google uk english/i,
+  /google english/i,
+  /siri voice 4/i,
+  /siri voice/i,
+  /english \(australia\)/i,
+  /australian english/i,
+  /natural/i
+];
 
 const VISITOR_TONES = {
   guide: {
@@ -1068,20 +1187,154 @@ function getVisitorSpeechLanguageCode() {
   return document.documentElement.lang || navigator.language || 'en-AU';
 }
 
+function visitorSupportsSpeechRecognition() {
+  return Boolean(window.SpeechRecognition || window.webkitSpeechRecognition);
+}
+
+function getVisitorSpeechUnavailableMessage() {
+  const ua = navigator.userAgent || '';
+  if (/iPhone|iPad|iPod/i.test(ua)) {
+    return 'Live voice capture is not supported in iPhone browsers yet. You can still type your question or use Read Reply. Whisper backend capture is the next step.';
+  }
+  return 'This browser does not support live speech capture yet.';
+}
+
+function getVisitorVoices() {
+  if (typeof speechSynthesis === 'undefined' || !speechSynthesis.getVoices) return [];
+  return speechSynthesis.getVoices() || [];
+}
+
+function scoreVisitorVoice(voice, languageCode) {
+  const target = (languageCode || 'en-AU').toLowerCase();
+  const targetBase = target.split('-')[0];
+  const lang = (voice.lang || '').toLowerCase();
+  const name = `${voice.name || ''} ${voice.voiceURI || ''}`.trim();
+
+  let score = 0;
+  if (lang === target) score += 80;
+  else if (lang.startsWith(`${targetBase}-`)) score += 60;
+  else if (lang.startsWith(targetBase)) score += 40;
+
+  VISITOR_NEUTRAL_VOICE_PREFERENCES.forEach((pattern, index) => {
+    if (pattern.test(name)) score += Math.max(30 - index * 4, 8);
+  });
+
+  if (/male|female|man|woman|boy|girl/i.test(name)) score -= 8;
+  if (VISITOR_LEGACY_VOICE_PATTERNS.some(pattern => pattern.test(name))) score -= 80;
+  if (voice.default) score += 4;
+  if (voice.localService) score += 2;
+
+  return score;
+}
+
+function resolveVisitorSpeechVoice(languageCode) {
+  const voices = getVisitorVoices();
+  if (!voices.length) return null;
+
+  if (visitorVoiceChoice && visitorVoiceChoice !== 'archai-neutral' && visitorVoiceChoice !== 'browser-default') {
+    return voices.find(voice => voice.voiceURI === visitorVoiceChoice || voice.name === visitorVoiceChoice) || null;
+  }
+
+  if (visitorVoiceChoice === 'browser-default') return null;
+
+  const ranked = voices
+    .map(voice => ({ voice, score: scoreVisitorVoice(voice, languageCode) }))
+    .sort((a, b) => b.score - a.score);
+
+  return ranked[0]?.voice || null;
+}
+
+function updateVisitorVoiceNote() {
+  const note = document.getElementById('v-voice-note');
+  if (!note) return;
+  if (visitorVoiceChoice === 'browser-default') {
+    note.textContent = 'Using the browser default voice for speech playback.';
+    return;
+  }
+  const voice = resolveVisitorSpeechVoice(getVisitorSpeechLanguageCode());
+  if (voice) {
+    note.textContent = `ARCHAI Neutral is using: ${voice.name} (${voice.lang || 'default locale'}).`;
+  } else {
+    note.textContent = 'ARCHAI Neutral will use the best available modern browser voice when playback starts.';
+  }
+}
+
+function populateVisitorVoiceSelect() {
+  const select = document.getElementById('v-voice-select');
+  if (!select) return;
+  const voices = getVisitorVoices();
+  const current = visitorVoiceChoice || 'archai-neutral';
+
+  select.innerHTML = '';
+  [
+    { value: 'archai-neutral', label: 'ARCHAI Neutral (recommended)' },
+    { value: 'browser-default', label: 'Browser Default' }
+  ].forEach(meta => {
+    const option = document.createElement('option');
+    option.value = meta.value;
+    option.textContent = meta.label;
+    select.appendChild(option);
+  });
+
+  voices.forEach(voice => {
+    const option = document.createElement('option');
+    option.value = voice.voiceURI || voice.name;
+    option.textContent = `${voice.name} (${voice.lang || 'default'})`;
+    select.appendChild(option);
+  });
+
+  select.value = current;
+  updateVisitorVoiceNote();
+}
+
+function setVisitorVoicePreference(value) {
+  visitorVoiceChoice = value || 'archai-neutral';
+  updateVisitorVoiceNote();
+}
+
+function getVisitorVoiceIndicatorState(message = '') {
+  const text = String(message || visitorSpeechStatus || '').toLowerCase();
+  if (visitorSpeechListening || text.includes('listening')) return 'live';
+  if (
+    text.includes('reading') ||
+    text.includes('audio finished') ||
+    text.includes('starting microphone') ||
+    text.includes('question captured') ||
+    text.includes('sending to archai')
+  ) return 'pending';
+  if (
+    text.includes('blocked') ||
+    text.includes('interrupted') ||
+    text.includes('error') ||
+    text.includes('not support') ||
+    text.includes('issue')
+  ) return 'error';
+  return '';
+}
+
 function updateVisitorSpeechUI(message = '') {
   if (message) visitorSpeechStatus = message;
-  const statusEl = document.getElementById('v-voice-status');
+  const statusEl = document.getElementById('v-voice-status-text') || document.getElementById('v-voice-status');
+  const indicatorEl = document.getElementById('v-voice-indicator');
   const startBtn = document.getElementById('v-voice-start-btn');
   const stopBtn = document.getElementById('v-voice-stop-btn');
   const readBtn = document.getElementById('v-voice-read-btn');
   const silenceBtn = document.getElementById('v-voice-silence-btn');
   const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+  const statusMessage = visitorSpeechStatus || (visitorSupportsSpeechRecognition()
+    ? 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.'
+    : getVisitorSpeechUnavailableMessage());
 
   if (statusEl) {
-    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+    statusEl.textContent = statusMessage;
   }
-  if (startBtn) startBtn.disabled = visitorSpeechListening;
-  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (indicatorEl) {
+    const indicatorState = getVisitorVoiceIndicatorState(statusMessage);
+    indicatorEl.classList.remove('live', 'pending', 'error');
+    if (indicatorState) indicatorEl.classList.add(indicatorState);
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening || !visitorSupportsSpeechRecognition();
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening || !visitorSupportsSpeechRecognition();
   if (readBtn) readBtn.disabled = !visitorLastReply;
   if (silenceBtn) silenceBtn.disabled = !speaking;
 }
@@ -1131,7 +1384,7 @@ function ensureVisitorSpeechRecognition() {
 function startVisitorVoiceQuestion() {
   const recognition = ensureVisitorSpeechRecognition();
   if (!recognition) {
-    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    updateVisitorSpeechUI(getVisitorSpeechUnavailableMessage());
     return;
   }
   recognition.lang = getVisitorSpeechLanguageCode();
@@ -1164,7 +1417,13 @@ function speakVisitorReply() {
   speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = getVisitorSpeechLanguageCode();
+  const selectedVoice = resolveVisitorSpeechVoice(utterance.lang);
+  if (selectedVoice) {
+    utterance.voice = selectedVoice;
+    utterance.lang = selectedVoice.lang || utterance.lang;
+  }
   utterance.rate = 0.98;
+  utterance.pitch = 1.0;
   utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
   utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
   utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
@@ -1289,6 +1548,10 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
 });
 updateVisitorToneUI();
 updateVisitorSpeechUI();
+populateVisitorVoiceSelect();
+if (typeof speechSynthesis !== 'undefined') {
+  speechSynthesis.onvoiceschanged = () => populateVisitorVoiceSelect();
+}
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1396,7 +1659,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_cma',
+      collection: 'archai_rijks',
       text,
       authorType: 'visitor',
     }),

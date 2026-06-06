@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>candlestick — ARCHAI</title>
+<title>Bust of Saïd Abdullah of the Darfour People — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -371,6 +371,39 @@ body::after {
   color: var(--text3);
   margin-bottom: 8px;
 }
+.v-voice-select-row {
+  display: grid;
+  grid-template-columns: 108px minmax(0,1fr);
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.v-voice-select-row label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+.v-voice-select {
+  width: 100%;
+  padding: 8px 10px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border2);
+  color: var(--text2);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  outline: none;
+}
+.v-voice-select:focus {
+  border-color: var(--accent2);
+}
+.v-voice-note {
+  margin-bottom: 10px;
+  color: var(--text3);
+  font-size: 0.68rem;
+  line-height: 1.5;
+}
 .v-voice-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -405,6 +438,43 @@ body::after {
   color: var(--text3);
   font-size: 0.76rem;
   line-height: 1.6;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.v-voice-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(143,188,176,0.35);
+  background: rgba(255,255,255,0.06);
+  box-shadow: 0 0 0 0 rgba(143,188,176,0);
+  margin-top: 3px;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+.v-voice-indicator.live {
+  background: var(--accent2);
+  border-color: var(--accent2);
+  animation: voicePulse 1.2s ease-out infinite;
+}
+.v-voice-indicator.pending {
+  background: rgba(200,169,110,0.9);
+  border-color: rgba(200,169,110,0.9);
+  animation: voicePulse 1.2s ease-out infinite;
+}
+.v-voice-indicator.error {
+  background: rgba(210,110,110,0.9);
+  border-color: rgba(210,110,110,0.9);
+}
+.v-voice-status-text {
+  display: block;
+  min-height: 1.2em;
+}
+@keyframes voicePulse {
+  0% { box-shadow: 0 0 0 0 rgba(143,188,176,0.28); transform: scale(1); }
+  70% { box-shadow: 0 0 0 10px rgba(143,188,176,0); transform: scale(1.04); }
+  100% { box-shadow: 0 0 0 0 rgba(143,188,176,0); transform: scale(1); }
 }
 
 .v-response {
@@ -811,18 +881,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/720046?rendering=standard.jpg" alt="candlestick" loading="eager">
+  <img src="https://www.artic.edu/iiif/2/6a0e3e40-1e36-2109-378f-3fc5d29176b3/full/843,/0/default.jpg" alt="Bust of Saïd Abdullah of the Darfour People" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">candlestick</div>
-  <div class="v-sub">creamware · 1879 · #1235</div>
+  <div class="v-title">Bust of Saïd Abdullah of the Darfour People</div>
+  <div class="v-sub">Sculpture · 1848 · 18751</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Auckland Museum</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
-    <span class="v-meta-tag">Applied Arts and Design</span>
+    <span class="v-meta-tag mv">Art Institute of Chicago</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Painting and Sculpture of Europe</span>
   </div>
 
   <!-- SHARE -->
@@ -833,11 +903,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>candlestick</strong> — candlestick, creamware, lattice work</div>
+  <div class="v-story"><strong>Bust of Saïd Abdullah of the Darfour People</strong> — Bust of Saïd Abdullah of the Darfour People. Sculpture. Bronze. Painting and Sculpture of Europe. Charles-Henri-Joseph Cordier (French, 1827-1905)
+Cast by Eck et Durand Fondeur (French, 19th century). bust/head. 1848. France. 19th century. &lt;p&gt;This naturalistic yet idealized likeness depicts a former…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
-      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -865,13 +936,21 @@ body::after {
     </div>
     <div class="v-voice-wrap">
       <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-select-row">
+        <label for="v-voice-select">Playback Voice</label>
+        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+          <option value="browser-default">Browser Default</option>
+        </select>
+      </div>
+      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
       <div class="v-voice-buttons">
         <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
         <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
         <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
         <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
       </div>
-      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
     </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
@@ -881,16 +960,20 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">#1235</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Ceramic, &lt;ceramic And Ceramic Products&gt;, &lt;clay Products&gt;, &lt;clay And Clay Products&gt;, Inorganic Material, &lt;materials By Composition&gt;</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Applied Arts and Design</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Candlestick</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1879</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">creamware</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">18751</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Charles-Henri-Joseph Cordier (French, 1827-1905)
+Cast by Eck et Durand Fondeur (French, 19th century)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Bronze</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Painting and Sculpture of Europe</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">bust/head</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1848</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">82.5 × 45.7 × 35.6 cm (32 1/2 × 18 × 14 1/16 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 223</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -905,24 +988,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC823.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PC7779/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Fan Art</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:AMERICASFOUNDATION.1094:1 to 3-2024</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP-12679-019.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Hunting Horn in D</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 501693</div>
       </a>
       <a class="v-rel-card" href="NFC824.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/midp89.4.2788.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Maraca (gourd rattle)</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 502806</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/48b2de88-ba73-8e19-f448-d1cef4a1c847/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">The Song of the Lark</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 94841</div>
       </a>
       <a class="v-rel-card" href="NFC826.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/as/original/23_225_58_O1_sf.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Chinese child with musical instrument</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 45824</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fmm.dimu.org%2Fimage%2F032wZ13EJDN7%3Fdimension%3D1200x1200&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Stockholm, byggnader, Nationalmuseum.. Stockholm, buildings, Nationalmuseum.</div>
+        <div class="v-rel-meta">Europeana · /916121/S_OLM_photo_OLM_2008_21_144</div>
       </a>
       <a class="v-rel-card" href="NFC827.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_668/v1627832950/v2/prod/small/002001_002500/002029_001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">'Peacock Chair' for Imperial Hotel, Tokyo, Japan</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2013.237</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/8f899167-2faf-bd0d-cf9c-9ca2fcb07a4b/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Helena Tromper Du Bois</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 866</div>
       </a></div>
   </div>
 </div>
@@ -935,7 +1018,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/659209" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.artic.edu/artworks/18751" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -967,26 +1050,28 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `candlestick`,
-  type: `creamware`,
-  date: `1879`,
-  registration: `#1235`,
-  location: `Auckland Museum`,
-  discipline: `Applied Arts and Design`,
-  category: `Candlestick`,
-  description: `candlestick, creamware, lattice work`,
-  medium: `Ceramic, <ceramic And Ceramic Products>, <clay Products>, <clay And Clay Products>, Inorganic Material, <materials By Composition>`,
-  artist: ``,
-  culture: ``,
-  dimensions: ``,
+  title: `Bust of Saïd Abdullah of the Darfour People`,
+  type: `Sculpture`,
+  date: `1848`,
+  registration: `18751`,
+  location: `Gallery 223`,
+  discipline: `Painting and Sculpture of Europe`,
+  category: `bust/head`,
+  description: `Bust of Saïd Abdullah of the Darfour People. Sculpture. Bronze. Painting and Sculpture of Europe. Charles-Henri-Joseph Cordier (French, 1827-1905)
+Cast by Eck et Durand Fondeur (French, 19th century). bust/head. 1848. France. 19th century. <p>This naturalistic yet idealized likeness depicts a formerly enslaved Sudanese man, Saïd Abdullah, who visited Charles-Henri-Joseph Cordier in his Paris studio. It reflects the 19th-century fascination with non-European costumes, customs, and physiognomies, called Orientalism, as well as the burgeoning field of anthropology. A plaster cast of this bust was…`,
+  medium: `Bronze`,
+  artist: `Charles-Henri-Joseph Cordier (French, 1827-1905)
+Cast by Eck et Durand Fondeur (French, 19th century)`,
+  culture: `France`,
+  dimensions: `82.5 × 45.7 × 35.6 cm (32 1/2 × 18 × 14 1/16 in.)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `© Auckland Museum CC BY`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/659209`,
-  institution: `Auckland Museum`
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.artic.edu/artworks/18751`,
+  institution: `Art Institute of Chicago`
 };
 
 // Build rich context from available fields
@@ -1018,6 +1103,26 @@ let visitorLastReply = '';
 let visitorSpeechRecognition = null;
 let visitorSpeechListening = false;
 let visitorSpeechStatus = '';
+let visitorVoiceChoice = 'archai-neutral';
+
+const VISITOR_LEGACY_VOICE_PATTERNS = [
+  /alex/i, /fred/i, /bruce/i, /ralph/i, /albert/i,
+  /bad news/i, /bahh/i, /bells/i, /boing/i, /bubbles/i, /cellos/i,
+  /deranged/i, /good news/i, /hysterical/i, /pipe organ/i, /trinoids/i, /whisper/i, /zarvox/i
+];
+
+const VISITOR_NEUTRAL_VOICE_PREFERENCES = [
+  /neutral/i,
+  /aria/i,
+  /google us english/i,
+  /google uk english/i,
+  /google english/i,
+  /siri voice 4/i,
+  /siri voice/i,
+  /english \(australia\)/i,
+  /australian english/i,
+  /natural/i
+];
 
 const VISITOR_TONES = {
   guide: {
@@ -1065,20 +1170,154 @@ function getVisitorSpeechLanguageCode() {
   return document.documentElement.lang || navigator.language || 'en-AU';
 }
 
+function visitorSupportsSpeechRecognition() {
+  return Boolean(window.SpeechRecognition || window.webkitSpeechRecognition);
+}
+
+function getVisitorSpeechUnavailableMessage() {
+  const ua = navigator.userAgent || '';
+  if (/iPhone|iPad|iPod/i.test(ua)) {
+    return 'Live voice capture is not supported in iPhone browsers yet. You can still type your question or use Read Reply. Whisper backend capture is the next step.';
+  }
+  return 'This browser does not support live speech capture yet.';
+}
+
+function getVisitorVoices() {
+  if (typeof speechSynthesis === 'undefined' || !speechSynthesis.getVoices) return [];
+  return speechSynthesis.getVoices() || [];
+}
+
+function scoreVisitorVoice(voice, languageCode) {
+  const target = (languageCode || 'en-AU').toLowerCase();
+  const targetBase = target.split('-')[0];
+  const lang = (voice.lang || '').toLowerCase();
+  const name = `${voice.name || ''} ${voice.voiceURI || ''}`.trim();
+
+  let score = 0;
+  if (lang === target) score += 80;
+  else if (lang.startsWith(`${targetBase}-`)) score += 60;
+  else if (lang.startsWith(targetBase)) score += 40;
+
+  VISITOR_NEUTRAL_VOICE_PREFERENCES.forEach((pattern, index) => {
+    if (pattern.test(name)) score += Math.max(30 - index * 4, 8);
+  });
+
+  if (/male|female|man|woman|boy|girl/i.test(name)) score -= 8;
+  if (VISITOR_LEGACY_VOICE_PATTERNS.some(pattern => pattern.test(name))) score -= 80;
+  if (voice.default) score += 4;
+  if (voice.localService) score += 2;
+
+  return score;
+}
+
+function resolveVisitorSpeechVoice(languageCode) {
+  const voices = getVisitorVoices();
+  if (!voices.length) return null;
+
+  if (visitorVoiceChoice && visitorVoiceChoice !== 'archai-neutral' && visitorVoiceChoice !== 'browser-default') {
+    return voices.find(voice => voice.voiceURI === visitorVoiceChoice || voice.name === visitorVoiceChoice) || null;
+  }
+
+  if (visitorVoiceChoice === 'browser-default') return null;
+
+  const ranked = voices
+    .map(voice => ({ voice, score: scoreVisitorVoice(voice, languageCode) }))
+    .sort((a, b) => b.score - a.score);
+
+  return ranked[0]?.voice || null;
+}
+
+function updateVisitorVoiceNote() {
+  const note = document.getElementById('v-voice-note');
+  if (!note) return;
+  if (visitorVoiceChoice === 'browser-default') {
+    note.textContent = 'Using the browser default voice for speech playback.';
+    return;
+  }
+  const voice = resolveVisitorSpeechVoice(getVisitorSpeechLanguageCode());
+  if (voice) {
+    note.textContent = `ARCHAI Neutral is using: ${voice.name} (${voice.lang || 'default locale'}).`;
+  } else {
+    note.textContent = 'ARCHAI Neutral will use the best available modern browser voice when playback starts.';
+  }
+}
+
+function populateVisitorVoiceSelect() {
+  const select = document.getElementById('v-voice-select');
+  if (!select) return;
+  const voices = getVisitorVoices();
+  const current = visitorVoiceChoice || 'archai-neutral';
+
+  select.innerHTML = '';
+  [
+    { value: 'archai-neutral', label: 'ARCHAI Neutral (recommended)' },
+    { value: 'browser-default', label: 'Browser Default' }
+  ].forEach(meta => {
+    const option = document.createElement('option');
+    option.value = meta.value;
+    option.textContent = meta.label;
+    select.appendChild(option);
+  });
+
+  voices.forEach(voice => {
+    const option = document.createElement('option');
+    option.value = voice.voiceURI || voice.name;
+    option.textContent = `${voice.name} (${voice.lang || 'default'})`;
+    select.appendChild(option);
+  });
+
+  select.value = current;
+  updateVisitorVoiceNote();
+}
+
+function setVisitorVoicePreference(value) {
+  visitorVoiceChoice = value || 'archai-neutral';
+  updateVisitorVoiceNote();
+}
+
+function getVisitorVoiceIndicatorState(message = '') {
+  const text = String(message || visitorSpeechStatus || '').toLowerCase();
+  if (visitorSpeechListening || text.includes('listening')) return 'live';
+  if (
+    text.includes('reading') ||
+    text.includes('audio finished') ||
+    text.includes('starting microphone') ||
+    text.includes('question captured') ||
+    text.includes('sending to archai')
+  ) return 'pending';
+  if (
+    text.includes('blocked') ||
+    text.includes('interrupted') ||
+    text.includes('error') ||
+    text.includes('not support') ||
+    text.includes('issue')
+  ) return 'error';
+  return '';
+}
+
 function updateVisitorSpeechUI(message = '') {
   if (message) visitorSpeechStatus = message;
-  const statusEl = document.getElementById('v-voice-status');
+  const statusEl = document.getElementById('v-voice-status-text') || document.getElementById('v-voice-status');
+  const indicatorEl = document.getElementById('v-voice-indicator');
   const startBtn = document.getElementById('v-voice-start-btn');
   const stopBtn = document.getElementById('v-voice-stop-btn');
   const readBtn = document.getElementById('v-voice-read-btn');
   const silenceBtn = document.getElementById('v-voice-silence-btn');
   const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+  const statusMessage = visitorSpeechStatus || (visitorSupportsSpeechRecognition()
+    ? 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.'
+    : getVisitorSpeechUnavailableMessage());
 
   if (statusEl) {
-    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+    statusEl.textContent = statusMessage;
   }
-  if (startBtn) startBtn.disabled = visitorSpeechListening;
-  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (indicatorEl) {
+    const indicatorState = getVisitorVoiceIndicatorState(statusMessage);
+    indicatorEl.classList.remove('live', 'pending', 'error');
+    if (indicatorState) indicatorEl.classList.add(indicatorState);
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening || !visitorSupportsSpeechRecognition();
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening || !visitorSupportsSpeechRecognition();
   if (readBtn) readBtn.disabled = !visitorLastReply;
   if (silenceBtn) silenceBtn.disabled = !speaking;
 }
@@ -1128,7 +1367,7 @@ function ensureVisitorSpeechRecognition() {
 function startVisitorVoiceQuestion() {
   const recognition = ensureVisitorSpeechRecognition();
   if (!recognition) {
-    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    updateVisitorSpeechUI(getVisitorSpeechUnavailableMessage());
     return;
   }
   recognition.lang = getVisitorSpeechLanguageCode();
@@ -1161,7 +1400,13 @@ function speakVisitorReply() {
   speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = getVisitorSpeechLanguageCode();
+  const selectedVoice = resolveVisitorSpeechVoice(utterance.lang);
+  if (selectedVoice) {
+    utterance.voice = selectedVoice;
+    utterance.lang = selectedVoice.lang || utterance.lang;
+  }
   utterance.rate = 0.98;
+  utterance.pitch = 1.0;
   utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
   utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
   utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
@@ -1286,6 +1531,10 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
 });
 updateVisitorToneUI();
 updateVisitorSpeechUI();
+populateVisitorVoiceSelect();
+if (typeof speechSynthesis !== 'undefined') {
+  speechSynthesis.onvoiceschanged = () => populateVisitorVoiceSelect();
+}
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1393,7 +1642,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_auckland',
+      collection: 'archai_aic',
       text,
       authorType: 'visitor',
     }),

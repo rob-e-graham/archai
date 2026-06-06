@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Wearable art ensemble — ARCHAI</title>
+<title>Mr Banks receiving a visit from the king of Duke of York's Island; View of a perforated rock, in Tolago Bay; View of a town in the island of Terra del Fuego. Plate 7. From the book New, authentic, and complete collection of voyages round the world. — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -371,6 +371,39 @@ body::after {
   color: var(--text3);
   margin-bottom: 8px;
 }
+.v-voice-select-row {
+  display: grid;
+  grid-template-columns: 108px minmax(0,1fr);
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.v-voice-select-row label {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+.v-voice-select {
+  width: 100%;
+  padding: 8px 10px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border2);
+  color: var(--text2);
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  outline: none;
+}
+.v-voice-select:focus {
+  border-color: var(--accent2);
+}
+.v-voice-note {
+  margin-bottom: 10px;
+  color: var(--text3);
+  font-size: 0.68rem;
+  line-height: 1.5;
+}
 .v-voice-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -405,6 +438,43 @@ body::after {
   color: var(--text3);
   font-size: 0.76rem;
   line-height: 1.6;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+.v-voice-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(143,188,176,0.35);
+  background: rgba(255,255,255,0.06);
+  box-shadow: 0 0 0 0 rgba(143,188,176,0);
+  margin-top: 3px;
+  flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+.v-voice-indicator.live {
+  background: var(--accent2);
+  border-color: var(--accent2);
+  animation: voicePulse 1.2s ease-out infinite;
+}
+.v-voice-indicator.pending {
+  background: rgba(200,169,110,0.9);
+  border-color: rgba(200,169,110,0.9);
+  animation: voicePulse 1.2s ease-out infinite;
+}
+.v-voice-indicator.error {
+  background: rgba(210,110,110,0.9);
+  border-color: rgba(210,110,110,0.9);
+}
+.v-voice-status-text {
+  display: block;
+  min-height: 1.2em;
+}
+@keyframes voicePulse {
+  0% { box-shadow: 0 0 0 0 rgba(143,188,176,0.28); transform: scale(1); }
+  70% { box-shadow: 0 0 0 10px rgba(143,188,176,0); transform: scale(1.04); }
+  100% { box-shadow: 0 0 0 0 rgba(143,188,176,0); transform: scale(1); }
 }
 
 .v-response {
@@ -811,18 +881,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2014HH8835/full/!600,600/0/default.jpg" alt="Wearable art ensemble" loading="eager">
+  <img src="https://media.tepapa.govt.nz/collection/910706/preview" alt="Mr Banks receiving a visit from the king of Duke of York's Island; View of a perforated rock, in Tolago Bay; View of a town in the island of Terra del Fuego. Plate 7. From the book New, authentic, and complete collection of voyages round the world." loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Wearable art ensemble</div>
-  <div class="v-sub">Wearable art ensemble · 2012 · T.90:1-5-2013</div>
+  <div class="v-title">Mr Banks receiving a visit from the king of Duke of York's Island; View of a perforated rock, in Tolago Bay; View of a town in the island of Terra del Fuego. Plate 7. From the book New, authentic, and complete collection of voyages round the world.</div>
+  <div class="v-sub">rare books · 1784 · RB000015/007a</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Wearable art ensemble</span>
+    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">Rare Books</span>
   </div>
 
   <!-- SHARE -->
@@ -833,11 +903,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Wearable art ensemble</strong> — Wearable art ensemble. Wearable art ensemble. Made by Deacon, Giles. 2012. Made in London. In Store</div>
-  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
-      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+  <div class="v-story"><strong>Mr Banks receiving a visit from the king of Duke of York's Island; View of a perforated rock, in Tolago Bay; View of a town in the island of Terra del Fuego. Plate 7. From the book New, authentic, and complete collection of voyages round the world.</strong> — Mr Banks receiving a visit from the king of Duke of York's Island; View of a perforated rock, in Tolago Bay; View of a town in the island of Terra del Fuego. Plate 7. From the book New, authentic, and complete collection of voyages round the world. , 1784, London, by Alexander Hogg, Charles Warren, …</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: No Known Copyright Restrictions · metadata CC BY 4.0 · No Known Copyright Restrictions</div>
     </div>
 
   <div class="v-divider"></div>
@@ -865,13 +935,21 @@ body::after {
     </div>
     <div class="v-voice-wrap">
       <div class="v-voice-label">Speech Demo</div>
+      <div class="v-voice-select-row">
+        <label for="v-voice-select">Playback Voice</label>
+        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+          <option value="browser-default">Browser Default</option>
+        </select>
+      </div>
+      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
       <div class="v-voice-buttons">
         <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
         <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
         <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
         <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
       </div>
-      <div class="v-voice-status" id="v-voice-status">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</div>
+      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
     </div>
     <div class="v-response" id="chatResponse"></div>
   </div>
@@ -881,16 +959,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">T.90:1-5-2013</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Deacon, Giles</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Wearable art ensemble</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Wearable art ensemble</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2012</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In Store</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Wearable art ensemble</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">RB000015/007a</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Alexander Hogg, Charles Warren, Sydney Parkinson, Alexander Buchan</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">printing paper, ink</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Captain James Cook</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Rare Books</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">rare books</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1784</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">rare books</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">No Known Copyright Restrictions · metadata CC BY 4.0 · No Known Copyright Restrictions</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -905,24 +985,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1160.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PG7082/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Synthesizer</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:AMERICASFOUNDATION.2082-2024</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/caUrP/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Duit van de Bataafse Republiek op naam van Zeeland, 1797</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100096</div>
       </a>
       <a class="v-rel-card" href="NFC1161.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%3A80%2Fwebclient%2FDeliveryManager%3Fpid%3D6355697%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Servizio fotografico Firenze, 1957-1956. Photographic reportage, Florence, 1957-1956</div>
-        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6355697_custom_att_2_simple_viewer</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2015HR4447/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">R200</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.21-2003</div>
       </a>
       <a class="v-rel-card" href="NFC1163.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/vGdVs/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Hollandse dukaat, 1738</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100255</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/292110/preview" loading="lazy"></div>
+        <div class="v-rel-title">Box</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH002897</div>
       </a>
       <a class="v-rel-card" href="NFC1164.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669290/6245-scaled.jpg" loading="lazy"></div>
-        <div class="v-rel-title">La madonna della sedia</div>
-        <div class="v-rel-meta">Brasiliana Museus · la-madonna-della-sedia</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fcollection.mobilier-national.fr%2Fmedia%2Fxl%2FCINQPEYRES%2F2014%2F06%2Fgob-25-001_2014.jpg&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">CARTON DE GARNITURE DE MOBILIER - Modèle de dossier de canapé : Les Amours tirant à l'arc</div>
+        <div class="v-rel-meta">Europeana · /957/GOB_25_001</div>
       </a></div>
   </div>
 </div>
@@ -935,7 +1015,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1272991/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/1891806" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -967,26 +1047,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Wearable art ensemble`,
-  type: `Wearable art ensemble`,
-  date: `2012`,
-  registration: `T.90:1-5-2013`,
-  location: `In Store`,
-  discipline: `Wearable art ensemble`,
-  category: `Wearable art ensemble`,
-  description: `Wearable art ensemble. Wearable art ensemble. Made by Deacon, Giles. 2012. Made in London. In Store`,
-  medium: ``,
-  artist: `Deacon, Giles`,
-  culture: ``,
+  title: `Mr Banks receiving a visit from the king of Duke of York's Island; View of a perforated rock, in Tolago Bay; View of a town in the island of Terra del Fuego. Plate 7. From the book New, authentic, and complete collection of voyages round the world.`,
+  type: `rare books`,
+  date: `1784`,
+  registration: `RB000015/007a`,
+  location: `Te Papa Tongarewa, Wellington`,
+  discipline: `Rare Books`,
+  category: `rare books`,
+  description: `Mr Banks receiving a visit from the king of Duke of York's Island; View of a perforated rock, in Tolago Bay; View of a town in the island of Terra del Fuego. Plate 7. From the book New, authentic, and complete collection of voyages round the world. , 1784, London, by Alexander Hogg, Charles Warren, Sydney Parkinson, Alexander Buchan. Gift of Charles Rooking Carter. Te Papa (RB000015/007a)`,
+  medium: `printing paper, ink`,
+  artist: `Alexander Hogg, Charles Warren, Sydney Parkinson, Alexander Buchan`,
+  culture: `Captain James Cook`,
   dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1272991/`,
-  institution: `Victoria and Albert Museum, London`
+  tombstone: `Mr Banks receiving a visit from the king of Duke of York's Island; View of a perforated rock, in Tolago Bay; View of a town in the island of Terra del Fuego. Plate 7. From the book New, authentic, and complete collection of voyages round the world., 1784, London, by Alexander Hogg, Charles Warren, Sydney Parkinson, Alexander Buchan. Gift of Charles Rooking Carter. Te Papa (RB000015/007a)`,
+  licence: `No Known Copyright Restrictions · metadata CC BY 4.0`,
+  source_url: `https://collections.tepapa.govt.nz/object/1891806`,
+  institution: `Museum of New Zealand Te Papa Tongarewa`
 };
 
 // Build rich context from available fields
@@ -1018,6 +1098,26 @@ let visitorLastReply = '';
 let visitorSpeechRecognition = null;
 let visitorSpeechListening = false;
 let visitorSpeechStatus = '';
+let visitorVoiceChoice = 'archai-neutral';
+
+const VISITOR_LEGACY_VOICE_PATTERNS = [
+  /alex/i, /fred/i, /bruce/i, /ralph/i, /albert/i,
+  /bad news/i, /bahh/i, /bells/i, /boing/i, /bubbles/i, /cellos/i,
+  /deranged/i, /good news/i, /hysterical/i, /pipe organ/i, /trinoids/i, /whisper/i, /zarvox/i
+];
+
+const VISITOR_NEUTRAL_VOICE_PREFERENCES = [
+  /neutral/i,
+  /aria/i,
+  /google us english/i,
+  /google uk english/i,
+  /google english/i,
+  /siri voice 4/i,
+  /siri voice/i,
+  /english \(australia\)/i,
+  /australian english/i,
+  /natural/i
+];
 
 const VISITOR_TONES = {
   guide: {
@@ -1065,20 +1165,154 @@ function getVisitorSpeechLanguageCode() {
   return document.documentElement.lang || navigator.language || 'en-AU';
 }
 
+function visitorSupportsSpeechRecognition() {
+  return Boolean(window.SpeechRecognition || window.webkitSpeechRecognition);
+}
+
+function getVisitorSpeechUnavailableMessage() {
+  const ua = navigator.userAgent || '';
+  if (/iPhone|iPad|iPod/i.test(ua)) {
+    return 'Live voice capture is not supported in iPhone browsers yet. You can still type your question or use Read Reply. Whisper backend capture is the next step.';
+  }
+  return 'This browser does not support live speech capture yet.';
+}
+
+function getVisitorVoices() {
+  if (typeof speechSynthesis === 'undefined' || !speechSynthesis.getVoices) return [];
+  return speechSynthesis.getVoices() || [];
+}
+
+function scoreVisitorVoice(voice, languageCode) {
+  const target = (languageCode || 'en-AU').toLowerCase();
+  const targetBase = target.split('-')[0];
+  const lang = (voice.lang || '').toLowerCase();
+  const name = `${voice.name || ''} ${voice.voiceURI || ''}`.trim();
+
+  let score = 0;
+  if (lang === target) score += 80;
+  else if (lang.startsWith(`${targetBase}-`)) score += 60;
+  else if (lang.startsWith(targetBase)) score += 40;
+
+  VISITOR_NEUTRAL_VOICE_PREFERENCES.forEach((pattern, index) => {
+    if (pattern.test(name)) score += Math.max(30 - index * 4, 8);
+  });
+
+  if (/male|female|man|woman|boy|girl/i.test(name)) score -= 8;
+  if (VISITOR_LEGACY_VOICE_PATTERNS.some(pattern => pattern.test(name))) score -= 80;
+  if (voice.default) score += 4;
+  if (voice.localService) score += 2;
+
+  return score;
+}
+
+function resolveVisitorSpeechVoice(languageCode) {
+  const voices = getVisitorVoices();
+  if (!voices.length) return null;
+
+  if (visitorVoiceChoice && visitorVoiceChoice !== 'archai-neutral' && visitorVoiceChoice !== 'browser-default') {
+    return voices.find(voice => voice.voiceURI === visitorVoiceChoice || voice.name === visitorVoiceChoice) || null;
+  }
+
+  if (visitorVoiceChoice === 'browser-default') return null;
+
+  const ranked = voices
+    .map(voice => ({ voice, score: scoreVisitorVoice(voice, languageCode) }))
+    .sort((a, b) => b.score - a.score);
+
+  return ranked[0]?.voice || null;
+}
+
+function updateVisitorVoiceNote() {
+  const note = document.getElementById('v-voice-note');
+  if (!note) return;
+  if (visitorVoiceChoice === 'browser-default') {
+    note.textContent = 'Using the browser default voice for speech playback.';
+    return;
+  }
+  const voice = resolveVisitorSpeechVoice(getVisitorSpeechLanguageCode());
+  if (voice) {
+    note.textContent = `ARCHAI Neutral is using: ${voice.name} (${voice.lang || 'default locale'}).`;
+  } else {
+    note.textContent = 'ARCHAI Neutral will use the best available modern browser voice when playback starts.';
+  }
+}
+
+function populateVisitorVoiceSelect() {
+  const select = document.getElementById('v-voice-select');
+  if (!select) return;
+  const voices = getVisitorVoices();
+  const current = visitorVoiceChoice || 'archai-neutral';
+
+  select.innerHTML = '';
+  [
+    { value: 'archai-neutral', label: 'ARCHAI Neutral (recommended)' },
+    { value: 'browser-default', label: 'Browser Default' }
+  ].forEach(meta => {
+    const option = document.createElement('option');
+    option.value = meta.value;
+    option.textContent = meta.label;
+    select.appendChild(option);
+  });
+
+  voices.forEach(voice => {
+    const option = document.createElement('option');
+    option.value = voice.voiceURI || voice.name;
+    option.textContent = `${voice.name} (${voice.lang || 'default'})`;
+    select.appendChild(option);
+  });
+
+  select.value = current;
+  updateVisitorVoiceNote();
+}
+
+function setVisitorVoicePreference(value) {
+  visitorVoiceChoice = value || 'archai-neutral';
+  updateVisitorVoiceNote();
+}
+
+function getVisitorVoiceIndicatorState(message = '') {
+  const text = String(message || visitorSpeechStatus || '').toLowerCase();
+  if (visitorSpeechListening || text.includes('listening')) return 'live';
+  if (
+    text.includes('reading') ||
+    text.includes('audio finished') ||
+    text.includes('starting microphone') ||
+    text.includes('question captured') ||
+    text.includes('sending to archai')
+  ) return 'pending';
+  if (
+    text.includes('blocked') ||
+    text.includes('interrupted') ||
+    text.includes('error') ||
+    text.includes('not support') ||
+    text.includes('issue')
+  ) return 'error';
+  return '';
+}
+
 function updateVisitorSpeechUI(message = '') {
   if (message) visitorSpeechStatus = message;
-  const statusEl = document.getElementById('v-voice-status');
+  const statusEl = document.getElementById('v-voice-status-text') || document.getElementById('v-voice-status');
+  const indicatorEl = document.getElementById('v-voice-indicator');
   const startBtn = document.getElementById('v-voice-start-btn');
   const stopBtn = document.getElementById('v-voice-stop-btn');
   const readBtn = document.getElementById('v-voice-read-btn');
   const silenceBtn = document.getElementById('v-voice-silence-btn');
   const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
+  const statusMessage = visitorSpeechStatus || (visitorSupportsSpeechRecognition()
+    ? 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.'
+    : getVisitorSpeechUnavailableMessage());
 
   if (statusEl) {
-    statusEl.textContent = visitorSpeechStatus || 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.';
+    statusEl.textContent = statusMessage;
   }
-  if (startBtn) startBtn.disabled = visitorSpeechListening;
-  if (stopBtn) stopBtn.disabled = !visitorSpeechListening;
+  if (indicatorEl) {
+    const indicatorState = getVisitorVoiceIndicatorState(statusMessage);
+    indicatorEl.classList.remove('live', 'pending', 'error');
+    if (indicatorState) indicatorEl.classList.add(indicatorState);
+  }
+  if (startBtn) startBtn.disabled = visitorSpeechListening || !visitorSupportsSpeechRecognition();
+  if (stopBtn) stopBtn.disabled = !visitorSpeechListening || !visitorSupportsSpeechRecognition();
   if (readBtn) readBtn.disabled = !visitorLastReply;
   if (silenceBtn) silenceBtn.disabled = !speaking;
 }
@@ -1128,7 +1362,7 @@ function ensureVisitorSpeechRecognition() {
 function startVisitorVoiceQuestion() {
   const recognition = ensureVisitorSpeechRecognition();
   if (!recognition) {
-    updateVisitorSpeechUI('This browser does not support live speech capture yet.');
+    updateVisitorSpeechUI(getVisitorSpeechUnavailableMessage());
     return;
   }
   recognition.lang = getVisitorSpeechLanguageCode();
@@ -1161,7 +1395,13 @@ function speakVisitorReply() {
   speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = getVisitorSpeechLanguageCode();
+  const selectedVoice = resolveVisitorSpeechVoice(utterance.lang);
+  if (selectedVoice) {
+    utterance.voice = selectedVoice;
+    utterance.lang = selectedVoice.lang || utterance.lang;
+  }
   utterance.rate = 0.98;
+  utterance.pitch = 1.0;
   utterance.onstart = () => updateVisitorSpeechUI('Reading the latest reply aloud…');
   utterance.onend = () => updateVisitorSpeechUI('Audio finished. You can ask another question or replay the answer.');
   utterance.onerror = () => updateVisitorSpeechUI('Audio playback was interrupted. You can try again.');
@@ -1286,6 +1526,10 @@ document.getElementById('chatInput').addEventListener('keypress', e => {
 });
 updateVisitorToneUI();
 updateVisitorSpeechUI();
+populateVisitorVoiceSelect();
+if (typeof speechSynthesis !== 'undefined') {
+  speechSynthesis.onvoiceschanged = () => populateVisitorVoiceSelect();
+}
 
 // ══════════════════════════════════════════════════════════════════
 // SHARE
@@ -1393,7 +1637,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_tepapa',
       text,
       authorType: 'visitor',
     }),

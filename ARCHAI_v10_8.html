@@ -415,11 +415,22 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 .od-lang-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
 .od-voice-wrap{margin-top:14px;padding:12px;border:1px solid var(--border);background:rgba(255,255,255,0.015);}
 .od-voice-label{font-family:var(--mono);font-size:0.56rem;letter-spacing:1.4px;text-transform:uppercase;color:var(--text3);margin-bottom:8px;}
+.od-voice-select-row{display:grid;grid-template-columns:120px minmax(0,1fr);gap:10px;align-items:center;margin-bottom:10px;}
+.od-voice-select-row label{font-family:var(--mono);font-size:0.52rem;letter-spacing:1px;text-transform:uppercase;color:var(--text3);}
+.od-voice-select{width:100%;padding:8px 10px;background:rgba(255,255,255,0.03);border:1px solid var(--border2);color:var(--text2);font-family:var(--mono);font-size:0.6rem;outline:none;}
+.od-voice-select:focus{border-color:var(--accent2);}
+.od-voice-note{margin-bottom:10px;color:var(--text3);font-size:0.68rem;line-height:1.5;}
 .od-voice-buttons{display:flex;gap:6px;flex-wrap:wrap;}
 .od-voice-buttons button{font-family:var(--mono);font-size:0.54rem;padding:7px 10px;border:1px solid var(--border2);background:transparent;color:var(--text2);letter-spacing:0.5px;text-transform:uppercase;cursor:pointer;transition:all 0.15s;}
 .od-voice-buttons button:hover,.od-voice-buttons button.active{border-color:var(--accent2);color:var(--accent2);background:rgba(143,188,176,0.06);}
 .od-voice-buttons button:disabled{opacity:0.45;cursor:not-allowed;color:var(--text3);}
-.od-voice-status{margin-top:8px;color:var(--text3);font-size:0.7rem;line-height:1.6;}
+.od-voice-status{margin-top:8px;color:var(--text3);font-size:0.7rem;line-height:1.6;display:flex;align-items:flex-start;gap:8px;}
+.od-voice-indicator{width:10px;height:10px;border-radius:999px;border:1px solid rgba(143,188,176,0.35);background:rgba(255,255,255,0.06);box-shadow:0 0 0 0 rgba(143,188,176,0);margin-top:3px;flex-shrink:0;transition:background 0.15s,border-color 0.15s,box-shadow 0.15s,transform 0.15s;}
+.od-voice-indicator.live{background:var(--accent2);border-color:var(--accent2);animation:voicePulse 1.2s ease-out infinite;}
+.od-voice-indicator.pending{background:rgba(200,169,110,0.9);border-color:rgba(200,169,110,0.9);animation:voicePulse 1.2s ease-out infinite;}
+.od-voice-indicator.error{background:rgba(210,110,110,0.9);border-color:rgba(210,110,110,0.9);}
+.od-voice-status-text{display:block;min-height:1.2em;}
+@keyframes voicePulse{0%{box-shadow:0 0 0 0 rgba(143,188,176,0.28);transform:scale(1);}70%{box-shadow:0 0 0 10px rgba(143,188,176,0);transform:scale(1.04);}100%{box-shadow:0 0 0 0 rgba(143,188,176,0);transform:scale(1);}}
 .od-chat-row{display:flex;gap:7px;}
 .od-chat-in{flex:1;background:var(--surface);border:1px solid var(--border2);color:var(--text);font-family:var(--mono);font-size:0.62rem;padding:8px 10px;outline:none;}
 .od-chat-in:focus{border-color:var(--accent);}
@@ -1017,13 +1028,21 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
           </div>
           <div class="od-voice-wrap">
             <div class="od-voice-label">Speech Demo</div>
+            <div class="od-voice-select-row">
+              <label for="od-voice-select">Playback Voice</label>
+              <select id="od-voice-select" class="od-voice-select" onchange="setOdVoicePreference(this.value)">
+                <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+                <option value="browser-default">Browser Default</option>
+              </select>
+            </div>
+            <div class="od-voice-note" id="od-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
             <div class="od-voice-buttons">
               <button id="od-voice-start-btn" onclick="odStartVoiceQuestion()">Start Voice Question</button>
               <button id="od-voice-stop-btn" onclick="odStopVoiceQuestion()" disabled>Stop Listening</button>
               <button id="od-voice-read-btn" onclick="odSpeakLatestReply()">Read Reply</button>
               <button id="od-voice-silence-btn" onclick="odStopSpeaking()" disabled>Stop Audio</button>
             </div>
-            <div class="od-voice-status" id="od-voice-status">Browser speech demo for now. Backend Whisper + Coqui route is the next production step.</div>
+            <div class="od-voice-status" id="od-voice-status"><span class="od-voice-indicator" id="od-voice-indicator" aria-hidden="true"></span><span id="od-voice-status-text">Browser speech demo for now. Backend Whisper + Coqui route is the next production step.</span></div>
           </div>
         </div>
         <div id="od-chat-msgs" class="od-chat-msgs">
@@ -1175,6 +1194,7 @@ window._odLastAssistantReply = '';
 window._odSpeechRecognition = null;
 window._odSpeechListening = false;
 window._odSpeechStatus = '';
+window._odVoiceChoice = 'archai-neutral';
 
 const RESPONSE_LANGUAGES = {
   english: {
@@ -1270,6 +1290,7 @@ function setOdResponseLanguage(languageKey) {
   window._odResponseLanguage = languageKey;
   window._odLanguageStatus = '';
   updateOdLanguageUI();
+  updateOdVoiceNote();
 }
 
 function translateStringsWithOllama(strings, languageKey, contextLabel) {
@@ -1394,22 +1415,175 @@ function getOdSpeechLanguageCode() {
   return codes[languageKey] || 'en-AU';
 }
 
+function odSupportsSpeechRecognition() {
+  return Boolean(window.SpeechRecognition || window.webkitSpeechRecognition);
+}
+
+function getOdSpeechUnavailableMessage() {
+  const ua = navigator.userAgent || '';
+  if (/iPhone|iPad|iPod/i.test(ua)) {
+    return 'Live voice capture is not supported in iPhone browsers yet. You can still type your question or use Read Reply. Whisper backend capture is the next step.';
+  }
+  return 'Speech recognition is not available in this browser. Backend Whisper is the next step.';
+}
+
+const OD_LEGACY_VOICE_PATTERNS = [
+  /alex/i, /fred/i, /bruce/i, /ralph/i, /albert/i,
+  /bad news/i, /bahh/i, /bells/i, /boing/i, /bubbles/i, /cellos/i,
+  /deranged/i, /good news/i, /hysterical/i, /pipe organ/i, /trinoids/i, /whisper/i, /zarvox/i
+];
+
+const OD_NEUTRAL_VOICE_PREFERENCES = [
+  /neutral/i,
+  /aria/i,
+  /google us english/i,
+  /google uk english/i,
+  /google english/i,
+  /siri voice 4/i,
+  /siri voice/i,
+  /english \(australia\)/i,
+  /australian english/i,
+  /natural/i
+];
+
+function getOdVoices() {
+  if (!window.speechSynthesis?.getVoices) return [];
+  return window.speechSynthesis.getVoices() || [];
+}
+
+function scoreOdVoice(voice, languageCode) {
+  const target = (languageCode || 'en-AU').toLowerCase();
+  const targetBase = target.split('-')[0];
+  const lang = (voice.lang || '').toLowerCase();
+  const name = `${voice.name || ''} ${voice.voiceURI || ''}`.trim();
+
+  let score = 0;
+  if (lang === target) score += 80;
+  else if (lang.startsWith(`${targetBase}-`)) score += 60;
+  else if (lang.startsWith(targetBase)) score += 40;
+
+  OD_NEUTRAL_VOICE_PREFERENCES.forEach((pattern, index) => {
+    if (pattern.test(name)) score += Math.max(30 - index * 4, 8);
+  });
+
+  if (/male|female|man|woman|boy|girl/i.test(name)) score -= 8;
+  if (OD_LEGACY_VOICE_PATTERNS.some(pattern => pattern.test(name))) score -= 80;
+  if (voice.default) score += 4;
+  if (voice.localService) score += 2;
+
+  return score;
+}
+
+function resolveOdSpeechVoice(languageCode) {
+  const voices = getOdVoices();
+  if (!voices.length) return null;
+
+  if (window._odVoiceChoice && window._odVoiceChoice !== 'archai-neutral' && window._odVoiceChoice !== 'browser-default') {
+    return voices.find(voice => voice.voiceURI === window._odVoiceChoice || voice.name === window._odVoiceChoice) || null;
+  }
+
+  if (window._odVoiceChoice === 'browser-default') return null;
+
+  const ranked = voices
+    .map(voice => ({ voice, score: scoreOdVoice(voice, languageCode) }))
+    .sort((a, b) => b.score - a.score);
+
+  return ranked[0]?.voice || null;
+}
+
+function updateOdVoiceNote() {
+  const note = document.getElementById('od-voice-note');
+  if (!note) return;
+  if (window._odVoiceChoice === 'browser-default') {
+    note.textContent = 'Using the browser default voice for speech playback.';
+    return;
+  }
+  const voice = resolveOdSpeechVoice(getOdSpeechLanguageCode());
+  if (voice) {
+    note.textContent = `ARCHAI Neutral is using: ${voice.name} (${voice.lang || 'default locale'}).`;
+  } else {
+    note.textContent = 'ARCHAI Neutral will use the best available modern browser voice when playback starts.';
+  }
+}
+
+function populateOdVoiceSelect() {
+  const select = document.getElementById('od-voice-select');
+  if (!select) return;
+  const voices = getOdVoices();
+  const current = window._odVoiceChoice || 'archai-neutral';
+  select.innerHTML = '';
+
+  [
+    { value: 'archai-neutral', label: 'ARCHAI Neutral (recommended)' },
+    { value: 'browser-default', label: 'Browser Default' }
+  ].forEach(meta => {
+    const option = document.createElement('option');
+    option.value = meta.value;
+    option.textContent = meta.label;
+    select.appendChild(option);
+  });
+
+  voices.forEach(voice => {
+    const option = document.createElement('option');
+    option.value = voice.voiceURI || voice.name;
+    option.textContent = `${voice.name} (${voice.lang || 'default'})`;
+    select.appendChild(option);
+  });
+
+  select.value = current;
+  updateOdVoiceNote();
+}
+
+function setOdVoicePreference(value) {
+  window._odVoiceChoice = value || 'archai-neutral';
+  updateOdVoiceNote();
+}
+
+function getOdVoiceIndicatorState(message = '') {
+  const text = String(message || window._odSpeechStatus || '').toLowerCase();
+  if (window._odSpeechListening || text.includes('listening')) return 'live';
+  if (
+    text.includes('reading') ||
+    text.includes('audio finished') ||
+    text.includes('audio playback finished') ||
+    text.includes('starting microphone') ||
+    text.includes('question captured') ||
+    text.includes('sending to archai')
+  ) return 'pending';
+  if (
+    text.includes('blocked') ||
+    text.includes('failed') ||
+    text.includes('error') ||
+    text.includes('not support')
+  ) return 'error';
+  return '';
+}
+
 function updateOdSpeechUI(message = '') {
   if (message) window._odSpeechStatus = message;
-  const statusEl = document.getElementById('od-voice-status');
+  const statusEl = document.getElementById('od-voice-status-text') || document.getElementById('od-voice-status');
+  const indicatorEl = document.getElementById('od-voice-indicator');
   const startBtn = document.getElementById('od-voice-start-btn');
   const stopBtn = document.getElementById('od-voice-stop-btn');
   const readBtn = document.getElementById('od-voice-read-btn');
   const silenceBtn = document.getElementById('od-voice-silence-btn');
+  const statusMessage = window._odSpeechStatus || (odSupportsSpeechRecognition()
+    ? 'Browser speech demo for now. Backend Whisper + Coqui route is the next production step.'
+    : getOdSpeechUnavailableMessage());
 
   if (statusEl) {
-    statusEl.textContent = window._odSpeechStatus || 'Browser speech demo for now. Backend Whisper + Coqui route is the next production step.';
+    statusEl.textContent = statusMessage;
+  }
+  if (indicatorEl) {
+    const indicatorState = getOdVoiceIndicatorState(statusMessage);
+    indicatorEl.classList.remove('live', 'pending', 'error');
+    if (indicatorState) indicatorEl.classList.add(indicatorState);
   }
   if (startBtn) {
-    startBtn.disabled = !!window._odSpeechListening;
+    startBtn.disabled = !!window._odSpeechListening || !odSupportsSpeechRecognition();
     startBtn.classList.toggle('active', !!window._odSpeechListening);
   }
-  if (stopBtn) stopBtn.disabled = !window._odSpeechListening;
+  if (stopBtn) stopBtn.disabled = !window._odSpeechListening || !odSupportsSpeechRecognition();
   if (readBtn) readBtn.disabled = !window._odLastAssistantReply;
   if (silenceBtn) silenceBtn.disabled = !window.speechSynthesis || !window.speechSynthesis.speaking;
 }
@@ -1465,7 +1639,7 @@ function ensureOdSpeechRecognition() {
 function odStartVoiceQuestion() {
   const recognition = ensureOdSpeechRecognition();
   if (!recognition) {
-    updateOdSpeechUI('Speech recognition is not available in this browser. Backend Whisper is the next step.');
+    updateOdSpeechUI(getOdSpeechUnavailableMessage());
     return;
   }
   recognition.lang = getOdSpeechLanguageCode();
@@ -1496,6 +1670,13 @@ function odSpeakLatestReply() {
   window.speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = getOdSpeechLanguageCode();
+  const selectedVoice = resolveOdSpeechVoice(utterance.lang);
+  if (selectedVoice) {
+    utterance.voice = selectedVoice;
+    utterance.lang = selectedVoice.lang || utterance.lang;
+  }
+  utterance.rate = 1.0;
+  utterance.pitch = 1.0;
   utterance.onstart = () => updateOdSpeechUI('Reading the latest ARCHAI reply aloud…');
   utterance.onend = () => updateOdSpeechUI('Audio playback finished.');
   utterance.onerror = () => updateOdSpeechUI('Speech playback failed in this browser.');
@@ -1571,6 +1752,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // Role init
   initRoleUI();
+  populateOdVoiceSelect();
+  if (window.speechSynthesis) {
+    window.speechSynthesis.onvoiceschanged = () => populateOdVoiceSelect();
+  }
 
   // Load MV objects from Qdrant
   loadMVObjects();
