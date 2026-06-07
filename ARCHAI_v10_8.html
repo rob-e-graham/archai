@@ -1801,6 +1801,20 @@ function setDot(id, status) {
   else { el.classList.add('dot-idle'); }
 }
 
+function formatModelList(models = []) {
+  const seen = new Set();
+  return models
+    .map(m => (typeof m === 'string' ? m : (m.name || m.model || '')))
+    .filter(Boolean)
+    .map(name => name.replace(':latest', ''))
+    .filter(name => {
+      if (seen.has(name)) return false;
+      seen.add(name);
+      return true;
+    })
+    .join(', ');
+}
+
 function checkQdrant() {
   (USE_PROXY ? fetch(`${API_BASE}/api/proxy/qdrant/health`) : fetch(`${QDRANT_DIRECT}/collections`))
     .then(r => r.json())
@@ -1822,7 +1836,7 @@ function checkOllama() {
     .then(r => r.json())
     .then(d => {
       setDot('ollamaDot', 'ok'); setDot('sb-ollama-dot', 'ok');
-      const models = (d.models || []).map(m => m.name.split(':')[0]).join(', ');
+      const models = formatModelList(d.models || []);
       document.getElementById('ollamaVal').textContent = models || 'No models';
       document.getElementById('sb-ollama-val').textContent = models || 'Online'; document.getElementById('sb-ollama-val').style.color = 'var(--ok)';
     })
@@ -1834,17 +1848,26 @@ function checkOllama() {
 }
 
 function checkDirectus() {
-  fetch('http://localhost:8055/server/health')
+  const directusOrigin = IS_HOST_LOCAL || IS_FILE ? 'http://localhost:8055' : `${location.protocol}//${HOSTNAME}:8055`;
+  fetch(`${directusOrigin}/server/health`)
     .then(r => r.json())
     .then(d => {
       setDot('directusDot', 'ok'); setDot('sb-directus-dot', 'ok');
       document.getElementById('directusVal').textContent = 'Online · ' + (d.status || 'OK');
       document.getElementById('sb-directus-val').textContent = 'Online'; document.getElementById('sb-directus-val').style.color = 'var(--ok)';
     })
+    .catch(() => fetch(`${directusOrigin}/server/health`, { mode: 'no-cors' }))
+    .then(resp => {
+      if (!resp) return;
+      setDot('directusDot', 'ok'); setDot('sb-directus-dot', 'ok');
+      const label = resp.type === 'opaque' ? 'Reachable · browser-limited' : 'Online';
+      document.getElementById('directusVal').textContent = label;
+      document.getElementById('sb-directus-val').textContent = label; document.getElementById('sb-directus-val').style.color = 'var(--ok)';
+    })
     .catch(() => {
       setDot('directusDot', 'warn'); setDot('sb-directus-dot', 'warn');
-      document.getElementById('directusVal').textContent = 'Not reachable';
-      document.getElementById('sb-directus-val').textContent = 'Not reachable'; document.getElementById('sb-directus-val').style.color = 'var(--nodel)';
+      document.getElementById('directusVal').textContent = 'Optional · not connected';
+      document.getElementById('sb-directus-val').textContent = 'Optional · not connected'; document.getElementById('sb-directus-val').style.color = 'var(--nodel)';
     });
 }
 
@@ -4034,7 +4057,7 @@ function escQ(s) {
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js').catch(() => {});
+  navigator.serviceWorker.register('/sw.js?v=11.5.4').catch(() => {});
 }
 </script>
 </body>
