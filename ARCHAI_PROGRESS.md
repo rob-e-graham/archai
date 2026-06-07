@@ -880,3 +880,25 @@ State / next step:
 - This is still a prototype layer. Production should persist institution-created object records and AUX.IO assignments in Directus, with raw source metadata stored separately from visitor-facing interpretation.
 - Generated static AUX.IO pages still come from the page generator; live generation from staff-created records remains future work.
 - Nodel, FAMTEC Exchange, and exhibition operations are intentionally lower priority until AUX.IO and curatorial search are more complete.
+
+## High-intelligence AUX.IO persistence pass — 2026-06-07
+
+Follow-up review found a mismatch: the frontend `saveNFC()` function posted to `/api/nfc`, but the backend only exposed read-only AUX.IO/NFC routes. That meant saves always fell back locally and were not genuinely represented in backend state.
+
+Fixed:
+
+- `backend-archai/src/routes/nfc.js` now exposes `POST /api/nfc`.
+- Payload validation added with Zod.
+- `NFC001` and `NFC-001` formats are normalized at the backend boundary.
+- Optional institution draft objects are accepted with the save payload.
+- `backend-archai/src/services/objectRepository.js` now supports runtime `saveObject()` and `upsertNfcTag()`.
+- AUX.IO saves now upsert the tag assignment, visibility settings, location, and optional institution draft object into the backend runtime repository.
+- Saves are audited as `auxio.save`.
+- Frontend `saveNFC()` now includes local institution draft object data when applicable and reports `Saved to backend` on success.
+- Verified live against the restarted backend on `http://127.0.0.1:8787/api/nfc`: sample `NFC998` saved as `NFC-998` with draft object `institution-live-test-001` and returned `mode: runtime-session`.
+
+Important boundary:
+
+- This is runtime-session persistence, not durable production storage.
+- Directus or SQLite-backed persistence is still required before public/institutional deployment.
+- The current implementation is useful for demo realism and workflow testing: create object → assign AUX.IO → preview → save to backend session.

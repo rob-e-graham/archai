@@ -28,6 +28,16 @@ export const repo = {
   getObject(id) {
     return runtime.objects.find((o) => o.id === id);
   },
+  saveObject(record) {
+    const idx = runtime.objects.findIndex((o) => o.id === record.id);
+    const next = { ...record, updatedAt: new Date().toISOString() };
+    if (idx === -1) {
+      runtime.objects.unshift(next);
+      return next;
+    }
+    runtime.objects[idx] = { ...runtime.objects[idx], ...next };
+    return runtime.objects[idx];
+  },
   updateObject(id, patch) {
     const idx = runtime.objects.findIndex((o) => o.id === id);
     if (idx === -1) return null;
@@ -36,6 +46,16 @@ export const repo = {
   },
   listNfcTags() {
     return runtime.nfcTags;
+  },
+  upsertNfcTag(record) {
+    const idx = runtime.nfcTags.findIndex((t) => t.tagId === record.tagId);
+    const next = { ...record, updatedAt: new Date().toISOString() };
+    if (idx === -1) {
+      runtime.nfcTags.unshift(next);
+      return next;
+    }
+    runtime.nfcTags[idx] = { ...runtime.nfcTags[idx], ...next };
+    return runtime.nfcTags[idx];
   },
   saveUpload(record) {
     runtime.uploads.unshift(record);

@@ -154,7 +154,7 @@ Standalone AUX.IO object pages generated from the live collection set:
 - Assign from loaded collection records, with search across all loaded objects
 - Draft a local institutional object record with title, accession, institution, media URL, source URL, description, and rights status
 - Edit gallery/location/physical trigger text for QR, NFC, kiosk, map, or spatial access points
-- Search, filter, publish/unpublish, save, and export JSON config with rights/visibility metadata
+- Search, filter, publish/unpublish, runtime-backend save, and export JSON config with rights/visibility metadata
 
 ### ✅ Role Switcher
 | Role | Access |
@@ -236,7 +236,7 @@ AAT, LCSH, TGN, and ULAN are listed but inactive — currently using curated ref
 Current in-app FAMTEC Exchange uses prototype data and in-memory arrays only. The production FAMTEC Exchange platform will be developed separately by FAMTEC outside the PhD work, with potential later integration into ARCHAI once developed.
 
 ### 🔲 Directus Integration
-Health-checked only. AUX.IO save attempts backend sync but falls back to local confirmation.
+Health-checked only. AUX.IO now saves to the runtime backend session and falls back to local confirmation, but production persistence still needs Directus/SQLite-backed storage for institutional object drafts and tag assignments.
 
 ### 🔲 Nodel API
 Static prototype data. Needs WebSocket to real Nodel instance. UI links and emergency stop are wired.
@@ -354,6 +354,7 @@ Mac Studio M2 Max · 64GB · 1TB. Base institutional deployment: ~$3,500–5,000
 | **v11.4** | **Legal cleanup and open-only backfill: 208 rights-restricted and 8 unevaluated objects removed from the live public stack, AIC re-harvested public-domain only, Europeana re-harvested with `reusability=open`, curator rebuilt to 1520 live objects, and AUX.IO regenerated with per-object legal status shown** |
 | **v11.5** | **Main app alignment pass: roadmap added, audit refreshed, default browse now favours image-backed demo objects, result cards remain rights-aware, and AUX.IO management uses a larger live-object working set while generated-page sync remains the next step** |
 | **v11.5.6** | **AUX.IO management workflow deepened: staff can create a new AUX.IO record, edit placement, assign from loaded records, draft an institution-owned object for testing, preview the visitor page, and export/save rights-aware config data** |
+| **v11.5.7** | **AUX.IO save path made real for the current backend session: new tag assignments and institution draft objects can be posted to `/api/nfc`, stored in the runtime repository, audited, and returned to the app while Directus remains the production persistence target** |
 
 ---
 

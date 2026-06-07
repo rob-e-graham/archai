@@ -3030,12 +3030,45 @@ function saveNFC(code) {
   const tag = NFC_TAGS.find(t => t.code === code);
   if (!tag) return;
   const vis = nfcVisibility[code] || {};
+  const obj = tag.objectId ? OBJECTS[tag.objectId] : null;
+  const p = obj?._mv || {};
+  const objectDraft = tag.objectId && String(tag.objectId).startsWith('institution-') && obj ? {
+    id: tag.objectId,
+    title: obj.title,
+    type: obj.type || p.object_type || 'Object',
+    year: obj.year || p.year || p.date || null,
+    location: tag.location,
+    status: tag.status === 'live' ? 'published' : 'draft',
+    dataset: 'institution_draft',
+    source: {
+      sourceUrl: p.source_url || p.record_url || '',
+      accessionNumber: p.accession_number || obj.id || '',
+      institution: p.institution || obj.dams || '',
+      rights: p.licence || p.media_rights_title || 'Institutional demo record'
+    },
+    media: pickSearchImage(p) ? [{ kind: 'image', thumbUrl: pickSearchImage(p), rights: p.licence || p.media_rights_title || '' }] : [],
+    tags: Array.isArray(p.keywords) ? p.keywords : ['institution draft', 'aux.io'],
+    materials: p.medium ? [p.medium] : [],
+    description: p.description || obj.ai || '',
+    aiInterpretation: obj.ai || p.description || '',
+    verifiedFacts: [
+      p.institution ? `Institution: ${p.institution}` : '',
+      p.accession_number ? `Accession: ${p.accession_number}` : '',
+      p.licence ? `Rights: ${p.licence}` : ''
+    ].filter(Boolean),
+    unknownFields: [],
+    curatorApproved: [],
+    prohibitedStatements: [],
+    restrictions: p.media_rights_mode === 'internal_preview_only' ? ['Internal preview only'] : [],
+    workflow: { state: tag.status === 'live' ? 'published' : 'draft' }
+  } : null;
   const payload = {
     code: tag.code,
     status: tag.status,
     objectId: tag.objectId,
     location: tag.location,
     visibility: vis,
+    objectDraft,
     savedAt: new Date().toISOString()
   };
   fetch(`${BACKEND_BASE}/api/nfc`, {
@@ -3044,9 +3077,10 @@ function saveNFC(code) {
     body: JSON.stringify(payload)
   })
   .then(r => r.json())
-  .then(() => {
+  .then(d => {
+    if (!d.ok) throw new Error(d.error || 'Save failed');
     const btn = document.querySelector('.btn.primary');
-    if (btn) { btn.textContent = '✓ Saved'; setTimeout(() => { btn.textContent = 'Save Changes'; }, 2000); }
+    if (btn) { btn.textContent = '✓ Saved to backend'; setTimeout(() => { btn.textContent = 'Save Changes'; }, 2200); }
   })
   .catch(() => {
     const btn = document.querySelector('.btn.primary');
@@ -4478,7 +4512,7 @@ function escQ(s) {
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?v=11.5.6').catch(() => {});
+  navigator.serviceWorker.register('/sw.js?v=11.5.7').catch(() => {});
 }
 </script>
 </body>
