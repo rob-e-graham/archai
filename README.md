@@ -47,7 +47,7 @@ Current audited public-demo mix:
 
 ## Origin
 
-The conceptual foundations of ARCHAI were developed over twenty years of professional practice across museums, galleries, and cultural institutions — including ACMI, TarraWarra Museum of Art (Head of Technology), Heide Museum of Modern Art, Museums Victoria, Grande Experiences, and the National Communication Museum. All theoretical frameworks, design principles, and research questions emerged from this accumulated practitioner experience, entirely independent of any single institution.
+The conceptual foundations of ARCHAI were developed over twenty years of professional practice across museums, galleries, and cultural institutions — including ACMI, TarraWarra Museum of Art, Heide Museum of Modern Art, Museums Victoria, Grande Experiences, and the National Communication Museum. All theoretical frameworks, design principles, and research questions emerged from this accumulated practitioner experience, entirely independent of any single institution.
 
 All code in this repository was written after departing the National Communication Museum, developed independently through FAMTEC as part of doctoral research at RMIT University. The first version committed to GitHub (v6, the `v0.1-alpha` release) was the first working prototype, built from the updated PhD document and the ISEA2026 white paper. Earlier conceptual iterations (v1–v4) existed as planning documents and Claude.ai conversation prototypes during the research design phase — the ideas that informed them are documented in the PhD drafts and the ARCHAI Master Plan.
 
