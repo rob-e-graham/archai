@@ -45,8 +45,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 .role-note{font-size:0.5rem;color:var(--text3);letter-spacing:1px;text-transform:uppercase;font-family:var(--mono);margin-top:4px;text-align:right;}
 
 /* INFRA BAR */
-.infra-bar{display:flex;border-bottom:1px solid var(--border);font-family:var(--mono);font-size:0.62rem;overflow-x:auto;}
-.infra-item{flex:1;min-width:110px;padding:9px 14px;border-right:1px solid var(--border);display:flex;align-items:center;gap:7px;cursor:pointer;transition:background 0.15s;white-space:nowrap;}
+.infra-bar{display:flex;border-bottom:1px solid var(--border);font-family:var(--mono);font-size:0.62rem;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;scrollbar-color:var(--border2) transparent;}
+.infra-item{flex:0 0 auto;min-width:190px;max-width:300px;padding:9px 14px;border-right:1px solid var(--border);display:flex;align-items:center;gap:7px;cursor:pointer;transition:background 0.15s;white-space:nowrap;min-height:35px;}
+.infra-item.compact{min-width:150px;}
+.infra-item.wide{min-width:260px;max-width:360px;}
 .infra-item:last-child{border-right:none;}
 .infra-item:hover{background:var(--surface);}
 .infra-item a{color:inherit;text-decoration:none;}
@@ -57,8 +59,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 .dot-idle{background:var(--info);}
 .dot-nfc{background:var(--nfc);animation:blink 2.5s ease infinite;}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
-.infra-name{color:var(--text3);text-transform:uppercase;letter-spacing:1px;font-size:0.56rem;}
-.infra-val{color:var(--text2);margin-left:auto;font-size:0.58rem;}
+.infra-name{color:var(--text3);text-transform:uppercase;letter-spacing:1px;font-size:0.56rem;flex:0 0 auto;}
+.infra-val{color:var(--text2);margin-left:auto;font-size:0.58rem;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:right;}
 
 /* TABS */
 .tabs{display:flex;border-bottom:1px solid var(--border);padding:0 48px;background:var(--bg);position:sticky;top:73px;z-index:100;overflow-x:auto;}
@@ -595,9 +597,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
   <div class="infra-item" onclick="window.open('http://localhost:6333/dashboard','_blank')"><div class="dot dot-idle" id="qdrantDot"></div><span class="infra-name">Qdrant</span><span class="infra-val" id="qdrantVal">Connecting…</span></div>
   <div class="infra-item" onclick="window.open('http://localhost:11434','_blank')"><div class="dot dot-idle" id="ollamaDot"></div><span class="infra-name">Ollama</span><span class="infra-val" id="ollamaVal">Connecting…</span></div>
   <div class="infra-item" onclick="window.open('http://localhost:8055/admin','_blank')"><div class="dot dot-idle" id="directusDot"></div><span class="infra-name">Directus</span><span class="infra-val" id="directusVal">Connecting…</span></div>
-  <div class="infra-item" onclick="window.open('http://localhost:8787','_blank')"><div class="dot dot-idle" id="backendDot"></div><span class="infra-name">Backend</span><span class="infra-val" id="backendVal">localhost:8787</span></div>
-  <div class="infra-item"><div class="dot dot-ok"></div><span class="infra-name">Sources</span><span class="infra-val">MV · Met · V&A · AIC · CMA · Rijks · Europeana · Auckland · Te Papa</span></div>
-  <div class="infra-item"><div class="dot dot-ok"></div><span class="infra-name">Collections</span><span class="infra-val" id="collectionVal">Loading…</span></div>
+  <div class="infra-item compact" onclick="window.open('http://localhost:8787','_blank')"><div class="dot dot-idle" id="backendDot"></div><span class="infra-name">Backend</span><span class="infra-val" id="backendVal">localhost:8787</span></div>
+  <div class="infra-item wide" title="MV · Met · V&A · AIC · CMA · Rijks · Europeana · Auckland · Te Papa · M+ · Brasiliana"><div class="dot dot-ok"></div><span class="infra-name">Sources</span><span class="infra-val">11 museum APIs</span></div>
+  <div class="infra-item compact"><div class="dot dot-ok"></div><span class="infra-name">Collections</span><span class="infra-val" id="collectionVal">Loading…</span></div>
   <div class="infra-item"><div class="dot dot-idle" id="metDot"></div><span class="infra-name">US APIs</span><span class="infra-val" id="metVal">—</span></div>
   <div class="infra-item"><div class="dot dot-idle" id="vaDot"></div><span class="infra-name">EU APIs</span><span class="infra-val" id="vaVal">—</span></div>
 </div>
