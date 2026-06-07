@@ -858,3 +858,25 @@ ETHICS_APPLICATION_NOTES.md now includes RMIT Research Ethics Platform (REP) pro
 ### Updated indexes
 
 - [RESEARCH_INDEX.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/RESEARCH_INDEX.md) — all new documents indexed
+
+## AUX.IO institutional workflow pass — 2026-06-07
+
+Rob clarified the product priority: AUX.IO needs to feel like a realistic museum/gallery publishing workflow, while Nodel, FAMTEC Exchange, and exhibition operations can remain later-stage modules.
+
+Implemented in `ARCHAI_v10_8.html`:
+
+- AUX.IO editor now explains the workflow as create → assign → preview → publish.
+- Staff can create a new AUX.IO record from scratch.
+- Placement/location is editable for gallery, QR, NFC, kiosk, map, or future spatial trigger contexts.
+- Object picker now searches across all loaded objects, while opening with an image-backed shortlist for performance.
+- Staff can draft a local institutional object record with title, accession, institution, type, date, image/media URL, source URL, description, and legal status.
+- Draft institutional objects are added to the current app session, assigned to the AUX.IO record, and shown in the phone preview.
+- AUX.IO export now includes institution, rights status, rights detail, visibility options, object title, object ID, location, and URL.
+- Removed the placeholder `saveNFC` override so the existing backend save attempt with local confirmation is the active path again.
+- Rights parser now treats `Permission required` and `Internal preview only` as restricted.
+
+State / next step:
+
+- This is still a prototype layer. Production should persist institution-created object records and AUX.IO assignments in Directus, with raw source metadata stored separately from visitor-facing interpretation.
+- Generated static AUX.IO pages still come from the page generator; live generation from staff-created records remains future work.
+- Nodel, FAMTEC Exchange, and exhibition operations are intentionally lower priority until AUX.IO and curatorial search are more complete.

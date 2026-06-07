@@ -250,6 +250,18 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 .chip-del:hover{background:rgba(200,112,96,0.1);}
 .story-textarea{width:100%;padding:9px 11px;background:var(--surface2);border:1px solid var(--border2);color:var(--text);font-family:var(--serif);font-style:italic;font-size:0.86rem;min-height:80px;resize:vertical;outline:none;}
 .story-textarea:focus{border-color:var(--nfc);}
+.aux-workflow-note{font-family:var(--mono);font-size:0.58rem;line-height:1.7;color:var(--text3);border:1px solid rgba(126,207,207,0.22);background:rgba(126,207,207,0.035);padding:10px 12px;margin-bottom:14px;letter-spacing:0.4px;}
+.aux-field-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;}
+.aux-field{display:flex;flex-direction:column;gap:4px;}
+.aux-field.full{grid-column:1 / -1;}
+.aux-field label{font-family:var(--mono);font-size:0.5rem;letter-spacing:1.6px;text-transform:uppercase;color:var(--text3);}
+.aux-input,.aux-select,.aux-textarea{width:100%;padding:8px 10px;background:var(--surface2);border:1px solid var(--border2);color:var(--text);font-family:var(--mono);font-size:0.62rem;outline:none;}
+.aux-textarea{min-height:72px;resize:vertical;font-family:var(--serif);font-style:italic;font-size:0.84rem;line-height:1.55;}
+.aux-input:focus,.aux-select:focus,.aux-textarea:focus{border-color:var(--nfc);}
+.aux-helper{font-family:var(--mono);font-size:0.54rem;line-height:1.6;color:var(--text3);margin-top:7px;}
+.aux-pill-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px;}
+.aux-mini-pill{font-family:var(--mono);font-size:0.5rem;padding:3px 7px;border:1px solid rgba(126,207,207,0.24);color:var(--nfc);text-transform:uppercase;letter-spacing:1px;}
+@media(max-width:900px){.aux-field-grid{grid-template-columns:1fr}}
 .related-pill-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:5px;}
 .rel-pill{font-family:var(--mono);font-size:0.58rem;padding:4px 9px;border:1px solid var(--border2);color:var(--text3);display:flex;align-items:center;gap:5px;}
 .rp-remove{color:var(--warn);cursor:pointer;}
@@ -875,7 +887,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
       <div style="display:flex;align-items:center;justify-content:center;height:100%;font-family:var(--mono);font-size:0.65rem;color:var(--text3);text-align:center;flex-direction:column;gap:12px;">
         <div style="font-size:2rem;opacity:0.15">⬡</div>
         <div style="text-transform:uppercase;letter-spacing:2px;">Select an AUX.IO tag to edit</div>
-        <div style="color:var(--text3);font-size:0.55rem;max-width:240px;line-height:1.8;">AUX.IO tags link physical locations to collection objects. Assign objects from the collection to create visitor-facing pages.</div>
+        <div style="color:var(--text3);font-size:0.55rem;max-width:280px;line-height:1.8;">Create an AUX.IO record, assign any loaded object, or draft a new institutional object for a museum/gallery visitor page.</div>
         <button class="btn nfc" onclick="onboardNewNFC()">+ Onboard New AUX.IO Tag</button>
       </div>
     </div>
@@ -2223,7 +2235,7 @@ function getObjectRightsInfo(payload = {}) {
   let guidance = 'Review the source record and item-level rights before reuse.';
   let color = 'var(--text2)';
 
-  if (/all rights reserved|rights reserved|in copyright|rightsstatements\.org\/vocab\/inc|api_preview_only/.test(normalized)) {
+  if (/all rights reserved|rights reserved|in copyright|permission required|internal preview only|internal_preview_only|rightsstatements\.org\/vocab\/inc|api_preview_only/.test(normalized)) {
     status = 'Restricted';
     guidance = 'Do not reuse the media without permission from the rights holder or source institution.';
     color = 'var(--warn)';
@@ -2991,14 +3003,19 @@ function exportNFCQR(code) {
   const tag = NFC_TAGS.find(t => t.code === code);
   if (!tag) return;
   const obj = tag.objectId ? OBJECTS[tag.objectId] : null;
+  const rights = obj?._mv ? getObjectRightsInfo(obj._mv) : null;
   const url = `${getAuxPageBase()}/${code}.html`;
   const config = {
     code: tag.code,
     status: tag.status,
     objectId: tag.objectId,
     objectTitle: obj?.title || null,
+    institution: obj?._mv?.institution || obj?.dams || null,
+    rightsStatus: rights?.status || null,
+    rightsDetail: rights?.detail || null,
     url: url,
     location: tag.location,
+    visibility: nfcVisibility[code] || {},
     generated: new Date().toISOString()
   };
   const blob = new Blob([JSON.stringify(config, null, 2)], { type: 'application/json' });
@@ -3800,20 +3817,38 @@ function filterNFCList(v) { renderNFCList('all', v.toLowerCase()); }
 
 function selectNFC(code) { activeNFCCode = code; const tag = NFC_TAGS.find(t => t.code === code); renderNFCList(); renderNFCEditor(tag); renderNFCPreview(tag); }
 
-function renderNFCEditor(tag) {
-  const obj = tag.objectId ? OBJECTS[tag.objectId] : null;
-  const vis = nfcVisibility[tag.code];
-  const allObjs = Object.entries(OBJECTS)
-    .filter(([, o]) => hasUsableObjectImage(o._mv || {}))
+function renderObjectPickerItems(code, query = '') {
+  const tag = NFC_TAGS.find(t => t.code === code);
+  const q = normalizeSearchText(query);
+  const entries = Object.entries(OBJECTS)
+    .sort((a, b) => String(a[1].title || '').localeCompare(String(b[1].title || '')))
+    .filter(([id, o]) => {
+      if (!q || q.length < 2) return id === tag?.objectId || hasUsableObjectImage(o._mv || {});
+      const p = o._mv || {};
+      const haystack = normalizeSearchText([
+        id, o.id, o.title, o.type, o.year, o.dams, o.location,
+        p.institution, p.source_collection, p.accession_number, p.object_type,
+        p.medium, p.description, p.licence, p.media_rights_title
+      ].filter(Boolean).join(' '));
+      return haystack.includes(q);
+    })
+    .slice(0, q && q.length >= 2 ? 180 : 80);
+
+  return entries
     .map(([id, o]) => {
-    const thumbSrc = o._mv && (o._mv.media_thumbnail || o._mv.media_medium);
+    const thumbSrc = o._mv && pickSearchImage(o._mv);
     const rights = getObjectRightsInfo(o._mv || {});
     return `<div class="op-item ${tag.objectId === id ? 'selected' : ''}" onclick="assignObject('${tag.code}','${id}')">
-      <div class="op-thumb">${thumbSrc ? `<img src="${thumbSrc}" loading="lazy">` : `<div style="font-size:0.42rem;opacity:0.2">${o.dams}</div>`}</div>
+      <div class="op-thumb">${thumbSrc ? `<img src="${thumbSrc}" loading="lazy">` : '<div style="font-size:0.42rem;opacity:0.45">NO IMAGE</div>'}</div>
       <div><div class="op-name">${escQ(o.title)}</div><div class="op-meta">${escQ([(o.type || '').substring(0, 30), o.year, rights.status].filter(Boolean).join(' · '))}</div></div>
       <div class="op-add">${tag.objectId === id ? '✓ Assigned' : 'Assign'}</div>
     </div>`;
-  }).join('');
+  }).join('') || '<div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);padding:12px;">No loaded objects match this search.</div>';
+}
+
+function renderNFCEditor(tag) {
+  const obj = tag.objectId ? OBJECTS[tag.objectId] : null;
+  const vis = nfcVisibility[tag.code];
 
   const visItems = [['objectImage','Object Image'],['aiInterpretation','AI Interpretation'],['askQuestions','Ask Questions'],['relatedWorks','Related Works'],['visitorComments','Visitor Comments'],['nfcCode','Show AUX.IO Code']];
 
@@ -3825,15 +3860,46 @@ function renderNFCEditor(tag) {
         ${tag.status !== 'live' ? `<div class="btn ok" onclick="publishNFC('${tag.code}')">Publish Live</div>` : `<div class="btn warn" onclick="unpublishNFC('${tag.code}')">Unpublish</div>`}
       </div>
     </div>
+    <div class="aux-workflow-note">
+      AUX.IO workflow: create or select an object record, choose what visitors can see, preview the phone page, then publish the tag. Demo data is loaded here, but institutions can draft their own object records below.
+      <div class="aux-pill-row"><span class="aux-mini-pill">Create</span><span class="aux-mini-pill">Assign</span><span class="aux-mini-pill">Preview</span><span class="aux-mini-pill">Publish</span></div>
+    </div>
+    <div class="editor-section">
+      <div class="editor-section-title"><span>AUX.IO Placement</span></div>
+      <div class="aux-field-grid">
+        <div class="aux-field full">
+          <label for="aux-location-${tag.code}">Gallery / location / physical trigger</label>
+          <input id="aux-location-${tag.code}" class="aux-input" value="${escQ(tag.location)}" oninput="updateAuxLocation('${tag.code}', this.value)" placeholder="Gallery 3 · Case 4 · doorway NFC / QR / kiosk">
+        </div>
+      </div>
+      <div class="aux-helper">This is the location or access point visitors encounter: NFC tag, QR code, kiosk, room map point, or future spatial/audio trigger.</div>
+    </div>
     <div class="editor-section">
       <div class="editor-section-title"><span>Assigned Collection Object</span>${obj ? `<div class="btn" onclick="clearAssignment('${tag.code}')">Remove</div>` : ''}</div>
       ${obj ? `<div class="assigned-object">
-          <div class="ao-thumb">${obj._mv && obj._mv.media_thumbnail ? `<img src="${obj._mv.media_thumbnail}" loading="lazy">` : escQ(obj.dams)}</div>
+          <div class="ao-thumb">${obj._mv && pickSearchImage(obj._mv) ? `<img src="${pickSearchImage(obj._mv)}" loading="lazy">` : escQ(obj.dams)}</div>
         <div><div class="ao-title">${escQ(obj.title)}</div><div class="ao-id">${escQ([obj.id, (obj.type || '').substring(0,30), obj.year].filter(Boolean).join(' · '))}</div></div>
         <div class="ao-remove" onclick="clearAssignment('${tag.code}')">Remove</div>
       </div>` : `<div style="font-family:var(--mono);font-size:0.62rem;color:var(--text3);margin-bottom:12px;padding:10px;border:1px dashed var(--border2)">No object assigned — select from the collection below</div>`}
       <div style="font-family:var(--mono);font-size:0.56rem;color:var(--text3);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;">Assign from Collection</div>
-      <div class="object-picker"><input class="op-search" type="text" placeholder="Search collection objects…" oninput="filterObjectPicker(this,'${tag.code}')"><div id="opItems-${tag.code}">${allObjs}</div></div>
+      <div class="object-picker"><input class="op-search" type="text" placeholder="Search all loaded objects by title, ID, institution, rights…" oninput="filterObjectPicker(this,'${tag.code}')"><div id="opItems-${tag.code}">${renderObjectPickerItems(tag.code, '')}</div></div>
+      <div class="aux-helper">Initial shortlist favours image-backed records for speed. Search reaches all loaded records, including objects without images. For public visitor pages, use image-backed records or add a media URL in the institutional draft form.</div>
+    </div>
+    <div class="editor-section">
+      <div class="editor-section-title"><span>Create Institution Object Draft</span></div>
+      <div class="aux-field-grid">
+        <div class="aux-field"><label>Object title</label><input id="aux-new-title-${tag.code}" class="aux-input" placeholder="Untitled object / artwork title"></div>
+        <div class="aux-field"><label>Institution / collection</label><input id="aux-new-inst-${tag.code}" class="aux-input" placeholder="Your museum or gallery"></div>
+        <div class="aux-field"><label>Accession / object no.</label><input id="aux-new-accession-${tag.code}" class="aux-input" placeholder="2026.001"></div>
+        <div class="aux-field"><label>Object type / medium</label><input id="aux-new-type-${tag.code}" class="aux-input" placeholder="Video installation, textile, painting..."></div>
+        <div class="aux-field"><label>Date / period</label><input id="aux-new-date-${tag.code}" class="aux-input" placeholder="2026 / circa 1970 / unknown"></div>
+        <div class="aux-field"><label>Legal status</label><select id="aux-new-rights-${tag.code}" class="aux-select"><option value="Institutional demo record">Institutional demo record</option><option value="CC BY">CC BY</option><option value="CC0 / public domain">CC0 / public domain</option><option value="Permission required">Permission required</option><option value="Internal preview only">Internal preview only</option></select></div>
+        <div class="aux-field full"><label>Image / media URL</label><input id="aux-new-image-${tag.code}" class="aux-input" placeholder="https://... image, poster frame, video thumbnail, or media still"></div>
+        <div class="aux-field full"><label>Source record URL</label><input id="aux-new-source-${tag.code}" class="aux-input" placeholder="https://collections.yourmuseum.org/object/..."></div>
+        <div class="aux-field full"><label>Visitor description / interpretation seed</label><textarea id="aux-new-desc-${tag.code}" class="aux-textarea" placeholder="Short object description, curatorial note, access note, or draft interpretation..."></textarea></div>
+      </div>
+      <button class="btn nfc" onclick="createInstitutionObjectForAux('${tag.code}')">Create Object + Assign to AUX.IO</button>
+      <div class="aux-helper">This creates a local prototype object record so museums can test AUX.IO with their own material. Production should save this to Directus and preserve full source metadata separately from visitor interpretation.</div>
     </div>
     <div class="editor-section">
       <div class="editor-section-title"><span>Visitor Content Visibility</span></div>
@@ -3841,7 +3907,7 @@ function renderNFCEditor(tag) {
     </div>
     <div style="display:flex;gap:8px;margin-top:16px;">
       <button class="btn primary" onclick="saveNFC('${tag.code}')">Save Changes</button>
-      <button class="btn" onclick="if(obj) openObj('${tag.objectId}')">View Object Detail</button>
+      ${obj ? `<button class="btn" onclick="openObj('${tag.objectId}')">View Object Detail</button>` : '<button class="btn" disabled>View Object Detail</button>'}
     </div>`;
 }
 
@@ -3896,19 +3962,98 @@ function clearAssignment(nfcCode) { const tag = NFC_TAGS.find(t => t.code === nf
 function toggleVis(nfcCode, key, el) { nfcVisibility[nfcCode][key] = !nfcVisibility[nfcCode][key]; el.classList.toggle('on'); el.querySelector('.vis-toggle').classList.toggle('on'); const tag = NFC_TAGS.find(t => t.code === nfcCode); if (tag) renderNFCPreview(tag); }
 function publishNFC(code) { const tag = NFC_TAGS.find(t => t.code === code); if (tag && tag.objectId) { tag.status = 'live'; selectNFC(code); } else alert('Assign an object before publishing'); }
 function unpublishNFC(code) { const tag = NFC_TAGS.find(t => t.code === code); if (tag) { tag.status = 'draft'; selectNFC(code); } }
-function saveNFC(code) { alert(`${displayAuxCode(code)} — changes saved. In production this syncs to Directus.`); }
+
+function updateAuxLocation(code, value) {
+  const tag = NFC_TAGS.find(t => t.code === code);
+  if (!tag) return;
+  tag.location = value || 'New — configure location';
+  renderNFCList();
+}
+
+function createInstitutionObjectForAux(code) {
+  const tag = NFC_TAGS.find(t => t.code === code);
+  if (!tag) return;
+  const read = key => document.getElementById(`aux-new-${key}-${code}`)?.value?.trim() || '';
+  const title = read('title');
+  if (!title) {
+    alert('Add an object title before creating the institutional draft.');
+    return;
+  }
+
+  const institution = read('inst') || 'Institution draft';
+  const accession = read('accession') || `${code}-DRAFT`;
+  const type = read('type') || 'Object';
+  const date = read('date') || 'Date unknown';
+  const image = read('image');
+  const source = read('source');
+  const description = read('desc');
+  const rights = document.getElementById(`aux-new-rights-${code}`)?.value || 'Institutional demo record';
+  const id = `institution-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`;
+  const payload = {
+    id,
+    object_id: id,
+    accession_number: accession,
+    title,
+    institution,
+    source_collection: 'Institution draft',
+    object_type: type,
+    type,
+    date,
+    year: date,
+    description,
+    medium: type,
+    licence: rights,
+    media_rights_title: rights,
+    media_rights_mode: rights.toLowerCase().includes('permission') || rights.toLowerCase().includes('internal') ? 'internal_preview_only' : 'open_or_demo',
+    source_url: source,
+    record_url: source,
+    media_thumbnail: image,
+    media_medium: image,
+    image_url: image,
+    keywords: ['institution draft', 'aux.io'],
+    source_short: 'INST'
+  };
+
+  OBJECTS[id] = {
+    id: accession,
+    title,
+    type,
+    year: date,
+    dams: institution,
+    location: tag.location,
+    ai: description || `${title}. ${type}. ${institution}.`,
+    _mv: payload
+  };
+
+  tag.objectId = id;
+  tag.status = 'draft';
+  tag.location = tag.location || 'New — configure location';
+  nfcVisibility[code] = nfcVisibility[code] || {...NFC_VIS_DEFAULTS};
+  buildVocabIndex();
+  renderNFCList();
+  renderNFCEditor(tag);
+  renderNFCPreview(tag);
+}
+
+function getNextAuxTagCode() {
+  const max = NFC_TAGS.reduce((highest, tag) => {
+    const match = String(tag.code || '').match(/^NFC-?(\d+)$/i);
+    return match ? Math.max(highest, Number(match[1])) : highest;
+  }, 0);
+  return 'NFC' + String(max + 1).padStart(3, '0');
+}
+
 function onboardNewNFC() {
-  const code = 'NFC' + String(NFC_TAGS.length + 1).padStart(3, '0');
+  const code = getNextAuxTagCode();
   NFC_TAGS.push({ code, status: 'new', objectId: null, location: 'New — configure location', scans: 0, lastScan: 'Never' });
   nfcVisibility[code] = {...NFC_VIS_DEFAULTS};
   document.getElementById('nfcTabCount').textContent = NFC_TAGS.length;
   renderNFCList(); selectNFC(code);
 }
 function filterObjectPicker(input, code) {
-  const v = input.value.toLowerCase();
   const items = document.getElementById('opItems-' + code);
   if (!items) return;
-  items.querySelectorAll('.op-item').forEach(item => { item.style.display = item.textContent.toLowerCase().includes(v) ? '' : 'none'; });
+  items.innerHTML = renderObjectPickerItems(code, input.value);
 }
 
 // ═══════════════════════════════════════════════════════════════════
@@ -4333,7 +4478,7 @@ function escQ(s) {
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?v=11.5.5').catch(() => {});
+  navigator.serviceWorker.register('/sw.js?v=11.5.6').catch(() => {});
 }
 </script>
 </body>

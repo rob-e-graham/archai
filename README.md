@@ -149,9 +149,12 @@ Standalone AUX.IO object pages generated from the live collection set:
 - Captive portal for exhibition WiFi
 
 ### ✅ AUX.IO Management Panel
-- Tags from objects with images, mixed across the live collections
-- 3-column layout: tag list → editor → phone preview
-- Search, filter, publish/unpublish
+- 3-column workflow: AUX.IO record list → editor → phone preview
+- Create a new AUX.IO record from scratch for institutional testing
+- Assign from loaded collection records, with search across all loaded objects
+- Draft a local institutional object record with title, accession, institution, media URL, source URL, description, and rights status
+- Edit gallery/location/physical trigger text for QR, NFC, kiosk, map, or spatial access points
+- Search, filter, publish/unpublish, save, and export JSON config with rights/visibility metadata
 
 ### ✅ Role Switcher
 | Role | Access |
@@ -350,6 +353,7 @@ Mac Studio M2 Max · 64GB · 1TB. Base institutional deployment: ~$3,500–5,000
 | **v11.3** | **Brasiliana Museus onboarded as the eleventh live collection using a public-domain / open-access legal gate, curator vectors rebuilt to 1445 live objects, and 1311 AUX.IO visitor pages regenerated across 11 collections** |
 | **v11.4** | **Legal cleanup and open-only backfill: 208 rights-restricted and 8 unevaluated objects removed from the live public stack, AIC re-harvested public-domain only, Europeana re-harvested with `reusability=open`, curator rebuilt to 1520 live objects, and AUX.IO regenerated with per-object legal status shown** |
 | **v11.5** | **Main app alignment pass: roadmap added, audit refreshed, default browse now favours image-backed demo objects, result cards remain rights-aware, and AUX.IO management uses a larger live-object working set while generated-page sync remains the next step** |
+| **v11.5.6** | **AUX.IO management workflow deepened: staff can create a new AUX.IO record, edit placement, assign from loaded records, draft an institution-owned object for testing, preview the visitor page, and export/save rights-aware config data** |
 
 ---
 
