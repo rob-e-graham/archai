@@ -568,7 +568,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
     </div>
   </div>
   <div>
-    <div class="header-meta"><b id="clockDisplay">—</b><br><span>Build v11.3 · 11 live collections · translation-aware onboarding</span></div>
+    <div class="header-meta"><b id="clockDisplay">—</b><br><span>Build v11.5 · 11 live collections · rights-aware onboarding · AUX.IO working set</span></div>
     <div class="header-links">
       <a class="header-link" href="http://localhost:11434" target="_blank">Ollama LLM</a>
       <a class="header-link" href="http://localhost:8055/admin" target="_blank">Directus CMS</a>
@@ -1078,7 +1078,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 
 <script>
 // ═══════════════════════════════════════════════════════════════════
-// ARCHAI™ v11.3 — Multi-Collection · Backend-Aware · Live LLM Chat
+// ARCHAI™ v11.5 — Multi-Collection · Backend-Aware · Live LLM Chat
 // Collection objects loaded from Qdrant. Comments and curator vectors via backend APIs.
 // ═══════════════════════════════════════════════════════════════════
 
@@ -1172,6 +1172,7 @@ const NFC_VIS_DEFAULTS = {
 const nfcVisibility = {};
 
 const CURATOR_SEARCH_LIMIT = 50;
+const AUX_IO_MANAGEMENT_LIMIT = 120;
 const SEARCH_STOPWORDS = new Set([
   'the', 'and', 'for', 'with', 'from', 'into', 'about', 'across', 'through',
   'this', 'that', 'these', 'those', 'what', 'which', 'where', 'when', 'your',
@@ -2092,6 +2093,13 @@ function pickSearchImage(payload = {}) {
     || '';
 }
 
+function hasUsableObjectImage(payload = {}) {
+  const image = pickSearchImage(payload);
+  if (!image) return false;
+  if (/digital image not yet created|no[ _-]?image|placeholder/i.test(image)) return false;
+  return true;
+}
+
 function getDisplayTitleParts(value = '') {
   const raw = String(value || '').trim();
   if (!raw) return { display: '', alternate: '' };
@@ -2291,7 +2299,7 @@ function loadMVObjects() {
     renderVisitorList();
     buildVocabIndex();
 
-    console.log('ARCHAI™ v11.3: loaded', totalCount, 'objects from', Object.keys(counts).filter(k => counts[k] > 0).length, 'collections');
+    console.log('ARCHAI™ v11.5: loaded', totalCount, 'objects from', Object.keys(counts).filter(k => counts[k] > 0).length, 'collections');
   })
   .catch(e => {
     document.getElementById('collectionVal').textContent = 'Qdrant offline';
@@ -2310,21 +2318,23 @@ function loadMVObjects() {
 
 function generateNFCTags() {
   NFC_TAGS.length = 0;
-  const keys = Object.keys(OBJECTS).slice(0, 8);
+  const keys = Object.keys(OBJECTS)
+    .filter(k => hasUsableObjectImage(OBJECTS[k]._mv || {}))
+    .slice(0, AUX_IO_MANAGEMENT_LIMIT);
   keys.forEach((k, i) => {
     const tag = {
       code: 'NFC' + String(i + 1).padStart(3, '0'),
-      status: i < 5 ? 'live' : 'draft',
+      status: i < 90 ? 'live' : 'draft',
       objectId: k,
       location: 'Exhibition Space — ' + (OBJECTS[k].location || 'TBC'),
-      scans: i < 5 ? Math.floor(Math.random() * 40) + 5 : 0,
-      lastScan: i < 5 ? Math.floor(Math.random() * 60) + ' min ago' : 'Never'
+      scans: i < 90 ? (i * 7) % 64 + 5 : 0,
+      lastScan: i < 90 ? ((i * 11) % 58 + 1) + ' min ago' : 'Never'
     };
     NFC_TAGS.push(tag);
     nfcVisibility[tag.code] = {...NFC_VIS_DEFAULTS};
   });
-  // Add unassigned tags
-  for (let i = keys.length; i < keys.length + 3; i++) {
+  // Add a small pool of unassigned tags for workflow testing.
+  for (let i = keys.length; i < keys.length + 8; i++) {
     const tag = { code: 'NFC' + String(i + 1).padStart(3, '0'), status: 'unassigned', objectId: null, location: 'Unassigned — Storage', scans: 0, lastScan: 'Never' };
     NFC_TAGS.push(tag);
     nfcVisibility[tag.code] = {...NFC_VIS_DEFAULTS};
@@ -2804,11 +2814,14 @@ function thumbHTML(o) {
 function renderResultCards() {
   const c = document.getElementById('resultsContainer');
   if (!c) return;
-  const keys = Object.keys(OBJECTS);
+  const allKeys = Object.keys(OBJECTS);
+  const keys = allKeys.filter(id => hasUsableObjectImage(OBJECTS[id]._mv || {}));
   if (!keys.length) {
-    c.innerHTML = '<div style="padding:30px;font-family:var(--mono);font-size:0.62rem;color:var(--text3);text-align:center;">No objects loaded. Connect to Qdrant to browse collections.</div>';
+    c.innerHTML = '<div style="padding:30px;font-family:var(--mono);font-size:0.62rem;color:var(--text3);text-align:center;">No image-backed objects loaded. Connect to Qdrant or re-run the harvesters.</div>';
     return;
   }
+  const labelEl = document.getElementById('resultsLabel');
+  if (labelEl) labelEl.textContent = `${keys.length} image-backed demo objects · ${allKeys.length} total records loaded`;
   c.innerHTML = keys.map(id => {
     const o = OBJECTS[id];
     const p = o._mv || {};
@@ -2818,14 +2831,14 @@ function renderResultCards() {
     return `<div class="result-card" onclick="openObj('${id}')">
       <div class="thumb"><div class="thumb-live"></div>${thumbHTML(o)}</div>
       <div>
-        <div class="r-title">${getDisplayTitle(p, o.title)}</div>
-        <div class="r-meta">${p.discipline || o.type} · ${p.category || ''} · ${getDisplayRegistration(p, o.dams)}</div>
-        <div class="r-summary">${(o.ai || '').substring(0, 120)}${(o.ai || '').length > 120 ? '…' : ''}</div>
+        <div class="r-title">${escQ(getDisplayTitle(p, o.title))}</div>
+        <div class="r-meta">${escQ([p.discipline || o.type, p.category || '', getDisplayRegistration(p, o.dams)].filter(Boolean).join(' · '))}</div>
+        <div class="r-summary">${escQ((o.ai || '').substring(0, 120))}${(o.ai || '').length > 120 ? '…' : ''}</div>
         <div class="tag-row">
           <span class="tag" style="border-color:${label.border};color:${label.colour}">${label.short}</span>
           <span class="tag" style="border-color:${rights.color};color:${rights.color}">${rights.status}</span>
-          ${p.discipline ? '<span class="tag">' + p.discipline + '</span>' : ''}
-          <span class="tag">${(o.location || '').substring(0, 24)}</span>
+          ${p.discipline ? '<span class="tag">' + escQ(p.discipline) + '</span>' : ''}
+          <span class="tag">${escQ((o.location || '').substring(0, 24))}</span>
           ${nfcAssigned(id) ? '<span class="tag nfc-tag">AUX.IO</span>' : ''}
         </div>
       </div>
@@ -3473,9 +3486,9 @@ function renderNFCList(filter = 'all', search = '') {
     const obj = t.objectId ? OBJECTS[t.objectId] : null;
     return `<div class="nfc-card ${(!t.objectId) ? 'unassigned' : ''} ${activeNFCCode === t.code ? 'active' : ''}" onclick="selectNFC('${t.code}')">
       <div class="nfc-card-header"><div class="nfc-code">${displayAuxCode(t.code)}</div><div class="nfc-status-badge ${t.status}">${t.status}</div></div>
-      <div class="nfc-object-name">${obj ? obj.title : '— Unassigned —'}</div>
-      <div class="nfc-object-id">${obj ? obj.id : 'No object linked'}</div>
-      <div class="nfc-location">${t.location}</div>
+      <div class="nfc-object-name">${obj ? escQ(obj.title) : '— Unassigned —'}</div>
+      <div class="nfc-object-id">${obj ? escQ(obj.id) : 'No object linked'}</div>
+      <div class="nfc-location">${escQ(t.location)}</div>
       <div class="nfc-scans">Scans: ${t.scans} · Last: ${t.lastScan}</div>
     </div>`;
   }).join('') || '<div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);padding:10px;">No AUX.IO tags match filter.</div>';
@@ -3489,11 +3502,14 @@ function selectNFC(code) { activeNFCCode = code; const tag = NFC_TAGS.find(t => 
 function renderNFCEditor(tag) {
   const obj = tag.objectId ? OBJECTS[tag.objectId] : null;
   const vis = nfcVisibility[tag.code];
-  const allObjs = Object.entries(OBJECTS).map(([id, o]) => {
-    const thumbSrc = o._mv && o._mv.media_thumbnail;
+  const allObjs = Object.entries(OBJECTS)
+    .filter(([, o]) => hasUsableObjectImage(o._mv || {}))
+    .map(([id, o]) => {
+    const thumbSrc = o._mv && (o._mv.media_thumbnail || o._mv.media_medium);
+    const rights = getObjectRightsInfo(o._mv || {});
     return `<div class="op-item ${tag.objectId === id ? 'selected' : ''}" onclick="assignObject('${tag.code}','${id}')">
       <div class="op-thumb">${thumbSrc ? `<img src="${thumbSrc}" loading="lazy">` : `<div style="font-size:0.42rem;opacity:0.2">${o.dams}</div>`}</div>
-      <div><div class="op-name">${o.title}</div><div class="op-meta">${(o.type || '').substring(0, 30)} · ${o.year} · ${o.id}</div></div>
+      <div><div class="op-name">${escQ(o.title)}</div><div class="op-meta">${escQ([(o.type || '').substring(0, 30), o.year, rights.status].filter(Boolean).join(' · '))}</div></div>
       <div class="op-add">${tag.objectId === id ? '✓ Assigned' : 'Assign'}</div>
     </div>`;
   }).join('');
@@ -3511,8 +3527,8 @@ function renderNFCEditor(tag) {
     <div class="editor-section">
       <div class="editor-section-title"><span>Assigned Collection Object</span>${obj ? `<div class="btn" onclick="clearAssignment('${tag.code}')">Remove</div>` : ''}</div>
       ${obj ? `<div class="assigned-object">
-        <div class="ao-thumb">${obj._mv && obj._mv.media_thumbnail ? `<img src="${obj._mv.media_thumbnail}" loading="lazy">` : obj.dams}</div>
-        <div><div class="ao-title">${obj.title}</div><div class="ao-id">${obj.id} · ${(obj.type || '').substring(0,30)} · ${obj.year}</div></div>
+          <div class="ao-thumb">${obj._mv && obj._mv.media_thumbnail ? `<img src="${obj._mv.media_thumbnail}" loading="lazy">` : escQ(obj.dams)}</div>
+        <div><div class="ao-title">${escQ(obj.title)}</div><div class="ao-id">${escQ([obj.id, (obj.type || '').substring(0,30), obj.year].filter(Boolean).join(' · '))}</div></div>
         <div class="ao-remove" onclick="clearAssignment('${tag.code}')">Remove</div>
       </div>` : `<div style="font-family:var(--mono);font-size:0.62rem;color:var(--text3);margin-bottom:12px;padding:10px;border:1px dashed var(--border2)">No object assigned — select from the collection below</div>`}
       <div style="font-family:var(--mono);font-size:0.56rem;color:var(--text3);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;">Assign from Collection</div>

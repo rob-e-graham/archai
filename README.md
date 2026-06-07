@@ -2,7 +2,7 @@
 
 > "Museums are not silent repositories of Memory; they are living, thinking organisms, where imagination and knowledge, tradition and innovation meet." — Gayane Umerova, UNESCO, 2025
 
-**Version:** 11.4
+**Version:** 11.5
 **Author:** Rob Graham · FAMTEC (Fine Art Media Tech) / RMIT University
 **Status:** Working prototype — rights-aware multi-institution semantic search + LLM object chat + AUX.IO visitor pages
 **Target:** ISEA2026 Dubai, 6th Summit on New Media Art Archiving (April 11–12)
@@ -17,6 +17,8 @@
 ARCHAI is an active doctoral research project undertaken by Rob Graham through RMIT University and FAMTEC.
 
 This repository contains an open-source reference implementation and associated research outputs.
+
+Current build planning is tracked in [ROADMAP.md](ROADMAP.md), [ARCHAI_PROGRESS.md](ARCHAI_PROGRESS.md), and [docs/APP_FUNCTIONAL_AUDIT_2026-06-03.md](docs/APP_FUNCTIONAL_AUDIT_2026-06-03.md).
 
 ARCHAI is a working research prototype, not a finished commercial product. FAMTEC is open to funded research partnerships, institutional pilot testing, accessibility evaluation, collection-data collaborations, software development support, grant partnerships, and feedback from museums, galleries, archives, universities, and aligned public-interest technology partners.
 
@@ -155,10 +157,10 @@ Standalone AUX.IO object pages generated from the live collection set:
 | Role | Access |
 |------|--------|
 | Admin | All tabs |
-| Curator | Curator, Nodel, NFC, Vocab, Visitor, FAMTEC |
-| Collections | Curator, NFC, Vocab, Visitor, FAMTEC |
+| Curator | Curator, Nodel, AUX.IO, Vocab, Visitor, FAMTEC |
+| Collections | Curator, AUX.IO, Vocab, Visitor, FAMTEC |
 | Technician | Nodel, Visitor, FAMTEC |
-| Volunteer | Curator, NFC, Visitor, FAMTEC |
+| Volunteer | Curator, AUX.IO, Visitor, FAMTEC |
 | Visitor | Visitor only |
 
 ### ✅ Curator Toolbar
@@ -231,7 +233,7 @@ AAT, LCSH, TGN, and ULAN are listed but inactive — currently using curated ref
 Current in-app FAMTEC Exchange uses prototype data and in-memory arrays only. The production FAMTEC Exchange platform will be developed separately by FAMTEC outside the PhD work, with potential later integration into ARCHAI once developed.
 
 ### 🔲 Directus Integration
-Health-checked only. NFC save attempts backend sync but falls back to local confirmation.
+Health-checked only. AUX.IO save attempts backend sync but falls back to local confirmation.
 
 ### 🔲 Nodel API
 Static prototype data. Needs WebSocket to real Nodel instance. UI links and emergency stop are wired.
@@ -347,6 +349,7 @@ Mac Studio M2 Max · 64GB · 1TB. Base institutional deployment: ~$3,500–5,000
 | **v11.2** | **M+ Hong Kong onboarded as the tenth live collection with bilingual metadata preserved, public preview media attached from the source object pages, and the curator layer expanded to include Asia-focused visual culture records** |
 | **v11.3** | **Brasiliana Museus onboarded as the eleventh live collection using a public-domain / open-access legal gate, curator vectors rebuilt to 1445 live objects, and 1311 AUX.IO visitor pages regenerated across 11 collections** |
 | **v11.4** | **Legal cleanup and open-only backfill: 208 rights-restricted and 8 unevaluated objects removed from the live public stack, AIC re-harvested public-domain only, Europeana re-harvested with `reusability=open`, curator rebuilt to 1520 live objects, and AUX.IO regenerated with per-object legal status shown** |
+| **v11.5** | **Main app alignment pass: roadmap added, audit refreshed, default browse now favours image-backed demo objects, result cards remain rights-aware, and AUX.IO management uses a larger live-object working set while generated-page sync remains the next step** |
 
 ---
 

@@ -1,7 +1,9 @@
 # ARCHAI Progress Log
 
-Last updated: 2026-06-05
+Last updated: 2026-06-07
 Maintained as an active handoff note so Claude, Codex, and Rob can quickly see where the work is up to if a session ends or tokens run out.
+
+Primary build planning is now also summarized in [ROADMAP.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ROADMAP.md). Use that for milestone order, and use this file for detailed handoff notes.
 
 ## Current focus
 
@@ -17,6 +19,33 @@ Protect what is already working while we improve it:
 - keep the current phone/browser voice path stable
 - treat desktop microphone selection and Whisper capture as an additive next layer
 - avoid replacing the live phone experience until a better path is genuinely proven
+
+## 2026-06-07 focus update
+
+Rob asked to start moving all next goals forward rather than only discussing them.
+
+Immediate action sequence:
+
+- keep ARCHAI main app as the source of truth
+- make app search/browse feel as strong as the public website demo
+- keep result thumbnails light, then open full metadata on selected object
+- keep matched themes/keywords, match score, source institution, and legal status visible
+- expand AUX.IO management beyond a tiny mock set while preserving safe internal function names
+- track Whisper/Piper as an open-source optional accessibility layer, not a replacement for the working phone browser path yet
+
+Work started:
+
+- added [ROADMAP.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ROADMAP.md)
+- refreshed [docs/APP_FUNCTIONAL_AUDIT_2026-06-03.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/APP_FUNCTIONAL_AUDIT_2026-06-03.md) so it no longer describes old mock-only panels as the current state
+- bumped the main app display build label to `v11.5`
+- changed default browse cards to prefer image-backed demo objects while preserving the full object record when selected
+- expanded AUX.IO Management from a tiny sample to a larger image-backed working set generated from live loaded objects
+
+Still next:
+
+- connect AUX.IO Management to the generated page manifest so every generated visitor page can be searched, previewed, edited, and published persistently
+- add an explicit release-time rights audit command
+- prototype the Whisper/Piper voice path separately from the working browser speech path
 
 ## Core architectural direction
 

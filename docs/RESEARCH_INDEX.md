@@ -6,6 +6,9 @@ The goal is to keep the conceptual, technical, and PhD-facing work easy to find.
 
 ## Core R&D
 
+- [ROADMAP.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ROADMAP.md)
+  - current build milestones across main app, AUX.IO, rights/provenance, onboarding, voice, and partner readiness
+
 - [ARCHAI_R_AND_D_2026-06-04.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/ARCHAI_R_AND_D_2026-06-04.md)
   - CMS / DAMS / IIIF / preservation / born-digital / speech / onboarding direction
 
