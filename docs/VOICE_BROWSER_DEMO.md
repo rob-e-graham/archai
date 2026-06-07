@@ -27,6 +27,13 @@ Both the main app and AUX.IO now also expose a **Playback Voice** selector with:
 
 On some phones and tablets this means users may see a large browser-provided voice list, sometimes 20–30 voices or more, depending on the OS language packs and browser capabilities.
 
+2026-06-07 interaction update:
+
+- `Start Voice Question` now changes immediately to `Listening...` while capture is starting
+- the status indicator turns on immediately rather than waiting for the browser `onstart` event
+- AUX.IO now requests interim speech results where supported, so visitors can see words appear sooner
+- unsupported-browser copy is session-based rather than device-blaming, because support varies by browser, permission state, and OS settings
+
 That means:
 
 - microphone input is handled by the browser

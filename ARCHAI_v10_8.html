@@ -1421,11 +1421,7 @@ function odSupportsSpeechRecognition() {
 }
 
 function getOdSpeechUnavailableMessage() {
-  const ua = navigator.userAgent || '';
-  if (/iPhone|iPad|iPod/i.test(ua)) {
-    return 'Live voice capture is not supported in iPhone browsers yet. You can still type your question or use Read Reply. Whisper backend capture is the next step.';
-  }
-  return 'Speech recognition is not available in this browser. Backend Whisper is the next step.';
+  return 'This browser did not expose live speech capture in this session. You can still type your question or use Read Reply. Backend Whisper capture is the next open-source path.';
 }
 
 const OD_LEGACY_VOICE_PATTERNS = [
@@ -1583,6 +1579,7 @@ function updateOdSpeechUI(message = '') {
   if (startBtn) {
     startBtn.disabled = !!window._odSpeechListening || !odSupportsSpeechRecognition();
     startBtn.classList.toggle('active', !!window._odSpeechListening);
+    startBtn.textContent = window._odSpeechListening ? 'Listening…' : 'Start Voice Question';
   }
   if (stopBtn) stopBtn.disabled = !window._odSpeechListening || !odSupportsSpeechRecognition();
   if (readBtn) readBtn.disabled = !window._odLastAssistantReply;
@@ -1644,9 +1641,12 @@ function odStartVoiceQuestion() {
     return;
   }
   recognition.lang = getOdSpeechLanguageCode();
+  window._odSpeechListening = true;
+  updateOdSpeechUI('Starting microphone…');
   try {
     recognition.start();
   } catch (err) {
+    window._odSpeechListening = false;
     updateOdSpeechUI('Voice capture is already running.');
   }
 }
