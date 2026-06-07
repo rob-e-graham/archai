@@ -1,4 +1,4 @@
-const APP_VERSION = 'v11.5.4';
+const APP_VERSION = 'v11.5.5';
 const CACHE_NAME = `archai-${APP_VERSION}`;
 const PRECACHE = [
   '/ARCHAI_v10_8.html',

@@ -106,6 +106,22 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 .pill{font-family:var(--mono);font-size:0.56rem;letter-spacing:1px;text-transform:uppercase;padding:4px 8px;border:1px solid var(--border2);color:var(--text3);cursor:pointer;transition:all 0.12s;user-select:none;}
 .pill:hover{border-color:var(--text3);color:var(--text2);}
 .pill.active{border-color:var(--accent);color:var(--accent);background:rgba(200,169,110,0.07);}
+.collection-voice-wrap{margin:9px 0 11px;padding:10px 12px;border:1px solid var(--border);background:rgba(255,255,255,0.012);}
+.collection-voice-top{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center;}
+.collection-voice-label{font-family:var(--mono);font-size:0.56rem;letter-spacing:1.7px;text-transform:uppercase;color:var(--accent2);}
+.collection-voice-note{font-size:0.68rem;color:var(--text3);line-height:1.5;margin-top:3px;}
+.collection-voice-controls{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;align-items:center;}
+.collection-voice-select{min-width:220px;max-width:360px;padding:7px 9px;background:rgba(255,255,255,0.03);border:1px solid var(--border2);color:var(--text2);font-family:var(--mono);font-size:0.58rem;outline:none;}
+.collection-voice-select:focus{border-color:var(--accent2);}
+.collection-voice-btn{font-family:var(--mono);font-size:0.54rem;padding:7px 10px;border:1px solid var(--border2);background:transparent;color:var(--text2);letter-spacing:0.5px;text-transform:uppercase;cursor:pointer;transition:all 0.15s;}
+.collection-voice-btn:hover,.collection-voice-btn.active{border-color:var(--accent2);color:var(--accent2);background:rgba(143,188,176,0.06);}
+.collection-voice-btn:disabled{opacity:0.45;cursor:not-allowed;color:var(--text3);}
+.collection-voice-status{margin-top:8px;display:flex;align-items:flex-start;gap:8px;color:var(--text3);font-size:0.68rem;line-height:1.5;}
+.collection-voice-indicator{width:10px;height:10px;border-radius:999px;border:1px solid rgba(143,188,176,0.35);background:rgba(255,255,255,0.06);box-shadow:0 0 0 0 rgba(143,188,176,0);margin-top:3px;flex-shrink:0;transition:background 0.15s,border-color 0.15s,box-shadow 0.15s,transform 0.15s;}
+.collection-voice-indicator.live{background:var(--accent2);border-color:var(--accent2);animation:voicePulse 1.2s ease-out infinite;}
+.collection-voice-indicator.pending{background:rgba(200,169,110,0.9);border-color:rgba(200,169,110,0.9);animation:voicePulse 1.2s ease-out infinite;}
+.collection-voice-indicator.error{background:rgba(210,110,110,0.9);border-color:rgba(210,110,110,0.9);}
+@media(max-width:900px){.collection-voice-top{grid-template-columns:1fr}.collection-voice-controls{justify-content:flex-start}.collection-voice-select{width:100%;max-width:none}}
 
 /* CONVERSATION THREAD */
 .convo-msg{margin-bottom:12px;padding:10px 14px;font-family:var(--mono);font-size:0.68rem;line-height:1.7;border-radius:2px;animation:fadeIn 0.3s ease}
@@ -632,6 +648,24 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
         <div class="search-bar">
           <input class="search-input" id="curatorSearch" type="text" placeholder="Ask the collection anything… objects, connections, materials, stories, or registration numbers">
           <button class="search-btn" onclick="doConverse()">Ask</button>
+        </div>
+        <div class="collection-voice-wrap">
+          <div class="collection-voice-top">
+            <div>
+              <div class="collection-voice-label">Collection Voice Query</div>
+              <div class="collection-voice-note" id="collection-voice-note">Speak a staff-facing question to the whole collection. Transcript appears in the search field before ARCHAI responds.</div>
+            </div>
+            <div class="collection-voice-controls">
+              <select id="collection-voice-select" class="collection-voice-select" onchange="setCollectionVoicePreference(this.value)">
+                <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+              </select>
+              <button id="collection-voice-start-btn" class="collection-voice-btn" onclick="collectionStartVoiceQuery()">Voice Query</button>
+              <button id="collection-voice-stop-btn" class="collection-voice-btn" onclick="collectionStopVoiceQuery()" disabled>Stop</button>
+              <button id="collection-voice-read-btn" class="collection-voice-btn" onclick="collectionSpeakLatestReply()" disabled>Read Response</button>
+              <button id="collection-voice-silence-btn" class="collection-voice-btn" onclick="collectionStopSpeaking()" disabled>Stop Audio</button>
+            </div>
+          </div>
+          <div class="collection-voice-status"><span class="collection-voice-indicator" id="collection-voice-indicator" aria-hidden="true"></span><span id="collection-voice-status-text">Ready for typed or spoken collection queries.</span></div>
         </div>
         <div class="pill-row">
           <div class="pill active" onclick="togglePill(this)">Converse</div>
@@ -1198,6 +1232,11 @@ window._odSpeechRecognition = null;
 window._odSpeechListening = false;
 window._odSpeechStatus = '';
 window._odVoiceChoice = 'archai-neutral';
+window._collectionSpeechRecognition = null;
+window._collectionSpeechListening = false;
+window._collectionSpeechStatus = '';
+window._collectionLastAssistantReply = '';
+window._collectionVoiceChoice = 'archai-neutral';
 
 const RESPONSE_LANGUAGES = {
   english: {
@@ -1693,6 +1732,235 @@ function odStopSpeaking() {
   updateOdSpeechUI('Audio playback stopped.');
 }
 
+function collectionSupportsSpeechRecognition() {
+  return Boolean(window.SpeechRecognition || window.webkitSpeechRecognition);
+}
+
+function getCollectionSpeechLanguageCode() {
+  return 'en-AU';
+}
+
+function getCollectionSpeechUnavailableMessage() {
+  return 'This browser did not expose live speech capture in this session. You can still type the collection query. Backend Whisper capture is the next open-source path.';
+}
+
+function resolveCollectionSpeechVoice(languageCode) {
+  const voices = getOdVoices();
+  if (!voices.length) return null;
+
+  if (window._collectionVoiceChoice && window._collectionVoiceChoice !== 'archai-neutral' && window._collectionVoiceChoice !== 'browser-default') {
+    return voices.find(voice => voice.voiceURI === window._collectionVoiceChoice || voice.name === window._collectionVoiceChoice) || null;
+  }
+
+  if (window._collectionVoiceChoice === 'browser-default') return null;
+
+  const ranked = voices
+    .map(voice => ({ voice, score: scoreOdVoice(voice, languageCode) }))
+    .sort((a, b) => b.score - a.score);
+
+  return ranked[0]?.voice || null;
+}
+
+function updateCollectionVoiceNote() {
+  const note = document.getElementById('collection-voice-note');
+  if (!note) return;
+  if (window._collectionVoiceChoice === 'browser-default') {
+    note.textContent = 'Using the browser default voice for staff-facing collection response playback.';
+    return;
+  }
+  const voice = resolveCollectionSpeechVoice(getCollectionSpeechLanguageCode());
+  note.textContent = voice
+    ? `ARCHAI Neutral is using: ${voice.name} (${voice.lang || 'default locale'}). Speak a staff-facing question to the whole collection.`
+    : 'Speak a staff-facing question to the whole collection. ARCHAI Neutral will use the best available modern browser voice for playback.';
+}
+
+function populateCollectionVoiceSelect() {
+  const select = document.getElementById('collection-voice-select');
+  if (!select) return;
+  const voices = getOdVoices();
+  const current = window._collectionVoiceChoice || 'archai-neutral';
+  select.innerHTML = '';
+
+  [
+    { value: 'archai-neutral', label: 'ARCHAI Neutral (recommended)' },
+    { value: 'browser-default', label: 'Browser Default' }
+  ].forEach(meta => {
+    const option = document.createElement('option');
+    option.value = meta.value;
+    option.textContent = meta.label;
+    select.appendChild(option);
+  });
+
+  voices.forEach(voice => {
+    const option = document.createElement('option');
+    option.value = voice.voiceURI || voice.name;
+    option.textContent = `${voice.name} (${voice.lang || 'default'})`;
+    select.appendChild(option);
+  });
+
+  select.value = current;
+  updateCollectionVoiceNote();
+}
+
+function setCollectionVoicePreference(value) {
+  window._collectionVoiceChoice = value || 'archai-neutral';
+  updateCollectionVoiceNote();
+}
+
+function getCollectionVoiceIndicatorState(message = '') {
+  const text = String(message || window._collectionSpeechStatus || '').toLowerCase();
+  if (window._collectionSpeechListening || text.includes('listening')) return 'live';
+  if (
+    text.includes('reading') ||
+    text.includes('starting microphone') ||
+    text.includes('question captured') ||
+    text.includes('sending to archai') ||
+    text.includes('response ready')
+  ) return 'pending';
+  if (
+    text.includes('blocked') ||
+    text.includes('failed') ||
+    text.includes('error') ||
+    text.includes('not expose')
+  ) return 'error';
+  return '';
+}
+
+function updateCollectionVoiceUI(message = '') {
+  if (message) window._collectionSpeechStatus = message;
+  const statusEl = document.getElementById('collection-voice-status-text');
+  const indicatorEl = document.getElementById('collection-voice-indicator');
+  const startBtn = document.getElementById('collection-voice-start-btn');
+  const stopBtn = document.getElementById('collection-voice-stop-btn');
+  const readBtn = document.getElementById('collection-voice-read-btn');
+  const silenceBtn = document.getElementById('collection-voice-silence-btn');
+  const statusMessage = window._collectionSpeechStatus || (collectionSupportsSpeechRecognition()
+    ? 'Ready for typed or spoken collection queries.'
+    : getCollectionSpeechUnavailableMessage());
+
+  if (statusEl) statusEl.textContent = statusMessage;
+  if (indicatorEl) {
+    const state = getCollectionVoiceIndicatorState(statusMessage);
+    indicatorEl.classList.remove('live', 'pending', 'error');
+    if (state) indicatorEl.classList.add(state);
+  }
+  if (startBtn) {
+    startBtn.disabled = !!window._collectionSpeechListening || !collectionSupportsSpeechRecognition();
+    startBtn.classList.toggle('active', !!window._collectionSpeechListening);
+    startBtn.textContent = window._collectionSpeechListening ? 'Listening…' : 'Voice Query';
+  }
+  if (stopBtn) stopBtn.disabled = !window._collectionSpeechListening || !collectionSupportsSpeechRecognition();
+  if (readBtn) readBtn.disabled = !window._collectionLastAssistantReply;
+  if (silenceBtn) silenceBtn.disabled = !window.speechSynthesis || !window.speechSynthesis.speaking;
+}
+
+function ensureCollectionSpeechRecognition() {
+  if (window._collectionSpeechRecognition) return window._collectionSpeechRecognition;
+  const Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!Recognition) return null;
+
+  const recognition = new Recognition();
+  recognition.lang = getCollectionSpeechLanguageCode();
+  recognition.continuous = false;
+  recognition.interimResults = true;
+
+  recognition.onstart = () => {
+    window._collectionSpeechListening = true;
+    updateCollectionVoiceUI('Listening… ask the collection a staff-facing question.');
+  };
+
+  recognition.onresult = event => {
+    const transcript = Array.from(event.results)
+      .map(result => result[0]?.transcript || '')
+      .join(' ')
+      .trim();
+    const input = document.getElementById('curatorSearch');
+    if (input) input.value = transcript;
+
+    const finalResult = Array.from(event.results).some(result => result.isFinal);
+    if (finalResult && transcript) {
+      window._collectionSpeechStatus = 'Question captured. Sending to ARCHAI…';
+      updateCollectionVoiceUI();
+      doConverse();
+    } else if (transcript) {
+      updateCollectionVoiceUI('Listening… ' + transcript);
+    }
+  };
+
+  recognition.onerror = event => {
+    const code = event?.error || 'speech error';
+    window._collectionSpeechListening = false;
+    updateCollectionVoiceUI(code === 'not-allowed'
+      ? 'Microphone access was blocked in the browser.'
+      : `Collection voice error: ${code}.`);
+  };
+
+  recognition.onend = () => {
+    window._collectionSpeechListening = false;
+    updateCollectionVoiceUI(window._collectionSpeechStatus || 'Voice query complete.');
+  };
+
+  window._collectionSpeechRecognition = recognition;
+  return recognition;
+}
+
+function collectionStartVoiceQuery() {
+  const recognition = ensureCollectionSpeechRecognition();
+  if (!recognition) {
+    updateCollectionVoiceUI(getCollectionSpeechUnavailableMessage());
+    return;
+  }
+  recognition.lang = getCollectionSpeechLanguageCode();
+  window._collectionSpeechListening = true;
+  updateCollectionVoiceUI('Starting microphone…');
+  try {
+    recognition.start();
+  } catch {
+    window._collectionSpeechListening = false;
+    updateCollectionVoiceUI('Voice capture is already running.');
+  }
+}
+
+function collectionStopVoiceQuery() {
+  if (!window._collectionSpeechRecognition) return;
+  try { window._collectionSpeechRecognition.stop(); } catch {}
+  window._collectionSpeechListening = false;
+  updateCollectionVoiceUI('Voice capture stopped.');
+}
+
+function collectionSpeakLatestReply() {
+  if (!window.speechSynthesis) {
+    updateCollectionVoiceUI('Speech playback is not available in this browser. Coqui is the next production step.');
+    return;
+  }
+  const text = window._collectionLastAssistantReply || '';
+  if (!text) {
+    updateCollectionVoiceUI('There is no collection response to read aloud yet.');
+    return;
+  }
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getCollectionSpeechLanguageCode();
+  const selectedVoice = resolveCollectionSpeechVoice(utterance.lang);
+  if (selectedVoice) {
+    utterance.voice = selectedVoice;
+    utterance.lang = selectedVoice.lang || utterance.lang;
+  }
+  utterance.rate = 1.0;
+  utterance.pitch = 1.0;
+  utterance.onstart = () => updateCollectionVoiceUI('Reading the latest collection response aloud…');
+  utterance.onend = () => updateCollectionVoiceUI('Collection response playback finished.');
+  utterance.onerror = () => updateCollectionVoiceUI('Collection response playback failed in this browser.');
+  window.speechSynthesis.speak(utterance);
+  updateCollectionVoiceUI('Reading the latest collection response aloud…');
+}
+
+function collectionStopSpeaking() {
+  if (!window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  updateCollectionVoiceUI('Audio playback stopped.');
+}
+
 // ── ROLE DEFINITIONS ────────────────────────────────────────────
 const ROLE_DEFS = {
   admin:       { label:'Admin',              note:'Admin access · user management, infra config, pipeline controls, all data',
@@ -1756,8 +2024,13 @@ window.addEventListener('DOMContentLoaded', () => {
   // Role init
   initRoleUI();
   populateOdVoiceSelect();
+  populateCollectionVoiceSelect();
+  updateCollectionVoiceUI();
   if (window.speechSynthesis) {
-    window.speechSynthesis.onvoiceschanged = () => populateOdVoiceSelect();
+    window.speechSynthesis.onvoiceschanged = () => {
+      populateOdVoiceSelect();
+      populateCollectionVoiceSelect();
+    };
   }
 
   // Load MV objects from Qdrant
@@ -2918,6 +3191,8 @@ function doConverse() {
     // Update conversation history
     convoHistory.push({ role: 'user', content: q });
     convoHistory.push({ role: 'assistant', content: data.message || '' });
+    window._collectionLastAssistantReply = data.message || '';
+    updateCollectionVoiceUI('Collection response ready. You can read it aloud or ask another question.');
 
     // Render assistant response
     let html = data.message || 'No response received.';
@@ -2955,6 +3230,7 @@ function doConverse() {
   .catch(e => {
     const pending = document.getElementById('convo-pending');
     if (pending) { pending.id = ''; pending.innerHTML = 'Connection failed — falling back to classic search.'; }
+    updateCollectionVoiceUI('Conversation failed. Falling back to classic search.');
     // Fallback to classic search
     document.getElementById('curatorSearch').value = q;
     doSearch();
@@ -4057,7 +4333,7 @@ function escQ(s) {
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?v=11.5.4').catch(() => {});
+  navigator.serviceWorker.register('/sw.js?v=11.5.5').catch(() => {});
 }
 </script>
 </body>
