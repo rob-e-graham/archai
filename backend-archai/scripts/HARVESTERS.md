@@ -21,6 +21,28 @@ Each harvester fetches objects from a museum API, generates embeddings via Ollam
 
 ## Quick Start
 
+### Legal gate first
+
+Before adding or refreshing public-demo collection data, run the legal harvest bot. It reads `collection-targets.json`, checks each target's policy and verification state, and only runs harvesters that pass the current legal / quality gate.
+
+```bash
+# Report only from the repository root: shows ready/live/review/blocked queues
+npm --prefix backend-archai run harvest:legal
+
+# Direct script form from this folder
+node legal-harvest-bot.js --report
+
+# Dry-run approved targets, including live refreshes
+node legal-harvest-bot.js --run-ready --include-live --dry-run --limit 20
+
+# Refresh selected approved live targets
+node legal-harvest-bot.js --targets=tepapa,mplus,brasiliana --run-ready --include-live --limit 120
+```
+
+Do not bypass this gate for public-facing ARCHAI or AUX.IO demos. Raw/source research experiments can be broader, but the public stack needs item-level rights and media quality checks.
+
+### Individual harvesters
+
 ```bash
 # No API key needed
 node met-harvester.js --limit 150

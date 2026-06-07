@@ -46,9 +46,9 @@ Goal: every public-facing object must be legally legible.
 - Show normalized legal status in ARCHAI, website demo, and AUX.IO.
 - Keep source URL visible.
 - Filter public demos toward image-backed, legally acceptable records.
-- Add a repeatable rights audit command before release/push.
+- Use `backend-archai/scripts/legal-harvest-bot.js` as the repeatable legal gate before public-demo harvests.
 
-Status: strong but must remain a release blocker.
+Status: strong, with legal harvest bot now tracked as the release safety rail.
 
 ## Milestone 4: Collection Onboarding Pipeline
 
@@ -113,4 +113,3 @@ Status: improving.
 5. Whisper/Piper prototype as separate optional path.
 6. Rights audit command before every public demo push.
 7. Generated AUX.IO manifest sync for true page editing.
-
