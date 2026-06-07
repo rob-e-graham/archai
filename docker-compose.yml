@@ -38,6 +38,7 @@ services:
       QDRANT_API_KEY: ""
       QDRANT_COLLECTION: archai_objects
       # Data
+      AUX_PAGES_DIR: /app/public/aux
       MEDIA_CACHE_DIR: /app/data/runtime/media-cache
       MEDIA_STREAM_MODE: local-cache
       RESTRICTED_FLAGS: secret-sacred,community-restricted,embargoed
@@ -84,6 +85,6 @@ services:
 volumes:
   archai_data:
   qdrant_storage:
-    # Reuse existing Qdrant data (815 objects across 6 collections)
+    # Reuse existing Qdrant data across local demo collections
     external: true
     name: archaiapp_qdrant_data

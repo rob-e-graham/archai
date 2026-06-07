@@ -5,3 +5,8 @@ coverage/
 .tmp/
 logs/
 data/runtime/
+data/*.db
+data/*.db-wal
+data/*.db-shm
+data/**/*.log
+tunnel/config.yml

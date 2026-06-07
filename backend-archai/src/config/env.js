@@ -41,6 +41,7 @@ export const env = {
     curatorModel: process.env.OLLAMA_CURATOR_MODEL || 'qwen2.5:14b',
   },
   dataDir: process.env.ARCHAI_DATA_DIR || './data',
+  auxPagesDir: process.env.AUX_PAGES_DIR || '',
   media: {
     cacheDir: process.env.MEDIA_CACHE_DIR || './data/runtime/media-cache',
     streamMode: process.env.MEDIA_STREAM_MODE || 'local-cache',

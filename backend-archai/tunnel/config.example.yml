@@ -1,0 +1,12 @@
+# Cloudflare Tunnel config template for the ARCHAI backend.
+# Copy to config.yml locally and point credentials-file at your own machine.
+
+tunnel: YOUR_TUNNEL_UUID
+credentials-file: /path/to/YOUR_TUNNEL_UUID.json
+
+ingress:
+  - hostname: archai-api.fineartmedia.tech
+    service: http://localhost:8787
+    originRequest:
+      noTLSVerify: true
+  - service: http_status:404

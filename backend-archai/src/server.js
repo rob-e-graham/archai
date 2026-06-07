@@ -20,8 +20,10 @@ app.use(express.json({ limit: '2mb' }));
 app.use(morgan('dev'));
 app.use(requestContext);
 
-// ── Serve AUX/NFC pages statically ──────────────────────────────
-const auxPagesDir = path.resolve(__dirname, '../../nfc-pages/v');
+// ── Serve AUX.IO pages statically ──────────────────────────────
+const auxPagesDir = env.auxPagesDir
+  ? path.resolve(env.auxPagesDir)
+  : path.resolve(__dirname, '../../nfc-pages/v');
 app.use('/aux', express.static(auxPagesDir));
 
 function getAuxPages() {
