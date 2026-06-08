@@ -75,6 +75,9 @@ The goal is to keep the conceptual, technical, and PhD-facing work easy to find.
 - [OUTREACH_TRACKER.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/outreach/OUTREACH_TRACKER.md)
   - working log for source institutions, future partners, feedback, corrections, and takedown requests
 
+- [PARTNER_AND_FUNDING_PROSPECT_MAP.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/outreach/PARTNER_AND_FUNDING_PROSPECT_MAP.md)
+  - potential collaborators, research partners, accessibility/community partners, technical partners, and ARC-style funding pathways
+
 ## Why this matters
 
 ARCHAI is no longer just a prototype HTML page. It now spans:

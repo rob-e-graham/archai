@@ -55,6 +55,8 @@ After the first transparency pass, contact potential future partners and dataset
 - GLAM Peak / Australian Museums and Galleries Association
 - RMIT research networks
 
+For a fuller partnership and funding map, see `PARTNER_AND_FUNDING_PROSPECT_MAP.md`.
+
 ## What To Include
 
 Every first-contact email should include:

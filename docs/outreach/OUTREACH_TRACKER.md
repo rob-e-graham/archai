@@ -46,6 +46,21 @@ Use this as the working log for museum/gallery contact. Keep notes factual and r
 | DigitalNZ | Aotearoa aggregator | Draft | Needs partner-level rights gate |
 | QAGOMA | Australian / Asia-Pacific balance | Draft | Check media rights path |
 
+## Research / Funding Partner Prospects
+
+| Organisation / Partner Type | Why Contact | Status | Notes |
+|---|---|---|---|
+| RMIT School of Design | PhD home, design research, ARC pathway | Draft | Start with supervisors / research office |
+| RMIT research office | ARC and internal funding advice | Draft | Confirm current schemes and eligibility |
+| Museums Victoria | local GLAM pilot, science/history/technology collections | Draft | Rights feedback + possible pilot discussion |
+| ACMI | media art, screen culture, born-digital preservation | Draft | Strong fit for future media/born-digital track |
+| Powerhouse / MAAS | Australian applied arts/science/technology | Draft | Strong tech/data balance |
+| State Library Victoria | public access, digital collections, archives | Draft | Collection discovery and rights-aware search |
+| Heide / TarraWarra | gallery-scale visitor and interpretation pilots | Draft | Good for focused AUX.IO testing |
+| Accessibility partner | voice, screen reader, inclusive design testing | Draft | Identify before formal pilot claims |
+| Indigenous data sovereignty advisor | cultural protocol gates and community authority | Draft | Needed before sensitive collection work |
+| GLAM Peak / AMaGA | sector introductions and legitimacy | Draft | Useful for regional/small-museum connections |
+
 ## Feedback Log
 
 | Date | Institution | Feedback | Action Taken | Follow-Up Needed |
