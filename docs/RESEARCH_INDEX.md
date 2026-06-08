@@ -63,6 +63,18 @@ The goal is to keep the conceptual, technical, and PhD-facing work easy to find.
 - [publications.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/provenance/publications.md)
 - [conference-presentations.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/provenance/conference-presentations.md)
 
+## Outreach / Partnerships
+
+- [MUSEUM_GALLERY_OUTREACH_PLAN.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/outreach/MUSEUM_GALLERY_OUTREACH_PLAN.md)
+  - transparent first-contact plan for museums/galleries whose open or public collection data appears in ARCHAI
+  - includes legal/ethical posture, contact priorities, risk language, and preferred ask
+
+- [SOURCE_INSTITUTION_EMAIL_TEMPLATE.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/outreach/SOURCE_INSTITUTION_EMAIL_TEMPLATE.md)
+  - first-contact email, follow-up email, and short LinkedIn/contact-form version
+
+- [OUTREACH_TRACKER.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/outreach/OUTREACH_TRACKER.md)
+  - working log for source institutions, future partners, feedback, corrections, and takedown requests
+
 ## Why this matters
 
 ARCHAI is no longer just a prototype HTML page. It now spans:
