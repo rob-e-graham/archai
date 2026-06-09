@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>stole, lace — ARCHAI</title>
+<title>New, authentic, and complete collection of voyages round the world : undertaken and performed by royal authority. Containing a new, authentic, entertaining, instructive, full, and complete historical account of Captain Cook's first, second, third, and last voyages, undertaken by order of His present Majesty, for making new discoveries in geography, navigation, astronomy, &amp;c. in the Southern and Northern Hemispheres, &amp;c., &amp;c., &amp;c. ... To which will be added, complete and genuine narratives of other voyages of discovery round the world, &amp;c. ... Illustrated with all the elegant, splendid, and fine large folio copper-plates, belonging to Capt. Cook's first, second, third and last voyages ... / the whole of these voyages of Capt. James Cook, &amp;c., being newly written by the editors from the authentic journals of several principal officers and other gentlemen of the most distinguished naval and philosophical abilities, who sailed in the various ships and now publishing under the immediate direction of George William Anderson ... assisted, very materially, by a principal officer who sailed in the Resolution sloop, and by other gentlemen of the Royal Navy. — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/86669?rendering=standard.jpg" alt="stole, lace" loading="eager">
+  <img src="https://media.tepapa.govt.nz/collection/910839/preview" alt="New, authentic, and complete collection of voyages round the world : undertaken and performed by royal authority. Containing a new, authentic, entertaining, instructive, full, and complete historical account of Captain Cook's first, second, third, and last voyages, undertaken by order of His present Majesty, for making new discoveries in geography, navigation, astronomy, &amp;c. in the Southern and Northern Hemispheres, &amp;c., &amp;c., &amp;c. ... To which will be added, complete and genuine narratives of other voyages of discovery round the world, &amp;c. ... Illustrated with all the elegant, splendid, and fine large folio copper-plates, belonging to Capt. Cook's first, second, third and last voyages ... / the whole of these voyages of Capt. James Cook, &amp;c., being newly written by the editors from the authentic journals of several principal officers and other gentlemen of the most distinguished naval and philosophical abilities, who sailed in the various ships and now publishing under the immediate direction of George William Anderson ... assisted, very materially, by a principal officer who sailed in the Resolution sloop, and by other gentlemen of the Royal Navy." loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">stole, lace</div>
-  <div class="v-sub">Stole · Pre 1937 · T98</div>
+  <div class="v-title">New, authentic, and complete collection of voyages round the world : undertaken and performed by royal authority. Containing a new, authentic, entertaining, instructive, full, and complete historical account of Captain Cook's first, second, third, and last voyages, undertaken by order of His present Majesty, for making new discoveries in geography, navigation, astronomy, &amp;c. in the Southern and Northern Hemispheres, &amp;c., &amp;c., &amp;c. ... To which will be added, complete and genuine narratives of other voyages of discovery round the world, &amp;c. ... Illustrated with all the elegant, splendid, and fine large folio copper-plates, belonging to Capt. Cook's first, second, third and last voyages ... / the whole of these voyages of Capt. James Cook, &amp;c., being newly written by the editors from the authentic journals of several principal officers and other gentlemen of the most distinguished naval and philosophical abilities, who sailed in the various ships and now publishing under the immediate direction of George William Anderson ... assisted, very materially, by a principal officer who sailed in the Resolution sloop, and by other gentlemen of the Royal Navy.</div>
+  <div class="v-sub">rare books · 1784 · RB000015</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Auckland Museum</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
-    <span class="v-meta-tag">Applied Arts and Design</span>
+    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">Rare Books</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>stole, lace</strong> — silk, machine made copy of Blonde bobbin lace; overall floral pattern and [strapwork]; scalloped edges.</div>
-  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
-      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
-      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
+  <div class="v-story"><strong>New, authentic, and complete collection of voyages round the world : undertaken and performed by royal authority. Containing a new, authentic, entertaining, instructive, full, and complete historical account of Captain Cook's first, second, third, and last voyages, undertaken by order of His present Majesty, for making new discoveries in geography, navigation, astronomy, &amp;c. in the Southern and Northern Hemispheres, &amp;c., &amp;c., &amp;c. ... To which will be added, complete and genuine narratives of other voyages of discovery round the world, &amp;c. ... Illustrated with all the elegant, splendid, and fine large folio copper-plates, belonging to Capt. Cook's first, second, third and last voyages ... / the whole of these voyages of Capt. James Cook, &amp;c., being newly written by the editors from the authentic journals of several principal officers and other gentlemen of the most distinguished naval and philosophical abilities, who sailed in the various ships and now publishing under the immediate direction of George William Anderson ... assisted, very materially, by a principal officer who sailed in the Resolution sloop, and by other gentlemen of the Royal Navy.</strong> — New, authentic, and complete collection of voyages round the world : undertaken and performed by royal authority. Containing a new, authentic, entertaining, instructive, full, and complete historical account of Captain Cook's first, second, third, and last voyages, undertaken by order of His present…</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: No Known Copyright Restrictions · metadata CC BY 4.0 · No Known Copyright Restrictions</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,17 +1000,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">T98</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">unknown</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Silk (textile), &lt;textile Materials By Composition Or Origin&gt;, &lt;textile Materials&gt;, &lt;fiber Products&gt;, &lt;fiber And Fiber Products&gt;, &lt;materials By Physical Form&gt;</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Applied Arts and Design</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Stole</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Pre 1937</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Stole</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">RB000015</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">George Anderson, Alexander Hogg, John Eastgate, Captain James Cook</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">leather bound book</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Captain James Cook</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Rare Books</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">rare books</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1784</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">rare books</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">No Known Copyright Restrictions · metadata CC BY 4.0 · No Known Copyright Restrictions</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -984,24 +1026,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC458.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1977.179/1977.179_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Red-Figure Situla (Deep Bucket): Bellerophon Slaying Chimaera (A); Dionysos, Maenads, Eros (B)</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1977.179</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2011ER6467/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Print</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.1070-1967</div>
       </a>
       <a class="v-rel-card" href="NFC459.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/aUWSt/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van Margaretha van Beieren</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010023</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/AvOmO/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Filips de Goede, hertog van Bourgondi&amp;#235;</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010029</div>
       </a>
       <a class="v-rel-card" href="NFC461.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/midp89.4.854side2.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Udäkki</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 501466</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/uhpXx/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">&quot;Windsor Castle&quot; doosje met miniatuurpenningen met het portret van leden van de Engelse koninklijke familie</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100402</div>
       </a>
       <a class="v-rel-card" href="NFC462.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/fWRxp/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Schutterspenning van Middelburg</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100430</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_668/v1627824788/v2/prod/small/005501_006000/005945_001.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Red A stool, no. 363</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2016.349</div>
       </a></div>
   </div>
 </div>
@@ -1014,7 +1056,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/7188" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/1416836" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1046,26 +1088,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `stole, lace`,
-  type: `Stole`,
-  date: `Pre 1937`,
-  registration: `T98`,
-  location: `Auckland Museum`,
-  discipline: `Applied Arts and Design`,
-  category: `Stole`,
-  description: `silk, machine made copy of Blonde bobbin lace; overall floral pattern and [strapwork]; scalloped edges.`,
-  medium: `Silk (textile), <textile Materials By Composition Or Origin>, <textile Materials>, <fiber Products>, <fiber And Fiber Products>, <materials By Physical Form>`,
-  artist: `unknown`,
-  culture: ``,
+  title: `New, authentic, and complete collection of voyages round the world : undertaken and performed by royal authority. Containing a new, authentic, entertaining, instructive, full, and complete historical account of Captain Cook's first, second, third, and last voyages, undertaken by order of His present Majesty, for making new discoveries in geography, navigation, astronomy, &amp;c. in the Southern and Northern Hemispheres, &amp;c., &amp;c., &amp;c. ... To which will be added, complete and genuine narratives of other voyages of discovery round the world, &amp;c. ... Illustrated with all the elegant, splendid, and fine large folio copper-plates, belonging to Capt. Cook's first, second, third and last voyages ... / the whole of these voyages of Capt. James Cook, &amp;c., being newly written by the editors from the authentic journals of several principal officers and other gentlemen of the most distinguished naval and philosophical abilities, who sailed in the various ships and now publishing under the immediate direction of George William Anderson ... assisted, very materially, by a principal officer who sailed in the Resolution sloop, and by other gentlemen of the Royal Navy.`,
+  type: `rare books`,
+  date: `1784`,
+  registration: `RB000015`,
+  location: `Te Papa Tongarewa, Wellington`,
+  discipline: `Rare Books`,
+  category: `rare books`,
+  description: `New, authentic, and complete collection of voyages round the world : undertaken and performed by royal authority. Containing a new, authentic, entertaining, instructive, full, and complete historical account of Captain Cook's first, second, third, and last voyages, undertaken by order of His present Majesty, for making new discoveries in geography, navigation, astronomy, &c. in the Southern and Northern Hemispheres, &c., &c., &c. ... To which will be added, complete and genuine narratives of other voyages of discovery round the world, &c. ... Illustrated with all the elegant, splendid, and fin…`,
+  medium: `leather bound book`,
+  artist: `George Anderson, Alexander Hogg, John Eastgate, Captain James Cook`,
+  culture: `Captain James Cook`,
   dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `© Auckland Museum CC BY`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/7188`,
-  institution: `Auckland Museum`
+  tombstone: `New, authentic, and complete collection of voyages round the world : undertaken and performed by royal authority. Containing a new, authentic, entertaining, instructive, full, and complete historical account of Captain Cook's first, second, third, and last voyages, undertaken by order of His present Majesty, for making new discoveries in geography, navigation, astronomy, &c. in the Southern and Northern Hemispheres, &c., &c., &c. ... To which will be added, complete and genuine narratives of other voyages of discovery round the world, &c. ... Illustrated with all the elegant, splendid, and fine large folio copper-plates, belonging to Capt. Cook's first, second, third and last voyages ... / the whole of these voyages of Capt. James Cook, &c., being newly written by the editors from the authentic journals of several principal officers and other gentlemen of the most distinguished naval and philosophical abilities, who sailed in the various ships and now publishing under the immediate direction of George William Anderson ... assisted, very materially, by a principal officer who sailed in the Resolution sloop, and by other gentlemen of the Royal Navy., 1784, London, by George Anderson, Alexander Hogg, John Eastgate, Captain James Cook. Gift of Charles Rooking Carter. Te Papa (RB000015)`,
+  licence: `No Known Copyright Restrictions · metadata CC BY 4.0`,
+  source_url: `https://collections.tepapa.govt.nz/object/1416836`,
+  institution: `Museum of New Zealand Te Papa Tongarewa`
 };
 
 // Build rich context from available fields
@@ -1646,7 +1688,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_auckland',
+      collection: 'archai_tepapa',
       text,
       authorType: 'visitor',
     }),

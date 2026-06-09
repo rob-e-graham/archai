@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Nederlandse 2&amp;#189; gulden, 1847 — ARCHAI</title>
+<title>Fishing Boats with Hucksters Bargaining for Fish — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,28 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://iiif.micr.io/nIspd/full/max/0/default.jpg" alt="Nederlandse 2&amp;#189; gulden, 1847" loading="eager">
+  <img src="https://www.artic.edu/iiif/2/8641479e-c93e-f1a8-9925-19be061706da/full/843,/0/default.jpg" alt="Fishing Boats with Hucksters Bargaining for Fish" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Nederlandse 2&amp;#189; gulden, 1847</div>
-  <div class="v-sub">munt · 2026-02-14T04:17:42Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;Willem II (koning der Nederlanden)&lt;/dc:creator&gt;
-          &lt;dc:creator&gt;William II of the Netherlands&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1847 · 200100261</div>
+  <div class="v-title">Fishing Boats with Hucksters Bargaining for Fish</div>
+  <div class="v-sub">Painting · 1837–38 · 4796</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
+    <span class="v-meta-tag mv">Art Institute of Chicago</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    
+    <span class="v-meta-tag">Painting and Sculpture of Europe</span>
   </div>
 
   <!-- SHARE -->
@@ -913,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Nederlandse 2&amp;#189; gulden, 1847</strong> — Zilveren munt. Voorzijde: hoofd van koning Willem II naar links.Keerzijde: tussen waarde-aanduiding 2&amp;#189; G gekroond rijkswapenschild. Jaartal bovenaan in omschrift. Randschrift.</div>
+  <div class="v-story"><strong>Fishing Boats with Hucksters Bargaining for Fish</strong> — Fishing Boats with Hucksters Bargaining for Fish. Painting. Oil on canvas. Painting and Sculpture of Europe. Joseph Mallord William Turner (English, 1775–1851). oil on canvas. 1837–38. England. 19th century. &lt;p&gt;English artist J. M. W. Turner was fascinated by the sea. Here, a crowded fishing boat ri…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -943,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -969,26 +1000,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">200100261</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Willem II (koning der Nederlanden); William II of the Netherlands</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">zilver</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">munt</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-02-14T04:17:42Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;Willem II (koning der Nederlanden)&lt;/dc:creator&gt;
-          &lt;dc:creator&gt;William II of the Netherlands&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1847</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">munt</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">4796</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Joseph Mallord William Turner (English, 1775–1851)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Oil on canvas</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">England</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Painting and Sculpture of Europe</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">oil on canvas</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1837–38</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">174.5 × 224.9 cm (68 3/4 × 88 1/2 in.); Framed: 216.6 × 268 cm (85 1/4 × 105 1/2 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 220</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -1003,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC733.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2009BX5459/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Composite Oscillons</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.957-2008</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%2Fwebclient%2FDeliveryManager%3Fpid%3D6355702%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Photographic reportage, Florence, 1957-1956. Servizio fotografico Firenze, 1957-1956</div>
+        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6355702_custom_att_2_simple_viewer</div>
       </a>
       <a class="v-rel-card" href="NFC734.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/kvWPk/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Het Athenaeum Illustre te Amsterdam wordt universiteit 1877</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100315</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/dp/original/DP855149.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Term in the Form of a Woman with Musical Instrument</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 336811</div>
       </a>
       <a class="v-rel-card" href="NFC736.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_568/v1627825888/v2/prod/small/010501_011000/010621_003.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Peking Brush Drawing</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2018.280</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018KR4534/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Camera</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · RPS.322-2018</div>
       </a>
       <a class="v-rel-card" href="NFC737.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627882516/v2/prod/small/004001_004500/004029_005.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Circus</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2016.367</div>
+        <div class="v-rel-thumb"><img src="https://museuregionalcasadosottoni.acervos.museus.gov.br/wp-content/uploads/2019/04/86_A-2-1-1-4.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Estampa</div>
+        <div class="v-rel-meta">Brasiliana Museus · 5370960-2</div>
       </a></div>
   </div>
 </div>
@@ -1033,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/200100261" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.artic.edu/artworks/4796" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1065,36 +1089,27 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Nederlandse 2&amp;#189; gulden, 1847`,
-  type: `munt`,
-  date: `2026-02-14T04:17:42Z</datestamp>
-        <setSpec>260239</setSpec>
-        <setSpec>261106</setSpec>
-        <setSpec>260251</setSpec>
-        <setSpec>2601</setSpec>
-      </header>
-      <metadata>
-        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
-          <dc:creator>Willem II (koning der Nederlanden)</dc:creator>
-          <dc:creator>William II of the Netherlands</dc:creator>
-          <dc:date>1847`,
-  registration: `200100261`,
-  location: `Rijksmuseum, Amsterdam`,
-  discipline: ``,
-  category: `munt`,
-  description: `Zilveren munt. Voorzijde: hoofd van koning Willem II naar links.Keerzijde: tussen waarde-aanduiding 2&#189; G gekroond rijkswapenschild. Jaartal bovenaan in omschrift. Randschrift.`,
-  medium: `zilver`,
-  artist: `Willem II (koning der Nederlanden); William II of the Netherlands`,
-  culture: ``,
-  dimensions: ``,
+  title: `Fishing Boats with Hucksters Bargaining for Fish`,
+  type: `Painting`,
+  date: `1837–38`,
+  registration: `4796`,
+  location: `Gallery 220`,
+  discipline: `Painting and Sculpture of Europe`,
+  category: `oil on canvas`,
+  description: `Fishing Boats with Hucksters Bargaining for Fish. Painting. Oil on canvas. Painting and Sculpture of Europe. Joseph Mallord William Turner (English, 1775–1851). oil on canvas. 1837–38. England. 19th century. <p>English artist J. M. W. Turner was fascinated by the sea. Here, a crowded fishing boat rides atop rolling, tumultuous waves. A smaller boat occupied by hucksters, or peddlers, navigates the churning waters as it approaches the larger vessel to negotiate the buying of fish to sell back at port. A steamship chugs along in the background, signaling the new industrial age.</p>
+<p>This paint…`,
+  medium: `Oil on canvas`,
+  artist: `Joseph Mallord William Turner (English, 1775–1851)`,
+  culture: `England`,
+  dimensions: `174.5 × 224.9 cm (68 3/4 × 88 1/2 in.); Framed: 216.6 × 268 cm (85 1/4 × 105 1/2 in.)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
-  source_url: `https://www.rijksmuseum.nl/en/collection/200100261`,
-  institution: `Rijksmuseum, Amsterdam`
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.artic.edu/artworks/4796`,
+  institution: `Art Institute of Chicago`
 };
 
 // Build rich context from available fields
@@ -1675,7 +1690,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_rijks',
+      collection: 'archai_aic',
       text,
       authorType: 'visitor',
     }),

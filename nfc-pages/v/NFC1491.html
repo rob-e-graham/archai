@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Suzu — ARCHAI</title>
+<title>Desert boots — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/mi/original/DP353272.jpg" alt="Suzu" loading="eager">
+  <img src="https://media.tepapa.govt.nz/collection/286123/preview" alt="Desert boots" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Suzu</div>
-  <div class="v-sub">Suzu · 17th century · 500655</div>
+  <div class="v-title">Desert boots</div>
+  <div class="v-sub">military uniforms · 2000s · GH023234</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Musical Instruments</span>
+    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">History</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Suzu</strong> — Suzu. Suzu. Wood, metal. Musical Instruments. Japanese. Idiophone-Shaken-crotal bell. 17th century</div>
-  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
-      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+  <div class="v-story"><strong>Desert boots</strong> — These boots go with the combat uniform worn by Lance Corporal (now Corporal) Willie Apiata, New Zealand Special Air Service (NZSAS), in 2004 in Afghanistan. In that year, he saved the life of his colleague when under enemy fire. He was awarded the Victoria Cross for New Zealand (VC) in 2007 for disp…</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,18 +1000,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">500655</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Wood, metal</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Japanese</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Idiophone-Shaken-crotal bell</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">17th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">H. 13 1/2 × Diam. 7 1/2 in. (34.3 × 19 cm)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">The Met, New York</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Suzu</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">GH023234</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Meindl</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">leather, rubber</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Afghanistan</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">History</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">military uniforms</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2000s</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 115mm (width), 210mm (height)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">military uniforms</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -990,19 +1032,19 @@ body::after {
         <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100252</div>
       </a>
       <a class="v-rel-card" href="NFC1490.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1992.369/1992.369_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Fragment of a Red-Figure Bell-Krater or Calyx-Krater (Mixing Vessel): Female Head (Aglauros)</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1992.369</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP-24267-001.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Whistle</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 316713</div>
       </a>
       <a class="v-rel-card" href="NFC1492.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/0f1cc0e0-e42e-be16-3f71-2022da38cb93/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Arrival of the Normandy Train, Gare Saint-Lazare</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 16571</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%2Fwebclient%2FDeliveryManager%3Fpid%3D6331282%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Servizio fotografico Firenze, 1972</div>
+        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6331282_custom_att_2_simple_viewer</div>
       </a>
       <a class="v-rel-card" href="NFC1493.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/292110/preview" loading="lazy"></div>
-        <div class="v-rel-title">Box</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH002897</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627833866/v2/prod/small/014501_015000/014996_010.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Rope Chair</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2019.178</div>
       </a></div>
   </div>
 </div>
@@ -1015,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/500655" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/1285551" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1047,26 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Suzu`,
-  type: `Suzu`,
-  date: `17th century`,
-  registration: `500655`,
-  location: `The Met, New York`,
-  discipline: `Musical Instruments`,
-  category: `Idiophone-Shaken-crotal bell`,
-  description: `Suzu. Suzu. Wood, metal. Musical Instruments. Japanese. Idiophone-Shaken-crotal bell. 17th century`,
-  medium: `Wood, metal`,
-  artist: ``,
-  culture: `Japanese`,
-  dimensions: `H. 13 1/2 × Diam. 7 1/2 in. (34.3 × 19 cm)`,
-  wall_description: ``,
+  title: `Desert boots`,
+  type: `military uniforms`,
+  date: `2000s`,
+  registration: `GH023234`,
+  location: `Te Papa Tongarewa, Wellington`,
+  discipline: `History`,
+  category: `military uniforms`,
+  description: `These boots go with the combat uniform worn by Lance Corporal (now Corporal) Willie Apiata, New Zealand Special Air Service (NZSAS), in 2004 in Afghanistan. In that year, he saved the life of his colleague when under enemy fire. He was awarded the Victoria Cross for New Zealand (VC) in 2007 for displaying the highest order of personal courage under fire, and in doing so, contributed materially to the success of the overall engagement. The Victoria Cross was created by Queen Victoria in 1856 to recognise acts of gallantry in the presence of the enemy, by the members of the armed forces, regardl…`,
+  medium: `leather, rubber`,
+  artist: `Meindl`,
+  culture: `Afghanistan`,
+  dimensions: `Overall: 115mm (width), 210mm (height)`,
+  wall_description: `These boots go with the combat uniform worn by Lance Corporal (now Corporal) Willie Apiata, New Zealand Special Air Service (NZSAS), in 2004 in Afghanistan. In that year, he saved the life of his colleague when under enemy fire. He was awarded the Victoria Cross for New Zealand (VC) in 2007 for displaying the highest order of personal courage under fire, and in doing so, contributed materially to the success of the overall engagement. The Victoria Cross was created by Queen Victoria in 1856 to r…`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/500655`,
-  institution: `The Metropolitan Museum of Art`
+  tombstone: `Desert boots, 2000s, Germany, by Meindl. Gift of the 1st New Zealand Special Air Service Regiment, 2012. CC BY-NC-ND 4.0. Te Papa (GH023234)`,
+  licence: `CC BY-NC-ND 4.0 · metadata CC BY 4.0`,
+  source_url: `https://collections.tepapa.govt.nz/object/1285551`,
+  institution: `Museum of New Zealand Te Papa Tongarewa`
 };
 
 // Build rich context from available fields
@@ -1647,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_met',
+      collection: 'archai_tepapa',
       text,
       authorType: 'visitor',
     }),

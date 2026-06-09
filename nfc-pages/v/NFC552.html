@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Vase — ARCHAI</title>
+<title>Jar — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2006AP5693/full/!600,600/0/default.jpg" alt="Vase" loading="eager">
+  <img src="https://media.tepapa.govt.nz/collection/380334/preview" alt="Jar" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Vase</div>
-  <div class="v-sub">Vase · 1904 · C.41-1972</div>
+  <div class="v-title">Jar</div>
+  <div class="v-sub">vases · 1991BCE–1778 BCE · FE000427</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Vase</span>
+    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">History</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Vase</strong> — Vase. Vase. Made by Kok, J. Juriaan. 1904. Made in Netherlands. Ceramics, Room 145</div>
-  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
-      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+  <div class="v-story"><strong>Jar</strong> — Fit for purpose Ancient Egyptians made vessels like these in different shapes for everyday purposes, using clay dug from close to the Nile. Flat-bottomed containers could stand easily, and vessels with tapered bases could be nestled into soft earth. Form followed function. Compare the large, two-han…</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,16 +1000,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">C.41-1972</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Kok, J. Juriaan</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Vase</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Vase</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1904</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Ceramics, Room 145</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Vase</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">FE000427</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Unknown</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">pottery, slip</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Twelfth Dynasty</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">History</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">vases</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1991BCE–1778 BCE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 118mm (width), 170mm (height), 121mm (depth)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">vases</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -983,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC550.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/qBJGT/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Schutterspenning van Leiden</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100438</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2024NU4123/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Community Basket</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.23-2024</div>
       </a>
       <a class="v-rel-card" href="NFC551.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15936199&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Halle im Südlichen Kopfbau (aus: Museum im Werden)</div>
-        <div class="v-rel-meta">Europeana · /08535/item_24UNYJKPN3NRZ3EKTZ6RURIT76Y4MHU5</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4334/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">PRISM</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.290-2020</div>
       </a>
       <a class="v-rel-card" href="NFC553.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/619606/preview" loading="lazy"></div>
-        <div class="v-rel-title">One Sen</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · NU006390</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1975.1/1975.1_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Black-Figure Hydria (Water Vessel): Frontal Quadriga (Body); Theseus and Minotaur (Shoulder)</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1975.1</div>
       </a>
       <a class="v-rel-card" href="NFC554.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/c8ee825f-bc8c-c76b-1f05-5d692d9a6b47/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">The Crucifixion</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 80084</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fwww.searchculture.gr%2Faggregator%2Fthumbnails%2Fedm-record%2Fmedusa%2F000114-3_5635manifest&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Κεμεντζέ, τρίχορδο παραδοσιακό μουσικό όργανο του Πόντου. Kementze, traditional musical instrument with three cords from Pontus</div>
+        <div class="v-rel-meta">Europeana · /123/https___www_searchculture_gr_aggregator_edm_medusa_000114_3_5635manifest</div>
       </a></div>
   </div>
 </div>
@@ -1013,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O87867/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/188888" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1045,26 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Vase`,
-  type: `Vase`,
-  date: `1904`,
-  registration: `C.41-1972`,
-  location: `Ceramics, Room 145`,
-  discipline: `Vase`,
-  category: `Vase`,
-  description: `Vase. Vase. Made by Kok, J. Juriaan. 1904. Made in Netherlands. Ceramics, Room 145`,
-  medium: ``,
-  artist: `Kok, J. Juriaan`,
-  culture: ``,
-  dimensions: ``,
-  wall_description: ``,
+  title: `Jar`,
+  type: `vases`,
+  date: `1991BCE–1778 BCE`,
+  registration: `FE000427`,
+  location: `Te Papa Tongarewa, Wellington`,
+  discipline: `History`,
+  category: `vases`,
+  description: `Fit for purpose Ancient Egyptians made vessels like these in different shapes for everyday purposes, using clay dug from close to the Nile. Flat-bottomed containers could stand easily, and vessels with tapered bases could be nestled into soft earth. Form followed function. Compare the large, two-handled amphora with Ann Verdcourt’s milk cartons. Their form may be different, but their purpose is similar. In ancient times, amphorae were often designed for transporting wine or oil. They were packed tight into a ship’s hull for trading, and were sometimes thrown away when empty.`,
+  medium: `pottery, slip`,
+  artist: `Unknown`,
+  culture: `Twelfth Dynasty`,
+  dimensions: `Overall: 118mm (width), 170mm (height), 121mm (depth)`,
+  wall_description: `Fit for purpose Ancient Egyptians made vessels like these in different shapes for everyday purposes, using clay dug from close to the Nile. Flat-bottomed containers could stand easily, and vessels with tapered bases could be nestled into soft earth. Form followed function. Compare the large, two-handled amphora with Ann Verdcourt’s milk cartons. Their form may be different, but their purpose is similar. In ancient times, amphorae were often designed for transporting wine or oil. They were packed…`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O87867/`,
-  institution: `Victoria and Albert Museum, London`
+  tombstone: `Jar, 1991BCE–1778 BCE, Egypt, maker unknown. Gift of the Egypt Exploration Fund, 1912. CC BY-NC-ND 4.0. Te Papa (FE000427)`,
+  licence: `CC BY-NC-ND 4.0 · metadata CC BY 4.0`,
+  source_url: `https://collections.tepapa.govt.nz/object/188888`,
+  institution: `Museum of New Zealand Te Papa Tongarewa`
 };
 
 // Build rich context from available fields
@@ -1645,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_tepapa',
       text,
       authorType: 'visitor',
     }),

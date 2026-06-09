@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Estampa religiosa — ARCHAI</title>
+<title>[Cigana e duas paisagens] — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,13 +917,13 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://museuregionalcasadosottoni.acervos.museus.gov.br/wp-content/uploads/2019/04/171_A-2-1-1-4.jpg" alt="Estampa religiosa" loading="eager">
+  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669326/006235.jpg" alt="[Cigana e duas paisagens]" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Estampa religiosa</div>
-  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.4 estampa · Séc. XIX · 5368641-2</div>
+  <div class="v-title">[Cigana e duas paisagens]</div>
+  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · 19-- · cigana-e-duas-paisagens</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Brasiliana Museus</span>
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Estampa religiosa</strong> — Litogravura colorida, representando sacra com o Evangelho de São João, de formato vertical, com texto inserido em estrutura de portal, com a parte superior em semi-arco, tendo ornamentação em volutas e motivos fitomorfos. Nas laterais, frisos em tom azul claro entremeados por folhas de acanto, motiv…</div>
+  <div class="v-story"><strong>[Cigana e duas paisagens]</strong> — ESTA FOTO ESTÁ ERRADA - FOTO ERRADA - FOTO NÃO CORRESPONDE A DESCRIÇÃO -FOTO ERRADA!!! A FOTO CERTA ESTÁ NO ITEM 06236Quadro formado por três pequenas telas dispostas lado a lado. Do lado esquerdo paisagem, em primeiro plano lago com quatro patos pretos e brancos nadando, ao centro grupo formado por…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://museuregionalcasadosottoni.acervos.museus.gov.br/reproducao-de-imagens/</div>
+      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,17 +1000,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">5368641-2</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.4 estampa</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">cigana-e-duas-paisagens</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.4 estampa</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Séc. XIX</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">19--</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 32,00 cm · largura 55,00 cm</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.4 estampa</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://museuregionalcasadosottoni.acervos.museus.gov.br/reproducao-de-imagens/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -984,24 +1026,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC751.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/12491/preview" loading="lazy"></div>
-        <div class="v-rel-title">Jar</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · CG000350</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/as/original/DP142123.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Young Lady Playing a Musical Instrument</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 56087</div>
       </a>
       <a class="v-rel-card" href="NFC752.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/796802?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">press</div>
-        <div class="v-rel-meta">Auckland Museum · 1995x2.165</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PH9468/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Philips Superinductance model 634A</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.24-1981</div>
       </a>
       <a class="v-rel-card" href="NFC754.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/1d3a275d-45dd-6026-b6ed-d7d8df417a3d/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">A Peasant Woman Digging in Front of Her Cottage</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 28862</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/66c1797f-b87e-8736-cdf6-c490bd34863b/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Mater Dolorosa (Sorrowing Virgin)</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 110673</div>
       </a>
       <a class="v-rel-card" href="NFC755.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/C4491 89.4.2035.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Ubo akwara (pluriarc)</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 502613</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/607851?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">purse</div>
+        <div class="v-rel-meta">Auckland Museum · T846</div>
       </a></div>
   </div>
 </div>
@@ -1014,7 +1056,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/5368641-2/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/cigana-e-duas-paisagens/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1046,25 +1088,25 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Estampa religiosa`,
-  type: `02 artes visuais/cinematográfica > 02.4 estampa`,
-  date: `Séc. XIX`,
-  registration: `5368641-2`,
+  title: `[Cigana e duas paisagens]`,
+  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  date: `19--`,
+  registration: `cigana-e-duas-paisagens`,
   location: `Brasiliana Museus`,
   discipline: `Brasiliana Museus`,
-  category: `02 artes visuais/cinematográfica > 02.4 estampa`,
-  description: `Litogravura colorida, representando sacra com o Evangelho de São João, de formato vertical, com texto inserido em estrutura de portal, com a parte superior em semi-arco, tendo ornamentação em volutas e motivos fitomorfos. Nas laterais, frisos em tom azul claro entremeados por folhas de acanto, motivos florais, volutas, escudos e ânforas, em formato de arabesco, nos tons azul, amarelo, rosa e branco. Na parte central  superior, escudo com imagem de cordeiro de Deus deitado sobre a cruz, sob fundo azul escuro. Abaixo do cordeiro, texto em latim com a seguinte inscrição, em tinta preta: &#034;INI…`,
-  medium: `02 artes visuais/cinematográfica > 02.4 estampa`,
+  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  description: `ESTA FOTO ESTÁ ERRADA - FOTO ERRADA - FOTO NÃO CORRESPONDE A DESCRIÇÃO -FOTO ERRADA!!! A FOTO CERTA ESTÁ NO ITEM 06236Quadro formado por três pequenas telas dispostas lado a lado. Do lado esquerdo paisagem, em primeiro plano lago com quatro patos pretos e brancos nadando, ao centro grupo formado por uma figura adulta, tendo a frente duas crianças e um cão. Ao fundo cinco troncos de árvores e vegetação. Ao centro, busto de cigana, com o rosto direcionado para frente, usa lenço azul com correntes douradas amarradas nos longos cabelos pretos. Na orelha grande argola prateada. Traja roupa branca. …`,
+  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
   artist: ``,
   culture: `Brazil`,
-  dimensions: ``,
-  wall_description: `Litogravura colorida, representando sacra com o Evangelho de São João, de formato vertical, com texto inserido em estrutura de portal, com a parte superior em semi-arco, tendo ornamentação em volutas e motivos fitomorfos. Nas laterais, frisos em tom azul claro entremeados por folhas de acanto, motivos florais, volutas, escudos e ânforas, em formato de arabesco, nos tons azul, amarelo, rosa e branco. Na parte central  superior, escudo com imagem de cordeiro de Deus deitado sobre a cruz, sob fundo…`,
+  dimensions: `altura 32,00 cm · largura 55,00 cm`,
+  wall_description: `ESTA FOTO ESTÁ ERRADA - FOTO ERRADA - FOTO NÃO CORRESPONDE A DESCRIÇÃO -FOTO ERRADA!!! A FOTO CERTA ESTÁ NO ITEM 06236Quadro formado por três pequenas telas dispostas lado a lado. Do lado esquerdo paisagem, em primeiro plano lago com quatro patos pretos e brancos nadando, ao centro grupo formado por uma figura adulta, tendo a frente duas crianças e um cão. Ao fundo cinco troncos de árvores e vegetação. Ao centro, busto de cigana, com o rosto direcionado para frente, usa lenço azul com correntes …`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Estampa religiosa. Séc. XIX. Brasiliana Museus`,
-  licence: `Domínio público, ver http://museuregionalcasadosottoni.acervos.museus.gov.br/reproducao-de-imagens/`,
-  source_url: `https://brasiliana.museus.gov.br/acervos/5368641-2/`,
+  tombstone: `[Cigana e duas paisagens]. 19--. Brasiliana Museus`,
+  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
+  source_url: `https://brasiliana.museus.gov.br/acervos/cigana-e-duas-paisagens/`,
   institution: `Brasiliana Museus`
 };
 

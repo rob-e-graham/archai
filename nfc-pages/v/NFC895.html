@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Radio — ARCHAI</title>
+<title>Oliphant (side-blown horn) — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2018KY2056/full/!600,600/0/default.jpg" alt="Radio" loading="eager">
+  <img src="https://images.metmuseum.org/CRDImages/ao/original/DP-37845-001.jpg" alt="Oliphant (side-blown horn)" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Radio</div>
-  <div class="v-sub">Radio · ca. 1956 · W.45-1983</div>
+  <div class="v-title">Oliphant (side-blown horn)</div>
+  <div class="v-sub">Horn · ca. 1490–1530 · 883968</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
+    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Radio</span>
+    <span class="v-meta-tag">The Michael C. Rockefeller Wing</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Radio</strong> — Radio. Radio. Made by Murphy Radio. ca. 1956. Made in England. In Store</div>
+  <div class="v-story"><strong>Oliphant (side-blown horn)</strong> — Oliphant (side-blown horn). Horn. Ivory. The Michael C. Rockefeller Wing. Temne or Bullom peoples. by Temne or Bullom artist(s). Ivories-Elephant. ca. 1490–1530</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,16 +1000,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">W.45-1983</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Murphy Radio</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Radio</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Radio</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca. 1956</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In Store</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Radio</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">883968</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Temne or Bullom artist(s)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Ivory</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Temne or Bullom peoples</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">The Michael C. Rockefeller Wing</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ivories-Elephant</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca. 1490–1530</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">L. 23 × Diam. 3 5/8 × Thickness (at opening) 1/16 in. (58.4 × 9.2 × 0.2 cm)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 341</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Horn</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -983,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC893.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2008BT5107/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Analog-Grafik D3 (Dance of the Electrons)</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.119-2008</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2011EU0493/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Model TR 70</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.293-1963</div>
       </a>
       <a class="v-rel-card" href="NFC894.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/45323?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">shirt, uniform, school</div>
-        <div class="v-rel-meta">Auckland Museum · 1999.183.4</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/619950/preview" loading="lazy"></div>
+        <div class="v-rel-title">One Cent</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · NU005527</div>
       </a>
       <a class="v-rel-card" href="NFC896.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1962.151/1962.151_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Rest on the Flight into Egypt</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1962.151</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fems.dimu.org%2Fimage%2F022wZWGAPp5H%3Fdimension%3D1200x1200&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Laboratorieskrivare, bordsmodell</div>
+        <div class="v-rel-meta">Europeana · /916118/S_TEK_object_TEKS0042793</div>
       </a>
       <a class="v-rel-card" href="NFC897.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HC3211/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Vype Reload</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CD.37:1 to 11-2014</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669425/default-33.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Descobrimento da América</div>
+        <div class="v-rel-meta">Brasiliana Museus · descobrimento-da-america</div>
       </a></div>
   </div>
 </div>
@@ -1013,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O371990/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/883968" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1045,26 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Radio`,
-  type: `Radio`,
-  date: `ca. 1956`,
-  registration: `W.45-1983`,
-  location: `In Store`,
-  discipline: `Radio`,
-  category: `Radio`,
-  description: `Radio. Radio. Made by Murphy Radio. ca. 1956. Made in England. In Store`,
-  medium: ``,
-  artist: `Murphy Radio`,
-  culture: ``,
-  dimensions: ``,
+  title: `Oliphant (side-blown horn)`,
+  type: `Horn`,
+  date: `ca. 1490–1530`,
+  registration: `883968`,
+  location: `Gallery 341`,
+  discipline: `The Michael C. Rockefeller Wing`,
+  category: `Ivories-Elephant`,
+  description: `Oliphant (side-blown horn). Horn. Ivory. The Michael C. Rockefeller Wing. Temne or Bullom peoples. by Temne or Bullom artist(s). Ivories-Elephant. ca. 1490–1530`,
+  medium: `Ivory`,
+  artist: `Temne or Bullom artist(s)`,
+  culture: `Temne or Bullom peoples`,
+  dimensions: `L. 23 × Diam. 3 5/8 × Thickness (at opening) 1/16 in. (58.4 × 9.2 × 0.2 cm)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O371990/`,
-  institution: `Victoria and Albert Museum, London`
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.metmuseum.org/art/collection/search/883968`,
+  institution: `The Metropolitan Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1645,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_met',
       text,
       authorType: 'visitor',
     }),

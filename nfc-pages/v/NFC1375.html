@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Drie gulden van de Bataafse Republiek op naam van West-Friesland, 1795 — ARCHAI</title>
+<title>Soft Documents No. 2 — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,27 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://iiif.micr.io/uZRwg/full/max/0/default.jpg" alt="Drie gulden van de Bataafse Republiek op naam van West-Friesland, 1795" loading="eager">
+  <img src="https://res.cloudinary.com/mplustms/image/upload/w_667/v1627848997/v2/prod/small/002001_002500/002257_003.jpg" alt="Soft Documents No. 2" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Drie gulden van de Bataafse Republiek op naam van West-Friesland, 1795</div>
-  <div class="v-sub">munt · 2026-02-14T04:17:09Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;Bataafse Republiek&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1795 · 200100091</div>
+  <div class="v-title">Soft Documents No. 2</div>
+  <div class="v-sub">Sculpture · 1997 · 2012.1361</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    
+    <span class="v-meta-tag mv">M+, Hong Kong</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">Visual Art</span>
   </div>
 
   <!-- SHARE -->
@@ -912,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Drie gulden van de Bataafse Republiek op naam van West-Friesland, 1795</strong> — Zilveren munt. Voorzijde: tussen waarde-aanduiding gekroond generaliteirtswapenschild. Omschrift eindigend in: WESTF. Keerzijde: Nederlandse maagd met vrijheidshoed en speer, leunend op een bijbel op een altaar. In afsnede jaartal. Kabelrand.</div>
-  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
-      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
+  <div class="v-story"><strong>Soft Documents No. 2</strong> — Cream-coloured rectangular sculpture made out of cotton wadding and cotton thread. Installed vertically, an airplane form is sewn at the bottom with its nose pointing upwards. Stitches give the sculpture puckered edges and creases on the left.</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Zhang Lei (张蕾) · © Zhang Lei (张蕾)</div>
     </div>
 
   <div class="v-divider"></div>
@@ -942,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -968,25 +1000,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">200100091</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Bataafse Republiek</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">zilver</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">munt</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-02-14T04:17:09Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;Bataafse Republiek&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1795</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">munt</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2012.1361</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Zhang Lei</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">cotton wadding and cotton thread</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Chinese</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Visual Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1997</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">overall: 176 × 100 × 8 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Zhang Lei (张蕾) · © Zhang Lei (张蕾)</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -1001,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1373.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1985.1/1985.1_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Black-Figure Lekythos (Oil Vessel): Pan Presenting Hare to Woman</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1985.1</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/265742/preview" loading="lazy"></div>
+        <div class="v-rel-title">Wurst. From Gesamtkunsthandwerk.</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · 2011-0034-1/19-19</div>
       </a>
       <a class="v-rel-card" href="NFC1374.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/AOycf/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Wijnpenning van Utrecht</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100431</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP302664.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Bala</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 501109</div>
       </a>
       <a class="v-rel-card" href="NFC1376.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/1fec602a-0a69-0669-d2b5-160e71e25cda/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portrait of Mary of Modena</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 16014</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/exlkP/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Schutterspenning Middelburg St. Joris</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100426</div>
       </a>
       <a class="v-rel-card" href="NFC1377.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2021.156.b/2021.156.b_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Tea Cup</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2021.156.b</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/40065?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">mittens</div>
+        <div class="v-rel-meta">Auckland Museum · col.2624</div>
       </a></div>
   </div>
 </div>
@@ -1031,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/200100091" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/soft-documents-no-2-20121361/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1063,35 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Drie gulden van de Bataafse Republiek op naam van West-Friesland, 1795`,
-  type: `munt`,
-  date: `2026-02-14T04:17:09Z</datestamp>
-        <setSpec>260239</setSpec>
-        <setSpec>261106</setSpec>
-        <setSpec>260251</setSpec>
-        <setSpec>2601</setSpec>
-      </header>
-      <metadata>
-        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
-          <dc:creator>Bataafse Republiek</dc:creator>
-          <dc:date>1795`,
-  registration: `200100091`,
-  location: `Rijksmuseum, Amsterdam`,
-  discipline: ``,
-  category: `munt`,
-  description: `Zilveren munt. Voorzijde: tussen waarde-aanduiding gekroond generaliteirtswapenschild. Omschrift eindigend in: WESTF. Keerzijde: Nederlandse maagd met vrijheidshoed en speer, leunend op een bijbel op een altaar. In afsnede jaartal. Kabelrand.`,
-  medium: `zilver`,
-  artist: `Bataafse Republiek`,
-  culture: ``,
-  dimensions: ``,
-  wall_description: ``,
+  title: `Soft Documents No. 2`,
+  type: `Sculpture`,
+  date: `1997`,
+  registration: `2012.1361`,
+  location: `M+, Hong Kong`,
+  discipline: `Visual Art`,
+  category: `Sculpture`,
+  description: `Cream-coloured rectangular sculpture made out of cotton wadding and cotton thread. Installed vertically, an airplane form is sewn at the bottom with its nose pointing upwards. Stitches give the sculpture puckered edges and creases on the left.`,
+  medium: `cotton wadding and cotton thread`,
+  artist: `Zhang Lei`,
+  culture: `Chinese`,
+  dimensions: `overall: 176 × 100 × 8 cm`,
+  wall_description: `Cream-coloured rectangular sculpture made out of cotton wadding and cotton thread. Installed vertically, an airplane form is sewn at the bottom with its nose pointing upwards. Stitches give the sculpture puckered edges and creases on the left.`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
-  source_url: `https://www.rijksmuseum.nl/en/collection/200100091`,
-  institution: `Rijksmuseum, Amsterdam`
+  tombstone: `Soft Documents No. 2. Zhang Lei. 1997. M+, Hong Kong`,
+  licence: `CC0 metadata · M+ API service non-commercial · © Zhang Lei (张蕾)`,
+  source_url: `https://www.mplus.org.hk/en/collection/objects/soft-documents-no-2-20121361/`,
+  institution: `M+, Hong Kong`
 };
 
 // Build rich context from available fields
@@ -1672,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_rijks',
+      collection: 'archai_mplus',
       text,
       authorType: 'visitor',
     }),

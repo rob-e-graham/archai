@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Frieze of Dancers — ARCHAI</title>
+<title>Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Deutsches Museum: Barocksaal im nördlichen Kopfbau (aus: Museum im Werden) — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/1946.83/1946.83_web.jpg" alt="Frieze of Dancers" loading="eager">
+  <img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15935099&amp;type=IMAGE" alt="Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Deutsches Museum: Barocksaal im nördlichen Kopfbau (aus: Museum im Werden)" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Frieze of Dancers</div>
-  <div class="v-sub">Painting · c. 1895 · 1946.83</div>
+  <div class="v-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Deutsches Museum: Barocksaal im nördlichen Kopfbau (aus: Museum im Werden)</div>
+  <div class="v-sub">IMAGE · Date unknown · /08535/item_LDZVUX3ECA3EJXXSKMIXLMDE3U36KZTO</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
+    <span class="v-meta-tag mv">Europeana</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
+
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Frieze of Dancers</strong> — This painting may depict a single dancer seen from four different viewpoints. The young woman is placed in an undefined setting, surrounded by mere wisps of color, applied so spontaneously that the paint ran and dripped. Degas even added the circles in the foreground with his thumb. Such audacity, w…</div>
+  <div class="v-story"><strong>Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Deutsches Museum: Barocksaal im nördlichen Kopfbau (aus: Museum im Werden)</strong> — Architekturmuseum der TU Berlin, Inv. Nr. 11662,17. Werk und Digitalisat sind gemeinfrei, aber wir freuen uns über einen Bildnachweis. (Bemerkung)</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+      <div class="v-rights-detail">Licence / rights: http://creativecommons.org/publicdomain/zero/1.0/</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,19 +1000,15 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1946.83</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Edgar Degas (French, 1834–1917)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oil on fabric</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, 19th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Painting</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1895</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Framed: 103 x 233.5 x 7 cm (40 9/16 x 91 15/16 x 2 3/4 in.); Unframed: 70 x 200.5 cm (27 9/16 x 78 15/16 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">222 Impressionism &amp; Post-Impressionism</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">/08535/item_LDZVUX3ECA3EJXXSKMIXLMDE3U36KZTO</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">https://d-nb.info/gnd/116914009</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">IMAGE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Date unknown</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Museum of Architecture at Berlin Institute of Technology</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">IMAGE</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">http://creativecommons.org/publicdomain/zero/1.0/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -986,24 +1023,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1066.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/ywprt/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Filips, erfprins van Spanje, ingehuldigd als graaf van Holland</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010038</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/kvWPk/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Het Athenaeum Illustre te Amsterdam wordt universiteit 1877</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100315</div>
       </a>
       <a class="v-rel-card" href="NFC1067.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/BUXWc/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van Godfried III met de Bult, hertog van Neder-Lotharingen</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010008</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/6644829f-f292-c5c4-a73c-0356a6fdbf0d/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">The Bedroom</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 28560</div>
       </a>
       <a class="v-rel-card" href="NFC1069.html">
-        <div class="v-rel-thumb"><img src="https://www.mplus.org.hk/_nuxt/img/share.23eb426.jpg" loading="lazy"></div>
-        <div class="v-rel-title">A Proposal of Women as an Advanced Toy to Men</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2012.1413</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1998.273/1998.273_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Young Girl Seated on Straw, Leaning on a Basket</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1998.273</div>
       </a>
       <a class="v-rel-card" href="NFC1070.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627820093/v2/prod/small/007001_007500/007158_004.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Album cover, Tat Ming Pair: I'm Waiting for Your Return</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2018.46</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/AOycf/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Wijnpenning van Utrecht</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100431</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1053,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://clevelandart.org/art/1946.83" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.europeana.eu/item/08535/item_LDZVUX3ECA3EJXXSKMIXLMDE3U36KZTO?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,26 +1085,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Frieze of Dancers`,
-  type: `Painting`,
-  date: `c. 1895`,
-  registration: `1946.83`,
-  location: `222 Impressionism & Post-Impressionism`,
-  discipline: `Modern European Painting and Sculpture`,
-  category: `Painting`,
-  description: `This painting may depict a single dancer seen from four different viewpoints. The young woman is placed in an undefined setting, surrounded by mere wisps of color, applied so spontaneously that the paint ran and dripped. Degas even added the circles in the foreground with his thumb. Such audacity, while acceptable in a small sketch, must have shocked the artist's contemporaries when presented on a six-foot canvas. Equally radical is the idea of combining multiple views of a single figure. Degas's unusual presentation may have been inspired by the photographs of Eadweard Muybridge (1830-1904)`,
-  medium: `oil on fabric`,
-  artist: `Edgar Degas (French, 1834–1917)`,
-  culture: `France, 19th century`,
-  dimensions: `Framed: 103 x 233.5 x 7 cm (40 9/16 x 91 15/16 x 2 3/4 in.); Unframed: 70 x 200.5 cm (27 9/16 x 78 15/16 in.)`,
+  title: `Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Deutsches Museum: Barocksaal im nördlichen Kopfbau (aus: Museum im Werden)`,
+  type: `IMAGE`,
+  date: `Date unknown`,
+  registration: `/08535/item_LDZVUX3ECA3EJXXSKMIXLMDE3U36KZTO`,
+  location: `Museum of Architecture at Berlin Institute of Technology`,
+  discipline: ``,
+  category: `IMAGE`,
+  description: `Architekturmuseum der TU Berlin, Inv. Nr. 11662,17. Werk und Digitalisat sind gemeinfrei, aber wir freuen uns über einen Bildnachweis. (Bemerkung)`,
+  medium: ``,
+  artist: `https://d-nb.info/gnd/116914009`,
+  culture: ``,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: `The ballet is a subject Degas returned to again and again over the course of his career. Rather than public performances, he often depicted dancers behind the curtain, practicing, waiting, or, as in this painting, lacing up their shoes.`,
-  provenance: `[{"description":"(Durand-Ruel, Paris, France, acquired from the artist and sold to Paul Cassier the same day)","citations":[],"footnotes":[],"date":"September 19,1904","sortorder":1},{"description":"(Paul Cassirer, Berlin Germany, sold to Max Liebermann)","citations":[],"footnotes":[],"date":"Novemb…`,
-  tombstone: `Frieze of Dancers, c. 1895. Edgar Degas (French, 1834–1917). Oil on fabric; framed: 103 x 233.5 x 7 cm (40 9/16 x 91 15/16 x 2 3/4 in.); unframed: 70 x 200.5 cm (27 9/16 x 78 15/16 in.). The Cleveland Museum of Art, Gift of the Hanna Fund, 1946.83`,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://clevelandart.org/art/1946.83`,
-  institution: `Cleveland Museum of Art`
+  did_you_know: ``,
+  provenance: ``,
+  tombstone: ``,
+  licence: `http://creativecommons.org/publicdomain/zero/1.0/`,
+  source_url: `https://www.europeana.eu/item/08535/item_LDZVUX3ECA3EJXXSKMIXLMDE3U36KZTO?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb`,
+  institution: `Europeana`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1685,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_cma',
+      collection: 'archai_europeana',
       text,
       authorType: 'visitor',
     }),

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Ghanti (bell) — ARCHAI</title>
+<title>Approach by ramp, night view, the Peak project, Hong Kong (1983 Competition) — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/mi/original/mi89.4.154.R.jpg" alt="Ghanti (bell)" loading="eager">
+  <img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627855886/v2/prod/small/002001_002500/002001_007.jpg" alt="Approach by ramp, night view, the Peak project, Hong Kong (1983 Competition)" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Ghanti (bell)</div>
-  <div class="v-sub">Ghanti (bell) · last half 19th century · 500736</div>
+  <div class="v-title">Approach by ramp, night view, the Peak project, Hong Kong (1983 Competition)</div>
+  <div class="v-sub">Painting · 1983/2012 · 2015.21</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Musical Instruments</span>
+    <span class="v-meta-tag mv">M+, Hong Kong</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">Design and Architecture</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Ghanti (bell)</strong> — Ghanti (bell). Ghanti (bell). Brass. Musical Instruments. Indian. Idiophone-Struck-bell-clapper. last half 19th century</div>
-  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
-      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+  <div class="v-story"><strong>Approach by ramp, night view, the Peak project, Hong Kong (1983 Competition)</strong> — Acrylic painting on printed canvas depicting a building with a ramp in the foreground. The building's layers and columns are angled and feature bold colours, in contrast to the dark background</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Zaha Hadid, Zaha Hadid Foundation · © Zaha Hadid, Zaha Hadid Foundation</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,19 +1000,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">500736</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Brass</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Indian</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Idiophone-Struck-bell-clapper</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">last half 19th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Height: 12 in. (30.5 cm)
-Diameter: 6 1/2 in. (16.5 cm)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">The Met, New York</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Ghanti (bell)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2015.21</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Zaha Hadid</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">acrylic and inkjet print on canvas</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">British</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Design and Architecture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1983/2012</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">overall: 60 × 105.3 × 52.6 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Zaha Hadid, Zaha Hadid Foundation · © Zaha Hadid, Zaha Hadid Foundation</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -986,24 +1027,24 @@ Diameter: 6 1/2 in. (16.5 cm)</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC611.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2015HY0216/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Digitel 2000</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · W.16:1, 2-2003</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/185432/preview" loading="lazy"></div>
+        <div class="v-rel-title">Flaked chisel</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · FE000381/5</div>
       </a>
       <a class="v-rel-card" href="NFC612.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669016/006331.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Maria Soares Marcelly Peixoto de Brito e Mello</div>
-        <div class="v-rel-meta">Brasiliana Museus · maria-soares-marcelly-peixoto-de-brito-e-mello</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/19/164719-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Lantern Slide - 'Sally', circa 1931-1956</div>
+        <div class="v-rel-meta">Museums Victoria · MM 97186</div>
       </a>
       <a class="v-rel-card" href="NFC614.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1970.16/1970.16_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Black-Figure Neck-Amphora (Storage Vessel): Herakles and Nemean Lion (A); Dionysos, Satyrs, and Maenads (B)</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1970.16</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2011ER6462/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Print</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.1074-1967</div>
       </a>
       <a class="v-rel-card" href="NFC615.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/395710/preview" loading="lazy"></div>
-        <div class="v-rel-title">Signature table cloth</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · PC000204/2</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_941/v1775699628/v2/prod/small/010501_011000/010601_005.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Presentation model, Bank of Asia Headquarters (now United Overseas Bank Bangkok Headquarters) (1983–1986), Bangkok, Thailand</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2018.41</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1057,7 @@ Diameter: 6 1/2 in. (16.5 cm)</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/500736" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/approach-by-ramp-night-view-the-peak-project-hong-kong-1983-competition-201521/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,27 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Ghanti (bell)`,
-  type: `Ghanti (bell)`,
-  date: `last half 19th century`,
-  registration: `500736`,
-  location: `The Met, New York`,
-  discipline: `Musical Instruments`,
-  category: `Idiophone-Struck-bell-clapper`,
-  description: `Ghanti (bell). Ghanti (bell). Brass. Musical Instruments. Indian. Idiophone-Struck-bell-clapper. last half 19th century`,
-  medium: `Brass`,
-  artist: ``,
-  culture: `Indian`,
-  dimensions: `Height: 12 in. (30.5 cm)
-Diameter: 6 1/2 in. (16.5 cm)`,
-  wall_description: ``,
+  title: `Approach by ramp, night view, the Peak project, Hong Kong (1983 Competition)`,
+  type: `Painting`,
+  date: `1983/2012`,
+  registration: `2015.21`,
+  location: `M+, Hong Kong`,
+  discipline: `Design and Architecture`,
+  category: `Painting`,
+  description: `Acrylic painting on printed canvas depicting a building with a ramp in the foreground. The building's layers and columns are angled and feature bold colours, in contrast to the dark background`,
+  medium: `acrylic and inkjet print on canvas`,
+  artist: `Zaha Hadid`,
+  culture: `British`,
+  dimensions: `overall: 60 × 105.3 × 52.6 cm`,
+  wall_description: `Acrylic painting on printed canvas depicting a building with a ramp in the foreground. The building's layers and columns are angled and feature bold colours, in contrast to the dark background`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/500736`,
-  institution: `The Metropolitan Museum of Art`
+  tombstone: `Approach by ramp, night view, the Peak project, Hong Kong (1983 Competition). Zaha Hadid. 1983/2012. M+, Hong Kong`,
+  licence: `CC0 metadata · M+ API service non-commercial · © Zaha Hadid, Zaha Hadid Foundation`,
+  source_url: `https://www.mplus.org.hk/en/collection/objects/approach-by-ramp-night-view-the-peak-project-hong-kong-1983-competition-201521/`,
+  institution: `M+, Hong Kong`
 };
 
 // Build rich context from available fields
@@ -1649,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_met',
+      collection: 'archai_mplus',
       text,
       authorType: 'visitor',
     }),

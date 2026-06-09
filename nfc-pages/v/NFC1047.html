@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>'Peacock Chair' for Imperial Hotel, Tokyo, Japan — ARCHAI</title>
+<title>Stairs — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://res.cloudinary.com/mplustms/image/upload/w_668/v1627832950/v2/prod/small/002001_002500/002029_001.jpg" alt="'Peacock Chair' for Imperial Hotel, Tokyo, Japan" loading="eager">
+  <img src="https://res.cloudinary.com/mplustms/image/upload/w_514/v1719852572/v2/prod/small/000001_000500/000240_004.jpg" alt="Stairs" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">'Peacock Chair' for Imperial Hotel, Tokyo, Japan</div>
-  <div class="v-sub">Furniture · circa 1921 · 2013.237</div>
+  <div class="v-title">Stairs</div>
+  <div class="v-sub">Ink Art · 1969 · 2013.255</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">M+, Hong Kong</span>
     <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
-    <span class="v-meta-tag">Design and Architecture</span>
+    <span class="v-meta-tag">Visual Art</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>'Peacock Chair' for Imperial Hotel, Tokyo, Japan</strong> — Wooden chair with a small hexagonal back. The seat is covered in a yellow oil cloth covering, and the back is partially covered in the same material.</div>
+  <div class="v-story"><strong>Stairs</strong> — Ink and colour painting on paper. A stack of ever-larger violet plinths rises out of a cloudy violet void. At the top are round yellow and red lights and an object resembling an industrial fan.</div>
   <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
       <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Frank Lloyd Wright Foundation · © Frank Lloyd Wright Foundation</div>
+      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Kan Tai-keung · © Kan Tai-keung</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,19 +1000,21 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2013.237</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Frank Lloyd Wright</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oak, oil cloth covering, and metal</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">American</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Design and Architecture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Furniture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">circa 1921</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">overall: 96 × 38 × 45.5 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2013.255</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Kan Tai-keung</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">ink and colour on paper</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Hong Kong</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Visual Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ink Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1969</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">frame: 211.5 × 110.5 × 6 cm
+sheet: 208 × 107 cm
+image: 185.1 × 95.8 cm</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Furniture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Ink Art</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Frank Lloyd Wright Foundation · © Frank Lloyd Wright Foundation</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Kan Tai-keung · © Kan Tai-keung</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -986,24 +1029,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1045.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2012FK3676/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Alhambra</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · 34778</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/235408?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">sampler</div>
+        <div class="v-rel-meta">Auckland Museum · col.1037</div>
       </a>
       <a class="v-rel-card" href="NFC1046.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%3A80%2Fwebclient%2FDeliveryManager%3Fpid%3D6355701%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Photographic reportage, Florence, 1957-1956. Servizio fotografico Firenze, 1957-1956</div>
-        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6355701_custom_att_2_simple_viewer</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/8f899167-2faf-bd0d-cf9c-9ca2fcb07a4b/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Helena Tromper Du Bois</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 866</div>
       </a>
       <a class="v-rel-card" href="NFC1048.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP-24269-001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Whistle</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 316715</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1979.69/1979.69_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Red-Figure Janiform Kantharos (Two-Sided Head-Shaped Drinking Cup): Satyr and African</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1979.69</div>
       </a>
       <a class="v-rel-card" href="NFC1049.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/53337?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">teapot</div>
-        <div class="v-rel-meta">Auckland Museum · K1093</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4346/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">HICCUP</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.308-2020</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1059,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/peacock-chair-for-imperial-hotel-tokyo-japan-2013237/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/stairs-2013255/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,25 +1091,27 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `'Peacock Chair' for Imperial Hotel, Tokyo, Japan`,
-  type: `Furniture`,
-  date: `circa 1921`,
-  registration: `2013.237`,
+  title: `Stairs`,
+  type: `Ink Art`,
+  date: `1969`,
+  registration: `2013.255`,
   location: `M+, Hong Kong`,
-  discipline: `Design and Architecture`,
-  category: `Furniture`,
-  description: `Wooden chair with a small hexagonal back. The seat is covered in a yellow oil cloth covering, and the back is partially covered in the same material.`,
-  medium: `oak, oil cloth covering, and metal`,
-  artist: `Frank Lloyd Wright`,
-  culture: `American`,
-  dimensions: `overall: 96 × 38 × 45.5 cm`,
-  wall_description: `Wooden chair with a small hexagonal back. The seat is covered in a yellow oil cloth covering, and the back is partially covered in the same material.`,
+  discipline: `Visual Art`,
+  category: `Ink Art`,
+  description: `Ink and colour painting on paper. A stack of ever-larger violet plinths rises out of a cloudy violet void. At the top are round yellow and red lights and an object resembling an industrial fan.`,
+  medium: `ink and colour on paper`,
+  artist: `Kan Tai-keung`,
+  culture: `Hong Kong`,
+  dimensions: `frame: 211.5 × 110.5 × 6 cm
+sheet: 208 × 107 cm
+image: 185.1 × 95.8 cm`,
+  wall_description: `Ink and colour painting on paper. A stack of ever-larger violet plinths rises out of a cloudy violet void. At the top are round yellow and red lights and an object resembling an industrial fan.`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `'Peacock Chair' for Imperial Hotel, Tokyo, Japan. Frank Lloyd Wright. circa 1921. M+, Hong Kong`,
-  licence: `CC0 metadata · M+ API service non-commercial · © Frank Lloyd Wright Foundation`,
-  source_url: `https://www.mplus.org.hk/en/collection/objects/peacock-chair-for-imperial-hotel-tokyo-japan-2013237/`,
+  tombstone: `Stairs. Kan Tai-keung. 1969. M+, Hong Kong`,
+  licence: `CC0 metadata · M+ API service non-commercial · © Kan Tai-keung`,
+  source_url: `https://www.mplus.org.hk/en/collection/objects/stairs-2013255/`,
   institution: `M+, Hong Kong`
 };
 

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Grundriss Erdgeschoss 1:500 (aus: Museum im Werden) — ARCHAI</title>
+<title>TEA TALK — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15925799&amp;type=IMAGE" alt="Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Grundriss Erdgeschoss 1:500 (aus: Museum im Werden)" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2014HD4344/full/!600,600/0/default.jpg" alt="TEA TALK" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Grundriss Erdgeschoss 1:500 (aus: Museum im Werden)</div>
-  <div class="v-sub">IMAGE · Date unknown · /08535/item_HIGRUUE27HE7F4G3444WPLKLQWQSHGQD</div>
+  <div class="v-title">TEA TALK</div>
+  <div class="v-sub">Computer-generated drawing · 1969 · E.300-2020</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Europeana</span>
+    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    
+    <span class="v-meta-tag">Computer-generated drawing</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Grundriss Erdgeschoss 1:500 (aus: Museum im Werden)</strong> — Architekturmuseum der TU Berlin, Inv. Nr. 11662,02. Werk und Digitalisat sind gemeinfrei, aber wir freuen uns über einen Bildnachweis. (Bemerkung)</div>
+  <div class="v-story"><strong>TEA TALK</strong> — TEA TALK. Computer-generated drawing. Made by Frederick Hammersley. 1969. Made in America. Prints &amp; Drawings Study Room, level C</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: http://creativecommons.org/publicdomain/zero/1.0/</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,15 +1000,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">/08535/item_HIGRUUE27HE7F4G3444WPLKLQWQSHGQD</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">https://d-nb.info/gnd/116914009</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">IMAGE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Date unknown</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Museum of Architecture at Berlin Institute of Technology</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">IMAGE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.300-2020</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Frederick Hammersley</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Computer-generated drawing</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Computer-generated drawing</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1969</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, level C</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Computer-generated drawing</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">http://creativecommons.org/publicdomain/zero/1.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -982,24 +1024,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC495.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fems.dimu.org%2Fimage%2F032wZVhPnMTR%3Fdimension%3D1200x1200&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Stereobild med motiv från Nationalmuseum i Stockholm.</div>
-        <div class="v-rel-meta">Europeana · /916118/S_TEK_photo_TEKA0128024</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/1979.206.953_a.JPG" loading="lazy"></div>
+        <div class="v-rel-title">Figure with conical headdress and shield</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 313151</div>
       </a>
       <a class="v-rel-card" href="NFC496.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2004.32/2004.32_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Behind the Troglodyte Farm</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2004.32</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627827290/v2/prod/small/006501_007000/006529_011.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Low Chair, model 5016</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2016.447</div>
       </a>
       <a class="v-rel-card" href="NFC498.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DT661.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Transverse Flute in D-flat</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 501534</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15934899&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Ansicht am Kupfergraben (aus: Museum im Werden)</div>
+        <div class="v-rel-meta">Europeana · /08535/item_BCLKL7AH5MZDFRK3ZJX5GWWHLPEQMUCX</div>
       </a>
       <a class="v-rel-card" href="NFC499.html">
-        <div class="v-rel-thumb"><img src="https://www.mplus.org.hk/_nuxt/img/share.23eb426.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Ready-made Product of Media</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2012.1476</div>
+        <div class="v-rel-thumb"><img src="https://museuregionalcasadosottoni.acervos.museus.gov.br/wp-content/uploads/2019/04/87_A-2-1-1-4.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Estampa</div>
+        <div class="v-rel-meta">Brasiliana Museus · 5370951-2</div>
       </a></div>
   </div>
 </div>
@@ -1012,7 +1054,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.europeana.eu/item/08535/item_HIGRUUE27HE7F4G3444WPLKLQWQSHGQD?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1284396/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1044,16 +1086,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Grundriss Erdgeschoss 1:500 (aus: Museum im Werden)`,
-  type: `IMAGE`,
-  date: `Date unknown`,
-  registration: `/08535/item_HIGRUUE27HE7F4G3444WPLKLQWQSHGQD`,
-  location: `Museum of Architecture at Berlin Institute of Technology`,
-  discipline: ``,
-  category: `IMAGE`,
-  description: `Architekturmuseum der TU Berlin, Inv. Nr. 11662,02. Werk und Digitalisat sind gemeinfrei, aber wir freuen uns über einen Bildnachweis. (Bemerkung)`,
+  title: `TEA TALK`,
+  type: `Computer-generated drawing`,
+  date: `1969`,
+  registration: `E.300-2020`,
+  location: `Prints & Drawings Study Room, level C`,
+  discipline: `Computer-generated drawing`,
+  category: `Computer-generated drawing`,
+  description: `TEA TALK. Computer-generated drawing. Made by Frederick Hammersley. 1969. Made in America. Prints & Drawings Study Room, level C`,
   medium: ``,
-  artist: `https://d-nb.info/gnd/116914009`,
+  artist: `Frederick Hammersley`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -1061,9 +1103,9 @@ const OBJECT = {
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `http://creativecommons.org/publicdomain/zero/1.0/`,
-  source_url: `https://www.europeana.eu/item/08535/item_HIGRUUE27HE7F4G3444WPLKLQWQSHGQD?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb`,
-  institution: `Europeana`
+  licence: `V&A Open Access`,
+  source_url: `https://collections.vam.ac.uk/item/O1284396/`,
+  institution: `Victoria and Albert Museum, London`
 };
 
 // Build rich context from available fields
@@ -1644,7 +1686,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_europeana',
+      collection: 'archai_va',
       text,
       authorType: 'visitor',
     }),

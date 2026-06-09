@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Painting with Troika — ARCHAI</title>
+<title>The Lost Pleiade — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/a45e5f55-d02b-ce98-8bab-3af549684f58/full/843,/0/default.jpg" alt="Painting with Troika" loading="eager">
+  <img src="https://www.artic.edu/iiif/2/f9549068-ad7e-c9ce-6fed-5c7a429024fb/full/843,/0/default.jpg" alt="The Lost Pleiade" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Painting with Troika</div>
-  <div class="v-sub">Painting · January 18, 1911 · 8983</div>
+  <div class="v-title">The Lost Pleiade</div>
+  <div class="v-sub">Sculpture · 1874–75 · 153</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Art Institute of Chicago</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Modern Art</span>
+    <span class="v-meta-tag">Arts of the Americas</span>
   </div>
 
   <!-- SHARE -->
@@ -903,8 +939,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Painting with Troika</strong> — Painting with Troika. Painting. Oil on cardboard; in artist's painted frame. Modern Art. Vasily Kandinsky
-Born Moscow (formerly Russian Empire, now Russia), 1866; died Neuilly-sur-Seine, France, 1944. oil on cardboard. January 18, 1911. Germany. &lt;p&gt;Vasily Kandinsky,  along with &lt;a href=&quot;https://www.…</div>
+  <div class="v-story"><strong>The Lost Pleiade</strong> — The Lost Pleiade. Sculpture. Marble. Arts of the Americas. Randolph Rogers (American, 1825–1892). sculpture. 1874–75. United States. &lt;p&gt;In creating this sculpture, Randolph Rogers was inspired by the Roman author Ovid’s poem &lt;em&gt;Fasti&lt;/em&gt;, which recounts the legend of the seven sister stars who liv…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -934,24 +969,29 @@ Born Moscow (formerly Russian Empire, now Russia), 1866; died Neuilly-sur-Seine,
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -960,17 +1000,16 @@ Born Moscow (formerly Russian Empire, now Russia), 1866; died Neuilly-sur-Seine,
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">8983</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Vasily Kandinsky
-Born Moscow (formerly Russian Empire, now Russia), 1866; died Neuilly-sur-Seine, France, 1944</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Oil on cardboard; in artist's painted frame</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Germany</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern Art</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">oil on cardboard</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">January 18, 1911</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">69.7 × 97.3 cm (27 3/8 × 38 5/16 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 392</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">153</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Randolph Rogers (American, 1825–1892)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Marble</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">United States</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Arts of the Americas</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1874–75</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">H.: 129.5 cm (51 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Sculpture</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
@@ -988,24 +1027,24 @@ Born Moscow (formerly Russian Empire, now Russia), 1866; died Neuilly-sur-Seine,
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC175.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/7c00abde-af72-9aac-24fa-ad5538989f95/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Self-Portrait of the Sculptor Antonio Canova</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 89240</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AE9154/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Furby</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · B.176-2000</div>
       </a>
       <a class="v-rel-card" href="NFC176.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/9a29cc5d-3779-c9ab-2aa2-0df7b6c3f391/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Francesco de' Medici</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 24684</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669063/006318.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Martim Francisco Ribeiro de Andrada e Silva (filho)</div>
+        <div class="v-rel-meta">Brasiliana Museus · martim-francisco-ribeiro-de-andrada-e-silva-filho</div>
       </a>
       <a class="v-rel-card" href="NFC178.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/5b9758c9-24ef-8661-fac0-c9a4229eefd4/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Judith</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 4575</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fwww.searchculture.gr%2Faggregator%2Fthumbnails%2Fedm-record%2FDigASFA%2F000187-11158NK&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Gajida 1. Γκάιντα 1</div>
+        <div class="v-rel-meta">Europeana · /1360/https___www_searchculture_gr_aggregator_edm_DigASFA_000187_11158NK</div>
       </a>
       <a class="v-rel-card" href="NFC179.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fsammlungenonline.albertina.at%2Fcc%2Fimageproxy.ashx%3Fserver%3Dlocalhost%26port%3D15001%26filename%3Dimages%2FFotoKaGLV2000_374.jpg%26cache%3Dyes%26maxwidth%3D400&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Travel camera - 13 x 18 cm, with double anastigmat lens by Carl Zeiss, Jena, No. 484, 1: 12.5, F = 285 mm (D.R.P 56,109, No. 34103) and 1: 12.5 F = 224 mm (D.R.P. 56109, No. 30425) respectively, connected to Tubus D.R.P. 84 996; 3 bookcases with 5 (9 x 12) inserts, spare lens board, in Kofferetui. Reisekamera - 13 x 18 cm, mit Doppel-Anastigmat-Objektiv von Carl Zeiss, Jena, Nr. 484, 1:12,5, F=285 mm (D.R.P 56 109, No. 34103) bzw. 1:12,5 F=224 mm (D.R.P. 56109, No. 30425), verbunden mit Tubus D.R.P. 84 996; 3 Buchkassetten mit 5 (9 x 12) Einlagen, Reserverobjektivbrett, in Kofferetui</div>
-        <div class="v-rel-meta">Europeana · /15508/FotoKaGLV2000_374</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP-12659-001.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Seated female figure</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 312595</div>
       </a></div>
   </div>
 </div>
@@ -1018,7 +1057,7 @@ Born Moscow (formerly Russian Empire, now Russia), 1866; died Neuilly-sur-Seine,
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/8983" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.artic.edu/artworks/153" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1050,27 +1089,25 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Painting with Troika`,
-  type: `Painting`,
-  date: `January 18, 1911`,
-  registration: `8983`,
-  location: `Gallery 392`,
-  discipline: `Modern Art`,
-  category: `oil on cardboard`,
-  description: `Painting with Troika. Painting. Oil on cardboard; in artist's painted frame. Modern Art. Vasily Kandinsky
-Born Moscow (formerly Russian Empire, now Russia), 1866; died Neuilly-sur-Seine, France, 1944. oil on cardboard. January 18, 1911. Germany. <p>Vasily Kandinsky,  along with <a href="https://www.artic.edu/artists/16157">Franz Marc</a>, <a href="https://www.artic.edu/artists/44013">Gabriele Münter</a>, and <a href="https://www.artic.edu/artists/35113">Alexei Jawlensky</a>, was a founding member of Blaue Reiter (Blue Rider), a loose alliance of artists based in Munich. Often working in a comm…`,
-  medium: `Oil on cardboard; in artist's painted frame`,
-  artist: `Vasily Kandinsky
-Born Moscow (formerly Russian Empire, now Russia), 1866; died Neuilly-sur-Seine, France, 1944`,
-  culture: `Germany`,
-  dimensions: `69.7 × 97.3 cm (27 3/8 × 38 5/16 in.)`,
+  title: `The Lost Pleiade`,
+  type: `Sculpture`,
+  date: `1874–75`,
+  registration: `153`,
+  location: `Art Institute of Chicago`,
+  discipline: `Arts of the Americas`,
+  category: `sculpture`,
+  description: `The Lost Pleiade. Sculpture. Marble. Arts of the Americas. Randolph Rogers (American, 1825–1892). sculpture. 1874–75. United States. <p>In creating this sculpture, Randolph Rogers was inspired by the Roman author Ovid’s poem <em>Fasti</em>, which recounts the legend of the seven sister stars who lived among the constellations. Merope, the youngest sister, married Sisyphus and hid herself in shame because he was mortal. The sculpture depicts the outcast Merope as she seeks her celestial family. With its unclothed torso, <em>The Lost Pleiade</em> is the closest Rogers came to creating a complete…`,
+  medium: `Marble`,
+  artist: `Randolph Rogers (American, 1825–1892)`,
+  culture: `United States`,
+  dimensions: `H.: 129.5 cm (51 in.)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
   licence: `CC0 — Public Domain`,
-  source_url: `https://www.artic.edu/artworks/8983`,
+  source_url: `https://www.artic.edu/artworks/153`,
   institution: `Art Institute of Chicago`
 };
 

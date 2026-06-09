@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Soldier doll — ARCHAI</title>
+<title>Fragment from Black-Figure Neck-Amphora of Panathenaic Shape (Storage Vessel): Apollo and Zeus — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://media.tepapa.govt.nz/collection/345934/preview" alt="Soldier doll" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1915.533.a/1915.533.a_web.jpg" alt="Fragment from Black-Figure Neck-Amphora of Panathenaic Shape (Storage Vessel): Apollo and Zeus" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Soldier doll</div>
-  <div class="v-sub">dolls · 1914-1916 · GH016389</div>
+  <div class="v-title">Fragment from Black-Figure Neck-Amphora of Panathenaic Shape (Storage Vessel): Apollo and Zeus</div>
+  <div class="v-sub">Ceramic · c. 520 BCE · 1915.533.a</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
-    <span class="v-meta-tag">History</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Greek and Roman Art</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Soldier doll</strong> — A handmade memorial The maker of this doll, Dorothy Broad was engaged to Captain Thomas Wyville Leonard Rutherfurd (Service Number 6/718), of the New Zealand Expeditionary Force (13th Reinforcements). Wyville, as he was known to friends and family, saw action in Gallipoli and France in the First Wor…</div>
-  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
-      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
-      <div class="v-rights-detail">Licence / rights: CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</div>
+  <div class="v-story"><strong>Fragment from Black-Figure Neck-Amphora of Panathenaic Shape (Storage Vessel): Apollo and Zeus</strong> — Comparison with better-preserved vases—and with other artworks and monuments, such as the famous Siphnian Treasury at Delphi—helps to fill in some of the action no longer surviving from the rest of this vase, which once showed Apollo and Herakles struggling for the Delphic tripod. One claw-footed le…</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,19 +1000,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">GH016389</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Dorothy Broad</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Hand made from woollen yarn which has been tied, bound and knitted; with additional parts (made of metal, leather and paper), either hand sewn, embroidered or glued</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">War, Toy soldiers, World War, 1914-1918, Influenza, world wars, First New Zealand Expeditionary Force</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">dolls</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1914-1916</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 300mm (height)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">dolls</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1915.533.a</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Antimenes Painter (Greek, Attic, active c. 530–510 BCE)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">ceramic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Greek, Attic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Greek and Roman Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ceramic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 520 BCE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 1.2 x 0.7 cm (1/2 x 1/4 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">102B Greek</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Ceramic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -986,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC956.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2011EP0065/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Murphy Television see for yourself</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.521-1985</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2021MW4676/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">RCA model 40X-56</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.27-1992</div>
       </a>
       <a class="v-rel-card" href="NFC957.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2016.538/2016.538_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Silenus Holding the Child Dionysus, Louvre Museum, Paris</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2016.538</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2019.69/2019.69_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Mosaique: The Imperial Court of Napoleon III</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 2019.69</div>
       </a>
       <a class="v-rel-card" href="NFC959.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15937099&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Ansicht am Kupfergraben (aus: Museum im Werden)</div>
-        <div class="v-rel-meta">Europeana · /08535/item_JUQQB3TMKCTTME2Y5NPI4PJNK7PG5U6D</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DT10869.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Rectangular Octave Virginal</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 502325</div>
       </a>
       <a class="v-rel-card" href="NFC960.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fmm.dimu.org%2Fimage%2F032wZ13EJDN7%3Fdimension%3D1200x1200&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Stockholm, byggnader, Nationalmuseum.. Stockholm, buildings, Nationalmuseum.</div>
-        <div class="v-rel-meta">Europeana · /916121/S_OLM_photo_OLM_2008_21_144</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/zpzYq/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Schutterspenning van Leiden</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100445</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/864437" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1915.533.a" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,26 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Soldier doll`,
-  type: `dolls`,
-  date: `1914-1916`,
-  registration: `GH016389`,
-  location: `Te Papa Tongarewa, Wellington`,
-  discipline: `History`,
-  category: `dolls`,
-  description: `A handmade memorial The maker of this doll, Dorothy Broad was engaged to Captain Thomas Wyville Leonard Rutherfurd (Service Number 6/718), of the New Zealand Expeditionary Force (13th Reinforcements). Wyville, as he was known to friends and family, saw action in Gallipoli and France in the First World War. In early 1918, Wyville went with a unit of experienced soldiers to Persia (Iran). While in Kasvin, Northern Iran, in October 1918,&nbsp;he died from disease aggravated by military service, which may been influenza. He was later re-buried in the British Military Cemetery in Tehran. Dorothy ma…`,
-  medium: `Hand made from woollen yarn which has been tied, bound and knitted; with additional parts (made of metal, leather and paper), either hand sewn, embroidered or glued`,
-  artist: `Dorothy Broad`,
-  culture: `War, Toy soldiers, World War, 1914-1918, Influenza, world wars, First New Zealand Expeditionary Force`,
-  dimensions: `Overall: 300mm (height)`,
-  wall_description: `A handmade memorial The maker of this doll, Dorothy Broad was engaged to Captain Thomas Wyville Leonard Rutherfurd (Service Number 6/718), of the New Zealand Expeditionary Force (13th Reinforcements). Wyville, as he was known to friends and family, saw action in Gallipoli and France in the First World War. In early 1918, Wyville went with a unit of experienced soldiers to Persia (Iran). While in Kasvin, Northern Iran, in October 1918,&nbsp;he died from disease aggravated by military service, whi…`,
+  title: `Fragment from Black-Figure Neck-Amphora of Panathenaic Shape (Storage Vessel): Apollo and Zeus`,
+  type: `Ceramic`,
+  date: `c. 520 BCE`,
+  registration: `1915.533.a`,
+  location: `102B Greek`,
+  discipline: `Greek and Roman Art`,
+  category: `Ceramic`,
+  description: `Comparison with better-preserved vases—and with other artworks and monuments, such as the famous Siphnian Treasury at Delphi—helps to fill in some of the action no longer surviving from the rest of this vase, which once showed Apollo and Herakles struggling for the Delphic tripod. One claw-footed leg of the tripod survives, across the chest of Zeus, the bearded figure who intervened to stop the quarrel between two of his sons. Apollo is the unbearded figure at left, while Herakles would have appeared beyond the break on the right.`,
+  medium: `ceramic`,
+  artist: `Antimenes Painter (Greek, Attic, active c. 530–510 BCE)`,
+  culture: `Greek, Attic`,
+  dimensions: `Overall: 1.2 x 0.7 cm (1/2 x 1/4 in.)`,
+  wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: `Soldier doll, 1914-1916, New Zealand, by Dorothy Broad. Purchased 2009. © Te Papa. CC BY-NC-ND 4.0. Te Papa (GH016389)`,
-  licence: `CC BY-NC-ND 4.0 · metadata CC BY 4.0`,
-  source_url: `https://collections.tepapa.govt.nz/object/864437`,
-  institution: `Museum of New Zealand Te Papa Tongarewa`
+  did_you_know: `The claw-footed tripod leg before Zeus's chest identifies the scene—the struggle for the Delphic tripod.`,
+  provenance: `[{"description":"Through Harold Woodbury Parsons, New York, NY, sold to the Cleveland Museum of Art","citations":[],"footnotes":[],"date":"1915","sortorder":1},{"description":"The Cleveland Museum of Art, Cleveland, OH","citations":[],"footnotes":[],"date":"1915-","sortorder":2}]`,
+  tombstone: `Fragment from Black-Figure Neck-Amphora of Panathenaic Shape (Storage Vessel): Apollo and Zeus, c. 520 BCE. Manner of Antimenes Painter (Greek, Attic, active c. 530–510 BCE). Ceramic; overall: 1.2 x 0.7 cm (1/2 x 1/4 in.). The Cleveland Museum of Art, Gift of the John Huntington Art and Polytechnic Trust, 1915.533.a`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://clevelandart.org/art/1915.533.a`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_tepapa',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

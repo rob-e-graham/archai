@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Super Toy Teddy — ARCHAI</title>
+<title>Study of Perspective: White House — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2006AK7343/full/!600,600/0/default.jpg" alt="Super Toy Teddy" loading="eager">
+  <img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627889545/v2/prod/small/002001_002500/002261_003.jpg" alt="Study of Perspective: White House" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Super Toy Teddy</div>
-  <div class="v-sub">Teddy bear · 2001 · B.19-2002</div>
+  <div class="v-title">Study of Perspective: White House</div>
+  <div class="v-sub">Photography · 1995 · 2012.53</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Teddy bear</span>
+    <span class="v-meta-tag mv">M+, Hong Kong</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">Visual Art</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Super Toy Teddy</strong> — Super Toy Teddy. Teddy bear. Made by Tiger Electronics Ltd.. 2001. Made in China. In Store</div>
-  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
-      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+  <div class="v-story"><strong>Study of Perspective: White House</strong> — Monochrome photograph of a person's left hand with the middle finger raised towards Washington, DC's White House, which stands across a lawn.</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Ai Weiwei · © Ai Weiwei</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,16 +1000,21 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">B.19-2002</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Tiger Electronics Ltd.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Teddy bear</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Teddy bear</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2001</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In Store</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Teddy bear</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2012.53</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Ai Weiwei</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">gelatin silver print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Chinese</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Visual Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photography</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1995</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">frame: 53 × 63.3 × 3.1 cm
+sheet (sight): 60 × 49.7 cm
+image (sight): 35.7 × 52 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photography</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Ai Weiwei · © Ai Weiwei</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -983,24 +1029,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC415.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1970.127.b/1970.127.b_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Cover for a Box</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1970.127.b</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4321/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">MARSHMELLOW</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.272-2020</div>
       </a>
       <a class="v-rel-card" href="NFC416.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2019LL8368/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Camera</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · RPS.869:1-2018</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/140116?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">fork</div>
+        <div class="v-rel-meta">Auckland Museum · 1965.96</div>
       </a>
       <a class="v-rel-card" href="NFC418.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/524946?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">blade</div>
-        <div class="v-rel-meta">Auckland Museum · 51364.1</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/as/original/23_225_60_O1_sf.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Chinese child with musical instrument</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 45826</div>
       </a>
       <a class="v-rel-card" href="NFC419.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP302548.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Nyonganyonga</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 503679</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/24/415224-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Proof Coin - Halfpenny, Great Britain, 1972</div>
+        <div class="v-rel-meta">Museums Victoria · NU 47576</div>
       </a></div>
   </div>
 </div>
@@ -1013,7 +1059,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O72795/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/study-of-perspective-white-house-201253/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1045,26 +1091,28 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Super Toy Teddy`,
-  type: `Teddy bear`,
-  date: `2001`,
-  registration: `B.19-2002`,
-  location: `In Store`,
-  discipline: `Teddy bear`,
-  category: `Teddy bear`,
-  description: `Super Toy Teddy. Teddy bear. Made by Tiger Electronics Ltd.. 2001. Made in China. In Store`,
-  medium: ``,
-  artist: `Tiger Electronics Ltd.`,
-  culture: ``,
-  dimensions: ``,
-  wall_description: ``,
+  title: `Study of Perspective: White House`,
+  type: `Photography`,
+  date: `1995`,
+  registration: `2012.53`,
+  location: `M+, Hong Kong`,
+  discipline: `Visual Art`,
+  category: `Photography`,
+  description: `Monochrome photograph of a person's left hand with the middle finger raised towards Washington, DC's White House, which stands across a lawn.`,
+  medium: `gelatin silver print`,
+  artist: `Ai Weiwei`,
+  culture: `Chinese`,
+  dimensions: `frame: 53 × 63.3 × 3.1 cm
+sheet (sight): 60 × 49.7 cm
+image (sight): 35.7 × 52 cm`,
+  wall_description: `Monochrome photograph of a person's left hand with the middle finger raised towards Washington, DC's White House, which stands across a lawn.`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O72795/`,
-  institution: `Victoria and Albert Museum, London`
+  tombstone: `Study of Perspective: White House. Ai Weiwei. 1995. M+, Hong Kong`,
+  licence: `CC0 metadata · M+ API service non-commercial · © Ai Weiwei`,
+  source_url: `https://www.mplus.org.hk/en/collection/objects/study-of-perspective-white-house-201253/`,
+  institution: `M+, Hong Kong`
 };
 
 // Build rich context from available fields
@@ -1645,7 +1693,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_mplus',
       text,
       authorType: 'visitor',
     }),

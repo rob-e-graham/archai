@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Halle im Nördlichen Kopfbau (aus: Museum im Werden) — ARCHAI</title>
+<title>Perumal Temple Vimana from Corner of Court, Madurai — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15936099&amp;type=IMAGE" alt="Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Halle im Nördlichen Kopfbau (aus: Museum im Werden)" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/2020.209/2020.209_web.jpg" alt="Perumal Temple Vimana from Corner of Court, Madurai" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Halle im Nördlichen Kopfbau (aus: Museum im Werden)</div>
-  <div class="v-sub">IMAGE · Date unknown · /08535/item_UR2QDYUZNIZISU3PMKUZOST7XNVGCXF5</div>
+  <div class="v-title">Perumal Temple Vimana from Corner of Court, Madurai</div>
+  <div class="v-sub">Photograph · 1858 · 2020.209</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Europeana</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    
+    <span class="v-meta-tag">Photography</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Halle im Nördlichen Kopfbau (aus: Museum im Werden)</strong> — Architekturmuseum der TU Berlin, Inv. Nr. 11662,26. Werk und Digitalisat sind gemeinfrei, aber wir freuen uns über einen Bildnachweis. (Bemerkung)</div>
+  <div class="v-story"><strong>Perumal Temple Vimana from Corner of Court, Madurai</strong> — Although the temple would have been crowded with worshippers, Tripe shows us empty spaces. His paper negatives and primitive lens required long exposures, even in the bright sunlight of India—too long to record an individual in motion. Tripe, photographing for the colonial government, may also have …</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: http://creativecommons.org/publicdomain/zero/1.0/</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,15 +1000,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">/08535/item_UR2QDYUZNIZISU3PMKUZOST7XNVGCXF5</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Wilhelm Wille (1877-1929). Paul Walther (1848-1925, als Zeichner)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">IMAGE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Date unknown</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Museum of Architecture at Berlin Institute of Technology</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">IMAGE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2020.209</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Captain Linnaeus Tripe (British, 1822–1902)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">albumen print from a waxed paper negative</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">England, 19th century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1858</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Image: 34.2 x 26.8 cm (13 7/16 x 10 9/16 in.); Paper: 34.2 x 26.8 cm (13 7/16 x 10 9/16 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Cleveland Museum of Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">http://creativecommons.org/publicdomain/zero/1.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -982,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1293.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AT9584/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Bush DAC90</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.288-1976</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680039/825-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Revista naval</div>
+        <div class="v-rel-meta">Brasiliana Museus · revista-naval</div>
       </a>
       <a class="v-rel-card" href="NFC1294.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/91c51644-871f-cda9-82bb-94f4973ae339/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Young Woman at an Open Half-Door</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 94840</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2022.342/2022.342_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Untitled (Semi-Circle of Children, Central Girl Dressed as an Angel Holding the Baby Jesus)</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 2022.342</div>
       </a>
       <a class="v-rel-card" href="NFC1296.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1997.300/1997.300_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Cypriot Vase</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1997.300</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/TTTrn/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Engelse penning op het huwelijk van de Prince of Wales met Alexandra van Denemarken 1863</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100020</div>
       </a>
       <a class="v-rel-card" href="NFC1297.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018KR4580/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Camera</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · RPS.329-2018</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fwww.searchculture.gr%2Faggregator%2Fthumbnails%2Fedm-record%2Fmedusa%2F000114-3_5633manifest&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Κεμανέ, παραδοσιακό μουσικό όργανο με τέσσερις χορδές. Kemane, traditional musical instrument with four cords</div>
+        <div class="v-rel-meta">Europeana · /123/https___www_searchculture_gr_aggregator_edm_medusa_000114_3_5633manifest</div>
       </a></div>
   </div>
 </div>
@@ -1012,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.europeana.eu/item/08535/item_UR2QDYUZNIZISU3PMKUZOST7XNVGCXF5?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/2020.209" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1044,26 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Halle im Nördlichen Kopfbau (aus: Museum im Werden)`,
-  type: `IMAGE`,
-  date: `Date unknown`,
-  registration: `/08535/item_UR2QDYUZNIZISU3PMKUZOST7XNVGCXF5`,
-  location: `Museum of Architecture at Berlin Institute of Technology`,
-  discipline: ``,
-  category: `IMAGE`,
-  description: `Architekturmuseum der TU Berlin, Inv. Nr. 11662,26. Werk und Digitalisat sind gemeinfrei, aber wir freuen uns über einen Bildnachweis. (Bemerkung)`,
-  medium: ``,
-  artist: `Wilhelm Wille (1877-1929). Paul Walther (1848-1925, als Zeichner)`,
-  culture: ``,
-  dimensions: ``,
+  title: `Perumal Temple Vimana from Corner of Court, Madurai`,
+  type: `Photograph`,
+  date: `1858`,
+  registration: `2020.209`,
+  location: `Cleveland Museum of Art`,
+  discipline: `Photography`,
+  category: `Photograph`,
+  description: `Although the temple would have been crowded with worshippers, Tripe shows us empty spaces. His paper negatives and primitive lens required long exposures, even in the bright sunlight of India—too long to record an individual in motion. Tripe, photographing for the colonial government, may also have used his official status to have the temple cleared of visitors so he could obtain unobstructed views of the architecture.`,
+  medium: `albumen print from a waxed paper negative`,
+  artist: `Captain Linnaeus Tripe (British, 1822–1902)`,
+  culture: `England, 19th century`,
+  dimensions: `Image: 34.2 x 26.8 cm (13 7/16 x 10 9/16 in.); Paper: 34.2 x 26.8 cm (13 7/16 x 10 9/16 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
-  licence: `http://creativecommons.org/publicdomain/zero/1.0/`,
-  source_url: `https://www.europeana.eu/item/08535/item_UR2QDYUZNIZISU3PMKUZOST7XNVGCXF5?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb`,
-  institution: `Europeana`
+  did_you_know: `The architecture was probably painted with bright colors, but Linnaeus Tripe’s photographic technology captured only a monochromatic range of tones.`,
+  provenance: `[{"description":"Newberry Library Collection, Chicago, IL","citations":[],"footnotes":[],"date":null,"sortorder":1},{"description":"(Sotheby's, New York, NY)","citations":[],"footnotes":[],"date":"October 31, 1989","sortorder":2},{"description":"(Prahlad Bubbar Indian and Islamic Art, London, United…`,
+  tombstone: `Perumal Temple Vimana from Corner of Court, Madurai, 1858. Captain Linnaeus Tripe (British, 1822–1902). Albumen print from a waxed paper negative; image: 34.2 x 26.8 cm (13 7/16 x 10 9/16 in.); paper: 34.2 x 26.8 cm (13 7/16 x 10 9/16 in.). The Cleveland Museum of Art, Purchase from the J. H. Wade Fund, 2020.209`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://clevelandart.org/art/2020.209`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1644,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_europeana',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

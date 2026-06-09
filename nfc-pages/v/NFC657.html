@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Branch Hill Pond, Hampstead — ARCHAI</title>
+<title>Vijftigjarig bestaan van de loge La Vertu te Leiden 1807 memorerende de buskruitramp, afdruk in karton — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,28 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/1972.48/1972.48_web.jpg" alt="Branch Hill Pond, Hampstead" loading="eager">
+  <img src="https://iiif.micr.io/VCfsj/full/max/0/default.jpg" alt="Vijftigjarig bestaan van de loge La Vertu te Leiden 1807 memorerende de buskruitramp, afdruk in karton" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Branch Hill Pond, Hampstead</div>
-  <div class="v-sub">Painting · 1828 · 1972.48</div>
+  <div class="v-title">Vijftigjarig bestaan van de loge La Vertu te Leiden 1807 memorerende de buskruitramp, afdruk in karton</div>
+  <div class="v-sub">historiepenning · 2026-02-14T04:17:21Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+        &lt;setSpec&gt;2601&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:creator&gt;anoniem&lt;/dc:creator&gt;
+          &lt;dc:creator&gt;anonymous&lt;/dc:creator&gt;
+          &lt;dc:date&gt;ca. 1807 · 200100141</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
+    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
+
   </div>
 
   <!-- SHARE -->
@@ -903,11 +949,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Branch Hill Pond, Hampstead</strong> — An amateur meteorologist, John Constable was most at home painting meticulously observed cloud formations, weather conditions, and natural light effects. He believed an accurate rendering of these constantly shifting elements could convey his vision of the vitality and magnificence of the English co…</div>
+  <div class="v-story"><strong>Vijftigjarig bestaan van de loge La Vertu te Leiden 1807 memorerende de buskruitramp, afdruk in karton</strong> — Afdruk in karton van de voorzijde van de ovalen penning, met Leiden als vrouw die de Dood afweeert naast een altaar met 1/2 in een slangenrond, op de achtergrond de verwoeste stad onder het stralend oog Gods, met omschrift en afsnedetekst.</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +979,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,19 +1010,26 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1972.48</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">John Constable (British, 1776–1837)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oil on canvas</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">England, 19th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Painting</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1828</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Framed: 89 x 105.5 x 11.5 cm (35 1/16 x 41 9/16 x 4 1/2 in.); Unframed: 60.6 x 78.1 cm (23 7/8 x 30 3/4 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">203A British Painting and Decorative Arts</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">200100141</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">anoniem; anonymous</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">karton</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">historiepenning</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-02-14T04:17:21Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+        &lt;setSpec&gt;2601&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:creator&gt;anoniem&lt;/dc:creator&gt;
+          &lt;dc:creator&gt;anonymous&lt;/dc:creator&gt;
+          &lt;dc:date&gt;ca. 1807</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">historiepenning</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -986,24 +1044,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC655.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627830750/v2/prod/small/006501_007000/006784_001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Printing proof, 'No Matter What You’re Looking for…Take MTR', Mass Transit Railway Corporation (Eating Version)</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2017.143</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fsammlungenonline.albertina.at%2Fcc%2Fimageproxy.ashx%3Fserver%3Dlocalhost%26port%3D15001%26filename%3Dimages%2FFotoGLV2000_7937.jpg%26cache%3Dyes%26maxwidth%3D400&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Kriminalistische Tatbestandsaufnahme und die zugehörige Kamera. Criminalist crime shooting and the associated camera</div>
+        <div class="v-rel-meta">Europeana · /15508/FotoGLV2000_7937a</div>
       </a>
       <a class="v-rel-card" href="NFC656.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/VnPKP/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Schutterspenning van Leiden</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100444</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2008BT7543/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">H.M.V. Television Autoradiogram (Model 902)</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.2-1978</div>
       </a>
       <a class="v-rel-card" href="NFC658.html">
-        <div class="v-rel-thumb"><img src="https://www.mplus.org.hk/_nuxt/img/share.23eb426.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Fen–Ma Liuming Walks the Great Wall</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2012.706</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680284/000770-1.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Conselheiro Ferreira Viana</div>
+        <div class="v-rel-meta">Brasiliana Museus · conselheiro-ferreira-viana</div>
       </a>
       <a class="v-rel-card" href="NFC659.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4312/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">ROTISSERIE</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.267-2020</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2009.276.66.b/2009.276.66.b_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Printed Book of Hours (Use of Rome): fol. 66v, Text</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 2009.276.66.b</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1074,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://clevelandart.org/art/1972.48" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/200100141" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,26 +1106,36 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Branch Hill Pond, Hampstead`,
-  type: `Painting`,
-  date: `1828`,
-  registration: `1972.48`,
-  location: `203A British Painting and Decorative Arts`,
-  discipline: `Modern European Painting and Sculpture`,
-  category: `Painting`,
-  description: `An amateur meteorologist, John Constable was most at home painting meticulously observed cloud formations, weather conditions, and natural light effects. He believed an accurate rendering of these constantly shifting elements could convey his vision of the vitality and magnificence of the English countryside. Working from the summerhouse he rented at Hampstead from 1819–26, Constable painted a landscape focusing more on the dark rain clouds than on the laborers in the foreground, keeping the details of their backbreaking work at a picturesque distance.`,
-  medium: `oil on canvas`,
-  artist: `John Constable (British, 1776–1837)`,
-  culture: `England, 19th century`,
-  dimensions: `Framed: 89 x 105.5 x 11.5 cm (35 1/16 x 41 9/16 x 4 1/2 in.); Unframed: 60.6 x 78.1 cm (23 7/8 x 30 3/4 in.)`,
+  title: `Vijftigjarig bestaan van de loge La Vertu te Leiden 1807 memorerende de buskruitramp, afdruk in karton`,
+  type: `historiepenning`,
+  date: `2026-02-14T04:17:21Z</datestamp>
+        <setSpec>260239</setSpec>
+        <setSpec>261106</setSpec>
+        <setSpec>260251</setSpec>
+        <setSpec>2601</setSpec>
+      </header>
+      <metadata>
+        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
+          <dc:creator>anoniem</dc:creator>
+          <dc:creator>anonymous</dc:creator>
+          <dc:date>ca. 1807`,
+  registration: `200100141`,
+  location: `Rijksmuseum, Amsterdam`,
+  discipline: ``,
+  category: `historiepenning`,
+  description: `Afdruk in karton van de voorzijde van de ovalen penning, met Leiden als vrouw die de Dood afweeert naast een altaar met 1/2 in een slangenrond, op de achtergrond de verwoeste stad onder het stralend oog Gods, met omschrift en afsnedetekst.`,
+  medium: `karton`,
+  artist: `anoniem; anonymous`,
+  culture: ``,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: `In 1820, Constable found a retreat in Hampstead where he completed 100 studies of cloud formations, referring to the process as "skying."`,
-  provenance: `[{"description":"Painted by the artist for Henry Hebbert [1783-1864], London, United Kingdom, by descent to his son, Henry Hebbert","citations":[],"footnotes":[],"date":"1828-1864","sortorder":1},{"description":"Henry Hebbert [1814-1893], London, United Kingdom","citations":[],"footnotes":[],"date":…`,
-  tombstone: `Branch Hill Pond, Hampstead, 1828. John Constable (British, 1776–1837). Oil on canvas; framed: 89 x 105.5 x 11.5 cm (35 1/16 x 41 9/16 x 4 1/2 in.); unframed: 60.6 x 78.1 cm (23 7/8 x 30 3/4 in.). The Cleveland Museum of Art, Leonard C. Hanna Jr. Fund, 1972.48`,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://clevelandart.org/art/1972.48`,
-  institution: `Cleveland Museum of Art`
+  did_you_know: ``,
+  provenance: ``,
+  tombstone: ``,
+  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
+  source_url: `https://www.rijksmuseum.nl/en/collection/200100141`,
+  institution: `Rijksmuseum, Amsterdam`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1716,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_cma',
+      collection: 'archai_rijks',
       text,
       authorType: 'visitor',
     }),

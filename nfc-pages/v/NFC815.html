@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Gracieux Accueil (Gracious Reception) — ARCHAI</title>
+<title>Textile swatchbook — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2011EN2437/full/!600,600/0/default.jpg" alt="Gracieux Accueil (Gracious Reception)" loading="eager">
+  <img src="https://media.tepapa.govt.nz/collection/125927/preview" alt="Textile swatchbook" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Gracieux Accueil (Gracious Reception)</div>
-  <div class="v-sub">Storage box · 1983 · W.32:1, 2-2010</div>
+  <div class="v-title">Textile swatchbook</div>
+  <div class="v-sub">swatches · 1890s · GH009582</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Storage box</span>
+    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">History</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Gracieux Accueil (Gracious Reception)</strong> — Gracieux Accueil (Gracious Reception). Storage box. Made by du Pasquier, Nathalie. 1983. Made in Italy. Design 1900 to Now, Room 76</div>
-  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
-      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+  <div class="v-story"><strong>Textile swatchbook</strong> — Swatchbook containing samples of woven silks and other fabrics in a variety of colours and designs, pasted onto paper pages. Book comprises 176 pages, bound together in five sheafs. Hard board cover/spine, quarter vellum. Cover has green/black mottled pattern and is very scratched and worn. Spine ha…</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: No Known Copyright Restrictions · metadata CC BY 4.0 · No Known Copyright Restrictions</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,16 +1000,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">W.32:1, 2-2010</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">du Pasquier, Nathalie</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Storage box</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Storage box</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1983</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Design 1900 to Now, Room 76</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Storage box</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">GH009582</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Bianchini Ferier</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">paper, cloth</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">French</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">History</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">swatches</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1890s</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">swatches</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">No Known Copyright Restrictions · metadata CC BY 4.0 · No Known Copyright Restrictions</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -983,24 +1026,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC813.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/MlrCi/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Grensafbakening in Yperen 1777</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100011</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/vs1994_35_776.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Stone Musical Instrument</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 317640</div>
       </a>
       <a class="v-rel-card" href="NFC814.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15936699&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Halle am Forum im Südflügel (aus: Museum im Werden)</div>
-        <div class="v-rel-meta">Europeana · /08535/item_Z2ZRBOXCPS4U3262KWDSEWV5KIU2S6LH</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AE8378/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Stylophone Pocket Electronic Organ</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · B.185:1 to 16-1999</div>
       </a>
       <a class="v-rel-card" href="NFC816.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2018.287/2018.287_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Turtleback Reading Lamp</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2018.287</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15935399&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Pergamonsaal, Rückseite vom Altar (aus: Museum im Werden)</div>
+        <div class="v-rel-meta">Europeana · /08535/item_EAC2URCLYR5AM3ZYDNH6F52PXIHF6FBX</div>
       </a>
       <a class="v-rel-card" href="NFC817.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/24/415224-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Proof Coin - Halfpenny, Great Britain, 1972</div>
-        <div class="v-rel-meta">Museums Victoria · NU 47576</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669003/default-31.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Rodolfo Amoedo (autorretrato)</div>
+        <div class="v-rel-meta">Brasiliana Museus · rodolfo-amoedo-autorretrato</div>
       </a></div>
   </div>
 </div>
@@ -1013,7 +1056,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1176178/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/550517" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1045,26 +1088,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Gracieux Accueil (Gracious Reception)`,
-  type: `Storage box`,
-  date: `1983`,
-  registration: `W.32:1, 2-2010`,
-  location: `Design 1900 to Now, Room 76`,
-  discipline: `Storage box`,
-  category: `Storage box`,
-  description: `Gracieux Accueil (Gracious Reception). Storage box. Made by du Pasquier, Nathalie. 1983. Made in Italy. Design 1900 to Now, Room 76`,
-  medium: ``,
-  artist: `du Pasquier, Nathalie`,
-  culture: ``,
+  title: `Textile swatchbook`,
+  type: `swatches`,
+  date: `1890s`,
+  registration: `GH009582`,
+  location: `Te Papa Tongarewa, Wellington`,
+  discipline: `History`,
+  category: `swatches`,
+  description: `Swatchbook containing samples of woven silks and other fabrics in a variety of colours and designs, pasted onto paper pages. Book comprises 176 pages, bound together in five sheafs. Hard board cover/spine, quarter vellum. Cover has green/black mottled pattern and is very scratched and worn. Spine has black/red woven strap and black stencilled inscription; "MATERIAUX 49". The fabric samples are anonymous, and may be the work of a number of different designers. The book was part of a reference collection belonging to the Bianchini-Ferier design studio.`,
+  medium: `paper, cloth`,
+  artist: `Bianchini Ferier`,
+  culture: `French`,
   dimensions: ``,
-  wall_description: ``,
+  wall_description: `Swatchbook containing samples of woven silks and other fabrics in a variety of colours and designs, pasted onto paper pages. Book comprises 176 pages, bound together in five sheafs. Hard board cover/spine, quarter vellum. Cover has green/black mottled pattern and is very scratched and worn. Spine has black/red woven strap and black stencilled inscription; "MATERIAUX 49". The fabric samples are anonymous, and may be the work of a number of different designers. The book was part of a reference col…`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1176178/`,
-  institution: `Victoria and Albert Museum, London`
+  tombstone: `Textile swatchbook, 1890s, France, by Bianchini Ferier. Purchased 2001. Te Papa (GH009582)`,
+  licence: `No Known Copyright Restrictions · metadata CC BY 4.0`,
+  source_url: `https://collections.tepapa.govt.nz/object/550517`,
+  institution: `Museum of New Zealand Te Papa Tongarewa`
 };
 
 // Build rich context from available fields
@@ -1645,7 +1688,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_tepapa',
       text,
       authorType: 'visitor',
     }),

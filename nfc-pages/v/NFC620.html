@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Presentation model, Bank of Asia Headquarters (now United Overseas Bank Bangkok Headquarters) (1983–1986), Bangkok, Thailand — ARCHAI</title>
+<title>Waterloo Bridge, Sunlight Effect — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://res.cloudinary.com/mplustms/image/upload/w_941/v1775699628/v2/prod/small/010501_011000/010601_005.jpg" alt="Presentation model, Bank of Asia Headquarters (now United Overseas Bank Bangkok Headquarters) (1983–1986), Bangkok, Thailand" loading="eager">
+  <img src="https://www.artic.edu/iiif/2/827d02ef-6765-9728-c07e-52ad22b73fd3/full/843,/0/default.jpg" alt="Waterloo Bridge, Sunlight Effect" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Presentation model, Bank of Asia Headquarters (now United Overseas Bank Bangkok Headquarters) (1983–1986), Bangkok, Thailand</div>
-  <div class="v-sub">Architectural Model · 1990 · 2018.41</div>
+  <div class="v-title">Waterloo Bridge, Sunlight Effect</div>
+  <div class="v-sub">Painting · 1903 · 20701</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">M+, Hong Kong</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
-    <span class="v-meta-tag">Design and Architecture</span>
+    <span class="v-meta-tag mv">Art Institute of Chicago</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Painting and Sculpture of Europe</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Presentation model, Bank of Asia Headquarters (now United Overseas Bank Bangkok Headquarters) (1983–1986), Bangkok, Thailand</strong> — Plastic model of a skyscraper against a white background. The skyscraper is made to resemble a robot, with two round windows on the top floor looking like eyes and two antennas sticking up from the roof.</div>
-  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
-      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Sumet Jumsai · © Sumet Jumsai</div>
+  <div class="v-story"><strong>Waterloo Bridge, Sunlight Effect</strong> — Waterloo Bridge, Sunlight Effect. Painting. Oil on canvas. Painting and Sculpture of Europe. Claude Monet (French, 1840–1926). painting. 1903. France. Impressionism. &lt;p&gt;If not for the fog, Claude Monet once remarked, “London wouldn’t be a beautiful city. It’s the fog that gives it its magnificent br…</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,19 +1000,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2018.41</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Sumet Jumsai</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">plastic</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Thai</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Design and Architecture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Architectural Model</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1990</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">overall: 51.5 × 30.5 × 22.6 cm</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Architectural Model</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Sumet Jumsai · © Sumet Jumsai</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">20701</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Claude Monet (French, 1840–1926)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Oil on canvas</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Painting and Sculpture of Europe</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1903</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">65.7 × 101 cm (25 7/8 × 39 3/4 in.); Framed: 88.9 × 123.2 × 10.8 cm (35 × 48 1/2 × 4 1/4 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 243</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -986,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC618.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1977.43/1977.43_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Church Street El</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1977.43</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/34/659734-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Tune Indicator - AWA, Spark Transmitter,1913-1916</div>
+        <div class="v-rel-meta">Museums Victoria · ST 21416</div>
       </a>
       <a class="v-rel-card" href="NFC619.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15927599&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Lageplan 1:3000 (aus: Museum im Werden)</div>
-        <div class="v-rel-meta">Europeana · /08535/item_6QOCEDGP2U52FQ6EHTVTR36BF6NPJTMW</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F0%2F03%2FNationalmuseum_and_Skeppsholmsbron_September_2012.jpg&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Nationalmuseum and Skeppsholmsbron September 2012</div>
+        <div class="v-rel-meta">Europeana · /2058703/File_Nationalmuseum_and_Skeppsholmsbron_September_2012_jpg</div>
       </a>
       <a class="v-rel-card" href="NFC621.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/9ca3be44-a673-2ad9-f0d8-a8e28ee8d397/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portrait of Constance Pipelet</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 31233</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/PAbqn/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Schutterspenning van Leiden</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100441</div>
       </a>
       <a class="v-rel-card" href="NFC622.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/10325?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">dress, evening</div>
-        <div class="v-rel-meta">Auckland Museum · 1995.101.7</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1924.534/1924.534_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Red-Figure Bell Krater (Mixing Vessel): Aphrodite and Eros</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1924.534</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/presentation-model-bank-of-asia-headquarters-now-united-overseas-bank-bangkok-headquarters-19831986-bangkok-thailand-201841/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.artic.edu/artworks/20701" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,26 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Presentation model, Bank of Asia Headquarters (now United Overseas Bank Bangkok Headquarters) (1983–1986), Bangkok, Thailand`,
-  type: `Architectural Model`,
-  date: `1990`,
-  registration: `2018.41`,
-  location: `M+, Hong Kong`,
-  discipline: `Design and Architecture`,
-  category: `Architectural Model`,
-  description: `Plastic model of a skyscraper against a white background. The skyscraper is made to resemble a robot, with two round windows on the top floor looking like eyes and two antennas sticking up from the roof.`,
-  medium: `plastic`,
-  artist: `Sumet Jumsai`,
-  culture: `Thai`,
-  dimensions: `overall: 51.5 × 30.5 × 22.6 cm`,
-  wall_description: `Plastic model of a skyscraper against a white background. The skyscraper is made to resemble a robot, with two round windows on the top floor looking like eyes and two antennas sticking up from the roof.`,
+  title: `Waterloo Bridge, Sunlight Effect`,
+  type: `Painting`,
+  date: `1903`,
+  registration: `20701`,
+  location: `Gallery 243`,
+  discipline: `Painting and Sculpture of Europe`,
+  category: `painting`,
+  description: `Waterloo Bridge, Sunlight Effect. Painting. Oil on canvas. Painting and Sculpture of Europe. Claude Monet (French, 1840–1926). painting. 1903. France. Impressionism. <p>If not for the fog, Claude Monet once remarked, “London wouldn’t be a beautiful city. It’s the fog that gives it its magnificent breadth.” While working on his <a href="https://www.youtube.com/watch?v=NFPs_cRRGdM&feature=youtu.be">London Series</a>, he rose early every day to paint Waterloo Bridge in the morning, moving on to Charing Cross Bridge at midday and in the afternoon. He observed both motifs from his fifth-floor windo…`,
+  medium: `Oil on canvas`,
+  artist: `Claude Monet (French, 1840–1926)`,
+  culture: `France`,
+  dimensions: `65.7 × 101 cm (25 7/8 × 39 3/4 in.); Framed: 88.9 × 123.2 × 10.8 cm (35 × 48 1/2 × 4 1/4 in.)`,
+  wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Presentation model, Bank of Asia Headquarters (now United Overseas Bank Bangkok Headquarters) (1983–1986), Bangkok, Thailand. Sumet Jumsai. 1990. M+, Hong Kong`,
-  licence: `CC0 metadata · M+ API service non-commercial · © Sumet Jumsai`,
-  source_url: `https://www.mplus.org.hk/en/collection/objects/presentation-model-bank-of-asia-headquarters-now-united-overseas-bank-bangkok-headquarters-19831986-bangkok-thailand-201841/`,
-  institution: `M+, Hong Kong`
+  tombstone: ``,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.artic.edu/artworks/20701`,
+  institution: `Art Institute of Chicago`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_mplus',
+      collection: 'archai_aic',
       text,
       authorType: 'visitor',
     }),

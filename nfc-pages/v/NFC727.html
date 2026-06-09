@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>The Basket of Apples — ARCHAI</title>
+<title>Black-Figure White-Ground Lekythos (Oil Vessel): Horseman, Horse between Warriors, Dog — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/52ac8996-3460-cf71-cb42-5c4d0aa29b74/full/843,/0/default.jpg" alt="The Basket of Apples" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1929.135/1929.135_web.jpg" alt="Black-Figure White-Ground Lekythos (Oil Vessel): Horseman, Horse between Warriors, Dog" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">The Basket of Apples</div>
-  <div class="v-sub">Painting · c. 1893 · 111436</div>
+  <div class="v-title">Black-Figure White-Ground Lekythos (Oil Vessel): Horseman, Horse between Warriors, Dog</div>
+  <div class="v-sub">Ceramic · c. 500 BCE · 1929.135</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Art Institute of Chicago</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Painting and Sculpture of Europe</span>
+    <span class="v-meta-tag">Greek and Roman Art</span>
   </div>
 
   <!-- SHARE -->
@@ -903,7 +939,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>The Basket of Apples</strong> — The Basket of Apples. Painting. Oil on canvas. Painting and Sculpture of Europe. Paul Cezanne (French, 1839–1906). oil on canvas. c. 1893. France. Post-Impressionism. &lt;p&gt;In many ways Paul Cezanne was the odd man out among the artists branded as “Impressionists”—those who showed their works outside o…</div>
+  <div class="v-story"><strong>Black-Figure White-Ground Lekythos (Oil Vessel): Horseman, Horse between Warriors, Dog</strong> — Two armed warriors, each wearing a crested helmet and holding a spear and shield, flank a mounted horseman, who leads another horse. The warrior at right reaches up with one hand to the head of the second horse, raising the question of how he still holds his spear. Below, a dog twists to scratch its…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,16 +1000,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">111436</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Paul Cezanne (French, 1839–1906)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Oil on canvas</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Painting and Sculpture of Europe</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">oil on canvas</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1893</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">65 × 80 cm (25 7/16 × 31 1/2 in.); Framed: 88 × 104.2 × 9.6 cm (34 5/8 × 41 × 3 3/4 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 248</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1929.135</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Edinburgh Painter (Greek, Attic, active c. 505–485 BCE)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">ceramic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Greek, Attic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Greek and Roman Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ceramic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 500 BCE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 32.4 cm (12 3/4 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">102B Greek</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Ceramic</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
@@ -986,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC725.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fwww.searchculture.gr%2Faggregator%2Fthumbnails%2Fedm-record%2FDigASFA%2F000187-11159NK&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">gajida 4</div>
-        <div class="v-rel-meta">Europeana · /1360/https___www_searchculture_gr_aggregator_edm_DigASFA_000187_11159NK</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/DFbXB/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Dirk III, graaf van Holland</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010003</div>
       </a>
       <a class="v-rel-card" href="NFC726.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fmm.dimu.org%2Fimage%2F03346wuDkKCv%3Fdimension%3D1200x1200&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Former employees collect their gifts from SSAB in the preschool, Dannemora Gruvor AB, Dannemora, Uppland 1 April 1992. Före detta anställda hämtar ut sina gåvor från SSAB i förrådet, Dannemora Gruvor AB, Dannemora, Uppland 1 april 1992</div>
-        <div class="v-rel-meta">Europeana · /91617/upmu_photo_SM5458_03</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/31f0a9a3-8a0d-44ed-6de8-66142b75c4c0/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">The Bathers</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 39560</div>
       </a>
       <a class="v-rel-card" href="NFC728.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/8534685d-1102-e1e3-e194-94f6e925e8b0/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Water Lily Pond</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 87088</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PJ2545/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Mini Sensory Chess Challenger</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · B.64:1 to 37-2015</div>
       </a>
       <a class="v-rel-card" href="NFC729.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1971.46/1971.46_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Black-Figure Dinos (Mixing Vessel): Warships (Int.); Heroic Scenes (Top)</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1971.46</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DT1530a.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Eroro</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 503936</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/111436" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1929.135" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,27 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `The Basket of Apples`,
-  type: `Painting`,
-  date: `c. 1893`,
-  registration: `111436`,
-  location: `Gallery 248`,
-  discipline: `Painting and Sculpture of Europe`,
-  category: `oil on canvas`,
-  description: `The Basket of Apples. Painting. Oil on canvas. Painting and Sculpture of Europe. Paul Cezanne (French, 1839–1906). oil on canvas. c. 1893. France. Post-Impressionism. <p>In many ways Paul Cezanne was the odd man out among the artists branded as “Impressionists”—those who showed their works outside of France’s state-sponsored Salon exhibitions. Early on, he painted landscapes, the typical Impressionist subject, but his arresting and complex still lifes changed the traditional <em>nature morte</em> (dead nature) genre and continue to puzzle and tantalize today.</p>
-<p>At first glance, <em>The Ba…`,
-  medium: `Oil on canvas`,
-  artist: `Paul Cezanne (French, 1839–1906)`,
-  culture: `France`,
-  dimensions: `65 × 80 cm (25 7/16 × 31 1/2 in.); Framed: 88 × 104.2 × 9.6 cm (34 5/8 × 41 × 3 3/4 in.)`,
+  title: `Black-Figure White-Ground Lekythos (Oil Vessel): Horseman, Horse between Warriors, Dog`,
+  type: `Ceramic`,
+  date: `c. 500 BCE`,
+  registration: `1929.135`,
+  location: `102B Greek`,
+  discipline: `Greek and Roman Art`,
+  category: `Ceramic`,
+  description: `Two armed warriors, each wearing a crested helmet and holding a spear and shield, flank a mounted horseman, who leads another horse. The warrior at right reaches up with one hand to the head of the second horse, raising the question of how he still holds his spear. Below, a dog twists to scratch itself and look back, its right hind foot apparently resting on one of the warrior’s.`,
+  medium: `ceramic`,
+  artist: `Edinburgh Painter (Greek, Attic, active c. 505–485 BCE)`,
+  culture: `Greek, Attic`,
+  dimensions: `Overall: 32.4 cm (12 3/4 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
+  did_you_know: `The Edinburgh Painter was the first artist to paint black-figure decoration on a white ground.`,
+  provenance: `[{"description":"(Mr. Mario de Ciccio, Naples, Italy, sold to the Cleveland Museum of Art)","citations":[],"footnotes":[],"date":"?-1929","sortorder":1},{"description":"The Cleveland Museum of Art, Cleveland, OH","citations":[],"footnotes":[],"date":"1929-","sortorder":2}]`,
+  tombstone: `Black-Figure White-Ground Lekythos (Oil Vessel): Horseman, Horse between Warriors, Dog, c. 500 BCE. Attributed to Edinburgh Painter (Greek, Attic, active c. 505–485 BCE). Ceramic; overall: 32.4 cm (12 3/4 in.). The Cleveland Museum of Art, The Charles W. Harkness Endowment Fund, 1929.135`,
   licence: `CC0 — Public Domain`,
-  source_url: `https://www.artic.edu/artworks/111436`,
-  institution: `Art Institute of Chicago`
+  source_url: `https://clevelandart.org/art/1929.135`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1649,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_aic',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Apollo, God of Light, Eloquence, Poetry, and the Fine Arts with Urania, Muse of Astronomy — ARCHAI</title>
+<title>Ana Cândida Tobias de Aguiar — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/2003.6.3/2003.6.3_web.jpg" alt="Apollo, God of Light, Eloquence, Poetry, and the Fine Arts with Urania, Muse of Astronomy" loading="eager">
+  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669012/006332.jpg" alt="Ana Cândida Tobias de Aguiar" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Apollo, God of Light, Eloquence, Poetry, and the Fine Arts with Urania, Muse of Astronomy</div>
-  <div class="v-sub">Painting · 1798 · 2003.6.3</div>
+  <div class="v-title">Ana Cândida Tobias de Aguiar</div>
+  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · [18--] · ana-candida-tobias-de-aguiar</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
+    <span class="v-meta-tag mv">Brasiliana Museus</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
+    <span class="v-meta-tag">Brasiliana Museus</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Apollo, God of Light, Eloquence, Poetry, and the Fine Arts with Urania, Muse of Astronomy</strong> — A recipient of the Grand Prix de Rome in 1789, Charles Meynier became a member of the Académie des Beaux-Arts in 1815 and painted large ceiling decorations at the Louvre and numerous pictures glorifying the Napoleonic legend. Erato, Muse of Lyrical Poetry belongs to a cycle of five paintings execute…</div>
+  <div class="v-story"><strong>Ana Cândida Tobias de Aguiar</strong> — Mulher jovem em meio corpo, voltada para a direita. Rosto comprido, testa larga; boca e nariz pequenos; sobrancelhas e olhos castanho-escuros; cabelos escuros, partidos ao meio e entrançados à altura da nuca; orelha direita visível com brinco pendente; no cabelo à esquerda, trepa-moleque de brilhant…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,19 +1000,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2003.6.3</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Charles Meynier (French, 1768–1832)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oil on canvas</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, late 18th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Painting</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1798</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 275 x 235 cm (108 1/4 x 92 1/2 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">201 French Neoclassical Painting &amp; Sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">ana-candida-tobias-de-aguiar</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">[18--]</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 125,80 cm · largura 109,30 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -986,24 +1026,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC866.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP-24267-001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Whistle</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 316713</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1979.37/1979.37_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portrait of Napoléone Elisa Baciocchi, Niece of Napoleon I</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1979.37</div>
       </a>
       <a class="v-rel-card" href="NFC867.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/as/original/LC-1981_242_3-01.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Qin (Seven-stringed zither)</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 42737</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627821547/v2/prod/small/005501_006000/005638_003.jpg" loading="lazy"></div>
+        <div class="v-rel-title">A Requiem: Theater of Creativity / Self-portrait as Marcel Duchamp (Based on the photo by Julian Wasser)</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2015.558</div>
       </a>
       <a class="v-rel-card" href="NFC869.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%2Fwebclient%2FDeliveryManager%3Fpid%3D6331290%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Servizio fotografico Firenze, 1973</div>
-        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6331290_custom_att_2_simple_viewer</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/10325?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">dress, evening</div>
+        <div class="v-rel-meta">Auckland Museum · 1995.101.7</div>
       </a>
       <a class="v-rel-card" href="NFC870.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/668242/006510.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Evangelho na selva</div>
-        <div class="v-rel-meta">Brasiliana Museus · evangelho-na-selva</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/CHwKP/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">tien fen (0,1 yuan) met het gewicht van 772 candareens, uit de provincie Kwan-Tung [=Canton] in China, op naam van keizer Guangxu (1875-1908)</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100389</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1056,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://clevelandart.org/art/2003.6.3" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/ana-candida-tobias-de-aguiar/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,26 +1088,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Apollo, God of Light, Eloquence, Poetry, and the Fine Arts with Urania, Muse of Astronomy`,
-  type: `Painting`,
-  date: `1798`,
-  registration: `2003.6.3`,
-  location: `201 French Neoclassical Painting & Sculpture`,
-  discipline: `Modern European Painting and Sculpture`,
-  category: `Painting`,
-  description: `A recipient of the Grand Prix de Rome in 1789, Charles Meynier became a member of the Académie des Beaux-Arts in 1815 and painted large ceiling decorations at the Louvre and numerous pictures glorifying the Napoleonic legend. Erato, Muse of Lyrical Poetry belongs to a cycle of five paintings executed to fulfill a commission from businessman François Boyer-Fonfréde. They were intended to decorate his home in his native Toulouse and constitute a rare instance of a complete cycle of major paintings that remain intact rather than being split up and separately dispersed.`,
-  medium: `oil on canvas`,
-  artist: `Charles Meynier (French, 1768–1832)`,
-  culture: `France, late 18th century`,
-  dimensions: `Overall: 275 x 235 cm (108 1/4 x 92 1/2 in.)`,
-  wall_description: ``,
+  title: `Ana Cândida Tobias de Aguiar`,
+  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  date: `[18--]`,
+  registration: `ana-candida-tobias-de-aguiar`,
+  location: `Brasiliana Museus`,
+  discipline: `Brasiliana Museus`,
+  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  description: `Mulher jovem em meio corpo, voltada para a direita. Rosto comprido, testa larga; boca e nariz pequenos; sobrancelhas e olhos castanho-escuros; cabelos escuros, partidos ao meio e entrançados à altura da nuca; orelha direita visível com brinco pendente; no cabelo à esquerda, trepa-moleque de brilhantes em forma de laço e detalhe de panejamento rendado; colar de pérolas de duas voltas e cruz do mesmo material; vestido negro, acinturado, com saia ampla; decote deixando a mostra os ombros e o colo, com cercadura de renda preta e bordado central. À esquerda, detalhe de tecido negro, transparente, p…`,
+  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  artist: ``,
+  culture: `Brazil`,
+  dimensions: `altura 125,80 cm · largura 109,30 cm`,
+  wall_description: `Mulher jovem em meio corpo, voltada para a direita. Rosto comprido, testa larga; boca e nariz pequenos; sobrancelhas e olhos castanho-escuros; cabelos escuros, partidos ao meio e entrançados à altura da nuca; orelha direita visível com brinco pendente; no cabelo à esquerda, trepa-moleque de brilhantes em forma de laço e detalhe de panejamento rendado; colar de pérolas de duas voltas e cruz do mesmo material; vestido negro, acinturado, com saia ampla; decote deixando a mostra os ombros e o colo, …`,
   fun_fact: ``,
-  did_you_know: `Urania leans on a starry orb, indicating her role as the muse of astronomy.`,
-  provenance: `[{"description":"In 1819, Nicolas-Antoine de Castella, general of the Swiss regiments in France, purchased the paintings and placed them in his Castle of Wallenreid, Switzerland.","citations":[],"footnotes":[],"date":null,"sortorder":1},{"description":"direct descendants","citations":[],"footnotes":…`,
-  tombstone: `Apollo, God of Light, Eloquence, Poetry, and the Fine Arts with Urania, Muse of Astronomy, 1798. Charles Meynier (French, 1768–1832). Oil on canvas; overall: 275 x 235 cm (108 1/4 x 92 1/2 in.). The Cleveland Museum of Art, Severance and Greta Millikin Purchase Fund, 2003.6.3`,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://clevelandart.org/art/2003.6.3`,
-  institution: `Cleveland Museum of Art`
+  did_you_know: ``,
+  provenance: ``,
+  tombstone: `Ana Cândida Tobias de Aguiar. [18--]. Brasiliana Museus`,
+  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
+  source_url: `https://brasiliana.museus.gov.br/acervos/ana-candida-tobias-de-aguiar/`,
+  institution: `Brasiliana Museus`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1688,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_cma',
+      collection: 'archai_brasiliana',
       text,
       authorType: 'visitor',
     }),

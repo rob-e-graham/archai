@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>chair, dining — ARCHAI</title>
+<title>Bomb (da bian series) — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/72977?rendering=standard.jpg" alt="chair, dining" loading="eager">
+  <img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627875920/v2/prod/small/002501_003000/002830_019.jpg" alt="Bomb (da bian series)" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">chair, dining</div>
-  <div class="v-sub">Chair, Dining · [1940s] · 1994.112</div>
+  <div class="v-title">Bomb (da bian series)</div>
+  <div class="v-sub">Sculpture · 1998 · 2012.1296</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Auckland Museum</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
-    <span class="v-meta-tag">Social History</span>
+    <span class="v-meta-tag mv">M+, Hong Kong</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">Visual Art</span>
   </div>
 
   <!-- SHARE -->
@@ -903,12 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>chair, dining</strong> — dining table chair, Auckland Lyceum Club
-wooden chair with black painted surface, padded seat with [plastic] cover</div>
-  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
-      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
-      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
+  <div class="v-story"><strong>Bomb (da bian series)</strong> — Silk and polyester sculpture of a black alarm clock with red hands and no numbers. On the viewer's left, five black cylinders resembling dynamite are tied together with a white ribbon. A white squarish object resembling a detonator box with pink fabric wrapped around the neck of its black handle sta…</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Yu Bogong · © Yu Bogong</div>
     </div>
 
   <div class="v-divider"></div>
@@ -934,24 +969,29 @@ wooden chair with black painted surface, padded seat with [plastic] cover</div>
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -960,17 +1000,19 @@ wooden chair with black painted surface, padded seat with [plastic] cover</div>
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1994.112</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Cousins &amp; Cousins Ltd, Roy A Lippincott</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Wood, Botanical (arch), Archaeology, Aat Materials</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Chair, Dining</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">[1940s]</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Chair, Dining</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2012.1296</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Yu Bogong</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">silk and polyester</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Chinese</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Visual Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1998</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">overall (approx.): 47 × 70 × 39 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Yu Bogong · © Yu Bogong</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -985,24 +1027,24 @@ wooden chair with black painted surface, padded seat with [plastic] cover</div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1476.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/3eaab3a3-2b47-9fdd-121c-050f6b8d9ccb/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Old Man with a Gold Chain</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 95998</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2023NL9085/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Bluena</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.44-2021</div>
       </a>
       <a class="v-rel-card" href="NFC1477.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/IEHcn/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Overdracht van het graafschap Culemborg aan Stadhouder Willem IV 1748</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100048</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/d4bc1723-7cbc-d36d-a9cb-f84553f2a6f6/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">The Poet's Garden</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 14586</div>
       </a>
       <a class="v-rel-card" href="NFC1479.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/78c80988-6524-cec7-c661-a4c0a706d06f/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Woman at Her Toilette</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 11723</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680288/11092018-IMG_6450-1-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Conde d&amp;#039;Eu</div>
+        <div class="v-rel-meta">Brasiliana Museus · conde-deu-3</div>
       </a>
       <a class="v-rel-card" href="NFC1480.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fcollection.mobilier-national.fr%2Fmedia%2Fxl%2FBIDEAU%2F2017%2F02%2FGMTT-11-008_9-2017.jpg&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">TAPISSERIE DE LICE - Histoire d'Artémise LE CHAR DES RHINOCEROS</div>
-        <div class="v-rel-meta">Europeana · /957/GMTT_11_008</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680249/000777-1.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Almirante José Maria de Almeida</div>
+        <div class="v-rel-meta">Brasiliana Museus · almirante-jose-maria-de-almeida</div>
       </a></div>
   </div>
 </div>
@@ -1015,7 +1057,7 @@ wooden chair with black painted surface, padded seat with [plastic] cover</div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/5458" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/bomb-da-bian-series-20121296/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1047,27 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `chair, dining`,
-  type: `Chair, Dining`,
-  date: `[1940s]`,
-  registration: `1994.112`,
-  location: `Auckland Museum`,
-  discipline: `Social History`,
-  category: `Chair, Dining`,
-  description: `dining table chair, Auckland Lyceum Club
-wooden chair with black painted surface, padded seat with [plastic] cover`,
-  medium: `Wood, Botanical (arch), Archaeology, Aat Materials`,
-  artist: `Cousins & Cousins Ltd, Roy A Lippincott`,
-  culture: ``,
-  dimensions: ``,
-  wall_description: ``,
+  title: `Bomb (da bian series)`,
+  type: `Sculpture`,
+  date: `1998`,
+  registration: `2012.1296`,
+  location: `M+, Hong Kong`,
+  discipline: `Visual Art`,
+  category: `Sculpture`,
+  description: `Silk and polyester sculpture of a black alarm clock with red hands and no numbers. On the viewer's left, five black cylinders resembling dynamite are tied together with a white ribbon. A white squarish object resembling a detonator box with pink fabric wrapped around the neck of its black handle stands on the right.`,
+  medium: `silk and polyester`,
+  artist: `Yu Bogong`,
+  culture: `Chinese`,
+  dimensions: `overall (approx.): 47 × 70 × 39 cm`,
+  wall_description: `Silk and polyester sculpture of a black alarm clock with red hands and no numbers. On the viewer's left, five black cylinders resembling dynamite are tied together with a white ribbon. A white squarish object resembling a detonator box with pink fabric wrapped around the neck of its black handle stands on the right.`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `© Auckland Museum CC BY`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/5458`,
-  institution: `Auckland Museum`
+  tombstone: `Bomb (da bian series). Yu Bogong. 1998. M+, Hong Kong`,
+  licence: `CC0 metadata · M+ API service non-commercial · © Yu Bogong`,
+  source_url: `https://www.mplus.org.hk/en/collection/objects/bomb-da-bian-series-20121296/`,
+  institution: `M+, Hong Kong`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_auckland',
+      collection: 'archai_mplus',
       text,
       authorType: 'visitor',
     }),

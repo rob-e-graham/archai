@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>SPLIT SECOND — ARCHAI</title>
+<title>Painting with Troika — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2025PK1365/full/!600,600/0/default.jpg" alt="SPLIT SECOND" loading="eager">
+  <img src="https://www.artic.edu/iiif/2/a45e5f55-d02b-ce98-8bab-3af549684f58/full/843,/0/default.jpg" alt="Painting with Troika" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">SPLIT SECOND</div>
-  <div class="v-sub">Electronic game · ©1980 · B.1224:1 to 7-1999</div>
+  <div class="v-title">Painting with Troika</div>
+  <div class="v-sub">Painting · January 18, 1911 · 8983</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
+    <span class="v-meta-tag mv">Art Institute of Chicago</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Electronic game</span>
+    <span class="v-meta-tag">Modern Art</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>SPLIT SECOND</strong> — SPLIT SECOND. Electronic game. Made by Parker Brothers. ©1980. Made in USA. In Store</div>
+  <div class="v-story"><strong>Painting with Troika</strong> — Painting with Troika. Painting. Oil on cardboard; in artist's painted frame. Modern Art. Vasily Kandinsky
+Born Moscow (formerly Russian Empire, now Russia), 1866; died Neuilly-sur-Seine, France, 1944. oil on cardboard. January 18, 1911. Germany. &lt;p&gt;Vasily Kandinsky,  along with &lt;a href=&quot;https://www.…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +970,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,16 +1001,20 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">B.1224:1 to 7-1999</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Parker Brothers</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Electronic game</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Electronic game</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">©1980</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In Store</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Electronic game</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">8983</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Vasily Kandinsky
+Born Moscow (formerly Russian Empire, now Russia), 1866; died Neuilly-sur-Seine, France, 1944</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Oil on cardboard; in artist's painted frame</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Germany</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">oil on cardboard</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">January 18, 1911</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">69.7 × 97.3 cm (27 3/8 × 38 5/16 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 392</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -983,24 +1029,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC514.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/312893/preview" loading="lazy"></div>
-        <div class="v-rel-title">One Rupee</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · NU005367</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AT9582/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Murphy A104</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.44-1978</div>
       </a>
       <a class="v-rel-card" href="NFC515.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/646909/default-3.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Paisagem com camponesa</div>
-        <div class="v-rel-meta">Brasiliana Museus · paisagem-com-camponesa</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DT661.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Transverse Flute in D-flat</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 501534</div>
       </a>
       <a class="v-rel-card" href="NFC517.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4301/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">YO YO WITH ENGLISH</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.250-2020</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1997.260/1997.260_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Vase</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1997.260</div>
       </a>
       <a class="v-rel-card" href="NFC518.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/668973/006340.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Marquês de Pombal</div>
-        <div class="v-rel-meta">Brasiliana Museus · marques-de-pombal-2</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2008BU3087/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Domestic Kinetic</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.3656-2007</div>
       </a></div>
   </div>
 </div>
@@ -1013,7 +1059,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O42031/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.artic.edu/artworks/8983" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1045,26 +1091,28 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `SPLIT SECOND`,
-  type: `Electronic game`,
-  date: `©1980`,
-  registration: `B.1224:1 to 7-1999`,
-  location: `In Store`,
-  discipline: `Electronic game`,
-  category: `Electronic game`,
-  description: `SPLIT SECOND. Electronic game. Made by Parker Brothers. ©1980. Made in USA. In Store`,
-  medium: ``,
-  artist: `Parker Brothers`,
-  culture: ``,
-  dimensions: ``,
+  title: `Painting with Troika`,
+  type: `Painting`,
+  date: `January 18, 1911`,
+  registration: `8983`,
+  location: `Gallery 392`,
+  discipline: `Modern Art`,
+  category: `oil on cardboard`,
+  description: `Painting with Troika. Painting. Oil on cardboard; in artist's painted frame. Modern Art. Vasily Kandinsky
+Born Moscow (formerly Russian Empire, now Russia), 1866; died Neuilly-sur-Seine, France, 1944. oil on cardboard. January 18, 1911. Germany. <p>Vasily Kandinsky,  along with <a href="https://www.artic.edu/artists/16157">Franz Marc</a>, <a href="https://www.artic.edu/artists/44013">Gabriele Münter</a>, and <a href="https://www.artic.edu/artists/35113">Alexei Jawlensky</a>, was a founding member of Blaue Reiter (Blue Rider), a loose alliance of artists based in Munich. Often working in a comm…`,
+  medium: `Oil on cardboard; in artist's painted frame`,
+  artist: `Vasily Kandinsky
+Born Moscow (formerly Russian Empire, now Russia), 1866; died Neuilly-sur-Seine, France, 1944`,
+  culture: `Germany`,
+  dimensions: `69.7 × 97.3 cm (27 3/8 × 38 5/16 in.)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O42031/`,
-  institution: `Victoria and Albert Museum, London`
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.artic.edu/artworks/8983`,
+  institution: `Art Institute of Chicago`
 };
 
 // Build rich context from available fields
@@ -1645,7 +1693,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_aic',
       text,
       authorType: 'visitor',
     }),

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Alhambra — ARCHAI</title>
+<title>Frei Domingos da Encarnação Pontevel, 4º bispo de Mariana — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2012FK3674/full/!600,600/0/default.jpg" alt="Alhambra" loading="eager">
+  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669054/006320.jpg" alt="Frei Domingos da Encarnação Pontevel, 4º bispo de Mariana" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Alhambra</div>
-  <div class="v-sub">Photograph · 1853 ca. · 34776</div>
+  <div class="v-title">Frei Domingos da Encarnação Pontevel, 4º bispo de Mariana</div>
+  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · [17--] · frei-domingos-da-encarnacao-pontevel-4o-bispo-de-mariana</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
+    <span class="v-meta-tag mv">Brasiliana Museus</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Photograph</span>
+    <span class="v-meta-tag">Brasiliana Museus</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Alhambra</strong> — Alhambra. Photograph. Made by Bisson. 1853 ca.. Made in Granada. Prints &amp; Drawings Study Room, room 512M</div>
+  <div class="v-story"><strong>Frei Domingos da Encarnação Pontevel, 4º bispo de Mariana</strong> — Campo oval em tela retangular, tendo ao centro, retrato de religioso em meio corpo, voltado para a direita; rosto quadrado e largo, cabelos aloirados cobertos por solidéu preto. Olhos azuis, nariz e lábios finos. Alva sob a capa negra; cruz dourada pendente do pescoço. Braço direito articulado sobre…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,16 +1000,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">34776</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Bisson</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photograph</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photograph</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1853 ca.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, room 512M</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">frei-domingos-da-encarnacao-pontevel-4o-bispo-de-mariana</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">[17--]</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 99,70 cm · largura 78,30 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -983,24 +1026,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC085.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2010.8/2010.8_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Two Shepherdesses Resting with Two Sheep</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2010.8</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/6/659706-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Aerial Model - Homecrafts, Radio, circa 1920</div>
+        <div class="v-rel-meta">Museums Victoria · ST 15452</div>
       </a>
       <a class="v-rel-card" href="NFC086.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/bNonH/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Aansprekersoproer 1696 (1697)</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100155</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/NXclZ/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Floris I, graaf van Holland</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010005</div>
       </a>
       <a class="v-rel-card" href="NFC088.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/b0effb1c-ff23-bbaa-f809-9fd94e31c1a0/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Cliff Walk at Pourville</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 14620</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/3ef69544-a84c-dfa4-df6a-346b4b59c351/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">October Day</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 876</div>
       </a>
       <a class="v-rel-card" href="NFC089.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1926.520/1926.520_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Oinochoe (Wine Jug) in the Form of a Woman's Head</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1926.520</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/fa96ef54-c3b1-8f4d-390a-219f7bc64c4a/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Man with Lance Riding through the Snow</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 895</div>
       </a></div>
   </div>
 </div>
@@ -1013,7 +1056,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1076107/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/frei-domingos-da-encarnacao-pontevel-4o-bispo-de-mariana/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1045,26 +1088,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Alhambra`,
-  type: `Photograph`,
-  date: `1853 ca.`,
-  registration: `34776`,
-  location: `Prints & Drawings Study Room, room 512M`,
-  discipline: `Photograph`,
-  category: `Photograph`,
-  description: `Alhambra. Photograph. Made by Bisson. 1853 ca.. Made in Granada. Prints & Drawings Study Room, room 512M`,
-  medium: ``,
-  artist: `Bisson`,
-  culture: ``,
-  dimensions: ``,
-  wall_description: ``,
+  title: `Frei Domingos da Encarnação Pontevel, 4º bispo de Mariana`,
+  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  date: `[17--]`,
+  registration: `frei-domingos-da-encarnacao-pontevel-4o-bispo-de-mariana`,
+  location: `Brasiliana Museus`,
+  discipline: `Brasiliana Museus`,
+  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  description: `Campo oval em tela retangular, tendo ao centro, retrato de religioso em meio corpo, voltado para a direita; rosto quadrado e largo, cabelos aloirados cobertos por solidéu preto. Olhos azuis, nariz e lábios finos. Alva sob a capa negra; cruz dourada pendente do pescoço. Braço direito articulado sobre peito; mão segurando pequeno livro entreaberto, com capa em tons ocres e espessura das folhas em vermelho. Na parte inferior direita, detalhe de móvel, semelhante a mesa, recoberto por toalha verde. Ainda à direita, atrás do ombro esquerdo do retratado, mitra branca com bordadura dourada. No centro…`,
+  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  artist: ``,
+  culture: `Brazil`,
+  dimensions: `altura 99,70 cm · largura 78,30 cm`,
+  wall_description: `Campo oval em tela retangular, tendo ao centro, retrato de religioso em meio corpo, voltado para a direita; rosto quadrado e largo, cabelos aloirados cobertos por solidéu preto. Olhos azuis, nariz e lábios finos. Alva sob a capa negra; cruz dourada pendente do pescoço. Braço direito articulado sobre peito; mão segurando pequeno livro entreaberto, com capa em tons ocres e espessura das folhas em vermelho. Na parte inferior direita, detalhe de móvel, semelhante a mesa, recoberto por toalha verde. …`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1076107/`,
-  institution: `Victoria and Albert Museum, London`
+  tombstone: `Frei Domingos da Encarnação Pontevel, 4º bispo de Mariana. [17--]. Brasiliana Museus`,
+  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
+  source_url: `https://brasiliana.museus.gov.br/acervos/frei-domingos-da-encarnacao-pontevel-4o-bispo-de-mariana/`,
+  institution: `Brasiliana Museus`
 };
 
 // Build rich context from available fields
@@ -1645,7 +1688,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_brasiliana',
       text,
       authorType: 'visitor',
     }),

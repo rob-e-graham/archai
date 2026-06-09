@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Sculpture: An essay on stone-cutting, with a preface about God. — ARCHAI</title>
+<title>chair, dining — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://media.tepapa.govt.nz/collection/498174/preview" alt="Sculpture: An essay on stone-cutting, with a preface about God." loading="eager">
+  <img src="https://api.aucklandmuseum.com/id/media/v/72977?rendering=standard.jpg" alt="chair, dining" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Sculpture: An essay on stone-cutting, with a preface about God.</div>
-  <div class="v-sub">livres de peintres · 1923 · 2007-0006-8</div>
+  <div class="v-title">chair, dining</div>
+  <div class="v-sub">Chair, Dining · [1940s] · 1994.112</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
-    <span class="v-meta-tag">Art</span>
+    <span class="v-meta-tag mv">Auckland Museum</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
+    <span class="v-meta-tag">Social History</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Sculpture: An essay on stone-cutting, with a preface about God.</strong> — Sculpture: An essay on stone-cutting, with a preface about God. , 1923, England, by Eric Gill, St. Dominic's Press. Bequest of P Martin Hill, 2007. Te Papa (2007-0006-8)</div>
-  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
-      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
-      <div class="v-rights-detail">Licence / rights: No Known Copyright Restrictions · metadata CC BY 4.0 · No Known Copyright Restrictions</div>
+  <div class="v-story"><strong>chair, dining</strong> — dining table chair, Auckland Lyceum Club
+wooden chair with black painted surface, padded seat with [plastic] cover</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
+      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +970,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,18 +1001,17 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2007-0006-8</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Eric Gill, St. Dominic's Press</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">handprinted book with wood engraving</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Art</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">livres de peintres</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1923</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">12mm, 173mm, 130mm</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">livres de peintres</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">No Known Copyright Restrictions · metadata CC BY 4.0 · No Known Copyright Restrictions</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1994.112</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Cousins &amp; Cousins Ltd, Roy A Lippincott</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Wood, Botanical (arch), Archaeology, Aat Materials</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Chair, Dining</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">[1940s]</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Chair, Dining</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -985,24 +1026,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1462.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD6577/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">First colour broadcast by Associated Television</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · S.213-1980</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/1fec602a-0a69-0669-d2b5-160e71e25cda/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portrait of Mary of Modena</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 16014</div>
       </a>
       <a class="v-rel-card" href="NFC1463.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1942.1065/1942.1065_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Romaine Lacaux</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1942.1065</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/4d1b3ad0-14db-0d21-ad9f-17abb8bdfbb5/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Bordighera</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 81537</div>
       </a>
       <a class="v-rel-card" href="NFC1465.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HH8835/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Wearable art ensemble</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · T.90:1-5-2013</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2018.252/2018.252_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Karnak, Les Pylônes d'Horus</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 2018.252</div>
       </a>
       <a class="v-rel-card" href="NFC1466.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/SoDmH/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Vertrek van baron Van Imhoff, gouverneur van Nederlands Oost Indi&amp;#235; 1742, afdruk voorzijde</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100051</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2019ME1311/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Hat</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · S.172-1983</div>
       </a></div>
   </div>
 </div>
@@ -1015,7 +1056,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/742151" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/5458" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1047,26 +1088,27 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Sculpture: An essay on stone-cutting, with a preface about God.`,
-  type: `livres de peintres`,
-  date: `1923`,
-  registration: `2007-0006-8`,
-  location: `Te Papa Tongarewa, Wellington`,
-  discipline: `Art`,
-  category: `livres de peintres`,
-  description: `Sculpture: An essay on stone-cutting, with a preface about God. , 1923, England, by Eric Gill, St. Dominic's Press. Bequest of P Martin Hill, 2007. Te Papa (2007-0006-8)`,
-  medium: `handprinted book with wood engraving`,
-  artist: `Eric Gill, St. Dominic's Press`,
+  title: `chair, dining`,
+  type: `Chair, Dining`,
+  date: `[1940s]`,
+  registration: `1994.112`,
+  location: `Auckland Museum`,
+  discipline: `Social History`,
+  category: `Chair, Dining`,
+  description: `dining table chair, Auckland Lyceum Club
+wooden chair with black painted surface, padded seat with [plastic] cover`,
+  medium: `Wood, Botanical (arch), Archaeology, Aat Materials`,
+  artist: `Cousins & Cousins Ltd, Roy A Lippincott`,
   culture: ``,
-  dimensions: `12mm, 173mm, 130mm`,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Sculpture: An essay on stone-cutting, with a preface about God., 1923, England, by Eric Gill, St. Dominic's Press. Bequest of P Martin Hill, 2007. Te Papa (2007-0006-8)`,
-  licence: `No Known Copyright Restrictions · metadata CC BY 4.0`,
-  source_url: `https://collections.tepapa.govt.nz/object/742151`,
-  institution: `Museum of New Zealand Te Papa Tongarewa`
+  tombstone: ``,
+  licence: `© Auckland Museum CC BY`,
+  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/5458`,
+  institution: `Auckland Museum`
 };
 
 // Build rich context from available fields
@@ -1647,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_tepapa',
+      collection: 'archai_auckland',
       text,
       authorType: 'visitor',
     }),

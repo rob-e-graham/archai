@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>One Sen — ARCHAI</title>
+<title>Soldier doll — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,13 +917,13 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://media.tepapa.govt.nz/collection/620046/preview" alt="One Sen" loading="eager">
+  <img src="https://media.tepapa.govt.nz/collection/345935/preview" alt="Soldier doll" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">One Sen</div>
-  <div class="v-sub">coins · 1916 · NU002166</div>
+  <div class="v-title">Soldier doll</div>
+  <div class="v-sub">dolls · 1916 · GH016401</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
@@ -903,7 +939,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>One Sen</strong> — One Sen , 1916, Japan, maker unknown. CC BY-NC-ND 4.0 . Te Papa (NU002166)</div>
+  <div class="v-story"><strong>Soldier doll</strong> — A wishbone&amp;nbsp;soldier This small doll was made by Dorothy Broad, a talented crafts woman who used her skills during both world wars to help raise money for the war effort.&amp;nbsp;Utilising everyday materials, she has fashioned the&amp;nbsp;soldier's legs and spine from a chicken wishbone,&amp;nbsp;his head …</div>
   <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
       <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,14 +1000,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">NU002166</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">bronze</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Taisho</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">GH016401</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Dorothy Broad</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">doll made from a chicken wish bone with hand sewn garments</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">World War, 1914-1918</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">coins</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">dolls</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1916</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 55mm (width), 95mm (height), 30mm (depth)</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">coins</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">dolls</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</span></div>
@@ -984,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1483.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/midp89.4.3561.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Oko (side-blown horn)</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 505712</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/mi1988.349.R.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Dung-Chen</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 503348</div>
       </a>
       <a class="v-rel-card" href="NFC1484.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/2765aee9-3d78-ec6c-5c66-a1d9dc8173f6/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Rocks at Port-Goulphar, Belle-Île</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 20545</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/b325af1e-bfb6-7125-ba57-cf32e1838d29/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portrait of the Maistre Sisters</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 76212</div>
       </a>
       <a class="v-rel-card" href="NFC1486.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4303/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">ADDED CHARACTER</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.253-2020</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680062/default-43-1.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Nossa Senhora das Dores</div>
+        <div class="v-rel-meta">Brasiliana Museus · nossa-senhora-das-dores-18</div>
       </a>
       <a class="v-rel-card" href="NFC1487.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/gSzcw/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Beloningspenning van de Leidse burgemeesters voor promoties &quot;met de kap&quot;, afdruk keerzijde</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100143</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/OFmvl/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Floris II, graaf van Holland</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010010</div>
       </a></div>
   </div>
 </div>
@@ -1014,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/102828" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/960333" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1046,25 +1089,25 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `One Sen`,
-  type: `coins`,
+  title: `Soldier doll`,
+  type: `dolls`,
   date: `1916`,
-  registration: `NU002166`,
+  registration: `GH016401`,
   location: `Te Papa Tongarewa, Wellington`,
   discipline: `History`,
-  category: `coins`,
-  description: `One Sen , 1916, Japan, maker unknown. CC BY-NC-ND 4.0 . Te Papa (NU002166)`,
-  medium: `bronze`,
-  artist: ``,
-  culture: `Taisho`,
-  dimensions: ``,
-  wall_description: ``,
+  category: `dolls`,
+  description: `A wishbone&nbsp;soldier This small doll was made by Dorothy Broad, a talented crafts woman who used her skills during both world wars to help raise money for the war effort.&nbsp;Utilising everyday materials, she has fashioned the&nbsp;soldier's legs and spine from a chicken wishbone,&nbsp;his head from&nbsp;plasticine with beads for eyes, his uniform from scraps of fabric, and his walking or swagger stick from a humble matchstick. The end result is a&nbsp;doll full of character, and hopefully good luck. It is&nbsp;thought that Dorothy and her sister Frances made such dolls as fund-raisers. En…`,
+  medium: `doll made from a chicken wish bone with hand sewn garments`,
+  artist: `Dorothy Broad`,
+  culture: `World War, 1914-1918`,
+  dimensions: `Overall: 55mm (width), 95mm (height), 30mm (depth)`,
+  wall_description: `A wishbone&nbsp;soldier This small doll was made by Dorothy Broad, a talented crafts woman who used her skills during both world wars to help raise money for the war effort.&nbsp;Utilising everyday materials, she has fashioned the&nbsp;soldier's legs and spine from a chicken wishbone,&nbsp;his head from&nbsp;plasticine with beads for eyes, his uniform from scraps of fabric, and his walking or swagger stick from a humble matchstick. The end result is a&nbsp;doll full of character, and hopefully g…`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `One Sen, 1916, Japan, maker unknown. CC BY-NC-ND 4.0. Te Papa (NU002166)`,
+  tombstone: `Soldier doll, 1916, New Zealand, by Dorothy Broad. Gift of the Abraham family in memory of Dorothy Broad, 2009. © Te Papa. CC BY-NC-ND 4.0. Te Papa (GH016401)`,
   licence: `CC BY-NC-ND 4.0 · metadata CC BY 4.0`,
-  source_url: `https://collections.tepapa.govt.nz/object/102828`,
+  source_url: `https://collections.tepapa.govt.nz/object/960333`,
   institution: `Museum of New Zealand Te Papa Tongarewa`
 };
 

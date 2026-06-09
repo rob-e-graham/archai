@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Artillery Instrument, Johan Koch, Stockholm 1668.. Artilleririktinstrument, Johan Koch, Stockholm 1668. — ARCHAI</title>
+<title>Portrait of Mme Lisle and Mme Loubens — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Femuseumplus.lsh.se%2FeMuseumPlus%3Fservice%3DImageAsset%26module%3Dcollection%26objectId%3D55150%26resolution%3DhighImageResolution&amp;type=IMAGE" alt="Artillery Instrument, Johan Koch, Stockholm 1668.. Artilleririktinstrument, Johan Koch, Stockholm 1668." loading="eager">
+  <img src="https://www.artic.edu/iiif/2/8bcc9188-1d3d-14be-6ae7-ed211e089c0f/full/843,/0/default.jpg" alt="Portrait of Mme Lisle and Mme Loubens" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Artillery Instrument, Johan Koch, Stockholm 1668.. Artilleririktinstrument, Johan Koch, Stockholm 1668.</div>
-  <div class="v-sub">IMAGE · 1668 · /2064105/Museu_ProvidedCHO_Livrustkammaren_55150</div>
+  <div class="v-title">Portrait of Mme Lisle and Mme Loubens</div>
+  <div class="v-sub">Painting · c. 1867 · 79586</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Europeana</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(155,143,191,0.28);color:#9b8fbf;">Share alike</span>
-    
+    <span class="v-meta-tag mv">Art Institute of Chicago</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Painting and Sculpture of Europe</span>
   </div>
 
   <!-- SHARE -->
@@ -903,13 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Artillery Instrument, Johan Koch, Stockholm 1668.. Artilleririktinstrument, Johan Koch, Stockholm 1668.</strong> — Of brass on a profiled, rectangular foot with the underside commissioned in blunt angle, on one long side a midline and a transverse hole. On the upper side a salmon and on the edge a graduated scale.
-
-In the salmon attached a set bar with a movable middle part, to h. In this case, a graduated scale…</div>
-  <div class="v-rights-note" style="border-color:rgba(155,143,191,0.28);">
-      <div class="v-rights-label" style="color:#9b8fbf;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#9b8fbf;font-weight:400;">Share alike</strong> — Reusable with attribution, and derivative use should keep the same licence terms.</div>
-      <div class="v-rights-detail">Licence / rights: http://creativecommons.org/licenses/by-sa/3.0/</div>
+  <div class="v-story"><strong>Portrait of Mme Lisle and Mme Loubens</strong> — Portrait of Mme Lisle and Mme Loubens. Painting. Oil on canvas. Painting and Sculpture of Europe. Edgar Degas (French, 1834–1917). painting. c. 1867. France. Impressionism. &lt;p&gt;Edgar Degas rarely accepted portrait commissions; his sitters were almost always family members or people within his social …</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -935,24 +969,29 @@ In the salmon attached a set bar with a movable middle part, to h. In this case,
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -961,15 +1000,19 @@ In the salmon attached a set bar with a movable middle part, to h. In this case,
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">/2064105/Museu_ProvidedCHO_Livrustkammaren_55150</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Johan Koch. Johan Koch (Tillverkare, , )</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">IMAGE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1668</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">The Royal Armoury</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">IMAGE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Share alike</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution, and derivative use should keep the same licence terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">http://creativecommons.org/licenses/by-sa/3.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">79586</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Edgar Degas (French, 1834–1917)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Oil on canvas</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Painting and Sculpture of Europe</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1867</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">84 × 96.6 cm (33 1/16 × 38 in.); Framed: 101.6 × 115 × 8 cm (40 × 45 1/4 × 3 1/8 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -984,24 +1027,24 @@ In the salmon attached a set bar with a movable middle part, to h. In this case,
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1086.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/45534/preview" loading="lazy"></div>
-        <div class="v-rel-title">Mummified Ibis Package</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · FE001738</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/hggLV/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Filips III, koning van Spanje</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010035</div>
       </a>
       <a class="v-rel-card" href="NFC1087.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fems.dimu.org%2Fimage%2F022wZWGAPp5H%3Fdimension%3D1200x1200&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Laboratorieskrivare, bordsmodell</div>
-        <div class="v-rel-meta">Europeana · /916118/S_TEK_object_TEKS0042793</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%2Fwebclient%2FDeliveryManager%3Fpid%3D6331295%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Servizio fotografico Firenze, 1973</div>
+        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6331295_custom_att_2_simple_viewer</div>
       </a>
       <a class="v-rel-card" href="NFC1089.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/AvOmO/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van Filips de Goede, hertog van Bourgondi&amp;#235;</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010029</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/uZRwg/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Drie gulden van de Bataafse Republiek op naam van West-Friesland, 1795</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100091</div>
       </a>
       <a class="v-rel-card" href="NFC1090.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/358757?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">cloak, evening</div>
-        <div class="v-rel-meta">Auckland Museum · 1965.78.880</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1714972380/v2/prod/small/002001_002500/002491_003.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Embroidered Portrait Series—Entertainer with Small White Dog</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2012.99</div>
       </a></div>
   </div>
 </div>
@@ -1014,7 +1057,7 @@ In the salmon attached a set bar with a movable middle part, to h. In this case,
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.europeana.eu/item/2064105/Museu_ProvidedCHO_Livrustkammaren_55150?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.artic.edu/artworks/79586" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1046,28 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Artillery Instrument, Johan Koch, Stockholm 1668.. Artilleririktinstrument, Johan Koch, Stockholm 1668.`,
-  type: `IMAGE`,
-  date: `1668`,
-  registration: `/2064105/Museu_ProvidedCHO_Livrustkammaren_55150`,
-  location: `The Royal Armoury`,
-  discipline: ``,
-  category: `IMAGE`,
-  description: `Of brass on a profiled, rectangular foot with the underside commissioned in blunt angle, on one long side a midline and a transverse hole. On the upper side a salmon and on the edge a graduated scale.
-
-In the salmon attached a set bar with a movable middle part, to h. In this case, a graduated scale of 1 to 80 with 10 digits, the movable part with a midline and divided into four parts. At the top of the moving part a head with engraved flower decor and attached a movable arm with round sight discs at the ends, one with a small hole, the other with a larger hole with a grain. To the h. on the s…`,
-  medium: ``,
-  artist: `Johan Koch. Johan Koch (Tillverkare, , )`,
-  culture: ``,
-  dimensions: ``,
+  title: `Portrait of Mme Lisle and Mme Loubens`,
+  type: `Painting`,
+  date: `c. 1867`,
+  registration: `79586`,
+  location: `Art Institute of Chicago`,
+  discipline: `Painting and Sculpture of Europe`,
+  category: `painting`,
+  description: `Portrait of Mme Lisle and Mme Loubens. Painting. Oil on canvas. Painting and Sculpture of Europe. Edgar Degas (French, 1834–1917). painting. c. 1867. France. Impressionism. <p>Edgar Degas rarely accepted portrait commissions; his sitters were almost always family members or people within his social circle. The two women in this somber, unfinished painting were identified through preparatory drawings that label them as “Mme Lisle” (left) and “Mme Loubens” (right). Both were friends of artist <a href="https://www.artic.edu/artists/35577/edouard-manet">Édouard Manet’s</a> family; they likely met …`,
+  medium: `Oil on canvas`,
+  artist: `Edgar Degas (French, 1834–1917)`,
+  culture: `France`,
+  dimensions: `84 × 96.6 cm (33 1/16 × 38 in.); Framed: 101.6 × 115 × 8 cm (40 × 45 1/4 × 3 1/8 in.)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `http://creativecommons.org/licenses/by-sa/3.0/`,
-  source_url: `https://www.europeana.eu/item/2064105/Museu_ProvidedCHO_Livrustkammaren_55150?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb`,
-  institution: `Europeana`
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.artic.edu/artworks/79586`,
+  institution: `Art Institute of Chicago`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_europeana',
+      collection: 'archai_aic',
       text,
       authorType: 'visitor',
     }),

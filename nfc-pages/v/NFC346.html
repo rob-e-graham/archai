@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Seated female figure — ARCHAI</title>
+<title>Fragment from Red-Figure Cup: Woman — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/ao/original/1979.206.574.jpg" alt="Seated female figure" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1915.533.b/1915.533.b_web.jpg" alt="Fragment from Red-Figure Cup: Woman" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Seated female figure</div>
-  <div class="v-sub">Whistle · 600-1000 CE · 312770</div>
+  <div class="v-title">Fragment from Red-Figure Cup: Woman</div>
+  <div class="v-sub">Ceramic · c. 470–460 BCE · 1915.533.b</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">The Michael C. Rockefeller Wing</span>
+    <span class="v-meta-tag">Greek and Roman Art</span>
   </div>
 
   <!-- SHARE -->
@@ -903,7 +939,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Seated female figure</strong> — Seated female figure. Whistle. Ceramic, slip, paint. The Michael C. Rockefeller Wing. Veracruz. by Remojadas artist(s). Ceramics-Musical Instruments. 600-1000 CE</div>
+  <div class="v-story"><strong>Fragment from Red-Figure Cup: Woman</strong> — A bit of preserved lip shows that this fragment comes from a kylix, or drinking cup. A finely dressed woman, with earring and headband, reaches out with her right hand, now lost but once holding a wreath in added red paint. Relief lines standing above the surface outline the face, neck, arm, and oth…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,16 +1000,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">312770</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Remojadas artist(s)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Ceramic, slip, paint</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Veracruz</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">The Michael C. Rockefeller Wing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ceramics-Musical Instruments</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">600-1000 CE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">H. 9 11/16 x W. 9 7/8 x D. 7 3/8 in. (24.7 x 25.1 x 18.7 cm)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 360</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Whistle</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1915.533.b</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Telephos Painter (Greek, Attic, active 480–460 BC)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">ceramic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Greek, Attic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Greek and Roman Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ceramic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 470–460 BCE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 0.4 cm (3/16 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">102B Greek</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Ceramic</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
@@ -986,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC344.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/681108/000401-Edoardo-De-Martino-Naus-e-fragatas-inglesas-no-ancoradouro-scaled.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Naus e fragatas inglesas no ancoradouro</div>
-        <div class="v-rel-meta">Brasiliana Museus · naus-e-fragatas-inglesas-no-ancoradouro</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/383936?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">ephemera</div>
+        <div class="v-rel-meta">Auckland Museum · 1996x2.687</div>
       </a>
       <a class="v-rel-card" href="NFC345.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fems.dimu.org%2Fimage%2F022wZ1c2Pzpk%3Fdimension%3D1200x1200&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Stereobild av statyer/ skulpturer, Nationalmuseum, Stockholm.</div>
-        <div class="v-rel-meta">Europeana · /916118/S_TEK_photo_TEKA0112920</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/CaSsJ/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Nederlandse 10 gulden, 1889</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100263</div>
       </a>
       <a class="v-rel-card" href="NFC347.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/8cd4328f-da34-dec3-00f5-5810a747c8e8/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">A Witches' Sabbath</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 53495</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1947.2028/1947.2028_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Dancer Looking at the Sole of her Right Foot</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1947.2028</div>
       </a>
       <a class="v-rel-card" href="NFC348.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1985.203/1985.203_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Untitled</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1985.203</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%2Fwebclient%2FDeliveryManager%3Fpid%3D6355709%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Photographic reportage, Florence, 1957-1956. Servizio fotografico Firenze, 1957-1956</div>
+        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6355709_custom_att_2_simple_viewer</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/312770" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1915.533.b" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,26 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Seated female figure`,
-  type: `Whistle`,
-  date: `600-1000 CE`,
-  registration: `312770`,
-  location: `Gallery 360`,
-  discipline: `The Michael C. Rockefeller Wing`,
-  category: `Ceramics-Musical Instruments`,
-  description: `Seated female figure. Whistle. Ceramic, slip, paint. The Michael C. Rockefeller Wing. Veracruz. by Remojadas artist(s). Ceramics-Musical Instruments. 600-1000 CE`,
-  medium: `Ceramic, slip, paint`,
-  artist: `Remojadas artist(s)`,
-  culture: `Veracruz`,
-  dimensions: `H. 9 11/16 x W. 9 7/8 x D. 7 3/8 in. (24.7 x 25.1 x 18.7 cm)`,
+  title: `Fragment from Red-Figure Cup: Woman`,
+  type: `Ceramic`,
+  date: `c. 470–460 BCE`,
+  registration: `1915.533.b`,
+  location: `102B Greek`,
+  discipline: `Greek and Roman Art`,
+  category: `Ceramic`,
+  description: `A bit of preserved lip shows that this fragment comes from a kylix, or drinking cup. A finely dressed woman, with earring and headband, reaches out with her right hand, now lost but once holding a wreath in added red paint. Relief lines standing above the surface outline the face, neck, arm, and other details.`,
+  medium: `ceramic`,
+  artist: `Telephos Painter (Greek, Attic, active 480–460 BC)`,
+  culture: `Greek, Attic`,
+  dimensions: `Overall: 0.4 cm (3/16 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
+  did_you_know: `Painted on the back side of this fragment is ORVIETO, its likely findspot more than a century ago.`,
+  provenance: `[{"description":"Through Harold Woodbury Parsons, New York, NY, sold to the Cleveland Museum of Art","citations":[],"footnotes":[],"date":"1915","sortorder":1},{"description":"The Cleveland Museum of Art, Cleveland, OH","citations":[],"footnotes":[],"date":"1915-","sortorder":2}]`,
+  tombstone: `Fragment from Red-Figure Cup: Woman, c. 470–460 BCE. Near the Telephos Painter (Greek, Attic, active 480–460 BC). Ceramic; overall: 0.4 cm (3/16 in.). The Cleveland Museum of Art, Gift of the John Huntington Art and Polytechnic Trust, 1915.533.b`,
   licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/312770`,
-  institution: `The Metropolitan Museum of Art`
+  source_url: `https://clevelandart.org/art/1915.533.b`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_met',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

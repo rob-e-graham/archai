@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>A Requiem: Theater of Creativity / Self-portrait as Marcel Duchamp (Based on the photo by Julian Wasser) — ARCHAI</title>
+<title>Armsmycke med &quot;guldnötter&quot;, Nationalmuseum Stockholm. — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627821547/v2/prod/small/005501_006000/005638_003.jpg" alt="A Requiem: Theater of Creativity / Self-portrait as Marcel Duchamp (Based on the photo by Julian Wasser)" loading="eager">
+  <img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fmm.dimu.org%2Fimage%2F019EE7ixzLfSB%3Fdimension%3D1200x1200&amp;type=IMAGE" alt="Armsmycke med &quot;guldnötter&quot;, Nationalmuseum Stockholm." loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">A Requiem: Theater of Creativity / Self-portrait as Marcel Duchamp (Based on the photo by Julian Wasser)</div>
-  <div class="v-sub">Photography · 2010 · 2015.558</div>
+  <div class="v-title">Armsmycke med &quot;guldnötter&quot;, Nationalmuseum Stockholm.</div>
+  <div class="v-sub">IMAGE · Date unknown · /91676/arkm_photo_ARKM1988_111_32731_5</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">M+, Hong Kong</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
-    <span class="v-meta-tag">Visual Art</span>
+    <span class="v-meta-tag mv">Europeana</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>A Requiem: Theater of Creativity / Self-portrait as Marcel Duchamp (Based on the photo by Julian Wasser)</strong> — Photograph showing the side view of two figures seated at a white table inside an art gallery. There are white chess pieces on the table in between them, which they both look down at. The figure on the viewer's left is nude with short black hair and the right hand held above exposed breasts. The man…</div>
-  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
-      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Morimura Yasumasa, courtesy Shugo Arts · © Morimura Yasumasa, courtesy Shugo Arts</div>
+  <div class="v-story"><strong>Armsmycke med &quot;guldnötter&quot;, Nationalmuseum Stockholm.</strong> — Armsmycke med &quot;guldnötter&quot;, Nationalmuseum Stockholm.. 1962 - 1962Designer/Formgivare: Persson, Sigurd</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: http://creativecommons.org/publicdomain/mark/1.0/</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,20 +1000,15 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2015.558</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Yasumasa Morimura</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">chromogenic print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Japanese</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Visual Art</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photography</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2010</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">sheet (sight): 148 × 187.5 cm
-frame: 164.5 × 202.4 × 6.1 cm</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photography</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Morimura Yasumasa, courtesy Shugo Arts · © Morimura Yasumasa, courtesy Shugo Arts</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">/91676/arkm_photo_ARKM1988_111_32731_5</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Persson, Sigurd</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">IMAGE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Date unknown</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Swedish Centre for Architecture and Design</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">IMAGE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">http://creativecommons.org/publicdomain/mark/1.0/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -987,24 +1023,24 @@ frame: 164.5 × 202.4 × 6.1 cm</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC816.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2018.287/2018.287_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Turtleback Reading Lamp</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2018.287</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15935399&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Pergamonsaal, Rückseite vom Altar (aus: Museum im Werden)</div>
+        <div class="v-rel-meta">Europeana · /08535/item_EAC2URCLYR5AM3ZYDNH6F52PXIHF6FBX</div>
       </a>
       <a class="v-rel-card" href="NFC817.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/24/415224-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Proof Coin - Halfpenny, Great Britain, 1972</div>
-        <div class="v-rel-meta">Museums Victoria · NU 47576</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669003/default-31.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Rodolfo Amoedo (autorretrato)</div>
+        <div class="v-rel-meta">Brasiliana Museus · rodolfo-amoedo-autorretrato</div>
       </a>
       <a class="v-rel-card" href="NFC819.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/588268?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">toy car</div>
-        <div class="v-rel-meta">Auckland Museum · 1996.165.276</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/qBJGT/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Schutterspenning van Leiden</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100438</div>
       </a>
       <a class="v-rel-card" href="NFC820.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/93169?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">vessel</div>
-        <div class="v-rel-meta">Auckland Museum · 1996x2.103.30</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP275104 (2).jpg" loading="lazy"></div>
+        <div class="v-rel-title">Tombak</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 501876</div>
       </a></div>
   </div>
 </div>
@@ -1017,7 +1053,7 @@ frame: 164.5 × 202.4 × 6.1 cm</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/a-requiem-theater-of-creativity-self-portrait-as-marcel-duchamp-based-on-the-photo-by-julian-wasser-2015558/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.europeana.eu/item/91676/arkm_photo_ARKM1988_111_32731_5?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1049,27 +1085,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `A Requiem: Theater of Creativity / Self-portrait as Marcel Duchamp (Based on the photo by Julian Wasser)`,
-  type: `Photography`,
-  date: `2010`,
-  registration: `2015.558`,
-  location: `M+, Hong Kong`,
-  discipline: `Visual Art`,
-  category: `Photography`,
-  description: `Photograph showing the side view of two figures seated at a white table inside an art gallery. There are white chess pieces on the table in between them, which they both look down at. The figure on the viewer's left is nude with short black hair and the right hand held above exposed breasts. The man on the right wears a suit and holds a cigar.`,
-  medium: `chromogenic print`,
-  artist: `Yasumasa Morimura`,
-  culture: `Japanese`,
-  dimensions: `sheet (sight): 148 × 187.5 cm
-frame: 164.5 × 202.4 × 6.1 cm`,
-  wall_description: `Photograph showing the side view of two figures seated at a white table inside an art gallery. There are white chess pieces on the table in between them, which they both look down at. The figure on the viewer's left is nude with short black hair and the right hand held above exposed breasts. The man on the right wears a suit and holds a cigar.`,
+  title: `Armsmycke med &quot;guldnötter&quot;, Nationalmuseum Stockholm.`,
+  type: `IMAGE`,
+  date: `Date unknown`,
+  registration: `/91676/arkm_photo_ARKM1988_111_32731_5`,
+  location: `Swedish Centre for Architecture and Design`,
+  discipline: ``,
+  category: `IMAGE`,
+  description: `Armsmycke med "guldnötter", Nationalmuseum Stockholm.. 1962 - 1962Designer/Formgivare: Persson, Sigurd`,
+  medium: ``,
+  artist: `Persson, Sigurd`,
+  culture: ``,
+  dimensions: ``,
+  wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `A Requiem: Theater of Creativity / Self-portrait as Marcel Duchamp (Based on the photo by Julian Wasser). Yasumasa Morimura. 2010. M+, Hong Kong`,
-  licence: `CC0 metadata · M+ API service non-commercial · © Morimura Yasumasa, courtesy Shugo Arts`,
-  source_url: `https://www.mplus.org.hk/en/collection/objects/a-requiem-theater-of-creativity-self-portrait-as-marcel-duchamp-based-on-the-photo-by-julian-wasser-2015558/`,
-  institution: `M+, Hong Kong`
+  tombstone: ``,
+  licence: `http://creativecommons.org/publicdomain/mark/1.0/`,
+  source_url: `https://www.europeana.eu/item/91676/arkm_photo_ARKM1988_111_32731_5?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb`,
+  institution: `Europeana`
 };
 
 // Build rich context from available fields
@@ -1650,7 +1685,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_mplus',
+      collection: 'archai_europeana',
       text,
       authorType: 'visitor',
     }),

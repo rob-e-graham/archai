@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Armsmycke med &quot;guldnötter&quot;, Nationalmuseum Stockholm. — ARCHAI</title>
+<title>Maestro Francisco Braga (infância) — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fmm.dimu.org%2Fimage%2F019EE7ixzLfSB%3Fdimension%3D1200x1200&amp;type=IMAGE" alt="Armsmycke med &quot;guldnötter&quot;, Nationalmuseum Stockholm." loading="eager">
+  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680260/775-1-scaled.jpg" alt="Maestro Francisco Braga (infância)" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Armsmycke med &quot;guldnötter&quot;, Nationalmuseum Stockholm.</div>
-  <div class="v-sub">IMAGE · Date unknown · /91676/arkm_photo_ARKM1988_111_32731_5</div>
+  <div class="v-title">Maestro Francisco Braga (infância)</div>
+  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · 187- · maestro-francisco-braga-infancia</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Europeana</span>
+    <span class="v-meta-tag mv">Brasiliana Museus</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    
+    <span class="v-meta-tag">Brasiliana Museus</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Armsmycke med &quot;guldnötter&quot;, Nationalmuseum Stockholm.</strong> — Armsmycke med &quot;guldnötter&quot;, Nationalmuseum Stockholm.. 1962 - 1962Designer/Formgivare: Persson, Sigurd</div>
+  <div class="v-story"><strong>Maestro Francisco Braga (infância)</strong> — Sobre fundo escuro, ao centro, busto de um menino com cabelo castanho claro de frente. Usa quepe preto com emblema centralizado sobre fundo vermelho de uma lira ladeada por guirlanda encimada pela coroa imperial. Traja casaco preto com botões dourados e camisa branca. Moldura em madeira envernizada.</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: http://creativecommons.org/publicdomain/mark/1.0/</div>
+      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,15 +1000,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">/91676/arkm_photo_ARKM1988_111_32731_5</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Persson, Sigurd</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">IMAGE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Date unknown</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Swedish Centre for Architecture and Design</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">IMAGE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">maestro-francisco-braga-infancia</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">187-</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 33,50 cm · largura 27,50 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">http://creativecommons.org/publicdomain/mark/1.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -982,24 +1026,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1354.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_644/v1642991307/v2/prod/small/000501_001000/000821_006.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Homage to Josef Hoffmann, Begin the Beguine</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2014.66</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/111777/preview" loading="lazy"></div>
+        <div class="v-rel-title">Photograph</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH005300</div>
       </a>
       <a class="v-rel-card" href="NFC1355.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fcollection.mobilier-national.fr%2Fmedia%2Fxl%2FBIDEAU%2F2015%2F07%2FGMLC-33-000_9-2015.jpg&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">ORFEVRERIE - Bénitier et goupillon</div>
-        <div class="v-rel-meta">Europeana · /957/GMLC_33_000</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PC0392/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Corn on the Cob</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · PH.558-2024</div>
       </a>
       <a class="v-rel-card" href="NFC1357.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2008BT4243/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Black 201 television set</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.5:6, 7-1974</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/64.228.188_a.JPG" loading="lazy"></div>
+        <div class="v-rel-title">Drum, Monkey Figures</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 308721</div>
       </a>
       <a class="v-rel-card" href="NFC1358.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/619602/preview" loading="lazy"></div>
-        <div class="v-rel-title">One Sen</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · NU006392</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fcollection.mobilier-national.fr%2Fmedia%2Fxl%2FCINQPEYRES%2F2014%2F06%2Fgob-25-001_2014.jpg&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">CARTON DE GARNITURE DE MOBILIER - Modèle de dossier de canapé : Les Amours tirant à l'arc</div>
+        <div class="v-rel-meta">Europeana · /957/GOB_25_001</div>
       </a></div>
   </div>
 </div>
@@ -1012,7 +1056,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.europeana.eu/item/91676/arkm_photo_ARKM1988_111_32731_5?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/maestro-francisco-braga-infancia/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1044,26 +1088,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Armsmycke med &quot;guldnötter&quot;, Nationalmuseum Stockholm.`,
-  type: `IMAGE`,
-  date: `Date unknown`,
-  registration: `/91676/arkm_photo_ARKM1988_111_32731_5`,
-  location: `Swedish Centre for Architecture and Design`,
-  discipline: ``,
-  category: `IMAGE`,
-  description: `Armsmycke med "guldnötter", Nationalmuseum Stockholm.. 1962 - 1962Designer/Formgivare: Persson, Sigurd`,
-  medium: ``,
-  artist: `Persson, Sigurd`,
-  culture: ``,
-  dimensions: ``,
-  wall_description: ``,
+  title: `Maestro Francisco Braga (infância)`,
+  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  date: `187-`,
+  registration: `maestro-francisco-braga-infancia`,
+  location: `Brasiliana Museus`,
+  discipline: `Brasiliana Museus`,
+  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  description: `Sobre fundo escuro, ao centro, busto de um menino com cabelo castanho claro de frente. Usa quepe preto com emblema centralizado sobre fundo vermelho de uma lira ladeada por guirlanda encimada pela coroa imperial. Traja casaco preto com botões dourados e camisa branca. Moldura em madeira envernizada.`,
+  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  artist: ``,
+  culture: `Brazil`,
+  dimensions: `altura 33,50 cm · largura 27,50 cm`,
+  wall_description: `Sobre fundo escuro, ao centro, busto de um menino com cabelo castanho claro de frente. Usa quepe preto com emblema centralizado sobre fundo vermelho de uma lira ladeada por guirlanda encimada pela coroa imperial. Traja casaco preto com botões dourados e camisa branca. Moldura em madeira envernizada.`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `http://creativecommons.org/publicdomain/mark/1.0/`,
-  source_url: `https://www.europeana.eu/item/91676/arkm_photo_ARKM1988_111_32731_5?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb`,
-  institution: `Europeana`
+  tombstone: `Maestro Francisco Braga (infância). 187-. Brasiliana Museus`,
+  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
+  source_url: `https://brasiliana.museus.gov.br/acervos/maestro-francisco-braga-infancia/`,
+  institution: `Brasiliana Museus`
 };
 
 // Build rich context from available fields
@@ -1644,7 +1688,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_europeana',
+      collection: 'archai_brasiliana',
       text,
       authorType: 'visitor',
     }),

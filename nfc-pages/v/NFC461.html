@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Udäkki — ARCHAI</title>
+<title>&quot;Windsor Castle&quot; doosje met miniatuurpenningen met het portret van leden van de Engelse koninklijke familie — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,27 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/mi/original/midp89.4.854side2.jpg" alt="Udäkki" loading="eager">
+  <img src="https://iiif.micr.io/uhpXx/full/max/0/default.jpg" alt="&quot;Windsor Castle&quot; doosje met miniatuurpenningen met het portret van leden van de Engelse koninklijke familie" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Udäkki</div>
-  <div class="v-sub">Udäkki · late 19th Century · 501466</div>
+  <div class="v-title">&quot;Windsor Castle&quot; doosje met miniatuurpenningen met het portret van leden van de Engelse koninklijke familie</div>
+  <div class="v-sub">historiepenning · 2026-02-14T04:18:06Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+        &lt;setSpec&gt;2601&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:creator&gt;Joseph Moore&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1850 - 1890 · 200100402</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
+    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Musical Instruments</span>
+
   </div>
 
   <!-- SHARE -->
@@ -903,11 +948,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Udäkki</strong> — Udäkki. Udäkki. Wood, rope, skin. Musical Instruments. Indian. Membranophone-double-headed / waisted drum. late 19th Century</div>
+  <div class="v-story"><strong>&quot;Windsor Castle&quot; doosje met miniatuurpenningen met het portret van leden van de Engelse koninklijke familie</strong> — Klein messing doosje met deksel, met reli&amp;#235;fafbeelding van het Britse wapen met dragers resp. Windsor Castle, inhoudend een miniatuurpenning op naam van Koningin Victoria (10 mm).</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +978,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,18 +1009,25 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">501466</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Wood, rope, skin</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Indian</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Membranophone-double-headed / waisted drum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">late 19th Century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">7 × 6 in. (17.8 × 15.2 cm)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 681</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Udäkki</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">200100402</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Joseph Moore</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">messing</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">historiepenning</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-02-14T04:18:06Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+        &lt;setSpec&gt;2601&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:creator&gt;Joseph Moore&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1850 - 1890</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">historiepenning</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -985,24 +1042,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC459.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/aUWSt/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van Margaretha van Beieren</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010023</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/AvOmO/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Filips de Goede, hertog van Bourgondi&amp;#235;</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010029</div>
       </a>
       <a class="v-rel-card" href="NFC460.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/86669?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">stole, lace</div>
-        <div class="v-rel-meta">Auckland Museum · T98</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/910839/preview" loading="lazy"></div>
+        <div class="v-rel-title">New, authentic, and complete collection of voyages round the world : undertaken and performed by royal authority. Containing a new, authentic, entertaining, instructive, full, and complete historical account of Captain Cook's first, second, third, and last voyages, undertaken by order of His present Majesty, for making new discoveries in geography, navigation, astronomy, &amp;c. in the Southern and Northern Hemispheres, &amp;c., &amp;c., &amp;c. ... To which will be added, complete and genuine narratives of other voyages of discovery round the world, &amp;c. ... Illustrated with all the elegant, splendid, and fine large folio copper-plates, belonging to Capt. Cook's first, second, third and last voyages ... / the whole of these voyages of Capt. James Cook, &amp;c., being newly written by the editors from the authentic journals of several principal officers and other gentlemen of the most distinguished naval and philosophical abilities, who sailed in the various ships and now publishing under the immediate direction of George William Anderson ... assisted, very materially, by a principal officer who sailed in the Resolution sloop, and by other gentlemen of the Royal Navy.</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · RB000015</div>
       </a>
       <a class="v-rel-card" href="NFC462.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/fWRxp/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Schutterspenning van Middelburg</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100430</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_668/v1627824788/v2/prod/small/005501_006000/005945_001.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Red A stool, no. 363</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2016.349</div>
       </a>
       <a class="v-rel-card" href="NFC463.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1924.533/1924.533_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Red-Figure Column Krater (Mixing Vessel): Satyrs Pursuing Maenads</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1924.533</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627863231/v2/prod/small/007001_007500/007266_004.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Game &amp; Watch Donkey Kong Jr. portable game device</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2016.586</div>
       </a></div>
   </div>
 </div>
@@ -1015,7 +1072,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/501466" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/200100402" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1047,26 +1104,35 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Udäkki`,
-  type: `Udäkki`,
-  date: `late 19th Century`,
-  registration: `501466`,
-  location: `Gallery 681`,
-  discipline: `Musical Instruments`,
-  category: `Membranophone-double-headed / waisted drum`,
-  description: `Udäkki. Udäkki. Wood, rope, skin. Musical Instruments. Indian. Membranophone-double-headed / waisted drum. late 19th Century`,
-  medium: `Wood, rope, skin`,
-  artist: ``,
-  culture: `Indian`,
-  dimensions: `7 × 6 in. (17.8 × 15.2 cm)`,
+  title: `&quot;Windsor Castle&quot; doosje met miniatuurpenningen met het portret van leden van de Engelse koninklijke familie`,
+  type: `historiepenning`,
+  date: `2026-02-14T04:18:06Z</datestamp>
+        <setSpec>260239</setSpec>
+        <setSpec>261106</setSpec>
+        <setSpec>260251</setSpec>
+        <setSpec>2601</setSpec>
+      </header>
+      <metadata>
+        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
+          <dc:creator>Joseph Moore</dc:creator>
+          <dc:date>1850 - 1890`,
+  registration: `200100402`,
+  location: `Rijksmuseum, Amsterdam`,
+  discipline: ``,
+  category: `historiepenning`,
+  description: `Klein messing doosje met deksel, met reli&#235;fafbeelding van het Britse wapen met dragers resp. Windsor Castle, inhoudend een miniatuurpenning op naam van Koningin Victoria (10 mm).`,
+  medium: `messing`,
+  artist: `Joseph Moore`,
+  culture: ``,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/501466`,
-  institution: `The Metropolitan Museum of Art`
+  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
+  source_url: `https://www.rijksmuseum.nl/en/collection/200100402`,
+  institution: `Rijksmuseum, Amsterdam`
 };
 
 // Build rich context from available fields
@@ -1647,7 +1713,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_met',
+      collection: 'archai_rijks',
       text,
       authorType: 'visitor',
     }),

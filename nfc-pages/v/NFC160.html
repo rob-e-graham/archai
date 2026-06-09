@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Red-Figure Janiform Kantharos (Two-Sided Head-Shaped Drinking Cup): Satyr and African — ARCHAI</title>
+<title>Camera — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/1979.69/1979.69_web.jpg" alt="Red-Figure Janiform Kantharos (Two-Sided Head-Shaped Drinking Cup): Satyr and African" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2018KR4603/full/!600,600/0/default.jpg" alt="Camera" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Red-Figure Janiform Kantharos (Two-Sided Head-Shaped Drinking Cup): Satyr and African</div>
-  <div class="v-sub">Ceramic · c. 470–460 BCE · 1979.69</div>
+  <div class="v-title">Camera</div>
+  <div class="v-sub">Camera · Date unknown · RPS.349-2018</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
+    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Greek and Roman Art</span>
+    <span class="v-meta-tag">Camera</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Red-Figure Janiform Kantharos (Two-Sided Head-Shaped Drinking Cup): Satyr and African</strong> — Combining two mold-made faces beneath a pair of vertical handles and a flaring, wheel-made lip, this unusual drinking cup is a variation of the kantharos, a vessel favored by the wine god Dionysos. A snub nose and equine ears identify the satyr, a relatively common type on such vessels. The glossy b…</div>
+  <div class="v-story"><strong>Camera</strong> — Camera. Camera. Made by Coronet Camera Co.. In store</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,19 +1000,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1979.69</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Class K (The Toronto Class)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">ceramic</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Greek, Attic</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Greek and Roman Art</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ceramic</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 470–460 BCE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 19.6 x 17.2 cm (7 11/16 x 6 3/4 in.); Diameter of base: 8.5 cm (3 3/8 in.); Diameter of rim: 15.3 cm (6 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">102B Greek</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Ceramic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">RPS.349-2018</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Coronet Camera Co.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Camera</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Camera</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Date unknown</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In store</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Camera</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -986,24 +1024,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC158.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Femuseumplus.lsh.se%2FeMuseumPlus%3Fservice%3DImageAsset%26module%3Dcollection%26objectId%3D31713%26resolution%3DhighImageResolution&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Kompass av stark kopparhaltig förgylld mässing.. Compass of strong copper-bearing gilded brass</div>
-        <div class="v-rel-meta">Europeana · /2064105/Museu_ProvidedCHO_Skoklosters_slott_31713</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/ayRjI/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Honderdjarig bestaan van het Gymnasium te Stuttgart 1786 (?)</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100139</div>
       </a>
       <a class="v-rel-card" href="NFC159.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/66c1797f-b87e-8736-cdf6-c490bd34863b/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Mater Dolorosa (Sorrowing Virgin)</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 110673</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_729/v1627853231/v2/prod/small/002501_003000/002860_004.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Civilization Pillar</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2012.947</div>
       </a>
       <a class="v-rel-card" href="NFC161.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fimages.memorix.nl%2Fpgl_amh%2Fthumb%2Ffullsize%2F9a162927-1fc6-4f7c-f019-6ba3be1b2717.jpg&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Brits model anesthesie-apparaat (E.S.O. Chloroform apparatus)</div>
-        <div class="v-rel-meta">Europeana · /2021648/resource_document_collectiegelderland_4JLXT5KDXG2LCOLJ3W4C4KDJ7WYM7RIWGMAWZ32UONUPHIWH3Q6A</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/gNFnS/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Karel de Stoute, hertog van Bourgondie, rekenpenning van het hertogdom Brabant</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010043</div>
       </a>
       <a class="v-rel-card" href="NFC162.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/827d02ef-6765-9728-c07e-52ad22b73fd3/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Waterloo Bridge, Sunlight Effect</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 20701</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2019LK7256/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Jardiniere</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · M.40-2018</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1054,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://clevelandart.org/art/1979.69" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1431457/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,26 +1086,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Red-Figure Janiform Kantharos (Two-Sided Head-Shaped Drinking Cup): Satyr and African`,
-  type: `Ceramic`,
-  date: `c. 470–460 BCE`,
-  registration: `1979.69`,
-  location: `102B Greek`,
-  discipline: `Greek and Roman Art`,
-  category: `Ceramic`,
-  description: `Combining two mold-made faces beneath a pair of vertical handles and a flaring, wheel-made lip, this unusual drinking cup is a variation of the kantharos, a vessel favored by the wine god Dionysos. A snub nose and equine ears identify the satyr, a relatively common type on such vessels. The glossy black face and red hair on the other side are more unusual, apparently meant to show an older African man, with white beard and eyebrows, and wrinkles around the eyes.`,
-  medium: `ceramic`,
-  artist: `Class K (The Toronto Class)`,
-  culture: `Greek, Attic`,
-  dimensions: `Overall: 19.6 x 17.2 cm (7 11/16 x 6 3/4 in.); Diameter of base: 8.5 cm (3 3/8 in.); Diameter of rim: 15.3 cm (6 in.)`,
+  title: `Camera`,
+  type: `Camera`,
+  date: `Date unknown`,
+  registration: `RPS.349-2018`,
+  location: `In store`,
+  discipline: `Camera`,
+  category: `Camera`,
+  description: `Camera. Camera. Made by Coronet Camera Co.. In store`,
+  medium: ``,
+  artist: `Coronet Camera Co.`,
+  culture: ``,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: `This janiform kantharos is unique in juxtaposing heads of a satyr and an African man.`,
-  provenance: `[{"description":"The Cleveland Museum of Art, Cleveland, OH","citations":[],"footnotes":[],"date":"1979-","sortorder":2}]`,
-  tombstone: `Red-Figure Janiform Kantharos (Two-Sided Head-Shaped Drinking Cup): Satyr and African, c. 470–460 BCE. Assigned to Class K (The Toronto Class). Ceramic; overall: 19.6 x 17.2 cm (7 11/16 x 6 3/4 in.); diameter of base: 8.5 cm (3 3/8 in.); diameter of rim: 15.3 cm (6 in.). The Cleveland Museum of Art, John L. Severance Fund, 1979.69`,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://clevelandart.org/art/1979.69`,
-  institution: `Cleveland Museum of Art`
+  did_you_know: ``,
+  provenance: ``,
+  tombstone: ``,
+  licence: `V&A Open Access`,
+  source_url: `https://collections.vam.ac.uk/item/O1431457/`,
+  institution: `Victoria and Albert Museum, London`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1686,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_cma',
+      collection: 'archai_va',
       text,
       authorType: 'visitor',
     }),

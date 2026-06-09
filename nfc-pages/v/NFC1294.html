@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Young Woman at an Open Half-Door — ARCHAI</title>
+<title>Untitled (Semi-Circle of Children, Central Girl Dressed as an Angel Holding the Baby Jesus) — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/91c51644-871f-cda9-82bb-94f4973ae339/full/843,/0/default.jpg" alt="Young Woman at an Open Half-Door" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/2022.342/2022.342_web.jpg" alt="Untitled (Semi-Circle of Children, Central Girl Dressed as an Angel Holding the Baby Jesus)" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Young Woman at an Open Half-Door</div>
-  <div class="v-sub">Painting · 1645 · 94840</div>
+  <div class="v-title">Untitled (Semi-Circle of Children, Central Girl Dressed as an Angel Holding the Baby Jesus)</div>
+  <div class="v-sub">Photograph · c. 1910s · 2022.342</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Art Institute of Chicago</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Painting and Sculpture of Europe</span>
+    <span class="v-meta-tag">Photography</span>
   </div>
 
   <!-- SHARE -->
@@ -903,8 +939,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Young Woman at an Open Half-Door</strong> — Young Woman at an Open Half-Door. Painting. Oil on canvas. Painting and Sculpture of Europe. Rembrandt van Rijn (Dutch, 1606–1669)
-Workshop of Rembrandt van Rijn (Dutch, 1606–1669). oil on canvas. 1645. Holland. 17th Century. &lt;p&gt;This young woman, with her sidelong glance and the ambiguous lift at th…</div>
+  <div class="v-story"><strong>Untitled (Semi-Circle of Children, Central Girl Dressed as an Angel Holding the Baby Jesus)</strong> — The Foto Imperio photography studio was run by Andrés and Francisco Hernández in San José, Costa Rica. The brothers also ran a bookstore and print shop, and Francisco was a successful cartoonist, too. Here they artfully arranged 35 children to create a group portrait commemorating a religious event—…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -934,24 +969,29 @@ Workshop of Rembrandt van Rijn (Dutch, 1606–1669). oil on canvas. 1645. Hollan
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -960,17 +1000,16 @@ Workshop of Rembrandt van Rijn (Dutch, 1606–1669). oil on canvas. 1645. Hollan
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">94840</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Rembrandt van Rijn (Dutch, 1606–1669)
-Workshop of Rembrandt van Rijn (Dutch, 1606–1669)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Oil on canvas</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Holland</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Painting and Sculpture of Europe</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">oil on canvas</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1645</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">102.5 × 85.1 cm (40 3/8 × 33 1/2 in.); Framed: 121.6 × 104.4 × 5.7 cm (47 7/8 × 41 1/8 × 2 1/4 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 213</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2022.342</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Andrés and Francisco Hernández (Costa Rican, active c. 1910s–30s)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">gelatin silver print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Costa Rica</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1910s</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Image: 15 x 23.9 cm (5 7/8 x 9 7/16 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Cleveland Museum of Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
@@ -988,24 +1027,24 @@ Workshop of Rembrandt van Rijn (Dutch, 1606–1669)</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1292.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%3A80%2Fwebclient%2FDeliveryManager%3Fpid%3D6355692%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Photographic reportage, Florence, 1957-1956. Servizio fotografico Firenze, 1957-1956</div>
-        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6355692_custom_att_2_simple_viewer</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15935999&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Halle am Forum im Nordflügel (aus: Museum im Werden)</div>
+        <div class="v-rel-meta">Europeana · /08535/item_XVGCKW2CACVAEL4T6ABETHKYP5U3KUPO</div>
       </a>
       <a class="v-rel-card" href="NFC1293.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AT9584/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Bush DAC90</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.288-1976</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680039/825-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Revista naval</div>
+        <div class="v-rel-meta">Brasiliana Museus · revista-naval</div>
       </a>
       <a class="v-rel-card" href="NFC1295.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15936099&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Halle im Nördlichen Kopfbau (aus: Museum im Werden)</div>
-        <div class="v-rel-meta">Europeana · /08535/item_UR2QDYUZNIZISU3PMKUZOST7XNVGCXF5</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2020.209/2020.209_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Perumal Temple Vimana from Corner of Court, Madurai</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 2020.209</div>
       </a>
       <a class="v-rel-card" href="NFC1296.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1997.300/1997.300_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Cypriot Vase</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1997.300</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/TTTrn/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Engelse penning op het huwelijk van de Prince of Wales met Alexandra van Denemarken 1863</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100020</div>
       </a></div>
   </div>
 </div>
@@ -1018,7 +1057,7 @@ Workshop of Rembrandt van Rijn (Dutch, 1606–1669)</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/94840" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/2022.342" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1050,28 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Young Woman at an Open Half-Door`,
-  type: `Painting`,
-  date: `1645`,
-  registration: `94840`,
-  location: `Gallery 213`,
-  discipline: `Painting and Sculpture of Europe`,
-  category: `oil on canvas`,
-  description: `Young Woman at an Open Half-Door. Painting. Oil on canvas. Painting and Sculpture of Europe. Rembrandt van Rijn (Dutch, 1606–1669)
-Workshop of Rembrandt van Rijn (Dutch, 1606–1669). oil on canvas. 1645. Holland. 17th Century. <p>This young woman, with her sidelong glance and the ambiguous lift at the corner of her mouth, exemplifies the playful nature of Rembrandt van Rijn’s character studies, called <em>tronies</em>, as well as his use of doorways and windows as clever framing devices. However, the overall flatness of this composition argues against Rembrandt’s authorship. It may have been cr…`,
-  medium: `Oil on canvas`,
-  artist: `Rembrandt van Rijn (Dutch, 1606–1669)
-Workshop of Rembrandt van Rijn (Dutch, 1606–1669)`,
-  culture: `Holland`,
-  dimensions: `102.5 × 85.1 cm (40 3/8 × 33 1/2 in.); Framed: 121.6 × 104.4 × 5.7 cm (47 7/8 × 41 1/8 × 2 1/4 in.)`,
+  title: `Untitled (Semi-Circle of Children, Central Girl Dressed as an Angel Holding the Baby Jesus)`,
+  type: `Photograph`,
+  date: `c. 1910s`,
+  registration: `2022.342`,
+  location: `Cleveland Museum of Art`,
+  discipline: `Photography`,
+  category: `Photograph`,
+  description: `The Foto Imperio photography studio was run by Andrés and Francisco Hernández in San José, Costa Rica. The brothers also ran a bookstore and print shop, and Francisco was a successful cartoonist, too. Here they artfully arranged 35 children to create a group portrait commemorating a religious event—perhaps a Christmas pageant? The girl dressed as an angel holds a baby, while the girl and boy at her feet seem posed as if for a wedding portrait.`,
+  medium: `gelatin silver print`,
+  artist: `Andrés and Francisco Hernández (Costa Rican, active c. 1910s–30s)`,
+  culture: `Costa Rica`,
+  dimensions: `Image: 15 x 23.9 cm (5 7/8 x 9 7/16 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
+  did_you_know: `Portraits are the bread-and-butter business of most photography studios.`,
+  provenance: `[{"description":"Michael Resch, Gates Mills, OH, given to The Cleveland Museum of Art, Cleveland, OH","citations":[],"footnotes":null,"date":"?-2022","sortorder":1}]`,
+  tombstone: `Untitled (Semi-Circle of Children, Central Girl Dressed as an Angel Holding the Baby Jesus), c. 1910s. Andrés and Francisco Hernández (Costa Rican, active c. 1910s–30s). Gelatin silver print; image: 15 x 23.9 cm (5 7/8 x 9 7/16 in.). The Cleveland Museum of Art, Gift of Michael F. Resch, 2022.342`,
   licence: `CC0 — Public Domain`,
-  source_url: `https://www.artic.edu/artworks/94840`,
-  institution: `Art Institute of Chicago`
+  source_url: `https://clevelandart.org/art/2022.342`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1652,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_aic',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Oliphant (side-blown horn) — ARCHAI</title>
+<title>Merahi metua no Tehamana (Tehamana Has Many Parents or The Ancestors of Tehamana) — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/ao/original/DP-37845-001.jpg" alt="Oliphant (side-blown horn)" loading="eager">
+  <img src="https://www.artic.edu/iiif/2/48268fc7-2eb4-ded6-1293-e91f27b66478/full/843,/0/default.jpg" alt="Merahi metua no Tehamana (Tehamana Has Many Parents or The Ancestors of Tehamana)" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Oliphant (side-blown horn)</div>
-  <div class="v-sub">Horn · ca. 1490–1530 · 883968</div>
+  <div class="v-title">Merahi metua no Tehamana (Tehamana Has Many Parents or The Ancestors of Tehamana)</div>
+  <div class="v-sub">Painting · 1893 · 60812</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
+    <span class="v-meta-tag mv">Art Institute of Chicago</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">The Michael C. Rockefeller Wing</span>
+    <span class="v-meta-tag">Painting and Sculpture of Europe</span>
   </div>
 
   <!-- SHARE -->
@@ -903,7 +939,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Oliphant (side-blown horn)</strong> — Oliphant (side-blown horn). Horn. Ivory. The Michael C. Rockefeller Wing. Temne or Bullom peoples. by Temne or Bullom artist(s). Ivories-Elephant. ca. 1490–1530</div>
+  <div class="v-story"><strong>Merahi metua no Tehamana (Tehamana Has Many Parents or The Ancestors of Tehamana)</strong> — Merahi metua no Tehamana (Tehamana Has Many Parents or The Ancestors of Tehamana). Painting. Oil on jute canvas. Painting and Sculpture of Europe. Paul Gauguin (French, 1848–1903). oil on canvas. 1893. France. Post-Impressionism. &lt;p&gt;In this portrait, the 13-year-old Tahitian girl named Tehamana appe…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,16 +1000,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">883968</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Temne or Bullom artist(s)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Ivory</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Temne or Bullom peoples</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">The Michael C. Rockefeller Wing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ivories-Elephant</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca. 1490–1530</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">L. 23 × Diam. 3 5/8 × Thickness (at opening) 1/16 in. (58.4 × 9.2 × 0.2 cm)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 341</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Horn</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">60812</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Paul Gauguin (French, 1848–1903)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Oil on jute canvas</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Painting and Sculpture of Europe</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">oil on canvas</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1893</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">75 × 53 cm (29 1/2 × 20 7/8 in.); Framed: 98.8 × 76.6 × 8.3 cm (38 7/8 × 30 1/8 × 3 1/4 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 247</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
@@ -986,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC288.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/hjmvH/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Gulden voor Nederlands Indi&amp;#235;, 1802</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100085</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/VnvuP/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Hollandse gulden, 1793</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100257</div>
       </a>
       <a class="v-rel-card" href="NFC289.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/77f1c8e3-16c6-1147-f4aa-4cfc8bd3eb8b/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Madame François Buron</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 88632</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_582/v1627902436/v2/prod/small/006001_006500/006426_007.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Model, Menara Mesiniaga (1989–1992), Subang Jaya, Malaysia</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2018.39</div>
       </a>
       <a class="v-rel-card" href="NFC291.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1979.57/1979.57_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Ruin by the Sea</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1979.57</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/midp89.4.1378.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Tabl Šamī</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 501944</div>
       </a>
       <a class="v-rel-card" href="NFC292.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_802/v1714972143/v2/prod/small/002001_002500/002083_003.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Got Money</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2012.95</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/be0d3e50-a600-6f33-ea8f-16a34d892442/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Stacks of Wheat (Sunset, Snow Effect)</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 81545</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/883968" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.artic.edu/artworks/60812" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,26 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Oliphant (side-blown horn)`,
-  type: `Horn`,
-  date: `ca. 1490–1530`,
-  registration: `883968`,
-  location: `Gallery 341`,
-  discipline: `The Michael C. Rockefeller Wing`,
-  category: `Ivories-Elephant`,
-  description: `Oliphant (side-blown horn). Horn. Ivory. The Michael C. Rockefeller Wing. Temne or Bullom peoples. by Temne or Bullom artist(s). Ivories-Elephant. ca. 1490–1530`,
-  medium: `Ivory`,
-  artist: `Temne or Bullom artist(s)`,
-  culture: `Temne or Bullom peoples`,
-  dimensions: `L. 23 × Diam. 3 5/8 × Thickness (at opening) 1/16 in. (58.4 × 9.2 × 0.2 cm)`,
+  title: `Merahi metua no Tehamana (Tehamana Has Many Parents or The Ancestors of Tehamana)`,
+  type: `Painting`,
+  date: `1893`,
+  registration: `60812`,
+  location: `Gallery 247`,
+  discipline: `Painting and Sculpture of Europe`,
+  category: `oil on canvas`,
+  description: `Merahi metua no Tehamana (Tehamana Has Many Parents or The Ancestors of Tehamana). Painting. Oil on jute canvas. Painting and Sculpture of Europe. Paul Gauguin (French, 1848–1903). oil on canvas. 1893. France. Post-Impressionism. <p>In this portrait, the 13-year-old Tahitian girl named Tehamana appears stoic, shoulders squared and gaze unflinching. She wears a missionary dress and wields a Samoan fan as white flowers tumble from her hair. The ripe mango beside her alludes to fertility. In the background, Gauguin combined various non-European emblems—glyphs derived from an Easter Island tablet …`,
+  medium: `Oil on jute canvas`,
+  artist: `Paul Gauguin (French, 1848–1903)`,
+  culture: `France`,
+  dimensions: `75 × 53 cm (29 1/2 × 20 7/8 in.); Framed: 98.8 × 76.6 × 8.3 cm (38 7/8 × 30 1/8 × 3 1/4 in.)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
   licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/883968`,
-  institution: `The Metropolitan Museum of Art`
+  source_url: `https://www.artic.edu/artworks/60812`,
+  institution: `Art Institute of Chicago`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_met',
+      collection: 'archai_aic',
       text,
       authorType: 'visitor',
     }),

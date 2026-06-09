@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Engelse penning op het huwelijk van de Prince of Wales met Alexandra van Denemarken 1863 — ARCHAI</title>
+<title>Stone Garden No. 1 — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,27 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://iiif.micr.io/TTTrn/full/max/0/default.jpg" alt="Engelse penning op het huwelijk van de Prince of Wales met Alexandra van Denemarken 1863" loading="eager">
+  <img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627897161/v2/prod/small/003001_003500/003423_008.jpg" alt="Stone Garden No. 1" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Engelse penning op het huwelijk van de Prince of Wales met Alexandra van Denemarken 1863</div>
-  <div class="v-sub">historiepenning · 2026-02-14T04:16:51Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;John Ottley&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1863 · 200100020</div>
+  <div class="v-title">Stone Garden No. 1</div>
+  <div class="v-sub">Ink Art · 2009 · 2012.786</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    
+    <span class="v-meta-tag mv">M+, Hong Kong</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">Visual Art</span>
   </div>
 
   <!-- SHARE -->
@@ -912,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Engelse penning op het huwelijk van de Prince of Wales met Alexandra van Denemarken 1863</strong> — Tinnen penning met onvolledige doorboring, op de voorzijde de geconjugeerde borstbeelden van Albert en Alexandra naar rechts met omschrift, op de keerzijde tien regels tekst onder drie pauwenveren binnen een bloemenkrans.</div>
-  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
-      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
+  <div class="v-story"><strong>Stone Garden No. 1</strong> — Four vertical ink paintings on paper depicting scholar's rocks rendered in grey tones against a white background. The rocks are portrayed with sharp edges, textured surfaces, and hollows. The three paintings on the viewer's right feature a vertical line of Chinese characters.</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Peng Wei · © Peng Wei</div>
     </div>
 
   <div class="v-divider"></div>
@@ -942,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -968,25 +1000,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">200100020</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">John Ottley</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">tin</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">historiepenning</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-02-14T04:16:51Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;John Ottley&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1863</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">historiepenning</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2012.786</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Peng Wei</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">ink on paper</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Chinese</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Visual Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ink Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2009</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">overall: 141.5 × 292 × 5 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Ink Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Peng Wei · © Peng Wei</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -1001,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC738.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/675287/003673-Auguste-Petit-Princesa-Isabel-scaled.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Princesa Isabel</div>
-        <div class="v-rel-meta">Brasiliana Museus · princesa-isabel-5</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/8f06717c-9ede-f22b-d13b-327a50c22f9c/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Woman at the Piano</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 25825</div>
       </a>
       <a class="v-rel-card" href="NFC739.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1951.356/1951.356_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Edge of the Woods Near L'Hermitage, Pontoise</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1951.356</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/248347/preview" loading="lazy"></div>
+        <div class="v-rel-title">Wedding photograph</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH020674</div>
       </a>
       <a class="v-rel-card" href="NFC741.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/646968/21006-scaled.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Corcovado</div>
-        <div class="v-rel-meta">Brasiliana Museus · corcovado</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%3A80%2Fwebclient%2FDeliveryManager%3Fpid%3D6355703%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Photographic reportage, Florence, 1957-1956. Servizio fotografico Firenze, 1957-1956</div>
+        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6355703_custom_att_2_simple_viewer</div>
       </a>
       <a class="v-rel-card" href="NFC742.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/675662/003498.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Batalha dos Guararapes (ex-voto)</div>
-        <div class="v-rel-meta">Brasiliana Museus · batalha-dos-guararapes-ex-voto</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AL4513/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Philips No. 2514</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.3&amp;A-1978</div>
       </a></div>
   </div>
 </div>
@@ -1031,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/200100020" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/stone-garden-no-1-2012786/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1063,35 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Engelse penning op het huwelijk van de Prince of Wales met Alexandra van Denemarken 1863`,
-  type: `historiepenning`,
-  date: `2026-02-14T04:16:51Z</datestamp>
-        <setSpec>260239</setSpec>
-        <setSpec>261106</setSpec>
-        <setSpec>260251</setSpec>
-        <setSpec>2601</setSpec>
-      </header>
-      <metadata>
-        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
-          <dc:creator>John Ottley</dc:creator>
-          <dc:date>1863`,
-  registration: `200100020`,
-  location: `Rijksmuseum, Amsterdam`,
-  discipline: ``,
-  category: `historiepenning`,
-  description: `Tinnen penning met onvolledige doorboring, op de voorzijde de geconjugeerde borstbeelden van Albert en Alexandra naar rechts met omschrift, op de keerzijde tien regels tekst onder drie pauwenveren binnen een bloemenkrans.`,
-  medium: `tin`,
-  artist: `John Ottley`,
-  culture: ``,
-  dimensions: ``,
-  wall_description: ``,
+  title: `Stone Garden No. 1`,
+  type: `Ink Art`,
+  date: `2009`,
+  registration: `2012.786`,
+  location: `M+, Hong Kong`,
+  discipline: `Visual Art`,
+  category: `Ink Art`,
+  description: `Four vertical ink paintings on paper depicting scholar's rocks rendered in grey tones against a white background. The rocks are portrayed with sharp edges, textured surfaces, and hollows. The three paintings on the viewer's right feature a vertical line of Chinese characters.`,
+  medium: `ink on paper`,
+  artist: `Peng Wei`,
+  culture: `Chinese`,
+  dimensions: `overall: 141.5 × 292 × 5 cm`,
+  wall_description: `Four vertical ink paintings on paper depicting scholar's rocks rendered in grey tones against a white background. The rocks are portrayed with sharp edges, textured surfaces, and hollows. The three paintings on the viewer's right feature a vertical line of Chinese characters.`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
-  source_url: `https://www.rijksmuseum.nl/en/collection/200100020`,
-  institution: `Rijksmuseum, Amsterdam`
+  tombstone: `Stone Garden No. 1. Peng Wei. 2009. M+, Hong Kong`,
+  licence: `CC0 metadata · M+ API service non-commercial · © Peng Wei`,
+  source_url: `https://www.mplus.org.hk/en/collection/objects/stone-garden-no-1-2012786/`,
+  institution: `M+, Hong Kong`
 };
 
 // Build rich context from available fields
@@ -1672,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_rijks',
+      collection: 'archai_mplus',
       text,
       authorType: 'visitor',
     }),

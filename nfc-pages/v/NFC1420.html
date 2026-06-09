@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Servizio fotografico Firenze, 1973 — ARCHAI</title>
+<title>Blue vase [4] — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%2Fwebclient%2FDeliveryManager%3Fpid%3D6331289%26custom_att_2%3Ddeeplink&amp;type=IMAGE" alt="Servizio fotografico Firenze, 1973" loading="eager">
+  <img src="https://media.tepapa.govt.nz/collection/65856/preview" alt="Blue vase [4]" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Servizio fotografico Firenze, 1973</div>
-  <div class="v-sub">IMAGE · 1973 · /9200369/webclient_DeliveryManager_pid_6331289_custom_att_2_simple_viewer</div>
+  <div class="v-title">Blue vase [4]</div>
+  <div class="v-sub">ceramics · 1991 · 1996-0033-29/4-4</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Europeana</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(155,143,191,0.28);color:#9b8fbf;">Share alike</span>
-    
+    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">Art</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Servizio fotografico Firenze, 1973</strong> — Catalogato in SIRBeC. Agenda di Paolo Monti: Leica 1501-3000 Controllo numerazione (1950-1978), presso Archivio Paolo Monti. Fattura contenuta nel faldone n. IV denominato &quot;Commesse&quot;. Monografia: Mostra di Federico Barocci, catalogo della mostra, Bologna 1975, Bologna, Edizioni Alfa (1975). Servizio…</div>
-  <div class="v-rights-note" style="border-color:rgba(155,143,191,0.28);">
-      <div class="v-rights-label" style="color:#9b8fbf;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#9b8fbf;font-weight:400;">Share alike</strong> — Reusable with attribution, and derivative use should keep the same licence terms.</div>
-      <div class="v-rights-detail">Licence / rights: http://creativecommons.org/licenses/by-sa/4.0/</div>
+  <div class="v-story"><strong>Blue vase [4]</strong> — I was given the task of paying homage to the clay history of the Expo site and making a site-specific work that was visible over a mezzanine rail from the floor below. I wanted to make the clay fly and develop a life of its own. I was helped by a happy accident. I had a collapse in the kiln of some …</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,15 +1000,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">/9200369/webclient_DeliveryManager_pid_6331289_custom_att_2_simple_viewer</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Monti, Paolo</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">IMAGE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1973</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">European Library of Information and Culture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">IMAGE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Share alike</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution, and derivative use should keep the same licence terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">http://creativecommons.org/licenses/by-sa/4.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1996-0033-29/4-4</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Richard Parker</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">hand coiled, earthenware, white slip, turquoise glaze</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Spain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ceramics</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1991</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">195mm, 420mm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ceramics</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -982,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1418.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/f2021182-1302-f76f-97f1-4e7850030e3b/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Still Life with Game Fowl</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 84709</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/10/659710-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Detector - Radial Electrical, Crystal, 1922-1925</div>
+        <div class="v-rel-meta">Museums Victoria · ST 15915</div>
       </a>
       <a class="v-rel-card" href="NFC1419.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/6/659706-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Aerial Model - Homecrafts, Radio, circa 1920</div>
-        <div class="v-rel-meta">Museums Victoria · ST 15452</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/Rorhg/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Jan van Beieren</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010027</div>
       </a>
       <a class="v-rel-card" href="NFC1421.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/bCXwZ/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Nederlandse 2&amp;#189; gulden voor Nederlands-Indi&amp;#235;, 1943</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100269</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/6f513908-03cc-b974-633b-adfce56b7936/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">The Millinery Shop</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 14572</div>
       </a>
       <a class="v-rel-card" href="NFC1422.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/64057?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">vase, small</div>
-        <div class="v-rel-meta">Auckland Museum · 22419.1</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/eg/original/DP345112.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Bow harp</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 544242</div>
       </a></div>
   </div>
 </div>
@@ -1012,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.europeana.eu/item/9200369/webclient_DeliveryManager_pid_6331289_custom_att_2_simple_viewer?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/790750" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1044,26 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Servizio fotografico Firenze, 1973`,
-  type: `IMAGE`,
-  date: `1973`,
-  registration: `/9200369/webclient_DeliveryManager_pid_6331289_custom_att_2_simple_viewer`,
-  location: `European Library of Information and Culture`,
-  discipline: ``,
-  category: `IMAGE`,
-  description: `Catalogato in SIRBeC. Agenda di Paolo Monti: Leica 1501-3000 Controllo numerazione (1950-1978), presso Archivio Paolo Monti. Fattura contenuta nel faldone n. IV denominato "Commesse". Monografia: Mostra di Federico Barocci, catalogo della mostra, Bologna 1975, Bologna, Edizioni Alfa (1975). Servizio fotografico : Firenze, 1973 / Paolo Monti. - Strisce: 7, Fotogrammi complessivi: 38 : Negativo b/n, gelatina bromuro d'argento/ pellicola ; 35 mm. - ((Sul portanegativi: [NIKMAT? PanF]. - Fonte: Agenda di Paolo Monti: Leica 1501-3000 Controllo numerazione (1950-1978), presso Archivio Paolo Monti. F…`,
-  medium: ``,
-  artist: `Monti, Paolo`,
-  culture: ``,
-  dimensions: ``,
-  wall_description: ``,
+  title: `Blue vase [4]`,
+  type: `ceramics`,
+  date: `1991`,
+  registration: `1996-0033-29/4-4`,
+  location: `Te Papa Tongarewa, Wellington`,
+  discipline: `Art`,
+  category: `ceramics`,
+  description: `I was given the task of paying homage to the clay history of the Expo site and making a site-specific work that was visible over a mezzanine rail from the floor below. I wanted to make the clay fly and develop a life of its own. I was helped by a happy accident. I had a collapse in the kiln of some smaller pots that left them bent. it rendered them fluid and relieved them of their visual weight. They started to point their toes and raise their chins, so I COULD get these pots to dance. As I worked on the project I assembled a rich soup of ideas that moved backwards and forwards through time. T…`,
+  medium: `hand coiled, earthenware, white slip, turquoise glaze`,
+  artist: `Richard Parker`,
+  culture: `Spain`,
+  dimensions: `195mm, 420mm`,
+  wall_description: `I was given the task of paying homage to the clay history of the Expo site and making a site-specific work that was visible over a mezzanine rail from the floor below. I wanted to make the clay fly and develop a life of its own. I was helped by a happy accident. I had a collapse in the kiln of some smaller pots that left them bent. it rendered them fluid and relieved them of their visual weight. They started to point their toes and raise their chins, so I COULD get these pots to dance. As I work…`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `http://creativecommons.org/licenses/by-sa/4.0/`,
-  source_url: `https://www.europeana.eu/item/9200369/webclient_DeliveryManager_pid_6331289_custom_att_2_simple_viewer?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb`,
-  institution: `Europeana`
+  tombstone: `Blue vase [4], 1991, Kāeo, by Richard Parker. © Te Papa. CC BY-NC-ND 4.0. Te Papa (1996-0033-29/4-4)`,
+  licence: `CC BY-NC-ND 4.0 · metadata CC BY 4.0`,
+  source_url: `https://collections.tepapa.govt.nz/object/790750`,
+  institution: `Museum of New Zealand Te Papa Tongarewa`
 };
 
 // Build rich context from available fields
@@ -1644,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_europeana',
+      collection: 'archai_tepapa',
       text,
       authorType: 'visitor',
     }),

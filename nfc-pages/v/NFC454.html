@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Shawl — ARCHAI</title>
+<title>dress — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://media.tepapa.govt.nz/collection/371092/preview" alt="Shawl" loading="eager">
+  <img src="https://api.aucklandmuseum.com/id/media/v/93080?rendering=standard.jpg" alt="dress" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Shawl</div>
-  <div class="v-sub">shawls · 1930s · GH015855</div>
+  <div class="v-title">dress</div>
+  <div class="v-sub">ecrm:E22_Man-Made_Object · Circa 1910 · col.2772</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
-    <span class="v-meta-tag">History</span>
+    <span class="v-meta-tag mv">Auckland Museum</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
+    <span class="v-meta-tag">Social History</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Shawl</strong> — This shawl was made by Alma Reissar (1910-1986), a migrant from southern Estonia who came to New Zealand via Germany in 1949 as a displaced person after the Second World War (1930-45). She made the shawl herself from wool grown on her father's farm in southern Estonia. He also grew flax. Alma would …</div>
-  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
-      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
-      <div class="v-rights-detail">Licence / rights: CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</div>
+  <div class="v-story"><strong>dress</strong> — Black satin dress, c.1910, that belonged to Mrs William Henry Rogers.
+The dress is made from heavy black satin, full length with a simple collar and ¾ length sleeves with lace at the wrist. The front opening has a panel of ecru lace. The waistline is very large with tucks down the front and back of …</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
+      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +970,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,19 +1001,15 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">GH015855</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Alma Reissar</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Naturally dyed and handwoven shawl</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Estonia</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">shawls</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1930s</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 840mm (height), 830mm (length)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">shawls</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">col.2772</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Circa 1910</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -986,24 +1024,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC452.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/634282/preview" loading="lazy"></div>
-        <div class="v-rel-title">Textile swatchbook</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH009583</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/506757?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">textile</div>
+        <div class="v-rel-meta">Auckland Museum · 1986.63</div>
       </a>
       <a class="v-rel-card" href="NFC453.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2018.290.b/2018.290.b_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Cover for a Box</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2018.290.b</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/45532/preview" loading="lazy"></div>
+        <div class="v-rel-title">Ushabti Figurine</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · CG002396</div>
       </a>
       <a class="v-rel-card" href="NFC455.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/101845?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Slater's pick</div>
-        <div class="v-rel-meta">Auckland Museum · 1975.241</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627901895/v2/prod/small/009501_010000/009538_007.jpg" loading="lazy"></div>
+        <div class="v-rel-title">The Living Need Light, The Dead Need Music</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2018.273</div>
       </a>
       <a class="v-rel-card" href="NFC456.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/xkBpW/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Schutterspenning van Leiden</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100440</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fnationalmuseumse.iiifhosting.com%2Fiiif%2F995a16746f61c755025abf26295bea27d901cc7e15830076594787da14b78f6a%2Ffull%2Ffull%2F0%2Fdefault.jpg&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Vanitasstilleben med astronomiska instrument. Vanitas Still Life with Astronomical Instruments</div>
+        <div class="v-rel-meta">Europeana · /2064116/Museu_ProvidedCHO_Nationalmuseum__Sweden_23920</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1054,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/770230" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/17164" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,26 +1086,27 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Shawl`,
-  type: `shawls`,
-  date: `1930s`,
-  registration: `GH015855`,
-  location: `Te Papa Tongarewa, Wellington`,
-  discipline: `History`,
-  category: `shawls`,
-  description: `This shawl was made by Alma Reissar (1910-1986), a migrant from southern Estonia who came to New Zealand via Germany in 1949 as a displaced person after the Second World War (1930-45). She made the shawl herself from wool grown on her father's farm in southern Estonia. He also grew flax. Alma would wash, spin and dye the wool with natural dyes. During the winter months she would weave fabrics on the loom her father had made. She wove all her furnishing fabrics and household linen. This shawl is a treasured memento of all the 'lovely things' she had to leave behind, when in 1944, her family (in…`,
-  medium: `Naturally dyed and handwoven shawl`,
-  artist: `Alma Reissar`,
-  culture: `Estonia`,
-  dimensions: `Overall: 840mm (height), 830mm (length)`,
-  wall_description: `This shawl was made by Alma Reissar (1910-1986), a migrant from southern Estonia who came to New Zealand via Germany in 1949 as a displaced person after the Second World War (1930-45). She made the shawl herself from wool grown on her father's farm in southern Estonia. He also grew flax. Alma would wash, spin and dye the wool with natural dyes. During the winter months she would weave fabrics on the loom her father had made. She wove all her furnishing fabrics and household linen. This shawl is …`,
+  title: `dress`,
+  type: `ecrm:E22_Man-Made_Object`,
+  date: `Circa 1910`,
+  registration: `col.2772`,
+  location: `Auckland Museum`,
+  discipline: `Social History`,
+  category: `ecrm:E22_Man-Made_Object`,
+  description: `Black satin dress, c.1910, that belonged to Mrs William Henry Rogers.
+The dress is made from heavy black satin, full length with a simple collar and ¾ length sleeves with lace at the wrist. The front opening has a panel of ecru lace. The waistline is very large with tucks down the front and back of the bodice. The skirt is nearly straight with a tuck down the centre. It is all lined.`,
+  medium: ``,
+  artist: ``,
+  culture: ``,
+  dimensions: ``,
+  wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Shawl, 1930s, Estonia, by Alma Reissar. Gift of Tiiu Reissar, 2008. © Te Papa. CC BY-NC-ND 4.0. Te Papa (GH015855)`,
-  licence: `CC BY-NC-ND 4.0 · metadata CC BY 4.0`,
-  source_url: `https://collections.tepapa.govt.nz/object/770230`,
-  institution: `Museum of New Zealand Te Papa Tongarewa`
+  tombstone: ``,
+  licence: `© Auckland Museum CC BY`,
+  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/17164`,
+  institution: `Auckland Museum`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1687,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_tepapa',
+      collection: 'archai_auckland',
       text,
       authorType: 'visitor',
     }),

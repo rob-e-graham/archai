@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>chemise, doll's — ARCHAI</title>
+<title>bodice, infant's — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,13 +917,13 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/228077?rendering=standard.jpg" alt="chemise, doll's" loading="eager">
+  <img src="https://api.aucklandmuseum.com/id/media/v/106765?rendering=standard.jpg" alt="bodice, infant's" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">chemise, doll's</div>
-  <div class="v-sub">Clothing, Doll · 1997-05-21T00:00:00.000Z · 1995X1.595</div>
+  <div class="v-title">bodice, infant's</div>
+  <div class="v-sub">Bodice · Mid 19th Century · 37220</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Auckland Museum</span>
@@ -903,7 +939,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>chemise, doll's</strong> — chemise, doll's, (nightdress)</div>
+  <div class="v-story"><strong>bodice, infant's</strong> — bodice, infant's. lawn and machine made net, Tambour embroidered front panel (Limerick-type), trimmed with 35mm lace edging, bobbin, baby lace at neck and sleeves.</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,12 +1000,14 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1995X1.595</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">37220</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">unknown</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Lawn (textile), &lt;textile Materials By Weaving Technique&gt;, &lt;textile Materials By Process Or Technique&gt;, &lt;textile Materials&gt;, &lt;fiber Products&gt;, &lt;fiber And Fiber Products&gt;</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Applied Arts and Design</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Clothing, Doll</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1997-05-21T00:00:00.000Z</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Bodice</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Mid 19th Century</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Clothing, Doll</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Bodice</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
@@ -982,24 +1025,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC621.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/9ca3be44-a673-2ad9-f0d8-a8e28ee8d397/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portrait of Constance Pipelet</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 31233</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/PAbqn/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Schutterspenning van Leiden</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100441</div>
       </a>
       <a class="v-rel-card" href="NFC622.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/10325?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">dress, evening</div>
-        <div class="v-rel-meta">Auckland Museum · 1995.101.7</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1924.534/1924.534_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Red-Figure Bell Krater (Mixing Vessel): Aphrodite and Eros</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1924.534</div>
       </a>
       <a class="v-rel-card" href="NFC624.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/8bcc9188-1d3d-14be-6ae7-ed211e089c0f/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portrait of Mme Lisle and Mme Loubens</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 79586</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4341/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">SCALLOP POTATOES</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.289-2020</div>
       </a>
       <a class="v-rel-card" href="NFC625.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1696385938/v2/prod/small/001501_002000/001559_007.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Model, Digital Beijing (2004–2007), Beijing, China</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2013.95</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/b0effb1c-ff23-bbaa-f809-9fd94e31c1a0/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Cliff Walk at Pourville</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 14620</div>
       </a></div>
   </div>
 </div>
@@ -1012,7 +1055,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/8143" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/52828" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1044,16 +1087,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `chemise, doll's`,
-  type: `Clothing, Doll`,
-  date: `1997-05-21T00:00:00.000Z`,
-  registration: `1995X1.595`,
+  title: `bodice, infant's`,
+  type: `Bodice`,
+  date: `Mid 19th Century`,
+  registration: `37220`,
   location: `Auckland Museum`,
   discipline: `Applied Arts and Design`,
-  category: `Clothing, Doll`,
-  description: `chemise, doll's, (nightdress)`,
-  medium: ``,
-  artist: ``,
+  category: `Bodice`,
+  description: `bodice, infant's. lawn and machine made net, Tambour embroidered front panel (Limerick-type), trimmed with 35mm lace edging, bobbin, baby lace at neck and sleeves.`,
+  medium: `Lawn (textile), <textile Materials By Weaving Technique>, <textile Materials By Process Or Technique>, <textile Materials>, <fiber Products>, <fiber And Fiber Products>`,
+  artist: `unknown`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -1062,7 +1105,7 @@ const OBJECT = {
   provenance: ``,
   tombstone: ``,
   licence: `© Auckland Museum CC BY`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/8143`,
+  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/52828`,
   institution: `Auckland Museum`
 };
 

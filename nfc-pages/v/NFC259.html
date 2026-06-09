@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Avebury — ARCHAI</title>
+<title>First colour broadcast by Associated Television — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2025PJ3613/full/!600,600/0/default.jpg" alt="Avebury" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2014HD6615/full/!600,600/0/default.jpg" alt="First colour broadcast by Associated Television" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Avebury</div>
-  <div class="v-sub">digital art (visual works) · 2023 · E.309-2025</div>
+  <div class="v-title">First colour broadcast by Associated Television</div>
+  <div class="v-sub">Costume design · 1969 · S.170-1980</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">digital art (visual works)</span>
+    <span class="v-meta-tag">Costume design</span>
   </div>
 
   <!-- SHARE -->
@@ -903,7 +939,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Avebury</strong> — Avebury. digital art (visual works). Made by Harrup, Claire. 2023. Made in Great Britain. In store</div>
+  <div class="v-story"><strong>First colour broadcast by Associated Television</strong> — First colour broadcast by Associated Television. Costume design. Made by unknown. 1969. Made in Great Britain. In Store</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,13 +1000,13 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.309-2025</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Harrup, Claire</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">digital art (visual works)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">digital art (visual works)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2023</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In store</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">digital art (visual works)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">S.170-1980</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">unknown</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Costume design</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Costume design</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1969</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In Store</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Costume design</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
@@ -983,24 +1024,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC257.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/761826?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">hatpin</div>
-        <div class="v-rel-meta">Auckland Museum · 2019.x.44</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2016HY8904/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Genie</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.12-2003</div>
       </a>
       <a class="v-rel-card" href="NFC258.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/11/164861-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Lantern Slide - Facial Profile &amp; Personality, 'Incurving', circa 1940s</div>
-        <div class="v-rel-meta">Museums Victoria · MM 106362</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/12662645-5164-4bb1-cfec-3517a4c9779c/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Are They Thinking about the Grape? (Pensent-ils au raisin?)</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 44742</div>
       </a>
       <a class="v-rel-card" href="NFC260.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2013GK3853/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Sintesi di Primavera &quot;Donna albero&quot;</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · S.1151-1982</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/154452?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">ring</div>
+        <div class="v-rel-meta">Auckland Museum · 1973.162</div>
       </a>
       <a class="v-rel-card" href="NFC261.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669299/006243.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Visconde de Santa Rita</div>
-        <div class="v-rel-meta">Brasiliana Museus · visconde-de-santa-rita</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/78c80988-6524-cec7-c661-a4c0a706d06f/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Woman at Her Toilette</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 11723</div>
       </a></div>
   </div>
 </div>
@@ -1013,7 +1054,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1805762/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1295200/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1045,16 +1086,16 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Avebury`,
-  type: `digital art (visual works)`,
-  date: `2023`,
-  registration: `E.309-2025`,
-  location: `In store`,
-  discipline: `digital art (visual works)`,
-  category: `digital art (visual works)`,
-  description: `Avebury. digital art (visual works). Made by Harrup, Claire. 2023. Made in Great Britain. In store`,
+  title: `First colour broadcast by Associated Television`,
+  type: `Costume design`,
+  date: `1969`,
+  registration: `S.170-1980`,
+  location: `In Store`,
+  discipline: `Costume design`,
+  category: `Costume design`,
+  description: `First colour broadcast by Associated Television. Costume design. Made by unknown. 1969. Made in Great Britain. In Store`,
   medium: ``,
-  artist: `Harrup, Claire`,
+  artist: `unknown`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -1063,7 +1104,7 @@ const OBJECT = {
   provenance: ``,
   tombstone: ``,
   licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1805762/`,
+  source_url: `https://collections.vam.ac.uk/item/O1295200/`,
   institution: `Victoria and Albert Museum, London`
 };
 

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Certificate - Radium Certificate of Purity, Union Miniere du Haut Katanga, Brussels, 1928 — ARCHAI</title>
+<title>Site model, Metroplan West Kowloon Reclamation Concept, Hong Kong — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://collections.museumsvictoria.com.au/content/media/5/745405-medium.jpg" alt="Certificate - Radium Certificate of Purity, Union Miniere du Haut Katanga, Brussels, 1928" loading="eager">
+  <img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627881031/v2/prod/small/001001_001500/001057_005.jpg" alt="Site model, Metroplan West Kowloon Reclamation Concept, Hong Kong" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Certificate - Radium Certificate of Purity, Union Miniere du Haut Katanga, Brussels, 1928</div>
-  <div class="v-sub">Document · Date unknown · HT 36999</div>
+  <div class="v-title">Site model, Metroplan West Kowloon Reclamation Concept, Hong Kong</div>
+  <div class="v-sub">Architectural Model · 1988, made 2013 · 2013.160</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Museums Victoria</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
-    <span class="v-meta-tag">Technology</span>
+    <span class="v-meta-tag mv">M+, Hong Kong</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">Design and Architecture</span>
   </div>
 
   <!-- SHARE -->
@@ -903,13 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Certificate - Radium Certificate of Purity, Union Miniere du Haut Katanga, Brussels, 1928</strong> — Certificate of Purity issued by the Union Miniere du Haut Katanga, Brussels, certifying the purity of the radium salts contained in 12 platinum needles. Attached is a certificate issued by the Institut de Mesures des Substances Radioactives of the Universite Libre de Bruxelles, 1927.
-
-Radium issued …</div>
-  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
-      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
-      <div class="v-rights-detail">Licence / rights: CC BY</div>
+  <div class="v-story"><strong>Site model, Metroplan West Kowloon Reclamation Concept, Hong Kong</strong> — Acrylic and cardboard architectural model of the West Kowloon district in Hong Kong. A concentration of white buildings stands on land, depicted by the grey section in the upper half. The bay, represented by the black section, features a strip of acrylic buildings in the lower half.</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Taoho Design · © Taoho Design</div>
     </div>
 
   <div class="v-divider"></div>
@@ -935,24 +969,29 @@ Radium issued …</div>
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -961,15 +1000,19 @@ Radium issued …</div>
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">HT 36999</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Technology</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">History &amp; Technology</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Date unknown</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Museums Victoria</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Document</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2013.160</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Tao Ho, Taoho Design</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">acrylic and cardboard</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Hong Kong</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Design and Architecture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Architectural Model</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1988, made 2013</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">overall: 39.7 × 53 × 56.7 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Architectural Model</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Taoho Design · © Taoho Design</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -984,24 +1027,24 @@ Radium issued …</div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC309.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669046/006323.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Maria Isabel de Albuquerque Maranhão</div>
-        <div class="v-rel-meta">Brasiliana Museus · maria-isabel-de-albuquerque-maranhao</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/4a04138f-43d8-cd9f-5ac4-478cd8828210/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Trompe-l'Oeil Still Life with a Flower Garland and a Curtain</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 66042</div>
       </a>
       <a class="v-rel-card" href="NFC310.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/7582416c-67cd-3682-bf97-5f9883bdd972/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Julia Jackson</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 29230</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP-30075-001.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Altar bell with a mudfish-legged ọ́bà</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 316556</div>
       </a>
       <a class="v-rel-card" href="NFC312.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/DeIgV/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Zilveren dukaat van de Bataafse Republiek op naam van Zeeland, 1795</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100090</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/cc5cdb81-14cf-27e9-eda8-94c08244ebaa/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Polynesian Woman with Children</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 34461</div>
       </a>
       <a class="v-rel-card" href="NFC313.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/PQCYW/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Gulden van Curacao, 1944</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100279</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/laKFk/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Vijftigjarig bestaan van de loge La Vertu te Leiden 1807 memorerende de buskruitramp, afdruk in karton</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100142</div>
       </a></div>
   </div>
 </div>
@@ -1014,7 +1057,7 @@ Radium issued …</div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.museumsvictoria.com.au/items/HT 36999" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/site-model-metroplan-west-kowloon-reclamation-concept-hong-kong-2013160/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1046,28 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Certificate - Radium Certificate of Purity, Union Miniere du Haut Katanga, Brussels, 1928`,
-  type: `Document`,
-  date: `Date unknown`,
-  registration: `HT 36999`,
-  location: `Museums Victoria`,
-  discipline: `Technology`,
-  category: `History & Technology`,
-  description: `Certificate of Purity issued by the Union Miniere du Haut Katanga, Brussels, certifying the purity of the radium salts contained in 12 platinum needles. Attached is a certificate issued by the Institut de Mesures des Substances Radioactives of the Universite Libre de Bruxelles, 1927.
-
-Radium issued to the Brisbane Hospital, Brisbane, through the Commonwealth Department of Health.`,
-  medium: ``,
-  artist: ``,
-  culture: ``,
-  dimensions: ``,
-  wall_description: ``,
+  title: `Site model, Metroplan West Kowloon Reclamation Concept, Hong Kong`,
+  type: `Architectural Model`,
+  date: `1988, made 2013`,
+  registration: `2013.160`,
+  location: `M+, Hong Kong`,
+  discipline: `Design and Architecture`,
+  category: `Architectural Model`,
+  description: `Acrylic and cardboard architectural model of the West Kowloon district in Hong Kong. A concentration of white buildings stands on land, depicted by the grey section in the upper half. The bay, represented by the black section, features a strip of acrylic buildings in the lower half.`,
+  medium: `acrylic and cardboard`,
+  artist: `Tao Ho, Taoho Design`,
+  culture: `Hong Kong`,
+  dimensions: `overall: 39.7 × 53 × 56.7 cm`,
+  wall_description: `Acrylic and cardboard architectural model of the West Kowloon district in Hong Kong. A concentration of white buildings stands on land, depicted by the grey section in the upper half. The bay, represented by the black section, features a strip of acrylic buildings in the lower half.`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `CC BY`,
-  source_url: `https://collections.museumsvictoria.com.au/items/HT 36999`,
-  institution: `Museums Victoria`
+  tombstone: `Site model, Metroplan West Kowloon Reclamation Concept, Hong Kong. Tao Ho, Taoho Design. 1988, made 2013. M+, Hong Kong`,
+  licence: `CC0 metadata · M+ API service non-commercial · © Taoho Design`,
+  source_url: `https://www.mplus.org.hk/en/collection/objects/site-model-metroplan-west-kowloon-reclamation-concept-hong-kong-2013160/`,
+  institution: `M+, Hong Kong`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_pilot',
+      collection: 'archai_mplus',
       text,
       authorType: 'visitor',
     }),

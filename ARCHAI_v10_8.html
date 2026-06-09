@@ -443,8 +443,15 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 .od-lang-buttons button:disabled,.od-translate-btn:disabled{opacity:0.45;cursor:not-allowed;background:transparent;color:var(--text3);border-color:var(--border2);}
 .od-lang-note{margin-top:8px;color:var(--text3);font-size:0.72rem;line-height:1.6;}
 .od-lang-actions{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;}
-.od-voice-wrap{margin-top:14px;padding:12px;border:1px solid var(--border);background:rgba(255,255,255,0.015);}
-.od-voice-label{font-family:var(--mono);font-size:0.56rem;letter-spacing:1.4px;text-transform:uppercase;color:var(--text3);margin-bottom:8px;}
+.od-voice-wrap{margin-top:14px;border:1px solid var(--border);background:rgba(255,255,255,0.015);}
+.od-voice-wrap[open]{border-color:rgba(143,188,176,0.28);}
+.od-voice-summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;cursor:pointer;list-style:none;-webkit-tap-highlight-color:transparent;}
+.od-voice-summary::-webkit-details-marker{display:none;}
+.od-voice-summary::after{content:"+";flex:0 0 auto;color:var(--accent2);font-family:var(--mono);font-size:0.82rem;}
+.od-voice-wrap[open] .od-voice-summary::after{content:"−";}
+.od-voice-body{padding:0 12px 12px;}
+.od-voice-label{font-family:var(--mono);font-size:0.56rem;letter-spacing:1.4px;text-transform:uppercase;color:var(--text3);}
+.od-voice-summary-hint{color:var(--accent2);font-family:var(--mono);font-size:0.52rem;letter-spacing:1px;text-transform:uppercase;opacity:0.85;}
 .od-voice-select-row{display:grid;grid-template-columns:120px minmax(0,1fr);gap:10px;align-items:center;margin-bottom:10px;}
 .od-voice-select-row label{font-family:var(--mono);font-size:0.52rem;letter-spacing:1px;text-transform:uppercase;color:var(--text3);}
 .od-voice-select{width:100%;padding:8px 10px;background:rgba(255,255,255,0.03);border:1px solid var(--border2);color:var(--text2);font-family:var(--mono);font-size:0.6rem;outline:none;}
@@ -1074,24 +1081,29 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
             <button class="od-translate-btn" id="od-translate-btn" onclick="odTranslateRecord()" disabled>Translate Record</button>
             <button class="od-translate-btn" id="od-translate-reset-btn" onclick="odRestoreRecordText()" style="display:none;">Show Original</button>
           </div>
-          <div class="od-voice-wrap">
-            <div class="od-voice-label">Speech Demo</div>
-            <div class="od-voice-select-row">
-              <label for="od-voice-select">Playback Voice</label>
-              <select id="od-voice-select" class="od-voice-select" onchange="setOdVoicePreference(this.value)">
-                <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-                <option value="browser-default">Browser Default</option>
-              </select>
+          <details class="od-voice-wrap" id="od-voice-wrap">
+            <summary class="od-voice-summary">
+              <span class="od-voice-label">Audio / voice tools</span>
+              <span class="od-voice-summary-hint">Open controls</span>
+            </summary>
+            <div class="od-voice-body">
+              <div class="od-voice-select-row">
+                <label for="od-voice-select">Playback Voice</label>
+                <select id="od-voice-select" class="od-voice-select" onchange="setOdVoicePreference(this.value)">
+                  <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+                  <option value="browser-default">Browser Default</option>
+                </select>
+              </div>
+              <div class="od-voice-note" id="od-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+              <div class="od-voice-buttons">
+                <button id="od-voice-start-btn" onclick="odStartVoiceQuestion()">Start Voice Question</button>
+                <button id="od-voice-stop-btn" onclick="odStopVoiceQuestion()" disabled>Stop Listening</button>
+                <button id="od-voice-read-btn" onclick="odSpeakLatestReply()">Read Reply</button>
+                <button id="od-voice-silence-btn" onclick="odStopSpeaking()" disabled>Stop Audio</button>
+              </div>
+              <div class="od-voice-status" id="od-voice-status"><span class="od-voice-indicator" id="od-voice-indicator" aria-hidden="true"></span><span id="od-voice-status-text">Browser speech demo for now. Backend Whisper + Coqui route is the next production step.</span></div>
             </div>
-            <div class="od-voice-note" id="od-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-            <div class="od-voice-buttons">
-              <button id="od-voice-start-btn" onclick="odStartVoiceQuestion()">Start Voice Question</button>
-              <button id="od-voice-stop-btn" onclick="odStopVoiceQuestion()" disabled>Stop Listening</button>
-              <button id="od-voice-read-btn" onclick="odSpeakLatestReply()">Read Reply</button>
-              <button id="od-voice-silence-btn" onclick="odStopSpeaking()" disabled>Stop Audio</button>
-            </div>
-            <div class="od-voice-status" id="od-voice-status"><span class="od-voice-indicator" id="od-voice-indicator" aria-hidden="true"></span><span id="od-voice-status-text">Browser speech demo for now. Backend Whisper + Coqui route is the next production step.</span></div>
-          </div>
+          </details>
         </div>
         <div id="od-chat-msgs" class="od-chat-msgs">
           <div style="color:var(--text3);font-size:0.6rem;">Ask anything about this object. Responses are grounded in verified collection metadata — hallucination prevention active.</div>

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Lantern Slide - Woman &amp; Pilot, circa 1930s — ARCHAI</title>
+<title>Geometric Pitcher: Swans — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://collections.museumsvictoria.com.au/content/media/43/164893-medium.jpg" alt="Lantern Slide - Woman &amp; Pilot, circa 1930s" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1924.259/1924.259_web.jpg" alt="Geometric Pitcher: Swans" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Lantern Slide - Woman &amp; Pilot, circa 1930s</div>
-  <div class="v-sub">Image · Date unknown · MM 106333</div>
+  <div class="v-title">Geometric Pitcher: Swans</div>
+  <div class="v-sub">Ceramic · c. 740–730 BCE · 1924.259</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Museums Victoria</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
-    <span class="v-meta-tag">Technology</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Greek and Roman Art</span>
   </div>
 
   <!-- SHARE -->
@@ -903,13 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Lantern Slide - Woman &amp; Pilot, circa 1930s</strong> — Colour glass lantern slide of a newspaper clipping about an aircraft flight by a 102 year old Melbourne woman. Made by Alex Gunn &amp; Sons, Melbourne, Victoria, circa 1930s.
-
-One of a set of over 420 lantern slides, used by lecturer Walter S. Binks, a popular psychology and vocational guidance lecturer…</div>
+  <div class="v-story"><strong>Geometric Pitcher: Swans</strong> — A common shape in the Late Geometric period, the pitcher often attains large dimensions, offering the painter multiple zones for decoration. Here, standing leaves encircle the shoulder, while the neck and body bear wide bands with alternating squares of swans and swastikas. Also known as a hooked cr…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
-      <div class="v-rights-detail">Licence / rights: CC BY</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -935,24 +969,29 @@ One of a set of over 420 lantern slides, used by lecturer Walter S. Binks, a pop
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -961,16 +1000,19 @@ One of a set of over 420 lantern slides, used by lecturer Walter S. Binks, a pop
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">MM 106333</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Technology</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">History &amp; Technology</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Date unknown</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">[object Object]</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Museums Victoria</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Image</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1924.259</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Swan Painter (Greek, Attic, Late Geometric Ib-IIa)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">ceramic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Greek, Attic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Greek and Roman Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ceramic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 740–730 BCE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 36.2 cm (14 1/4 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">102B Greek</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Ceramic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -985,24 +1027,24 @@ One of a set of over 420 lantern slides, used by lecturer Walter S. Binks, a pop
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC982.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2019LL8383/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Camera</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · RPS.1123-2018</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2008BT4838/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Elektronische Grafik (Electronic Graphics)</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.110-2008</div>
       </a>
       <a class="v-rel-card" href="NFC983.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1997.45/1997.45_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Algerian Woman</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1997.45</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1993.1/1993.1_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Italo-Geometric Bird Askos (Oil Vessel): Hunter (Herakles?) and Stag</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1993.1</div>
       </a>
       <a class="v-rel-card" href="NFC985.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669068/006317.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Antônio Carlos Ribeiro de Andrada Machado e Silva</div>
-        <div class="v-rel-meta">Brasiliana Museus · antonio-carlos-ribeiro-de-andrada-machado-e-silva</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Femuseumplus.lsh.se%2FeMuseumPlus%3Fservice%3DImageAsset%26module%3Dcollection%26objectId%3D31665%26resolution%3DhighImageResolution&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Jordglob av papier maché överdrag med gips.. Peanlobe of papier maché coated with plaster.</div>
+        <div class="v-rel-meta">Europeana · /2064105/Museu_ProvidedCHO_Skoklosters_slott_31665</div>
       </a>
       <a class="v-rel-card" href="NFC986.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2012FK3677/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Alhambra</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · 34779</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/40382?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">table, dining</div>
+        <div class="v-rel-meta">Auckland Museum · 1994.112</div>
       </a></div>
   </div>
 </div>
@@ -1015,7 +1057,7 @@ One of a set of over 420 lantern slides, used by lecturer Walter S. Binks, a pop
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.museumsvictoria.com.au/items/MM 106333" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1924.259" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1047,30 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Lantern Slide - Woman &amp; Pilot, circa 1930s`,
-  type: `Image`,
-  date: `Date unknown`,
-  registration: `MM 106333`,
-  location: `Museums Victoria`,
-  discipline: `Technology`,
-  category: `History & Technology`,
-  description: `Colour glass lantern slide of a newspaper clipping about an aircraft flight by a 102 year old Melbourne woman. Made by Alex Gunn & Sons, Melbourne, Victoria, circa 1930s.
-
-One of a set of over 420 lantern slides, used by lecturer Walter S. Binks, a popular psychology and vocational guidance lecturer based in Melbourne, Victoria. Binks gave lectures throughout Australia in the 1930s and 1940s. Binks advertised his lectures as associated with the Australasian Opportunity League or Universal Opportunity League. 
-
-Purchased by the donor at an opportunity shop. The collection was stored in three wo…`,
-  medium: ``,
-  artist: ``,
-  culture: ``,
-  dimensions: `[object Object]`,
+  title: `Geometric Pitcher: Swans`,
+  type: `Ceramic`,
+  date: `c. 740–730 BCE`,
+  registration: `1924.259`,
+  location: `102B Greek`,
+  discipline: `Greek and Roman Art`,
+  category: `Ceramic`,
+  description: `A common shape in the Late Geometric period, the pitcher often attains large dimensions, offering the painter multiple zones for decoration. Here, standing leaves encircle the shoulder, while the neck and body bear wide bands with alternating squares of swans and swastikas. Also known as a hooked cross, the swastika appears frequently as a decorative motif in Greek Geometric pottery, without any clear meaning. The swans, though somewhat abstracted to modern eyes, likely represent one of many waterfowl species native to Greece.`,
+  medium: `ceramic`,
+  artist: `Swan Painter (Greek, Attic, Late Geometric Ib-IIa)`,
+  culture: `Greek, Attic`,
+  dimensions: `Overall: 36.2 cm (14 1/4 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
-  licence: `CC BY`,
-  source_url: `https://collections.museumsvictoria.com.au/items/MM 106333`,
-  institution: `Museums Victoria`
+  did_you_know: `The stylized swans lend their name to the otherwise anonymous decorator of this vase.`,
+  provenance: `[{"description":"Costis Lembessis, sold to Brummer Gallery","citations":[],"footnotes":[],"date":"?-1923","sortorder":1},{"description":"Brummer Gallery, New York, NY, sold to the Cleveland Museum of Art","citations":[],"footnotes":[],"date":"1923-1924","sortorder":2},{"description":"The Cleveland M…`,
+  tombstone: `Geometric Pitcher: Swans, c. 740–730 BCE. Attributed to Swan Painter (Greek, Attic, Late Geometric Ib-IIa). Ceramic; overall: 36.2 cm (14 1/4 in.). The Cleveland Museum of Art, Dudley P. Allen Fund, 1924.259`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://clevelandart.org/art/1924.259`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1651,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_pilot',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

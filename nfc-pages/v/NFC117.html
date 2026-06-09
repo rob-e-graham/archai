@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Compound — ARCHAI</title>
+<title>Coach Horn in C — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627829818/v2/prod/small/004001_004500/004092_004.jpg" alt="Compound" loading="eager">
+  <img src="https://images.metmuseum.org/CRDImages/mi/original/DP-12679-117.jpg" alt="Coach Horn in C" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Compound</div>
-  <div class="v-sub">Installation · 2011 · 2015.291</div>
+  <div class="v-title">Coach Horn in C</div>
+  <div class="v-sub">Coach Horn in C · ca. 1825–89 · 505484</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">M+, Hong Kong</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
-    <span class="v-meta-tag">Visual Art</span>
+    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Musical Instruments</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Compound</strong> — Sculpture consisting of multiple woven bamboo and rattan shapes created with the help of metal wire, combined to create a large, castle-like structure.</div>
-  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
-      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Sopheap Pich · © Sopheap Pich</div>
+  <div class="v-story"><strong>Coach Horn in C</strong> — Coach Horn in C. Coach Horn in C. Brass, nickel-silver. Musical Instruments. European. Aerophone-Lip Vibrated-horn. ca. 1825–89</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,27 +1000,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2015.291</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Sopheap Pich</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">bamboo, rattan, plywood, and metal wire</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Cambodian</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Visual Art</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Installation</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2011</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">overall (small cubes): 48.3 × 48.3 × 48.3 cm
-overall (large cubes): 99.1 × 99.1 × 99.1 cm
-overall (cylinders): 99.1 × 39.4 cm
-overall (shortest cones): 106.7 × 39.4 cm
-overall (short cones): 139.7 × 39.4 cm
-overall (tall cones): 160 × 39.4 cm
-overall (tallest cones): 200.7 × 39.4 cm
-overall (rectangles): 49.5 × 49.5 × 98.5 cm
-overall (smaller rectangles): 49.5 × 25.4 × 99 cm</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Installation</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Sopheap Pich · © Sopheap Pich</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">505484</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Brass, nickel-silver</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">European</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Aerophone-Lip Vibrated-horn</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca. 1825–89</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">48 1/8 × 3 3/16 × 3 3/16 in. (122.2 × 8.1 × 8.1 cm)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 680</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Coach Horn in C</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -994,24 +1026,24 @@ overall (smaller rectangles): 49.5 × 25.4 × 99 cm</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC115.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/3a608f55-d76e-fa96-d0b1-0789fbc48f1e/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Two Sisters (On the Terrace)</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 14655</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4295/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">CHARACTER REFERENCE</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.252-2020</div>
       </a>
       <a class="v-rel-card" href="NFC116.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP168843.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Lute</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 503357</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2022NH4242/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Sorting Song</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CD.2-2023</div>
       </a>
       <a class="v-rel-card" href="NFC118.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AB0878/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Tankard</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · C.22-2006</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/378265?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">banknote</div>
+        <div class="v-rel-meta">Auckland Museum · Su:259</div>
       </a>
       <a class="v-rel-card" href="NFC119.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fmm.dimu.org%2Fimage%2F012uMWwmLFGT%3Fdimension%3D1200x1200&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Stockholm. Nationalmuseum</div>
-        <div class="v-rel-meta">Europeana · /916109/smm_sm_photo_Fo195187</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_602/v1627843081/v2/prod/small/001501_002000/001726_001.jpg" loading="lazy"></div>
+        <div class="v-rel-title">New Year Trophy—Luck</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2012.1980</div>
       </a></div>
   </div>
 </div>
@@ -1024,7 +1056,7 @@ overall (smaller rectangles): 49.5 × 25.4 × 99 cm</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/compound-2015291/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/505484" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1056,34 +1088,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Compound`,
-  type: `Installation`,
-  date: `2011`,
-  registration: `2015.291`,
-  location: `M+, Hong Kong`,
-  discipline: `Visual Art`,
-  category: `Installation`,
-  description: `Sculpture consisting of multiple woven bamboo and rattan shapes created with the help of metal wire, combined to create a large, castle-like structure.`,
-  medium: `bamboo, rattan, plywood, and metal wire`,
-  artist: `Sopheap Pich`,
-  culture: `Cambodian`,
-  dimensions: `overall (small cubes): 48.3 × 48.3 × 48.3 cm
-overall (large cubes): 99.1 × 99.1 × 99.1 cm
-overall (cylinders): 99.1 × 39.4 cm
-overall (shortest cones): 106.7 × 39.4 cm
-overall (short cones): 139.7 × 39.4 cm
-overall (tall cones): 160 × 39.4 cm
-overall (tallest cones): 200.7 × 39.4 cm
-overall (rectangles): 49.5 × 49.5 × 98.5 cm
-overall (smaller rectangles): 49.5 × 25.4 × 99 cm`,
-  wall_description: `Sculpture consisting of multiple woven bamboo and rattan shapes created with the help of metal wire, combined to create a large, castle-like structure.`,
+  title: `Coach Horn in C`,
+  type: `Coach Horn in C`,
+  date: `ca. 1825–89`,
+  registration: `505484`,
+  location: `Gallery 680`,
+  discipline: `Musical Instruments`,
+  category: `Aerophone-Lip Vibrated-horn`,
+  description: `Coach Horn in C. Coach Horn in C. Brass, nickel-silver. Musical Instruments. European. Aerophone-Lip Vibrated-horn. ca. 1825–89`,
+  medium: `Brass, nickel-silver`,
+  artist: ``,
+  culture: `European`,
+  dimensions: `48 1/8 × 3 3/16 × 3 3/16 in. (122.2 × 8.1 × 8.1 cm)`,
+  wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Compound. Sopheap Pich. 2011. M+, Hong Kong`,
-  licence: `CC0 metadata · M+ API service non-commercial · © Sopheap Pich`,
-  source_url: `https://www.mplus.org.hk/en/collection/objects/compound-2015291/`,
-  institution: `M+, Hong Kong`
+  tombstone: ``,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.metmuseum.org/art/collection/search/505484`,
+  institution: `The Metropolitan Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1664,7 +1688,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_mplus',
+      collection: 'archai_met',
       text,
       authorType: 'visitor',
     }),

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Portrait Vessel — ARCHAI</title>
+<title>caliper, poising — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/239e0072-de08-cb26-1484-4776fc27b0fb/full/843,/0/default.jpg" alt="Portrait Vessel" loading="eager">
+  <img src="https://api.aucklandmuseum.com/id/media/v/438044?rendering=standard.jpg" alt="caliper, poising" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Portrait Vessel</div>
-  <div class="v-sub">Ceramics · 600–700 · 91620</div>
+  <div class="v-title">caliper, poising</div>
+  <div class="v-sub">Tool, horological · Circa 1930 · H307</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Art Institute of Chicago</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Arts of the Americas</span>
+    <span class="v-meta-tag mv">Auckland Museum</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
+    <span class="v-meta-tag">Applied Arts and Design</span>
   </div>
 
   <!-- SHARE -->
@@ -903,12 +939,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Portrait Vessel</strong> — Portrait Vessel. Ceramics. Earthenware and mineral slips. Arts of the Americas. Ceramist unknown (Moche)
-Southern Moche region, north coast, Peru. ceramics. 600–700. Peruvian North Coast. moche. &lt;p&gt;Among the most distinctive art objects of the ancient Peruvians were ceramic vessels produced by the a…</div>
+  <div class="v-story"><strong>caliper, poising</strong> — Poising calliper, figure of 8, brass
+When a new balance staff (the axle of the balance wheel which often broke when the watch was dropped) was fitted, the balance wheel had to be poised, which meant finding its heaviest and lightest parts, in order to add or remove weight to get it &quot;balanced&quot;. The b…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
+      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
     </div>
 
   <div class="v-divider"></div>
@@ -934,24 +970,29 @@ Southern Moche region, north coast, Peru. ceramics. 600–700. Peruvian North Co
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -960,20 +1001,16 @@ Southern Moche region, north coast, Peru. ceramics. 600–700. Peruvian North Co
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">91620</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Ceramist unknown (Moche)
-Southern Moche region, north coast, Peru</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Earthenware and mineral slips</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Peruvian North Coast</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Arts of the Americas</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ceramics</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">600–700</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">34.7 × 20.6 × 22.6 cm (13 11/16 × 8 1/8 × 8 15/16 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 161</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Ceramics</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">H307</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Brass (alloy), Copper Alloy, &lt;copper And Copper Alloy&gt;, Nonferrous Metal, &lt;metal By Composition Or Origin&gt;, Metal</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Applied Arts and Design</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Tool, Horological</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Circa 1930</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Tool, horological</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -988,24 +1025,24 @@ Southern Moche region, north coast, Peru</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC384.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2013GK3850/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Fuochi d'Articio (bozzetto)</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · S.1148-1982</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/524946?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">blade</div>
+        <div class="v-rel-meta">Auckland Museum · 51364.1</div>
       </a>
       <a class="v-rel-card" href="NFC385.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP-20791-001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Sacred Slit Gong (Waken)</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 311262</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15925799&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Grundriss Erdgeschoss 1:500 (aus: Museum im Werden)</div>
+        <div class="v-rel-meta">Europeana · /08535/item_HIGRUUE27HE7F4G3444WPLKLQWQSHGQD</div>
       </a>
       <a class="v-rel-card" href="NFC387.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2016JH7705/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Return to Square</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.2705-2016</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2011EP0025/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Universal Electronic Vacuum, 1967</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.1217-1967</div>
       </a>
       <a class="v-rel-card" href="NFC388.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669492/006194-1.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Família Imperial</div>
-        <div class="v-rel-meta">Brasiliana Museus · familia-imperial</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/590005?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">textile</div>
+        <div class="v-rel-meta">Auckland Museum · 55420</div>
       </a></div>
   </div>
 </div>
@@ -1018,7 +1055,7 @@ Southern Moche region, north coast, Peru</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/91620" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/846" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1050,28 +1087,27 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Portrait Vessel`,
-  type: `Ceramics`,
-  date: `600–700`,
-  registration: `91620`,
-  location: `Gallery 161`,
-  discipline: `Arts of the Americas`,
-  category: `ceramics`,
-  description: `Portrait Vessel. Ceramics. Earthenware and mineral slips. Arts of the Americas. Ceramist unknown (Moche)
-Southern Moche region, north coast, Peru. ceramics. 600–700. Peruvian North Coast. moche. <p>Among the most distinctive art objects of the ancient Peruvians were ceramic vessels produced by the artists of the Moche culture, which flourished on the north coast between about 100 BC and AD 500. Remarkable for their sculptural naturalism, these stirrup-spout bottles were molded without the aid of a potter’s wheel and painted in earth tones. Moche potters represented everything about their world…`,
-  medium: `Earthenware and mineral slips`,
-  artist: `Ceramist unknown (Moche)
-Southern Moche region, north coast, Peru`,
-  culture: `Peruvian North Coast`,
-  dimensions: `34.7 × 20.6 × 22.6 cm (13 11/16 × 8 1/8 × 8 15/16 in.)`,
+  title: `caliper, poising`,
+  type: `Tool, horological`,
+  date: `Circa 1930`,
+  registration: `H307`,
+  location: `Auckland Museum`,
+  discipline: `Applied Arts and Design`,
+  category: `Tool, Horological`,
+  description: `Poising calliper, figure of 8, brass
+When a new balance staff (the axle of the balance wheel which often broke when the watch was dropped) was fitted, the balance wheel had to be poised, which meant finding its heaviest and lightest parts, in order to add or remove weight to get it "balanced". The balance pivots were rested on the horizontal edges of this tool, allowing the balance to roll until the heaviest part was at the bottom.`,
+  medium: `Brass (alloy), Copper Alloy, <copper And Copper Alloy>, Nonferrous Metal, <metal By Composition Or Origin>, Metal`,
+  artist: ``,
+  culture: ``,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://www.artic.edu/artworks/91620`,
-  institution: `Art Institute of Chicago`
+  licence: `© Auckland Museum CC BY`,
+  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/846`,
+  institution: `Auckland Museum`
 };
 
 // Build rich context from available fields
@@ -1652,7 +1688,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_aic',
+      collection: 'archai_auckland',
       text,
       authorType: 'visitor',
     }),

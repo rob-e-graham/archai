@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Pī Chawā (ปี่ชวา) — ARCHAI</title>
+<title>Fen–Ma Liuming Walks the Great Wall — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/mi/original/MUS488A1.jpg" alt="Pī Chawā (ปี่ชวา)" loading="eager">
+  <img src="https://www.mplus.org.hk/_nuxt/img/share.23eb426.jpg" alt="Fen–Ma Liuming Walks the Great Wall" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Pī Chawā (ปี่ชวา)</div>
-  <div class="v-sub">Pī Chawā · late 19th century · 502025</div>
+  <div class="v-title">Fen–Ma Liuming Walks the Great Wall</div>
+  <div class="v-sub">Photography · 1998 · 2012.706</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Musical Instruments</span>
+    <span class="v-meta-tag mv">M+, Hong Kong</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">Visual Art</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Pī Chawā (ปี่ชวา)</strong> — Pī Chawā (ปี่ชวา). Pī Chawā. Ivory. Musical Instruments. Thai. Aerophone-Reed Vibrated-double reed. late 19th century</div>
-  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
-      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+  <div class="v-story"><strong>Fen–Ma Liuming Walks the Great Wall</strong> — Monochrome photograph of artist Ma Liuming at the Great Wall of China, naked and with long, flowing hair. He appears in the middle, against lush greenery and a foggy sky, and a seated man looks on.</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Ma Liuming · © Ma Liuming</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,18 +1000,20 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">502025</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Ivory</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Thai</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Aerophone-Reed Vibrated-double reed</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">late 19th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">8 3/16 × 2 1/2 × 2 1/2 in. (20.8 × 6.4 × 6.4 cm)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 681</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Pī Chawā</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2012.706</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Ma Liuming</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">gelatin silver print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Chinese</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Visual Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photography</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1998</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">sheet: 50.7 × 61 cm
+image: 34.7 × 53.6 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photography</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Ma Liuming · © Ma Liuming</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -985,24 +1028,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1501.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15935599&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Eingangshalle zum Pergamonraum (aus: Museum im Werden)</div>
-        <div class="v-rel-meta">Europeana · /08535/item_O5G4EUQMSNIU46LOONYWX4WLKZ3NSLG7</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2016JA3491/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Murphy A146CM</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.411-1975</div>
       </a>
       <a class="v-rel-card" href="NFC1502.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669003/default-31.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Rodolfo Amoedo (autorretrato)</div>
-        <div class="v-rel-meta">Brasiliana Museus · rodolfo-amoedo-autorretrato</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DT679.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Mandolin</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 503675</div>
       </a>
       <a class="v-rel-card" href="NFC1504.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/910786/preview" loading="lazy"></div>
-        <div class="v-rel-title">Portrait of Potatow; Portrait of Omai. Plate 86. From the book New, authentic, and complete collection of voyages round the world.</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · RB000015/086a</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1635629617/v2/prod/small/002501_003000/002746_012.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Looking, looking, looking for...</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2012.524</div>
       </a>
       <a class="v-rel-card" href="NFC1505.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/midp89.4.419.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Gunibri</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 501037</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/1979.206.202_a.JPG" loading="lazy"></div>
+        <div class="v-rel-title">Bell head</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 312407</div>
       </a></div>
   </div>
 </div>
@@ -1015,7 +1058,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/502025" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/fenma-liuming-walks-the-great-wall-2012706/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1047,26 +1090,27 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Pī Chawā (ปี่ชวา)`,
-  type: `Pī Chawā`,
-  date: `late 19th century`,
-  registration: `502025`,
-  location: `Gallery 681`,
-  discipline: `Musical Instruments`,
-  category: `Aerophone-Reed Vibrated-double reed`,
-  description: `Pī Chawā (ปี่ชวา). Pī Chawā. Ivory. Musical Instruments. Thai. Aerophone-Reed Vibrated-double reed. late 19th century`,
-  medium: `Ivory`,
-  artist: ``,
-  culture: `Thai`,
-  dimensions: `8 3/16 × 2 1/2 × 2 1/2 in. (20.8 × 6.4 × 6.4 cm)`,
-  wall_description: ``,
+  title: `Fen–Ma Liuming Walks the Great Wall`,
+  type: `Photography`,
+  date: `1998`,
+  registration: `2012.706`,
+  location: `M+, Hong Kong`,
+  discipline: `Visual Art`,
+  category: `Photography`,
+  description: `Monochrome photograph of artist Ma Liuming at the Great Wall of China, naked and with long, flowing hair. He appears in the middle, against lush greenery and a foggy sky, and a seated man looks on.`,
+  medium: `gelatin silver print`,
+  artist: `Ma Liuming`,
+  culture: `Chinese`,
+  dimensions: `sheet: 50.7 × 61 cm
+image: 34.7 × 53.6 cm`,
+  wall_description: `Monochrome photograph of artist Ma Liuming at the Great Wall of China, naked and with long, flowing hair. He appears in the middle, against lush greenery and a foggy sky, and a seated man looks on.`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/502025`,
-  institution: `The Metropolitan Museum of Art`
+  tombstone: `Fen–Ma Liuming Walks the Great Wall. Ma Liuming. 1998. M+, Hong Kong`,
+  licence: `CC0 metadata · M+ API service non-commercial · © Ma Liuming`,
+  source_url: `https://www.mplus.org.hk/en/collection/objects/fenma-liuming-walks-the-great-wall-2012706/`,
+  institution: `M+, Hong Kong`
 };
 
 // Build rich context from available fields
@@ -1647,7 +1691,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_met',
+      collection: 'archai_mplus',
       text,
       authorType: 'visitor',
     }),

@@ -54,15 +54,24 @@ const TEMPLATE_PATH = path.join(__dirname, 'nfc-visitor-template.html');
 const PORTAL_PATH = path.join(__dirname, 'captive-portal.html');
 
 // ── HELPERS ─────────────────────────────────────────────────────
-function esc(s) {
+function cleanText(s) {
   return String(s || '')
+    .replace(/\r/g, '')
+    .split('\n')
+    .map(line => line.trimEnd())
+    .join('\n')
+    .trim();
+}
+
+function esc(s) {
+  return cleanText(s)
     .replace(/`/g, '\\`')
     .replace(/\\/g, '\\\\')
     .replace(/\$/g, '\\$');
 }
 
 function escHtml(s) {
-  return String(s || '')
+  return cleanText(s)
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
@@ -70,8 +79,12 @@ function escHtml(s) {
 }
 
 function truncate(s, len = 300) {
-  s = String(s || '');
+  s = cleanText(s);
   return s.length > len ? s.substring(0, len) + '…' : s;
+}
+
+function trimGeneratedLines(s) {
+  return String(s || '').replace(/[ \t]+$/gm, '');
 }
 
 function getObjectRightsInfo(payload = {}) {
@@ -399,7 +412,7 @@ async function main() {
       .replace(/\{\{RELATED_HTML\}\}/g, relatedHtml);
 
     const filename = `${nfcCode}.html`;
-    fs.writeFileSync(path.join(OUTPUT_DIR, filename), html, 'utf-8');
+    fs.writeFileSync(path.join(OUTPUT_DIR, filename), trimGeneratedLines(html), 'utf-8');
     generated.push({ nfcCode, title, reg, filename, source: sourceInstitution });
 
     // Progress
@@ -408,13 +421,13 @@ async function main() {
 
   // Generate index page for /v/
   const indexHtml = generateIndex(generated);
-  fs.writeFileSync(path.join(OUTPUT_DIR, 'index.html'), indexHtml, 'utf-8');
+  fs.writeFileSync(path.join(OUTPUT_DIR, 'index.html'), trimGeneratedLines(indexHtml), 'utf-8');
 
   // AUX.IO programming reference
   const nfcRef = generated.map(g =>
-    `${g.nfcCode.replace(/^NFC/, 'AUX.IO ')}  →  ${g.filename}  →  [${(g.source || '').substring(0,3).toUpperCase()}]  ${g.title}  (${g.reg})`
+    `${g.nfcCode.replace(/^NFC/, 'AUX.IO ')}  →  ${g.filename}  →  [${(g.source || '').substring(0,3).toUpperCase()}]  ${cleanText(g.title)}  (${cleanText(g.reg)})`
   ).join('\n');
-  fs.writeFileSync(path.join(OUTPUT_DIR, 'nfc-reference.txt'), nfcRef, 'utf-8');
+  fs.writeFileSync(path.join(OUTPUT_DIR, 'nfc-reference.txt'), trimGeneratedLines(nfcRef), 'utf-8');
 
   // Source breakdown
   const sourceBreakdown = {};

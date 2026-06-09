@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Portrait Bust — ARCHAI</title>
+<title>Seated female figure — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/1993.38/1993.38_web.jpg" alt="Portrait Bust" loading="eager">
+  <img src="https://images.metmuseum.org/CRDImages/ao/original/1979.206.574.jpg" alt="Seated female figure" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Portrait Bust</div>
-  <div class="v-sub">Sculpture · c. 1865 · 1993.38</div>
+  <div class="v-title">Seated female figure</div>
+  <div class="v-sub">Whistle · 600-1000 CE · 312770</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
+    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
+    <span class="v-meta-tag">The Michael C. Rockefeller Wing</span>
   </div>
 
   <!-- SHARE -->
@@ -903,7 +939,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Portrait Bust</strong> — Among the artists who reacted against the static poses of neoclassical art, Carrier-Belleuse drew inspiration from the opulence and excess of Rococo portraiture of the 1700s. This bust resembles one of Napoleon III's mistresses, Marguerite Bellanger, whose features the artist is known to have borrow…</div>
+  <div class="v-story"><strong>Seated female figure</strong> — Seated female figure. Whistle. Ceramic, slip, paint. The Michael C. Rockefeller Wing. Veracruz. by Remojadas artist(s). Ceramics-Musical Instruments. 600-1000 CE</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,16 +1000,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1993.38</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Albert-Ernest Carrier-Belleuse (French, 1824–1887)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">terracotta</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, 19th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1865</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">with base: 77.4 x 38.1 x 28.6 cm (30 1/2 x 15 x 11 1/4 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">219 19th Century European</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">312770</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Remojadas artist(s)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Ceramic, slip, paint</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Veracruz</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">The Michael C. Rockefeller Wing</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ceramics-Musical Instruments</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">600-1000 CE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">H. 9 11/16 x W. 9 7/8 x D. 7 3/8 in. (24.7 x 25.1 x 18.7 cm)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 360</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Whistle</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
@@ -986,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC103.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15934499&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Grundriss Obergeschoss 1:500 (aus: Museum im Werden)</div>
-        <div class="v-rel-meta">Europeana · /08535/item_UVWVRDD7XNRNELTXTLC3S6SFNX6RS2CE</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/MDTsf/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Ada, gravin van Holland</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010014</div>
       </a>
       <a class="v-rel-card" href="NFC104.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/MI89.4.163.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Taūs (mayuri)</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 500709</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D17449999&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Grundriss 1.OG Antiken-, Deutsches und Vorderasiatisches Museum</div>
+        <div class="v-rel-meta">Europeana · /08535/item_57WBKR6WIZXFKF6L4BECLQADOB76QE2I</div>
       </a>
       <a class="v-rel-card" href="NFC106.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP302566.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Transverse Flute in D-flat</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 504019</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627848975/v2/prod/small/002001_002500/002258_003.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Soft Archive (letter to the Pope)</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2012.1362</div>
       </a>
       <a class="v-rel-card" href="NFC107.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15926099&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Grundriss 1.Obergeschoss 1:500 (aus: Museum im Werden)</div>
-        <div class="v-rel-meta">Europeana · /08535/item_VRFF2XX6ASJFFFFZO7HNI3KTAPG7RP5U</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/Eqjej/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Filips de Goede, hertog van Bourgondie, rekenpenning van het hertogdom Brabant</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010044</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://clevelandart.org/art/1993.38" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/312770" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,26 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Portrait Bust`,
-  type: `Sculpture`,
-  date: `c. 1865`,
-  registration: `1993.38`,
-  location: `219 19th Century European`,
-  discipline: `Modern European Painting and Sculpture`,
-  category: `Sculpture`,
-  description: `Among the artists who reacted against the static poses of neoclassical art, Carrier-Belleuse drew inspiration from the opulence and excess of Rococo portraiture of the 1700s. This bust resembles one of Napoleon III's mistresses, Marguerite Bellanger, whose features the artist is known to have borrowed for his female busts. Carrier-Belleuse received commissions from Napoleon III, ruler of France from 1852 to 1870, and contributed to the sculptural decorations of the Louvre and Opera Garnier in Paris.`,
-  medium: `terracotta`,
-  artist: `Albert-Ernest Carrier-Belleuse (French, 1824–1887)`,
-  culture: `France, 19th century`,
-  dimensions: `with base: 77.4 x 38.1 x 28.6 cm (30 1/2 x 15 x 11 1/4 in.)`,
+  title: `Seated female figure`,
+  type: `Whistle`,
+  date: `600-1000 CE`,
+  registration: `312770`,
+  location: `Gallery 360`,
+  discipline: `The Michael C. Rockefeller Wing`,
+  category: `Ceramics-Musical Instruments`,
+  description: `Seated female figure. Whistle. Ceramic, slip, paint. The Michael C. Rockefeller Wing. Veracruz. by Remojadas artist(s). Ceramics-Musical Instruments. 600-1000 CE`,
+  medium: `Ceramic, slip, paint`,
+  artist: `Remojadas artist(s)`,
+  culture: `Veracruz`,
+  dimensions: `H. 9 11/16 x W. 9 7/8 x D. 7 3/8 in. (24.7 x 25.1 x 18.7 cm)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: `The possible muse for this bust, Virginia Oldonia, was a countess know for her drama and costumes.`,
-  provenance: `[{"description":"possibly descendants of Carrier-Belleuse's daughter Marie-Gabrielle and her husband Joseph Cheret; [Elstir Galerie, Paris]","citations":[],"footnotes":null,"date":null,"sortorder":null}]`,
-  tombstone: `Portrait Bust, c. 1865. Albert-Ernest Carrier-Belleuse (French, 1824–1887). Terracotta; with base: 77.4 x 38.1 x 28.6 cm (30 1/2 x 15 x 11 1/4 in.). The Cleveland Museum of Art, Andrew R. and Martha Holden Jennings Fund, 1993.38`,
+  did_you_know: ``,
+  provenance: ``,
+  tombstone: ``,
   licence: `CC0 — Public Domain`,
-  source_url: `https://clevelandart.org/art/1993.38`,
-  institution: `Cleveland Museum of Art`
+  source_url: `https://www.metmuseum.org/art/collection/search/312770`,
+  institution: `The Metropolitan Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_cma',
+      collection: 'archai_met',
       text,
       authorType: 'visitor',
     }),

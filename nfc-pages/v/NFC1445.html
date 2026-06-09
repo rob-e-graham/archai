@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Personnel manager Sören Niemi dots of who collects gifts from SSAB, Dannemora Gruvor AB, Dannemora, Uppland 1 April 1992. Personalansvarige Sören Niemi prickar av vilka som hämtar ut gåvor från SSAB, förrådet, Dannemora Gruvor AB, Dannemora, Uppland 1 april 1992 — ARCHAI</title>
+<title>Portrait of Ernestine Nadar, the artist's wife, wearing fur stole — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fmm.dimu.org%2Fimage%2F02346wuDkKHJ%3Fdimension%3D1200x1200&amp;type=IMAGE" alt="Personnel manager Sören Niemi dots of who collects gifts from SSAB, Dannemora Gruvor AB, Dannemora, Uppland 1 April 1992. Personalansvarige Sören Niemi prickar av vilka som hämtar ut gåvor från SSAB, förrådet, Dannemora Gruvor AB, Dannemora, Uppland 1 april 1992" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/2021.67/2021.67_web.jpg" alt="Portrait of Ernestine Nadar, the artist's wife, wearing fur stole" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Personnel manager Sören Niemi dots of who collects gifts from SSAB, Dannemora Gruvor AB, Dannemora, Uppland 1 April 1992. Personalansvarige Sören Niemi prickar av vilka som hämtar ut gåvor från SSAB, förrådet, Dannemora Gruvor AB, Dannemora, Uppland 1 april 1992</div>
-  <div class="v-sub">IMAGE · Date unknown · /91617/upmu_photo_SM5458_20</div>
+  <div class="v-title">Portrait of Ernestine Nadar, the artist's wife, wearing fur stole</div>
+  <div class="v-sub">Photograph · c. 1880–83 · 2021.67</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Europeana</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    
+    <span class="v-meta-tag">Photography</span>
   </div>
 
   <!-- SHARE -->
@@ -903,13 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Personnel manager Sören Niemi dots of who collects gifts from SSAB, Dannemora Gruvor AB, Dannemora, Uppland 1 April 1992. Personalansvarige Sören Niemi prickar av vilka som hämtar ut gåvor från SSAB, förrådet, Dannemora Gruvor AB, Dannemora, Uppland 1 april 1992</strong> — Personnel manager Sören Niemi dots of who collects gifts from SSAB, Dannemora Gruvor AB, Dannemora, Uppland 1 April 1992. The picture was taken in connection with the Upplandsmuseet’s investigation of Dannemora Gruvor AB before the mine’s closure on 31 March 1992.
-
-The SSAB turned 1 million kr to th…</div>
+  <div class="v-story"><strong>Portrait of Ernestine Nadar, the artist's wife, wearing fur stole</strong> — This striking and unusual uncut sheet of carte-de-visite exposures was taken by one of France’s most successful early portraitist photographers, Nadar. His wife Ernestine frequently modeled for him, including when he tried out new equipment or processes such as these gelatin silver prints. These por…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: http://creativecommons.org/publicdomain/zero/1.0/</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -935,24 +969,29 @@ The SSAB turned 1 million kr to th…</div>
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -961,15 +1000,19 @@ The SSAB turned 1 million kr to th…</div>
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">/91617/upmu_photo_SM5458_20</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Arvidson, Tommy</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">IMAGE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Date unknown</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Upplands Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">IMAGE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2021.67</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Nadar (French, 1820–1910)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">uncut sheet of three matte gelatin silver carte-de-visites</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1880–83</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 10.8 x 21.9 cm (4 1/4 x 8 5/8 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">230 Photography</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">http://creativecommons.org/publicdomain/zero/1.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -984,24 +1027,24 @@ The SSAB turned 1 million kr to th…</div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1443.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D17449999&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Grundriss 1.OG Antiken-, Deutsches und Vorderasiatisches Museum</div>
-        <div class="v-rel-meta">Europeana · /08535/item_57WBKR6WIZXFKF6L4BECLQADOB76QE2I</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/5490fd49-dd52-4fd7-7d41-d871dcffae55/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">The Captive Slave (Ira Aldridge)</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 193664</div>
       </a>
       <a class="v-rel-card" href="NFC1444.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/MUS402A.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Orchestral Horn</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 501687</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2012FJ6886/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Simon</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · B.128:1 to 5-2011</div>
       </a>
       <a class="v-rel-card" href="NFC1446.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/14/165164-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Lantern Slide - 'I Wonder Who's Kissing Her Now', circa 1940s</div>
-        <div class="v-rel-meta">Museums Victoria · MM 69185</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/668969/006341.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Josefa de Barros Barreto do Rego Barros</div>
+        <div class="v-rel-meta">Brasiliana Museus · josefa-de-barros-barreto-do-rego-barros</div>
       </a>
       <a class="v-rel-card" href="NFC1447.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/midp89.4.212.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Nagphani</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 500781</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_668/v1725245162/v2/prod/small/000001_000500/000424_003.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Harmony—Master Chair</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2013.72</div>
       </a></div>
   </div>
 </div>
@@ -1014,7 +1057,7 @@ The SSAB turned 1 million kr to th…</div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.europeana.eu/item/91617/upmu_photo_SM5458_20?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/2021.67" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1046,28 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Personnel manager Sören Niemi dots of who collects gifts from SSAB, Dannemora Gruvor AB, Dannemora, Uppland 1 April 1992. Personalansvarige Sören Niemi prickar av vilka som hämtar ut gåvor från SSAB, förrådet, Dannemora Gruvor AB, Dannemora, Uppland 1 april 1992`,
-  type: `IMAGE`,
-  date: `Date unknown`,
-  registration: `/91617/upmu_photo_SM5458_20`,
-  location: `Upplands Museum`,
-  discipline: ``,
-  category: `IMAGE`,
-  description: `Personnel manager Sören Niemi dots of who collects gifts from SSAB, Dannemora Gruvor AB, Dannemora, Uppland 1 April 1992. The picture was taken in connection with the Upplandsmuseet’s investigation of Dannemora Gruvor AB before the mine’s closure on 31 March 1992.
-
-The SSAB turned 1 million kr to the mining personnel to use at its own discretion. After many discussions, it was agreed that everyone should receive a video apparatus or a video camera.. 1991 - 1992Historical event, name related to the buoy: Dannemora mines 1991 - 1992. Personalansvarige Sören Niemi prickar av vilka som hämtar ut g…`,
-  medium: ``,
-  artist: `Arvidson, Tommy`,
-  culture: ``,
-  dimensions: ``,
+  title: `Portrait of Ernestine Nadar, the artist's wife, wearing fur stole`,
+  type: `Photograph`,
+  date: `c. 1880–83`,
+  registration: `2021.67`,
+  location: `230 Photography`,
+  discipline: `Photography`,
+  category: `Photograph`,
+  description: `This striking and unusual uncut sheet of carte-de-visite exposures was taken by one of France’s most successful early portraitist photographers, Nadar. His wife Ernestine frequently modeled for him, including when he tried out new equipment or processes such as these gelatin silver prints. These portraits seem to be an intimate, direct exchange between sitter and camera, wife and husband.`,
+  medium: `uncut sheet of three matte gelatin silver carte-de-visites`,
+  artist: `Nadar (French, 1820–1910)`,
+  culture: `France`,
+  dimensions: `Overall: 10.8 x 21.9 cm (4 1/4 x 8 5/8 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
-  licence: `http://creativecommons.org/publicdomain/zero/1.0/`,
-  source_url: `https://www.europeana.eu/item/91617/upmu_photo_SM5458_20?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb`,
-  institution: `Europeana`
+  did_you_know: `Nadar and his wife Ernestine were married for 54 years.`,
+  provenance: `[{"description":"Michael Mattis and Judith Hochberg, Scarsdale, NY","citations":[],"footnotes":null,"date":"?-2021","sortorder":1},{"description":"The Cleveland Museum of Art, Cleveland, OH","citations":[],"footnotes":null,"date":"June 7, 2021","sortorder":2}]`,
+  tombstone: `Portrait of Ernestine Nadar, the artist's wife, wearing fur stole, c. 1880–83. Nadar (French, 1820–1910). Uncut sheet of three matte gelatin silver carte-de-visites; overall: 10.8 x 21.9 cm (4 1/4 x 8 5/8 in.). The Cleveland Museum of Art, Gift of Michael Mattis and Judith Hochberg, 2021.67`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://clevelandart.org/art/2021.67`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_europeana',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Santal or Munda Fiddle (Huka Banam) — ARCHAI</title>
+<title>Ohotniche Rogi sounding A — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,13 +917,13 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/mi/original/DP-24964-001.jpg" alt="Santal or Munda Fiddle (Huka Banam)" loading="eager">
+  <img src="https://images.metmuseum.org/CRDImages/mi/original/DP-12679-032.jpg" alt="Ohotniche Rogi sounding A" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Santal or Munda Fiddle (Huka Banam)</div>
-  <div class="v-sub">Santal or Munda Fiddle (Huka Banam) · 19th century · 883315</div>
+  <div class="v-title">Ohotniche Rogi sounding A</div>
+  <div class="v-sub">Ohotniche Rogi sounding A · 1873–89 · 502343</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
@@ -903,7 +939,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Santal or Munda Fiddle (Huka Banam)</strong> — Santal or Munda Fiddle (Huka Banam). Santal or Munda Fiddle (Huka Banam). Wood and hide. Musical Instruments. Eastern India, Probably Jharkhand. Musical instruments. 19th century</div>
+  <div class="v-story"><strong>Ohotniche Rogi sounding A</strong> — Ohotniche Rogi sounding A. Ohotniche Rogi sounding A. Brass. Musical Instruments. Russian. by N. N. Federov. Aerophone-Lip Vibrated-horn. 1873–89</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,17 +1000,17 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">883315</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Wood and hide</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Eastern India, Probably Jharkhand</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">502343</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">N. N. Federov</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Brass</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Russian</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Musical instruments</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">19th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">H: 22in x W: 5 in x D: 3in
-
-Weight: under 40 lbs</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 199</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Santal or Munda Fiddle (Huka Banam)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Aerophone-Lip Vibrated-horn</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1873–89</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Height (Perpendicular to bell): 63 1/16 in. (160.2 cm)
+Diameter (Of bell): 5 3/16 in. (13.1 cm)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 680</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Ohotniche Rogi sounding A</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
@@ -987,24 +1028,24 @@ Weight: under 40 lbs</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC209.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%2Fwebclient%2FDeliveryManager%3Fpid%3D6331299%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Servizio fotografico Firenze, 1973</div>
-        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6331299_custom_att_2_simple_viewer</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fmm.dimu.org%2Fimage%2F012uMWwmLFGT%3Fdimension%3D1200x1200&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Stockholm. Nationalmuseum</div>
+        <div class="v-rel-meta">Europeana · /916109/smm_sm_photo_Fo195187</div>
       </a>
       <a class="v-rel-card" href="NFC210.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2017JY9630/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Astral Onyx</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · W.14-2003</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/52ac8996-3460-cf71-cb42-5c4d0aa29b74/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">The Basket of Apples</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 111436</div>
       </a>
       <a class="v-rel-card" href="NFC212.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/48b2de88-ba73-8e19-f448-d1cef4a1c847/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">The Song of the Lark</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 94841</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/68597cf9-01aa-7c1f-1179-d4b8811e1c05/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Frederick Douglass</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 145681</div>
       </a>
       <a class="v-rel-card" href="NFC213.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/16/164716-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Lantern Slide - 'Bull &amp; Bush', circa 1928-1956</div>
-        <div class="v-rel-meta">Museums Victoria · MM 97188</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669033/006327.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Barão de Taquari (primeiro)</div>
+        <div class="v-rel-meta">Brasiliana Museus · barao-de-taquari-primeiro</div>
       </a></div>
   </div>
 </div>
@@ -1017,7 +1058,7 @@ Weight: under 40 lbs</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/883315" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/502343" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1049,27 +1090,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Santal or Munda Fiddle (Huka Banam)`,
-  type: `Santal or Munda Fiddle (Huka Banam)`,
-  date: `19th century`,
-  registration: `883315`,
-  location: `Gallery 199`,
+  title: `Ohotniche Rogi sounding A`,
+  type: `Ohotniche Rogi sounding A`,
+  date: `1873–89`,
+  registration: `502343`,
+  location: `Gallery 680`,
   discipline: `Musical Instruments`,
-  category: `Musical instruments`,
-  description: `Santal or Munda Fiddle (Huka Banam). Santal or Munda Fiddle (Huka Banam). Wood and hide. Musical Instruments. Eastern India, Probably Jharkhand. Musical instruments. 19th century`,
-  medium: `Wood and hide`,
-  artist: ``,
-  culture: `Eastern India, Probably Jharkhand`,
-  dimensions: `H: 22in x W: 5 in x D: 3in
-
-Weight: under 40 lbs`,
+  category: `Aerophone-Lip Vibrated-horn`,
+  description: `Ohotniche Rogi sounding A. Ohotniche Rogi sounding A. Brass. Musical Instruments. Russian. by N. N. Federov. Aerophone-Lip Vibrated-horn. 1873–89`,
+  medium: `Brass`,
+  artist: `N. N. Federov`,
+  culture: `Russian`,
+  dimensions: `Height (Perpendicular to bell): 63 1/16 in. (160.2 cm)
+Diameter (Of bell): 5 3/16 in. (13.1 cm)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
   licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/883315`,
+  source_url: `https://www.metmuseum.org/art/collection/search/502343`,
   institution: `The Metropolitan Museum of Art`
 };
 

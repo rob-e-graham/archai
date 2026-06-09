@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Da Tongjiao (Trumpet) — ARCHAI</title>
+<title>Chinese child with musical instrument — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/mi/original/DP169482.jpg" alt="Da Tongjiao (Trumpet)" loading="eager">
+  <img src="https://images.metmuseum.org/CRDImages/as/original/23_225_58_O1_sf.jpg" alt="Chinese child with musical instrument" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Da Tongjiao (Trumpet)</div>
-  <div class="v-sub">Haotong (natural trumpet) · late 19th century · 500636</div>
+  <div class="v-title">Chinese child with musical instrument</div>
+  <div class="v-sub">Figure · late 18th century · 45824</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Musical Instruments</span>
+    <span class="v-meta-tag">Asian Art</span>
   </div>
 
   <!-- SHARE -->
@@ -903,7 +939,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Da Tongjiao (Trumpet)</strong> — Da Tongjiao (Trumpet). Haotong (natural trumpet). brass. Musical Instruments. Chinese. Aerophone-Lip Vibrated-trumpet / trombone. late 19th century</div>
+  <div class="v-story"><strong>Chinese child with musical instrument</strong> — Chinese child with musical instrument. Figure. Porcelain with underglaze blue and iron decoration (Hirado ware). Asian Art. Japan. Edo period (1615–1868). Ceramics. late 18th century</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,19 +1000,15 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">500636</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">brass</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Chinese</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Aerophone-Lip Vibrated-trumpet / trombone</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">late 19th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Height (When extended): 38 11/16 in. (98.3 cm)
-Height (When closed): 23 3/8 in. (59.4 cm)
-Width: 5 1/2 in. (14 cm)
-Depth: 4 7/8 in. (12.4 cm)
-Diameter (Of bell):  5 1/8 in. (12.9 cm)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 680</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Haotong (natural trumpet)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">45824</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Porcelain with underglaze blue and iron decoration (Hirado ware)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Japan</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Asian Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ceramics</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">late 18th century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">H. 1 5/8 in. (4.1 cm)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">The Met, New York</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Figure</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
@@ -989,24 +1026,24 @@ Diameter (Of bell):  5 1/8 in. (12.9 cm)</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1507.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/5512cee9-6d00-d01b-b0be-ac7843cc8f76/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Fishing in Spring, the Pont de Clichy (Asnières)</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 109314</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018LG5969/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Visual Theogonies: images of the computational god</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.204-2018</div>
       </a>
       <a class="v-rel-card" href="NFC1508.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/MDTsf/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van Ada, gravin van Holland</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010014</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/rIWAu/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Koninklijke beloningspenning voor het toedienen van de meeste kosteloze koepok-vaccinaties, op naam van C. Pastoor 1822</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100144</div>
       </a>
       <a class="v-rel-card" href="NFC1510.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_668/v1627826237/v2/prod/small/001501_002000/001940_003.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Materialised Sketch of a Round Back Chair</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2015.281</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/KwJBk/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Duit van de Bataafse Republiek op naam van Zeeland, 1796, misslag</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100095</div>
       </a>
       <a class="v-rel-card" href="NFC1511.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2024NX9372/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Koto</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:AMERICASFOUNDATION.2131:1 to 4-2024</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP104824.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Bird-Headed Figure Whistle</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 310532</div>
       </a></div>
   </div>
 </div>
@@ -1019,7 +1056,7 @@ Diameter (Of bell):  5 1/8 in. (12.9 cm)</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/500636" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/45824" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1051,29 +1088,25 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Da Tongjiao (Trumpet)`,
-  type: `Haotong (natural trumpet)`,
-  date: `late 19th century`,
-  registration: `500636`,
-  location: `Gallery 680`,
-  discipline: `Musical Instruments`,
-  category: `Aerophone-Lip Vibrated-trumpet / trombone`,
-  description: `Da Tongjiao (Trumpet). Haotong (natural trumpet). brass. Musical Instruments. Chinese. Aerophone-Lip Vibrated-trumpet / trombone. late 19th century`,
-  medium: `brass`,
+  title: `Chinese child with musical instrument`,
+  type: `Figure`,
+  date: `late 18th century`,
+  registration: `45824`,
+  location: `The Met, New York`,
+  discipline: `Asian Art`,
+  category: `Ceramics`,
+  description: `Chinese child with musical instrument. Figure. Porcelain with underglaze blue and iron decoration (Hirado ware). Asian Art. Japan. Edo period (1615–1868). Ceramics. late 18th century`,
+  medium: `Porcelain with underglaze blue and iron decoration (Hirado ware)`,
   artist: ``,
-  culture: `Chinese`,
-  dimensions: `Height (When extended): 38 11/16 in. (98.3 cm)
-Height (When closed): 23 3/8 in. (59.4 cm)
-Width: 5 1/2 in. (14 cm)
-Depth: 4 7/8 in. (12.4 cm)
-Diameter (Of bell):  5 1/8 in. (12.9 cm)`,
+  culture: `Japan`,
+  dimensions: `H. 1 5/8 in. (4.1 cm)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
   licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/500636`,
+  source_url: `https://www.metmuseum.org/art/collection/search/45824`,
   institution: `The Metropolitan Museum of Art`
 };
 

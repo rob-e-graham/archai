@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Estampa — ARCHAI</title>
+<title>Aerial IV — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://museuregionalcasadosottoni.acervos.museus.gov.br/wp-content/uploads/2019/04/87_A-2-1-1-4.jpg" alt="Estampa" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2019LX2141/full/!600,600/0/default.jpg" alt="Aerial IV" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Estampa</div>
-  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.4 estampa · Séc. XIX · 5370951-2</div>
+  <div class="v-title">Aerial IV</div>
+  <div class="v-sub">Photograph · 2011 · E.24-2014</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Brasiliana Museus</span>
+    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Brasiliana Museus</span>
+    <span class="v-meta-tag">Photograph</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Estampa</strong> — Litogravura (reprodução) em preto-e-branco, representando Christiano Ottoni, circundada por passe-par-tout em papelão cinza e moldura de madeira com frisos em formato oval. Figura masculina, de meia-idade, sentada, posicionada ligeiramente de perfil, com cabelos curtos, rosto magro, testa larga, com…</div>
+  <div class="v-story"><strong>Aerial IV</strong> — Aerial IV. Photograph. Made by Jananne Al-Ani. 2011. Prints &amp; Drawings Study Room, room 315</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://museuregionalcasadosottoni.acervos.museus.gov.br/reproducao-de-imagens/</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,17 +1000,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">5370951-2</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.4 estampa</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.4 estampa</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Séc. XIX</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.4 estampa</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.24-2014</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Jananne Al-Ani</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2011</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, room 315</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://museuregionalcasadosottoni.acervos.museus.gov.br/reproducao-de-imagens/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -984,24 +1024,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1316.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15936599&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Halle am Forum im Südflügel (aus: Museum im Werden)</div>
-        <div class="v-rel-meta">Europeana · /08535/item_CWUWLNNIQ3NJZIR7ML63CPHUGXVJXFYB</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1635631277/v2/prod/small/001501_002000/001687_065.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Artistic Chicken</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2013.485</div>
       </a>
       <a class="v-rel-card" href="NFC1317.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/615830/preview" loading="lazy"></div>
-        <div class="v-rel-title">Guerche</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · NU007070/2</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/c210a649-8de9-866e-2a5f-0a506a02b19b/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portrait of Magdalena of Saxony, Wife of Elector Joachim II of Brandenburg</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 87760</div>
       </a>
       <a class="v-rel-card" href="NFC1319.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2022NG0584/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Blacktransair.com / I CANT REMEMBER A TIME I DIDNT NEED YOU</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CD.3-2023</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2015HV4909/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Microvision TV1A Pocket Television</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.2:1 to 14-2014</div>
       </a>
       <a class="v-rel-card" href="NFC1320.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/svhbP/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Nederlandse 10 cent voor West-Indi&amp;#235;, 1942</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100274</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/nVfXl/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Dukaat van de Bataafse Republiek op naam van Utrecht, 1800</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100088</div>
       </a></div>
   </div>
 </div>
@@ -1014,7 +1054,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/5370951-2/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1278177/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1046,26 +1086,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Estampa`,
-  type: `02 artes visuais/cinematográfica > 02.4 estampa`,
-  date: `Séc. XIX`,
-  registration: `5370951-2`,
-  location: `Brasiliana Museus`,
-  discipline: `Brasiliana Museus`,
-  category: `02 artes visuais/cinematográfica > 02.4 estampa`,
-  description: `Litogravura (reprodução) em preto-e-branco, representando Christiano Ottoni, circundada por passe-par-tout em papelão cinza e moldura de madeira com frisos em formato oval. Figura masculina, de meia-idade, sentada, posicionada ligeiramente de perfil, com cabelos curtos, rosto magro, testa larga, com o olhar direcionado à frente, nariz longo, bigodes e barba semi-longa e espessa, tendo sua orelha direita aparente. Traja camisa branca, de mangas compridas, sobreposta por colete com três botões aparentes, paletó e gravata em tom escuro. Apresenta os braços flexionados, estando o braço esquerdo ap…`,
-  medium: `02 artes visuais/cinematográfica > 02.4 estampa`,
-  artist: ``,
-  culture: `Brazil`,
+  title: `Aerial IV`,
+  type: `Photograph`,
+  date: `2011`,
+  registration: `E.24-2014`,
+  location: `Prints & Drawings Study Room, room 315`,
+  discipline: `Photograph`,
+  category: `Photograph`,
+  description: `Aerial IV. Photograph. Made by Jananne Al-Ani. 2011. Prints & Drawings Study Room, room 315`,
+  medium: ``,
+  artist: `Jananne Al-Ani`,
+  culture: ``,
   dimensions: ``,
-  wall_description: `Litogravura (reprodução) em preto-e-branco, representando Christiano Ottoni, circundada por passe-par-tout em papelão cinza e moldura de madeira com frisos em formato oval. Figura masculina, de meia-idade, sentada, posicionada ligeiramente de perfil, com cabelos curtos, rosto magro, testa larga, com o olhar direcionado à frente, nariz longo, bigodes e barba semi-longa e espessa, tendo sua orelha direita aparente. Traja camisa branca, de mangas compridas, sobreposta por colete com três botões apa…`,
+  wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Estampa. Séc. XIX. Brasiliana Museus`,
-  licence: `Domínio público, ver http://museuregionalcasadosottoni.acervos.museus.gov.br/reproducao-de-imagens/`,
-  source_url: `https://brasiliana.museus.gov.br/acervos/5370951-2/`,
-  institution: `Brasiliana Museus`
+  tombstone: ``,
+  licence: `V&A Open Access`,
+  source_url: `https://collections.vam.ac.uk/item/O1278177/`,
+  institution: `Victoria and Albert Museum, London`
 };
 
 // Build rich context from available fields
@@ -1646,7 +1686,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_brasiliana',
+      collection: 'archai_va',
       text,
       authorType: 'visitor',
     }),

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Stone Musical Instrument — ARCHAI</title>
+<title>Sesando — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/ao/original/vs1994_35_776.jpg" alt="Stone Musical Instrument" loading="eager">
+  <img src="https://images.metmuseum.org/CRDImages/mi/original/DP302560.jpg" alt="Sesando" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Stone Musical Instrument</div>
-  <div class="v-sub">Musical instrument · before 16th century · 317640</div>
+  <div class="v-title">Sesando</div>
+  <div class="v-sub">Sesando · late 19th century · 502064</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">The Michael C. Rockefeller Wing</span>
+    <span class="v-meta-tag">Musical Instruments</span>
   </div>
 
   <!-- SHARE -->
@@ -903,7 +939,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Stone Musical Instrument</strong> — Stone Musical Instrument. Musical instrument. Stone, pigment. The Michael C. Rockefeller Wing. Mexican. Stone-Musical Instruments. before 16th century</div>
+  <div class="v-story"><strong>Sesando</strong> — Sesando. Sesando. Bamboo, teak wood, palm (Borassus flabellifera), wire. Musical Instruments. Javanese (Timorese). Chordophone-Zither-plucked-tube. late 19th century</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,15 +1000,15 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">317640</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Stone, pigment</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Mexican</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">The Michael C. Rockefeller Wing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Stone-Musical Instruments</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">before 16th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Length 4-3/8 in.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">The Met, New York</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Musical instrument</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">502064</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Bamboo, teak wood, palm (Borassus flabellifera), wire</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Javanese (Timorese)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Chordophone-Zither-plucked-tube</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">late 19th century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">H. 22 1/16 × W. 24 × D. 12 3/16 in. (56 × 61 × 31 cm)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 681</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Sesando</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
@@ -985,24 +1026,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC063.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/as/original/23_225_60_O1_sf.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Chinese child with musical instrument</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 45826</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/589176?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">[textile, fragment]</div>
+        <div class="v-rel-meta">Auckland Museum · 2012.x.8</div>
       </a>
       <a class="v-rel-card" href="NFC064.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2023NL9085/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Bluena</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.44-2021</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/18092196-50ae-3ff1-9205-1b3110e966c3/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Distant View of Niagara Falls</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 90048</div>
       </a>
       <a class="v-rel-card" href="NFC066.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/65db9e21-83c3-1cc6-7240-1e1996d87f52/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Equestrienne (At the Cirque Fernando)</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 16146</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HH9794/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Graham Bell's Telephone 1876</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.584-1981</div>
       </a>
       <a class="v-rel-card" href="NFC067.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/4e074d70-4424-331b-ec89-0776a45d6825/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Beggar with Oysters (Philosopher)</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 8969</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/668261/006504.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Paisagem</div>
+        <div class="v-rel-meta">Brasiliana Museus · paisagem-4</div>
       </a></div>
   </div>
 </div>
@@ -1015,7 +1056,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/317640" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/502064" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1047,25 +1088,25 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Stone Musical Instrument`,
-  type: `Musical instrument`,
-  date: `before 16th century`,
-  registration: `317640`,
-  location: `The Met, New York`,
-  discipline: `The Michael C. Rockefeller Wing`,
-  category: `Stone-Musical Instruments`,
-  description: `Stone Musical Instrument. Musical instrument. Stone, pigment. The Michael C. Rockefeller Wing. Mexican. Stone-Musical Instruments. before 16th century`,
-  medium: `Stone, pigment`,
+  title: `Sesando`,
+  type: `Sesando`,
+  date: `late 19th century`,
+  registration: `502064`,
+  location: `Gallery 681`,
+  discipline: `Musical Instruments`,
+  category: `Chordophone-Zither-plucked-tube`,
+  description: `Sesando. Sesando. Bamboo, teak wood, palm (Borassus flabellifera), wire. Musical Instruments. Javanese (Timorese). Chordophone-Zither-plucked-tube. late 19th century`,
+  medium: `Bamboo, teak wood, palm (Borassus flabellifera), wire`,
   artist: ``,
-  culture: `Mexican`,
-  dimensions: `Length 4-3/8 in.`,
+  culture: `Javanese (Timorese)`,
+  dimensions: `H. 22 1/16 × W. 24 × D. 12 3/16 in. (56 × 61 × 31 cm)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
   licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/317640`,
+  source_url: `https://www.metmuseum.org/art/collection/search/502064`,
   institution: `The Metropolitan Museum of Art`
 };
 

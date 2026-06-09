@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Mme L . . . (Laure Borreau) — ARCHAI</title>
+<title>Poster, 'Happy Earth Day' #2 — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/1962.2/1962.2_web.jpg" alt="Mme L . . . (Laure Borreau)" loading="eager">
+  <img src="https://res.cloudinary.com/mplustms/image/upload/w_705/v1627855539/v2/prod/small/006501_007000/006987_006.jpg" alt="Poster, 'Happy Earth Day' #2" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Mme L . . . (Laure Borreau)</div>
-  <div class="v-sub">Painting · 1863 · 1962.2</div>
+  <div class="v-title">Poster, 'Happy Earth Day' #2</div>
+  <div class="v-sub">Poster · 1982 · 2016.746</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
+    <span class="v-meta-tag mv">M+, Hong Kong</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">Design and Architecture</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Mme L . . . (Laure Borreau)</strong> — Gustave Courbet painted four portraits of MadameLaure Borreau; this is the last and most highlydeveloped. As a Realist, Courbet aimed to representwhat he saw in the visible, tangible world. Herepresented Madame Borreau in a black silk dressembellished with lace and a matching hat. Goldand viol…</div>
-  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
-      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+  <div class="v-story"><strong>Poster, 'Happy Earth Day' #2</strong> — Lithographic poster depicting a globe with green land masses against a yellow background. An illustration of a pair of connected arms surround the globe, below which their hands meet in a handshake. The green words 'HAPPY' and 'EARTHDAY' appear in our bottom left and right corners respectively.</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Fukuda Shizuko · © Fukuda Shizuko</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,19 +1000,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1962.2</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Gustave Courbet (French, 1819–1877)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oil on fabric</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, 19th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Painting</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1863</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Framed: 112.4 x 93 x 12.1 cm (44 1/4 x 36 5/8 x 4 3/4 in.); Unframed: 81 x 61.2 cm (31 7/8 x 24 1/8 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">222 Impressionism &amp; Post-Impressionism</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2016.746</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Fukuda Shigeo</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">offset lithograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Japanese</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Design and Architecture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Poster</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1982</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">sheet: 100 × 70.7 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Poster</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Fukuda Shizuko · © Fukuda Shizuko</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -986,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC877.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2018.279/2018.279_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Vase</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2018.279</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AA4340/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Here is a Gale Warning</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.365-2005</div>
       </a>
       <a class="v-rel-card" href="NFC878.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018KY2022/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Radio</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.14-1977</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2016JA5803/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Murphy A8</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.626&amp;A-1975</div>
       </a>
       <a class="v-rel-card" href="NFC880.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627855402/v2/prod/small/002001_002500/002206_004.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Han Dynasty Urn with Coca Cola Logo</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2012.49</div>
+        <div class="v-rel-thumb"><img src="https://museuregionalcasadosottoni.acervos.museus.gov.br/wp-content/uploads/2019/04/35_A-3-1-3-4.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Estampa religiosa</div>
+        <div class="v-rel-meta">Brasiliana Museus · 5372544-2</div>
       </a>
       <a class="v-rel-card" href="NFC881.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669326/006235.jpg" loading="lazy"></div>
-        <div class="v-rel-title">[Cigana e duas paisagens]</div>
-        <div class="v-rel-meta">Brasiliana Museus · cigana-e-duas-paisagens</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2008BT4857/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Running Cola is Africa</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.92-2008</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://clevelandart.org/art/1962.2" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/poster-happy-earth-day-2-2016746/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,26 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Mme L . . . (Laure Borreau)`,
-  type: `Painting`,
-  date: `1863`,
-  registration: `1962.2`,
-  location: `222 Impressionism & Post-Impressionism`,
-  discipline: `Modern European Painting and Sculpture`,
-  category: `Painting`,
-  description: `Gustave Courbet painted four portraits of MadameLaure Borreau; this is the last and most highlydeveloped. As a Realist, Courbet aimed to representwhat he saw in the visible, tangible world. Herepresented Madame Borreau in a black silk dressembellished with lace and a matching hat. Goldand violet lights of sunset softly illuminate thebackground. However, the portrait is not idealized.Courbet’s inclusion of her shadowed eyes and full-fleshedneck prompted one critic to write, “I daresayin nature she may be very pretty, but in Courbet’spicture she is nothing less than offensive.”`,
-  medium: `oil on fabric`,
-  artist: `Gustave Courbet (French, 1819–1877)`,
-  culture: `France, 19th century`,
-  dimensions: `Framed: 112.4 x 93 x 12.1 cm (44 1/4 x 36 5/8 x 4 3/4 in.); Unframed: 81 x 61.2 cm (31 7/8 x 24 1/8 in.)`,
-  wall_description: ``,
+  title: `Poster, 'Happy Earth Day' #2`,
+  type: `Poster`,
+  date: `1982`,
+  registration: `2016.746`,
+  location: `M+, Hong Kong`,
+  discipline: `Design and Architecture`,
+  category: `Poster`,
+  description: `Lithographic poster depicting a globe with green land masses against a yellow background. An illustration of a pair of connected arms surround the globe, below which their hands meet in a handshake. The green words 'HAPPY' and 'EARTHDAY' appear in our bottom left and right corners respectively.`,
+  medium: `offset lithograph`,
+  artist: `Fukuda Shigeo`,
+  culture: `Japanese`,
+  dimensions: `sheet: 100 × 70.7 cm`,
+  wall_description: `Lithographic poster depicting a globe with green land masses against a yellow background. An illustration of a pair of connected arms surround the globe, below which their hands meet in a handshake. The green words 'HAPPY' and 'EARTHDAY' appear in our bottom left and right corners respectively.`,
   fun_fact: ``,
-  did_you_know: `Courbet once wrote of Laure Borreau, the sitter in this portrait, "I am in love with a splendid lady, the driving force behind my triumph."`,
-  provenance: `[{"description":"(Drouot, Paris, France, Artist's estate sale,  December 9, 1881, lot 11, stock number 2070, sold to Durand-Ruel)","citations":[],"footnotes":[],"date":"1881","sortorder":null},{"description":"(Durand-Ruel, Paris France, December 10, 1881, sold to Max Flersheim)","citations":[],"foot…`,
-  tombstone: `Mme L . . . (Laure Borreau), 1863. Gustave Courbet (French, 1819–1877). Oil on fabric; framed: 112.4 x 93 x 12.1 cm (44 1/4 x 36 5/8 x 4 3/4 in.); unframed: 81 x 61.2 cm (31 7/8 x 24 1/8 in.). The Cleveland Museum of Art, Leonard C. Hanna Jr. Fund, 1962.2`,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://clevelandart.org/art/1962.2`,
-  institution: `Cleveland Museum of Art`
+  did_you_know: ``,
+  provenance: ``,
+  tombstone: `Poster, 'Happy Earth Day' #2. Fukuda Shigeo. 1982. M+, Hong Kong`,
+  licence: `CC0 metadata · M+ API service non-commercial · © Fukuda Shizuko`,
+  source_url: `https://www.mplus.org.hk/en/collection/objects/poster-happy-earth-day-2-2016746/`,
+  institution: `M+, Hong Kong`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_cma',
+      collection: 'archai_mplus',
       text,
       authorType: 'visitor',
     }),

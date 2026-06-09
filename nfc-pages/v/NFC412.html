@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Site model, Metroplan West Kowloon Reclamation Concept, Hong Kong — ARCHAI</title>
+<title>toy car — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627881031/v2/prod/small/001001_001500/001057_005.jpg" alt="Site model, Metroplan West Kowloon Reclamation Concept, Hong Kong" loading="eager">
+  <img src="https://api.aucklandmuseum.com/id/media/v/594047?rendering=standard.jpg" alt="toy car" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Site model, Metroplan West Kowloon Reclamation Concept, Hong Kong</div>
-  <div class="v-sub">Architectural Model · 1988, made 2013 · 2013.160</div>
+  <div class="v-title">toy car</div>
+  <div class="v-sub">Toy Vehicle · 2003-07-16T00:00:00.000Z · 1996.165.396</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">M+, Hong Kong</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
-    <span class="v-meta-tag">Design and Architecture</span>
+    <span class="v-meta-tag mv">Auckland Museum</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
+    <span class="v-meta-tag">Social History</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Site model, Metroplan West Kowloon Reclamation Concept, Hong Kong</strong> — Acrylic and cardboard architectural model of the West Kowloon district in Hong Kong. A concentration of white buildings stands on land, depicted by the grey section in the upper half. The bay, represented by the black section, features a strip of acrylic buildings in the lower half.</div>
-  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
-      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Taoho Design · © Taoho Design</div>
+  <div class="v-story"><strong>toy car</strong> — car
+cast aluminium toy car, red with tin plate wheels</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
+      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +970,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,19 +1001,17 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2013.160</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Tao Ho, Taoho Design</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">acrylic and cardboard</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Hong Kong</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Design and Architecture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Architectural Model</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1988, made 2013</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">overall: 39.7 × 53 × 56.7 cm</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Architectural Model</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Taoho Design · © Taoho Design</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1996.165.396</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">unknown</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Aluminium, &lt;aluminum And Aluminum Alloy&gt;, Nonferrous Metal, &lt;metal By Composition Or Origin&gt;, Metal, &lt;metal And Metal Products&gt;</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Toy Vehicle</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2003-07-16T00:00:00.000Z</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Toy Vehicle</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -986,24 +1026,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC410.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP158910a.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Chegah-Skah-Hdah (dance wand)</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 501213</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2008BU3016/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Oscillon 520</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.1096-2008</div>
       </a>
       <a class="v-rel-card" href="NFC411.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2013GV1959/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Personal computer</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · W.48:1-1984</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/14/165164-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Lantern Slide - 'I Wonder Who's Kissing Her Now', circa 1940s</div>
+        <div class="v-rel-meta">Museums Victoria · MM 69185</div>
       </a>
       <a class="v-rel-card" href="NFC413.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fcollections.smvk.se%2Fcarlotta-vkm%2Fweb%2Fimage%2Fzoom%2F1248982%2Fimage.jpg&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">docka, musikinstrument, kuliss, man, kvinna, fotografi, photograph. Doll, musical instrument, scenes, man, woman, photography, ph</div>
-        <div class="v-rel-meta">Europeana · /91609/SMVK_VKM_fotografi_1248291</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/iCTjZ/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Dirk VII, graaf van Holland</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010013</div>
       </a>
       <a class="v-rel-card" href="NFC414.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2013GU3404/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">The Revolution Will Not Be Televised</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.160-2011</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1989.73/1989.73_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Red-Figure Bell-Krater (Mixing Vessel): Bust of Dionysos and Comic Actors (A); Dionysos, Satyr, Maenad (B)</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1989.73</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1056,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/site-model-metroplan-west-kowloon-reclamation-concept-hong-kong-2013160/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/589021" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,26 +1088,27 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Site model, Metroplan West Kowloon Reclamation Concept, Hong Kong`,
-  type: `Architectural Model`,
-  date: `1988, made 2013`,
-  registration: `2013.160`,
-  location: `M+, Hong Kong`,
-  discipline: `Design and Architecture`,
-  category: `Architectural Model`,
-  description: `Acrylic and cardboard architectural model of the West Kowloon district in Hong Kong. A concentration of white buildings stands on land, depicted by the grey section in the upper half. The bay, represented by the black section, features a strip of acrylic buildings in the lower half.`,
-  medium: `acrylic and cardboard`,
-  artist: `Tao Ho, Taoho Design`,
-  culture: `Hong Kong`,
-  dimensions: `overall: 39.7 × 53 × 56.7 cm`,
-  wall_description: `Acrylic and cardboard architectural model of the West Kowloon district in Hong Kong. A concentration of white buildings stands on land, depicted by the grey section in the upper half. The bay, represented by the black section, features a strip of acrylic buildings in the lower half.`,
+  title: `toy car`,
+  type: `Toy Vehicle`,
+  date: `2003-07-16T00:00:00.000Z`,
+  registration: `1996.165.396`,
+  location: `Auckland Museum`,
+  discipline: `Social History`,
+  category: `Toy Vehicle`,
+  description: `car
+cast aluminium toy car, red with tin plate wheels`,
+  medium: `Aluminium, <aluminum And Aluminum Alloy>, Nonferrous Metal, <metal By Composition Or Origin>, Metal, <metal And Metal Products>`,
+  artist: `unknown`,
+  culture: ``,
+  dimensions: ``,
+  wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Site model, Metroplan West Kowloon Reclamation Concept, Hong Kong. Tao Ho, Taoho Design. 1988, made 2013. M+, Hong Kong`,
-  licence: `CC0 metadata · M+ API service non-commercial · © Taoho Design`,
-  source_url: `https://www.mplus.org.hk/en/collection/objects/site-model-metroplan-west-kowloon-reclamation-concept-hong-kong-2013160/`,
-  institution: `M+, Hong Kong`
+  tombstone: ``,
+  licence: `© Auckland Museum CC BY`,
+  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/589021`,
+  institution: `Auckland Museum`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_mplus',
+      collection: 'archai_auckland',
       text,
       authorType: 'visitor',
     }),

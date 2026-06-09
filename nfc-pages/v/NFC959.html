@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Ansicht am Kupfergraben (aus: Museum im Werden) — ARCHAI</title>
+<title>Rectangular Octave Virginal — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15937099&amp;type=IMAGE" alt="Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Ansicht am Kupfergraben (aus: Museum im Werden)" loading="eager">
+  <img src="https://images.metmuseum.org/CRDImages/mi/original/DT10869.jpg" alt="Rectangular Octave Virginal" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Ansicht am Kupfergraben (aus: Museum im Werden)</div>
-  <div class="v-sub">IMAGE · Date unknown · /08535/item_JUQQB3TMKCTTME2Y5NPI4PJNK7PG5U6D</div>
+  <div class="v-title">Rectangular Octave Virginal</div>
+  <div class="v-sub">Rectangular Octave Virginal · ca. 1600 · 502325</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Europeana</span>
+    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    
+    <span class="v-meta-tag">Musical Instruments</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Ansicht am Kupfergraben (aus: Museum im Werden)</strong> — Architekturmuseum der TU Berlin, Inv. Nr. 11662,36. Werk und Digitalisat sind gemeinfrei, aber wir freuen uns über einen Bildnachweis. (Bemerkung)</div>
+  <div class="v-story"><strong>Rectangular Octave Virginal</strong> — Rectangular Octave Virginal. Rectangular Octave Virginal. Ebony, beech, brass, leather, paper, parchment, ivory. Musical Instruments. German. Chordophone-Zither-plucked-virginal. ca. 1600</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: http://creativecommons.org/publicdomain/zero/1.0/</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,15 +1000,20 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">/08535/item_JUQQB3TMKCTTME2Y5NPI4PJNK7PG5U6D</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Paul Walther (1848-1925, als Zeichner)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">IMAGE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Date unknown</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Museum of Architecture at Berlin Institute of Technology</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">IMAGE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">502325</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Ebony, beech, brass, leather, paper, parchment, ivory</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">German</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Chordophone-Zither-plucked-virginal</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca. 1600</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Height: 3 9/16 in. (9.1 cm)
+Width (parallel to keyboard): 17 3/8 in. (44.1 cm)
+Depth (perpendicular to keyboard): 8 9/16 in. (21.8 cm)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 681</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Rectangular Octave Virginal</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">http://creativecommons.org/publicdomain/zero/1.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -982,24 +1028,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC957.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2016.538/2016.538_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Silenus Holding the Child Dionysus, Louvre Museum, Paris</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2016.538</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2019.69/2019.69_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Mosaique: The Imperial Court of Napoleon III</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 2019.69</div>
       </a>
       <a class="v-rel-card" href="NFC958.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/345934/preview" loading="lazy"></div>
-        <div class="v-rel-title">Soldier doll</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH016389</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1915.533.a/1915.533.a_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Fragment from Black-Figure Neck-Amphora of Panathenaic Shape (Storage Vessel): Apollo and Zeus</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1915.533.a</div>
       </a>
       <a class="v-rel-card" href="NFC960.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fmm.dimu.org%2Fimage%2F032wZ13EJDN7%3Fdimension%3D1200x1200&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Stockholm, byggnader, Nationalmuseum.. Stockholm, buildings, Nationalmuseum.</div>
-        <div class="v-rel-meta">Europeana · /916121/S_OLM_photo_OLM_2008_21_144</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/zpzYq/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Schutterspenning van Leiden</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100445</div>
       </a>
       <a class="v-rel-card" href="NFC961.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1920.120/1920.120_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Heroic Head of Pierre de Wissant, One of the Burghers of Calais</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1920.120</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/midp89.4.77.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Tsuridaiko (釣り太鼓 )</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 500706</div>
       </a></div>
   </div>
 </div>
@@ -1012,7 +1058,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.europeana.eu/item/08535/item_JUQQB3TMKCTTME2Y5NPI4PJNK7PG5U6D?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/502325" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1044,26 +1090,28 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Ansicht am Kupfergraben (aus: Museum im Werden)`,
-  type: `IMAGE`,
-  date: `Date unknown`,
-  registration: `/08535/item_JUQQB3TMKCTTME2Y5NPI4PJNK7PG5U6D`,
-  location: `Museum of Architecture at Berlin Institute of Technology`,
-  discipline: ``,
-  category: `IMAGE`,
-  description: `Architekturmuseum der TU Berlin, Inv. Nr. 11662,36. Werk und Digitalisat sind gemeinfrei, aber wir freuen uns über einen Bildnachweis. (Bemerkung)`,
-  medium: ``,
-  artist: `Paul Walther (1848-1925, als Zeichner)`,
-  culture: ``,
-  dimensions: ``,
+  title: `Rectangular Octave Virginal`,
+  type: `Rectangular Octave Virginal`,
+  date: `ca. 1600`,
+  registration: `502325`,
+  location: `Gallery 681`,
+  discipline: `Musical Instruments`,
+  category: `Chordophone-Zither-plucked-virginal`,
+  description: `Rectangular Octave Virginal. Rectangular Octave Virginal. Ebony, beech, brass, leather, paper, parchment, ivory. Musical Instruments. German. Chordophone-Zither-plucked-virginal. ca. 1600`,
+  medium: `Ebony, beech, brass, leather, paper, parchment, ivory`,
+  artist: ``,
+  culture: `German`,
+  dimensions: `Height: 3 9/16 in. (9.1 cm)
+Width (parallel to keyboard): 17 3/8 in. (44.1 cm)
+Depth (perpendicular to keyboard): 8 9/16 in. (21.8 cm)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `http://creativecommons.org/publicdomain/zero/1.0/`,
-  source_url: `https://www.europeana.eu/item/08535/item_JUQQB3TMKCTTME2Y5NPI4PJNK7PG5U6D?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb`,
-  institution: `Europeana`
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.metmuseum.org/art/collection/search/502325`,
+  institution: `The Metropolitan Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1644,7 +1692,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_europeana',
+      collection: 'archai_met',
       text,
       authorType: 'visitor',
     }),

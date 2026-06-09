@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>banknote — ARCHAI</title>
+<title>Hollandse leeuwendaalder, 1576 — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,27 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/378265?rendering=standard.jpg" alt="banknote" loading="eager">
+  <img src="https://iiif.micr.io/HTgXB/full/max/0/default.jpg" alt="Hollandse leeuwendaalder, 1576" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">banknote</div>
-  <div class="v-sub">ecrm:E22_Man-Made_Object · 1850s · Su:259</div>
+  <div class="v-title">Hollandse leeuwendaalder, 1576</div>
+  <div class="v-sub">leeuwendaalder · 2026-02-14T04:17:39Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+        &lt;setSpec&gt;2601&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:creator&gt;Provincie Holland&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1576 · 200100253</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Auckland Museum</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
-    <span class="v-meta-tag">Social History</span>
+    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+
   </div>
 
   <!-- SHARE -->
@@ -903,13 +948,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>banknote</strong> — Bank of Otago banknote : 1 pound : 1850s
-English / Scottish coat of arms at centre with motto NEMO ME IMPUNE LACESSIT
-uniface; black; printed on paper; unused : no serial number; unsigned</div>
+  <div class="v-story"><strong>Hollandse leeuwendaalder, 1576</strong> — Zilveren munt. Voorzijde: ridder met helm met pluim naar rechts kijkend met voor zich wapenschild van Holland. Jaartal rondom wapenschild onderaan. Keerzijde: klimmende leeuw naar links.</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
-      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
     </div>
 
   <div class="v-divider"></div>
@@ -935,24 +978,29 @@ uniface; black; printed on paper; unused : no serial number; unsigned</div>
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -961,15 +1009,25 @@ uniface; black; printed on paper; unused : no serial number; unsigned</div>
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">Su:259</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1850s</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">200100253</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Provincie Holland</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">zilver</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">leeuwendaalder</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-02-14T04:17:39Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+        &lt;setSpec&gt;2601&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:creator&gt;Provincie Holland&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1576</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">leeuwendaalder</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -984,24 +1042,24 @@ uniface; black; printed on paper; unused : no serial number; unsigned</div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC505.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/64.228.188_a.JPG" loading="lazy"></div>
-        <div class="v-rel-title">Drum, Monkey Figures</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 308721</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2015HP0635/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">K6 Telephone Boxes</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · B.188-2022</div>
       </a>
       <a class="v-rel-card" href="NFC506.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/1081963?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">stool</div>
-        <div class="v-rel-meta">Auckland Museum · 13720</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1958.39/1958.39_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">The Red Kerchief</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1958.39</div>
       </a>
       <a class="v-rel-card" href="NFC508.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/DiHWr/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van Willem II, graaf van Holland, rooms-koning</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010017</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2021.156.b/2021.156.b_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Tea Cup</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 2021.156.b</div>
       </a>
       <a class="v-rel-card" href="NFC509.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/24841/preview" loading="lazy"></div>
-        <div class="v-rel-title">Coptic textile: tunic fragment</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · FE001731/2</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PH5883/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Synthesizer</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:AMERICASFOUNDATION.1156-2024</div>
       </a></div>
   </div>
 </div>
@@ -1014,7 +1072,7 @@ uniface; black; printed on paper; unused : no serial number; unsigned</div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/605792" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/200100253" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1046,18 +1104,25 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `banknote`,
-  type: `ecrm:E22_Man-Made_Object`,
-  date: `1850s`,
-  registration: `Su:259`,
-  location: `Auckland Museum`,
-  discipline: `Social History`,
-  category: `ecrm:E22_Man-Made_Object`,
-  description: `Bank of Otago banknote : 1 pound : 1850s
-English / Scottish coat of arms at centre with motto NEMO ME IMPUNE LACESSIT
-uniface; black; printed on paper; unused : no serial number; unsigned`,
-  medium: ``,
-  artist: ``,
+  title: `Hollandse leeuwendaalder, 1576`,
+  type: `leeuwendaalder`,
+  date: `2026-02-14T04:17:39Z</datestamp>
+        <setSpec>260239</setSpec>
+        <setSpec>261106</setSpec>
+        <setSpec>260251</setSpec>
+        <setSpec>2601</setSpec>
+      </header>
+      <metadata>
+        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
+          <dc:creator>Provincie Holland</dc:creator>
+          <dc:date>1576`,
+  registration: `200100253`,
+  location: `Rijksmuseum, Amsterdam`,
+  discipline: ``,
+  category: `leeuwendaalder`,
+  description: `Zilveren munt. Voorzijde: ridder met helm met pluim naar rechts kijkend met voor zich wapenschild van Holland. Jaartal rondom wapenschild onderaan. Keerzijde: klimmende leeuw naar links.`,
+  medium: `zilver`,
+  artist: `Provincie Holland`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -1065,9 +1130,9 @@ uniface; black; printed on paper; unused : no serial number; unsigned`,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `© Auckland Museum CC BY`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/605792`,
-  institution: `Auckland Museum`
+  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
+  source_url: `https://www.rijksmuseum.nl/en/collection/200100253`,
+  institution: `Rijksmuseum, Amsterdam`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1713,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_auckland',
+      collection: 'archai_rijks',
       text,
       authorType: 'visitor',
     }),

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Mantel clock with musical movement — ARCHAI</title>
+<title>Side notched point — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/es/original/DP210717.jpg" alt="Mantel clock with musical movement" loading="eager">
+  <img src="https://media.tepapa.govt.nz/collection/185547/preview" alt="Side notched point" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Mantel clock with musical movement</div>
-  <div class="v-sub">Mantel clock · ca. 1784 · 202227</div>
+  <div class="v-title">Side notched point</div>
+  <div class="v-sub">arrowheads · 700-1540 · FE000381/3</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">European Sculpture and Decorative Arts</span>
+    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">History</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Mantel clock with musical movement</strong> — Mantel clock with musical movement. Mantel clock. Case: gilded and lacquered bronze and marble; Movement (in bust): brass and steel with enameled hour and minute chapter rings (in head); Miniature organ with pipes and bellows (in base): brass, steel, and leather. European Sculpture and Decorative Ar…</div>
-  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
-      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+  <div class="v-story"><strong>Side notched point</strong> — Side notched point , 700-1540, Mississippi, maker unknown. Purchased 1912. CC BY-NC-ND 4.0 . Te Papa (FE000381/3)</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,18 +1000,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">202227</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Jean-Baptiste-André Furet</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Case: gilded and lacquered bronze and marble; Movement (in bust): brass and steel with enameled hour and minute chapter rings (in head); Miniature organ with pipes and bellows (in base): brass, steel, and leather</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">European Sculpture and Decorative Arts</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Horology</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca. 1784</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 29 × 16 1/4 × 9 in. (73.7 × 41.3 × 22.9 cm)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 523</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Mantel clock</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">FE000381/3</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Unknown</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">chert</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Native American</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">History</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">arrowheads</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">700-1540</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 34mm (width), 72mm (length), 9mm (depth)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">arrowheads</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -985,25 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC129.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fmm.dimu.org%2Fimage%2F012uP2GaHPJP%3Fdimension%3D1200x1200&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Stockholm.
-Strömkajen, Grand Hotel och Nationalmuseum.</div>
-        <div class="v-rel-meta">Europeana · /916109/smm_sm_photo_Fo76815</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/mhVgK/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Nederlandse 10 gulden, 1927</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100267</div>
       </a>
       <a class="v-rel-card" href="NFC130.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2016JJ3943/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">BAFTA Award</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · S.181-2012</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2009BX6051/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portrait Virus</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.987:22-2008</div>
       </a>
       <a class="v-rel-card" href="NFC132.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/0274aa9e-95d1-2a8e-12e3-2b09d7749b4f/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Calf's Head and Ox Tongue</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 154121</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/gSzcw/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Beloningspenning van de Leidse burgemeesters voor promoties &quot;met de kap&quot;, afdruk keerzijde</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100143</div>
       </a>
       <a class="v-rel-card" href="NFC133.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PH5829/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Synthesizer</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:AMERICASFOUNDATION.1145-2024</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2022.356/2022.356_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Untitled (young boy with lace collar and toy rifle)</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 2022.356</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1057,7 @@ Strömkajen, Grand Hotel och Nationalmuseum.</div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/202227" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/1076141" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,26 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Mantel clock with musical movement`,
-  type: `Mantel clock`,
-  date: `ca. 1784`,
-  registration: `202227`,
-  location: `Gallery 523`,
-  discipline: `European Sculpture and Decorative Arts`,
-  category: `Horology`,
-  description: `Mantel clock with musical movement. Mantel clock. Case: gilded and lacquered bronze and marble; Movement (in bust): brass and steel with enameled hour and minute chapter rings (in head); Miniature organ with pipes and bellows (in base): brass, steel, and leather. European Sculpture and Decorative Arts. by Jean-Baptiste-André Furet. Horology. ca. 1784`,
-  medium: `Case: gilded and lacquered bronze and marble; Movement (in bust): brass and steel with enameled hour and minute chapter rings (in head); Miniature organ with pipes and bellows (in base): brass, steel, and leather`,
-  artist: `Jean-Baptiste-André Furet`,
-  culture: ``,
-  dimensions: `Overall: 29 × 16 1/4 × 9 in. (73.7 × 41.3 × 22.9 cm)`,
+  title: `Side notched point`,
+  type: `arrowheads`,
+  date: `700-1540`,
+  registration: `FE000381/3`,
+  location: `Te Papa Tongarewa, Wellington`,
+  discipline: `History`,
+  category: `arrowheads`,
+  description: `Side notched point , 700-1540, Mississippi, maker unknown. Purchased 1912. CC BY-NC-ND 4.0 . Te Papa (FE000381/3)`,
+  medium: `chert`,
+  artist: `Unknown`,
+  culture: `Native American`,
+  dimensions: `Overall: 34mm (width), 72mm (length), 9mm (depth)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/202227`,
-  institution: `The Metropolitan Museum of Art`
+  tombstone: `Side notched point, 700-1540, Mississippi, maker unknown. Purchased 1912. CC BY-NC-ND 4.0. Te Papa (FE000381/3)`,
+  licence: `CC BY-NC-ND 4.0 · metadata CC BY 4.0`,
+  source_url: `https://collections.tepapa.govt.nz/object/1076141`,
+  institution: `Museum of New Zealand Te Papa Tongarewa`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_met',
+      collection: 'archai_tepapa',
       text,
       authorType: 'visitor',
     }),

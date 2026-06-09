@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Portrait of Ernestine Nadar, the artist's wife, wearing fur stole — ARCHAI</title>
+<title>Fragment from Black-Figure Neck-Amphora of Panathenaic Shape (Storage Vessel): Apollo with Lyre — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/2021.67/2021.67_web.jpg" alt="Portrait of Ernestine Nadar, the artist's wife, wearing fur stole" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1915.533.f/1915.533.f_web.jpg" alt="Fragment from Black-Figure Neck-Amphora of Panathenaic Shape (Storage Vessel): Apollo with Lyre" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Portrait of Ernestine Nadar, the artist's wife, wearing fur stole</div>
-  <div class="v-sub">Photograph · c. 1880–83 · 2021.67</div>
+  <div class="v-title">Fragment from Black-Figure Neck-Amphora of Panathenaic Shape (Storage Vessel): Apollo with Lyre</div>
+  <div class="v-sub">Ceramic · c. 520 BCE · 1915.533.f</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Photography</span>
+    <span class="v-meta-tag">Greek and Roman Art</span>
   </div>
 
   <!-- SHARE -->
@@ -903,7 +939,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Portrait of Ernestine Nadar, the artist's wife, wearing fur stole</strong> — This striking and unusual uncut sheet of carte-de-visite exposures was taken by one of France’s most successful early portraitist photographers, Nadar. His wife Ernestine frequently modeled for him, including when he tried out new equipment or processes such as these gelatin silver prints. These por…</div>
+  <div class="v-story"><strong>Fragment from Black-Figure Neck-Amphora of Panathenaic Shape (Storage Vessel): Apollo with Lyre</strong> — With so little preserved, the precise subject once shown on this vase remains uncertain. Along with Apollo playing his lyre, parts of the mane and reins of a horse remain, suggesting a chariot procession—perhaps for the wedding of Peleus and Thetis, an event attended by the Olympian gods.</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,16 +1000,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2021.67</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Nadar (French, 1820–1910)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">uncut sheet of three matte gelatin silver carte-de-visites</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photograph</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1880–83</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 10.8 x 21.9 cm (4 1/4 x 8 5/8 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">230 Photography</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1915.533.f</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Antimenes Painter (Greek, Attic, active c. 530–510 BCE)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">ceramic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Greek, Attic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Greek and Roman Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ceramic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 520 BCE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 1.1 x 0.8 cm (7/16 x 5/16 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">102B Greek</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Ceramic</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
@@ -986,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1239.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2009.276.66.b/2009.276.66.b_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Printed Book of Hours (Use of Rome): fol. 66v, Text</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2009.276.66.b</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/5/27155-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Kite Model - Lawrence Hargrave Design, Soaring Kite Type Q, Sydney, New South Wales, circa 1898</div>
+        <div class="v-rel-meta">Museums Victoria · ST 29213</div>
       </a>
       <a class="v-rel-card" href="NFC1240.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP104824.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Bird-Headed Figure Whistle</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 310532</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15935299&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Pergamonsaal, Vorderseite vom Altar (aus: Museum im Werden)</div>
+        <div class="v-rel-meta">Europeana · /08535/item_F6FRPR3EFLWDOENC2BSDGISX2ZEGMYB5</div>
       </a>
       <a class="v-rel-card" href="NFC1242.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/680823?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">textile</div>
-        <div class="v-rel-meta">Auckland Museum · T250</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/588470?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">[textile, fragment]</div>
+        <div class="v-rel-meta">Auckland Museum · 2012.x.6</div>
       </a>
       <a class="v-rel-card" href="NFC1243.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/kBpAN/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Wijnpenning van Utrecht</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100433</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2015HU1287/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">au NEON</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CD.38-2015</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://clevelandart.org/art/2021.67" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1915.533.f" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,25 +1089,25 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Portrait of Ernestine Nadar, the artist's wife, wearing fur stole`,
-  type: `Photograph`,
-  date: `c. 1880–83`,
-  registration: `2021.67`,
-  location: `230 Photography`,
-  discipline: `Photography`,
-  category: `Photograph`,
-  description: `This striking and unusual uncut sheet of carte-de-visite exposures was taken by one of France’s most successful early portraitist photographers, Nadar. His wife Ernestine frequently modeled for him, including when he tried out new equipment or processes such as these gelatin silver prints. These portraits seem to be an intimate, direct exchange between sitter and camera, wife and husband.`,
-  medium: `uncut sheet of three matte gelatin silver carte-de-visites`,
-  artist: `Nadar (French, 1820–1910)`,
-  culture: `France`,
-  dimensions: `Overall: 10.8 x 21.9 cm (4 1/4 x 8 5/8 in.)`,
+  title: `Fragment from Black-Figure Neck-Amphora of Panathenaic Shape (Storage Vessel): Apollo with Lyre`,
+  type: `Ceramic`,
+  date: `c. 520 BCE`,
+  registration: `1915.533.f`,
+  location: `102B Greek`,
+  discipline: `Greek and Roman Art`,
+  category: `Ceramic`,
+  description: `With so little preserved, the precise subject once shown on this vase remains uncertain. Along with Apollo playing his lyre, parts of the mane and reins of a horse remain, suggesting a chariot procession—perhaps for the wedding of Peleus and Thetis, an event attended by the Olympian gods.`,
+  medium: `ceramic`,
+  artist: `Antimenes Painter (Greek, Attic, active c. 530–510 BCE)`,
+  culture: `Greek, Attic`,
+  dimensions: `Overall: 1.1 x 0.8 cm (7/16 x 5/16 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: `Nadar and his wife Ernestine were married for 54 years.`,
-  provenance: `[{"description":"Michael Mattis and Judith Hochberg, Scarsdale, NY","citations":[],"footnotes":null,"date":"?-2021","sortorder":1},{"description":"The Cleveland Museum of Art, Cleveland, OH","citations":[],"footnotes":null,"date":"June 7, 2021","sortorder":2}]`,
-  tombstone: `Portrait of Ernestine Nadar, the artist's wife, wearing fur stole, c. 1880–83. Nadar (French, 1820–1910). Uncut sheet of three matte gelatin silver carte-de-visites; overall: 10.8 x 21.9 cm (4 1/4 x 8 5/8 in.). The Cleveland Museum of Art, Gift of Michael Mattis and Judith Hochberg, 2021.67`,
+  did_you_know: `Although only two fragments survive from this vase, both show Apollo, here playing his lyre.`,
+  provenance: `[{"description":"Through Harold Woodbury Parsons, New York, NY, sold to the Cleveland Museum of Art","citations":[],"footnotes":[],"date":"1915","sortorder":1},{"description":"The Cleveland Museum of Art, Cleveland, OH","citations":[],"footnotes":[],"date":"1915-","sortorder":2}]`,
+  tombstone: `Fragment from Black-Figure Neck-Amphora of Panathenaic Shape (Storage Vessel): Apollo with Lyre, c. 520 BCE. Manner of Antimenes Painter (Greek, Attic, active c. 530–510 BCE). Ceramic; overall: 1.1 x 0.8 cm (7/16 x 5/16 in.). The Cleveland Museum of Art, Gift of the John Huntington Art and Polytechnic Trust, 1915.533.f`,
   licence: `CC0 — Public Domain`,
-  source_url: `https://clevelandart.org/art/2021.67`,
+  source_url: `https://clevelandart.org/art/1915.533.f`,
   institution: `Cleveland Museum of Art`
 };
 

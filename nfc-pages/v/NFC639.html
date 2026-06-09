@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Viscondessa de Castro — ARCHAI</title>
+<title>Geometric Neck-Handled Amphora (Storage Vessel): Prothesis (Laying out of Corpse), Mourners, Chariots — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669050/006321.jpg" alt="Viscondessa de Castro" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1927.6/1927.6_web.jpg" alt="Geometric Neck-Handled Amphora (Storage Vessel): Prothesis (Laying out of Corpse), Mourners, Chariots" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Viscondessa de Castro</div>
-  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · 18-- · viscondessa-de-castro</div>
+  <div class="v-title">Geometric Neck-Handled Amphora (Storage Vessel): Prothesis (Laying out of Corpse), Mourners, Chariots</div>
+  <div class="v-sub">Ceramic · c. 720–700 BCE · 1927.6</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Brasiliana Museus</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Brasiliana Museus</span>
+    <span class="v-meta-tag">Greek and Roman Art</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Viscondessa de Castro</strong> — Retrato de D. Escolástica Bonifácia de Toledo Ribas (São Paulo, 1765-?,1859), sobre fundo escuro, a meio corpo, de frente. Nariz e rosto compridos; testa ampla; cabelos brancos, ralos cobertos por touca renda preta; olhos e sobrancelhas escuros; lábios finos;traja vestido preto com rosácea da mesma …</div>
+  <div class="v-story"><strong>Geometric Neck-Handled Amphora (Storage Vessel): Prothesis (Laying out of Corpse), Mourners, Chariots</strong> — This neck-amphora bears multiple forms of decoration related to funerary ritual. On the neck panels, mourners beat their heads or tear out their hair. Some surround a bier, a platform where the body of the deceased lies beneath a checkered cloth. Further down, a procession of two-horse chariots move…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,18 +1000,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">viscondessa-de-castro</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">18--</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 87,00 cm · largura 77,30 cm</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1927.6</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Workshop of Athens 894 (Greek, Attic, Late Geometric llb)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">ceramic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Greek, Attic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Greek and Roman Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ceramic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 720–700 BCE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 60 cm (23 5/8 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">102B Greek</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Ceramic</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -985,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC637.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%3A80%2Fwebclient%2FDeliveryManager%3Fpid%3D6355706%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Servizio fotografico Firenze, 1957-1956. Photographic reportage, Florence, 1957-1956</div>
-        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6355706_custom_att_2_simple_viewer</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_667/v1627871101/v2/prod/small/002501_003000/002853_008.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Uli Sigg (Newspaper Reader)</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2012.59</div>
       </a>
       <a class="v-rel-card" href="NFC638.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/380334/preview" loading="lazy"></div>
-        <div class="v-rel-title">Jar</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · FE000427</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HA1146/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">BAFTA Special Lifetime Achievement Award</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · S.179-2012</div>
       </a>
       <a class="v-rel-card" href="NFC640.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PJ2781/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Telephone</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · WE.18172-2014</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1942.1065/1942.1065_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Romaine Lacaux</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1942.1065</div>
       </a>
       <a class="v-rel-card" href="NFC641.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/681452/default-48-1-1.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Descobrimento do Brasil</div>
-        <div class="v-rel-meta">Brasiliana Museus · descobrimento-do-brasil</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2017JX6025/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Alex Kapranos' jacket from the video for &lt;i&gt;Do You Want To&lt;/i&gt;</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · S.1321-2010</div>
       </a></div>
   </div>
 </div>
@@ -1015,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/viscondessa-de-castro/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1927.6" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1047,26 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Viscondessa de Castro`,
-  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  date: `18--`,
-  registration: `viscondessa-de-castro`,
-  location: `Brasiliana Museus`,
-  discipline: `Brasiliana Museus`,
-  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  description: `Retrato de D. Escolástica Bonifácia de Toledo Ribas (São Paulo, 1765-?,1859), sobre fundo escuro, a meio corpo, de frente. Nariz e rosto compridos; testa ampla; cabelos brancos, ralos cobertos por touca renda preta; olhos e sobrancelhas escuros; lábios finos;traja vestido preto com rosácea da mesma cor arrematando a gola; sobre os ombros xale na cor vinho. Fundo ocre esverdeado. Moldura em madeira dourada com rocalhas nas bordas.`,
-  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  artist: ``,
-  culture: `Brazil`,
-  dimensions: `altura 87,00 cm · largura 77,30 cm`,
-  wall_description: `Retrato de D. Escolástica Bonifácia de Toledo Ribas (São Paulo, 1765-?,1859), sobre fundo escuro, a meio corpo, de frente. Nariz e rosto compridos; testa ampla; cabelos brancos, ralos cobertos por touca renda preta; olhos e sobrancelhas escuros; lábios finos;traja vestido preto com rosácea da mesma cor arrematando a gola; sobre os ombros xale na cor vinho. Fundo ocre esverdeado. Moldura em madeira dourada com rocalhas nas bordas.`,
+  title: `Geometric Neck-Handled Amphora (Storage Vessel): Prothesis (Laying out of Corpse), Mourners, Chariots`,
+  type: `Ceramic`,
+  date: `c. 720–700 BCE`,
+  registration: `1927.6`,
+  location: `102B Greek`,
+  discipline: `Greek and Roman Art`,
+  category: `Ceramic`,
+  description: `This neck-amphora bears multiple forms of decoration related to funerary ritual. On the neck panels, mourners beat their heads or tear out their hair. Some surround a bier, a platform where the body of the deceased lies beneath a checkered cloth. Further down, a procession of two-horse chariots moves around the vase, whether headed to the cemetery or the battlefield. The snakes applied to the handles, neck, and rim may all allude to the underworld.`,
+  medium: `ceramic`,
+  artist: `Workshop of Athens 894 (Greek, Attic, Late Geometric llb)`,
+  culture: `Greek, Attic`,
+  dimensions: `Overall: 60 cm (23 5/8 in.)`,
+  wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: `Viscondessa de Castro. 18--. Brasiliana Museus`,
-  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
-  source_url: `https://brasiliana.museus.gov.br/acervos/viscondessa-de-castro/`,
-  institution: `Brasiliana Museus`
+  did_you_know: `The better-preserved side of this vase is actually its reverse.`,
+  provenance: `[{"description":"Roussos, sold to Brummer Gallery","citations":[],"footnotes":null,"date":"?-1926","sortorder":1},{"description":"Brummer Gallery, New York, NY, sold to the Cleveland Museum of Art","citations":[],"footnotes":null,"date":"1926-1927","sortorder":2},{"description":"The Cleveland Museum…`,
+  tombstone: `Geometric Neck-Handled Amphora (Storage Vessel): Prothesis (Laying out of Corpse), Mourners, Chariots, c. 720–700 BCE. Attributed to Workshop of Athens 894 (Greek, Attic, Late Geometric llb). Ceramic; overall: 60 cm (23 5/8 in.). The Cleveland Museum of Art, Purchase from the J. H. Wade Fund, 1927.6`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://clevelandart.org/art/1927.6`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1647,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_brasiliana',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

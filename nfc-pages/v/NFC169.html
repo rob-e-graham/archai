@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Lantern Slide - 'Mts. Tasman, Cook &amp; La Perouse, New Zealand' — ARCHAI</title>
+<title>At the Moulin Rouge — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://collections.museumsvictoria.com.au/content/media/49/165099-medium.jpg" alt="Lantern Slide - 'Mts. Tasman, Cook &amp; La Perouse, New Zealand'" loading="eager">
+  <img src="https://www.artic.edu/iiif/2/defb4004-b500-218d-3d9b-9a02423f097d/full/843,/0/default.jpg" alt="At the Moulin Rouge" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Lantern Slide - 'Mts. Tasman, Cook &amp; La Perouse, New Zealand'</div>
-  <div class="v-sub">Image · Date unknown · MM 69207</div>
+  <div class="v-title">At the Moulin Rouge</div>
+  <div class="v-sub">Painting · 1892–95 · 61128</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Museums Victoria</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
-    <span class="v-meta-tag">Technology</span>
+    <span class="v-meta-tag mv">Art Institute of Chicago</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Painting and Sculpture of Europe</span>
   </div>
 
   <!-- SHARE -->
@@ -903,13 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Lantern Slide - 'Mts. Tasman, Cook &amp; La Perouse, New Zealand'</strong> — Colour glass lantern slide of Mts. Tasman, Cook and La Perouse, New Zealand.
-
-One of a set of over 420 lantern slides, used by lecturer Walter S. Binks, a popular psychology and vocational guidance lecturer based in Melbourne, Victoria. Binks gave lectures throughout Australia in the 1930s and 1940s…</div>
+  <div class="v-story"><strong>At the Moulin Rouge</strong> — At the Moulin Rouge. Painting. Oil on canvas. Painting and Sculpture of Europe. Henri de Toulouse-Lautrec (French, 1864–1901). oil on canvas. 1892–95. France. Post-Impressionism. &lt;p&gt;Café-concerts were popular venues for drinking and entertainment in late nineteenth-century Paris and attracted the in…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
-      <div class="v-rights-detail">Licence / rights: CC BY</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -935,24 +969,29 @@ One of a set of over 420 lantern slides, used by lecturer Walter S. Binks, a pop
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -961,16 +1000,19 @@ One of a set of over 420 lantern slides, used by lecturer Walter S. Binks, a pop
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">MM 69207</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Technology</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">History &amp; Technology</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Date unknown</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">[object Object]</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Museums Victoria</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Image</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">61128</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Henri de Toulouse-Lautrec (French, 1864–1901)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Oil on canvas</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Painting and Sculpture of Europe</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">oil on canvas</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1892–95</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">123 × 141 cm (48 7/16 × 55 1/2 in.); Framed: 136.9 × 154.7 × 8.5 cm (53 7/8 × 60 7/8 × 3 5/16 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 242</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -985,24 +1027,24 @@ One of a set of over 420 lantern slides, used by lecturer Walter S. Binks, a pop
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC167.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/midp89.4.768.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Time Marker</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 501396</div>
+        <div class="v-rel-thumb"><img src="https://www.mplus.org.hk/_nuxt/img/share.23eb426.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Ready-made Product of Media</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2012.1476</div>
       </a>
       <a class="v-rel-card" href="NFC168.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/3f6529af-1353-fa19-404b-e39998354732/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portrait of Balzac</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 6727</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2015HU1287/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">au W11K</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CD.37-2015</div>
       </a>
       <a class="v-rel-card" href="NFC170.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/228033?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">table</div>
-        <div class="v-rel-meta">Auckland Museum · F102</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_986/v1719854106/v2/prod/small/007001_007500/007145_003.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Panchiao, Taiwan 1962</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2017.220</div>
       </a>
       <a class="v-rel-card" href="NFC171.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4305/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">A FIFTH ON A MAZE</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.263-2020</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Femuseumplus.lsh.se%2FeMuseumPlus%3Fservice%3DImageAsset%26module%3Dcollection%26objectId%3D28622%26resolution%3DhighImageResolution&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Guidance instrument of gilded brass.. Riktningsinstrument av förgylld mässing.</div>
+        <div class="v-rel-meta">Europeana · /2064105/Museu_ProvidedCHO_Skoklosters_slott_28622</div>
       </a></div>
   </div>
 </div>
@@ -1015,7 +1057,7 @@ One of a set of over 420 lantern slides, used by lecturer Walter S. Binks, a pop
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.museumsvictoria.com.au/items/MM 69207" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.artic.edu/artworks/61128" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1047,30 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Lantern Slide - 'Mts. Tasman, Cook &amp; La Perouse, New Zealand'`,
-  type: `Image`,
-  date: `Date unknown`,
-  registration: `MM 69207`,
-  location: `Museums Victoria`,
-  discipline: `Technology`,
-  category: `History & Technology`,
-  description: `Colour glass lantern slide of Mts. Tasman, Cook and La Perouse, New Zealand.
-
-One of a set of over 420 lantern slides, used by lecturer Walter S. Binks, a popular psychology and vocational guidance lecturer based in Melbourne, Victoria. Binks gave lectures throughout Australia in the 1930s and 1940s. Binks advertised his lectures as associated with the Australasian Opportunity League or Universal Opportunity League. 
-
-Purchased by the donor at an opportunity shop. The collection was stored in three wooden trays (two compartments in each tray), and 95 slides stored separately.  Many of the slid…`,
-  medium: ``,
-  artist: ``,
-  culture: ``,
-  dimensions: `[object Object]`,
+  title: `At the Moulin Rouge`,
+  type: `Painting`,
+  date: `1892–95`,
+  registration: `61128`,
+  location: `Gallery 242`,
+  discipline: `Painting and Sculpture of Europe`,
+  category: `oil on canvas`,
+  description: `At the Moulin Rouge. Painting. Oil on canvas. Painting and Sculpture of Europe. Henri de Toulouse-Lautrec (French, 1864–1901). oil on canvas. 1892–95. France. Post-Impressionism. <p>Café-concerts were popular venues for drinking and entertainment in late nineteenth-century Paris and attracted the interest of artists such as Henri de Toulouse-Lautrec. The Moulin Rouge, which opened in 1889, was the most famous of the café-concerts, and Toulouse-Lautrec was a habitué of the establishment—he even had a permanently reserved table. His painting <a href="https://www.artic.edu/artworks/16146/equestri…`,
+  medium: `Oil on canvas`,
+  artist: `Henri de Toulouse-Lautrec (French, 1864–1901)`,
+  culture: `France`,
+  dimensions: `123 × 141 cm (48 7/16 × 55 1/2 in.); Framed: 136.9 × 154.7 × 8.5 cm (53 7/8 × 60 7/8 × 3 5/16 in.)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `CC BY`,
-  source_url: `https://collections.museumsvictoria.com.au/items/MM 69207`,
-  institution: `Museums Victoria`
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.artic.edu/artworks/61128`,
+  institution: `Art Institute of Chicago`
 };
 
 // Build rich context from available fields
@@ -1651,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_pilot',
+      collection: 'archai_aic',
       text,
       authorType: 'visitor',
     }),

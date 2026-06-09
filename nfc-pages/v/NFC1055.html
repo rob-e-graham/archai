@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Cittern — ARCHAI</title>
+<title>Ex-voto — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/mi/original/DP302551.jpg" alt="Cittern" loading="eager">
+  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/681446/268-scaled-1.jpg" alt="Ex-voto" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Cittern</div>
-  <div class="v-sub">Cittern · ca. 1685 · 504210</div>
+  <div class="v-title">Ex-voto</div>
+  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · 1766 · ex-voto</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
+    <span class="v-meta-tag mv">Brasiliana Museus</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Musical Instruments</span>
+    <span class="v-meta-tag">Brasiliana Museus</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Cittern</strong> — Cittern. Cittern. Cypress, ivory, ebony, parchment, brass. Musical Instruments. German. by Joachim Tielke. Chordophone-Lute-plucked-fretted. ca. 1685</div>
+  <div class="v-story"><strong>Ex-voto</strong> — Cena retratando mulher sobre o leito, ao centro, recostada e olhando a sua esquerda em direção a uma grande nuvem branca onde se encontra Nossa Senhora, São José e o Menino Jesus. À frente da cama, figura feminina agachada, tendo a sua direita uma mesa sobre a qual se assentam diversos objetos. Atrá…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,19 +1000,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">504210</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Joachim Tielke</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Cypress, ivory, ebony, parchment, brass</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">German</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Chordophone-Lute-plucked-fretted</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca. 1685</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">24 7/8 × 9 5/16 × 2 in. (63.2 × 23.7 × 5.1 cm)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 684</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Cittern</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">ex-voto</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1766</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 42,50 cm · largura 57,90 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -986,24 +1026,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1053.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/goxLI/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Vijftigjarige herdenking van de Slag bij Waterloo 1865</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100135</div>
-      </a>
-      <a class="v-rel-card" href="NFC1054.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/mi89.4.926.AV1.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Ennanga</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 501536</div>
-      </a>
-      <a class="v-rel-card" href="NFC1056.html">
         <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4310/full/!600,600/0/default.jpg" loading="lazy"></div>
         <div class="v-rel-title">SAFETY DEPOSIT</div>
         <div class="v-rel-meta">Victoria and Albert Museum, London · E.255-2020</div>
       </a>
+      <a class="v-rel-card" href="NFC1054.html">
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627856225/v2/prod/small/002001_002500/002210_004.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Mask: Rainbow</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2012.1329</div>
+      </a>
+      <a class="v-rel-card" href="NFC1056.html">
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/DmlTC/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Kalenderpenning op naam van Stadhouder Wiillem V 1767</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100029</div>
+      </a>
       <a class="v-rel-card" href="NFC1057.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/589176?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">[textile, fragment]</div>
-        <div class="v-rel-meta">Auckland Museum · 2012.x.8</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2022NF4699/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Robin Hood Gardens, Woolmore Street, London E14 0HG (2018)</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.503-2022</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1056,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/504210" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/ex-voto/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,26 +1088,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Cittern`,
-  type: `Cittern`,
-  date: `ca. 1685`,
-  registration: `504210`,
-  location: `Gallery 684`,
-  discipline: `Musical Instruments`,
-  category: `Chordophone-Lute-plucked-fretted`,
-  description: `Cittern. Cittern. Cypress, ivory, ebony, parchment, brass. Musical Instruments. German. by Joachim Tielke. Chordophone-Lute-plucked-fretted. ca. 1685`,
-  medium: `Cypress, ivory, ebony, parchment, brass`,
-  artist: `Joachim Tielke`,
-  culture: `German`,
-  dimensions: `24 7/8 × 9 5/16 × 2 in. (63.2 × 23.7 × 5.1 cm)`,
-  wall_description: ``,
+  title: `Ex-voto`,
+  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  date: `1766`,
+  registration: `ex-voto`,
+  location: `Brasiliana Museus`,
+  discipline: `Brasiliana Museus`,
+  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  description: `Cena retratando mulher sobre o leito, ao centro, recostada e olhando a sua esquerda em direção a uma grande nuvem branca onde se encontra Nossa Senhora, São José e o Menino Jesus. À frente da cama, figura feminina agachada, tendo a sua direita uma mesa sobre a qual se assentam diversos objetos. Atrás da cama, quatro freiras e uma mulher observam a cena. À esquerda, três senhores de pé, ao lado de uma porta entreaberta onde se vê homem negro. Na parte inferior, faixa com a inscrição: &#034;Merce, q. fez N. S. do Desterro a Soror D. Anna Jozefa dos Anjos, estando gravemente enferma/de hua malina…`,
+  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  artist: ``,
+  culture: `Brazil`,
+  dimensions: `altura 42,50 cm · largura 57,90 cm`,
+  wall_description: `Cena retratando mulher sobre o leito, ao centro, recostada e olhando a sua esquerda em direção a uma grande nuvem branca onde se encontra Nossa Senhora, São José e o Menino Jesus. À frente da cama, figura feminina agachada, tendo a sua direita uma mesa sobre a qual se assentam diversos objetos. Atrás da cama, quatro freiras e uma mulher observam a cena. À esquerda, três senhores de pé, ao lado de uma porta entreaberta onde se vê homem negro. Na parte inferior, faixa com a inscrição: &#034;Merce,…`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/504210`,
-  institution: `The Metropolitan Museum of Art`
+  tombstone: `Ex-voto. 1766. Brasiliana Museus`,
+  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
+  source_url: `https://brasiliana.museus.gov.br/acervos/ex-voto/`,
+  institution: `Brasiliana Museus`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1688,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_met',
+      collection: 'archai_brasiliana',
       text,
       authorType: 'visitor',
     }),

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Astronomical Telescope (Gregorian reflector type) — ARCHAI</title>
+<title>Maria Isabel de Albuquerque Maranhão — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://media.tepapa.govt.nz/collection/43212/preview" alt="Astronomical Telescope (Gregorian reflector type)" loading="eager">
+  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669046/006323.jpg" alt="Maria Isabel de Albuquerque Maranhão" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Astronomical Telescope (Gregorian reflector type)</div>
-  <div class="v-sub">telescopes · circa 1765 · NS000010/1</div>
+  <div class="v-title">Maria Isabel de Albuquerque Maranhão</div>
+  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · [18--] · maria-isabel-de-albuquerque-maranhao</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
-    <span class="v-meta-tag">History</span>
+    <span class="v-meta-tag mv">Brasiliana Museus</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Brasiliana Museus</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Astronomical Telescope (Gregorian reflector type)</strong> — This brass astronomical telescope is a Gregorian reflector type, made by Heath and Wing of London in about 1765. This type of telescope was invented by Scottish astronomer James Gregory in 1661. It uses two specially shaped metal mirrors to reflect light and create a magnified image, whereas earlier…</div>
-  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
-      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
-      <div class="v-rights-detail">Licence / rights: CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</div>
+  <div class="v-story"><strong>Maria Isabel de Albuquerque Maranhão</strong> — Busto de mulher jovem, direcionado para a direita. Rosto oval. Cabelos escuros, presos. Sobrancelhas e olhos castanhos. Nariz largo. Lábios finos. Orelha direita aparente. Vestido e sobretudo pretos, com detalhes de renda na mesma cor. Gola alta, tendo ao centro broche com pedra retangular circundad…</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,19 +1000,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">NS000010/1</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Heath and Wing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Metal (Brass) and Glass</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Captain James Cook, Dr Daniel Solander</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">telescopes</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">circa 1765</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Approximate: 430mm (width), 890mm (height), 870mm (length) · Approximate: 432mm (width), 400mm (depth)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">telescopes</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">maria-isabel-de-albuquerque-maranhao</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">[18--]</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 73,80 cm · largura 65,00 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -986,24 +1026,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC776.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4323/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">CO.ED</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.277-2020</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2004.30.a/2004.30.a_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">The Cleveland Apollo: Apollo Sauroktonos (Lizard-Slayer) or Apollo the Python-Slayer</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 2004.30.a</div>
       </a>
       <a class="v-rel-card" href="NFC777.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/87436/preview" loading="lazy"></div>
-        <div class="v-rel-title">Bowl. From the group: Magma. From the series:The magma flows, the magma cools on its way to the ocean</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · 1996-0033-9/1-21</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1972.48/1972.48_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Branch Hill Pond, Hampstead</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1972.48</div>
       </a>
       <a class="v-rel-card" href="NFC779.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1915.533.d/1915.533.d_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Fragment from Red-Figure Oinochoe (Wine Jug) or Hydria (Water Jar): Woman Holding Box</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1915.533.d</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1970.127.a/1970.127.a_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Box</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1970.127.a</div>
       </a>
       <a class="v-rel-card" href="NFC780.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15934899&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Ansicht am Kupfergraben (aus: Museum im Werden)</div>
-        <div class="v-rel-meta">Europeana · /08535/item_BCLKL7AH5MZDFRK3ZJX5GWWHLPEQMUCX</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/165743/preview" loading="lazy"></div>
+        <div class="v-rel-title">Photograph</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH002982/3</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1056,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/58251" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/maria-isabel-de-albuquerque-maranhao/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,26 +1088,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Astronomical Telescope (Gregorian reflector type)`,
-  type: `telescopes`,
-  date: `circa 1765`,
-  registration: `NS000010/1`,
-  location: `Te Papa Tongarewa, Wellington`,
-  discipline: `History`,
-  category: `telescopes`,
-  description: `This brass astronomical telescope is a Gregorian reflector type, made by Heath and Wing of London in about 1765. This type of telescope was invented by Scottish astronomer James Gregory in 1661. It uses two specially shaped metal mirrors to reflect light and create a magnified image, whereas earlier telescopes had used glass lenses to refract light. Gregory’s design resulted in smaller telescopes that produced sharper images, and was the forerunner of modern reflector telescopes. This telescope is associated with James Cook, an explorer who in 1768 was asked to command a long voyage to the Pac…`,
-  medium: `Metal (Brass) and Glass`,
-  artist: `Heath and Wing`,
-  culture: `Captain James Cook, Dr Daniel Solander`,
-  dimensions: `Approximate: 430mm (width), 890mm (height), 870mm (length) · Approximate: 432mm (width), 400mm (depth)`,
-  wall_description: `This brass astronomical telescope is a Gregorian reflector type, made by Heath and Wing of London in about 1765. This type of telescope was invented by Scottish astronomer James Gregory in 1661. It uses two specially shaped metal mirrors to reflect light and create a magnified image, whereas earlier telescopes had used glass lenses to refract light. Gregory’s design resulted in smaller telescopes that produced sharper images, and was the forerunner of modern reflector telescopes. This telescope …`,
+  title: `Maria Isabel de Albuquerque Maranhão`,
+  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  date: `[18--]`,
+  registration: `maria-isabel-de-albuquerque-maranhao`,
+  location: `Brasiliana Museus`,
+  discipline: `Brasiliana Museus`,
+  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  description: `Busto de mulher jovem, direcionado para a direita. Rosto oval. Cabelos escuros, presos. Sobrancelhas e olhos castanhos. Nariz largo. Lábios finos. Orelha direita aparente. Vestido e sobretudo pretos, com detalhes de renda na mesma cor. Gola alta, tendo ao centro broche com pedra retangular circundada por oito pérolas e corrente pendente com medalha circular. Fundo em tons pardos. Moldura oval em madeira dourada com decoração fitomórfica.`,
+  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  artist: ``,
+  culture: `Brazil`,
+  dimensions: `altura 73,80 cm · largura 65,00 cm`,
+  wall_description: `Busto de mulher jovem, direcionado para a direita. Rosto oval. Cabelos escuros, presos. Sobrancelhas e olhos castanhos. Nariz largo. Lábios finos. Orelha direita aparente. Vestido e sobretudo pretos, com detalhes de renda na mesma cor. Gola alta, tendo ao centro broche com pedra retangular circundada por oito pérolas e corrente pendente com medalha circular. Fundo em tons pardos. Moldura oval em madeira dourada com decoração fitomórfica.`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Astronomical Telescope (Gregorian reflector type), circa 1765, England, by Heath and Wing. Purchased 1953. CC BY-NC-ND 4.0. Te Papa (NS000010/1)`,
-  licence: `CC BY-NC-ND 4.0 · metadata CC BY 4.0`,
-  source_url: `https://collections.tepapa.govt.nz/object/58251`,
-  institution: `Museum of New Zealand Te Papa Tongarewa`
+  tombstone: `Maria Isabel de Albuquerque Maranhão. [18--]. Brasiliana Museus`,
+  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
+  source_url: `https://brasiliana.museus.gov.br/acervos/maria-isabel-de-albuquerque-maranhao/`,
+  institution: `Brasiliana Museus`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1688,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_tepapa',
+      collection: 'archai_brasiliana',
       text,
       authorType: 'visitor',
     }),

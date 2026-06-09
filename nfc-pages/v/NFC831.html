@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Revista naval — ARCHAI</title>
+<title>Felix Peixoto de Brito e Mello — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,13 +917,13 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680039/825-scaled.jpg" alt="Revista naval" loading="eager">
+  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669021/006330.jpg" alt="Felix Peixoto de Brito e Mello" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Revista naval</div>
-  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · [1899] · revista-naval</div>
+  <div class="v-title">Felix Peixoto de Brito e Mello</div>
+  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · 1861 · felix-peixoto-de-brito-e-mello</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Brasiliana Museus</span>
@@ -903,7 +939,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Revista naval</strong> — Céu e mar em tons cinzas, beges, azuis e rosas. No primeiro plano, à direita, pequeno barco com bandeira na popa e quatro homens no seu interior, três dos quais remando. Na metade superior, na linha do horizonte, diversos tipos de embarcações. Na extremidade direita, detalhes de montanhas. Empastame…</div>
+  <div class="v-story"><strong>Felix Peixoto de Brito e Mello</strong> — Figura masculina, de meia idade, em meio corpo, voltado para a esquerda, olhando para frente. Rosto comprido, testa ampla, cabelos, sobrancelhas, bigode e barba grisalhos; olhos castanhos; nariz curto; lábio inferior aparente, orelha esquerda visível. Veste casaca preta com abotoamento duplo, dezess…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,13 +1000,13 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">revista-naval</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">felix-peixoto-de-brito-e-mello</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">[1899]</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 20,00 cm · largura 32,50 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1861</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 116,70 cm · largura 99,30 cm</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
@@ -985,24 +1026,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC829.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/pcmez/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Filips de Goede, hertog van Bourgondie, rekenpenning van het hertogdom Brabant</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010042</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680954/000465a-scaled-1.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Pedro I</div>
+        <div class="v-rel-meta">Brasiliana Museus · pedro-i-13</div>
       </a>
       <a class="v-rel-card" href="NFC830.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/DmlTC/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Kalenderpenning op naam van Stadhouder Wiillem V 1767</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100029</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PC0397/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Broken Glass Ball and Shadow</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · PH.562-2024</div>
       </a>
       <a class="v-rel-card" href="NFC832.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/96441/preview" loading="lazy"></div>
-        <div class="v-rel-title">Musical Instrument (Sansa)</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · FE004906</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/68258?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">shawl</div>
+        <div class="v-rel-meta">Auckland Museum · 36930.1</div>
       </a>
       <a class="v-rel-card" href="NFC833.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2007BR3923/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Kolster-Brandes model FB10C</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.293-1976</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2012FK3671/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Alhambra</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · 34773</div>
       </a></div>
   </div>
 </div>
@@ -1015,7 +1056,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/revista-naval/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/felix-peixoto-de-brito-e-mello/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1047,25 +1088,25 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Revista naval`,
+  title: `Felix Peixoto de Brito e Mello`,
   type: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  date: `[1899]`,
-  registration: `revista-naval`,
+  date: `1861`,
+  registration: `felix-peixoto-de-brito-e-mello`,
   location: `Brasiliana Museus`,
   discipline: `Brasiliana Museus`,
   category: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  description: `Céu e mar em tons cinzas, beges, azuis e rosas. No primeiro plano, à direita, pequeno barco com bandeira na popa e quatro homens no seu interior, três dos quais remando. Na metade superior, na linha do horizonte, diversos tipos de embarcações. Na extremidade direita, detalhes de montanhas. Empastamentos. Assinatura do autor e datação no canto inferior esquerdo em tinta escura: &#034;CASTAGNETO/99&#034;. Moldura com parte interna em madeira escura, envernizada, saliente, contornada por friso estreito, em madeira dourada com decoração fitomórfica em relevo.`,
+  description: `Figura masculina, de meia idade, em meio corpo, voltado para a esquerda, olhando para frente. Rosto comprido, testa ampla, cabelos, sobrancelhas, bigode e barba grisalhos; olhos castanhos; nariz curto; lábio inferior aparente, orelha esquerda visível. Veste casaca preta com abotoamento duplo, dezesseis botões dourados; dragonas douradas, de canutões. No alto do peito esquerdo, da esquerda para a direita: comenda da Imperial Ordem do Cruzeiro, com passador vermelho; comenda não identificada e comenda da Ordem da Rosa, com passador branco. Abaixo destas, placa em brilhantes da Ordem de Cristo. T…`,
   medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
   artist: ``,
   culture: `Brazil`,
-  dimensions: `altura 20,00 cm · largura 32,50 cm`,
-  wall_description: `Céu e mar em tons cinzas, beges, azuis e rosas. No primeiro plano, à direita, pequeno barco com bandeira na popa e quatro homens no seu interior, três dos quais remando. Na metade superior, na linha do horizonte, diversos tipos de embarcações. Na extremidade direita, detalhes de montanhas. Empastamentos. Assinatura do autor e datação no canto inferior esquerdo em tinta escura: &#034;CASTAGNETO/99&#034;. Moldura com parte interna em madeira escura, envernizada, saliente, contornada por friso estr…`,
+  dimensions: `altura 116,70 cm · largura 99,30 cm`,
+  wall_description: `Figura masculina, de meia idade, em meio corpo, voltado para a esquerda, olhando para frente. Rosto comprido, testa ampla, cabelos, sobrancelhas, bigode e barba grisalhos; olhos castanhos; nariz curto; lábio inferior aparente, orelha esquerda visível. Veste casaca preta com abotoamento duplo, dezesseis botões dourados; dragonas douradas, de canutões. No alto do peito esquerdo, da esquerda para a direita: comenda da Imperial Ordem do Cruzeiro, com passador vermelho; comenda não identificada e com…`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Revista naval. [1899]. Brasiliana Museus`,
+  tombstone: `Felix Peixoto de Brito e Mello. 1861. Brasiliana Museus`,
   licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
-  source_url: `https://brasiliana.museus.gov.br/acervos/revista-naval/`,
+  source_url: `https://brasiliana.museus.gov.br/acervos/felix-peixoto-de-brito-e-mello/`,
   institution: `Brasiliana Museus`
 };
 

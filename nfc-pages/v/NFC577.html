@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Untitled — ARCHAI</title>
+<title>For Some Reasons — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1714972191/v2/prod/small/002001_002500/002186_003.jpg" alt="Untitled" loading="eager">
+  <img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1629663070/v2/prod/small/001501_002000/001912_007.jpg" alt="For Some Reasons" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Untitled</div>
-  <div class="v-sub">Textile · 2000 · 2012.96</div>
+  <div class="v-title">For Some Reasons</div>
+  <div class="v-sub">Video · 2003 · 2016.889</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">M+, Hong Kong</span>
     <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
-    <span class="v-meta-tag">Visual Art</span>
+    <span class="v-meta-tag">Moving Image</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Untitled</strong> — Silk embroidery on cotton depicting a man with a boy and a woman behind him. Vegetables, a mobile phone, and a hanging scroll surround the figures, against pink, orange, and purple rays.</div>
+  <div class="v-story"><strong>For Some Reasons</strong> — Video still with a blurred rear view of seats on the upper level of a double-decker bus. The seats have red handrails and light brown backs. Passengers sit at the front of the bus in the middle ground. Yellow traditional Chinese characters that mean 'cannot afford' appear in the centre.</div>
   <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
       <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Chang Xugong · © Chang Xugong</div>
+      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © This edition of work is produced and archived in Videotage Media Art Collection (VMAC) · © This edition of work is produced and archived in Videotage Media Art Collection (VMAC)</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,19 +1000,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2012.96</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Chang Xugong</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">silk embroidery on cotton</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Chinese</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Visual Art</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Textile</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2000</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">overall: 80 × 100 × 2 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2016.889</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Ellen Pau</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">single-channel digital video (colour, sound)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Hong Kong</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Moving Image</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Video</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2003</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">duration: 6 min. 40 sec.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Textile</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Video</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Chang Xugong · © Chang Xugong</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © This edition of work is produced and archived in Videotage Media Art Collection (VMAC) · © This edition of work is produced and archived in Videotage Media Art Collection (VMAC)</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -986,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC575.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fcollection.mobilier-national.fr%2Fmedia%2Fxl%2FCINQPEYRES%2F2014%2F06%2Fgob-25-001_2014.jpg&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">CARTON DE GARNITURE DE MOBILIER - Modèle de dossier de canapé : Les Amours tirant à l'arc</div>
-        <div class="v-rel-meta">Europeana · /957/GOB_25_001</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2021NB9575/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Soft Boundaries</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.18-2021</div>
       </a>
       <a class="v-rel-card" href="NFC576.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1975.1/1975.1_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Black-Figure Hydria (Water Vessel): Frontal Quadriga (Body); Theseus and Minotaur (Shoulder)</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1975.1</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PJ3595/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">White Cliffs</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.306-2025</div>
       </a>
       <a class="v-rel-card" href="NFC578.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/87439/preview" loading="lazy"></div>
-        <div class="v-rel-title">Falling through the Antipodes III</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · 1996-0033-26</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D17450499&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Ansicht Pergamonaltar</div>
+        <div class="v-rel-meta">Europeana · /08535/item_HRJ4DDOUMGBUHNOAVZ2OHX6U2FS55YXD</div>
       </a>
       <a class="v-rel-card" href="NFC579.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/d0a72b06-f1ee-4464-d58c-5e39bc0534b3/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">A Burgher of Calais (Jean d'Aire)</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 719</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2008BT4252/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Credit card radio</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.20-1992</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/untitled-201296/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/for-some-reasons-2016889/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,25 +1089,25 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Untitled`,
-  type: `Textile`,
-  date: `2000`,
-  registration: `2012.96`,
+  title: `For Some Reasons`,
+  type: `Video`,
+  date: `2003`,
+  registration: `2016.889`,
   location: `M+, Hong Kong`,
-  discipline: `Visual Art`,
-  category: `Textile`,
-  description: `Silk embroidery on cotton depicting a man with a boy and a woman behind him. Vegetables, a mobile phone, and a hanging scroll surround the figures, against pink, orange, and purple rays.`,
-  medium: `silk embroidery on cotton`,
-  artist: `Chang Xugong`,
-  culture: `Chinese`,
-  dimensions: `overall: 80 × 100 × 2 cm`,
-  wall_description: `Silk embroidery on cotton depicting a man with a boy and a woman behind him. Vegetables, a mobile phone, and a hanging scroll surround the figures, against pink, orange, and purple rays.`,
+  discipline: `Moving Image`,
+  category: `Video`,
+  description: `Video still with a blurred rear view of seats on the upper level of a double-decker bus. The seats have red handrails and light brown backs. Passengers sit at the front of the bus in the middle ground. Yellow traditional Chinese characters that mean 'cannot afford' appear in the centre.`,
+  medium: `single-channel digital video (colour, sound)`,
+  artist: `Ellen Pau`,
+  culture: `Hong Kong`,
+  dimensions: `duration: 6 min. 40 sec.`,
+  wall_description: `Video still with a blurred rear view of seats on the upper level of a double-decker bus. The seats have red handrails and light brown backs. Passengers sit at the front of the bus in the middle ground. Yellow traditional Chinese characters that mean 'cannot afford' appear in the centre.`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Untitled. Chang Xugong. 2000. M+, Hong Kong`,
-  licence: `CC0 metadata · M+ API service non-commercial · © Chang Xugong`,
-  source_url: `https://www.mplus.org.hk/en/collection/objects/untitled-201296/`,
+  tombstone: `For Some Reasons. Ellen Pau. 2003. M+, Hong Kong`,
+  licence: `CC0 metadata · M+ API service non-commercial · © This edition of work is produced and archived in Videotage Media Art Collection (VMAC)`,
+  source_url: `https://www.mplus.org.hk/en/collection/objects/for-some-reasons-2016889/`,
   institution: `M+, Hong Kong`
 };
 

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Trombone — ARCHAI</title>
+<title>Sand Dunes, Carson Desert, Nevada — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/mi/original/DP-12679-119.jpg" alt="Trombone" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/2002.45/2002.45_web.jpg" alt="Sand Dunes, Carson Desert, Nevada" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Trombone</div>
-  <div class="v-sub">Trombone · mid-19th century · 504686</div>
+  <div class="v-title">Sand Dunes, Carson Desert, Nevada</div>
+  <div class="v-sub">Photograph · 1867 · 2002.45</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Musical Instruments</span>
+    <span class="v-meta-tag">Photography</span>
   </div>
 
   <!-- SHARE -->
@@ -903,7 +939,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Trombone</strong> — Trombone. Trombone. Brass. Musical Instruments. European. Aerophone. mid-19th century</div>
+  <div class="v-story"><strong>Sand Dunes, Carson Desert, Nevada</strong> — This noontime scene conveys a desolate place discovered by a lonely explorer. The artist chose a vantage point and framing that blocked the horizon and showed a single wagon—the former Civil War ambulance that he converted into a portable darkroom—and only two sets of footprints. However, over the p…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,16 +1000,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">504686</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Brass</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">European</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Aerophone</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">mid-19th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">8 1/2 × 13 × 43 11/16 in. (21.6 × 33 × 111 cm)
-Diameter (Of bell): 8 7/16 in. (21.4 cm)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 680</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Trombone</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2002.45</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Timothy H. O'Sullivan (American, 1840–1882)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">albumen print from wet collodion negative</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">America</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1867</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Image: 19.7 x 27 cm (7 3/4 x 10 5/8 in.); Mounted: 45.7 x 59.4 cm (18 x 23 3/8 in.); Matted: 50.8 x 61 cm (20 x 24 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Cleveland Museum of Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
@@ -986,24 +1027,24 @@ Diameter (Of bell): 8 7/16 in. (21.4 cm)</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1279.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/1979.206.202_a.JPG" loading="lazy"></div>
-        <div class="v-rel-title">Bell head</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 312407</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/68274?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">cuff</div>
+        <div class="v-rel-meta">Auckland Museum · 1964.19</div>
       </a>
       <a class="v-rel-card" href="NFC1280.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/1023934?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">hairpin</div>
-        <div class="v-rel-meta">Auckland Museum · S428</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/1081963?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">stool</div>
+        <div class="v-rel-meta">Auckland Museum · 13720</div>
       </a>
       <a class="v-rel-card" href="NFC1282.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D9356399&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Perspektivische Ansicht</div>
-        <div class="v-rel-meta">Europeana · /08535/item_KQUZ2XKQV7XF5P6AH53ILZWPVQGWLTVT</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2017KA5915/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Rock and pop costume</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · S.1621-2010</div>
       </a>
       <a class="v-rel-card" href="NFC1283.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP-12659-001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Seated female figure</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 312595</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/11/164861-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Lantern Slide - Facial Profile &amp; Personality, 'Incurving', circa 1940s</div>
+        <div class="v-rel-meta">Museums Victoria · MM 106362</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1057,7 @@ Diameter (Of bell): 8 7/16 in. (21.4 cm)</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/504686" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/2002.45" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,27 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Trombone`,
-  type: `Trombone`,
-  date: `mid-19th century`,
-  registration: `504686`,
-  location: `Gallery 680`,
-  discipline: `Musical Instruments`,
-  category: `Aerophone`,
-  description: `Trombone. Trombone. Brass. Musical Instruments. European. Aerophone. mid-19th century`,
-  medium: `Brass`,
-  artist: ``,
-  culture: `European`,
-  dimensions: `8 1/2 × 13 × 43 11/16 in. (21.6 × 33 × 111 cm)
-Diameter (Of bell): 8 7/16 in. (21.4 cm)`,
+  title: `Sand Dunes, Carson Desert, Nevada`,
+  type: `Photograph`,
+  date: `1867`,
+  registration: `2002.45`,
+  location: `Cleveland Museum of Art`,
+  discipline: `Photography`,
+  category: `Photograph`,
+  description: `This noontime scene conveys a desolate place discovered by a lonely explorer. The artist chose a vantage point and framing that blocked the horizon and showed a single wagon—the former Civil War ambulance that he converted into a portable darkroom—and only two sets of footprints. However, over the previous 25 years, more than 165,000 people had passed near here on their way to California.`,
+  medium: `albumen print from wet collodion negative`,
+  artist: `Timothy H. O'Sullivan (American, 1840–1882)`,
+  culture: `America`,
+  dimensions: `Image: 19.7 x 27 cm (7 3/4 x 10 5/8 in.); Mounted: 45.7 x 59.4 cm (18 x 23 3/8 in.); Matted: 50.8 x 61 cm (20 x 24 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
+  did_you_know: `O’Sullivan took this while on a government expedition analyzing the future path of the transcontinental railroad.`,
+  provenance: `[{"description":"(Charles Isaacs Photographs, Inc., New York, NY)","citations":[],"footnotes":[],"date":null,"sortorder":1},{"description":"The Cleveland Museum of Art, Cleveland, OH","citations":[],"footnotes":[],"date":"June 3, 2002","sortorder":2}]`,
+  tombstone: `Sand Dunes, Carson Desert, Nevada, 1867. Timothy H. O'Sullivan (American, 1840–1882). Albumen print from wet collodion negative; image: 19.7 x 27 cm (7 3/4 x 10 5/8 in.); mounted: 45.7 x 59.4 cm (18 x 23 3/8 in.); matted: 50.8 x 61 cm (20 x 24 in.). The Cleveland Museum of Art, John L. Severance Fund, 2002.45`,
   licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/504686`,
-  institution: `The Metropolitan Museum of Art`
+  source_url: `https://clevelandart.org/art/2002.45`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1649,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_met',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

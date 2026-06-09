@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Wearable art ensemble — ARCHAI</title>
+<title>Karnak, Les Pylônes d'Horus — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2014HH8835/full/!600,600/0/default.jpg" alt="Wearable art ensemble" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/2018.252/2018.252_web.jpg" alt="Karnak, Les Pylônes d'Horus" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Wearable art ensemble</div>
-  <div class="v-sub">Wearable art ensemble · 2012 · T.90:1-5-2013</div>
+  <div class="v-title">Karnak, Les Pylônes d'Horus</div>
+  <div class="v-sub">Photograph · 1860s · 2018.252</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Wearable art ensemble</span>
+    <span class="v-meta-tag">Photography</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Wearable art ensemble</strong> — Wearable art ensemble. Wearable art ensemble. Made by Deacon, Giles. 2012. Made in London. In Store</div>
+  <div class="v-story"><strong>Karnak, Les Pylônes d'Horus</strong> — This desolate view of the remnants of the monumental gateway flanked by figures of the god Horus, usually depicted as a falcon-headed man, emphasizes the sense of discovery that must have been felt by tourists visiting Egypt in the 1860s. A tiny figure at the lower right testifies to the monumental …</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,16 +1000,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">T.90:1-5-2013</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Deacon, Giles</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Wearable art ensemble</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Wearable art ensemble</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2012</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In Store</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Wearable art ensemble</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2018.252</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Henri Béchard (French)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Albumen print from wet collodion negative</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1860s</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Image: 26 x 37.2 cm (10 1/4 x 14 5/8 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Cleveland Museum of Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -983,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1463.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1942.1065/1942.1065_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Romaine Lacaux</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1942.1065</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/4d1b3ad0-14db-0d21-ad9f-17abb8bdfbb5/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Bordighera</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 81537</div>
       </a>
       <a class="v-rel-card" href="NFC1464.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/498174/preview" loading="lazy"></div>
-        <div class="v-rel-title">Sculpture: An essay on stone-cutting, with a preface about God.</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · 2007-0006-8</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/72977?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">chair, dining</div>
+        <div class="v-rel-meta">Auckland Museum · 1994.112</div>
       </a>
       <a class="v-rel-card" href="NFC1466.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/SoDmH/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Vertrek van baron Van Imhoff, gouverneur van Nederlands Oost Indi&amp;#235; 1742, afdruk voorzijde</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100051</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2019ME1311/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Hat</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · S.172-1983</div>
       </a>
       <a class="v-rel-card" href="NFC1467.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_742/v1627883504/v2/prod/small/007001_007500/007335_003.jpg" loading="lazy"></div>
-        <div class="v-rel-title">The Great Pageant Show</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2017.415</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669363/Desembarque_de_Cabral-scaled-1.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Desembarque de Cabral em Porto Seguro</div>
+        <div class="v-rel-meta">Brasiliana Museus · desembarque-de-cabral-em-porto-seguro</div>
       </a></div>
   </div>
 </div>
@@ -1013,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1272991/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/2018.252" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1045,26 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Wearable art ensemble`,
-  type: `Wearable art ensemble`,
-  date: `2012`,
-  registration: `T.90:1-5-2013`,
-  location: `In Store`,
-  discipline: `Wearable art ensemble`,
-  category: `Wearable art ensemble`,
-  description: `Wearable art ensemble. Wearable art ensemble. Made by Deacon, Giles. 2012. Made in London. In Store`,
-  medium: ``,
-  artist: `Deacon, Giles`,
-  culture: ``,
-  dimensions: ``,
+  title: `Karnak, Les Pylônes d'Horus`,
+  type: `Photograph`,
+  date: `1860s`,
+  registration: `2018.252`,
+  location: `Cleveland Museum of Art`,
+  discipline: `Photography`,
+  category: `Photograph`,
+  description: `This desolate view of the remnants of the monumental gateway flanked by figures of the god Horus, usually depicted as a falcon-headed man, emphasizes the sense of discovery that must have been felt by tourists visiting Egypt in the 1860s. A tiny figure at the lower right testifies to the monumental scale of the ruins.`,
+  medium: `Albumen print from wet collodion negative`,
+  artist: `Henri Béchard (French)`,
+  culture: `France`,
+  dimensions: `Image: 26 x 37.2 cm (10 1/4 x 14 5/8 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1272991/`,
-  institution: `Victoria and Albert Museum, London`
+  did_you_know: `Karnak is the second most visited tourist site in Egypt after the pyramids of Giza.`,
+  provenance: `[{"description":"Charles Isaacs Photographs, Inc., New York, NY","citations":[],"footnotes":[],"date":"May 2011","sortorder":1},{"description":"Tom E. Hinson, Truth or Consequences, NM","citations":[],"footnotes":[],"date":"2011-2018","sortorder":2},{"description":"the Cleveland Museum of Art, Cleve…`,
+  tombstone: `Karnak, Les Pylônes d'Horus, 1860s. Henri Béchard (French). Albumen print from wet collodion negative; image: 26 x 37.2 cm (10 1/4 x 14 5/8 in.). The Cleveland Museum of Art, Gift of Tom E. Hinson and Diana S. Tittle, 2018.252`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://clevelandart.org/art/2018.252`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1645,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

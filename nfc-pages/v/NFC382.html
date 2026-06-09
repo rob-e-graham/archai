@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>O Chalaça — ARCHAI</title>
+<title>Camera — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669503/default-37.jpg" alt="O Chalaça" loading="eager">
+  <img src="https://framemark.vam.ac.uk/collections/2019LL8376/full/!600,600/0/default.jpg" alt="Camera" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">O Chalaça</div>
-  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · [18--] · o-chalaca</div>
+  <div class="v-title">Camera</div>
+  <div class="v-sub">Camera · Date unknown · RPS.347-2018</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Brasiliana Museus</span>
+    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Brasiliana Museus</span>
+    <span class="v-meta-tag">Camera</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>O Chalaça</strong> — Busto de homem jovem, levemente direcionado para a esquerda. Rosto e nariz finos, compridos. Testa larga. Sobrancelhas espessas, unidas. Olhos castanhos claros. Boca pequena. Orelha esquerda visível. Cabelos castanhos, lisos e curtos. Sobretudo preto de gola alta; colete creme e jabô branco. Fundo a…</div>
+  <div class="v-story"><strong>Camera</strong> — Camera. Camera. Made by Coronet Camera Co.. Photography Centre, Room 108</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</div>
+      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,18 +1000,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">o-chalaca</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">[18--]</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 31,00 cm · largura 25,00 cm</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">RPS.347-2018</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Coronet Camera Co.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Camera</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Camera</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Date unknown</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Photography Centre, Room 108</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Camera</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -985,24 +1024,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC380.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2018.289/2018.289_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Poppy Inkwell</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2018.289</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/66f95ea3-a11a-1cf4-6599-d0a49bb25744/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">On the Bank of the Seine, Bennecourt</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 81539</div>
       </a>
       <a class="v-rel-card" href="NFC381.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/es/original/ES226.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Musical box</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 191140</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1924.537/1924.537_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Fragment from Red-Figure Kylix: Nereus(?) and Nereid</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1924.537</div>
       </a>
       <a class="v-rel-card" href="NFC383.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/a05a0751-ae77-2e3a-9421-0d5a666c47fe/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Self-Portrait</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 9378</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AF3344/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Batger's Television Crackers</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.1038-2003</div>
       </a>
       <a class="v-rel-card" href="NFC384.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2013GK3850/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Fuochi d'Articio (bozzetto)</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · S.1148-1982</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/524946?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">blade</div>
+        <div class="v-rel-meta">Auckland Museum · 51364.1</div>
       </a></div>
   </div>
 </div>
@@ -1015,7 +1054,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/o-chalaca/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1431455/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1047,26 +1086,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `O Chalaça`,
-  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  date: `[18--]`,
-  registration: `o-chalaca`,
-  location: `Brasiliana Museus`,
-  discipline: `Brasiliana Museus`,
-  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  description: `Busto de homem jovem, levemente direcionado para a esquerda. Rosto e nariz finos, compridos. Testa larga. Sobrancelhas espessas, unidas. Olhos castanhos claros. Boca pequena. Orelha esquerda visível. Cabelos castanhos, lisos e curtos. Sobretudo preto de gola alta; colete creme e jabô branco. Fundo azeitonado. Inscrição no dorso da lateral do chassi, à esquerda, à caneta: &#034;Hist. de Port. Damião Peres/Vol. 7 pag 52&#034;. Moldura em madeira dourada, com decoração fitomórfica estilizada, nos cantos, nos centros das laterais e das partes superior e inferior. Na parte inferior, pequena placa m…`,
-  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  artist: ``,
-  culture: `Brazil`,
-  dimensions: `altura 31,00 cm · largura 25,00 cm`,
-  wall_description: `Busto de homem jovem, levemente direcionado para a esquerda. Rosto e nariz finos, compridos. Testa larga. Sobrancelhas espessas, unidas. Olhos castanhos claros. Boca pequena. Orelha esquerda visível. Cabelos castanhos, lisos e curtos. Sobretudo preto de gola alta; colete creme e jabô branco. Fundo azeitonado. Inscrição no dorso da lateral do chassi, à esquerda, à caneta: &#034;Hist. de Port. Damião Peres/Vol. 7 pag 52&#034;. Moldura em madeira dourada, com decoração fitomórfica estilizada, nos c…`,
+  title: `Camera`,
+  type: `Camera`,
+  date: `Date unknown`,
+  registration: `RPS.347-2018`,
+  location: `Photography Centre, Room 108`,
+  discipline: `Camera`,
+  category: `Camera`,
+  description: `Camera. Camera. Made by Coronet Camera Co.. Photography Centre, Room 108`,
+  medium: ``,
+  artist: `Coronet Camera Co.`,
+  culture: ``,
+  dimensions: ``,
+  wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `O Chalaça. [18--]. Brasiliana Museus`,
-  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
-  source_url: `https://brasiliana.museus.gov.br/acervos/o-chalaca/`,
-  institution: `Brasiliana Museus`
+  tombstone: ``,
+  licence: `V&A Open Access`,
+  source_url: `https://collections.vam.ac.uk/item/O1431455/`,
+  institution: `Victoria and Albert Museum, London`
 };
 
 // Build rich context from available fields
@@ -1647,7 +1686,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_brasiliana',
+      collection: 'archai_va',
       text,
       authorType: 'visitor',
     }),

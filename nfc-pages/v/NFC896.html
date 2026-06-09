@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Rest on the Flight into Egypt — ARCHAI</title>
+<title>Laboratorieskrivare, bordsmodell — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/1962.151/1962.151_web.jpg" alt="Rest on the Flight into Egypt" loading="eager">
+  <img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fems.dimu.org%2Fimage%2F022wZWGAPp5H%3Fdimension%3D1200x1200&amp;type=IMAGE" alt="Laboratorieskrivare, bordsmodell" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Rest on the Flight into Egypt</div>
-  <div class="v-sub">Painting · early 1640s · 1962.151</div>
+  <div class="v-title">Laboratorieskrivare, bordsmodell</div>
+  <div class="v-sub">IMAGE · Date unknown · /916118/S_TEK_object_TEKS0042793</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">European Painting and Sculpture</span>
+    <span class="v-meta-tag mv">Europeana</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
+
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Rest on the Flight into Egypt</strong> — One of the most influential landscape painters of the early modern era, Lorrain was a master of the “ideal landscape,” which combined lush foliage and a tranquil atmosphere with allusions to an idyllic, imaginary past. The intention was to create views more beautiful and harmonious than nature itsel…</div>
+  <div class="v-story"><strong>Laboratorieskrivare, bordsmodell</strong> — Laboratorieskrivare, bordsmodell, Esselte, av orange plåt. Skrivande mätinstrument, där nästan alla mätvärden kan omvandlas till elektriska signaler. Enbart för skolbruk. 24 olika ingångsnivåer för ström och spänning samt 11 olika hastigheter.
+Tillbehör: Två mätprober 30kV.. Esselte studium har över…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
+      <div class="v-rights-detail">Licence / rights: http://creativecommons.org/licenses/by/4.0/</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +970,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,19 +1001,15 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1962.151</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Claude Lorrain (French, 1604–1682)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oil on canvas</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, 17th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">European Painting and Sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Painting</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">early 1640s</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Framed: 239 x 185 x 12 cm (94 1/8 x 72 13/16 x 4 3/4 in.); Unframed: 208 x 152.5 cm (81 7/8 x 60 1/16 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">212 Baroque Painting and Sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">/916118/S_TEK_object_TEKS0042793</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">WPA Scientific Instrument</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">IMAGE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Date unknown</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Swedish National Museum of Science and Technology</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">IMAGE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">http://creativecommons.org/licenses/by/4.0/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -986,24 +1024,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC894.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/45323?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">shirt, uniform, school</div>
-        <div class="v-rel-meta">Auckland Museum · 1999.183.4</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/619950/preview" loading="lazy"></div>
+        <div class="v-rel-title">One Cent</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · NU005527</div>
       </a>
       <a class="v-rel-card" href="NFC895.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018KY2056/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Radio</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · W.45-1983</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP-37845-001.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Oliphant (side-blown horn)</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 883968</div>
       </a>
       <a class="v-rel-card" href="NFC897.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HC3211/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Vype Reload</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CD.37:1 to 11-2014</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669425/default-33.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Descobrimento da América</div>
+        <div class="v-rel-meta">Brasiliana Museus · descobrimento-da-america</div>
       </a>
       <a class="v-rel-card" href="NFC898.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/87881?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">radio, valve</div>
-        <div class="v-rel-meta">Auckland Museum · 1999.40.3</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1970.127.b/1970.127.b_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Cover for a Box</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1970.127.b</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1054,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://clevelandart.org/art/1962.151" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.europeana.eu/item/916118/S_TEK_object_TEKS0042793?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,26 +1086,27 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Rest on the Flight into Egypt`,
-  type: `Painting`,
-  date: `early 1640s`,
-  registration: `1962.151`,
-  location: `212 Baroque Painting and Sculpture`,
-  discipline: `European Painting and Sculpture`,
-  category: `Painting`,
-  description: `One of the most influential landscape painters of the early modern era, Lorrain was a master of the “ideal landscape,” which combined lush foliage and a tranquil atmosphere with allusions to an idyllic, imaginary past. The intention was to create views more beautiful and harmonious than nature itself. In the foreground of this soaring landscape, the Holy Family rests on a shady bank as kneeling angels offer fruit to the Christ child. Landscape paintings like this were much in demand among wealthy collectors throughout Europe, for whom these expansive idealized scenes represented a calm retreat…`,
-  medium: `oil on canvas`,
-  artist: `Claude Lorrain (French, 1604–1682)`,
-  culture: `France, 17th century`,
-  dimensions: `Framed: 239 x 185 x 12 cm (94 1/8 x 72 13/16 x 4 3/4 in.); Unframed: 208 x 152.5 cm (81 7/8 x 60 1/16 in.)`,
+  title: `Laboratorieskrivare, bordsmodell`,
+  type: `IMAGE`,
+  date: `Date unknown`,
+  registration: `/916118/S_TEK_object_TEKS0042793`,
+  location: `Swedish National Museum of Science and Technology`,
+  discipline: ``,
+  category: `IMAGE`,
+  description: `Laboratorieskrivare, bordsmodell, Esselte, av orange plåt. Skrivande mätinstrument, där nästan alla mätvärden kan omvandlas till elektriska signaler. Enbart för skolbruk. 24 olika ingångsnivåer för ström och spänning samt 11 olika hastigheter.
+Tillbehör: Två mätprober 30kV.. Esselte studium har övergått i bl.a. Liber och Terco.. Generalagent: Teli & Esselte Studium`,
+  medium: ``,
+  artist: `WPA Scientific Instrument`,
+  culture: ``,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: `Lorrain placed this Middle Eastern biblical event in the Roman countryside.`,
-  provenance: `[{"description":"Count Francesco Crescenzi or Giovanni Battista Crescenzi (1577-1660?), Spanish Marquess de la Torre;","citations":[],"footnotes":null,"date":null,"sortorder":null},{"description":"Sir William Lowther (1727-1753), third and last Baronet of Marske (Holker Hall, Lancashire);","citation…`,
-  tombstone: `Rest on the Flight into Egypt, early 1640s. Claude Lorrain (French, 1604–1682). Oil on canvas; framed: 239 x 185 x 12 cm (94 1/8 x 72 13/16 x 4 3/4 in.); unframed: 208 x 152.5 cm (81 7/8 x 60 1/16 in.). The Cleveland Museum of Art, Leonard C. Hanna Jr. Fund, 1962.151`,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://clevelandart.org/art/1962.151`,
-  institution: `Cleveland Museum of Art`
+  did_you_know: ``,
+  provenance: ``,
+  tombstone: ``,
+  licence: `http://creativecommons.org/licenses/by/4.0/`,
+  source_url: `https://www.europeana.eu/item/916118/S_TEK_object_TEKS0042793?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb`,
+  institution: `Europeana`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1687,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_cma',
+      collection: 'archai_europeana',
       text,
       authorType: 'visitor',
     }),

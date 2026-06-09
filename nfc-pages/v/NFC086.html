@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Aansprekersoproer 1696 (1697) — ARCHAI</title>
+<title>Portret van Floris I, graaf van Holland — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,27 +917,28 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://iiif.micr.io/bNonH/full/max/0/default.jpg" alt="Aansprekersoproer 1696 (1697)" loading="eager">
+  <img src="https://iiif.micr.io/NXclZ/full/max/0/default.jpg" alt="Portret van Floris I, graaf van Holland" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Aansprekersoproer 1696 (1697)</div>
-  <div class="v-sub">historiepenning · 2026-02-14T04:17:25Z&lt;/datestamp&gt;
+  <div class="v-title">Portret van Floris I, graaf van Holland</div>
+  <div class="v-sub">prent · 2026-01-27T04:44:33Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260241&lt;/setSpec&gt;
         &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;26151&lt;/setSpec&gt;
         &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
       &lt;/header&gt;
       &lt;metadata&gt;
         &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;Martin Smeltzing&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1696 · 200100155</div>
+          &lt;dc:coverage&gt;Graafschap Holland&lt;/dc:coverage&gt;
+          &lt;dc:creator&gt;Adriaen Matham&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1620 · 20010005</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    
+    <span class="v-meta-tag">Floris I (graaf van Holland)</span>
   </div>
 
   <!-- SHARE -->
@@ -912,7 +949,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Aansprekersoproer 1696 (1697)</strong> — Bronzen gegoten penning, op de voorzijde het neerslaan van het oproer op de Dam te Amsterdam, met omschrift en afsnedetekst, op de keerzijde een getroond Amsterdams raadsheer die een beloningspenning uitreikt, met omschrift en tekst op het voetstuk van de troon, in de afsnede de twee zijden van de b…</div>
+  <div class="v-story"><strong>Portret van Floris I, graaf van Holland</strong> — Portret van Floris I, graaf van Holland, staande naar rechts in een harnas met op zijn schouder het wapen van Holland en in zijn hand een zwaard. Prent uit een serie van 36 prenten met portretten ten voeten uit van graven en gravinnen van Holland.</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -942,24 +979,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -968,22 +1010,24 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">200100155</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Martin Smeltzing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">brons</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">historiepenning</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-02-14T04:17:25Z&lt;/datestamp&gt;
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">20010005</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Adriaen Matham</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">papier</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Floris I (graaf van Holland)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">prent</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-01-27T04:44:33Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260241&lt;/setSpec&gt;
         &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;26151&lt;/setSpec&gt;
         &lt;setSpec&gt;260251&lt;/setSpec&gt;
-        &lt;setSpec&gt;2601&lt;/setSpec&gt;
       &lt;/header&gt;
       &lt;metadata&gt;
         &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:creator&gt;Martin Smeltzing&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1696</span></div>
+          &lt;dc:coverage&gt;Graafschap Holland&lt;/dc:coverage&gt;
+          &lt;dc:creator&gt;Adriaen Matham&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1620</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">historiepenning</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">prent</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
@@ -1001,24 +1045,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC084.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/228190?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">harmonium</div>
-        <div class="v-rel-meta">Auckland Museum · col.3319</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/395707/preview" loading="lazy"></div>
+        <div class="v-rel-title">Signature table cloth</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · PC000204/1</div>
       </a>
       <a class="v-rel-card" href="NFC085.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2010.8/2010.8_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Two Shepherdesses Resting with Two Sheep</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2010.8</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/6/659706-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Aerial Model - Homecrafts, Radio, circa 1920</div>
+        <div class="v-rel-meta">Museums Victoria · ST 15452</div>
       </a>
       <a class="v-rel-card" href="NFC087.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2012FK3674/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Alhambra</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · 34776</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669054/006320.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Frei Domingos da Encarnação Pontevel, 4º bispo de Mariana</div>
+        <div class="v-rel-meta">Brasiliana Museus · frei-domingos-da-encarnacao-pontevel-4o-bispo-de-mariana</div>
       </a>
       <a class="v-rel-card" href="NFC088.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/b0effb1c-ff23-bbaa-f809-9fd94e31c1a0/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Cliff Walk at Pourville</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 14620</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/3ef69544-a84c-dfa4-df6a-346b4b59c351/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">October Day</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 876</div>
       </a></div>
   </div>
 </div>
@@ -1031,7 +1075,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/200100155" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/20010005" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1063,25 +1107,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Aansprekersoproer 1696 (1697)`,
-  type: `historiepenning`,
-  date: `2026-02-14T04:17:25Z</datestamp>
+  title: `Portret van Floris I, graaf van Holland`,
+  type: `prent`,
+  date: `2026-01-27T04:44:33Z</datestamp>
+        <setSpec>260241</setSpec>
         <setSpec>260239</setSpec>
-        <setSpec>261106</setSpec>
+        <setSpec>26151</setSpec>
         <setSpec>260251</setSpec>
-        <setSpec>2601</setSpec>
       </header>
       <metadata>
         <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
-          <dc:creator>Martin Smeltzing</dc:creator>
-          <dc:date>1696`,
-  registration: `200100155`,
+          <dc:coverage>Graafschap Holland</dc:coverage>
+          <dc:creator>Adriaen Matham</dc:creator>
+          <dc:date>1620`,
+  registration: `20010005`,
   location: `Rijksmuseum, Amsterdam`,
-  discipline: ``,
-  category: `historiepenning`,
-  description: `Bronzen gegoten penning, op de voorzijde het neerslaan van het oproer op de Dam te Amsterdam, met omschrift en afsnedetekst, op de keerzijde een getroond Amsterdams raadsheer die een beloningspenning uitreikt, met omschrift en tekst op het voetstuk van de troon, in de afsnede de twee zijden van de beloningspenning en A. 1697`,
-  medium: `brons`,
-  artist: `Martin Smeltzing`,
+  discipline: `Floris I (graaf van Holland)`,
+  category: `prent`,
+  description: `Portret van Floris I, graaf van Holland, staande naar rechts in een harnas met op zijn schouder het wapen van Holland en in zijn hand een zwaard. Prent uit een serie van 36 prenten met portretten ten voeten uit van graven en gravinnen van Holland.`,
+  medium: `papier`,
+  artist: `Adriaen Matham`,
   culture: ``,
   dimensions: ``,
   wall_description: ``,
@@ -1090,7 +1135,7 @@ const OBJECT = {
   provenance: ``,
   tombstone: ``,
   licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
-  source_url: `https://www.rijksmuseum.nl/en/collection/200100155`,
+  source_url: `https://www.rijksmuseum.nl/en/collection/20010005`,
   institution: `Rijksmuseum, Amsterdam`
 };
 

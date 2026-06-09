@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>The Young Eastern Woman — ARCHAI</title>
+<title>Old Man with a Gold Chain — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/1991.163/1991.163_web.jpg" alt="The Young Eastern Woman" loading="eager">
+  <img src="https://www.artic.edu/iiif/2/3eaab3a3-2b47-9fdd-121c-050f6b8d9ccb/full/843,/0/default.jpg" alt="Old Man with a Gold Chain" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">The Young Eastern Woman</div>
-  <div class="v-sub">Painting · 1838 · 1991.163</div>
+  <div class="v-title">Old Man with a Gold Chain</div>
+  <div class="v-sub">Painting · 1631 · 95998</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
+    <span class="v-meta-tag mv">Art Institute of Chicago</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
+    <span class="v-meta-tag">Painting and Sculpture of Europe</span>
   </div>
 
   <!-- SHARE -->
@@ -903,7 +939,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>The Young Eastern Woman</strong> — Although the artist provocatively titled this painting Young Eastern Woman, it is obvious that the model is not Asian, but merely wears a Turkish costume. The rich fabrics and glowing light create an exotic atmosphere, revealing a Western fascination with &quot;Oriental&quot; images and themes.</div>
+  <div class="v-story"><strong>Old Man with a Gold Chain</strong> — Old Man with a Gold Chain. Painting. Oil on panel. Painting and Sculpture of Europe. Rembrandt van Rijn (Dutch, 1606–1669). oil on panel. 1631. Holland. Renaissance. &lt;p&gt;This compelling figure—fancifully adorned with a steel gorget (armor protecting the throat and upper chest), golden chain, and plum…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,15 +1000,15 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1991.163</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Friedrich Amerling (Austrian, 1803–1887)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oil on fabric</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Austria</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Painting</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1838</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Framed: 106.5 x 90.5 x 9 cm (41 15/16 x 35 5/8 x 3 9/16 in.); Unframed: 88.5 x 71.5 cm (34 13/16 x 28 1/8 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">219 19th Century European</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">95998</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Rembrandt van Rijn (Dutch, 1606–1669)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Oil on panel</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Holland</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Painting and Sculpture of Europe</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">oil on panel</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1631</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">83.1 × 75.7 cm (32 3/4 × 29 3/4 in.); Framed: 105.1 × 99.5 cm (41 3/8 × 39 3/16 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 213</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
@@ -986,24 +1027,25 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC757.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2F2%2F26%2FNationalmuseum_Stockholm-DSC_0040w.jpg&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Nationalmuseum Stockholm-DSC 0040w</div>
-        <div class="v-rel-meta">Europeana · /2058704/File_Nationalmuseum_Stockholm_DSC_0040w_jpg</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/trWzl/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van Karel de Stoute, hertog van Bourgondi&amp;#235;</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010030</div>
       </a>
       <a class="v-rel-card" href="NFC758.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/4a04138f-43d8-cd9f-5ac4-478cd8828210/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Trompe-l'Oeil Still Life with a Flower Garland and a Curtain</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 66042</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/436525?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Tweezers</div>
+        <div class="v-rel-meta">Auckland Museum · H507</div>
       </a>
       <a class="v-rel-card" href="NFC760.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D9356299&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Perspektivische Ansicht</div>
-        <div class="v-rel-meta">Europeana · /08535/item_UV7GQTCVOPSSPMGQPZEW2VQMQZF2GWVM</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fmm.dimu.org%2Fimage%2F012uN1bvqQ2k%3Fdimension%3D1200x1200&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Stockholm, Nationalmuseum.
+439 K. Holmström, Sth. Imp</div>
+        <div class="v-rel-meta">Europeana · /916109/smm_sm_photo_Fo195833</div>
       </a>
       <a class="v-rel-card" href="NFC761.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4341/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">SCALLOP POTATOES</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.289-2020</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669499/6193-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Juramento Constitucional da Princesa Isabel</div>
+        <div class="v-rel-meta">Brasiliana Museus · juramento-constitucional-da-princesa-isabel</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1058,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://clevelandart.org/art/1991.163" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.artic.edu/artworks/95998" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,26 +1090,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `The Young Eastern Woman`,
+  title: `Old Man with a Gold Chain`,
   type: `Painting`,
-  date: `1838`,
-  registration: `1991.163`,
-  location: `219 19th Century European`,
-  discipline: `Modern European Painting and Sculpture`,
-  category: `Painting`,
-  description: `Although the artist provocatively titled this painting Young Eastern Woman, it is obvious that the model is not Asian, but merely wears a Turkish costume. The rich fabrics and glowing light create an exotic atmosphere, revealing a Western fascination with "Oriental" images and themes.`,
-  medium: `oil on fabric`,
-  artist: `Friedrich Amerling (Austrian, 1803–1887)`,
-  culture: `Austria`,
-  dimensions: `Framed: 106.5 x 90.5 x 9 cm (41 15/16 x 35 5/8 x 3 9/16 in.); Unframed: 88.5 x 71.5 cm (34 13/16 x 28 1/8 in.)`,
+  date: `1631`,
+  registration: `95998`,
+  location: `Gallery 213`,
+  discipline: `Painting and Sculpture of Europe`,
+  category: `oil on panel`,
+  description: `Old Man with a Gold Chain. Painting. Oil on panel. Painting and Sculpture of Europe. Rembrandt van Rijn (Dutch, 1606–1669). oil on panel. 1631. Holland. Renaissance. <p>This compelling figure—fancifully adorned with a steel gorget (armor protecting the throat and upper chest), golden chain, and plumed beret—represents a new commodity on the Northern European art market: a <em>tronie</em>, or character study. While artists had created such studies since the 1500s, Rembrandt and his colleague <a href="https://www.artic.edu/artists/41304/jan-lievens">Jan Lievens</a> made these images into more af…`,
+  medium: `Oil on panel`,
+  artist: `Rembrandt van Rijn (Dutch, 1606–1669)`,
+  culture: `Holland`,
+  dimensions: `83.1 × 75.7 cm (32 3/4 × 29 3/4 in.); Framed: 105.1 × 99.5 cm (41 3/8 × 39 3/16 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: `One can see in Amerling's sensitive and beautiful portrayal why he was well known and admired for his portraits.`,
-  provenance: `[{"description":"The Cleveland Museum of Art, Cleveland, Ohio","citations":[],"footnotes":null,"date":"1991-","sortorder":1},{"description":"(Galerie Sanct Lucas, Vienna, sold to the Cleveland Museum of Art)","citations":[],"footnotes":null,"date":"1971-1991","sortorder":2},{"description":"Heirs of …`,
-  tombstone: `The Young Eastern Woman, 1838. Friedrich Amerling (Austrian, 1803–1887). Oil on fabric; framed: 106.5 x 90.5 x 9 cm (41 15/16 x 35 5/8 x 3 9/16 in.); unframed: 88.5 x 71.5 cm (34 13/16 x 28 1/8 in.). The Cleveland Museum of Art, Mr. and Mrs. William H. Marlatt Fund, 1991.163`,
+  did_you_know: ``,
+  provenance: ``,
+  tombstone: ``,
   licence: `CC0 — Public Domain`,
-  source_url: `https://clevelandart.org/art/1991.163`,
-  institution: `Cleveland Museum of Art`
+  source_url: `https://www.artic.edu/artworks/95998`,
+  institution: `Art Institute of Chicago`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1690,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_cma',
+      collection: 'archai_aic',
       text,
       authorType: 'visitor',
     }),

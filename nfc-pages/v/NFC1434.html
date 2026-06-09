@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Hurdy-Gurdy — ARCHAI</title>
+<title>Cupid Secretly Drawing an Arrow — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/mi/original/MI19.jpg" alt="Hurdy-Gurdy" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1977.72/1977.72_web.jpg" alt="Cupid Secretly Drawing an Arrow" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Hurdy-Gurdy</div>
-  <div class="v-sub">Hurdy-Gurdy · second half 18th century · 501646</div>
+  <div class="v-title">Cupid Secretly Drawing an Arrow</div>
+  <div class="v-sub">Sculpture · 1807 · 1977.72</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Musical Instruments</span>
+    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
   </div>
 
   <!-- SHARE -->
@@ -903,7 +939,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Hurdy-Gurdy</strong> — Hurdy-Gurdy. Hurdy-Gurdy. Wood, ivory, metal. Musical Instruments. French. Chordophone-Bowed keyboard. second half 18th century</div>
+  <div class="v-story"><strong>Cupid Secretly Drawing an Arrow</strong> — This clay model is a maquette for a sculpture in limestone more than three feet tall, entitled Cupid Disguised, Hiding Under a Veil. The motif is borrowed from the Marlborough cameo (an ancient Roman cameo now at the Museum of Fine Arts, Boston, inv. no. 99.101) that was a source of inspiration for …</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,15 +1000,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">501646</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Wood, ivory, metal</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">French</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Chordophone-Bowed keyboard</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">second half 18th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Total length (without crank)  60.3 cm., Body length  46.0 cm., Width (widest point)  28.4 cm., Total depth  20.7 cm., Friction wheel diameter  16.4 cm., Keyboard span  25.1 cm., Vibratiion length of strings:  chantarelles--approx. 32.2 cm., others--approx. 35.0 cm.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 629</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Hurdy-Gurdy</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1977.72</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Gilles-Lambert Godecharle (Belgian, 1750–1835)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">terracotta</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Belgium, Brussels</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1807</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 22.8 cm (9 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">301 Baroque Sculpture Mezzanine</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Sculpture</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
@@ -985,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1432.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/16673?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">container</div>
-        <div class="v-rel-meta">Auckland Museum · 1999.118.89</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2009BX5459/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Composite Oscillons</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.957-2008</div>
       </a>
       <a class="v-rel-card" href="NFC1433.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680178/000791-scaled.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Bambual (atribuído)</div>
-        <div class="v-rel-meta">Brasiliana Museus · bambual-atribuido</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/wtHan/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Schutterspenning van Leiden</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100451</div>
       </a>
       <a class="v-rel-card" href="NFC1435.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_671/v1684158386/v2/prod/small/010501_011000/010549_003.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Poster, 'The Noon Day Gun in Hong Kong'</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2018.36</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%3A80%2Fwebclient%2FDeliveryManager%3Fpid%3D6355693%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Servizio fotografico Firenze, 1957-1956. Photographic reportage, Florence, 1957-1956</div>
+        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6355693_custom_att_2_simple_viewer</div>
       </a>
       <a class="v-rel-card" href="NFC1436.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP-12679-081.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Parade Trumpet</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 504061</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/d9bde524-38b2-4262-3338-e4d06a50746d/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Still Life with Dead Game, Fruits, and Vegetables in a Market</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 62042</div>
       </a></div>
   </div>
 </div>
@@ -1015,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/501646" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1977.72" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1047,26 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Hurdy-Gurdy`,
-  type: `Hurdy-Gurdy`,
-  date: `second half 18th century`,
-  registration: `501646`,
-  location: `Gallery 629`,
-  discipline: `Musical Instruments`,
-  category: `Chordophone-Bowed keyboard`,
-  description: `Hurdy-Gurdy. Hurdy-Gurdy. Wood, ivory, metal. Musical Instruments. French. Chordophone-Bowed keyboard. second half 18th century`,
-  medium: `Wood, ivory, metal`,
-  artist: ``,
-  culture: `French`,
-  dimensions: `Total length (without crank)  60.3 cm., Body length  46.0 cm., Width (widest point)  28.4 cm., Total depth  20.7 cm., Friction wheel diameter  16.4 cm., Keyboard span  25.1 cm., Vibratiion length of strings:  chantarelles--approx. 32.2 cm., others--approx. 35.0 cm.`,
+  title: `Cupid Secretly Drawing an Arrow`,
+  type: `Sculpture`,
+  date: `1807`,
+  registration: `1977.72`,
+  location: `301 Baroque Sculpture Mezzanine`,
+  discipline: `Modern European Painting and Sculpture`,
+  category: `Sculpture`,
+  description: `This clay model is a maquette for a sculpture in limestone more than three feet tall, entitled Cupid Disguised, Hiding Under a Veil. The motif is borrowed from the Marlborough cameo (an ancient Roman cameo now at the Museum of Fine Arts, Boston, inv. no. 99.101) that was a source of inspiration for neoclassical artists. The gem illustrates the wedding of Cupid and Psyche—shown as veiled children with protruding wings—from which Godecharle extracted the single figure of Cupid and, instead, depicted him in ambush.`,
+  medium: `terracotta`,
+  artist: `Gilles-Lambert Godecharle (Belgian, 1750–1835)`,
+  culture: `Belgium, Brussels`,
+  dimensions: `Overall: 22.8 cm (9 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
+  did_you_know: `Cupid traipses daintily on rose blossoms, ready to shoot his love-filled arrow at an unsuspecting victim.`,
+  provenance: `[{"description":"Joseph Henry Fitzhenry [1836-1913], London","citations":[],"footnotes":["<div><!--block-->Galerie Georges Petit (Paris). <em>Catalogue des sculptures en marbre, terre cuite, plâtre des XVIIe, XVIIIe &amp; XIXe siècles par ... composant la Collection de M. Marius Paulme</em> ... Ma…`,
+  tombstone: `Cupid Secretly Drawing an Arrow, 1807. Gilles-Lambert Godecharle (Belgian, 1750–1835). Terracotta; overall: 22.8 cm (9 in.). The Cleveland Museum of Art, Andrew R. and Martha Holden Jennings Fund, 1977.72`,
   licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/501646`,
-  institution: `The Metropolitan Museum of Art`
+  source_url: `https://clevelandart.org/art/1977.72`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1647,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_met',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

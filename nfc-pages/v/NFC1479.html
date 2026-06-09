@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Woman at Her Toilette — ARCHAI</title>
+<title>Conde d&amp;#039;Eu — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/78c80988-6524-cec7-c661-a4c0a706d06f/full/843,/0/default.jpg" alt="Woman at Her Toilette" loading="eager">
+  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680288/11092018-IMG_6450-1-scaled.jpg" alt="Conde d&amp;#039;Eu" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Woman at Her Toilette</div>
-  <div class="v-sub">Painting · 1875–80 · 11723</div>
+  <div class="v-title">Conde d&amp;#039;Eu</div>
+  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · 18-- · conde-deu-3</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Art Institute of Chicago</span>
+    <span class="v-meta-tag mv">Brasiliana Museus</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Painting and Sculpture of Europe</span>
+    <span class="v-meta-tag">Brasiliana Museus</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Woman at Her Toilette</strong> — Woman at Her Toilette. Painting. Oil on canvas. Painting and Sculpture of Europe. Berthe Morisot (French, 1841–1895). painting. 1875–80. France. Impressionism. &lt;p&gt;&lt;em&gt;In Woman at Her Toilette&lt;/em&gt;, Berthe Morisot provided a glimpse into the private life of a Parisienne—one of the fashionable, urban …</div>
+  <div class="v-story"><strong>Conde d&amp;#039;Eu</strong> — Sobre fundo escuro em tela oval, figura masculina, identificada como o Conde d&amp;#039;Eu, em meio corpo a 3/4, voltado para a direita. Cabelos curtos e escuros, pequenas costeletas afiladas e cavanhaque. Traja paletó e gravata em laço na cor preta sobre camisa branca de colarinho alto. Moldura em made…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,19 +1000,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">11723</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Berthe Morisot (French, 1841–1895)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Oil on canvas</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Painting and Sculpture of Europe</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">painting</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1875–80</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">60.3 × 80.4 cm (23 3/4 × 31 5/8 in.); Framed: 85.8 × 105.5 × 10.5 cm (33 3/4 × 41 1/2 × 4 1/8 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">conde-deu-3</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">18--</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 73,00 cm · largura 60,00 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -986,24 +1026,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1477.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/IEHcn/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Overdracht van het graafschap Culemborg aan Stadhouder Willem IV 1748</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100048</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/d4bc1723-7cbc-d36d-a9cb-f84553f2a6f6/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">The Poet's Garden</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 14586</div>
       </a>
       <a class="v-rel-card" href="NFC1478.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/72977?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">chair, dining</div>
-        <div class="v-rel-meta">Auckland Museum · 1994.112</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627875920/v2/prod/small/002501_003000/002830_019.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Bomb (da bian series)</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2012.1296</div>
       </a>
       <a class="v-rel-card" href="NFC1480.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fcollection.mobilier-national.fr%2Fmedia%2Fxl%2FBIDEAU%2F2017%2F02%2FGMTT-11-008_9-2017.jpg&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">TAPISSERIE DE LICE - Histoire d'Artémise LE CHAR DES RHINOCEROS</div>
-        <div class="v-rel-meta">Europeana · /957/GMTT_11_008</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680249/000777-1.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Almirante José Maria de Almeida</div>
+        <div class="v-rel-meta">Brasiliana Museus · almirante-jose-maria-de-almeida</div>
       </a>
       <a class="v-rel-card" href="NFC1481.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/40382?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">table, dining</div>
-        <div class="v-rel-meta">Auckland Museum · 1994.112</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2008BT4243/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Black ST 201 TV</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.5:3-1974</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1056,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/11723" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/conde-deu-3/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,26 +1088,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Woman at Her Toilette`,
-  type: `Painting`,
-  date: `1875–80`,
-  registration: `11723`,
-  location: `Art Institute of Chicago`,
-  discipline: `Painting and Sculpture of Europe`,
-  category: `painting`,
-  description: `Woman at Her Toilette. Painting. Oil on canvas. Painting and Sculpture of Europe. Berthe Morisot (French, 1841–1895). painting. 1875–80. France. Impressionism. <p><em>In Woman at Her Toilette</em>, Berthe Morisot provided a glimpse into the private life of a Parisienne—one of the fashionable, urban women who epitomized modernity in late nineteenth-century France. The ﬁgure is shown at her vanity table after a ball, still wearing her earrings and a velvet ribbon around her neck as she reaches up to take down her chignon hairstyle. In the background, Morisot’s soft, feathery brushstrokes suggest…`,
-  medium: `Oil on canvas`,
-  artist: `Berthe Morisot (French, 1841–1895)`,
-  culture: `France`,
-  dimensions: `60.3 × 80.4 cm (23 3/4 × 31 5/8 in.); Framed: 85.8 × 105.5 × 10.5 cm (33 3/4 × 41 1/2 × 4 1/8 in.)`,
-  wall_description: ``,
+  title: `Conde d&amp;#039;Eu`,
+  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  date: `18--`,
+  registration: `conde-deu-3`,
+  location: `Brasiliana Museus`,
+  discipline: `Brasiliana Museus`,
+  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  description: `Sobre fundo escuro em tela oval, figura masculina, identificada como o Conde d&#039;Eu, em meio corpo a 3/4, voltado para a direita. Cabelos curtos e escuros, pequenas costeletas afiladas e cavanhaque. Traja paletó e gravata em laço na cor preta sobre camisa branca de colarinho alto. Moldura em madeira dourada.`,
+  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  artist: ``,
+  culture: `Brazil`,
+  dimensions: `altura 73,00 cm · largura 60,00 cm`,
+  wall_description: `Sobre fundo escuro em tela oval, figura masculina, identificada como o Conde d&#039;Eu, em meio corpo a 3/4, voltado para a direita. Cabelos curtos e escuros, pequenas costeletas afiladas e cavanhaque. Traja paletó e gravata em laço na cor preta sobre camisa branca de colarinho alto. Moldura em madeira dourada.`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://www.artic.edu/artworks/11723`,
-  institution: `Art Institute of Chicago`
+  tombstone: `Conde d&#039;Eu. 18--. Brasiliana Museus`,
+  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
+  source_url: `https://brasiliana.museus.gov.br/acervos/conde-deu-3/`,
+  institution: `Brasiliana Museus`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1688,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_aic',
+      collection: 'archai_brasiliana',
       text,
       authorType: 'visitor',
     }),

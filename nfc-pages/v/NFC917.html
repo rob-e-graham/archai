@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Sorting Song — ARCHAI</title>
+<title>Rooster (Gallic Cock) — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2022NH4242/full/!600,600/0/default.jpg" alt="Sorting Song" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1972.227/1972.227_web.jpg" alt="Rooster (Gallic Cock)" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Sorting Song</div>
-  <div class="v-sub">Sorting Song · 2021 · CD.2-2023</div>
+  <div class="v-title">Rooster (Gallic Cock)</div>
+  <div class="v-sub">Sculpture · 1916 (plaster), cast 1919 · 1972.227</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Sorting Song</span>
+    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Sorting Song</strong> — Sorting Song. Sorting Song. Made by Simone C Niquille. 2021. Made in Amsterdam. In store</div>
+  <div class="v-story"><strong>Rooster (Gallic Cock)</strong> — A pioneer of Cubist sculpture, Duchamp-Villon carved the original plaster for this bronze relief while serving in the army during World War I. It was intended for the entrance to a temporary theater erected near the front lines, where French soldiers would have recognized the rooster and rising sun …</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,16 +1000,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">CD.2-2023</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Simone C Niquille</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Sorting Song</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Sorting Song</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2021</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">In store</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Sorting Song</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1972.227</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Raymond Duchamp-Villon (French, 1876–1918)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">painted bronze</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, 20th century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1916 (plaster), cast 1919</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 43.5 x 36 x 5.5 cm (17 1/8 x 14 3/16 x 2 3/16 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Cleveland Museum of Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Sculpture</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -983,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC915.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669459/050.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Coroação de D. Pedro II (estudo)</div>
-        <div class="v-rel-meta">Brasiliana Museus · coroacao-de-d-pedro-ii-estudo</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/6f3ca8b9-fef6-edfc-a71c-3e7b471d5f6c/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Madame Roulin Rocking the Cradle (La berceuse)</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 27949</div>
       </a>
       <a class="v-rel-card" href="NFC916.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627863231/v2/prod/small/007001_007500/007266_004.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Game &amp; Watch Donkey Kong Jr. portable game device</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2016.586</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/244898?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">bodice</div>
+        <div class="v-rel-meta">Auckland Museum · 2008.17.1</div>
       </a>
       <a class="v-rel-card" href="NFC918.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2008BT4838/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Elektronische Grafik (Electronic Graphics)</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.110-2008</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680046/823-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Pedro II</div>
+        <div class="v-rel-meta">Brasiliana Museus · pedro-ii-39</div>
       </a>
       <a class="v-rel-card" href="NFC919.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/caUrP/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Duit van de Bataafse Republiek op naam van Zeeland, 1797</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100096</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1977.168/1977.168_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Dressing Table Mirror</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1977.168</div>
       </a></div>
   </div>
 </div>
@@ -1013,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1731161/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1972.227" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1045,26 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Sorting Song`,
-  type: `Sorting Song`,
-  date: `2021`,
-  registration: `CD.2-2023`,
-  location: `In store`,
-  discipline: `Sorting Song`,
-  category: `Sorting Song`,
-  description: `Sorting Song. Sorting Song. Made by Simone C Niquille. 2021. Made in Amsterdam. In store`,
-  medium: ``,
-  artist: `Simone C Niquille`,
-  culture: ``,
-  dimensions: ``,
+  title: `Rooster (Gallic Cock)`,
+  type: `Sculpture`,
+  date: `1916 (plaster), cast 1919`,
+  registration: `1972.227`,
+  location: `Cleveland Museum of Art`,
+  discipline: `Modern European Painting and Sculpture`,
+  category: `Sculpture`,
+  description: `A pioneer of Cubist sculpture, Duchamp-Villon carved the original plaster for this bronze relief while serving in the army during World War I. It was intended for the entrance to a temporary theater erected near the front lines, where French soldiers would have recognized the rooster and rising sun as symbols of victory. Duchamp-Villon died during the war, and in 1919, five bronze casts were made from his plaster as a memorial to the artist.`,
+  medium: `painted bronze`,
+  artist: `Raymond Duchamp-Villon (French, 1876–1918)`,
+  culture: `France, 20th century`,
+  dimensions: `Overall: 43.5 x 36 x 5.5 cm (17 1/8 x 14 3/16 x 2 3/16 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1731161/`,
-  institution: `Victoria and Albert Museum, London`
+  did_you_know: `Before being embraced by artists, the term "Cubism" originated from an insult. The same is true of Gallus, a Latin word meaning both "rooster" and "inhabitant of Gaul" (present-day France). Once used to mock the French, the rooster was reclaimed as a national symbol of triumph, as pictured here.`,
+  provenance: `[{"description":"John Quinn","citations":[],"footnotes":[],"date":null,"sortorder":null},{"description":"Lucia McCurdy McBride","citations":[],"footnotes":[],"date":"1927    ","sortorder":null},{"description":"John Quinn; Lucia McCurdy McBride, 1927","citations":[],"footnotes":[],"date":null,"sortor…`,
+  tombstone: `Rooster (Gallic Cock), 1916 (plaster), cast 1919. Raymond Duchamp-Villon (French, 1876–1918). Painted bronze; overall: 43.5 x 36 x 5.5 cm (17 1/8 x 14 3/16 x 2 3/16 in.). The Cleveland Museum of Art, Bequest of Lucia McCurdy McBride, 1972.227`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://clevelandart.org/art/1972.227`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1645,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

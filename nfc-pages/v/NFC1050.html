@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>bodice, infant's — ARCHAI</title>
+<title>Turtleback Reading Lamp — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/106765?rendering=standard.jpg" alt="bodice, infant's" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/2018.287/2018.287_web.jpg" alt="Turtleback Reading Lamp" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">bodice, infant's</div>
-  <div class="v-sub">Bodice · Mid 19th Century · 37220</div>
+  <div class="v-title">Turtleback Reading Lamp</div>
+  <div class="v-sub">Lamp · c. 1895–1902 · 2018.287</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Auckland Museum</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
-    <span class="v-meta-tag">Applied Arts and Design</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Decorative Art and Design</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>bodice, infant's</strong> — bodice, infant's. lawn and machine made net, Tambour embroidered front panel (Limerick-type), trimmed with 35mm lace edging, bobbin, baby lace at neck and sleeves.</div>
+  <div class="v-story"><strong>Turtleback Reading Lamp</strong> — By 1900 Louis Comfort Tiffany had expanded his empire by increasing the firm’s production of “fancy goods,” including inkstands, candlesticks, clocks, small boxes, desk sets, tea screens, and other functional objects, such as this small reading lamp for a desk. These smaller, more affordable luxury …</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
-      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,17 +1000,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">37220</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">unknown</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Lawn (textile), &lt;textile Materials By Weaving Technique&gt;, &lt;textile Materials By Process Or Technique&gt;, &lt;textile Materials&gt;, &lt;fiber Products&gt;, &lt;fiber And Fiber Products&gt;</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Applied Arts and Design</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Bodice</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Mid 19th Century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Bodice</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2018.287</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Tiffany Glass &amp; Decorating Company (America, New York, 1892–1902)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Favrile glass, bronze</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">America, New York</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Decorative Art and Design</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Lamp</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1895–1902</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 35.6 cm (14 in.); Diameter of top: 35.6 x 21.6 cm (14 x 8 1/2 in.); Diameter of base: 35.6 x 15.2 cm (14 x 6 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">209 Tiffany</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Lamp</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -984,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1048.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP-24269-001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Whistle</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 316715</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1979.69/1979.69_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Red-Figure Janiform Kantharos (Two-Sided Head-Shaped Drinking Cup): Satyr and African</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1979.69</div>
       </a>
       <a class="v-rel-card" href="NFC1049.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/53337?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">teapot</div>
-        <div class="v-rel-meta">Auckland Museum · K1093</div>
-      </a>
-      <a class="v-rel-card" href="NFC1051.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%2Fwebclient%2FDeliveryManager%3Fpid%3D6355700%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Photographic reportage, Florence, 1957-1956. Servizio fotografico Firenze, 1957-1956</div>
-        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6355700_custom_att_2_simple_viewer</div>
-      </a>
-      <a class="v-rel-card" href="NFC1052.html">
         <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4346/full/!600,600/0/default.jpg" loading="lazy"></div>
         <div class="v-rel-title">HICCUP</div>
         <div class="v-rel-meta">Victoria and Albert Museum, London · E.308-2020</div>
+      </a>
+      <a class="v-rel-card" href="NFC1051.html">
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1978.22/1978.22_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Sir H. C. Englefield, Bart.</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1978.22</div>
+      </a>
+      <a class="v-rel-card" href="NFC1052.html">
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/midp89.4.212.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Nagphani</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 500781</div>
       </a></div>
   </div>
 </div>
@@ -1014,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/52828" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/2018.287" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1046,26 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `bodice, infant's`,
-  type: `Bodice`,
-  date: `Mid 19th Century`,
-  registration: `37220`,
-  location: `Auckland Museum`,
-  discipline: `Applied Arts and Design`,
-  category: `Bodice`,
-  description: `bodice, infant's. lawn and machine made net, Tambour embroidered front panel (Limerick-type), trimmed with 35mm lace edging, bobbin, baby lace at neck and sleeves.`,
-  medium: `Lawn (textile), <textile Materials By Weaving Technique>, <textile Materials By Process Or Technique>, <textile Materials>, <fiber Products>, <fiber And Fiber Products>`,
-  artist: `unknown`,
-  culture: ``,
-  dimensions: ``,
+  title: `Turtleback Reading Lamp`,
+  type: `Lamp`,
+  date: `c. 1895–1902`,
+  registration: `2018.287`,
+  location: `209 Tiffany`,
+  discipline: `Decorative Art and Design`,
+  category: `Lamp`,
+  description: `By 1900 Louis Comfort Tiffany had expanded his empire by increasing the firm’s production of “fancy goods,” including inkstands, candlesticks, clocks, small boxes, desk sets, tea screens, and other functional objects, such as this small reading lamp for a desk. These smaller, more affordable luxury items were designed with as much thought to artistry as the great stained glass windows and table lamps through which the firm enjoyed unrivaled success.`,
+  medium: `Favrile glass, bronze`,
+  artist: `Tiffany Glass & Decorating Company (America, New York, 1892–1902)`,
+  culture: `America, New York`,
+  dimensions: `Overall: 35.6 cm (14 in.); Diameter of top: 35.6 x 21.6 cm (14 x 8 1/2 in.); Diameter of base: 35.6 x 15.2 cm (14 x 6 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
-  licence: `© Auckland Museum CC BY`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/52828`,
-  institution: `Auckland Museum`
+  did_you_know: `Louis Comfort Tiffany called the large pieces of cast glass with irregular shapes "turtleback," because they resemble the craggy shapes of a turtle's shell.`,
+  provenance: `[{"description":"Charles Maurer [1929-2016], Cleveland, OH, bequest to the Cleveland Museum of Art","citations":[],"footnotes":[],"date":"?–2018","sortorder":1},{"description":"The Cleveland Museum of Art, Cleveland, OH","citations":[],"footnotes":[],"date":"2018–","sortorder":2}]`,
+  tombstone: `Turtleback Reading Lamp, c. 1895–1902. Tiffany Glass & Decorating Company (America, New York, 1892–1902). Favrile glass, bronze; overall: 35.6 cm (14 in.); diameter of top: 35.6 x 21.6 cm (14 x 8 1/2 in.); diameter of base: 35.6 x 15.2 cm (14 x 6 in.). The Cleveland Museum of Art, Bequest of Charles Maurer, 2018.287`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://clevelandart.org/art/2018.287`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1646,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_auckland',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

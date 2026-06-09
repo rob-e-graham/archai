@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Perumal Temple Vimana from Corner of Court, Madurai — ARCHAI</title>
+<title>hairpin — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/2020.209/2020.209_web.jpg" alt="Perumal Temple Vimana from Corner of Court, Madurai" loading="eager">
+  <img src="https://api.aucklandmuseum.com/id/media/v/1023934?rendering=standard.jpg" alt="hairpin" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Perumal Temple Vimana from Corner of Court, Madurai</div>
-  <div class="v-sub">Photograph · 1858 · 2020.209</div>
+  <div class="v-title">hairpin</div>
+  <div class="v-sub">Ornament, Hair · 1996-11-01T00:00:00.000Z · S428</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Photography</span>
+    <span class="v-meta-tag mv">Auckland Museum</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
+    <span class="v-meta-tag">Applied Arts and Design</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Perumal Temple Vimana from Corner of Court, Madurai</strong> — Although the temple would have been crowded with worshippers, Tripe shows us empty spaces. His paper negatives and primitive lens required long exposures, even in the bright sunlight of India—too long to record an individual in motion. Tripe, photographing for the colonial government, may also have …</div>
+  <div class="v-story"><strong>hairpin</strong> — hairpin</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
+      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,19 +1000,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2020.209</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Captain Linnaeus Tripe (British, 1822–1902)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">albumen print from a waxed paper negative</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">England, 19th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photograph</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1858</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Image: 34.2 x 26.8 cm (13 7/16 x 10 9/16 in.); Paper: 34.2 x 26.8 cm (13 7/16 x 10 9/16 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Cleveland Museum of Art</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">S428</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Silver, &lt;silver And Silver Alloy&gt;, Nonferrous Metal, &lt;metal By Composition Or Origin&gt;, Metal, &lt;metal And Metal Products&gt;</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Applied Arts and Design</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ornament, Hair</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1996-11-01T00:00:00.000Z</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Ornament, Hair</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -986,24 +1024,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1378.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/93080?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">dress</div>
-        <div class="v-rel-meta">Auckland Museum · col.2772</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/64057?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">vase, small</div>
+        <div class="v-rel-meta">Auckland Museum · 22419.1</div>
       </a>
       <a class="v-rel-card" href="NFC1379.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/6/165006-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Lantern Slide - Man Outside Ironmonger's Shop, circa 1930s</div>
-        <div class="v-rel-meta">Museums Victoria · MM 69358</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/25/164775-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Lantern Slide - 'The Lads in Navy Blue', circa 1939-1956</div>
+        <div class="v-rel-meta">Museums Victoria · MM 97306</div>
       </a>
       <a class="v-rel-card" href="NFC1381.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/559024?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">cup and saucer</div>
-        <div class="v-rel-meta">Auckland Museum · 1932.233</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627902122/v2/prod/small/005501_006000/005791_009.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Schematic design model, Verbena Heights (1992–1997), Hong Kong</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2018.5</div>
       </a>
       <a class="v-rel-card" href="NFC1382.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/UelyU/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Schutterspenning van Leiden</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100446</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Femuseumplus.lsh.se%2FeMuseumPlus%3Fservice%3DImageAsset%26module%3Dcollection%26objectId%3D36792%26resolution%3DhighImageResolution&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Svart kikare, Carl Zeiss</div>
+        <div class="v-rel-meta">Europeana · /2064105/Museu_ProvidedCHO_Livrustkammaren_36792</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1054,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://clevelandart.org/art/2020.209" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/9960" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,26 +1086,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Perumal Temple Vimana from Corner of Court, Madurai`,
-  type: `Photograph`,
-  date: `1858`,
-  registration: `2020.209`,
-  location: `Cleveland Museum of Art`,
-  discipline: `Photography`,
-  category: `Photograph`,
-  description: `Although the temple would have been crowded with worshippers, Tripe shows us empty spaces. His paper negatives and primitive lens required long exposures, even in the bright sunlight of India—too long to record an individual in motion. Tripe, photographing for the colonial government, may also have used his official status to have the temple cleared of visitors so he could obtain unobstructed views of the architecture.`,
-  medium: `albumen print from a waxed paper negative`,
-  artist: `Captain Linnaeus Tripe (British, 1822–1902)`,
-  culture: `England, 19th century`,
-  dimensions: `Image: 34.2 x 26.8 cm (13 7/16 x 10 9/16 in.); Paper: 34.2 x 26.8 cm (13 7/16 x 10 9/16 in.)`,
+  title: `hairpin`,
+  type: `Ornament, Hair`,
+  date: `1996-11-01T00:00:00.000Z`,
+  registration: `S428`,
+  location: `Auckland Museum`,
+  discipline: `Applied Arts and Design`,
+  category: `Ornament, Hair`,
+  description: `hairpin`,
+  medium: `Silver, <silver And Silver Alloy>, Nonferrous Metal, <metal By Composition Or Origin>, Metal, <metal And Metal Products>`,
+  artist: ``,
+  culture: ``,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: `The architecture was probably painted with bright colors, but Linnaeus Tripe’s photographic technology captured only a monochromatic range of tones.`,
-  provenance: `[{"description":"Newberry Library Collection, Chicago, IL","citations":[],"footnotes":[],"date":null,"sortorder":1},{"description":"(Sotheby's, New York, NY)","citations":[],"footnotes":[],"date":"October 31, 1989","sortorder":2},{"description":"(Prahlad Bubbar Indian and Islamic Art, London, United…`,
-  tombstone: `Perumal Temple Vimana from Corner of Court, Madurai, 1858. Captain Linnaeus Tripe (British, 1822–1902). Albumen print from a waxed paper negative; image: 34.2 x 26.8 cm (13 7/16 x 10 9/16 in.); paper: 34.2 x 26.8 cm (13 7/16 x 10 9/16 in.). The Cleveland Museum of Art, Purchase from the J. H. Wade Fund, 2020.209`,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://clevelandart.org/art/2020.209`,
-  institution: `Cleveland Museum of Art`
+  did_you_know: ``,
+  provenance: ``,
+  tombstone: ``,
+  licence: `© Auckland Museum CC BY`,
+  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/9960`,
+  institution: `Auckland Museum`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1686,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_cma',
+      collection: 'archai_auckland',
       text,
       authorType: 'visitor',
     }),

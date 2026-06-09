@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Segundo Conde de Resende — ARCHAI</title>
+<title>Over-the-Shoulder Soprano Horn in E-flat — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/668980/default-30.jpg" alt="Segundo Conde de Resende" loading="eager">
+  <img src="https://images.metmuseum.org/CRDImages/mi/original/DP-12679-053.jpg" alt="Over-the-Shoulder Soprano Horn in E-flat" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Segundo Conde de Resende</div>
-  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · 18-- · segundo-conde-de-resende</div>
+  <div class="v-title">Over-the-Shoulder Soprano Horn in E-flat</div>
+  <div class="v-sub">Over-the-Shoulder Soprano Horn in E-flat · ca. 1880 · 503846</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Brasiliana Museus</span>
+    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Brasiliana Museus</span>
+    <span class="v-meta-tag">Musical Instruments</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Segundo Conde de Resende</strong> — Busto de homem de meia idade, levemente direcionado para a esquerda. Rosto comprido. Boca e nariz finos. Sobrancelhas finas e escuras. Olhos castanhos, olheiras acentuadas. Faces coradas. Cabelos empoados, enrolados nas pontas, com detalhe de rabicho e laço preto à direita. Casaca vermelha com debru…</div>
+  <div class="v-story"><strong>Over-the-Shoulder Soprano Horn in E-flat</strong> — Over-the-Shoulder Soprano Horn in E-flat. Over-the-Shoulder Soprano Horn in E-flat. Nickel-silver. Musical Instruments. American. by John F. Stratton. Aerophone-Lip Vibrated-horn. ca. 1880</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,18 +1000,21 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">segundo-conde-de-resende</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">18--</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 69,00 cm · largura 58,50 cm</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">503846</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">John F. Stratton</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Nickel-silver</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">American</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Musical Instruments</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Aerophone-Lip Vibrated-horn</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca. 1880</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Height: 21 15/16 in. (55.8 cm)
+Diameter (Of bell): 4 5/16 in. (10.9 cm)
+Weight: 1.4 lbs. (635.036 g)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 680</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Over-the-Shoulder Soprano Horn in E-flat</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -985,24 +1029,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC424.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669088/006313a-scaled-1.jpg" loading="lazy"></div>
-        <div class="v-rel-title">José I</div>
-        <div class="v-rel-meta">Brasiliana Museus · jose-i</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2004.30.d/2004.30.d_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Baseplate for the Cleveland Apollo: Apollo Sauroktonos (Lizard-Slayer) or Apollo the Python-Slayer</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 2004.30.d</div>
       </a>
       <a class="v-rel-card" href="NFC425.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP-24270-001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Whistle</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 316716</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15937199&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Ansicht am Forum (aus: Museum im Werden)</div>
+        <div class="v-rel-meta">Europeana · /08535/item_27BPDYUHMYQKE2NI23DAH3FXWN5FFVFK</div>
       </a>
       <a class="v-rel-card" href="NFC427.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_668/v1627824788/v2/prod/small/005501_006000/005945_001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Red A stool, no. 363</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2016.349</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2019LX2138/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Aerial IV</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · e.22-2014</div>
       </a>
       <a class="v-rel-card" href="NFC428.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680945/469-scaled.jpg" loading="lazy"></div>
-        <div class="v-rel-title">D. João VI</div>
-        <div class="v-rel-meta">Brasiliana Museus · d-joao-vi-2</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/d5c86d65-97e1-478b-8ecf-cc668355d923/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Self-Portrait</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 13551</div>
       </a></div>
   </div>
 </div>
@@ -1015,7 +1059,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/segundo-conde-de-resende/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/503846" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1047,26 +1091,28 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Segundo Conde de Resende`,
-  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  date: `18--`,
-  registration: `segundo-conde-de-resende`,
-  location: `Brasiliana Museus`,
-  discipline: `Brasiliana Museus`,
-  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  description: `Busto de homem de meia idade, levemente direcionado para a esquerda. Rosto comprido. Boca e nariz finos. Sobrancelhas finas e escuras. Olhos castanhos, olheiras acentuadas. Faces coradas. Cabelos empoados, enrolados nas pontas, com detalhe de rabicho e laço preto à direita. Casaca vermelha com debruns dourados. Colete dourado, jabô de renda branca. Sobre o lado esquerdo do peito, rosácea vermelha envolvendo medalha oval tendo, ao centro, entre brilhantes, cruz da Ordem de Cristo. Abaixo desta, insígnia da Ordem de Cristo. Fundo verde escuro. Moldura em madeira dourada, estucada, com folhagens …`,
-  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  artist: ``,
-  culture: `Brazil`,
-  dimensions: `altura 69,00 cm · largura 58,50 cm`,
-  wall_description: `Busto de homem de meia idade, levemente direcionado para a esquerda. Rosto comprido. Boca e nariz finos. Sobrancelhas finas e escuras. Olhos castanhos, olheiras acentuadas. Faces coradas. Cabelos empoados, enrolados nas pontas, com detalhe de rabicho e laço preto à direita. Casaca vermelha com debruns dourados. Colete dourado, jabô de renda branca. Sobre o lado esquerdo do peito, rosácea vermelha envolvendo medalha oval tendo, ao centro, entre brilhantes, cruz da Ordem de Cristo. Abaixo desta, i…`,
+  title: `Over-the-Shoulder Soprano Horn in E-flat`,
+  type: `Over-the-Shoulder Soprano Horn in E-flat`,
+  date: `ca. 1880`,
+  registration: `503846`,
+  location: `Gallery 680`,
+  discipline: `Musical Instruments`,
+  category: `Aerophone-Lip Vibrated-horn`,
+  description: `Over-the-Shoulder Soprano Horn in E-flat. Over-the-Shoulder Soprano Horn in E-flat. Nickel-silver. Musical Instruments. American. by John F. Stratton. Aerophone-Lip Vibrated-horn. ca. 1880`,
+  medium: `Nickel-silver`,
+  artist: `John F. Stratton`,
+  culture: `American`,
+  dimensions: `Height: 21 15/16 in. (55.8 cm)
+Diameter (Of bell): 4 5/16 in. (10.9 cm)
+Weight: 1.4 lbs. (635.036 g)`,
+  wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Segundo Conde de Resende. 18--. Brasiliana Museus`,
-  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
-  source_url: `https://brasiliana.museus.gov.br/acervos/segundo-conde-de-resende/`,
-  institution: `Brasiliana Museus`
+  tombstone: ``,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.metmuseum.org/art/collection/search/503846`,
+  institution: `The Metropolitan Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1647,7 +1693,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_brasiliana',
+      collection: 'archai_met',
       text,
       authorType: 'visitor',
     }),

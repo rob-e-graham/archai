@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Musket, flintlock, British, &quot;India Pattern&quot;, 1805 — ARCHAI</title>
+<title>Atelier Bernardelli — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://media.tepapa.govt.nz/collection/124658/preview" alt="Musket, flintlock, British, &quot;India Pattern&quot;, 1805" loading="eager">
+  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680172/792-1.jpg" alt="Atelier Bernardelli" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Musket, flintlock, British, &quot;India Pattern&quot;, 1805</div>
-  <div class="v-sub">firearms · 1805 · DM000006</div>
+  <div class="v-title">Atelier Bernardelli</div>
+  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · 1910 · atelier-bernardelli</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
-    <span class="v-meta-tag">History</span>
+    <span class="v-meta-tag mv">Brasiliana Museus</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Brasiliana Museus</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Musket, flintlock, British, &quot;India Pattern&quot;, 1805</strong> — British flintlock musket, &quot;India Pattern&quot;, 1805. Calibre .75 inch.</div>
-  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
-      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
-      <div class="v-rights-detail">Licence / rights: CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</div>
+  <div class="v-story"><strong>Atelier Bernardelli</strong> — Em primeiro plano, areal com alguma vegetação. À esquerda, fachada lateral de uma construção civil na cor rosa. Porta em forma de arco encimada por frontão retilíneo, tendo ao centro óculo. Casa em três pavimentos sustentados por colunas. Muro baixo com portão fechado. À frente, poste de luz. À dire…</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,18 +1000,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">DM000006</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Tower Armouries</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">steel, wood, brass, flint, leather</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">firearms</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1805</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 220mm (height), 1390mm (length), 80mm (depth) · Part: 990mm (length)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">firearms</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">atelier-bernardelli</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1910</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 54,00 cm · largura 62,00 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -985,24 +1026,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1395.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AT9575/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Black 201 Television set</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.5:1, 2-1974</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP234912.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Charango</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 505397</div>
       </a>
       <a class="v-rel-card" href="NFC1396.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669246/006258.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Jesus e Verônica</div>
-        <div class="v-rel-meta">Brasiliana Museus · jesus-e-veronica</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/QuSod/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Maximiliaan, aartshertog van Oostenrijk, en Maria, hertogin van Bourgondie, rekenpenning van het hertogdom Brabant</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010046</div>
       </a>
       <a class="v-rel-card" href="NFC1398.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/25/164775-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Lantern Slide - 'The Lads in Navy Blue', circa 1939-1956</div>
-        <div class="v-rel-meta">Museums Victoria · MM 97306</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2021.57/2021.57_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Young Alsacienne Woman</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 2021.57</div>
       </a>
       <a class="v-rel-card" href="NFC1399.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/679972/849-scaled.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Tenente-Coronel José Carlos de Carvalho</div>
-        <div class="v-rel-meta">Brasiliana Museus · tenente-coronel-jose-carlos-de-carvalho-2</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_667/v1724383244/v2/prod/small/000501_001000/000511_002.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Vision: Change 2</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2013.32</div>
       </a></div>
   </div>
 </div>
@@ -1015,7 +1056,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/48052" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/atelier-bernardelli/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1047,26 +1088,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Musket, flintlock, British, &quot;India Pattern&quot;, 1805`,
-  type: `firearms`,
-  date: `1805`,
-  registration: `DM000006`,
-  location: `Te Papa Tongarewa, Wellington`,
-  discipline: `History`,
-  category: `firearms`,
-  description: `British flintlock musket, "India Pattern", 1805. Calibre .75 inch.`,
-  medium: `steel, wood, brass, flint, leather`,
-  artist: `Tower Armouries`,
-  culture: ``,
-  dimensions: `Overall: 220mm (height), 1390mm (length), 80mm (depth) · Part: 990mm (length)`,
-  wall_description: `British flintlock musket, "India Pattern", 1805. Calibre .75 inch.`,
+  title: `Atelier Bernardelli`,
+  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  date: `1910`,
+  registration: `atelier-bernardelli`,
+  location: `Brasiliana Museus`,
+  discipline: `Brasiliana Museus`,
+  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  description: `Em primeiro plano, areal com alguma vegetação. À esquerda, fachada lateral de uma construção civil na cor rosa. Porta em forma de arco encimada por frontão retilíneo, tendo ao centro óculo. Casa em três pavimentos sustentados por colunas. Muro baixo com portão fechado. À frente, poste de luz. À direita, mar, tendo ao fundo recorte de montanhas. Dedicatória ilegível, datação e assinatura do autor no canto inferior direito: &#034;A la Sra. D? Carmen Tadareo. . . /amigo Pinelo 1910&#034;. Moldura em madeira dourada.`,
+  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  artist: ``,
+  culture: `Brazil`,
+  dimensions: `altura 54,00 cm · largura 62,00 cm`,
+  wall_description: `Em primeiro plano, areal com alguma vegetação. À esquerda, fachada lateral de uma construção civil na cor rosa. Porta em forma de arco encimada por frontão retilíneo, tendo ao centro óculo. Casa em três pavimentos sustentados por colunas. Muro baixo com portão fechado. À frente, poste de luz. À direita, mar, tendo ao fundo recorte de montanhas. Dedicatória ilegível, datação e assinatura do autor no canto inferior direito: &#034;A la Sra. D? Carmen Tadareo. . . /amigo Pinelo 1910&#034;. Moldura e…`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Musket, flintlock, British, "India Pattern", 1805, 1805, London, by Tower Armouries. CC BY-NC-ND 4.0. Te Papa (DM000006)`,
-  licence: `CC BY-NC-ND 4.0 · metadata CC BY 4.0`,
-  source_url: `https://collections.tepapa.govt.nz/object/48052`,
-  institution: `Museum of New Zealand Te Papa Tongarewa`
+  tombstone: `Atelier Bernardelli. 1910. Brasiliana Museus`,
+  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
+  source_url: `https://brasiliana.museus.gov.br/acervos/atelier-bernardelli/`,
+  institution: `Brasiliana Museus`
 };
 
 // Build rich context from available fields
@@ -1647,7 +1688,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_tepapa',
+      collection: 'archai_brasiliana',
       text,
       authorType: 'visitor',
     }),

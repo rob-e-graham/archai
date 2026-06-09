@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Guidance instrument of gilded brass.. Riktningsinstrument av förgylld mässing. — ARCHAI</title>
+<title>Frieze of Dancers — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Femuseumplus.lsh.se%2FeMuseumPlus%3Fservice%3DImageAsset%26module%3Dcollection%26objectId%3D28622%26resolution%3DhighImageResolution&amp;type=IMAGE" alt="Guidance instrument of gilded brass.. Riktningsinstrument av förgylld mässing." loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1946.83/1946.83_web.jpg" alt="Frieze of Dancers" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Guidance instrument of gilded brass.. Riktningsinstrument av förgylld mässing.</div>
-  <div class="v-sub">IMAGE · 1648 · /2064105/Museu_ProvidedCHO_Skoklosters_slott_28622</div>
+  <div class="v-title">Frieze of Dancers</div>
+  <div class="v-sub">Painting · c. 1895 · 1946.83</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Europeana</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(155,143,191,0.28);color:#9b8fbf;">Share alike</span>
-    
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Modern European Painting and Sculpture</span>
   </div>
 
   <!-- SHARE -->
@@ -903,12 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Guidance instrument of gilded brass.. Riktningsinstrument av förgylld mässing.</strong> — Composed of a foot, a graduated bar, a sextant, a pendulum (ående. two) and a “camera obscura” (periscope). Sign. “Laurentius Mayer Stuckhaubtman fecit. 1648.”The foot is 103 mm wide and has a 21 mm high triangular recess on the underside. 
-On the upper side of the foot, the posterior part is 45 mm …</div>
-  <div class="v-rights-note" style="border-color:rgba(155,143,191,0.28);">
-      <div class="v-rights-label" style="color:#9b8fbf;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#9b8fbf;font-weight:400;">Share alike</strong> — Reusable with attribution, and derivative use should keep the same licence terms.</div>
-      <div class="v-rights-detail">Licence / rights: http://creativecommons.org/licenses/by-sa/3.0/</div>
+  <div class="v-story"><strong>Frieze of Dancers</strong> — This painting may depict a single dancer seen from four different viewpoints. The young woman is placed in an undefined setting, surrounded by mere wisps of color, applied so spontaneously that the paint ran and dripped. Degas even added the circles in the foreground with his thumb. Such audacity, w…</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -934,24 +969,29 @@ On the upper side of the foot, the posterior part is 45 mm …</div>
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -960,15 +1000,19 @@ On the upper side of the foot, the posterior part is 45 mm …</div>
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">/2064105/Museu_ProvidedCHO_Skoklosters_slott_28622</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Laurentius Mayer. Laurentius Mayer (Tillverkare, , )</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">IMAGE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1648</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Skokloster Castle</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">IMAGE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Share alike</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution, and derivative use should keep the same licence terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">http://creativecommons.org/licenses/by-sa/3.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1946.83</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Edgar Degas (French, 1834–1917)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">oil on fabric</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, 19th century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Modern European Painting and Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1895</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Framed: 103 x 233.5 x 7 cm (40 9/16 x 91 15/16 x 2 3/4 in.); Unframed: 70 x 200.5 cm (27 9/16 x 78 15/16 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">222 Impressionism &amp; Post-Impressionism</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -983,24 +1027,24 @@ On the upper side of the foot, the posterior part is 45 mm …</div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC806.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680054/821-scaled.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Porteira</div>
-        <div class="v-rel-meta">Brasiliana Museus · porteira</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/zaNwd/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Schutterspenning van Leiden</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100449</div>
       </a>
       <a class="v-rel-card" href="NFC807.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/48268fc7-2eb4-ded6-1293-e91f27b66478/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Merahi metua no Tehamana (Tehamana Has Many Parents or The Ancestors of Tehamana)</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 60812</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1970.33/1970.33_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">The Jewish Boy</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1970.33</div>
       </a>
       <a class="v-rel-card" href="NFC809.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/081be15c-8812-c174-eeb2-cf318a2e67cf/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Oil Sketch for &quot;A Sunday on La Grande Jatte — 1884&quot;</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 61616</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fems.dimu.org%2Fimage%2F022wZ1c2Pzpk%3Fdimension%3D1200x1200&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Stereobild av statyer/ skulpturer, Nationalmuseum, Stockholm.</div>
+        <div class="v-rel-meta">Europeana · /916118/S_TEK_photo_TEKA0112920</div>
       </a>
       <a class="v-rel-card" href="NFC810.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2015HU1287/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">au NEON</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CD.38-2015</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2026PN3479/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Poster</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:AMERICASFOUNDATION.1870-2024</div>
       </a></div>
   </div>
 </div>
@@ -1013,7 +1057,7 @@ On the upper side of the foot, the posterior part is 45 mm …</div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.europeana.eu/item/2064105/Museu_ProvidedCHO_Skoklosters_slott_28622?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1946.83" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1045,27 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Guidance instrument of gilded brass.. Riktningsinstrument av förgylld mässing.`,
-  type: `IMAGE`,
-  date: `1648`,
-  registration: `/2064105/Museu_ProvidedCHO_Skoklosters_slott_28622`,
-  location: `Skokloster Castle`,
-  discipline: ``,
-  category: `IMAGE`,
-  description: `Composed of a foot, a graduated bar, a sextant, a pendulum (ående. two) and a “camera obscura” (periscope). Sign. “Laurentius Mayer Stuckhaubtman fecit. 1648.”The foot is 103 mm wide and has a 21 mm high triangular recess on the underside. 
-On the upper side of the foot, the posterior part is 45 mm long scale (4) -0- (4) corresponding to the laterally displaced base of the stand. The rods consist of two parts. Frame of two parallel legs, joined by crossbars at the top and bottom. The right leg graduated from the bottom up 2-7 (inches), the left leg graduated 8-13 (inches). Between the legs, a …`,
-  medium: ``,
-  artist: `Laurentius Mayer. Laurentius Mayer (Tillverkare, , )`,
-  culture: ``,
-  dimensions: ``,
+  title: `Frieze of Dancers`,
+  type: `Painting`,
+  date: `c. 1895`,
+  registration: `1946.83`,
+  location: `222 Impressionism & Post-Impressionism`,
+  discipline: `Modern European Painting and Sculpture`,
+  category: `Painting`,
+  description: `This painting may depict a single dancer seen from four different viewpoints. The young woman is placed in an undefined setting, surrounded by mere wisps of color, applied so spontaneously that the paint ran and dripped. Degas even added the circles in the foreground with his thumb. Such audacity, while acceptable in a small sketch, must have shocked the artist's contemporaries when presented on a six-foot canvas. Equally radical is the idea of combining multiple views of a single figure. Degas's unusual presentation may have been inspired by the photographs of Eadweard Muybridge (1830-1904)`,
+  medium: `oil on fabric`,
+  artist: `Edgar Degas (French, 1834–1917)`,
+  culture: `France, 19th century`,
+  dimensions: `Framed: 103 x 233.5 x 7 cm (40 9/16 x 91 15/16 x 2 3/4 in.); Unframed: 70 x 200.5 cm (27 9/16 x 78 15/16 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
-  licence: `http://creativecommons.org/licenses/by-sa/3.0/`,
-  source_url: `https://www.europeana.eu/item/2064105/Museu_ProvidedCHO_Skoklosters_slott_28622?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb`,
-  institution: `Europeana`
+  did_you_know: `The ballet is a subject Degas returned to again and again over the course of his career. Rather than public performances, he often depicted dancers behind the curtain, practicing, waiting, or, as in this painting, lacing up their shoes.`,
+  provenance: `[{"description":"(Durand-Ruel, Paris, France, acquired from the artist and sold to Paul Cassier the same day)","citations":[],"footnotes":[],"date":"September 19,1904","sortorder":1},{"description":"(Paul Cassirer, Berlin Germany, sold to Max Liebermann)","citations":[],"footnotes":[],"date":"Novemb…`,
+  tombstone: `Frieze of Dancers, c. 1895. Edgar Degas (French, 1834–1917). Oil on fabric; framed: 103 x 233.5 x 7 cm (40 9/16 x 91 15/16 x 2 3/4 in.); unframed: 70 x 200.5 cm (27 9/16 x 78 15/16 in.). The Cleveland Museum of Art, Gift of the Hanna Fund, 1946.83`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://clevelandart.org/art/1946.83`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1646,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_europeana',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

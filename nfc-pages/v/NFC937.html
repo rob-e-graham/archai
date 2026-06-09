@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>purse — ARCHAI</title>
+<title>Bust of Saïd Abdullah of the Darfour People — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/607851?rendering=standard.jpg" alt="purse" loading="eager">
+  <img src="https://www.artic.edu/iiif/2/6a0e3e40-1e36-2109-378f-3fc5d29176b3/full/843,/0/default.jpg" alt="Bust of Saïd Abdullah of the Darfour People" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">purse</div>
-  <div class="v-sub">Handbag · Circa 1900 · T846</div>
+  <div class="v-title">Bust of Saïd Abdullah of the Darfour People</div>
+  <div class="v-sub">Sculpture · 1848 · 18751</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Auckland Museum</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
-    <span class="v-meta-tag">Applied Arts and Design</span>
+    <span class="v-meta-tag mv">Art Institute of Chicago</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Painting and Sculpture of Europe</span>
   </div>
 
   <!-- SHARE -->
@@ -903,12 +939,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>purse</strong> — purse
-purple velvet pouch with silver beading, starburst in centre, triangular border, looped beaded fringe; metal frame with kiss clasp; frame suspends doubled chain as handle; lined with purple and green [taffeta] with two bows.</div>
+  <div class="v-story"><strong>Bust of Saïd Abdullah of the Darfour People</strong> — Bust of Saïd Abdullah of the Darfour People. Sculpture. Bronze. Painting and Sculpture of Europe. Charles-Henri-Joseph Cordier (French, 1827-1905)
+Cast by Eck et Durand Fondeur (French, 19th century). bust/head. 1848. France. 19th century. &lt;p&gt;This naturalistic yet idealized likeness depicts a former…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
-      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY · Copyright undetermined - untraced rights owner</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -934,24 +970,29 @@ purple velvet pouch with silver beading, starburst in centre, triangular border,
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -960,16 +1001,20 @@ purple velvet pouch with silver beading, starburst in centre, triangular border,
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">T846</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Velvet, Warp Pile Weave, Pile Weave, &lt;textile Materials By Weaving Technique&gt;, &lt;textile Materials By Process Or Technique&gt;, &lt;textile Materials&gt;</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Applied Arts and Design</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Handbag</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Circa 1900</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Handbag</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY · Copyright undetermined - untraced rights owner</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">18751</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Charles-Henri-Joseph Cordier (French, 1827-1905)
+Cast by Eck et Durand Fondeur (French, 19th century)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Bronze</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Painting and Sculpture of Europe</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">bust/head</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1848</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">82.5 × 45.7 × 35.6 cm (32 1/2 × 18 × 14 1/16 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 223</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Sculpture</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -984,24 +1029,24 @@ purple velvet pouch with silver beading, starburst in centre, triangular border,
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC935.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP167848.jpg" loading="lazy"></div>
-        <div class="v-rel-title">&quot;Francesca&quot; Violin</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 503010</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/65851/preview" loading="lazy"></div>
+        <div class="v-rel-title">Blue vase [2]</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · 1996-0033-29/2-4</div>
       </a>
       <a class="v-rel-card" href="NFC936.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP-12679-101.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Bass Ophicleide in B-flat</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 505034</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/ca2932b4-6c0c-5482-2ae5-8b74926d7b73/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Young Spartan Girls Challenging Boys</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 13487</div>
       </a>
       <a class="v-rel-card" href="NFC938.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/f731615e-ee25-f8e5-b957-69635e1e2d60/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portrait of a Man with a Pink</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 864</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/PJghU/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Drie gulden van de Bataafse Republiek op naam van Utrecht, 1795</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100092</div>
       </a>
       <a class="v-rel-card" href="NFC939.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/a4bef587-48a4-d186-813d-f297441b1ab3/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Mahana no atua (Day of the God)</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 27943</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/isxkZ/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Nederlandse 10 cent, 1903</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100273</div>
       </a></div>
   </div>
 </div>
@@ -1014,7 +1059,7 @@ purple velvet pouch with silver beading, starburst in centre, triangular border,
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/95994" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.artic.edu/artworks/18751" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1046,27 +1091,28 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `purse`,
-  type: `Handbag`,
-  date: `Circa 1900`,
-  registration: `T846`,
-  location: `Auckland Museum`,
-  discipline: `Applied Arts and Design`,
-  category: `Handbag`,
-  description: `purse
-purple velvet pouch with silver beading, starburst in centre, triangular border, looped beaded fringe; metal frame with kiss clasp; frame suspends doubled chain as handle; lined with purple and green [taffeta] with two bows.`,
-  medium: `Velvet, Warp Pile Weave, Pile Weave, <textile Materials By Weaving Technique>, <textile Materials By Process Or Technique>, <textile Materials>`,
-  artist: ``,
-  culture: ``,
-  dimensions: ``,
+  title: `Bust of Saïd Abdullah of the Darfour People`,
+  type: `Sculpture`,
+  date: `1848`,
+  registration: `18751`,
+  location: `Gallery 223`,
+  discipline: `Painting and Sculpture of Europe`,
+  category: `bust/head`,
+  description: `Bust of Saïd Abdullah of the Darfour People. Sculpture. Bronze. Painting and Sculpture of Europe. Charles-Henri-Joseph Cordier (French, 1827-1905)
+Cast by Eck et Durand Fondeur (French, 19th century). bust/head. 1848. France. 19th century. <p>This naturalistic yet idealized likeness depicts a formerly enslaved Sudanese man, Saïd Abdullah, who visited Charles-Henri-Joseph Cordier in his Paris studio. It reflects the 19th-century fascination with non-European costumes, customs, and physiognomies, called Orientalism, as well as the burgeoning field of anthropology. A plaster cast of this bust was…`,
+  medium: `Bronze`,
+  artist: `Charles-Henri-Joseph Cordier (French, 1827-1905)
+Cast by Eck et Durand Fondeur (French, 19th century)`,
+  culture: `France`,
+  dimensions: `82.5 × 45.7 × 35.6 cm (32 1/2 × 18 × 14 1/16 in.)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `© Auckland Museum CC BY · Copyright undetermined - untraced rights owner`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/95994`,
-  institution: `Auckland Museum`
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.artic.edu/artworks/18751`,
+  institution: `Art Institute of Chicago`
 };
 
 // Build rich context from available fields
@@ -1647,7 +1693,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_auckland',
+      collection: 'archai_aic',
       text,
       authorType: 'visitor',
     }),

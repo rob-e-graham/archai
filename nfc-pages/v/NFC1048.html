@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Whistle — ARCHAI</title>
+<title>Red-Figure Janiform Kantharos (Two-Sided Head-Shaped Drinking Cup): Satyr and African — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/ao/original/DP-24269-001.jpg" alt="Whistle" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1979.69/1979.69_web.jpg" alt="Red-Figure Janiform Kantharos (Two-Sided Head-Shaped Drinking Cup): Satyr and African" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Whistle</div>
-  <div class="v-sub">Whistle · 1200–500 BCE · 316715</div>
+  <div class="v-title">Red-Figure Janiform Kantharos (Two-Sided Head-Shaped Drinking Cup): Satyr and African</div>
+  <div class="v-sub">Ceramic · c. 470–460 BCE · 1979.69</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">The Michael C. Rockefeller Wing</span>
+    <span class="v-meta-tag">Greek and Roman Art</span>
   </div>
 
   <!-- SHARE -->
@@ -903,7 +939,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Whistle</strong> — Whistle. Whistle. Ceramic. The Michael C. Rockefeller Wing. Cupisnique. by Cupisnique artist(s). Ceramics-Musical Instruments. 1200–500 BCE</div>
+  <div class="v-story"><strong>Red-Figure Janiform Kantharos (Two-Sided Head-Shaped Drinking Cup): Satyr and African</strong> — Combining two mold-made faces beneath a pair of vertical handles and a flaring, wheel-made lip, this unusual drinking cup is a variation of the kantharos, a vessel favored by the wine god Dionysos. A snub nose and equine ears identify the satyr, a relatively common type on such vessels. The glossy b…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,16 +1000,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">316715</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Cupisnique artist(s)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Ceramic</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Cupisnique</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">The Michael C. Rockefeller Wing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ceramics-Musical Instruments</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1200–500 BCE</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">H. 2 3/8 × W. 1 1/2 × D. 1 1/4 in. (6 × 3.8 × 3.2 cm)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 362</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Whistle</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1979.69</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Class K (The Toronto Class)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">ceramic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Greek, Attic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Greek and Roman Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Ceramic</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 470–460 BCE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 19.6 x 17.2 cm (7 11/16 x 6 3/4 in.); Diameter of base: 8.5 cm (3 3/8 in.); Diameter of rim: 15.3 cm (6 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">102B Greek</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Ceramic</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
@@ -986,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1046.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%3A80%2Fwebclient%2FDeliveryManager%3Fpid%3D6355701%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Photographic reportage, Florence, 1957-1956. Servizio fotografico Firenze, 1957-1956</div>
-        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6355701_custom_att_2_simple_viewer</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/8f899167-2faf-bd0d-cf9c-9ca2fcb07a4b/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Helena Tromper Du Bois</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 866</div>
       </a>
       <a class="v-rel-card" href="NFC1047.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_668/v1627832950/v2/prod/small/002001_002500/002029_001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">'Peacock Chair' for Imperial Hotel, Tokyo, Japan</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2013.237</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_514/v1719852572/v2/prod/small/000001_000500/000240_004.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Stairs</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2013.255</div>
       </a>
       <a class="v-rel-card" href="NFC1049.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/53337?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">teapot</div>
-        <div class="v-rel-meta">Auckland Museum · K1093</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4346/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">HICCUP</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.308-2020</div>
       </a>
       <a class="v-rel-card" href="NFC1050.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/106765?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">bodice, infant's</div>
-        <div class="v-rel-meta">Auckland Museum · 37220</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2018.287/2018.287_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Turtleback Reading Lamp</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 2018.287</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/316715" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1979.69" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,26 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Whistle`,
-  type: `Whistle`,
-  date: `1200–500 BCE`,
-  registration: `316715`,
-  location: `Gallery 362`,
-  discipline: `The Michael C. Rockefeller Wing`,
-  category: `Ceramics-Musical Instruments`,
-  description: `Whistle. Whistle. Ceramic. The Michael C. Rockefeller Wing. Cupisnique. by Cupisnique artist(s). Ceramics-Musical Instruments. 1200–500 BCE`,
-  medium: `Ceramic`,
-  artist: `Cupisnique artist(s)`,
-  culture: `Cupisnique`,
-  dimensions: `H. 2 3/8 × W. 1 1/2 × D. 1 1/4 in. (6 × 3.8 × 3.2 cm)`,
+  title: `Red-Figure Janiform Kantharos (Two-Sided Head-Shaped Drinking Cup): Satyr and African`,
+  type: `Ceramic`,
+  date: `c. 470–460 BCE`,
+  registration: `1979.69`,
+  location: `102B Greek`,
+  discipline: `Greek and Roman Art`,
+  category: `Ceramic`,
+  description: `Combining two mold-made faces beneath a pair of vertical handles and a flaring, wheel-made lip, this unusual drinking cup is a variation of the kantharos, a vessel favored by the wine god Dionysos. A snub nose and equine ears identify the satyr, a relatively common type on such vessels. The glossy black face and red hair on the other side are more unusual, apparently meant to show an older African man, with white beard and eyebrows, and wrinkles around the eyes.`,
+  medium: `ceramic`,
+  artist: `Class K (The Toronto Class)`,
+  culture: `Greek, Attic`,
+  dimensions: `Overall: 19.6 x 17.2 cm (7 11/16 x 6 3/4 in.); Diameter of base: 8.5 cm (3 3/8 in.); Diameter of rim: 15.3 cm (6 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
+  did_you_know: `This janiform kantharos is unique in juxtaposing heads of a satyr and an African man.`,
+  provenance: `[{"description":"The Cleveland Museum of Art, Cleveland, OH","citations":[],"footnotes":[],"date":"1979-","sortorder":2}]`,
+  tombstone: `Red-Figure Janiform Kantharos (Two-Sided Head-Shaped Drinking Cup): Satyr and African, c. 470–460 BCE. Assigned to Class K (The Toronto Class). Ceramic; overall: 19.6 x 17.2 cm (7 11/16 x 6 3/4 in.); diameter of base: 8.5 cm (3 3/8 in.); diameter of rim: 15.3 cm (6 in.). The Cleveland Museum of Art, John L. Severance Fund, 1979.69`,
   licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/316715`,
-  institution: `The Metropolitan Museum of Art`
+  source_url: `https://clevelandart.org/art/1979.69`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_met',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

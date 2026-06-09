@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>dress — ARCHAI</title>
+<title>vase, small — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/93080?rendering=standard.jpg" alt="dress" loading="eager">
+  <img src="https://api.aucklandmuseum.com/id/media/v/64057?rendering=standard.jpg" alt="vase, small" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">dress</div>
-  <div class="v-sub">ecrm:E22_Man-Made_Object · Circa 1910 · col.2772</div>
+  <div class="v-title">vase, small</div>
+  <div class="v-sub">Vase · 18th Century-19th Century · 22419.1</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Auckland Museum</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
-    <span class="v-meta-tag">Social History</span>
+    <span class="v-meta-tag">Applied Arts and Design</span>
   </div>
 
   <!-- SHARE -->
@@ -903,8 +939,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>dress</strong> — Black satin dress, c.1910, that belonged to Mrs William Henry Rogers.
-The dress is made from heavy black satin, full length with a simple collar and ¾ length sleeves with lace at the wrist. The front opening has a panel of ecru lace. The waistline is very large with tucks down the front and back of …</div>
+  <div class="v-story"><strong>vase, small</strong> — vase, small flattened hexagonal shape with two handles.</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
@@ -934,24 +969,29 @@ The dress is made from heavy black satin, full length with a simple collar and �
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -960,12 +1000,13 @@ The dress is made from heavy black satin, full length with a simple collar and �
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">col.2772</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Circa 1910</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">22419.1</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Bronze, Copper Alloy, &lt;copper And Copper Alloy&gt;, Nonferrous Metal, &lt;metal By Composition Or Origin&gt;, Metal</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Applied Arts and Design</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Vase</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">18th Century-19th Century</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Vase</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
@@ -983,24 +1024,24 @@ The dress is made from heavy black satin, full length with a simple collar and �
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1376.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/1fec602a-0a69-0669-d2b5-160e71e25cda/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portrait of Mary of Modena</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 16014</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/exlkP/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Schutterspenning Middelburg St. Joris</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100426</div>
       </a>
       <a class="v-rel-card" href="NFC1377.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2021.156.b/2021.156.b_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Tea Cup</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2021.156.b</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/40065?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">mittens</div>
+        <div class="v-rel-meta">Auckland Museum · col.2624</div>
       </a>
       <a class="v-rel-card" href="NFC1379.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/6/165006-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Lantern Slide - Man Outside Ironmonger's Shop, circa 1930s</div>
-        <div class="v-rel-meta">Museums Victoria · MM 69358</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/25/164775-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Lantern Slide - 'The Lads in Navy Blue', circa 1939-1956</div>
+        <div class="v-rel-meta">Museums Victoria · MM 97306</div>
       </a>
       <a class="v-rel-card" href="NFC1380.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2020.209/2020.209_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Perumal Temple Vimana from Corner of Court, Madurai</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2020.209</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/1023934?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">hairpin</div>
+        <div class="v-rel-meta">Auckland Museum · S428</div>
       </a></div>
   </div>
 </div>
@@ -1013,7 +1054,7 @@ The dress is made from heavy black satin, full length with a simple collar and �
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/17164" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/7938" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1045,16 +1086,15 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `dress`,
-  type: `ecrm:E22_Man-Made_Object`,
-  date: `Circa 1910`,
-  registration: `col.2772`,
+  title: `vase, small`,
+  type: `Vase`,
+  date: `18th Century-19th Century`,
+  registration: `22419.1`,
   location: `Auckland Museum`,
-  discipline: `Social History`,
-  category: `ecrm:E22_Man-Made_Object`,
-  description: `Black satin dress, c.1910, that belonged to Mrs William Henry Rogers.
-The dress is made from heavy black satin, full length with a simple collar and ¾ length sleeves with lace at the wrist. The front opening has a panel of ecru lace. The waistline is very large with tucks down the front and back of the bodice. The skirt is nearly straight with a tuck down the centre. It is all lined.`,
-  medium: ``,
+  discipline: `Applied Arts and Design`,
+  category: `Vase`,
+  description: `vase, small flattened hexagonal shape with two handles.`,
+  medium: `Bronze, Copper Alloy, <copper And Copper Alloy>, Nonferrous Metal, <metal By Composition Or Origin>, Metal`,
   artist: ``,
   culture: ``,
   dimensions: ``,
@@ -1064,7 +1104,7 @@ The dress is made from heavy black satin, full length with a simple collar and �
   provenance: ``,
   tombstone: ``,
   licence: `© Auckland Museum CC BY`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/17164`,
+  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/7938`,
   institution: `Auckland Museum`
 };
 

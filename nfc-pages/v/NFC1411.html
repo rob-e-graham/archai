@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Alegoria da Exposição Internacional do Centenário da Independência de 1922 — ARCHAI</title>
+<title>Artillery Instrument, Johan Koch, Stockholm 1668.. Artilleririktinstrument, Johan Koch, Stockholm 1668. — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/628595/310906-e1567605666860.jpg" alt="Alegoria da Exposição Internacional do Centenário da Independência de 1922" loading="eager">
+  <img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Femuseumplus.lsh.se%2FeMuseumPlus%3Fservice%3DImageAsset%26module%3Dcollection%26objectId%3D55150%26resolution%3DhighImageResolution&amp;type=IMAGE" alt="Artillery Instrument, Johan Koch, Stockholm 1668.. Artilleririktinstrument, Johan Koch, Stockholm 1668." loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Alegoria da Exposição Internacional do Centenário da Independência de 1922</div>
-  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · 1922 · alegoria-da-exposicao-internacional-do-centenario-da-independencia-de-1922</div>
+  <div class="v-title">Artillery Instrument, Johan Koch, Stockholm 1668.. Artilleririktinstrument, Johan Koch, Stockholm 1668.</div>
+  <div class="v-sub">IMAGE · 1668 · /2064105/Museu_ProvidedCHO_Livrustkammaren_55150</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Brasiliana Museus</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Brasiliana Museus</span>
+    <span class="v-meta-tag mv">Europeana</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(155,143,191,0.28);color:#9b8fbf;">Share alike</span>
+
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,13 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Alegoria da Exposição Internacional do Centenário da Independência de 1922</strong> — Ao centro da tela, em trompe l&amp;#039;oeil em formato de um buraco de fechadura delimitado em preto, figura feminina alada, em veste fluida de cor clara, segurando em seu braço esquerdo uma bandeira do Brasil e outra dos Estados Unidos da América presas em mastros. De seu ombro direito, pendem rosas n…</div>
-  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
-      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</div>
+  <div class="v-story"><strong>Artillery Instrument, Johan Koch, Stockholm 1668.. Artilleririktinstrument, Johan Koch, Stockholm 1668.</strong> — Of brass on a profiled, rectangular foot with the underside commissioned in blunt angle, on one long side a midline and a transverse hole. On the upper side a salmon and on the edge a graduated scale.
+
+In the salmon attached a set bar with a movable middle part, to h. In this case, a graduated scale…</div>
+  <div class="v-rights-note" style="border-color:rgba(155,143,191,0.28);">
+      <div class="v-rights-label" style="color:#9b8fbf;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#9b8fbf;font-weight:400;">Share alike</strong> — Reusable with attribution, and derivative use should keep the same licence terms.</div>
+      <div class="v-rights-detail">Licence / rights: http://creativecommons.org/licenses/by-sa/3.0/</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +971,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,18 +1002,15 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">alegoria-da-exposicao-internacional-do-centenario-da-independencia-de-1922</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1922</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 105,00 cm · largura 74,50 cm</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">/2064105/Museu_ProvidedCHO_Livrustkammaren_55150</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Johan Koch. Johan Koch (Tillverkare, , )</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">IMAGE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1668</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">The Royal Armoury</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">IMAGE</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Share alike</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution, and derivative use should keep the same licence terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">http://creativecommons.org/licenses/by-sa/3.0/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -985,24 +1025,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1409.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/52336?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">tap pants</div>
-        <div class="v-rel-meta">Auckland Museum · 2002.27.2</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fsammlungenonline.albertina.at%2Fcc%2Fimageproxy.ashx%3Fserver%3Dlocalhost%26port%3D15001%26filename%3Dimages%2FFotoGLV2000_7935.jpg%26cache%3Dyes%26maxwidth%3D400&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Photogrammetric camera. Photogrammetrische Kamera</div>
+        <div class="v-rel-meta">Europeana · /15508/FotoGLV2000_7935</div>
       </a>
       <a class="v-rel-card" href="NFC1410.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/8d119fd0-2f57-f20e-a3f5-a573904001e9/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Amédée-David, the Comte de Pastoret</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 111317</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DT6580.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Idiophone with an iyọ́bà</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 316558</div>
       </a>
       <a class="v-rel-card" href="NFC1412.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/358546/preview" loading="lazy"></div>
-        <div class="v-rel-title">Work-Box or Jewellery Box</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH002180</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%2Fwebclient%2FDeliveryManager%3Fpid%3D6331287%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Servizio fotografico Firenze, 1972</div>
+        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6331287_custom_att_2_simple_viewer</div>
       </a>
       <a class="v-rel-card" href="NFC1413.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/321c45f5-22a3-84a2-44cc-cf66642d4cf2/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Acrobats at the Cirque Fernando (Francisca and Angelina Wartenberg)</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 81558</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680057/820-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Tocador de sanfona</div>
+        <div class="v-rel-meta">Brasiliana Museus · tocador-de-sanfona</div>
       </a></div>
   </div>
 </div>
@@ -1015,7 +1055,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/alegoria-da-exposicao-internacional-do-centenario-da-independencia-de-1922/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.europeana.eu/item/2064105/Museu_ProvidedCHO_Livrustkammaren_55150?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1047,26 +1087,28 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Alegoria da Exposição Internacional do Centenário da Independência de 1922`,
-  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  date: `1922`,
-  registration: `alegoria-da-exposicao-internacional-do-centenario-da-independencia-de-1922`,
-  location: `Brasiliana Museus`,
-  discipline: `Brasiliana Museus`,
-  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  description: `Ao centro da tela, em trompe l&#039;oeil em formato de um buraco de fechadura delimitado em preto, figura feminina alada, em veste fluida de cor clara, segurando em seu braço esquerdo uma bandeira do Brasil e outra dos Estados Unidos da América presas em mastros. De seu ombro direito, pendem rosas na cor rosa. Rosto levemente inclinado à direita, cabelos ondulados e longos pretos, pele clara, olhos escuros semicerrados, nariz afilado e boca desenhada e tingida em tom vinho. Ao fundo, paisagem marítima com uma praia de areia em tom bege amarelado, água em tons azulados e, à esquerda, montanha e…`,
-  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  artist: ``,
-  culture: `Brazil`,
-  dimensions: `altura 105,00 cm · largura 74,50 cm`,
-  wall_description: `Ao centro da tela, em trompe l&#039;oeil em formato de um buraco de fechadura delimitado em preto, figura feminina alada, em veste fluida de cor clara, segurando em seu braço esquerdo uma bandeira do Brasil e outra dos Estados Unidos da América presas em mastros. De seu ombro direito, pendem rosas na cor rosa. Rosto levemente inclinado à direita, cabelos ondulados e longos pretos, pele clara, olhos escuros semicerrados, nariz afilado e boca desenhada e tingida em tom vinho. Ao fundo, paisagem ma…`,
+  title: `Artillery Instrument, Johan Koch, Stockholm 1668.. Artilleririktinstrument, Johan Koch, Stockholm 1668.`,
+  type: `IMAGE`,
+  date: `1668`,
+  registration: `/2064105/Museu_ProvidedCHO_Livrustkammaren_55150`,
+  location: `The Royal Armoury`,
+  discipline: ``,
+  category: `IMAGE`,
+  description: `Of brass on a profiled, rectangular foot with the underside commissioned in blunt angle, on one long side a midline and a transverse hole. On the upper side a salmon and on the edge a graduated scale.
+
+In the salmon attached a set bar with a movable middle part, to h. In this case, a graduated scale of 1 to 80 with 10 digits, the movable part with a midline and divided into four parts. At the top of the moving part a head with engraved flower decor and attached a movable arm with round sight discs at the ends, one with a small hole, the other with a larger hole with a grain. To the h. on the s…`,
+  medium: ``,
+  artist: `Johan Koch. Johan Koch (Tillverkare, , )`,
+  culture: ``,
+  dimensions: ``,
+  wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Alegoria da Exposição Internacional do Centenário da Independência de 1922. 1922. Brasiliana Museus`,
-  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
-  source_url: `https://brasiliana.museus.gov.br/acervos/alegoria-da-exposicao-internacional-do-centenario-da-independencia-de-1922/`,
-  institution: `Brasiliana Museus`
+  tombstone: ``,
+  licence: `http://creativecommons.org/licenses/by-sa/3.0/`,
+  source_url: `https://www.europeana.eu/item/2064105/Museu_ProvidedCHO_Livrustkammaren_55150?utm_source=api&amp;utm_medium=api&amp;utm_campaign=eabringb`,
+  institution: `Europeana`
 };
 
 // Build rich context from available fields
@@ -1647,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_brasiliana',
+      collection: 'archai_europeana',
       text,
       authorType: 'visitor',
     }),

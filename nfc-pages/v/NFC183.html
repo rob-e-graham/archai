@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Bow harp — ARCHAI</title>
+<title>Portrait of Georges Arnold Fitzwilliam — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/eg/original/DP345112.jpg" alt="Bow harp" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/2024.35.1/2024.35.1_web.jpg" alt="Portrait of Georges Arnold Fitzwilliam" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Bow harp</div>
-  <div class="v-sub">Music, harp · ca. 2030–1640 B.C. · 544242</div>
+  <div class="v-title">Portrait of Georges Arnold Fitzwilliam</div>
+  <div class="v-sub">Drawing · c. 1790–1852 · 2024.35.1</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Egyptian Art</span>
+    <span class="v-meta-tag">Drawings</span>
   </div>
 
   <!-- SHARE -->
@@ -903,7 +939,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Bow harp</strong> — Bow harp. Music, harp. Wood, paint. Egyptian Art. Middle Kingdom. ca. 2030–1640 B.C.</div>
+  <div class="v-story"><strong>Portrait of Georges Arnold Fitzwilliam</strong> — This portrait and its pair (2024.35.2), depict George Fitzwilliam, an English merchant, and his American wife Eleanor Ramsay Fitzwilliam, who sat in New York for the French émigré artist Charles Balthazar Julien Févret de Saint-Mémin. Saint-Mémin used a recently invented mechanical device called a p…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,13 +1000,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">544242</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Wood, paint</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Egyptian Art</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">ca. 2030–1640 B.C.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">L. 81.4 cm (32 1/16 in); W. 26.4 cm (10 3/8 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 109</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Music, harp</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2024.35.1</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Charles Balthazar Julien Fevret de Saint-Mémin (French, 1770–1852)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Black and white chalk on buff paper with pink wash in original frame</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Drawings</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Drawing</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1790–1852</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Framed: 40.6 x 31.7 cm (16 x 12 1/2 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Cleveland Museum of Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Drawing</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
@@ -983,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC181.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627829863/v2/prod/small/004001_004500/004111_001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Spotted Nyonya—Platter Dish</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2015.297</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2017KA4657/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Rock and pop costume</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · S.60-2011</div>
       </a>
       <a class="v-rel-card" href="NFC182.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP-39911-002.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Banjo</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 504951</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/817567/preview" loading="lazy"></div>
+        <div class="v-rel-title">Map of Waikato to illustrate &quot;The Maori King&quot;. Plate 2. From the book The Maori king, or, The story of our quarrel with the natives of New Zealand.</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · RB000401/002a</div>
       </a>
       <a class="v-rel-card" href="NFC184.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/27/164877-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Lantern Slide - Two Male Portraits, circa 1930s-1940s</div>
-        <div class="v-rel-meta">Museums Victoria · MM 106371</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/258114?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">television set</div>
+        <div class="v-rel-meta">Auckland Museum · #1828</div>
       </a>
       <a class="v-rel-card" href="NFC185.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/f9549068-ad7e-c9ce-6fed-5c7a429024fb/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">The Lost Pleiade</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 153</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4286/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">ASTIGMATISM</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.242-2020</div>
       </a></div>
   </div>
 </div>
@@ -1013,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/544242" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/2024.35.1" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1045,26 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Bow harp`,
-  type: `Music, harp`,
-  date: `ca. 2030–1640 B.C.`,
-  registration: `544242`,
-  location: `Gallery 109`,
-  discipline: `Egyptian Art`,
-  category: ``,
-  description: `Bow harp. Music, harp. Wood, paint. Egyptian Art. Middle Kingdom. ca. 2030–1640 B.C.`,
-  medium: `Wood, paint`,
-  artist: ``,
-  culture: ``,
-  dimensions: `L. 81.4 cm (32 1/16 in); W. 26.4 cm (10 3/8 in.)`,
+  title: `Portrait of Georges Arnold Fitzwilliam`,
+  type: `Drawing`,
+  date: `c. 1790–1852`,
+  registration: `2024.35.1`,
+  location: `Cleveland Museum of Art`,
+  discipline: `Drawings`,
+  category: `Drawing`,
+  description: `This portrait and its pair (2024.35.2), depict George Fitzwilliam, an English merchant, and his American wife Eleanor Ramsay Fitzwilliam, who sat in New York for the French émigré artist Charles Balthazar Julien Févret de Saint-Mémin. Saint-Mémin used a recently invented mechanical device called a physiognotrace to trace accurate profiles of his sitters, which he then completed in black and white chalks. The technology enabled Saint-Mémin to establish a thriving business catering to prominent Americans—including Presidents Washington, Adams, Jefferson, and Madison, Benjamin Franklin, and sever…`,
+  medium: `Black and white chalk on buff paper with pink wash in original frame`,
+  artist: `Charles Balthazar Julien Fevret de Saint-Mémin (French, 1770–1852)`,
+  culture: `France`,
+  dimensions: `Framed: 40.6 x 31.7 cm (16 x 12 1/2 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
+  did_you_know: `The physiognotrace device used to create this portrait consisted of a wooden frame within which a sitter posed in profile; the artist then peered through an eyepiece and followed the contour and features of the sitter’s face by maneuvering a graphite pencil attached to the mechanism.`,
+  provenance: `[{"description":"(Marty de Cambiaire Master Paintings & Drawings, New York, NY), sold to The Cleveland Museum of Art, Cleveland, OH","citations":[],"footnotes":[],"date":"?–2024","sortorder":2},{"description":"The Cleveland Museum of Art, Cleveland, OH","citations":[],"footnotes":[],"date":"June 3, …`,
+  tombstone: `Portrait of Georges Arnold Fitzwilliam, c. 1790–1852. Charles Balthazar Julien Fevret de Saint-Mémin (French, 1770–1852). Black and white chalk on buff paper with pink wash in original frame; framed: 40.6 x 31.7 cm (16 x 12 1/2 in.). The Cleveland Museum of Art, Alma Kroeger Fund, 2024.35.1`,
   licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/544242`,
-  institution: `The Metropolitan Museum of Art`
+  source_url: `https://clevelandart.org/art/2024.35.1`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1645,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_met',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

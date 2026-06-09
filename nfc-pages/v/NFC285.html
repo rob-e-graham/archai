@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>The Child's Bath — ARCHAI</title>
+<title>Jack-in-the-Pulpit Vase — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/3b885ae0-4d46-5fe4-d70a-00474827f02c/full/843,/0/default.jpg" alt="The Child's Bath" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/2019.244/2019.244_web.jpg" alt="Jack-in-the-Pulpit Vase" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">The Child's Bath</div>
-  <div class="v-sub">Painting · 1893 · 111442</div>
+  <div class="v-title">Jack-in-the-Pulpit Vase</div>
+  <div class="v-sub">Glass · c. 1900–1920 · 2019.244</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Art Institute of Chicago</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Arts of the Americas</span>
+    <span class="v-meta-tag">Decorative Art and Design</span>
   </div>
 
   <!-- SHARE -->
@@ -903,7 +939,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>The Child's Bath</strong> — The Child's Bath. Painting. Oil on canvas. Arts of the Americas. Mary Cassatt (American, 1844–1926). painting. 1893. France. Impressionism. &lt;p&gt;&lt;em&gt;The Child’s Bath&lt;/em&gt; is a tender portrayal of familial closeness, a subject that Mary Cassatt explored throughout her career. The caregiver’s cheek brus…</div>
+  <div class="v-story"><strong>Jack-in-the-Pulpit Vase</strong> — The Quezal Art Glass and Decorating Company was begun by former employees of Louis Comfort Tiffany as a rival operation in 1902. With its expressive form and brilliant golden iridescence, this vase represents the finest work produced by the Queens, New York, company in the Art Nouveau style.</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,16 +1000,16 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">111442</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Mary Cassatt (American, 1844–1926)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Oil on canvas</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Arts of the Americas</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">painting</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1893</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">101.3 × 67.3 cm (39 15/16 × 26 1/2 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 273</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2019.244</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Quezal Art Glass and Decorating Company (American, 1901–1924)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">blown glass</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">America</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Decorative Art and Design</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Glass</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1900–1920</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">30.5 x 20.3 cm (12 x 8 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">209 Tiffany</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Glass</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
@@ -986,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC283.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/midp89.4.77.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Tsuridaiko (釣り太鼓 )</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 500706</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4323/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">CO.ED</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.277-2020</div>
       </a>
       <a class="v-rel-card" href="NFC284.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018LA6477/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Murphy A58V</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · W.41-1983</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/93169?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">vessel</div>
+        <div class="v-rel-meta">Auckland Museum · 1996x2.103.30</div>
       </a>
       <a class="v-rel-card" href="NFC286.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1978.22/1978.22_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Sir H. C. Englefield, Bart.</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1978.22</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4333/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">SEEMLY YOU</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.281-2020</div>
       </a>
       <a class="v-rel-card" href="NFC287.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/1a1b74fe-ff2a-8991-0581-5d420f0b840e/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Lunch at the Restaurant Fournaise (The Rowers' Lunch)</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 81555</div>
+        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/33/164883-medium.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Lantern Slide - Parthenon</div>
+        <div class="v-rel-meta">Museums Victoria · MM 106323</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/111442" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/2019.244" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,27 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `The Child's Bath`,
-  type: `Painting`,
-  date: `1893`,
-  registration: `111442`,
-  location: `Gallery 273`,
-  discipline: `Arts of the Americas`,
-  category: `painting`,
-  description: `The Child's Bath. Painting. Oil on canvas. Arts of the Americas. Mary Cassatt (American, 1844–1926). painting. 1893. France. Impressionism. <p><em>The Child’s Bath</em> is a tender portrayal of familial closeness, a subject that Mary Cassatt explored throughout her career. The caregiver’s cheek brushing the child’s shoulder, her encircling embrace, and the child’s pudgy hand on her knee suggest an emotional bond between the two.</p>
-<p>Captivated by a large exhibition of Japanese prints in Paris in 1890, Cassatt set out to produce a series of color prints influenced by Japanese aesthetics. She…`,
-  medium: `Oil on canvas`,
-  artist: `Mary Cassatt (American, 1844–1926)`,
-  culture: `France`,
-  dimensions: `101.3 × 67.3 cm (39 15/16 × 26 1/2 in.)`,
+  title: `Jack-in-the-Pulpit Vase`,
+  type: `Glass`,
+  date: `c. 1900–1920`,
+  registration: `2019.244`,
+  location: `209 Tiffany`,
+  discipline: `Decorative Art and Design`,
+  category: `Glass`,
+  description: `The Quezal Art Glass and Decorating Company was begun by former employees of Louis Comfort Tiffany as a rival operation in 1902. With its expressive form and brilliant golden iridescence, this vase represents the finest work produced by the Queens, New York, company in the Art Nouveau style.`,
+  medium: `blown glass`,
+  artist: `Quezal Art Glass and Decorating Company (American, 1901–1924)`,
+  culture: `America`,
+  dimensions: `30.5 x 20.3 cm (12 x 8 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
+  did_you_know: `The Quezal Art Glass and Decorating Company was named after a rare breed of South American bird, the quetzal, known for its colorful iridescent plumage.`,
+  provenance: `[{"description":"June Greenwald, [b. 1931], Cleveland, OH, given to the Cleveland Museum of Art","citations":[],"footnotes":null,"date":"?-2019","sortorder":1},{"description":"The Cleveland Museum of Art","citations":[],"footnotes":null,"date":"2019-","sortorder":2}]`,
+  tombstone: `Jack-in-the-Pulpit Vase, c. 1900–1920. Quezal Art Glass and Decorating Company (American, 1901–1924). Blown glass; 30.5 x 20.3 cm (12 x 8 in.). The Cleveland Museum of Art, Gift of June Greenwald, 2019.244`,
   licence: `CC0 — Public Domain`,
-  source_url: `https://www.artic.edu/artworks/111442`,
-  institution: `Art Institute of Chicago`
+  source_url: `https://clevelandart.org/art/2019.244`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1649,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_aic',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

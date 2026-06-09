@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Dream Still — ARCHAI</title>
+<title>The Interior of the Palm House on the Pfaueninsel Near Potsdam — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2014GX3511/full/!600,600/0/default.jpg" alt="Dream Still" loading="eager">
+  <img src="https://www.artic.edu/iiif/2/38bb6be4-223e-af7a-7e18-f9ad0c388d3c/full/843,/0/default.jpg" alt="The Interior of the Palm House on the Pfaueninsel Near Potsdam" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Dream Still</div>
-  <div class="v-sub">Digital print · 2009 · E.77-2013</div>
+  <div class="v-title">The Interior of the Palm House on the Pfaueninsel Near Potsdam</div>
+  <div class="v-sub">Painting · 1834 · 144969</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
+    <span class="v-meta-tag mv">Art Institute of Chicago</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Digital print</span>
+    <span class="v-meta-tag">Painting and Sculpture of Europe</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Dream Still</strong> — Dream Still. Digital print. Made by Barbara Nessim. 2009. Made in America. Prints &amp; Drawings Study Room, room 315</div>
+  <div class="v-story"><strong>The Interior of the Palm House on the Pfaueninsel Near Potsdam</strong> — The Interior of the Palm House on the Pfaueninsel Near Potsdam. Painting. Oil on canvas. Painting and Sculpture of Europe. Carl Blechen (German, 1798–1840). oil on canvas. 1834. Germany. 19th century. &lt;p&gt;Lush palms and overgrown greenery dominate this view of the Palm House, designed by Karl Friedri…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,16 +1000,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.77-2013</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Barbara Nessim</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Digital print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Digital print</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2009</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, room 315</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Digital print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">144969</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Carl Blechen (German, 1798–1840)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Oil on canvas</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Germany</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Painting and Sculpture of Europe</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">oil on canvas</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1834</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">135 × 126 cm (52 1/2 × 50 in.); Framed: 155 × 145.5 cm (61 × 57 1/4 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 221</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -983,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1112.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/71130695-fd22-c41c-bd27-4f0a7cf20299/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Bust of a Nobleman in Armor</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 22278</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/KCwRc/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portret van keizer Maximiliaan I</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010032</div>
       </a>
       <a class="v-rel-card" href="NFC1113.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669021/006330.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Felix Peixoto de Brito e Mello</div>
-        <div class="v-rel-meta">Brasiliana Museus · felix-peixoto-de-brito-e-mello</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2008BT4253/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portable transistor radio</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.21:&amp;2-1992</div>
       </a>
       <a class="v-rel-card" href="NFC1115.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2007BR3936/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Murphy U144</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · W.84-1975</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627882516/v2/prod/small/004001_004500/004029_005.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Circus</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2016.367</div>
       </a>
       <a class="v-rel-card" href="NFC1116.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/675684/015a.jpg" loading="lazy"></div>
-        <div class="v-rel-title">D. Luís de Vasconcelos e Sousa</div>
-        <div class="v-rel-meta">Brasiliana Museus · d-luis-de-vasconcelos-e-sousa</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/506456?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">carving</div>
+        <div class="v-rel-meta">Auckland Museum · 2013.48.5</div>
       </a></div>
   </div>
 </div>
@@ -1013,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1257751/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.artic.edu/artworks/144969" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1045,26 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Dream Still`,
-  type: `Digital print`,
-  date: `2009`,
-  registration: `E.77-2013`,
-  location: `Prints & Drawings Study Room, room 315`,
-  discipline: `Digital print`,
-  category: `Digital print`,
-  description: `Dream Still. Digital print. Made by Barbara Nessim. 2009. Made in America. Prints & Drawings Study Room, room 315`,
-  medium: ``,
-  artist: `Barbara Nessim`,
-  culture: ``,
-  dimensions: ``,
+  title: `The Interior of the Palm House on the Pfaueninsel Near Potsdam`,
+  type: `Painting`,
+  date: `1834`,
+  registration: `144969`,
+  location: `Gallery 221`,
+  discipline: `Painting and Sculpture of Europe`,
+  category: `oil on canvas`,
+  description: `The Interior of the Palm House on the Pfaueninsel Near Potsdam. Painting. Oil on canvas. Painting and Sculpture of Europe. Carl Blechen (German, 1798–1840). oil on canvas. 1834. Germany. 19th century. <p>Lush palms and overgrown greenery dominate this view of the Palm House, designed by Karl Friedrich Schinkel to display the Prussian royals’ collection of tropical plants. This painting plays with the boundaries between architecture and nature, imagination and reality: vines curl around soaring columns and bowed fronds evoke archways. Carl Blechen populated his dazzling place-portrait with a le…`,
+  medium: `Oil on canvas`,
+  artist: `Carl Blechen (German, 1798–1840)`,
+  culture: `Germany`,
+  dimensions: `135 × 126 cm (52 1/2 × 50 in.); Framed: 155 × 145.5 cm (61 × 57 1/4 in.)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1257751/`,
-  institution: `Victoria and Albert Museum, London`
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.artic.edu/artworks/144969`,
+  institution: `Art Institute of Chicago`
 };
 
 // Build rich context from available fields
@@ -1645,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_aic',
       text,
       authorType: 'visitor',
     }),

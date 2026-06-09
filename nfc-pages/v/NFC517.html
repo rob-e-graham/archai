@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>YO YO WITH ENGLISH — ARCHAI</title>
+<title>Vase — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://framemark.vam.ac.uk/collections/2014HD4301/full/!600,600/0/default.jpg" alt="YO YO WITH ENGLISH" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/1997.260/1997.260_web.jpg" alt="Vase" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">YO YO WITH ENGLISH</div>
-  <div class="v-sub">Computer-generated drawing · 1969 · E.250-2020</div>
+  <div class="v-title">Vase</div>
+  <div class="v-sub">Glass · c. 1905–10 · 1997.260</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Victoria and Albert Museum, London</span>
+    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Computer-generated drawing</span>
+    <span class="v-meta-tag">Decorative Art and Design</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>YO YO WITH ENGLISH</strong> — YO YO WITH ENGLISH. Computer-generated drawing. Made by Frederick Hammersley. 1969. Made in America. Prints &amp; Drawings Study Room, level C</div>
+  <div class="v-story"><strong>Vase</strong> — This small vase is made of Louis Comfort Tiffany's signature Favrile glass. Early on when Tiffany began collaborating with glass artists on new types of production, his aesthetic ambitions were realized in the development of Favrile glass, deliberately named to sound French, expensive, and “handmade…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: V&amp;A Open Access</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,16 +1000,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">E.250-2020</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Frederick Hammersley</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Computer-generated drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Computer-generated drawing</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1969</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Prints &amp; Drawings Study Room, level C</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Computer-generated drawing</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1997.260</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Louis Comfort Tiffany (American, 1848–1933); Tiffany Studios (United States, New York, 1902–32)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Favrile glass</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">America, New York</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Decorative Art and Design</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Glass</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1905–10</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 19.2 x 9.5 cm (7 9/16 x 3 3/4 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">209 Tiffany</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Glass</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">V&amp;A Open Access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -983,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC515.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/646909/default-3.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Paisagem com camponesa</div>
-        <div class="v-rel-meta">Brasiliana Museus · paisagem-com-camponesa</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DT661.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Transverse Flute in D-flat</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 501534</div>
       </a>
       <a class="v-rel-card" href="NFC516.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PK1365/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">SPLIT SECOND</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · B.1224:1 to 7-1999</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/a45e5f55-d02b-ce98-8bab-3af549684f58/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Painting with Troika</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 8983</div>
       </a>
       <a class="v-rel-card" href="NFC518.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/668973/006340.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Marquês de Pombal</div>
-        <div class="v-rel-meta">Brasiliana Museus · marques-de-pombal-2</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2008BU3087/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Domestic Kinetic</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.3656-2007</div>
       </a>
       <a class="v-rel-card" href="NFC519.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP215406.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Lapa (Trumpet)</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 504717</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/47fd1564-93f5-f30b-7786-013421133b4a/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">The Assumption of the Virgin</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 87479</div>
       </a></div>
   </div>
 </div>
@@ -1013,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.vam.ac.uk/item/O1278525/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://clevelandart.org/art/1997.260" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1045,26 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `YO YO WITH ENGLISH`,
-  type: `Computer-generated drawing`,
-  date: `1969`,
-  registration: `E.250-2020`,
-  location: `Prints & Drawings Study Room, level C`,
-  discipline: `Computer-generated drawing`,
-  category: `Computer-generated drawing`,
-  description: `YO YO WITH ENGLISH. Computer-generated drawing. Made by Frederick Hammersley. 1969. Made in America. Prints & Drawings Study Room, level C`,
-  medium: ``,
-  artist: `Frederick Hammersley`,
-  culture: ``,
-  dimensions: ``,
+  title: `Vase`,
+  type: `Glass`,
+  date: `c. 1905–10`,
+  registration: `1997.260`,
+  location: `209 Tiffany`,
+  discipline: `Decorative Art and Design`,
+  category: `Glass`,
+  description: `This small vase is made of Louis Comfort Tiffany's signature Favrile glass. Early on when Tiffany began collaborating with glass artists on new types of production, his aesthetic ambitions were realized in the development of Favrile glass, deliberately named to sound French, expensive, and “handmade.” Largely through Tiffany's marketing ability, Favrile glass became America’s greatest contribution to the Art Nouveau style. His works were exhibited at international expositions; galleries in major European cities, where his creations were bought by many museums; and in his store in Manhattan, kn…`,
+  medium: `Favrile glass`,
+  artist: `Louis Comfort Tiffany (American, 1848–1933); Tiffany Studios (United States, New York, 1902–32)`,
+  culture: `America, New York`,
+  dimensions: `Overall: 19.2 x 9.5 cm (7 9/16 x 3 3/4 in.)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: ``,
-  provenance: ``,
-  tombstone: ``,
-  licence: `V&A Open Access`,
-  source_url: `https://collections.vam.ac.uk/item/O1278525/`,
-  institution: `Victoria and Albert Museum, London`
+  did_you_know: `Introducing various chemicals into the molten glass within the furnace produced multicolored iridescence on the surface when this vase was blown and cooled.`,
+  provenance: `[{"description":"Henry H. Hawley [1934-2019], Cleveland, OH, given to the Cleveland Museum of Art","citations":[],"footnotes":[],"date":"?-1997","sortorder":1},{"description":"The Cleveland Museum of Art","citations":[],"footnotes":[],"date":"1997-","sortorder":2}]`,
+  tombstone: `Vase, c. 1905–10. Louis Comfort Tiffany (American, 1848–1933), Tiffany Studios (United States, New York, 1902–32). Favrile glass; overall: 19.2 x 9.5 cm (7 9/16 x 3 3/4 in.). The Cleveland Museum of Art, Gift of Henry H. Hawley, 1997.260`,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://clevelandart.org/art/1997.260`,
+  institution: `Cleveland Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1645,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_va',
+      collection: 'archai_cma',
       text,
       authorType: 'visitor',
     }),

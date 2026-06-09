@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>New Year Trophy—Forest — ARCHAI</title>
+<title>The Child's Bath — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://res.cloudinary.com/mplustms/image/upload/w_569/v1724381860/v2/prod/small/001501_002000/001724_001.jpg" alt="New Year Trophy—Forest" loading="eager">
+  <img src="https://www.artic.edu/iiif/2/3b885ae0-4d46-5fe4-d70a-00474827f02c/full/843,/0/default.jpg" alt="The Child's Bath" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">New Year Trophy—Forest</div>
-  <div class="v-sub">Installation · 2012 · 2012.1978</div>
+  <div class="v-title">The Child's Bath</div>
+  <div class="v-sub">Painting · 1893 · 111442</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">M+, Hong Kong</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
-    <span class="v-meta-tag">Visual Art</span>
+    <span class="v-meta-tag mv">Art Institute of Chicago</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Arts of the Americas</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>New Year Trophy—Forest</strong> — satin, canvas, and thread</div>
-  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
-      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Gaylord Chan · © Gaylord Chan</div>
+  <div class="v-story"><strong>The Child's Bath</strong> — The Child's Bath. Painting. Oil on canvas. Arts of the Americas. Mary Cassatt (American, 1844–1926). painting. 1893. France. Impressionism. &lt;p&gt;&lt;em&gt;The Child’s Bath&lt;/em&gt; is a tender portrayal of familial closeness, a subject that Mary Cassatt explored throughout her career. The caregiver’s cheek brus…</div>
+  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,19 +1000,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2012.1978</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Gaylord Chan</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">satin, canvas, and thread</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Hong Kong</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Visual Art</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Installation</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2012</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">each: 330 × 165 cm</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Installation</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Gaylord Chan · © Gaylord Chan</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">111442</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Mary Cassatt (American, 1844–1926)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Oil on canvas</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Arts of the Americas</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1893</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">101.3 × 67.3 cm (39 15/16 × 26 1/2 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 273</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -986,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC312.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/DeIgV/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Zilveren dukaat van de Bataafse Republiek op naam van Zeeland, 1795</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100090</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/cc5cdb81-14cf-27e9-eda8-94c08244ebaa/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Polynesian Woman with Children</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 34461</div>
       </a>
       <a class="v-rel-card" href="NFC313.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/PQCYW/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Gulden van Curacao, 1944</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100279</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/laKFk/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Vijftigjarig bestaan van de loge La Vertu te Leiden 1807 memorerende de buskruitramp, afdruk in karton</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100142</div>
       </a>
       <a class="v-rel-card" href="NFC315.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2024PA7973/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Costume</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:AMERICASFOUNDATION.2599:1 to 16-2024</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/fWRxp/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Schutterspenning van Middelburg</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100430</div>
       </a>
       <a class="v-rel-card" href="NFC316.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1949.186/1949.186_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Fight Between a Tiger and a Buffalo</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1949.186</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2016JJ3943/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">BAFTA Award</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · S.181-2012</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/new-year-trophyforest-20121978/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.artic.edu/artworks/111442" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,26 +1089,27 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `New Year Trophy—Forest`,
-  type: `Installation`,
-  date: `2012`,
-  registration: `2012.1978`,
-  location: `M+, Hong Kong`,
-  discipline: `Visual Art`,
-  category: `Installation`,
-  description: `satin, canvas, and thread`,
-  medium: `satin, canvas, and thread`,
-  artist: `Gaylord Chan`,
-  culture: `Hong Kong`,
-  dimensions: `each: 330 × 165 cm`,
-  wall_description: `satin, canvas, and thread`,
+  title: `The Child's Bath`,
+  type: `Painting`,
+  date: `1893`,
+  registration: `111442`,
+  location: `Gallery 273`,
+  discipline: `Arts of the Americas`,
+  category: `painting`,
+  description: `The Child's Bath. Painting. Oil on canvas. Arts of the Americas. Mary Cassatt (American, 1844–1926). painting. 1893. France. Impressionism. <p><em>The Child’s Bath</em> is a tender portrayal of familial closeness, a subject that Mary Cassatt explored throughout her career. The caregiver’s cheek brushing the child’s shoulder, her encircling embrace, and the child’s pudgy hand on her knee suggest an emotional bond between the two.</p>
+<p>Captivated by a large exhibition of Japanese prints in Paris in 1890, Cassatt set out to produce a series of color prints influenced by Japanese aesthetics. She…`,
+  medium: `Oil on canvas`,
+  artist: `Mary Cassatt (American, 1844–1926)`,
+  culture: `France`,
+  dimensions: `101.3 × 67.3 cm (39 15/16 × 26 1/2 in.)`,
+  wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `New Year Trophy—Forest. Gaylord Chan. 2012. M+, Hong Kong`,
-  licence: `CC0 metadata · M+ API service non-commercial · © Gaylord Chan`,
-  source_url: `https://www.mplus.org.hk/en/collection/objects/new-year-trophyforest-20121978/`,
-  institution: `M+, Hong Kong`
+  tombstone: ``,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.artic.edu/artworks/111442`,
+  institution: `Art Institute of Chicago`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1690,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_mplus',
+      collection: 'archai_aic',
       text,
       authorType: 'visitor',
     }),

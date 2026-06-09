@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Jewellery box — ARCHAI</title>
+<title>Sculpture: An essay on stone-cutting, with a preface about God. — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://media.tepapa.govt.nz/collection/380759/preview" alt="Jewellery box" loading="eager">
+  <img src="https://media.tepapa.govt.nz/collection/498174/preview" alt="Sculpture: An essay on stone-cutting, with a preface about God." loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Jewellery box</div>
-  <div class="v-sub">boxes · 1916 · GH022533</div>
+  <div class="v-title">Sculpture: An essay on stone-cutting, with a preface about God.</div>
+  <div class="v-sub">livres de peintres · 1923 · 2007-0006-8</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
     <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
-    <span class="v-meta-tag">History</span>
+    <span class="v-meta-tag">Art</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Jewellery box</strong> — Enemy craft This jewellery box is&amp;nbsp;example of&amp;nbsp;the&amp;nbsp;type of handicraft work produced by German and Austro-Hungarian internees on Somes/Matiu Island during the First World War - the island itself is painted inside the lid of the jewellery box. Items of this type were made as gifts to fami…</div>
+  <div class="v-story"><strong>Sculpture: An essay on stone-cutting, with a preface about God.</strong> — Sculpture: An essay on stone-cutting, with a preface about God. , 1923, England, by Eric Gill, St. Dominic's Press. Bequest of P Martin Hill, 2007. Te Papa (2007-0006-8)</div>
   <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
       <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
-      <div class="v-rights-detail">Licence / rights: CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</div>
+      <div class="v-rights-detail">Licence / rights: No Known Copyright Restrictions · metadata CC BY 4.0 · No Known Copyright Restrictions</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,19 +1000,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">GH022533</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Unknown</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Marquetry work in a variety of New Zealand woods, oil painting.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">World War, 1914-1918</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">boxes</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1916</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 145mm (width), 80mm (height), 215mm (length)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2007-0006-8</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Eric Gill, St. Dominic's Press</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">handprinted book with wood engraving</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">livres de peintres</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1923</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">12mm, 173mm, 130mm</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">boxes</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">livres de peintres</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">No Known Copyright Restrictions · metadata CC BY 4.0 · No Known Copyright Restrictions</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -986,24 +1026,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1424.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%3A80%2Fwebclient%2FDeliveryManager%3Fpid%3D6355707%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Servizio fotografico Firenze, 1957-1956. Photographic reportage, Florence, 1957-1956</div>
-        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6355707_custom_att_2_simple_viewer</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP227402.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Figure Whistle</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 316420</div>
       </a>
       <a class="v-rel-card" href="NFC1425.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/111777/preview" loading="lazy"></div>
-        <div class="v-rel-title">Photograph</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH005300</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PK5306/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Synthesizer</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:AMERICASFOUNDATION.2997-2024</div>
       </a>
       <a class="v-rel-card" href="NFC1427.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/675665/11092018-IMG_6440-scaled.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Casamento de Pedro e Leopoldina (alegoria)</div>
-        <div class="v-rel-meta">Brasiliana Museus · casamento-de-pedro-e-leopoldina-alegoria</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/as/original/23_225_57_O1_sf.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Chinese child with musical instrument</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 45823</div>
       </a>
       <a class="v-rel-card" href="NFC1428.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2018KT2148/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Camera</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · RPS.356-2018</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/43212/preview" loading="lazy"></div>
+        <div class="v-rel-title">Astronomical Telescope (Gregorian reflector type)</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · NS000010/1</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1056,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/1295164" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/742151" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,25 +1088,25 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Jewellery box`,
-  type: `boxes`,
-  date: `1916`,
-  registration: `GH022533`,
+  title: `Sculpture: An essay on stone-cutting, with a preface about God.`,
+  type: `livres de peintres`,
+  date: `1923`,
+  registration: `2007-0006-8`,
   location: `Te Papa Tongarewa, Wellington`,
-  discipline: `History`,
-  category: `boxes`,
-  description: `Enemy craft This jewellery box is&nbsp;example of&nbsp;the&nbsp;type of handicraft work produced by German and Austro-Hungarian internees on Somes/Matiu Island during the First World War - the island itself is painted inside the lid of the jewellery box. Items of this type were made as gifts to family members or sold to earn pocket money for the internees. Under the War Regulations Act 1914, 4000 Germans and 2000 Austro-Hungarians were registered as 'enemy aliens' - even those who were naturalised. The act also defined men who were of military age as security threats, who as such could be deta…`,
-  medium: `Marquetry work in a variety of New Zealand woods, oil painting.`,
-  artist: `Unknown`,
-  culture: `World War, 1914-1918`,
-  dimensions: `Overall: 145mm (width), 80mm (height), 215mm (length)`,
-  wall_description: `Enemy craft This jewellery box is&nbsp;example of&nbsp;the&nbsp;type of handicraft work produced by German and Austro-Hungarian internees on Somes/Matiu Island during the First World War - the island itself is painted inside the lid of the jewellery box. Items of this type were made as gifts to family members or sold to earn pocket money for the internees. Under the War Regulations Act 1914, 4000 Germans and 2000 Austro-Hungarians were registered as 'enemy aliens' - even those who were naturalis…`,
+  discipline: `Art`,
+  category: `livres de peintres`,
+  description: `Sculpture: An essay on stone-cutting, with a preface about God. , 1923, England, by Eric Gill, St. Dominic's Press. Bequest of P Martin Hill, 2007. Te Papa (2007-0006-8)`,
+  medium: `handprinted book with wood engraving`,
+  artist: `Eric Gill, St. Dominic's Press`,
+  culture: ``,
+  dimensions: `12mm, 173mm, 130mm`,
+  wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Jewellery box, 1916, New Zealand, maker unknown. Purchased 2012. CC BY-NC-ND 4.0. Te Papa (GH022533)`,
-  licence: `CC BY-NC-ND 4.0 · metadata CC BY 4.0`,
-  source_url: `https://collections.tepapa.govt.nz/object/1295164`,
+  tombstone: `Sculpture: An essay on stone-cutting, with a preface about God., 1923, England, by Eric Gill, St. Dominic's Press. Bequest of P Martin Hill, 2007. Te Papa (2007-0006-8)`,
+  licence: `No Known Copyright Restrictions · metadata CC BY 4.0`,
+  source_url: `https://collections.tepapa.govt.nz/object/742151`,
   institution: `Museum of New Zealand Te Papa Tongarewa`
 };
 

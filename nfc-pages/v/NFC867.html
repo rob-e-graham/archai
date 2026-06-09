@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Qin (Seven-stringed zither) — ARCHAI</title>
+<title>A Requiem: Theater of Creativity / Self-portrait as Marcel Duchamp (Based on the photo by Julian Wasser) — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://images.metmuseum.org/CRDImages/as/original/LC-1981_242_3-01.jpg" alt="Qin (Seven-stringed zither)" loading="eager">
+  <img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627821547/v2/prod/small/005501_006000/005638_003.jpg" alt="A Requiem: Theater of Creativity / Self-portrait as Marcel Duchamp (Based on the photo by Julian Wasser)" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Qin (Seven-stringed zither)</div>
-  <div class="v-sub">Qin · late 16th century · 42737</div>
+  <div class="v-title">A Requiem: Theater of Creativity / Self-portrait as Marcel Duchamp (Based on the photo by Julian Wasser)</div>
+  <div class="v-sub">Photography · 2010 · 2015.558</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Asian Art</span>
+    <span class="v-meta-tag mv">M+, Hong Kong</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">Visual Art</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Qin (Seven-stringed zither)</strong> — Qin (Seven-stringed zither). Qin. Purple sandalwood (zitan) and black lacquer. Asian Art. China. Ming dynasty (1368–1644). by Unidentified artist. Musical instruments. late 16th century</div>
-  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
-      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+  <div class="v-story"><strong>A Requiem: Theater of Creativity / Self-portrait as Marcel Duchamp (Based on the photo by Julian Wasser)</strong> — Photograph showing the side view of two figures seated at a white table inside an art gallery. There are white chess pieces on the table in between them, which they both look down at. The figure on the viewer's left is nude with short black hair and the right hand held above exposed breasts. The man…</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 metadata · M+ API service non-commercial · © Morimura Yasumasa, courtesy Shugo Arts · © Morimura Yasumasa, courtesy Shugo Arts</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,22 +1000,20 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">42737</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Unidentified artist</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Purple sandalwood (zitan) and black lacquer</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">China</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Asian Art</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Musical instruments</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">late 16th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Height (at bridge): 4 in. (10.2 cm)
-Width (at bridge): 7 1/4 in. (18.4 cm)
-Width (at right end): 5 3/4 in. (14.6 cm)
-Length: 10 1/8 in. (25.7 cm)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 218</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Qin</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2015.558</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Yasumasa Morimura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">chromogenic print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Japanese</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Visual Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photography</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2010</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">sheet (sight): 148 × 187.5 cm
+frame: 164.5 × 202.4 × 6.1 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">M+, Hong Kong</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photography</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 metadata · M+ API service non-commercial · © Morimura Yasumasa, courtesy Shugo Arts · © Morimura Yasumasa, courtesy Shugo Arts</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -989,24 +1028,24 @@ Length: 10 1/8 in. (25.7 cm)</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC865.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/cdKUq/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van keizer Karel V</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010034</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1924.197/1924.197_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Red-Figure Column Krater (Mixing Vessel): Komos (Revel)</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1924.197</div>
       </a>
       <a class="v-rel-card" href="NFC866.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP-24267-001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Whistle</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 316713</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1979.37/1979.37_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portrait of Napoléone Elisa Baciocchi, Niece of Napoleon I</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1979.37</div>
       </a>
       <a class="v-rel-card" href="NFC868.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2003.6.3/2003.6.3_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Apollo, God of Light, Eloquence, Poetry, and the Fine Arts with Urania, Muse of Astronomy</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 2003.6.3</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669012/006332.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Ana Cândida Tobias de Aguiar</div>
+        <div class="v-rel-meta">Brasiliana Museus · ana-candida-tobias-de-aguiar</div>
       </a>
       <a class="v-rel-card" href="NFC869.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%2Fwebclient%2FDeliveryManager%3Fpid%3D6331290%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Servizio fotografico Firenze, 1973</div>
-        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6331290_custom_att_2_simple_viewer</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/10325?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">dress, evening</div>
+        <div class="v-rel-meta">Auckland Museum · 1995.101.7</div>
       </a></div>
   </div>
 </div>
@@ -1019,7 +1058,7 @@ Length: 10 1/8 in. (25.7 cm)</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/42737" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.mplus.org.hk/en/collection/objects/a-requiem-theater-of-creativity-self-portrait-as-marcel-duchamp-based-on-the-photo-by-julian-wasser-2015558/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1051,29 +1090,27 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Qin (Seven-stringed zither)`,
-  type: `Qin`,
-  date: `late 16th century`,
-  registration: `42737`,
-  location: `Gallery 218`,
-  discipline: `Asian Art`,
-  category: `Musical instruments`,
-  description: `Qin (Seven-stringed zither). Qin. Purple sandalwood (zitan) and black lacquer. Asian Art. China. Ming dynasty (1368–1644). by Unidentified artist. Musical instruments. late 16th century`,
-  medium: `Purple sandalwood (zitan) and black lacquer`,
-  artist: `Unidentified artist`,
-  culture: `China`,
-  dimensions: `Height (at bridge): 4 in. (10.2 cm)
-Width (at bridge): 7 1/4 in. (18.4 cm)
-Width (at right end): 5 3/4 in. (14.6 cm)
-Length: 10 1/8 in. (25.7 cm)`,
-  wall_description: ``,
+  title: `A Requiem: Theater of Creativity / Self-portrait as Marcel Duchamp (Based on the photo by Julian Wasser)`,
+  type: `Photography`,
+  date: `2010`,
+  registration: `2015.558`,
+  location: `M+, Hong Kong`,
+  discipline: `Visual Art`,
+  category: `Photography`,
+  description: `Photograph showing the side view of two figures seated at a white table inside an art gallery. There are white chess pieces on the table in between them, which they both look down at. The figure on the viewer's left is nude with short black hair and the right hand held above exposed breasts. The man on the right wears a suit and holds a cigar.`,
+  medium: `chromogenic print`,
+  artist: `Yasumasa Morimura`,
+  culture: `Japanese`,
+  dimensions: `sheet (sight): 148 × 187.5 cm
+frame: 164.5 × 202.4 × 6.1 cm`,
+  wall_description: `Photograph showing the side view of two figures seated at a white table inside an art gallery. There are white chess pieces on the table in between them, which they both look down at. The figure on the viewer's left is nude with short black hair and the right hand held above exposed breasts. The man on the right wears a suit and holds a cigar.`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://www.metmuseum.org/art/collection/search/42737`,
-  institution: `The Metropolitan Museum of Art`
+  tombstone: `A Requiem: Theater of Creativity / Self-portrait as Marcel Duchamp (Based on the photo by Julian Wasser). Yasumasa Morimura. 2010. M+, Hong Kong`,
+  licence: `CC0 metadata · M+ API service non-commercial · © Morimura Yasumasa, courtesy Shugo Arts`,
+  source_url: `https://www.mplus.org.hk/en/collection/objects/a-requiem-theater-of-creativity-self-portrait-as-marcel-duchamp-based-on-the-photo-by-julian-wasser-2015558/`,
+  institution: `M+, Hong Kong`
 };
 
 // Build rich context from available fields
@@ -1654,7 +1691,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_met',
+      collection: 'archai_mplus',
       text,
       authorType: 'visitor',
     }),

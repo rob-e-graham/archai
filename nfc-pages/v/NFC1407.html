@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>A Sunday on La Grande Jatte — 1884 — ARCHAI</title>
+<title>The Beach at Sainte-Adresse — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,13 +917,13 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/2d484387-2509-5e8e-2c43-22f9981972eb/full/843,/0/default.jpg" alt="A Sunday on La Grande Jatte — 1884" loading="eager">
+  <img src="https://www.artic.edu/iiif/2/95be2572-b53d-8e7b-abc9-10eb48d4fa5d/full/843,/0/default.jpg" alt="The Beach at Sainte-Adresse" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">A Sunday on La Grande Jatte — 1884</div>
-  <div class="v-sub">Painting · 1884–86, border added 1888–89 · 27992</div>
+  <div class="v-title">The Beach at Sainte-Adresse</div>
+  <div class="v-sub">Painting · 1867 · 14598</div>
 
   <div class="v-meta-strip">
     <span class="v-meta-tag mv">Art Institute of Chicago</span>
@@ -903,7 +939,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>A Sunday on La Grande Jatte — 1884</strong> — A Sunday on La Grande Jatte — 1884. Painting. Oil on canvas. Painting and Sculpture of Europe. Georges Seurat (French, 1859–1891). oil on canvas. 1884–86, border added 1888–89. France. Pointillism. &lt;p&gt;In &lt;em&gt;Ferris Bueller’s Day Off&lt;/em&gt;, Ferris’s best friend Cameron Frye intensely studies this near…</div>
+  <div class="v-story"><strong>The Beach at Sainte-Adresse</strong> — The Beach at Sainte-Adresse. Painting. Oil on canvas. Painting and Sculpture of Europe. Claude Monet (French, 1840–1926). painting. 1867. France. Impressionism. &lt;p&gt;In the summer of 1867, Claude Monet stayed with his aunt at Sainte-Adresse, an affluent suburb of the port city Le Havre in northern Fra…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,15 +1000,15 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">27992</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Georges Seurat (French, 1859–1891)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">14598</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Claude Monet (French, 1840–1926)</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Oil on canvas</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Painting and Sculpture of Europe</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">oil on canvas</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1884–86, border added 1888–89</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">207.5 × 308.1 cm (81 3/4 × 121 1/4 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 240</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1867</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">75.8 × 102.5 cm (29 13/16 × 40 5/16 in.); Framed: 104.1 × 130.2 × 11.4 cm (41 × 51 1/2 × 4 1/2 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 225</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
@@ -986,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1405.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_667/v1627848997/v2/prod/small/002001_002500/002257_003.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Soft Documents No. 2</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2012.1361</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PG7082/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Synthesizer</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:AMERICASFOUNDATION.2082-2024</div>
       </a>
       <a class="v-rel-card" href="NFC1406.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fsammlungenonline.albertina.at%2Fcc%2Fimageproxy.ashx%3Fserver%3Dlocalhost%26port%3D15001%26filename%3Dimages%2FFotoGLV2000_7937.jpg%26cache%3Dyes%26maxwidth%3D400&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Kriminalistische Tatbestandsaufnahme und die zugehörige Kamera. Criminalist crime shooting and the associated camera</div>
-        <div class="v-rel-meta">Europeana · /15508/FotoGLV2000_7937a</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1958.23/1958.23_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">The Troubadour</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1958.23</div>
       </a>
       <a class="v-rel-card" href="NFC1408.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/668836/006377.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Recanto de praia</div>
-        <div class="v-rel-meta">Brasiliana Museus · recanto-de-praia</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2015HR4447/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">R200</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · W.21-2003</div>
       </a>
       <a class="v-rel-card" href="NFC1409.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/52336?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">tap pants</div>
-        <div class="v-rel-meta">Auckland Museum · 2002.27.2</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fsammlungenonline.albertina.at%2Fcc%2Fimageproxy.ashx%3Fserver%3Dlocalhost%26port%3D15001%26filename%3Dimages%2FFotoGLV2000_7935.jpg%26cache%3Dyes%26maxwidth%3D400&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Photogrammetric camera. Photogrammetrische Kamera</div>
+        <div class="v-rel-meta">Europeana · /15508/FotoGLV2000_7935</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/27992" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.artic.edu/artworks/14598" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,26 +1089,25 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `A Sunday on La Grande Jatte — 1884`,
+  title: `The Beach at Sainte-Adresse`,
   type: `Painting`,
-  date: `1884–86, border added 1888–89`,
-  registration: `27992`,
-  location: `Gallery 240`,
+  date: `1867`,
+  registration: `14598`,
+  location: `Gallery 225`,
   discipline: `Painting and Sculpture of Europe`,
-  category: `oil on canvas`,
-  description: `A Sunday on La Grande Jatte — 1884. Painting. Oil on canvas. Painting and Sculpture of Europe. Georges Seurat (French, 1859–1891). oil on canvas. 1884–86, border added 1888–89. France. Pointillism. <p>In <em>Ferris Bueller’s Day Off</em>, Ferris’s best friend Cameron Frye intensely studies this nearly ten-foot-wide painting during a scene set at the Art Institute. Featuring people of every age and social class on the banks of the River Seine, <em>A Sunday on La Grande Jatte—1884</em> has captivated visitors ever since its arrival at the museum in 1924.</p>
-<p>If we, like Cameron, come closer t…`,
+  category: `painting`,
+  description: `The Beach at Sainte-Adresse. Painting. Oil on canvas. Painting and Sculpture of Europe. Claude Monet (French, 1840–1926). painting. 1867. France. Impressionism. <p>In the summer of 1867, Claude Monet stayed with his aunt at Sainte-Adresse, an affluent suburb of the port city Le Havre in northern France. The artist was familiar with the landscape, having grown up in the area, but the region changed signiﬁcantly during his lifetime. The expansion of the country’s rail network turned this small, rural ﬁshing village into a seaside resort for tourists. Here, Monet hinted at this transformation. Th…`,
   medium: `Oil on canvas`,
-  artist: `Georges Seurat (French, 1859–1891)`,
+  artist: `Claude Monet (French, 1840–1926)`,
   culture: `France`,
-  dimensions: `207.5 × 308.1 cm (81 3/4 × 121 1/4 in.)`,
+  dimensions: `75.8 × 102.5 cm (29 13/16 × 40 5/16 in.); Framed: 104.1 × 130.2 × 11.4 cm (41 × 51 1/2 × 4 1/2 in.)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
   licence: `CC0 — Public Domain`,
-  source_url: `https://www.artic.edu/artworks/27992`,
+  source_url: `https://www.artic.edu/artworks/14598`,
   institution: `Art Institute of Chicago`
 };
 

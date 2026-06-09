@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Portrait of a Man with a Pink — ARCHAI</title>
+<title>Drie gulden van de Bataafse Republiek op naam van Utrecht, 1795 — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,27 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/f731615e-ee25-f8e5-b957-69635e1e2d60/full/843,/0/default.jpg" alt="Portrait of a Man with a Pink" loading="eager">
+  <img src="https://iiif.micr.io/PJghU/full/max/0/default.jpg" alt="Drie gulden van de Bataafse Republiek op naam van Utrecht, 1795" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Portrait of a Man with a Pink</div>
-  <div class="v-sub">Painting · 1500–10 · 864</div>
+  <div class="v-title">Drie gulden van de Bataafse Republiek op naam van Utrecht, 1795</div>
+  <div class="v-sub">munt · 2026-02-14T04:17:10Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+        &lt;setSpec&gt;2601&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:creator&gt;Bataafse Republiek&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1795 · 200100092</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Art Institute of Chicago</span>
+    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Painting and Sculpture of Europe</span>
+
   </div>
 
   <!-- SHARE -->
@@ -903,11 +948,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Portrait of a Man with a Pink</strong> — Portrait of a Man with a Pink. Painting. Oil on panel. Painting and Sculpture of Europe. Quentin Massys (Netherlandish, 1466-1530). oil on panel. 1500–10. Netherlands. 16th Century. &lt;p&gt;In this portrait from relatively early in his career, Quentin Massys followed stylistic conventions that appealed t…</div>
+  <div class="v-story"><strong>Drie gulden van de Bataafse Republiek op naam van Utrecht, 1795</strong> — Zilveren munt. Voorzijde: tussen waarde-aanduiding gekroond generaliteirtswapenschild. Omschrift eindigend in: TRAI [=Utrecht]. Keerzijde: Nederlandse maagd met vrijheidshoed en speer, leunend op een bijbel op een altaar. In afsnede jaartal. Kabelrand.</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +978,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,19 +1009,25 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">864</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Quentin Massys (Netherlandish, 1466-1530)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Oil on panel</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Netherlands</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Painting and Sculpture of Europe</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">oil on panel</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1500–10</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">43.8 × 29.2 cm (17 1/4 × 11 1/2 in.); Framed: 51.8 × 36.9 × 4.5 cm (20 3/8 × 14 1/2 × 1 3/4 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Gallery 207</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">200100092</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Bataafse Republiek</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">zilver</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">munt</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-02-14T04:17:10Z&lt;/datestamp&gt;
+        &lt;setSpec&gt;260239&lt;/setSpec&gt;
+        &lt;setSpec&gt;261106&lt;/setSpec&gt;
+        &lt;setSpec&gt;260251&lt;/setSpec&gt;
+        &lt;setSpec&gt;2601&lt;/setSpec&gt;
+      &lt;/header&gt;
+      &lt;metadata&gt;
+        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
+          &lt;dc:creator&gt;Bataafse Republiek&lt;/dc:creator&gt;
+          &lt;dc:date&gt;1795</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">munt</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -986,24 +1042,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC936.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP-12679-101.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Bass Ophicleide in B-flat</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 505034</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/ca2932b4-6c0c-5482-2ae5-8b74926d7b73/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Young Spartan Girls Challenging Boys</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 13487</div>
       </a>
       <a class="v-rel-card" href="NFC937.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/607851?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">purse</div>
-        <div class="v-rel-meta">Auckland Museum · T846</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/6a0e3e40-1e36-2109-378f-3fc5d29176b3/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Bust of Saïd Abdullah of the Darfour People</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 18751</div>
       </a>
       <a class="v-rel-card" href="NFC939.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/a4bef587-48a4-d186-813d-f297441b1ab3/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Mahana no atua (Day of the God)</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 27943</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/isxkZ/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Nederlandse 10 cent, 1903</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100273</div>
       </a>
       <a class="v-rel-card" href="NFC940.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/378233?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">debenture</div>
-        <div class="v-rel-meta">Auckland Museum · 1999x2.131</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/uXwkD/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Nederlandse &amp;#189; gulden, 1868</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100265</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1072,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/864" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/200100092" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,26 +1104,35 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Portrait of a Man with a Pink`,
-  type: `Painting`,
-  date: `1500–10`,
-  registration: `864`,
-  location: `Gallery 207`,
-  discipline: `Painting and Sculpture of Europe`,
-  category: `oil on panel`,
-  description: `Portrait of a Man with a Pink. Painting. Oil on panel. Painting and Sculpture of Europe. Quentin Massys (Netherlandish, 1466-1530). oil on panel. 1500–10. Netherlands. 16th Century. <p>In this portrait from relatively early in his career, Quentin Massys followed stylistic conventions that appealed to Antwerp’s growing market of patrons while also exhibiting the bold innovations that ultimately made him one of city’s most influential painters. The sitter appears frozen in a somewhat unnatural pose, as was the fashion for half-length portraits at the time, and the positioning of his left hand on…`,
-  medium: `Oil on panel`,
-  artist: `Quentin Massys (Netherlandish, 1466-1530)`,
-  culture: `Netherlands`,
-  dimensions: `43.8 × 29.2 cm (17 1/4 × 11 1/2 in.); Framed: 51.8 × 36.9 × 4.5 cm (20 3/8 × 14 1/2 × 1 3/4 in.)`,
+  title: `Drie gulden van de Bataafse Republiek op naam van Utrecht, 1795`,
+  type: `munt`,
+  date: `2026-02-14T04:17:10Z</datestamp>
+        <setSpec>260239</setSpec>
+        <setSpec>261106</setSpec>
+        <setSpec>260251</setSpec>
+        <setSpec>2601</setSpec>
+      </header>
+      <metadata>
+        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
+          <dc:creator>Bataafse Republiek</dc:creator>
+          <dc:date>1795`,
+  registration: `200100092`,
+  location: `Rijksmuseum, Amsterdam`,
+  discipline: ``,
+  category: `munt`,
+  description: `Zilveren munt. Voorzijde: tussen waarde-aanduiding gekroond generaliteirtswapenschild. Omschrift eindigend in: TRAI [=Utrecht]. Keerzijde: Nederlandse maagd met vrijheidshoed en speer, leunend op een bijbel op een altaar. In afsnede jaartal. Kabelrand.`,
+  medium: `zilver`,
+  artist: `Bataafse Republiek`,
+  culture: ``,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://www.artic.edu/artworks/864`,
-  institution: `Art Institute of Chicago`
+  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
+  source_url: `https://www.rijksmuseum.nl/en/collection/200100092`,
+  institution: `Rijksmuseum, Amsterdam`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1713,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_aic',
+      collection: 'archai_rijks',
       text,
       authorType: 'visitor',
     }),

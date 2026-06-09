@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Vue prise du Couvent des Dominicains, Chalais (Isère), France — ARCHAI</title>
+<title>Corcovado — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/2022.36/2022.36_web.jpg" alt="Vue prise du Couvent des Dominicains, Chalais (Isère), France" loading="eager">
+  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/646968/21006-scaled.jpg" alt="Corcovado" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Vue prise du Couvent des Dominicains, Chalais (Isère), France</div>
-  <div class="v-sub">Photograph · c. 1865 · 2022.36</div>
+  <div class="v-title">Corcovado</div>
+  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · 18-- · corcovado</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
+    <span class="v-meta-tag mv">Brasiliana Museus</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Photography</span>
+    <span class="v-meta-tag">Brasiliana Museus</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Vue prise du Couvent des Dominicains, Chalais (Isère), France</strong> — Félix Thiollier brought to landscape photography the emotional power and mystery of the Barbizon and naturalist painters whom he collected and befriended. This dramatic view provides a deep vista more commonly found in photographs of the Western United States at the time. Underlying it, however, are…</div>
+  <div class="v-story"><strong>Corcovado</strong> — No primeiro plano, vale recoberto de árvores e vegetação baixa, com pequenas elevações sobre as quais se assentam várias casas, vistas à distância. No centro, ao fundo, montanha elevada de formato irregular, em tons cinzas e castanhos. Céu azul e branco. Assinatura do autor no canto inferior direito…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,19 +1000,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2022.36</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Félix Thiollier (French, 1842–1914)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">albumen print from collodion negative</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, 19th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photograph</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1865</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Image: 13.1 x 20 cm (5 3/16 x 7 7/8 in.); Paper: 13.1 x 20 cm (5 3/16 x 7 7/8 in.); Mounted: 31.7 x 49.1 cm (12 1/2 x 19 5/16 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">230 Photography</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">corcovado</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">18--</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 37,50 cm · largura 47,30 cm</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -986,24 +1026,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1493.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/292110/preview" loading="lazy"></div>
-        <div class="v-rel-title">Box</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH002897</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627833866/v2/prod/small/014501_015000/014996_010.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Rope Chair</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2019.178</div>
       </a>
       <a class="v-rel-card" href="NFC1494.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fwww.searchculture.gr%2Faggregator%2Fthumbnails%2Fedm-record%2FDigASFA%2F000187-11160NK&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">gajida 3</div>
-        <div class="v-rel-meta">Europeana · /1360/https___www_searchculture_gr_aggregator_edm_DigASFA_000187_11160NK</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/5553b728-cc59-1d08-7505-f9b3826334b8/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Portrait of General José Manuel Romero</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 89043</div>
       </a>
       <a class="v-rel-card" href="NFC1496.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2006AA4340/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Here is a Gale Warning</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.365-2005</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/910766/preview" loading="lazy"></div>
+        <div class="v-rel-title">Map of Kerguelen's Land called by C. Cook Island of Desolation. Accurately Engraved for Andersons' Large Folio Edition of the Whole of Captain Cook's Voyages &amp;c. CompletePlate 66. From the book New, authentic, and complete collection of voyages round the world.</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · RB000015/066a</div>
       </a>
       <a class="v-rel-card" href="NFC1497.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/838d8c33-a3b4-68ea-587b-87ceec2011af/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Branch of the Seine near Giverny (Mist)</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 16564</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/gHYwM/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Naslag van Maria Theresia-daalder met jaartal 1780, bestemd voor Noord-Oost-Afrika</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100194</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1056,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://clevelandart.org/art/2022.36" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/corcovado/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,26 +1088,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Vue prise du Couvent des Dominicains, Chalais (Isère), France`,
-  type: `Photograph`,
-  date: `c. 1865`,
-  registration: `2022.36`,
-  location: `230 Photography`,
-  discipline: `Photography`,
-  category: `Photograph`,
-  description: `Félix Thiollier brought to landscape photography the emotional power and mystery of the Barbizon and naturalist painters whom he collected and befriended. This dramatic view provides a deep vista more commonly found in photographs of the Western United States at the time. Underlying it, however, are a geometric structure of overlapping triangles, curved top border, and atmospheric clouds and mist that relate directly to precedents in painting.`,
-  medium: `albumen print from collodion negative`,
-  artist: `Félix Thiollier (French, 1842–1914)`,
-  culture: `France, 19th century`,
-  dimensions: `Image: 13.1 x 20 cm (5 3/16 x 7 7/8 in.); Paper: 13.1 x 20 cm (5 3/16 x 7 7/8 in.); Mounted: 31.7 x 49.1 cm (12 1/2 x 19 5/16 in.)`,
-  wall_description: ``,
+  title: `Corcovado`,
+  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  date: `18--`,
+  registration: `corcovado`,
+  location: `Brasiliana Museus`,
+  discipline: `Brasiliana Museus`,
+  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  description: `No primeiro plano, vale recoberto de árvores e vegetação baixa, com pequenas elevações sobre as quais se assentam várias casas, vistas à distância. No centro, ao fundo, montanha elevada de formato irregular, em tons cinzas e castanhos. Céu azul e branco. Assinatura do autor no canto inferior direito em tinta preta: &#034;Ribeiro&#034;. Moldura retangular, em madeira dourada, com decoração geométrica.`,
+  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
+  artist: ``,
+  culture: `Brazil`,
+  dimensions: `altura 37,50 cm · largura 47,30 cm`,
+  wall_description: `No primeiro plano, vale recoberto de árvores e vegetação baixa, com pequenas elevações sobre as quais se assentam várias casas, vistas à distância. No centro, ao fundo, montanha elevada de formato irregular, em tons cinzas e castanhos. Céu azul e branco. Assinatura do autor no canto inferior direito em tinta preta: &#034;Ribeiro&#034;. Moldura retangular, em madeira dourada, com decoração geométrica.`,
   fun_fact: ``,
-  did_you_know: `Félix Thiollier, a wealthy industrialist, retired at 35 to pursue photography and local history.`,
-  provenance: `[{"description":"(Galerie Michele Chomette, Paris, France), sold to Michael Mattis and Judith Hochberg, Scarsdale, NY","citations":[],"footnotes":null,"date":null,"sortorder":1},{"description":"Michael Mattis & Judith Hochberg, Scarsdale, NY, given to The Cleveland Museum of Art, Cleveland, OH","cit…`,
-  tombstone: `Vue prise du Couvent des Dominicains, Chalais (Isère), France, c. 1865. Félix Thiollier (French, 1842–1914). Albumen print from collodion negative; image: 13.1 x 20 cm (5 3/16 x 7 7/8 in.); paper: 13.1 x 20 cm (5 3/16 x 7 7/8 in.); mounted: 31.7 x 49.1 cm (12 1/2 x 19 5/16 in.). The Cleveland Museum of Art, Gift of Michael Mattis and Judith Hochberg, 2022.36`,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://clevelandart.org/art/2022.36`,
-  institution: `Cleveland Museum of Art`
+  did_you_know: ``,
+  provenance: ``,
+  tombstone: `Corcovado. 18--. Brasiliana Museus`,
+  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
+  source_url: `https://brasiliana.museus.gov.br/acervos/corcovado/`,
+  institution: `Brasiliana Museus`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1688,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_cma',
+      collection: 'archai_brasiliana',
       text,
       authorType: 'visitor',
     }),

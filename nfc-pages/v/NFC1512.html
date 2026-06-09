@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Portrait of Edouard Molé — ARCHAI</title>
+<title>Suspension Part for a Musical Instrument called &quot;Gender&quot; — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://www.artic.edu/iiif/2/5df51c9d-dac5-d962-4d4b-300339219e54/full/843,/0/default.jpg" alt="Portrait of Edouard Molé" loading="eager">
+  <img src="https://images.metmuseum.org/CRDImages/as/original/1987_142_268.jpg" alt="Suspension Part for a Musical Instrument called &quot;Gender&quot;" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Portrait of Edouard Molé</div>
-  <div class="v-sub">Print · 1653 · 24</div>
+  <div class="v-title">Suspension Part for a Musical Instrument called &quot;Gender&quot;</div>
+  <div class="v-sub">Suspension part for a musical instrument · 10th–11th century(?) · 37774</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Art Institute of Chicago</span>
+    <span class="v-meta-tag mv">The Metropolitan Museum of Art</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Prints and Drawings</span>
+    <span class="v-meta-tag">Asian Art</span>
   </div>
 
   <!-- SHARE -->
@@ -903,8 +939,7 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Portrait of Edouard Molé</strong> — Portrait of Edouard Molé. Print. Engraving on paper. Prints and Drawings. Robert Nanteuil
-French, 1623-1678. engraving. 1653. France</div>
+  <div class="v-story"><strong>Suspension Part for a Musical Instrument called &quot;Gender&quot;</strong> — Suspension Part for a Musical Instrument called &quot;Gender&quot;. Suspension part for a musical instrument. Bronze. Asian Art. Indonesia. Metalwork. 10th–11th century(?)</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
@@ -934,24 +969,29 @@ French, 1623-1678. engraving. 1653. France</div>
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -960,17 +1000,15 @@ French, 1623-1678. engraving. 1653. France</div>
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">24</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Robert Nanteuil
-French, 1623-1678</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Engraving on paper</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Prints and Drawings</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">engraving</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1653</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Plate trimmed: 29.1 × 20.1 cm (11 1/2 × 7 15/16 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Print</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">37774</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Bronze</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Indonesia</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Asian Art</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Metalwork</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">10th–11th century(?)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Gr. W. 4 1/2 in. (11.5 cm)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">The Met, New York</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Suspension part for a musical instrument</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
@@ -988,24 +1026,24 @@ French, 1623-1678</span></div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1510.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_668/v1627826237/v2/prod/small/001501_002000/001940_003.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Materialised Sketch of a Round Back Chair</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2015.281</div>
+        <div class="v-rel-thumb"><img src="https://iiif.micr.io/KwJBk/full/max/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Duit van de Bataafse Republiek op naam van Zeeland, 1796, misslag</div>
+        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 200100095</div>
       </a>
       <a class="v-rel-card" href="NFC1511.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2024NX9372/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Koto</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · LOAN:AMERICASFOUNDATION.2131:1 to 4-2024</div>
+        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/DP104824.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Bird-Headed Figure Whistle</div>
+        <div class="v-rel-meta">The Metropolitan Museum of Art · 310532</div>
       </a>
       <a class="v-rel-card" href="NFC1513.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD4357/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">THE SAME CHANGE</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.311-2020</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/5757?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">textile piece</div>
+        <div class="v-rel-meta">Auckland Museum · T15</div>
       </a>
       <a class="v-rel-card" href="NFC1514.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_751/v1627907805/v2/prod/small/003501_004000/003657_004.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Lamp (Oba-Q)</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2014.105</div>
+        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/613298?rendering=standard.jpg" loading="lazy"></div>
+        <div class="v-rel-title">lock</div>
+        <div class="v-rel-meta">Auckland Museum · 1957.19.4</div>
       </a></div>
   </div>
 </div>
@@ -1018,7 +1056,7 @@ French, 1623-1678</span></div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.artic.edu/artworks/24" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.metmuseum.org/art/collection/search/37774" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1050,28 +1088,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Portrait of Edouard Molé`,
-  type: `Print`,
-  date: `1653`,
-  registration: `24`,
-  location: `Art Institute of Chicago`,
-  discipline: `Prints and Drawings`,
-  category: `engraving`,
-  description: `Portrait of Edouard Molé. Print. Engraving on paper. Prints and Drawings. Robert Nanteuil
-French, 1623-1678. engraving. 1653. France`,
-  medium: `Engraving on paper`,
-  artist: `Robert Nanteuil
-French, 1623-1678`,
-  culture: `France`,
-  dimensions: `Plate trimmed: 29.1 × 20.1 cm (11 1/2 × 7 15/16 in.)`,
+  title: `Suspension Part for a Musical Instrument called &quot;Gender&quot;`,
+  type: `Suspension part for a musical instrument`,
+  date: `10th–11th century(?)`,
+  registration: `37774`,
+  location: `The Met, New York`,
+  discipline: `Asian Art`,
+  category: `Metalwork`,
+  description: `Suspension Part for a Musical Instrument called "Gender". Suspension part for a musical instrument. Bronze. Asian Art. Indonesia. Metalwork. 10th–11th century(?)`,
+  medium: `Bronze`,
+  artist: ``,
+  culture: `Indonesia`,
+  dimensions: `Gr. W. 4 1/2 in. (11.5 cm)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
   licence: `CC0 — Public Domain`,
-  source_url: `https://www.artic.edu/artworks/24`,
-  institution: `Art Institute of Chicago`
+  source_url: `https://www.metmuseum.org/art/collection/search/37774`,
+  institution: `The Metropolitan Museum of Art`
 };
 
 // Build rich context from available fields
@@ -1652,7 +1688,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_aic',
+      collection: 'archai_met',
       text,
       authorType: 'visitor',
     }),

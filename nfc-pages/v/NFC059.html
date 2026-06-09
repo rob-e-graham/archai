@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Man with Walking Stick — ARCHAI</title>
+<title>Musical Instrument (Sansa) — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/2010.7/2010.7_web.jpg" alt="Man with Walking Stick" loading="eager">
+  <img src="https://media.tepapa.govt.nz/collection/96441/preview" alt="Musical Instrument (Sansa)" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Man with Walking Stick</div>
-  <div class="v-sub">Photograph · late 1870's · 2010.7</div>
+  <div class="v-title">Musical Instrument (Sansa)</div>
+  <div class="v-sub">musical instruments · 19th century · FE004906</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Photography</span>
+    <span class="v-meta-tag mv">Museum of New Zealand Te Papa Tongarewa</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(200,169,110,0.28);color:#c8a96e;">Restricted / mixed</span>
+    <span class="v-meta-tag">History</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Man with Walking Stick</strong> — During the 1870s, Giraudon commissioned one or more artists—probably a French painter who wished to remain anonymous—to create photographs of peasants. Now called Giraudon’s Artist, this photographer was one of the few in the 1800s specializing in rural figure studies created for use by artists. The…</div>
-  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
-      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+  <div class="v-story"><strong>Musical Instrument (Sansa)</strong> — Musical Instrument (Sansa) , 19th century, South Africa, maker unknown. Purchased 1947. CC BY-NC-ND 4.0 . Te Papa (FE004906)</div>
+  <div class="v-rights-note" style="border-color:rgba(200,169,110,0.28);">
+      <div class="v-rights-label" style="color:#c8a96e;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#c8a96e;font-weight:400;">Restricted / mixed</strong> — Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</div>
+      <div class="v-rights-detail">Licence / rights: CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,19 +1000,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2010.7</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Auguste Giraudon's Artist (French)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">albumen print from wet collodion negative</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France, 19th century</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Photography</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Photograph</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">late 1870's</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Image: 17.1 x 11.2 cm (6 3/4 x 4 7/16 in.); Paper: 17.1 x 11.2 cm (6 3/4 x 4 7/16 in.); Matted: 45.7 x 35.6 cm (18 x 14 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">230 Photography</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Photograph</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">FE004906</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Unknown</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">metal, wood</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">South African</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">History</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">musical instruments</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">19th century</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Overall: 200mm (width), 70mm (height), 130mm (length)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Te Papa Tongarewa, Wellington</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">musical instruments</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Restricted / mixed</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Metadata may be open, but media reuse is limited, non-commercial, or preview-only.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC BY-NC-ND 4.0 · metadata CC BY 4.0 · CC BY-NC-ND 4.0</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -986,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC057.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP234912.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Charango</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 505397</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2004.32/2004.32_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Behind the Troglodyte Farm</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 2004.32</div>
       </a>
       <a class="v-rel-card" href="NFC058.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/midp89.4.2788.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Maraca (gourd rattle)</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 502806</div>
+        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_816/v1627908129/v2/prod/small/005001_005500/005124_008.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Cabinet for Mill Owners' Association Building, Ahmedabad, India, model LC-AH-08-A</div>
+        <div class="v-rel-meta">M+, Hong Kong · 2015.289</div>
       </a>
       <a class="v-rel-card" href="NFC060.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/mi/original/DP210445.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Monastery Bell</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 502041</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2014HD6670/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">First colour broadcast by Associated Television</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · S.171-1980</div>
       </a>
       <a class="v-rel-card" href="NFC061.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/548894?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">watch, pocket</div>
-        <div class="v-rel-meta">Auckland Museum · H426</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Fsammlungenonline.albertina.at%2Fcc%2Fimageproxy.ashx%3Fserver%3Dlocalhost%26port%3D15001%26filename%3Dimages%2FFotoGLV2000_7937.jpg%26cache%3Dyes%26maxwidth%3D400&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Kriminalistische Tatbestandsaufnahme und die zugehörige Kamera. Criminalist crime shooting and the associated camera</div>
+        <div class="v-rel-meta">Europeana · /15508/FotoGLV2000_7937d</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://clevelandart.org/art/2010.7" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://collections.tepapa.govt.nz/object/96442" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,26 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Man with Walking Stick`,
-  type: `Photograph`,
-  date: `late 1870's`,
-  registration: `2010.7`,
-  location: `230 Photography`,
-  discipline: `Photography`,
-  category: `Photograph`,
-  description: `During the 1870s, Giraudon commissioned one or more artists—probably a French painter who wished to remain anonymous—to create photographs of peasants. Now called Giraudon’s Artist, this photographer was one of the few in the 1800s specializing in rural figure studies created for use by artists. The images were likely taken near Barbizon, a destination popular with artists who wanted to work from nature. The artistry of these images derives from their skillful use of light, ability to render a subject in the landscape, and a perceptive depiction of human dignity.`,
-  medium: `albumen print from wet collodion negative`,
-  artist: `Auguste Giraudon's Artist (French)`,
-  culture: `France, 19th century`,
-  dimensions: `Image: 17.1 x 11.2 cm (6 3/4 x 4 7/16 in.); Paper: 17.1 x 11.2 cm (6 3/4 x 4 7/16 in.); Matted: 45.7 x 35.6 cm (18 x 14 in.)`,
+  title: `Musical Instrument (Sansa)`,
+  type: `musical instruments`,
+  date: `19th century`,
+  registration: `FE004906`,
+  location: `Te Papa Tongarewa, Wellington`,
+  discipline: `History`,
+  category: `musical instruments`,
+  description: `Musical Instrument (Sansa) , 19th century, South Africa, maker unknown. Purchased 1947. CC BY-NC-ND 4.0 . Te Papa (FE004906)`,
+  medium: `metal, wood`,
+  artist: `Unknown`,
+  culture: `South African`,
+  dimensions: `Overall: 200mm (width), 70mm (height), 130mm (length)`,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: `Auguste Giraudon was not a photographer but an important Parisian publisher of photographs.`,
-  provenance: `[{"description":"A French filmmaker and private collector; Howard Greenberg Gallery and Charles Isaacs Photographs, New York; Cleveland Museum of Art","citations":[],"footnotes":null,"date":null,"sortorder":null}]`,
-  tombstone: `Man with Walking Stick, late 1870's. Auguste Giraudon's Artist (French). Albumen print from wet collodion negative; image: 17.1 x 11.2 cm (6 3/4 x 4 7/16 in.); paper: 17.1 x 11.2 cm (6 3/4 x 4 7/16 in.); matted: 45.7 x 35.6 cm (18 x 14 in.). The Cleveland Museum of Art, Purchase from the J. H. Wade Fund, 2010.7`,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://clevelandart.org/art/2010.7`,
-  institution: `Cleveland Museum of Art`
+  did_you_know: ``,
+  provenance: ``,
+  tombstone: `Musical Instrument (Sansa), 19th century, South Africa, maker unknown. Purchased 1947. CC BY-NC-ND 4.0. Te Papa (FE004906)`,
+  licence: `CC BY-NC-ND 4.0 · metadata CC BY 4.0`,
+  source_url: `https://collections.tepapa.govt.nz/object/96442`,
+  institution: `Museum of New Zealand Te Papa Tongarewa`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_cma',
+      collection: 'archai_tepapa',
       text,
       authorType: 'visitor',
     }),

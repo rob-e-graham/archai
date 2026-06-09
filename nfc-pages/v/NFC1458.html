@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Portret van Dirk II, graaf van Holland — ARCHAI</title>
+<title>Estampa religiosa — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,28 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://iiif.micr.io/uXJlQ/full/max/0/default.jpg" alt="Portret van Dirk II, graaf van Holland" loading="eager">
+  <img src="https://museuregionalcasadosottoni.acervos.museus.gov.br/wp-content/uploads/2019/04/171_A-2-1-1-4.jpg" alt="Estampa religiosa" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Portret van Dirk II, graaf van Holland</div>
-  <div class="v-sub">prent · 2026-01-27T04:44:31Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260241&lt;/setSpec&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;26151&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:coverage&gt;Graafschap Holland&lt;/dc:coverage&gt;
-          &lt;dc:creator&gt;Adriaen Matham&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1620 · 20010001</div>
+  <div class="v-title">Estampa religiosa</div>
+  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.4 estampa · Séc. XIX · 5368641-2</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Rijksmuseum, Amsterdam</span>
+    <span class="v-meta-tag mv">Brasiliana Museus</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Dirk II (graaf van Holland)</span>
+    <span class="v-meta-tag">Brasiliana Museus</span>
   </div>
 
   <!-- SHARE -->
@@ -913,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Portret van Dirk II, graaf van Holland</strong> — Portret van Dirk II, graaf van Holland, staande naar rechts in een harnas met op zijn schouder het wapen van Holland en in zijn hand een zwaard. Prent uit een serie van 36 prenten met portretten ten voeten uit van graven en gravinnen van Holland.</div>
+  <div class="v-story"><strong>Estampa religiosa</strong> — Litogravura colorida, representando sacra com o Evangelho de São João, de formato vertical, com texto inserido em estrutura de portal, com a parte superior em semi-arco, tendo ornamentação em volutas e motivos fitomorfos. Nas laterais, frisos em tom azul claro entremeados por folhas de acanto, motiv…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: https://creativecommons.org/publicdomain/mark/1.0/</div>
+      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://museuregionalcasadosottoni.acervos.museus.gov.br/reproducao-de-imagens/</div>
     </div>
 
   <div class="v-divider"></div>
@@ -943,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -969,27 +1000,17 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">20010001</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Adriaen Matham</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">papier</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Dirk II (graaf van Holland)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">prent</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">2026-01-27T04:44:31Z&lt;/datestamp&gt;
-        &lt;setSpec&gt;260241&lt;/setSpec&gt;
-        &lt;setSpec&gt;260239&lt;/setSpec&gt;
-        &lt;setSpec&gt;26151&lt;/setSpec&gt;
-        &lt;setSpec&gt;260251&lt;/setSpec&gt;
-      &lt;/header&gt;
-      &lt;metadata&gt;
-        &lt;oai_dc:dc xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:oai_dc=&quot;http://www.openarchives.org/OAI/2.0/oai_dc/&quot;&gt;
-          &lt;dc:coverage&gt;Graafschap Holland&lt;/dc:coverage&gt;
-          &lt;dc:creator&gt;Adriaen Matham&lt;/dc:creator&gt;
-          &lt;dc:date&gt;1620</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Rijksmuseum, Amsterdam</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">prent</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">5368641-2</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.4 estampa</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.4 estampa</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Séc. XIX</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.4 estampa</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">https://creativecommons.org/publicdomain/mark/1.0/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://museuregionalcasadosottoni.acervos.museus.gov.br/reproducao-de-imagens/</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -1004,24 +1025,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1456.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2019MA1839/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Callbuoy series 14A distress radio telephone</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.467-1973</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/9c1e2826-e79b-4b4d-73f9-2ba8c8b00180/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">A Mounted Officer</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 885</div>
       </a>
       <a class="v-rel-card" href="NFC1457.html">
-        <div class="v-rel-thumb"><img src="https://images.metmuseum.org/CRDImages/ao/original/1979.206.361_a.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Drum (Teponaztli)</div>
-        <div class="v-rel-meta">The Metropolitan Museum of Art · 312583</div>
+        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/660839/preview" loading="lazy"></div>
+        <div class="v-rel-title">Telegram to Dorothy Broad</div>
+        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · GH025613</div>
       </a>
       <a class="v-rel-card" href="NFC1459.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/KCwRc/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van keizer Maximiliaan I</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010032</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2011EP0065/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Murphy Television see for yourself</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.521-1985</div>
       </a>
       <a class="v-rel-card" href="NFC1460.html">
-        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/0e94a829-b3b7-8317-b609-d1826f0369f0/full/843,/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Lucie Berard (Child in White)</div>
-        <div class="v-rel-meta">Art Institute of Chicago · 16600</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/681108/000401-Edoardo-De-Martino-Naus-e-fragatas-inglesas-no-ancoradouro-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Naus e fragatas inglesas no ancoradouro</div>
+        <div class="v-rel-meta">Brasiliana Museus · naus-e-fragatas-inglesas-no-ancoradouro</div>
       </a></div>
   </div>
 </div>
@@ -1034,7 +1055,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://www.rijksmuseum.nl/en/collection/20010001" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/5368641-2/" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1066,36 +1087,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Portret van Dirk II, graaf van Holland`,
-  type: `prent`,
-  date: `2026-01-27T04:44:31Z</datestamp>
-        <setSpec>260241</setSpec>
-        <setSpec>260239</setSpec>
-        <setSpec>26151</setSpec>
-        <setSpec>260251</setSpec>
-      </header>
-      <metadata>
-        <oai_dc:dc xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
-          <dc:coverage>Graafschap Holland</dc:coverage>
-          <dc:creator>Adriaen Matham</dc:creator>
-          <dc:date>1620`,
-  registration: `20010001`,
-  location: `Rijksmuseum, Amsterdam`,
-  discipline: `Dirk II (graaf van Holland)`,
-  category: `prent`,
-  description: `Portret van Dirk II, graaf van Holland, staande naar rechts in een harnas met op zijn schouder het wapen van Holland en in zijn hand een zwaard. Prent uit een serie van 36 prenten met portretten ten voeten uit van graven en gravinnen van Holland.`,
-  medium: `papier`,
-  artist: `Adriaen Matham`,
-  culture: ``,
+  title: `Estampa religiosa`,
+  type: `02 artes visuais/cinematográfica > 02.4 estampa`,
+  date: `Séc. XIX`,
+  registration: `5368641-2`,
+  location: `Brasiliana Museus`,
+  discipline: `Brasiliana Museus`,
+  category: `02 artes visuais/cinematográfica > 02.4 estampa`,
+  description: `Litogravura colorida, representando sacra com o Evangelho de São João, de formato vertical, com texto inserido em estrutura de portal, com a parte superior em semi-arco, tendo ornamentação em volutas e motivos fitomorfos. Nas laterais, frisos em tom azul claro entremeados por folhas de acanto, motivos florais, volutas, escudos e ânforas, em formato de arabesco, nos tons azul, amarelo, rosa e branco. Na parte central  superior, escudo com imagem de cordeiro de Deus deitado sobre a cruz, sob fundo azul escuro. Abaixo do cordeiro, texto em latim com a seguinte inscrição, em tinta preta: &#034;INI…`,
+  medium: `02 artes visuais/cinematográfica > 02.4 estampa`,
+  artist: ``,
+  culture: `Brazil`,
   dimensions: ``,
-  wall_description: ``,
+  wall_description: `Litogravura colorida, representando sacra com o Evangelho de São João, de formato vertical, com texto inserido em estrutura de portal, com a parte superior em semi-arco, tendo ornamentação em volutas e motivos fitomorfos. Nas laterais, frisos em tom azul claro entremeados por folhas de acanto, motivos florais, volutas, escudos e ânforas, em formato de arabesco, nos tons azul, amarelo, rosa e branco. Na parte central  superior, escudo com imagem de cordeiro de Deus deitado sobre a cruz, sob fundo…`,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: ``,
-  licence: `https://creativecommons.org/publicdomain/mark/1.0/`,
-  source_url: `https://www.rijksmuseum.nl/en/collection/20010001`,
-  institution: `Rijksmuseum, Amsterdam`
+  tombstone: `Estampa religiosa. Séc. XIX. Brasiliana Museus`,
+  licence: `Domínio público, ver http://museuregionalcasadosottoni.acervos.museus.gov.br/reproducao-de-imagens/`,
+  source_url: `https://brasiliana.museus.gov.br/acervos/5368641-2/`,
+  institution: `Brasiliana Museus`
 };
 
 // Build rich context from available fields
@@ -1676,7 +1687,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_rijks',
+      collection: 'archai_brasiliana',
       text,
       authorType: 'visitor',
     }),

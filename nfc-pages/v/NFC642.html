@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Primeiro Barão de Araguari — ARCHAI</title>
+<title>Winged Figure — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/668988/006337.jpg" alt="Primeiro Barão de Araguari" loading="eager">
+  <img src="https://www.artic.edu/iiif/2/e7f7d1fb-9b18-45b4-1279-204a150279f5/full/843,/0/default.jpg" alt="Winged Figure" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Primeiro Barão de Araguari</div>
-  <div class="v-sub">02 artes visuais/cinematográfica &gt; 02.6 pintura · [18--] · primeiro-barao-de-araguari</div>
+  <div class="v-title">Winged Figure</div>
+  <div class="v-sub">Painting · 1889 · 59798</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Brasiliana Museus</span>
+    <span class="v-meta-tag mv">Art Institute of Chicago</span>
     <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Brasiliana Museus</span>
+    <span class="v-meta-tag">Arts of the Americas</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,11 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Primeiro Barão de Araguari</strong> — Homem idoso, em meio corpo, sentado, direcionado para a direita, olhando para a frente. Rosto e nariz compridos. Testa alta. Cabelos brancos, ralos. Sobrancelhas curtas, escuras, olhos castanhos. Lábios finos. Orelha direita visível. Casaca azulada, sugerindo veludo, aberta, deixando aparente colete…</div>
+  <div class="v-story"><strong>Winged Figure</strong> — Winged Figure. Painting. Oil on canvas. Arts of the Americas. Abbott Handerson Thayer (American, 1849–1921). painting. 1889. United States. &lt;p&gt;This female angel is one of many that Abbott Handerson Thayer painted during his career. Originally a painter of animals, Thayer created portraits and then a…</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
       <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +969,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,18 +1000,19 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">primeiro-barao-de-araguari</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">Brazil</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Brasiliana Museus</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">[18--]</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">altura 139,20 cm · largura 114,30 cm</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Brasiliana Museus</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">02 artes visuais/cinematográfica &gt; 02.6 pintura</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">59798</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Abbott Handerson Thayer (American, 1849–1921)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Oil on canvas</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">United States</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Arts of the Americas</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">painting</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1889</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">130.8 × 95.9 cm (51 1/2 × 37 3/4 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Painting</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -985,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC640.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PJ2781/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Telephone</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · WE.18172-2014</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1942.1065/1942.1065_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Romaine Lacaux</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1942.1065</div>
       </a>
       <a class="v-rel-card" href="NFC641.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/681452/default-48-1-1.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Descobrimento do Brasil</div>
-        <div class="v-rel-meta">Brasiliana Museus · descobrimento-do-brasil</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2017JX6025/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Alex Kapranos' jacket from the video for &lt;i&gt;Do You Want To&lt;/i&gt;</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · S.1321-2010</div>
       </a>
       <a class="v-rel-card" href="NFC643.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/pcKPY/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van Maria, hertogin van Bourgondi&amp;#235;</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010031</div>
+        <div class="v-rel-thumb"><img src="https://www.artic.edu/iiif/2/a9a3e2fa-f7a4-2713-00ed-909062cb48d7/full/843,/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">A Mother Feeding her Child (The Happy Mother)</div>
+        <div class="v-rel-meta">Art Institute of Chicago · 497</div>
       </a>
       <a class="v-rel-card" href="NFC644.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/44269?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">envelope</div>
-        <div class="v-rel-meta">Auckland Museum · 2004.47.4</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669028/006328.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Baronesa de Taquari (primeira)</div>
+        <div class="v-rel-meta">Brasiliana Museus · baronesa-de-taquari-primeira</div>
       </a></div>
   </div>
 </div>
@@ -1015,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://brasiliana.museus.gov.br/acervos/primeiro-barao-de-araguari/" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.artic.edu/artworks/59798" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1047,26 +1089,26 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Primeiro Barão de Araguari`,
-  type: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  date: `[18--]`,
-  registration: `primeiro-barao-de-araguari`,
-  location: `Brasiliana Museus`,
-  discipline: `Brasiliana Museus`,
-  category: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  description: `Homem idoso, em meio corpo, sentado, direcionado para a direita, olhando para a frente. Rosto e nariz compridos. Testa alta. Cabelos brancos, ralos. Sobrancelhas curtas, escuras, olhos castanhos. Lábios finos. Orelha direita visível. Casaca azulada, sugerindo veludo, aberta, deixando aparente colete branco com seis botões. Punhos de renda branca. Colarinho branco, de bicos virados. Fitão vermelho com insígnia da Ordem de Cristo. No peito esquerdo, comenda da Imperial ordem do Cruzeiro. Calça na mesma cor da casaca. Braço direito sobre braço da cadeira, mão tocando ponta de bicórnio preto, com …`,
-  medium: `02 artes visuais/cinematográfica > 02.6 pintura`,
-  artist: ``,
-  culture: `Brazil`,
-  dimensions: `altura 139,20 cm · largura 114,30 cm`,
-  wall_description: `Homem idoso, em meio corpo, sentado, direcionado para a direita, olhando para a frente. Rosto e nariz compridos. Testa alta. Cabelos brancos, ralos. Sobrancelhas curtas, escuras, olhos castanhos. Lábios finos. Orelha direita visível. Casaca azulada, sugerindo veludo, aberta, deixando aparente colete branco com seis botões. Punhos de renda branca. Colarinho branco, de bicos virados. Fitão vermelho com insígnia da Ordem de Cristo. No peito esquerdo, comenda da Imperial ordem do Cruzeiro. Calça na …`,
+  title: `Winged Figure`,
+  type: `Painting`,
+  date: `1889`,
+  registration: `59798`,
+  location: `Art Institute of Chicago`,
+  discipline: `Arts of the Americas`,
+  category: `painting`,
+  description: `Winged Figure. Painting. Oil on canvas. Arts of the Americas. Abbott Handerson Thayer (American, 1849–1921). painting. 1889. United States. <p>This female angel is one of many that Abbott Handerson Thayer painted during his career. Originally a painter of animals, Thayer created portraits and then allegorical figures like this example after training in Paris. The artist wrote of his seraphic subjects, “I have put on wings probably more to symbolize an exalted atmosphere . . . where one need not explain the action of his figures.” Other late 19th-century artists such as <a href="https://www.art…`,
+  medium: `Oil on canvas`,
+  artist: `Abbott Handerson Thayer (American, 1849–1921)`,
+  culture: `United States`,
+  dimensions: `130.8 × 95.9 cm (51 1/2 × 37 3/4 in.)`,
+  wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
-  tombstone: `Primeiro Barão de Araguari. [18--]. Brasiliana Museus`,
-  licence: `Domínio público, ver http://mhn.acervos.museus.gov.br/uso-de-imagem/`,
-  source_url: `https://brasiliana.museus.gov.br/acervos/primeiro-barao-de-araguari/`,
-  institution: `Brasiliana Museus`
+  tombstone: ``,
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.artic.edu/artworks/59798`,
+  institution: `Art Institute of Chicago`
 };
 
 // Build rich context from available fields
@@ -1647,7 +1689,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_brasiliana',
+      collection: 'archai_aic',
       text,
       authorType: 'visitor',
     }),

@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Cypriot Vase — ARCHAI</title>
+<title>table — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/1997.302/1997.302_web.jpg" alt="Cypriot Vase" loading="eager">
+  <img src="https://api.aucklandmuseum.com/id/media/v/228033?rendering=standard.jpg" alt="table" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Cypriot Vase</div>
-  <div class="v-sub">Glass · c. 1895–1900 · 1997.302</div>
+  <div class="v-title">table</div>
+  <div class="v-sub">Table · Circa 1690 · F102</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Cleveland Museum of Art</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
-    <span class="v-meta-tag">Decorative Art and Design</span>
+    <span class="v-meta-tag mv">Auckland Museum</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
+    <span class="v-meta-tag">Applied Arts and Design</span>
   </div>
 
   <!-- SHARE -->
@@ -903,11 +939,13 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Cypriot Vase</strong> — This small vase is an example of Louis Comfort Tiffany's signature Favrile glass. It was made in the style of ancient glass from Cyprus that Tiffany had admired for the iridescent color and encrusted texture of the surface caused by oxidation while buried for many years. Tiffany had noticed these qu…</div>
+  <div class="v-story"><strong>table</strong> — table, walnut with oyster walnut in square veneer on top, four spiral legs supported by stretcher.
+
+[table, walnut with oyster work on top, England, period of Queen Anne - gallery card]</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
+      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
     </div>
 
   <div class="v-divider"></div>
@@ -933,24 +971,29 @@ body::after {
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -959,19 +1002,17 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1997.302</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Tiffany Glass &amp; Decorating Company (America, New York, 1892–1902)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">favrile glass</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">America, New York</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Decorative Art and Design</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Glass</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">c. 1895–1900</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">Diameter: 7.2 cm (2 13/16 in.); Overall: 6.6 cm (2 5/8 in.)</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Cleveland Museum of Art</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Glass</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">F102</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">unknown</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Walnut, Hardwood, &lt;wood By Composition Or Origin&gt;, Wood, Botanical (arch), Archaeology</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Applied Arts and Design</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">Table</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Circa 1690</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Table</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -986,24 +1027,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC221.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/438044?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">caliper, poising</div>
-        <div class="v-rel-meta">Auckland Museum · H307</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/669384/6220-scaled.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Pedro I</div>
+        <div class="v-rel-meta">Brasiliana Museus · pedro-i-11</div>
       </a>
       <a class="v-rel-card" href="NFC222.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1974.10/1974.10_web.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Black-Figure Nikosthenic Amphora (Storage Vessel): Dancing Youths; Sphinxes and Lions; Satyrs and Maenads</div>
-        <div class="v-rel-meta">Cleveland Museum of Art · 1974.10</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15934399&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Grundriss Erdgeschoss 1:500 (aus: Museum im Werden)</div>
+        <div class="v-rel-meta">Europeana · /08535/item_WFP27OFTCAKC4LUYJJJ74JGPKR3SRWL7</div>
       </a>
       <a class="v-rel-card" href="NFC224.html">
-        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/680263/774-1-scaled.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Romano</div>
-        <div class="v-rel-meta">Brasiliana Museus · romano</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D36951999&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Museumsinsel, Berlin Pergamon-, Deutsches und Vorderasiatisches Museum: Halle am Forum im Südflügel</div>
+        <div class="v-rel-meta">Europeana · /08535/item_BN5IZYSKCXFOIYFV63FBLQYZB4YSFFX4</div>
       </a>
       <a class="v-rel-card" href="NFC225.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/LqMDX/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van Dirk V, graaf van Holland</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010009</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2025PC0393/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Bowl of Oranges</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · PH.559-2024</div>
       </a></div>
   </div>
 </div>
@@ -1016,7 +1057,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://clevelandart.org/art/1997.302" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/4235" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1048,26 +1089,28 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Cypriot Vase`,
-  type: `Glass`,
-  date: `c. 1895–1900`,
-  registration: `1997.302`,
-  location: `Cleveland Museum of Art`,
-  discipline: `Decorative Art and Design`,
-  category: `Glass`,
-  description: `This small vase is an example of Louis Comfort Tiffany's signature Favrile glass. It was made in the style of ancient glass from Cyprus that Tiffany had admired for the iridescent color and encrusted texture of the surface caused by oxidation while buried for many years. Tiffany had noticed these qualities in ancient glass exhibited at the Metropolitan Museum of Art and at his father's store, Tiffany &amp; Co., in New York. When Tiffany began collaborating with artisans on new types of glass production in the 1880s, his aesthetic ambitions were realized in the development of Favrile glass, del…`,
-  medium: `favrile glass`,
-  artist: `Tiffany Glass & Decorating Company (America, New York, 1892–1902)`,
-  culture: `America, New York`,
-  dimensions: `Diameter: 7.2 cm (2 13/16 in.); Overall: 6.6 cm (2 5/8 in.)`,
+  title: `table`,
+  type: `Table`,
+  date: `Circa 1690`,
+  registration: `F102`,
+  location: `Auckland Museum`,
+  discipline: `Applied Arts and Design`,
+  category: `Table`,
+  description: `table, walnut with oyster walnut in square veneer on top, four spiral legs supported by stretcher.
+
+[table, walnut with oyster work on top, England, period of Queen Anne - gallery card]`,
+  medium: `Walnut, Hardwood, <wood By Composition Or Origin>, Wood, Botanical (arch), Archaeology`,
+  artist: `unknown`,
+  culture: ``,
+  dimensions: ``,
   wall_description: ``,
   fun_fact: ``,
-  did_you_know: `Louis Comfort Tiffany took inspiration from the ancient glass artifacts found in the collection of the Metropolitan Museum of Art in New York.`,
-  provenance: `[{"description":"Virginia Hubbell [1901-1997], Cleveland, OH, bequest to the Cleveland Museum of Art","citations":[],"footnotes":null,"date":"?-1997","sortorder":1},{"description":"The Cleveland Museum of Art","citations":[],"footnotes":null,"date":"1997-","sortorder":2}]`,
-  tombstone: `Cypriot Vase, c. 1895–1900. Tiffany Glass & Decorating Company (America, New York, 1892–1902). Favrile glass; diameter: 7.2 cm (2 13/16 in.); overall: 6.6 cm (2 5/8 in.). The Cleveland Museum of Art, Bequest of Virginia Hubbell, 1997.302`,
-  licence: `CC0 — Public Domain`,
-  source_url: `https://clevelandart.org/art/1997.302`,
-  institution: `Cleveland Museum of Art`
+  did_you_know: ``,
+  provenance: ``,
+  tombstone: ``,
+  licence: `© Auckland Museum CC BY`,
+  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/4235`,
+  institution: `Auckland Museum`
 };
 
 // Build rich context from available fields
@@ -1648,7 +1691,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_cma',
+      collection: 'archai_auckland',
       text,
       authorType: 'visitor',
     }),

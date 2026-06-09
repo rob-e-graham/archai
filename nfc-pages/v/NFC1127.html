@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>Lantern Slide - 'Ramona', Part 4, circa 1928-1956 — ARCHAI</title>
+<title>Priest and Boy — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -359,9 +359,38 @@ body::after {
 
 .v-voice-wrap {
   margin: 0 0 12px;
-  padding: 12px;
   border: 1px solid rgba(143,188,176,0.16);
   background: rgba(255,255,255,0.015);
+}
+.v-voice-wrap[open] {
+  border-color: rgba(143,188,176,0.28);
+}
+.v-voice-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-voice-summary::-webkit-details-marker {
+  display: none;
+}
+.v-voice-summary::after {
+  content: "+";
+  flex: 0 0 auto;
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  letter-spacing: 0;
+}
+.v-voice-wrap[open] .v-voice-summary::after {
+  content: "−";
+}
+.v-voice-body {
+  padding: 0 12px 12px;
 }
 .v-voice-label {
   font-family: var(--mono);
@@ -369,7 +398,14 @@ body::after {
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--text3);
-  margin-bottom: 8px;
+}
+.v-voice-summary-hint {
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.1px;
+  text-transform: uppercase;
+  opacity: 0.85;
 }
 .v-voice-select-row {
   display: grid;
@@ -881,18 +917,18 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://collections.museumsvictoria.com.au/content/media/3/164753-medium.jpg" alt="Lantern Slide - 'Ramona', Part 4, circa 1928-1956" loading="eager">
+  <img src="https://www.artic.edu/iiif/2/1753b638-d4fb-8e45-3db9-92dde7f053da/full/843,/0/default.jpg" alt="Priest and Boy" loading="eager">
 </div>
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">Lantern Slide - 'Ramona', Part 4, circa 1928-1956</div>
-  <div class="v-sub">Image · Date unknown · MM 97239</div>
+  <div class="v-title">Priest and Boy</div>
+  <div class="v-sub">Drawing and Watercolor · n.d. · 4</div>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Museums Victoria</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
-    <span class="v-meta-tag">History</span>
+    <span class="v-meta-tag mv">Art Institute of Chicago</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">Prints and Drawings</span>
   </div>
 
   <!-- SHARE -->
@@ -903,13 +939,12 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>Lantern Slide - 'Ramona', Part 4, circa 1928-1956</strong> — Lantern Slide with the song lyrics for 'Ramona' Part 4 and image from the 1928 motion picture 'Ramona' directed by Edwin Carewe, based on Helen Hunt Jackson's 1884 novel 'Ramona', and starring Dolores del Rio and Warner Baxter. Lyrics written by L. Wolfe Gilbert and music by Mabel Wayne.
-
-Used by Mr…</div>
+  <div class="v-story"><strong>Priest and Boy</strong> — Priest and Boy. Drawing and Watercolor. Watercolor over graphite on cream wove paper. Prints and Drawings. Lawrence Carmichael Earle
+American, 1845-1921. drawings (visual works). n.d.. United States</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
-      <div class="v-rights-detail">Licence / rights: CC BY</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
     </div>
 
   <div class="v-divider"></div>
@@ -935,24 +970,29 @@ Used by Mr…</div>
       <input class="v-chat-input" id="chatInput" type="text" placeholder="Ask anything…" enterkeyhint="send">
       <button class="v-chat-send" onclick="askObject()">Ask</button>
     </div>
-    <div class="v-voice-wrap">
-      <div class="v-voice-label">Speech Demo</div>
-      <div class="v-voice-select-row">
-        <label for="v-voice-select">Playback Voice</label>
-        <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
-          <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
-          <option value="browser-default">Browser Default</option>
-        </select>
+    <details class="v-voice-wrap" id="v-voice-wrap">
+      <summary class="v-voice-summary">
+        <span class="v-voice-label">Audio / voice tools</span>
+        <span class="v-voice-summary-hint">Open controls</span>
+      </summary>
+      <div class="v-voice-body">
+        <div class="v-voice-select-row">
+          <label for="v-voice-select">Playback Voice</label>
+          <select id="v-voice-select" class="v-voice-select" onchange="setVisitorVoicePreference(this.value)">
+            <option value="archai-neutral">ARCHAI Neutral (recommended)</option>
+            <option value="browser-default">Browser Default</option>
+          </select>
+        </div>
+        <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
+        <div class="v-voice-buttons">
+          <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
+          <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
+          <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
+          <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
+        </div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
       </div>
-      <div class="v-voice-note" id="v-voice-note">ARCHAI Neutral prefers a modern browser voice and avoids legacy voices where possible.</div>
-      <div class="v-voice-buttons">
-        <button id="v-voice-start-btn" onclick="startVisitorVoiceQuestion()">Start Voice Question</button>
-        <button id="v-voice-stop-btn" onclick="stopVisitorVoiceQuestion()" disabled>Stop Listening</button>
-        <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
-        <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
-      </div>
-      <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
-    </div>
+    </details>
     <div class="v-response" id="chatResponse"></div>
   </div>
 
@@ -961,16 +1001,20 @@ Used by Mr…</div>
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">MM 97239</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">History &amp; Technology</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Date unknown</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">[object Object]</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Museums Victoria</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Image</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">4</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Lawrence Carmichael Earle
+American, 1845-1921</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">Watercolor over graphite on cream wove paper</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">United States</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Prints and Drawings</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">drawings (visual works)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">n.d.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">47.2 × 34.5 cm (18 5/8 × 13 5/8 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Art Institute of Chicago</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">Drawing and Watercolor</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -985,24 +1029,24 @@ Used by Mr…</div>
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC1125.html">
-        <div class="v-rel-thumb"><img src="https://api.aucklandmuseum.com/id/media/v/85275?rendering=standard.jpg" loading="lazy"></div>
-        <div class="v-rel-title">textile piece</div>
-        <div class="v-rel-meta">Auckland Museum · T16</div>
+        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2008BT4837/full/!600,600/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Analog-Grafik P2 (Pendular Oscillogram)</div>
+        <div class="v-rel-meta">Victoria and Albert Museum, London · E.100-2008</div>
       </a>
       <a class="v-rel-card" href="NFC1126.html">
-        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=http%3A%2F%2Fatena.beic.it%3A80%2Fwebclient%2FDeliveryManager%3Fpid%3D6355698%26custom_att_2%3Ddeeplink&amp;type=IMAGE" loading="lazy"></div>
-        <div class="v-rel-title">Servizio fotografico Firenze, 1957-1956. Photographic reportage, Florence, 1957-1956</div>
-        <div class="v-rel-meta">Europeana · /9200369/webclient_DeliveryManager_pid_6355698_custom_att_2_simple_viewer</div>
+        <div class="v-rel-thumb"><img src="https://api.europeana.eu/thumbnail/v2/url.json?uri=https%3A%2F%2Farchitekturmuseum.ub.tu-berlin.de%2Findex.php%3FBEX%3D15934999&amp;type=IMAGE" loading="lazy"></div>
+        <div class="v-rel-title">Pergamon-, Deutsches und Vorderasiatisches Museum auf der Museumsinsel, Berlin: Pergamonsaal, Vorderseite vom Altar (aus: Museum im Werden)</div>
+        <div class="v-rel-meta">Europeana · /08535/item_DBJD6X2F2GTS3H57WSWIAVCYX5CHIYRQ</div>
       </a>
       <a class="v-rel-card" href="NFC1128.html">
-        <div class="v-rel-thumb"><img src="https://collections.museumsvictoria.com.au/content/media/19/164719-medium.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Lantern Slide - 'Sally', circa 1931-1956</div>
-        <div class="v-rel-meta">Museums Victoria · MM 97186</div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/1970.116/1970.116_web.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Vase</div>
+        <div class="v-rel-meta">Cleveland Museum of Art · 1970.116</div>
       </a>
       <a class="v-rel-card" href="NFC1129.html">
-        <div class="v-rel-thumb"><img src="https://res.cloudinary.com/mplustms/image/upload/w_1000/v1627829296/v2/prod/small/005501_006000/005646_001.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Red A cup, no. 578</div>
-        <div class="v-rel-meta">M+, Hong Kong · 2015.420</div>
+        <div class="v-rel-thumb"><img src="https://mhn.acervos.museus.gov.br/wp-content/uploads/tainacan-items/627609/668988/006337.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Primeiro Barão de Araguari</div>
+        <div class="v-rel-meta">Brasiliana Museus · primeiro-barao-de-araguari</div>
       </a></div>
   </div>
 </div>
@@ -1015,7 +1059,7 @@ Used by Mr…</div>
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://collections.museumsvictoria.com.au/items/MM 97239" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.artic.edu/artworks/4" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1047,28 +1091,28 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `Lantern Slide - 'Ramona', Part 4, circa 1928-1956`,
-  type: `Image`,
-  date: `Date unknown`,
-  registration: `MM 97239`,
-  location: `Museums Victoria`,
-  discipline: `History`,
-  category: `History & Technology`,
-  description: `Lantern Slide with the song lyrics for 'Ramona' Part 4 and image from the 1928 motion picture 'Ramona' directed by Edwin Carewe, based on Helen Hunt Jackson's 1884 novel 'Ramona', and starring Dolores del Rio and Warner Baxter. Lyrics written by L. Wolfe Gilbert and music by Mabel Wayne.
-
-Used by Mr Jack Hayward an entertainer who held community concerts in Sydney suburbs and in Geelong from about 1928 (Lakemba, NSW) to 1939 (Geelong) and then in Geelong for a few years after World War Two. "Community Singing As It Should Be" was a feature of these concerts, which also included other musical i…`,
-  medium: ``,
-  artist: ``,
-  culture: ``,
-  dimensions: `[object Object]`,
+  title: `Priest and Boy`,
+  type: `Drawing and Watercolor`,
+  date: `n.d.`,
+  registration: `4`,
+  location: `Art Institute of Chicago`,
+  discipline: `Prints and Drawings`,
+  category: `drawings (visual works)`,
+  description: `Priest and Boy. Drawing and Watercolor. Watercolor over graphite on cream wove paper. Prints and Drawings. Lawrence Carmichael Earle
+American, 1845-1921. drawings (visual works). n.d.. United States`,
+  medium: `Watercolor over graphite on cream wove paper`,
+  artist: `Lawrence Carmichael Earle
+American, 1845-1921`,
+  culture: `United States`,
+  dimensions: `47.2 × 34.5 cm (18 5/8 × 13 5/8 in.)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
   provenance: ``,
   tombstone: ``,
-  licence: `CC BY`,
-  source_url: `https://collections.museumsvictoria.com.au/items/MM 97239`,
-  institution: `Museums Victoria`
+  licence: `CC0 — Public Domain`,
+  source_url: `https://www.artic.edu/artworks/4`,
+  institution: `Art Institute of Chicago`
 };
 
 // Build rich context from available fields
@@ -1649,7 +1693,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_pilot',
+      collection: 'archai_aic',
       text,
       authorType: 'visitor',
     }),
