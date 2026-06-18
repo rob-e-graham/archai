@@ -850,22 +850,14 @@ body::after {
       0 0 0 1px rgba(255,255,255,0.03),
       0 24px 70px rgba(0,0,0,0.62),
       inset 0 1px 0 rgba(255,255,255,0.03);
-    scrollbar-width: thin;
-    scrollbar-color: rgba(143,188,176,0.36) rgba(255,255,255,0.03);
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
 
   .v-phone-shell::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  .v-phone-shell::-webkit-scrollbar-track {
-    background: rgba(255,255,255,0.03);
-    border-radius: 999px;
-  }
-
-  .v-phone-shell::-webkit-scrollbar-thumb {
-    background: rgba(143,188,176,0.32);
-    border-radius: 999px;
+    width: 0;
+    height: 0;
+    display: none;
   }
 
   .v-phone-shell::before {
