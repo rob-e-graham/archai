@@ -29,6 +29,12 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
+/* Phone-first: hide the document scrollbar everywhere (still scrolls). This keeps
+   the page clean on a real phone AND removes the iframe scrollbar when the page
+   is embedded in the public /aux wrapper (which frames it at ~390px wide). */
+html, body { scrollbar-width: none; -ms-overflow-style: none; }
+html::-webkit-scrollbar, body::-webkit-scrollbar { width: 0; height: 0; display: none; }
+
 body {
   background: var(--bg);
   color: var(--text);
