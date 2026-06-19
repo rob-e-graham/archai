@@ -5,10 +5,12 @@ Status: Send-ready working pack. Emails should be reviewed and sent individually
 
 ## Purpose
 
-This first mail-out has two related goals:
+This first mail-out has four related goals:
 
-1. Invite open-source CMS/DAM communities to discuss technical integration and research collaboration.
-2. Transparently notify the museums and aggregators whose public APIs or open collection data are represented in the ARCHAI research prototype.
+1. Identify research partners who can help co-design, develop, test, evaluate, and launch ARCHAI as an open-source GLAM toolkit through Rob Graham's RMIT Design PhD.
+2. Build the relationships and evidence needed for future collaborative funding, including a potential RMIT-led ARC Linkage-style project.
+3. Invite open-source CMS/DAM communities to help shape technically credible, reusable integration adapters.
+4. Transparently notify the museums and aggregators whose public APIs or open collection data are represented in the ARCHAI research prototype.
 
 ARCHAI should not be pitched as a replacement for a museum CMS or DAMS. It is a semantic, interpretive, and accessibility layer that connects to the institution's existing systems of record, whether those systems are hosted locally or in an approved cloud environment.
 
@@ -19,6 +21,40 @@ ARCHAI is an open-source, local-first semantic interface layer for cultural inst
 The preferred deployment is inside the institution's own network. Collection metadata, model inference, vector search, interaction logs, and future speech processing can remain under institutional control. The current research prototype runs on Apple silicon. A compact pilot can be scoped for Mac mini-class hardware with appropriately sized local models; larger collections or models can scale to a Mac Studio, GPU workstation, virtualised server, or institution-managed infrastructure.
 
 The source CMS/DAMS remains canonical. ARCHAI stores only the fields and derived vectors approved for the project, preserves source identifiers and item-level rights, and can refresh or remove indexed records when source data changes.
+
+## Primary Partnership Ask
+
+ARCHAI is looking for museums, galleries, archives, libraries, open-source platform communities, accessibility specialists, and research organisations willing to contribute to one or more of these stages:
+
+- co-design the institutional requirements and governance model
+- advise on CMS/DAMS integration and collection-data workflows
+- provide a bounded test collection or development environment
+- participate in staff-facing usability research under RMIT ethics approval
+- support visitor and accessibility evaluation when the prototype is ready
+- test sovereign deployment on institution-controlled infrastructure
+- advise on rights, cultural protocols, Indigenous data sovereignty, and interpretation
+- contribute technical or sector expertise in kind
+- become a potential Partner Organisation in a future RMIT-led ARC Linkage-style application
+- help publish and launch the resulting open-source GLAM toolkit
+
+This is not a request for an immediate financial commitment. The first step is to identify shared research questions, suitable pilot conditions, and the people who should shape the work. Any later funding proposal would be developed collaboratively through RMIT and the relevant institutional research offices.
+
+## What Partners Can Test Now
+
+ARCHAI is already a working prototype, not only a proposal. A partner institution can begin with a bounded, low-risk collection experiment and tailor the semantic layer to its own staff, audiences, governance, and infrastructure.
+
+Current pilot possibilities include:
+
+- semantic and conversational search across approved collection metadata
+- staff-facing collection interrogation for curatorial, collections, interpretation, research, and technical teams
+- rights-aware object discovery with source provenance retained
+- AUX.IO visitor pages connected to individual objects through QR, NFC, or ordinary links
+- multilingual response and early speech/accessibility experiments
+- cross-collection comparison and discovery
+- local deployment inside the institution's network
+- institution-specific prompts, terminology, roles, cultural protocols, and publication rules
+
+The research partnership would evaluate where these functions create genuine value, identify risks and institutional requirements, and tailor the system rather than imposing a generic AI product. CMS/DAMS and open-source partners can help turn the existing integration scaffold into maintained community connectors.
 
 ## First-wave Contacts
 
@@ -49,7 +85,7 @@ The source CMS/DAMS remains canonical. ARCHAI stores only the fields and derived
 
 ## Shared Source-institution Email
 
-Subject: ARCHAI PhD research prototype using [Institution] open collection data
+Subject: Research partnership invitation - ARCHAI open-source GLAM toolkit
 
 Dear [Institution] Digital Collections / Open Access team,
 
@@ -59,6 +95,8 @@ I am writing because the current research demo includes a small, rights-filtered
 
 ARCHAI is not intended to replace a collections management system or DAMS. It is designed as a semantic interface layer that can connect directly to an institution's existing CMS and DAMS, locally or through approved cloud APIs. The preferred deployment runs inside the institution's network so collection data, vector search, local AI inference, visitor interactions, and future speech services remain under institutional control. The current Apple-silicon prototype demonstrates that a pilot does not require large cloud infrastructure.
 
+The prototype is already capable of supporting a bounded experiment with approved collection metadata. A partner could tailor the search, staff roles, interpretation, visitor pages, terminology, rights rules, cultural protocols, and deployment model to its own institution. The research would test where that creates measurable value for staff and visitors, and what governance is needed for responsible implementation.
+
 The source institution remains authoritative. ARCHAI preserves source links, identifiers, attribution, and item-level legal status wherever available. Public demo views are intended to show only media that passes the current rights gate. The prototype does not imply endorsement by [Institution], and I will promptly correct, relabel, restrict, or remove anything that your team identifies as unsuitable or inaccurate.
 
 Project page: https://fineartmedia.tech/archai
@@ -67,9 +105,11 @@ GitHub: https://github.com/rob-e-graham/archai
 
 White paper: attached
 
-Would someone in your digital collections, open access, rights, research, or curatorial technology team be willing to review a short demonstration and let me know whether the attribution, rights handling, and framing are appropriate?
+I have attached the short white paper that frames the research. I am now looking for research partners who may be interested in helping to co-design, develop, test, evaluate, and eventually launch ARCHAI as an open-source GLAM toolkit. Potential collaboration could include a bounded collection pilot, staff workflow research, accessibility evaluation, CMS/DAMS integration, governance advice, or in-kind technical and sector expertise.
 
-I would also welcome a conversation about future PhD research collaboration, pilot testing, accessibility evaluation, CMS/DAMS integration, or joint funding opportunities if the work aligns with your institution's priorities.
+This work forms part of my RMIT Design PhD and may provide the foundation for a future collaborative funding proposal, potentially through an ARC Linkage-style pathway led through RMIT. I am not seeking an immediate funding commitment. The first step would be a short conversation about shared research questions and whether [Institution] could see value in shaping or testing the toolkit.
+
+Would someone in your digital collections, open access, research, interpretation, accessibility, or curatorial technology team be open to a short discussion?
 
 Warm regards,
 
@@ -80,7 +120,7 @@ https://fineartmedia.tech
 
 ## Technical-partner Email
 
-Subject: Open-source CMS/DAM integration research for ARCHAI
+Subject: Research partnership invitation - open CMS/DAM integration for ARCHAI
 
 Dear [Project] team,
 
@@ -90,13 +130,16 @@ ARCHAI is deliberately not another collections management system or DAMS. It is 
 
 The source CMS/DAMS remains the system of record. ARCHAI can read approved metadata and asset derivatives, generate embeddings locally, preserve source identifiers and rights, and return visitors or staff to the canonical record. The current Apple-silicon prototype uses open-source components and demonstrates a compact deployment path that can scale from a pilot workstation to institution-managed server infrastructure.
 
-I would value a conversation with your technical or community team about:
+The working prototype already supports a serious integration experiment. A CMS/DAMS partner could help tailor and test the adapter against real workflows, then assess whether a reusable open connector would benefit institutions using [Project].
+
+I am now looking for research and technical partners who can help turn this PhD prototype into a robust open-source GLAM toolkit. I would value a conversation with your technical or community team about:
 
 - the cleanest integration pattern for [Project]
 - field mapping and incremental synchronisation
 - rights, permissions, and derivative-media handling
 - whether an open adapter could be useful to your community
-- possible research, testing, or funding collaboration
+- co-design, adapter development, testing, and open-source release
+- possible participation in a future RMIT-led research or ARC Linkage-style partnership
 
 Project page: https://fineartmedia.tech/archai
 
@@ -104,7 +147,7 @@ GitHub: https://github.com/rob-e-graham/archai
 
 White paper: attached
 
-Would someone from your project be open to a short technical discussion or demonstration?
+This is not a request for an immediate financial commitment. I am first trying to identify shared research questions and potential technical or in-kind contributions. Would someone from your project be open to a short technical discussion or demonstration?
 
 Warm regards,
 
@@ -115,11 +158,11 @@ https://fineartmedia.tech
 
 ## ResourceSpace Contact-form Version
 
-I am an RMIT Design PhD researcher and founder of FAMTEC, developing ARCHAI: an open-source, local-first semantic interface layer for museums and galleries. ARCHAI is designed to sit above an existing DAMS/CMS rather than replace it. I am currently prototyping a ResourceSpace adapter so institutions can keep assets and permissions in ResourceSpace while ARCHAI adds local semantic search, rights-aware interpretation, and AUX.IO visitor access. I would value a short technical conversation about API integration, field mapping, approved derivatives, and whether an open connector could be useful to the ResourceSpace community. Project: https://fineartmedia.tech/archai GitHub: https://github.com/rob-e-graham/archai
+I am an RMIT Design PhD researcher and founder of FAMTEC, developing ARCHAI: an open-source, local-first semantic interface layer for museums and galleries. ARCHAI is designed to sit above an existing DAMS/CMS rather than replace it. I am currently prototyping a ResourceSpace adapter so institutions can keep assets and permissions in ResourceSpace while ARCHAI adds local semantic search, rights-aware interpretation, and AUX.IO visitor access. I am looking for research and technical partners to help co-design, develop, test, and launch the resulting open-source GLAM toolkit, potentially building toward a future RMIT-led ARC Linkage-style collaboration. I would value a short conversation about API integration, approved derivatives, and whether an open connector could be useful to the ResourceSpace community. Project: https://fineartmedia.tech/archai GitHub: https://github.com/rob-e-graham/archai
 
 ## Omeka Contact-form Version
 
-I am an RMIT Design PhD researcher and founder of FAMTEC, developing ARCHAI: an open-source, local-first semantic interface for museum and gallery collections. ARCHAI could sit above Omeka S as a governed semantic and conversational layer while Omeka remains the canonical publishing platform. I would value a conversation about an open integration, multilingual/accessible collection discovery, and possible research or community collaboration. Project: https://fineartmedia.tech/archai GitHub: https://github.com/rob-e-graham/archai
+I am an RMIT Design PhD researcher and founder of FAMTEC, developing ARCHAI: an open-source, local-first semantic interface for museum and gallery collections. ARCHAI could sit above Omeka S as a governed semantic and conversational layer while Omeka remains the canonical publishing platform. I am looking for partners to help co-design, develop, test, and launch an open-source GLAM toolkit through the PhD, potentially supporting a future RMIT-led ARC Linkage-style collaboration. I would value a conversation about an open integration and multilingual, accessible collection discovery. Project: https://fineartmedia.tech/archai GitHub: https://github.com/rob-e-graham/archai
 
 ## Te Papa-specific Addition
 

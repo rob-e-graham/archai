@@ -18,11 +18,11 @@ The goal is not to send everyone the same email. Different organisations should 
 
 ## Core Proposition For Partners
 
-ARCHAI is an open-source, local-first research toolkit for cultural institutions. It explores how museums and galleries can use semantic search, local AI, AUX.IO visitor pages, rights-aware publication gates, voice interaction, and collection interrogation without handing institutional knowledge or visitor data to opaque cloud systems.
+ARCHAI is a working, open-source, local-first research toolkit for cultural institutions. It already supports meaningful experiments in semantic search, staff-facing collection intelligence, AUX.IO visitor pages, rights-aware discovery, multilingual interpretation, and local AI. The partnership opportunity is to tailor these capabilities to real institutional needs, evaluate their effect on staff and visitors, and turn the prototype into a governed, reusable GLAM toolkit without handing institutional knowledge or visitor data to opaque cloud systems.
 
 Potential partner language:
 
-> We are looking for GLAM, research, accessibility, and technology partners to help test ARCHAI as a rights-aware, locally hosted, open-source toolkit for collection discovery, visitor access, and curatorial workflows.
+> We are looking for GLAM, research, accessibility, and technology partners to help co-design, develop, test, evaluate, and launch ARCHAI as a rights-aware, locally hosted, open-source toolkit for collection discovery, staff workflows, and visitor access. A bounded implementation can begin now; suitable partnerships may later support an RMIT-led ARC Linkage-style proposal.
 
 ## ARC-Style Funding Shape
 

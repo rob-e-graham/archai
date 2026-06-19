@@ -13,12 +13,13 @@ This outreach should be transparent, respectful, and non-extractive. The tone is
 
 ## Outreach Goals
 
-1. Notify source institutions that ARCHAI has used their open/public collection data in a research prototype.
-2. Make the legal posture explicit: source rights remain attached, restricted material is gated out of public demo surfaces, and object views show legal status.
-3. Invite corrections if any record, image, attribution, rights statement, or framing needs adjustment.
-4. Ask whether the institution would like to review a short demo.
-5. Identify potential collaborators for research, pilot testing, accessibility evaluation, collection-data workflows, and grant opportunities.
-6. Build goodwill with the open GLAM community.
+1. Identify research partners who can help co-design, develop, test, evaluate, and launch ARCHAI as an open-source GLAM toolkit through the RMIT Design PhD.
+2. Invite bounded implementation experiments that can create useful staff and visitor outcomes with the working prototype now.
+3. Build relationships and evidence for future collaborative funding, including a potential RMIT-led ARC Linkage-style pathway.
+4. Notify source institutions that ARCHAI has used their open/public collection data in a research prototype.
+5. Make the legal posture explicit: source rights remain attached, restricted material is gated out of public demo surfaces, and object views show legal status.
+6. Invite corrections if any record, image, attribution, rights statement, or framing needs adjustment.
+7. Build goodwill with the open GLAM and open-source collections community.
 
 ## Primary Audience
 
@@ -111,11 +112,11 @@ ARCHAI should state clearly:
 
 ## Preferred Ask
 
-Keep the first ask small:
+Keep the first commitment small, but make the research purpose clear:
 
-> Would someone on your digital collections, open access, or curatorial technology team be willing to look at a short demo and let me know whether the rights, attribution, and framing are appropriate?
+> Would someone on your digital collections, research, interpretation, accessibility, or curatorial technology team be open to a short discussion about shaping or testing ARCHAI as an open-source GLAM toolkit? A first step could be a technical review, staff workflow conversation, or bounded collection experiment.
 
-Do not lead with a funding ask in the first email. Let the funding / pilot conversation emerge after trust is established.
+Do not ask for an immediate financial commitment. Explain that suitable partnerships may later support a collaboratively developed RMIT/ARC-style proposal through cash or in-kind contributions, but begin with shared research questions and a useful experiment.
 
 ## Success Signals
 

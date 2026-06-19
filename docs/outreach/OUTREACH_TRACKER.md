@@ -21,23 +21,23 @@ Use this as the working log for museum/gallery contact. Keep notes factual and r
 | Institution / Source | Contact Area | Status | Date Sent | Follow-Up Date | Notes / Actions |
 |---|---|---|---|---|---|
 | Museums Victoria | digital collections / rights / research partnerships | Draft |  |  | Use research enquiry form or warm contact; CC BY records; attribution and source links important |
-| The Metropolitan Museum of Art | open access / digital | Gmail draft |  |  | Prepared 2026-06-19 to `openaccess@metmuseum.org`; white paper attached |
+| The Metropolitan Museum of Art | open access / digital | Gmail draft |  |  | Partnership-led draft refreshed 2026-06-19 to `openaccess@metmuseum.org`; white paper attached |
 | Victoria and Albert Museum | open access / API / digital collections | Draft |  |  | V&A Open Access; object links and rights wording should be checked |
-| Art Institute of Chicago | API / open access / digital publications | Gmail draft |  |  | Prepared 2026-06-19 to `engineering@artic.edu`; white paper attached |
-| Cleveland Museum of Art | open access / digital innovation | Gmail draft |  |  | Prepared 2026-06-19 to `info@clevelandart.org`; asks routing to Open Access/digital team |
-| Rijksmuseum | Rijksstudio / API / open data | Gmail draft |  |  | Prepared 2026-06-19 to `collectieinfo@rijksmuseum.nl`; white paper attached |
+| Art Institute of Chicago | API / open access / digital publications | Gmail draft |  |  | Partnership-led draft refreshed 2026-06-19 to `engineering@artic.edu`; white paper attached |
+| Cleveland Museum of Art | open access / digital innovation | Gmail draft |  |  | Partnership-led draft refreshed 2026-06-19 to `info@clevelandart.org`; asks routing to Open Access/digital team |
+| Rijksmuseum | Rijksstudio / API / open data | Gmail draft |  |  | Partnership-led draft refreshed 2026-06-19 to `collectieinfo@rijksmuseum.nl`; white paper attached |
 | Europeana | data partnerships / reuse | Draft |  |  | Use Europeana Pro contact route until a current direct inbox is confirmed; aggregator nuance required |
 | Auckland Museum | collections online / rights | Draft |  |  | Use official contact/API route; CC BY/open item-filtered records; image quality issues noted |
-| Museum of New Zealand Te Papa Tongarewa | collections online / rights / digital | Gmail draft |  |  | Prepared 2026-06-19 to `digitaloutreach@tepapa.govt.nz`, CC `collections.api@tepapa.govt.nz`; asks guidance on four-week cache/refresh rule |
+| Museum of New Zealand Te Papa Tongarewa | collections online / rights / digital | Gmail draft |  |  | Partnership-led draft refreshed 2026-06-19 to `digitaloutreach@tepapa.govt.nz`, CC `collections.api@tepapa.govt.nz`; asks guidance on four-week cache/refresh rule |
 | M+, Hong Kong | digital / collections / rights | Draft |  |  | CC0 metadata, preview media, source rights apply |
-| Brasiliana Museus | platform / source institution | Gmail draft |  |  | Prepared 2026-06-19 to `cgsim@museus.gov.br`; bilingual opening; white paper attached |
+| Brasiliana Museus | platform / source institution | Gmail draft |  |  | Partnership-led draft refreshed 2026-06-19 to `cgsim@museus.gov.br`; bilingual opening; white paper attached |
 
 ## Technical Partner Outreach
 
 | Organisation | Contact Area | Status | Date Sent | Follow-Up Date | Notes / Actions |
 |---|---|---|---|---|---|
-| CollectiveAccess | technical collaboration / open adapter | Gmail draft |  |  | Prepared 2026-06-19 to `info@collectiveaccess.org`; white paper attached |
-| CollectionSpace / LYRASIS | technical collaboration / open adapter | Gmail draft |  |  | Prepared 2026-06-19 to `collectionspace@lyrasis.org`; white paper attached |
+| CollectiveAccess | technical collaboration / open adapter | Gmail draft |  |  | Partnership-led draft refreshed 2026-06-19 to `info@collectiveaccess.org`; white paper attached |
+| CollectionSpace / LYRASIS | technical collaboration / open adapter | Gmail draft |  |  | Partnership-led draft refreshed 2026-06-19 to `collectionspace@lyrasis.org`; white paper attached |
 | ResourceSpace | API integration / DAMS adapter | Draft |  |  | Send short version through official services enquiry form |
 | Omeka / Digital Scholar | project partnership / semantic publishing layer | Draft |  |  | Send short version through official partnership form |
 
