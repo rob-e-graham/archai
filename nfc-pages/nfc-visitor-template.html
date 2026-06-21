@@ -936,6 +936,55 @@ body::after {
 }
 .v-share-icon { font-size: 0.7rem; }
 
+/* ── POSTER DOWNLOAD ── */
+.v-poster-wrap {
+  margin-bottom: 22px;
+  animation: slideUp 0.6s ease 0.38s both;
+}
+.v-poster-label {
+  font-family: var(--mono);
+  font-size: 0.46rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-poster-sizes {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.v-poster-btn {
+  flex: 1;
+  padding: 10px 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text3);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.12s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-poster-btn:active:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(200,169,110,0.06);
+}
+.v-poster-btn:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+.v-poster-note {
+  font-family: var(--mono);
+  font-size: 0.42rem;
+  color: var(--text3);
+  letter-spacing: 0.5px;
+  line-height: 1.7;
+}
+
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
@@ -1071,6 +1120,17 @@ body::after {
     <button class="v-share-btn" onclick="shareEmail()"><span class="v-share-icon">✉</span> Email</button>
     <button class="v-share-btn" onclick="copyLink(this)"><span class="v-share-icon">⎘</span> Copy Link</button>
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
+  </div>
+
+  <!-- DOWNLOAD POSTER -->
+  <div class="v-poster-wrap">
+    <div class="v-poster-label">Download Poster</div>
+    <div class="v-poster-sizes">
+      <button class="v-poster-btn" onclick="downloadPoster('A4')" data-size="A4">A4 · 300 dpi</button>
+      <button class="v-poster-btn" onclick="downloadPoster('A2')" data-size="A2">A2 · 150 dpi</button>
+      <button class="v-poster-btn" onclick="downloadPoster('A0')" data-size="A0">A0 · 150 dpi</button>
+    </div>
+    <div class="v-poster-note">PNG · QR code · ARCHAI branding · Suitable for print and display</div>
   </div>
 
   <div class="v-story">{{OBJECT_STORY}}</div>
@@ -1732,6 +1792,272 @@ function shareX() {
   const text = encodeURIComponent(SHARE_TEXT);
   const url = encodeURIComponent(PAGE_URL);
   window.open(`https://x.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+}
+
+// ══════════════════════════════════════════════════════════════════
+// POSTER DOWNLOAD
+// Renders a canvas poster (A4 / A2 / A0) with object image, metadata,
+// QR code, and ARCHAI branding, then triggers a PNG download.
+// QR lib loaded on demand from cdnjs; poster still renders without it.
+// ══════════════════════════════════════════════════════════════════
+const POSTER_SIZES = {
+  A4: { w: 2480, h: 3508, dpi: 300 },
+  A2: { w: 2480, h: 3508, dpi: 150 },  // same pixel count — print at A2 = 150 dpi
+  A0: { w: 4961, h: 7016, dpi: 150 },
+};
+
+function _loadScript(src) {
+  return new Promise((resolve, reject) => {
+    if ((window.__ps = window.__ps || {})[src]) { resolve(); return; }
+    const s = document.createElement('script');
+    s.src = src;
+    s.onload = () => { window.__ps[src] = true; resolve(); };
+    s.onerror = reject;
+    document.head.appendChild(s);
+  });
+}
+
+function _wrapText(ctx, text, maxW) {
+  const words = String(text || '').split(' ');
+  const lines = [];
+  let line = '';
+  for (const word of words) {
+    const test = line ? line + ' ' + word : word;
+    if (ctx.measureText(test).width > maxW && line) { lines.push(line); line = word; }
+    else line = test;
+  }
+  if (line) lines.push(line);
+  return lines;
+}
+
+function _drawQR(ctx, url, x, y, size, fgColor) {
+  if (typeof qrcode === 'undefined') return 0;
+  try {
+    const qr = qrcode(0, 'M');
+    qr.addData(url);
+    qr.make();
+    const count = qr.getModuleCount();
+    const mod = Math.floor(size / count);
+    ctx.fillStyle = fgColor || '#080808';
+    for (let r = 0; r < count; r++)
+      for (let c = 0; c < count; c++)
+        if (qr.isDark(r, c)) ctx.fillRect(x + c * mod, y + r * mod, mod, mod);
+    return mod * count;
+  } catch { return 0; }
+}
+
+async function downloadPoster(sizeKey) {
+  const spec = POSTER_SIZES[sizeKey] || POSTER_SIZES.A4;
+  const W = spec.w, H = spec.h, sc = W / 2480;
+
+  const btns = [...document.querySelectorAll('.v-poster-btn')];
+  const active = btns.find(b => b.dataset.size === sizeKey);
+  btns.forEach(b => { b.disabled = true; });
+  if (active) active.textContent = 'Generating…';
+
+  function restoreBtns() {
+    btns.forEach(b => {
+      b.disabled = false;
+      const sz = b.dataset.size;
+      if (sz && POSTER_SIZES[sz]) b.textContent = `${sz} · ${POSTER_SIZES[sz].dpi} dpi`;
+    });
+  }
+
+  try {
+    await _loadScript('https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qr.js');
+  } catch { /* render without QR */ }
+
+  try { await document.fonts.ready; } catch { /* ok */ }
+
+  try {
+  const canvas = document.createElement('canvas');
+  canvas.width = W; canvas.height = H;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) { restoreBtns(); return; }
+
+  const pad = Math.round(120 * sc);
+  const innerW = W - pad * 2;
+  const serif = '"Cormorant Garamond", Georgia, serif';
+  const mono  = '"DM Mono", "Courier New", monospace';
+  function setLS(px) { try { ctx.letterSpacing = px + 'px'; } catch {} }
+
+  // ── BACKGROUND
+  ctx.fillStyle = '#080808';
+  ctx.fillRect(0, 0, W, H);
+
+  // ── HEADER — wordmark + tag
+  const headerH  = Math.round(180 * sc);
+  const wordmarkY = Math.round(108 * sc);
+  ctx.textBaseline = 'middle';
+  ctx.font = `300 ${Math.round(54 * sc)}px ${serif}`;
+  setLS(Math.round(6 * sc));
+  const arcW = ctx.measureText('ARC').width;
+  const hW   = ctx.measureText('H').width;
+  ctx.fillStyle = '#e8e4dc'; ctx.fillText('ARC', pad, wordmarkY);
+  ctx.fillStyle = '#c8a96e'; ctx.fillText('H',   pad + arcW,      wordmarkY);
+  ctx.fillStyle = '#e8e4dc'; ctx.fillText('AI',  pad + arcW + hW, wordmarkY);
+  setLS(0);
+
+  const tagText = (OBJECT.registration || 'AUX.IO').toUpperCase();
+  ctx.font = `400 ${Math.round(20 * sc)}px ${mono}`;
+  ctx.fillStyle = '#8fbcb0';
+  const tagTW  = ctx.measureText(tagText).width;
+  const tagPad = Math.round(10 * sc);
+  ctx.strokeStyle = 'rgba(143,188,176,0.3)';
+  ctx.lineWidth   = Math.round(1.5 * sc);
+  ctx.strokeRect(W - pad - tagTW - tagPad * 2, wordmarkY - Math.round(14 * sc), tagTW + tagPad * 2, Math.round(28 * sc));
+  ctx.fillText(tagText, W - pad - tagTW - tagPad, wordmarkY);
+
+  // Header divider
+  ctx.strokeStyle = '#1e1e1e';
+  ctx.lineWidth = Math.round(1 * sc);
+  ctx.beginPath(); ctx.moveTo(pad, headerH); ctx.lineTo(W - pad, headerH); ctx.stroke();
+
+  // ── IMAGE — full bleed, 44 % of height
+  const imgTop = headerH + Math.round(16 * sc);
+  const imgH   = Math.round(H * 0.44);
+  ctx.fillStyle = '#0f0f0f';
+  ctx.fillRect(0, imgTop, W, imgH);
+
+  const heroImg = document.querySelector('.v-hero img');
+  if (heroImg?.src) {
+    try {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      await new Promise((res, rej) => {
+        img.onload = res; img.onerror = rej;
+        img.src = heroImg.src;
+        setTimeout(rej, 8000);
+      });
+      const ia = img.naturalWidth / img.naturalHeight;
+      const aa = W / imgH;
+      let dw, dh, dx, dy;
+      if (ia > aa) { dw = W; dh = W / ia; dx = 0; dy = imgTop + (imgH - dh) / 2; }
+      else          { dh = imgH; dw = imgH * ia; dx = (W - dw) / 2; dy = imgTop; }
+      ctx.drawImage(img, dx, dy, dw, dh);
+    } catch {
+      ctx.fillStyle = '#161616';
+      ctx.fillRect(0, imgTop, W, imgH);
+      ctx.font = `italic 300 ${Math.round(26 * sc)}px ${serif}`;
+      ctx.fillStyle = '#3a3330';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText('Image not available (CORS)', W / 2, imgTop + imgH / 2);
+      ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+    }
+  }
+
+  // ── TEXT BLOCK
+  let curY = imgTop + imgH + Math.round(48 * sc);
+  ctx.textBaseline = 'top';
+
+  // Title
+  ctx.font = `300 ${Math.round(68 * sc)}px ${serif}`;
+  ctx.fillStyle = '#e8e4dc';
+  for (const ln of _wrapText(ctx, OBJECT.title || '', innerW).slice(0, 3)) {
+    ctx.fillText(ln, pad, curY);
+    curY += Math.round(80 * sc);
+  }
+  curY += Math.round(8 * sc);
+
+  // Artist · date · type
+  ctx.font = `400 ${Math.round(24 * sc)}px ${mono}`;
+  ctx.fillStyle = '#5a5450';
+  ctx.fillText([OBJECT.artist, OBJECT.date, OBJECT.type].filter(Boolean).join(' · ').toUpperCase(), pad, curY);
+  curY += Math.round(40 * sc);
+
+  // Institution
+  ctx.font = `400 ${Math.round(24 * sc)}px ${mono}`;
+  ctx.fillStyle = '#8fbcb0';
+  ctx.fillText((OBJECT.institution || '').toUpperCase(), pad, curY);
+  curY += Math.round(48 * sc);
+
+  // Divider
+  ctx.strokeStyle = '#1e1e1e'; ctx.lineWidth = Math.round(1 * sc);
+  ctx.beginPath(); ctx.moveTo(pad, curY); ctx.lineTo(W - pad, curY); ctx.stroke();
+  curY += Math.round(36 * sc);
+
+  // Description excerpt
+  ctx.font = `italic 300 ${Math.round(32 * sc)}px ${serif}`;
+  ctx.fillStyle = '#a09890';
+  const desc    = OBJECT.description || '';
+  const excerpt = desc.substring(0, 300) + (desc.length > 300 ? '…' : '');
+  for (const ln of _wrapText(ctx, excerpt, innerW).slice(0, 5)) {
+    ctx.fillText(ln, pad, curY);
+    curY += Math.round(46 * sc);
+  }
+
+  // ── QR + SCAN — pinned above footer
+  const footerH    = Math.round(260 * sc);
+  const qrAreaTop  = H - footerH - Math.round(360 * sc);
+  const qrSize     = Math.round(300 * sc);
+  const qrX        = W - pad - qrSize - Math.round(20 * sc);
+  const qrBg       = Math.round(16 * sc);
+
+  // Divider above QR
+  ctx.strokeStyle = '#1e1e1e';
+  ctx.beginPath(); ctx.moveTo(pad, qrAreaTop - Math.round(28 * sc)); ctx.lineTo(W - pad, qrAreaTop - Math.round(28 * sc)); ctx.stroke();
+
+  // QR light background + code
+  ctx.fillStyle = '#e8e4dc';
+  ctx.fillRect(qrX - qrBg, qrAreaTop - qrBg, qrSize + qrBg * 2, qrSize + qrBg * 2);
+  _drawQR(ctx, window.location.href, qrX, qrAreaTop, qrSize, '#080808');
+
+  // Scan prompt (left column)
+  ctx.textBaseline = 'top';
+  ctx.font = `400 ${Math.round(20 * sc)}px ${mono}`;
+  ctx.fillStyle = '#5a5450';
+  ctx.fillText('SCAN TO EXPLORE', pad, qrAreaTop);
+
+  ctx.font = `300 ${Math.round(52 * sc)}px ${serif}`;
+  ctx.fillStyle = '#e8e4dc';
+  ctx.fillText('archai.io', pad, qrAreaTop + Math.round(34 * sc));
+
+  ctx.font = `400 ${Math.round(18 * sc)}px ${mono}`;
+  ctx.fillStyle = '#3a3330';
+  const urlW = qrX - pad - Math.round(32 * sc);
+  _wrapText(ctx, window.location.href, urlW).slice(0, 3).forEach((l, i) => {
+    ctx.fillText(l, pad, qrAreaTop + Math.round((96 + i * 28) * sc));
+  });
+
+  // ── FOOTER
+  const footerLineY = H - footerH;
+  ctx.strokeStyle = '#1e1e1e';
+  ctx.beginPath(); ctx.moveTo(pad, footerLineY); ctx.lineTo(W - pad, footerLineY); ctx.stroke();
+
+  ctx.font = `400 ${Math.round(18 * sc)}px ${mono}`;
+  ctx.fillStyle = '#3a3330';
+  ctx.fillText(
+    [OBJECT.licence || 'Open Access', OBJECT.institution || 'ARCHAI', `ARCHAI AUX.IO · ${new Date().getFullYear()}`].join(' · '),
+    pad, footerLineY + Math.round(24 * sc)
+  );
+
+  // Centred ARCHAI wordmark at bottom
+  setLS(Math.round(8 * sc));
+  ctx.font = `300 ${Math.round(26 * sc)}px ${serif}`;
+  ctx.fillStyle = '#2a2826';
+  ctx.textAlign = 'center';
+  ctx.fillText('ARCHAI', W / 2, H - Math.round(72 * sc));
+  ctx.textAlign = 'left';
+  setLS(0);
+
+  // ── EXPORT
+  canvas.toBlob(blob => {
+    restoreBtns();
+    if (!blob) return;
+    const url = URL.createObjectURL(blob);
+    const a   = document.createElement('a');
+    a.href     = url;
+    a.download = `archai-poster-${sizeKey}-${(OBJECT.registration || 'object').replace(/[^a-z0-9]/gi, '-').toLowerCase()}.png`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }, 'image/png');
+
+  } catch (err) {
+    restoreBtns();
+    console.error('Poster generation error:', err);
+  }
 }
 
 // ══════════════════════════════════════════════════════════════════
