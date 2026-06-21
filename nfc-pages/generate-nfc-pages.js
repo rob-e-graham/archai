@@ -29,20 +29,24 @@ const getArg = (name, fallback) => {
 const QDRANT_URL = getArg('qdrant', 'http://localhost:6333');
 const ALL_COLLECTIONS = [
   'archai_pilot', 'archai_met', 'archai_va',
-  'archai_aic', 'archai_cma', 'archai_rijks', 'archai_europeana', 'archai_auckland', 'archai_tepapa', 'archai_mplus', 'archai_brasiliana'
+  'archai_aic', 'archai_cma', 'archai_rijks', 'archai_europeana', 'archai_auckland', 'archai_tepapa', 'archai_mplus', 'archai_brasiliana',
+  'archai_smithsonian', 'archai_tate', 'archai_streetart',
 ];
 const COLLECTION_LABELS = {
-  archai_pilot: 'Museums Victoria',
-  archai_met: 'The Metropolitan Museum of Art',
-  archai_va: 'Victoria and Albert Museum, London',
-  archai_aic: 'Art Institute of Chicago',
-  archai_cma: 'Cleveland Museum of Art',
-  archai_rijks: 'Rijksmuseum, Amsterdam',
-  archai_europeana: 'Europeana',
-  archai_auckland: 'Auckland Museum',
-  archai_tepapa: 'Museum of New Zealand Te Papa Tongarewa',
-  archai_mplus: 'M+, Hong Kong',
-  archai_brasiliana: 'Brasiliana Museus'
+  archai_pilot:        'Museums Victoria',
+  archai_met:          'The Metropolitan Museum of Art',
+  archai_va:           'Victoria and Albert Museum, London',
+  archai_aic:          'Art Institute of Chicago',
+  archai_cma:          'Cleveland Museum of Art',
+  archai_rijks:        'Rijksmuseum, Amsterdam',
+  archai_europeana:    'Europeana',
+  archai_auckland:     'Auckland Museum',
+  archai_tepapa:       'Museum of New Zealand Te Papa Tongarewa',
+  archai_mplus:        'M+, Hong Kong',
+  archai_brasiliana:   'Brasiliana Museus',
+  archai_smithsonian:  'Smithsonian Institution',
+  archai_tate:         'Tate',
+  archai_streetart:    'Public Street Art',
 };
 const OLLAMA_LAN_HOST = getArg('host', 'http://localhost:11434');
 // Default to backend-proxy mode so public AUX.IO pages can use the live chat API
@@ -139,6 +143,39 @@ function getObjectRightsInfo(payload = {}) {
   return { status, guidance, detail, color, border };
 }
 
+function buildInteractiveEmbed(p) {
+  const interactiveUrl = String(p.interactive_url || '').trim();
+  const archiveSource  = String(p.archive_source  || '').trim();
+  const archiveSeed    = String(p.archive_seed_url || '').trim();
+  if (!interactiveUrl && !archiveSource) return '';
+
+  const isWARC = !!archiveSource;
+  const label  = isWARC ? 'Archived interactive work' : 'Interactive work';
+
+  let frameHtml;
+  if (isWARC) {
+    const seedAttr = archiveSeed ? ` url="${escHtml(archiveSeed)}"` : '';
+    frameHtml = `<replay-web-page source="${escHtml(archiveSource)}"${seedAttr} embed="replayonly" sandbox></replay-web-page>`;
+  } else {
+    frameHtml = `<iframe data-src="${escHtml(interactiveUrl)}" title="${escHtml(p.title || 'Interactive work')}" sandbox="allow-scripts allow-same-origin allow-forms" allowfullscreen loading="lazy"></iframe>`;
+  }
+
+  return `<div class="v-interactive" id="v-interactive-block">
+  <div class="v-interactive-header">
+    <span class="v-interactive-label">${label}</span>
+    <span class="v-interactive-pill">${isWARC ? 'WARC Archive' : 'Live Embed'}</span>
+  </div>
+  <p class="v-interactive-note">Experience this work directly — opens within the page in a sandboxed frame.</p>
+  <button class="v-interactive-launch" onclick="launchInteractive()">Launch interactive work</button>
+  <div class="v-interactive-frame-wrap" id="v-interactive-frame">
+    <div class="v-interactive-frame-loading" id="v-interactive-loading">Loading…</div>
+    ${frameHtml}
+    <button class="v-interactive-close" onclick="closeInteractive()">✕ Close</button>
+  </div>
+  <p class="v-interactive-disclaimer">Runs in a sandboxed iframe. ${isWARC ? 'Replay powered by ReplayWeb.page.' : 'Content provided by the source institution.'}</p>
+</div>`;
+}
+
 // ── MAIN ────────────────────────────────────────────────────────
 async function main() {
   console.log('\n  ╔══════════════════════════════════════════════╗');
@@ -214,15 +251,18 @@ async function main() {
   // Cap to limit
   allPoints = allPoints.slice(0, LIMIT);
 
-  // Only generate pages for objects with images
+  // Only generate pages for objects with images or interactive content
   const beforeFilter = allPoints.length;
   allPoints = allPoints.filter(pt => {
     const p = pt.payload;
-    return p && (p.media_medium || p.media_thumbnail || p.image_url || p.primaryImageSmall);
+    return p && (
+      p.media_medium || p.media_thumbnail || p.image_url || p.primaryImageSmall ||
+      p.interactive_url || p.archive_source
+    );
   });
   const skippedNoImage = beforeFilter - allPoints.length;
   if (skippedNoImage > 0) {
-    console.log(`  ⊘ Skipped ${skippedNoImage} objects without images`);
+    console.log(`  ⊘ Skipped ${skippedNoImage} objects without images or interactive content`);
   }
 
   if (!allPoints.length) {
@@ -295,6 +335,10 @@ async function main() {
     const imgMedium = p.media_medium || p.media_thumbnail || '';
     const imgThumb = p.media_thumbnail || '';
     const sourceInstitution = obj.sourceLabel;
+    const interactiveEmbedHtml = buildInteractiveEmbed(p);
+    const interactiveBadgeHtml = interactiveEmbedHtml
+      ? '<span class="v-meta-tag interactive">Interactive</span>'
+      : '';
 
     // Build hero image
     const heroHtml = imgMedium
@@ -409,7 +453,9 @@ async function main() {
       .replace(/\{\{RIGHTS_NOTE\}\}/g, rightsNote)
       .replace(/\{\{CHIPS_HTML\}\}/g, chipsHtml)
       .replace(/\{\{META_ROWS\}\}/g, metaRowsHtml)
-      .replace(/\{\{RELATED_HTML\}\}/g, relatedHtml);
+      .replace(/\{\{RELATED_HTML\}\}/g, relatedHtml)
+      .replace(/\{\{INTERACTIVE_EMBED\}\}/g, interactiveEmbedHtml)
+      .replace(/\{\{INTERACTIVE_BADGE\}\}/g, interactiveBadgeHtml);
 
     const filename = `${nfcCode}.html`;
     fs.writeFileSync(path.join(OUTPUT_DIR, filename), trimGeneratedLines(html), 'utf-8');

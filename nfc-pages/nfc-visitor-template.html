@@ -162,6 +162,138 @@ body::after {
   text-transform: uppercase;
 }
 
+/* ── INTERACTIVE / BORN-DIGITAL EMBED ── */
+.v-interactive {
+  border: 1px solid rgba(155,143,191,0.3);
+  background: rgba(155,143,191,0.04);
+  margin: 0 0 0;
+  animation: slideUp 0.6s ease 0.15s both;
+}
+.v-interactive-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(155,143,191,0.18);
+}
+.v-interactive-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent3);
+}
+.v-interactive-pill {
+  font-family: var(--mono);
+  font-size: 0.44rem;
+  padding: 2px 8px;
+  border: 1px solid rgba(155,143,191,0.4);
+  color: var(--accent3);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.v-interactive-body {
+  padding: 14px 16px;
+}
+.v-interactive-note {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+.v-interactive-launch {
+  width: 100%;
+  padding: 12px 16px;
+  background: transparent;
+  border: 1px solid rgba(155,143,191,0.5);
+  color: var(--accent3);
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.v-interactive-launch:active,
+.v-interactive-launch.active {
+  background: rgba(155,143,191,0.08);
+  border-color: var(--accent3);
+}
+.v-interactive-launch:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.v-interactive-frame-wrap {
+  display: none;
+  margin-top: 12px;
+  border: 1px solid rgba(155,143,191,0.2);
+  background: #000;
+  overflow: hidden;
+  position: relative;
+}
+.v-interactive-frame-wrap.open {
+  display: block;
+}
+.v-interactive-frame-wrap iframe,
+.v-interactive-frame-wrap replay-web-page {
+  width: 100%;
+  min-height: 480px;
+  border: none;
+  display: block;
+}
+.v-interactive-frame-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  color: var(--accent3);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: pulse 1.5s ease-in-out infinite;
+  pointer-events: none;
+}
+.v-interactive-frame-loading.hidden { display: none; }
+.v-interactive-close {
+  margin-top: 8px;
+  width: 100%;
+  padding: 8px;
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--text3);
+  font-family: var(--mono);
+  font-size: 0.46rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  display: none;
+}
+.v-interactive-close.open { display: block; }
+.v-interactive-disclaimer {
+  margin-top: 10px;
+  font-family: var(--mono);
+  font-size: 0.42rem;
+  color: var(--text3);
+  line-height: 1.7;
+  letter-spacing: 0.5px;
+}
+/* Badge in meta strip for interactive works */
+.v-meta-tag.interactive {
+  border-color: rgba(155,143,191,0.4);
+  color: rgba(155,143,191,0.8);
+}
+
 /* ── CONTENT ── */
 .v-content { padding: 24px 20px 32px; }
 
@@ -919,6 +1051,8 @@ body::after {
   {{HERO_IMAGE}}
 </div>
 
+{{INTERACTIVE_EMBED}}
+
 <!-- CONTENT -->
 <div class="v-content">
   <div class="v-title">{{OBJECT_TITLE}}</div>
@@ -928,6 +1062,7 @@ body::after {
     <span class="v-meta-tag mv">{{SOURCE_INSTITUTION}}</span>
     {{LEGAL_STATUS_TAG}}
     {{DISCIPLINE_TAG}}
+    {{INTERACTIVE_BADGE}}
   </div>
 
   <!-- SHARE -->
@@ -1686,6 +1821,49 @@ function submitComment() {
 
 function escHTML(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ══════════════════════════════════════════════════════════════════
+// INTERACTIVE / BORN-DIGITAL EMBED
+// Lazy-loads the iframe or ReplayWeb.page player when the visitor
+// taps "Launch". The frame stays hidden until then to avoid heavy
+// network requests on arrival.
+// ══════════════════════════════════════════════════════════════════
+function launchInteractive() {
+  const wrap = document.getElementById('interactiveFrameWrap');
+  const btn  = document.getElementById('interactiveLaunchBtn');
+  const closeBtn = document.getElementById('interactiveCloseBtn');
+  const loader = document.getElementById('interactiveLoader');
+  if (!wrap) return;
+
+  wrap.classList.add('open');
+  if (btn) { btn.classList.add('active'); btn.disabled = true; btn.textContent = 'Loading…'; }
+  if (closeBtn) closeBtn.classList.add('open');
+
+  const iframe = wrap.querySelector('iframe');
+  if (iframe && iframe.dataset.src) {
+    iframe.src = iframe.dataset.src;
+    iframe.onload = () => { if (loader) loader.classList.add('hidden'); if (btn) btn.textContent = 'Running'; };
+    iframe.onerror = () => { if (loader) loader.classList.add('hidden'); if (btn) btn.textContent = 'Error loading'; };
+  } else {
+    if (loader) loader.classList.add('hidden');
+    if (btn) btn.textContent = 'Running';
+  }
+}
+
+function closeInteractive() {
+  const wrap = document.getElementById('interactiveFrameWrap');
+  const btn  = document.getElementById('interactiveLaunchBtn');
+  const closeBtn = document.getElementById('interactiveCloseBtn');
+  if (!wrap) return;
+
+  wrap.classList.remove('open');
+  if (closeBtn) closeBtn.classList.remove('open');
+  if (btn) { btn.disabled = false; btn.classList.remove('active'); btn.textContent = '▶ Launch interactive'; }
+
+  // Unload iframe to stop running scripts/audio
+  const iframe = wrap.querySelector('iframe');
+  if (iframe && iframe.src) { iframe.src = 'about:blank'; }
 }
 
 // Init comments on load
