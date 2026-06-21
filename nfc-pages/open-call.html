@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080808">
+<meta name="description" content="ARCHAI invites curators, curatorial students, and street artists to take the collection into the world — print a poster, deploy a QR, start a conversation anywhere.">
+<meta property="og:title" content="ARCHAI Open Call — Take the Collection to the Street">
+<meta property="og:description" content="Download any ARCHAI object as an A4, A2, or A0 poster with QR code. Print it. Put it anywhere. The museum without walls.">
+<meta property="og:type" content="website">
+<title>ARCHAI Open Call — Take the Collection to the Street</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #080808;
+  --surface: #0f0f0f;
+  --s2:      #161616;
+  --border:  #1e1e1e;
+  --b2:      #282828;
+  --text:    #e8e4dc;
+  --text2:   #a09890;
+  --text3:   #5a5450;
+  --accent:  #c8a96e;
+  --accent2: #8fbcb0;
+  --accent3: #9b8fbf;
+  --mono:    'DM Mono', 'Courier New', monospace;
+  --serif:   'Cormorant Garamond', Georgia, serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--serif);
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Grain */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ── NAV ── */
+.oc-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  border-bottom: 1px solid var(--border);
+  background: rgba(8,8,8,0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.oc-logo {
+  font-family: var(--serif);
+  font-size: 1rem;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  font-weight: 300;
+}
+.oc-logo em { font-style: italic; color: var(--accent); }
+.oc-nav-tag {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--accent2);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border: 1px solid rgba(143,188,176,0.3);
+}
+
+/* ── HERO ── */
+.oc-hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 48px 32px 64px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.oc-hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 80%, rgba(200,169,110,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80% 20%, rgba(143,188,176,0.05) 0%, transparent 50%),
+    radial-gradient(ellipse 40% 60% at 60% 70%, rgba(155,143,191,0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.oc-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 28px;
+  animation: fadeUp 0.8s ease both;
+}
+
+.oc-hero-title {
+  font-size: clamp(3rem, 10vw, 7.5rem);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  margin-bottom: 36px;
+  animation: fadeUp 0.8s ease 0.1s both;
+}
+.oc-hero-title em { font-style: italic; color: var(--accent); }
+.oc-hero-title .line2 { color: var(--text2); }
+
+.oc-hero-sub {
+  max-width: 600px;
+  font-size: clamp(1.05rem, 2.5vw, 1.4rem);
+  color: var(--text2);
+  line-height: 1.75;
+  margin-bottom: 48px;
+  font-style: italic;
+  animation: fadeUp 0.8s ease 0.2s both;
+}
+
+.oc-hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  animation: fadeUp 0.8s ease 0.3s both;
+}
+.oc-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+.oc-cta-primary {
+  background: var(--accent);
+  color: #080808;
+}
+.oc-cta-primary:hover { background: #d4b87a; }
+.oc-cta-secondary {
+  background: transparent;
+  color: var(--text2);
+  border: 1px solid var(--b2);
+}
+.oc-cta-secondary:hover { border-color: var(--accent2); color: var(--accent2); }
+
+.oc-scroll-hint {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 0.42rem;
+  color: var(--text3);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  animation: fadeUp 1s ease 0.8s both;
+}
+.oc-scroll-arrow {
+  animation: bounce 1.6s ease-in-out infinite;
+  font-size: 0.7rem;
+  color: var(--text3);
+}
+
+/* ── SECTION WRAPPER ── */
+.oc-section {
+  padding: 80px 32px;
+  border-bottom: 1px solid var(--border);
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.oc-section-full {
+  padding: 80px 32px;
+  border-bottom: 1px solid var(--border);
+}
+.oc-section-full > * { max-width: 1120px; margin-left: auto; margin-right: auto; }
+
+.oc-section-label {
+  font-family: var(--mono);
+  font-size: 0.46rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 20px;
+}
+
+.oc-section-title {
+  font-size: clamp(1.8rem, 5vw, 3.4rem);
+  font-weight: 300;
+  line-height: 1.15;
+  margin-bottom: 28px;
+}
+.oc-section-title em { font-style: italic; color: var(--accent); }
+
+.oc-section-body {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--text2);
+  line-height: 1.85;
+  max-width: 640px;
+}
+.oc-section-body p + p { margin-top: 1.2em; }
+
+/* ── MANIFESTO PULL QUOTE ── */
+.oc-pull {
+  padding: 64px 32px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  text-align: center;
+}
+.oc-pull-text {
+  font-size: clamp(1.6rem, 5vw, 3.2rem);
+  font-style: italic;
+  font-weight: 300;
+  line-height: 1.3;
+  color: var(--text);
+  max-width: 800px;
+  margin: 0 auto 20px;
+}
+.oc-pull-text em { color: var(--accent); font-style: normal; }
+.oc-pull-attr {
+  font-family: var(--mono);
+  font-size: 0.46rem;
+  color: var(--text3);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── WHO IS THIS FOR ── */
+.oc-audience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 48px;
+}
+.oc-audience-card {
+  background: var(--bg);
+  padding: 40px 32px 48px;
+  transition: background 0.15s;
+}
+.oc-audience-card:hover { background: var(--surface); }
+.oc-audience-num {
+  font-family: var(--mono);
+  font-size: 0.44rem;
+  color: var(--text3);
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+}
+.oc-audience-icon {
+  font-size: 2.2rem;
+  margin-bottom: 16px;
+  display: block;
+  filter: grayscale(0.3);
+}
+.oc-audience-heading {
+  font-size: 1.5rem;
+  font-weight: 300;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+.oc-audience-heading em { font-style: italic; color: var(--accent); }
+.oc-audience-body {
+  font-size: 0.95rem;
+  color: var(--text2);
+  line-height: 1.8;
+}
+.oc-audience-tags {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.oc-tag {
+  font-family: var(--mono);
+  font-size: 0.42rem;
+  padding: 3px 8px;
+  border: 1px solid var(--b2);
+  color: var(--text3);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.oc-tag.gold  { border-color: rgba(200,169,110,0.3); color: rgba(200,169,110,0.7); }
+.oc-tag.teal  { border-color: rgba(143,188,176,0.3); color: rgba(143,188,176,0.7); }
+.oc-tag.lilac { border-color: rgba(155,143,191,0.3); color: rgba(155,143,191,0.7); }
+
+/* ── HOW IT WORKS ── */
+.oc-steps {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0;
+  border: 1px solid var(--border);
+}
+.oc-step {
+  padding: 32px 28px 36px;
+  border-right: 1px solid var(--border);
+  position: relative;
+}
+.oc-step:last-child { border-right: none; }
+.oc-step-num {
+  font-family: var(--mono);
+  font-size: 0.42rem;
+  color: var(--accent);
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+  display: block;
+}
+.oc-step-heading {
+  font-size: 1.15rem;
+  font-weight: 300;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+.oc-step-body {
+  font-size: 0.88rem;
+  color: var(--text2);
+  line-height: 1.75;
+}
+.oc-step-connector {
+  position: absolute;
+  right: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--text3);
+  z-index: 2;
+  background: var(--bg);
+  padding: 4px;
+}
+
+/* ── POSTER FEATURE ── */
+.oc-poster-feature {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-top: 48px;
+  overflow: hidden;
+}
+.oc-poster-left {
+  padding: 48px 40px;
+  border-right: 1px solid var(--border);
+}
+.oc-poster-right {
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.oc-poster-preview {
+  aspect-ratio: 210/297;
+  background: var(--s2);
+  border: 1px solid var(--b2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  max-width: 220px;
+}
+.oc-poster-preview-top {
+  background: rgba(200,169,110,0.08);
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--b2);
+  font-family: var(--mono);
+  font-size: 0.38rem;
+  color: var(--accent);
+  letter-spacing: 2px;
+}
+.oc-poster-preview-img {
+  flex: 1;
+  background:
+    linear-gradient(180deg, rgba(30,30,28,0.6) 0%, rgba(10,10,10,0.9) 100%),
+    repeating-linear-gradient(45deg, rgba(200,169,110,0.03) 0px, rgba(200,169,110,0.03) 1px, transparent 1px, transparent 8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-size: 0.38rem;
+  color: var(--text3);
+  letter-spacing: 1px;
+}
+.oc-poster-preview-bottom {
+  padding: 10px 12px;
+  border-top: 1px solid var(--b2);
+}
+.oc-poster-preview-title {
+  font-family: var(--serif);
+  font-size: 0.65rem;
+  margin-bottom: 4px;
+  color: var(--text);
+}
+.oc-poster-preview-meta {
+  font-family: var(--mono);
+  font-size: 0.32rem;
+  color: var(--text3);
+  letter-spacing: 1px;
+  margin-bottom: 8px;
+}
+.oc-poster-preview-qr {
+  width: 28px;
+  height: 28px;
+  background: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  float: right;
+  margin-top: -28px;
+}
+.oc-qr-mock {
+  display: grid;
+  grid-template-columns: repeat(5, 4px);
+  gap: 1px;
+}
+.oc-qr-mock span {
+  width: 4px; height: 4px;
+  background: #080808;
+}
+.oc-qr-mock span.w { background: transparent; }
+
+.oc-size-list {
+  list-style: none;
+  margin-top: 24px;
+}
+.oc-size-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 0.5px;
+}
+.oc-size-list li:last-child { border-bottom: none; }
+.oc-size-name { color: var(--text); font-size: 0.6rem; }
+.oc-size-spec { color: var(--text3); }
+.oc-size-use  { color: var(--accent2); }
+
+/* ── HASHTAG BLOCK ── */
+.oc-hashtag-wrap {
+  padding: 80px 32px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 50%, rgba(155,143,191,0.05) 0%, transparent 70%);
+}
+.oc-hashtag {
+  font-size: clamp(2.2rem, 8vw, 6rem);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  color: var(--accent3);
+  display: block;
+  margin-bottom: 16px;
+}
+.oc-hashtag-body {
+  font-size: 1rem;
+  color: var(--text2);
+  max-width: 520px;
+  margin: 0 auto;
+  line-height: 1.75;
+}
+
+/* ── SUBMIT / JOIN ── */
+.oc-submit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  margin-top: 40px;
+}
+.oc-submit-card {
+  background: var(--bg);
+  padding: 32px 28px;
+}
+.oc-submit-method {
+  font-family: var(--mono);
+  font-size: 0.44rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.oc-submit-heading {
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+.oc-submit-body {
+  font-size: 0.88rem;
+  color: var(--text2);
+  line-height: 1.75;
+}
+.oc-submit-body a {
+  color: var(--accent2);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(143,188,176,0.3);
+  transition: border-color 0.12s;
+}
+.oc-submit-body a:hover { border-color: var(--accent2); }
+
+/* ── PRINCIPLES ── */
+.oc-principles {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 32px;
+  margin-top: 48px;
+}
+.oc-principle-num {
+  font-family: var(--mono);
+  font-size: 0.42rem;
+  color: var(--text3);
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+.oc-principle-text {
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--text2);
+  line-height: 1.65;
+}
+
+/* ── FOOTER ── */
+.oc-footer {
+  padding: 48px 32px 56px;
+  text-align: center;
+}
+.oc-footer-logo {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  letter-spacing: 10px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 12px;
+}
+.oc-footer-logo em { font-style: italic; color: rgba(200,169,110,0.4); }
+.oc-footer-text {
+  font-family: var(--mono);
+  font-size: 0.42rem;
+  color: var(--text3);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  line-height: 2;
+  margin-bottom: 24px;
+}
+.oc-footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.oc-footer-link {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  color: var(--text3);
+  text-decoration: none;
+  border: 1px solid var(--b2);
+  padding: 6px 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.12s;
+}
+.oc-footer-link:hover { border-color: var(--accent2); color: var(--accent2); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(5px); }
+}
+
+@media (max-width: 720px) {
+  .oc-nav { padding: 14px 20px; }
+  .oc-hero { padding: 36px 20px 56px; }
+  .oc-section { padding: 56px 20px; }
+  .oc-section-full { padding: 56px 20px; }
+  .oc-pull { padding: 48px 20px; }
+  .oc-poster-feature { grid-template-columns: 1fr; }
+  .oc-poster-left { border-right: none; border-bottom: 1px solid var(--border); }
+  .oc-steps { grid-template-columns: 1fr; }
+  .oc-step { border-right: none; border-bottom: 1px solid var(--border); }
+  .oc-step:last-child { border-bottom: none; }
+  .oc-step-connector { display: none; }
+  .oc-hashtag-wrap { padding: 56px 20px; }
+  .oc-footer { padding: 40px 20px 48px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="oc-nav">
+  <div class="oc-logo">ARC<em>H</em>AI</div>
+  <div class="oc-nav-tag">Open Call · 2026</div>
+</nav>
+
+<!-- HERO -->
+<section class="oc-hero">
+  <div class="oc-hero-bg"></div>
+  <div class="oc-eyebrow">Open Call — Curators · Students · Street Artists</div>
+  <h1 class="oc-hero-title">
+    Take the collection<br>
+    <em>to the street.</em><br>
+    <span class="line2">The museum without walls.</span>
+  </h1>
+  <p class="oc-hero-sub">
+    Every object in the ARCHAI archive can be a poster, a sticker, a paste-up, an installation.
+    Download it. Print it. Put it anywhere. The QR code brings the collection to life,
+    wherever you leave it.
+  </p>
+  <div class="oc-hero-actions">
+    <a class="oc-cta oc-cta-primary" href="v/index.html">Browse the Collection →</a>
+    <a class="oc-cta oc-cta-secondary" href="#how-it-works">How It Works</a>
+  </div>
+  <div class="oc-scroll-hint">
+    <span>Scroll</span>
+    <span class="oc-scroll-arrow">↓</span>
+  </div>
+</section>
+
+<!-- PULL QUOTE -->
+<div class="oc-pull">
+  <p class="oc-pull-text">
+    "A painting on a street corner is a <em>provocation</em>. A QR code beside it is an invitation.
+    Together they make a conversation the gallery never could."
+  </p>
+  <div class="oc-pull-attr">ARCHAI · Sovereign Semantic Heritage Infrastructure</div>
+</div>
+
+<!-- ABOUT -->
+<section class="oc-section">
+  <div class="oc-section-label">What is this</div>
+  <h2 class="oc-section-title">
+    Heritage infrastructure<br>built for the <em>open world</em>
+  </h2>
+  <div class="oc-section-body">
+    <p>
+      ARCHAI connects physical tags — NFC chips, QR codes, stickers, printed posters — to
+      living conversations with cultural objects. Every tag links to a visitor page: a story,
+      an image, an AI voice that speaks in first person as the object itself.
+    </p>
+    <p>
+      Visitors can ask questions, leave responses, and hear the work read aloud. Their words
+      join the collection record. The conversation keeps growing.
+    </p>
+    <p>
+      We are now inviting <strong>curators, curatorial students, and street artists</strong>
+      around the world to take this infrastructure into public space — galleries, streets,
+      markets, schools, warehouses, underpasses, fences.
+    </p>
+    <p>
+      The collection is open. The posters are free. The streets are yours.
+    </p>
+  </div>
+</section>
+
+<!-- WHO IS THIS FOR -->
+<section class="oc-section-full">
+  <div style="max-width:1120px;margin:0 auto;">
+    <div class="oc-section-label">Who is this for</div>
+    <h2 class="oc-section-title">Three kinds of <em>practice</em></h2>
+  </div>
+  <div class="oc-audience-grid">
+
+    <div class="oc-audience-card">
+      <div class="oc-audience-num">01 ·· CURATORIAL PRACTICE</div>
+      <span class="oc-audience-icon">🏛</span>
+      <h3 class="oc-audience-heading">Curators &amp;<br><em>museum professionals</em></h3>
+      <p class="oc-audience-body">
+        Extend your collection beyond the gallery wall. Use ARCHAI posters to create satellite
+        installations in community spaces, transit hubs, or outdoor environments. Test how objects
+        perform outside their usual institutional frame — and hear what people ask when there's
+        no gallery guard watching.
+      </p>
+      <div class="oc-audience-tags">
+        <span class="oc-tag gold">Public programming</span>
+        <span class="oc-tag gold">Satellite exhibitions</span>
+        <span class="oc-tag gold">Outreach</span>
+      </div>
+    </div>
+
+    <div class="oc-audience-card">
+      <div class="oc-audience-num">02 ·· CURATORIAL STUDIES</div>
+      <span class="oc-audience-icon">🎓</span>
+      <h3 class="oc-audience-heading">Curatorial students &amp;<br><em>emerging practitioners</em></h3>
+      <p class="oc-audience-body">
+        Practise real curatorial thinking in public space. Choose objects from the ARCHAI
+        global collection — Met, Tate, Rijksmuseum, street art archives — write your own
+        interpretive framing, and deploy a mini-exhibition anywhere you can find a wall.
+        No institutional permission required.
+      </p>
+      <div class="oc-audience-tags">
+        <span class="oc-tag teal">Student projects</span>
+        <span class="oc-tag teal">Thesis exhibitions</span>
+        <span class="oc-tag teal">Workshop outcomes</span>
+      </div>
+    </div>
+
+    <div class="oc-audience-card">
+      <div class="oc-audience-num">03 ·· STREET ART &amp; PUBLIC PRACTICE</div>
+      <span class="oc-audience-icon">🎨</span>
+      <h3 class="oc-audience-heading">Street artists &amp;<br><em>public art makers</em></h3>
+      <p class="oc-audience-body">
+        Give your work a layer of depth that lives beyond the surface. Paste an ARCHAI print
+        beside your mural, incorporate the QR into your sticker run, or respond to an object
+        from the collection with your own visual language. The scan links conversation directly
+        to place — people who find your work can speak with what you were speaking to.
+      </p>
+      <div class="oc-audience-tags">
+        <span class="oc-tag lilac">Paste-ups</span>
+        <span class="oc-tag lilac">Sticker runs</span>
+        <span class="oc-tag lilac">Murals</span>
+        <span class="oc-tag lilac">Site-specific</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="oc-section-full" id="how-it-works">
+  <div style="max-width:1120px;margin:0 auto;">
+    <div class="oc-section-label">Process</div>
+    <h2 class="oc-section-title">How it works — <em>five steps</em></h2>
+  </div>
+  <div class="oc-steps" style="max-width:1120px;margin:40px auto 0;">
+
+    <div class="oc-step">
+      <span class="oc-step-num">01 ·· FIND</span>
+      <h3 class="oc-step-heading">Choose an object</h3>
+      <p class="oc-step-body">
+        Browse the ARCHAI collection index. Objects from the Met, Tate, Rijksmuseum, Cleveland,
+        Smithsonian, and street art archives across Vancouver, Brussels, and New York — all available
+        now, with more added regularly.
+      </p>
+      <div class="oc-step-connector" aria-hidden="true">→</div>
+    </div>
+
+    <div class="oc-step">
+      <span class="oc-step-num">02 ·· DOWNLOAD</span>
+      <h3 class="oc-step-heading">Download your poster</h3>
+      <p class="oc-step-body">
+        Every visitor page has a Download Poster button. Choose your size: A4, A2, or A0.
+        The poster includes the object image, title, artist, institution, a description excerpt,
+        and a QR code that links directly back to the live ARCHAI page.
+      </p>
+      <div class="oc-step-connector" aria-hidden="true">→</div>
+    </div>
+
+    <div class="oc-step">
+      <span class="oc-step-num">03 ·· PRINT</span>
+      <h3 class="oc-step-heading">Print at any scale</h3>
+      <p class="oc-step-body">
+        A4 on your home printer for zines and stickers. A2 for gallery prints and paste-ups.
+        A0 for large-format outdoor installations. Any print shop can handle these files —
+        the QR code is sized to scan reliably at all formats.
+      </p>
+      <div class="oc-step-connector" aria-hidden="true">→</div>
+    </div>
+
+    <div class="oc-step">
+      <span class="oc-step-num">04 ·· DEPLOY</span>
+      <h3 class="oc-step-heading">Put it anywhere</h3>
+      <p class="oc-step-body">
+        Gallery wall. Street corner. Market stall. Community noticeboard. The back of a bus seat.
+        Your studio window. Wherever someone might stop, look, and reach for their phone.
+      </p>
+      <div class="oc-step-connector" aria-hidden="true">→</div>
+    </div>
+
+    <div class="oc-step">
+      <span class="oc-step-num">05 ·· CONNECT</span>
+      <h3 class="oc-step-heading">People scan, the object speaks</h3>
+      <p class="oc-step-body">
+        Whoever scans meets the full ARCHAI visitor page: story, image, AI conversation, voice
+        playback, and visitor response. Their words join the collection record.
+        The object now has a presence in your city.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- POSTER FEATURE -->
+<section class="oc-section-full">
+  <div style="max-width:1120px;margin:0 auto;">
+    <div class="oc-section-label">The poster</div>
+    <h2 class="oc-section-title">What you download — <em>what gets printed</em></h2>
+    <div class="oc-poster-feature">
+
+      <div class="oc-poster-left">
+        <p style="font-size:0.95rem;color:var(--text2);line-height:1.8;margin-bottom:28px;">
+          Each poster is a high-resolution PNG rendered directly in your browser — no server,
+          no upload, no account. ARCHAI branding, the object image, metadata, and a unique
+          QR code that links to the live visitor page for that exact object.
+        </p>
+        <ul class="oc-size-list">
+          <li>
+            <span class="oc-size-name">A4</span>
+            <span class="oc-size-spec">2480 × 3508 px · 300 dpi</span>
+            <span class="oc-size-use">Home print · Zine · Sticker</span>
+          </li>
+          <li>
+            <span class="oc-size-name">A2</span>
+            <span class="oc-size-spec">2480 × 3508 px · 150 dpi</span>
+            <span class="oc-size-use">Gallery wall · Paste-up</span>
+          </li>
+          <li>
+            <span class="oc-size-name">A0</span>
+            <span class="oc-size-spec">4961 × 7016 px · 150 dpi</span>
+            <span class="oc-size-use">Large format · Outdoor · Mural adjacent</span>
+          </li>
+        </ul>
+        <p style="font-family:var(--mono);font-size:0.44rem;color:var(--text3);letter-spacing:0.5px;margin-top:20px;line-height:1.7;">
+          Objects sourced under CC0, CC BY, or equivalent open licences verified at item level.
+          Attribution is included in the poster footer. Check the legal status tag on each object page.
+        </p>
+      </div>
+
+      <div class="oc-poster-right">
+        <div class="oc-poster-preview">
+          <div class="oc-poster-preview-top">ARC<span style="color:var(--accent)">H</span>AI &nbsp;&nbsp;&nbsp; AUX.IO</div>
+          <div class="oc-poster-preview-img">[ object image ]</div>
+          <div class="oc-poster-preview-bottom">
+            <div class="oc-poster-preview-title">Object Title</div>
+            <div class="oc-poster-preview-meta">ARTIST · DATE · INSTITUTION</div>
+            <div class="oc-poster-preview-qr">
+              <div class="oc-qr-mock">
+                <span></span><span class="w"></span><span></span><span class="w"></span><span></span>
+                <span class="w"></span><span></span><span class="w"></span><span></span><span class="w"></span>
+                <span></span><span class="w"></span><span></span><span class="w"></span><span></span>
+                <span class="w"></span><span></span><span class="w"></span><span></span><span class="w"></span>
+                <span></span><span class="w"></span><span></span><span class="w"></span><span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p style="margin-top:20px;font-family:var(--mono);font-size:0.44rem;color:var(--text3);letter-spacing:0.5px;line-height:1.7;">
+          Preview only — actual poster renders at full resolution in your browser.<br>
+          QR code links to the live ARCHAI visitor page for that object.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHAT THE QR DOES -->
+<section class="oc-section">
+  <div class="oc-section-label">The scan experience</div>
+  <h2 class="oc-section-title">What happens when someone<br><em>points their camera</em></h2>
+  <div class="oc-section-body">
+    <p>
+      They land on a full ARCHAI visitor page. No app download. No account.
+      Just open the camera, scan, and meet the object.
+    </p>
+  </div>
+  <div class="oc-principles">
+    <div>
+      <div class="oc-principle-num">01 ··</div>
+      <p class="oc-principle-text">"Tell me your history." The object speaks in first person — 3–4 sentences, warm and clear, from its own record.</p>
+    </div>
+    <div>
+      <div class="oc-principle-num">02 ··</div>
+      <p class="oc-principle-text">"What are you made of?" The visitor types or speaks any question. The AI answers from verified metadata.</p>
+    </div>
+    <div>
+      <div class="oc-principle-num">03 ··</div>
+      <p class="oc-principle-text">Voice playback reads the reply aloud. No screen needed. Works in the street, in a market, in the dark.</p>
+    </div>
+    <div>
+      <div class="oc-principle-num">04 ··</div>
+      <p class="oc-principle-text">Visitors leave a response. Their words join the collection record alongside centuries of curatorial notes.</p>
+    </div>
+    <div>
+      <div class="oc-principle-num">05 ··</div>
+      <p class="oc-principle-text">Related objects appear below. One scan can open a thread through Tate, the Rijksmuseum, and a mural in Vancouver.</p>
+    </div>
+    <div>
+      <div class="oc-principle-num">06 ··</div>
+      <p class="oc-principle-text">All processing is local. No data leaves to a cloud. Sovereignty of collection data is preserved end to end.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HASHTAG -->
+<div class="oc-hashtag-wrap">
+  <span class="oc-hashtag">#ARCHAIinTheWild</span>
+  <p class="oc-hashtag-body">
+    Tag your installations, paste-ups, sticker runs, and exhibitions.
+    We feature submissions on this page and in the ARCHAI network.
+    The collection grows wherever you take it.
+  </p>
+</div>
+
+<!-- SUBMIT / JOIN -->
+<section class="oc-section-full">
+  <div style="max-width:1120px;margin:0 auto;">
+    <div class="oc-section-label">Join the open call</div>
+    <h2 class="oc-section-title">Submit your work &amp;<br><em>get featured</em></h2>
+    <p style="font-size:1rem;color:var(--text2);line-height:1.8;max-width:600px;margin-bottom:0;">
+      Show us where the collection went. We feature documented deployments here — with the story
+      of how they came to be, and the conversations they sparked.
+    </p>
+  </div>
+  <div class="oc-submit-grid" style="max-width:1120px;margin:40px auto 0;">
+
+    <div class="oc-submit-card">
+      <div class="oc-submit-method">01 · Tag</div>
+      <h3 class="oc-submit-heading">Share on social</h3>
+      <p class="oc-submit-body">
+        Post your deployment on any platform and tag it <strong>#ARCHAIinTheWild</strong>.
+        Include the object title and where you put it. We monitor the tag and will reach out
+        to feature your work.
+      </p>
+    </div>
+
+    <div class="oc-submit-card">
+      <div class="oc-submit-method">02 · Email</div>
+      <h3 class="oc-submit-heading">Direct submission</h3>
+      <p class="oc-submit-body">
+        Send documentation — photos of the deployment, the object page link, a note on the
+        context — to <a href="mailto:open@archai.io">open@archai.io</a>.
+        We'll contact you about featuring it and may include it in ARCHAI research outputs.
+      </p>
+    </div>
+
+    <div class="oc-submit-card">
+      <div class="oc-submit-method">03 · Contribute</div>
+      <h3 class="oc-submit-heading">Add your own work</h3>
+      <p class="oc-submit-body">
+        Street artists: if you want your own practice included in the ARCHAI collection —
+        not just deploying others' work but having your work become a scannable object in the
+        archive — get in touch. We're building an open onboarding pathway for living artists.
+      </p>
+    </div>
+
+    <div class="oc-submit-card">
+      <div class="oc-submit-method">04 · Open source</div>
+      <h3 class="oc-submit-heading">Build with ARCHAI</h3>
+      <p class="oc-submit-body">
+        ARCHAI is open-source infrastructure. Institutions, researchers, and practitioners
+        can self-host the full stack — Qdrant, Ollama, the harvester pipeline, and the AUX.IO
+        page generator. See the
+        <a href="https://github.com/rob-e-graham/archai" target="_blank" rel="noopener">GitHub repository</a>
+        to get started.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="oc-footer">
+  <div class="oc-footer-logo">ARC<em>H</em>AI</div>
+  <div class="oc-footer-text">
+    Sovereign Semantic Heritage Infrastructure<br>
+    FAMTEC · RMIT · Open Heritage Data<br>
+    All processing local · data sovereignty preserved
+  </div>
+  <div class="oc-footer-links">
+    <a class="oc-footer-link" href="v/index.html">Browse Collection</a>
+    <a class="oc-footer-link" href="https://github.com/rob-e-graham/archai" target="_blank" rel="noopener">GitHub</a>
+    <a class="oc-footer-link" href="mailto:open@archai.io">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
