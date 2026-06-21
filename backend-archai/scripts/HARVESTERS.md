@@ -4,6 +4,8 @@ Each harvester fetches objects from a museum API, generates embeddings via Ollam
 
 ## Available Harvesters
 
+### Existing (live)
+
 | Harvester | Institution | Country | Objects | Images | API Key | Licence |
 |-----------|------------|---------|---------|--------|---------|---------|
 | `met-harvester.js` | The Metropolitan Museum of Art | 🇺🇸 USA | 470K+ | ✅ | None | CC0 |
@@ -18,6 +20,28 @@ Each harvester fetches objects from a museum API, generates embeddings via Ollam
 | `brasiliana-harvester.js` | Brasiliana Museus | 🇧🇷 Brazil | Large Tainacan platform | ✅ | None | Public domain / open-access, item-checked |
 
 **Museums Victoria** objects are in the `archai_pilot` collection (harvested separately via the pipeline).
+
+### New — Modern Art, Design & Street Art
+
+| Harvester | Institution / Source | Type | Images | API Key | Licence |
+|-----------|---------------------|------|--------|---------|---------|
+| `smithsonian-harvester.js` | Smithsonian SAAM + Cooper Hewitt | Modern American art + design | ✅ CC0-flagged only | 🔑 Free (api.data.gov) | CC0 |
+| `tate-harvester.js` | Tate Collection | British art, Turner → early Modernism | ✅ pre-1920 PD works | None | CC0 |
+| `streetart-harvester.js` | Vancouver + Brussels + NYC open data | Street art & public murals | ✅ per-source | None | OGL / CC BY / Public Domain |
+
+**Legal status of new harvesters:**
+
+- **Smithsonian**: CC0 verified at item level via API `usage.access` field. Only CC0-flagged records are harvested. Images and metadata cleared for public display including commercial use. Free key required — register at api.data.gov.
+- **Tate**: Data and public-domain-work images are CC0 (Tate Open Access, 2019). Harvester applies a hard `year < 1920` filter so every harvested object and its image is safely in the public domain. No contemporary in-copyright works are included.
+- **Street Art**: Three open-data city portals, each with explicit open licences. Attribution is stored per-record in the Qdrant payload. No key required.
+
+**Sources NOT suitable for image display (metadata-only):**
+
+| Source | Reason | Use case |
+|--------|--------|----------|
+| Whitney Museum | CC0 covers metadata only; images require separate licensing | Semantic search enrichment |
+| MoMA (GitHub dataset) | CC0 metadata only; images via Art Resource licence only | Semantic search enrichment |
+| Harvard Art Museums | Non-commercial use only; 2-week cache limit | Research context only |
 
 ## Quick Start
 
@@ -61,12 +85,29 @@ node tepapa-harvester.js --limit 120
 node mplus-harvester.js --limit 120
 node brasiliana-harvester.js --limit 120
 
+# Modern art + design (new)
+node tate-harvester.js --limit 150              # No key needed
+node streetart-harvester.js --limit 300         # No key needed (Vancouver + Brussels + NYC)
+SMITHSONIAN_API_KEY=xxx node smithsonian-harvester.js --limit 200   # Free key: api.data.gov
+
+# Street art — single source
+node streetart-harvester.js --source vancouver --limit 100
+node streetart-harvester.js --source brussels --limit 100
+node streetart-harvester.js --source nyc --limit 100
+
+# Smithsonian — specific unit
+SMITHSONIAN_API_KEY=xxx node smithsonian-harvester.js --unit CHSDM --limit 100  # Cooper Hewitt only
+SMITHSONIAN_API_KEY=xxx node smithsonian-harvester.js --unit SAAM --limit 100   # American Art only
+
 # Dry run (no writes)
 node cleveland-harvester.js --dry-run
 node aucklandmuseum-harvester.js --dry-run
 node tepapa-harvester.js --dry-run
 node mplus-harvester.js --dry-run
 node brasiliana-harvester.js --dry-run
+node tate-harvester.js --dry-run
+node streetart-harvester.js --dry-run
+SMITHSONIAN_API_KEY=xxx node smithsonian-harvester.js --dry-run
 ```
 
 ## After Harvesting
@@ -92,6 +133,9 @@ node generate-nfc-pages.js --limit 300
 | `archai_tepapa` | 8,000,000+ | Te Papa Tongarewa |
 | `archai_mplus` | 9,000,000+ | M+, Hong Kong |
 | `archai_brasiliana` | 12,000,000+ | Brasiliana Museus |
+| `archai_smithsonian` | 2,000,000+ | Smithsonian (SAAM + Cooper Hewitt) |
+| `archai_tate` | 3,000,000+ | Tate Collection |
+| `archai_streetart` | 5,000,000+ | Street Art (Vancouver · Brussels · NYC) |
 
 ## Data Richness
 
@@ -113,6 +157,9 @@ famtec run archai -- node europeana-harvester.js
 - **Te Papa**: optional registered key or built-in guest-token fallback for development
 - **M+**: public GraphQL endpoint currently works without separate registration for metadata access
 - **Brasiliana Museus**: public Tainacan / WordPress API, no key required
+- **Smithsonian Open Access**: https://api.data.gov/signup (free registration, instant) — set `SMITHSONIAN_API_KEY`
+- **Tate**: no key required (GitHub dataset)
+- **Street Art (Vancouver/Brussels/NYC)**: no key required (open city data portals)
 
 ## International Expansion Notes
 
@@ -125,11 +172,13 @@ ARCHAI is moving toward translation-aware onboarding at ingest time, not only in
 ### Available but no public API
 - ColBase (Japan) — 4 national museums, web-only, no REST API
 - MNBA Buenos Aires — on Google Arts & Culture only
-- Smithsonian — huge collection but poor image delivery via API
 
-### Future targets
-- Harvard Art Museums (needs API key)
-- Cooper Hewitt / Smithsonian Design (needs API key)
-- Brooklyn Museum (needs API key)
-- DigitalNZ (partner-rights gate still needed before public AUX.IO use)
-- Tokyo Museum Collection / ToMuCo (technically explored, but currently held out of live onboarding on public-rights grounds)
+### Future targets — born-digital & modern culture
+- **Rhizome ArtBase** (SPARQL/Linked Open Data) — net art, software art, browser art. Needs dedicated SPARQL harvester + per-work media review.
+- **RAWG Video Games Database** — 300K+ games as cultural objects. Free with attribution. Needs `RAWG_API_KEY` and attribution link on every display page.
+- **Art Blocks** (GraphQL/The Graph) — on-chain generative art. Image rights complex (token holder owns the output). Start metadata-only.
+- **Whitney Museum** — CC0 metadata only, images NOT open. Useful for semantic search enrichment without image display.
+- **MoMA dataset** (GitHub) — CC0 metadata only. Same pattern as Whitney.
+- **Harvard Art Museums** — non-commercial only, rich provenance data. Research context only.
+- **DigitalNZ** — partner-rights gate still needed before public AUX.IO use.
+- **Tokyo Museum Collection / ToMuCo** — technically explored, held out on public-rights grounds.
