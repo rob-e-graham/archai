@@ -1130,7 +1130,11 @@ body::after {
       <button class="v-poster-btn" onclick="downloadPoster('A2')" data-size="A2">A2 · 150 dpi</button>
       <button class="v-poster-btn" onclick="downloadPoster('A0')" data-size="A0">A0 · 150 dpi</button>
     </div>
-    <div class="v-poster-note">PNG · QR code · ARCHAI branding · Suitable for print and display</div>
+    <div class="v-poster-sizes" style="margin-top:5px;">
+      <button class="v-poster-btn" onclick="downloadPosterSmall('STICKER')" data-size="STICKER">Sticker · 100mm</button>
+      <button class="v-poster-btn" onclick="downloadPosterSmall('POSTCARD')" data-size="POSTCARD">Postcard · A6</button>
+    </div>
+    <div class="v-poster-note">PNG · QR code · ARCHAI branding · Poster · Sticker · Postcard</div>
   </div>
 
   <div class="v-story">{{OBJECT_STORY}}</div>
@@ -2057,6 +2061,279 @@ async function downloadPoster(sizeKey) {
   } catch (err) {
     restoreBtns();
     console.error('Poster generation error:', err);
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════
+// SMALL FORMAT — Sticker (100mm sq) + Postcard (A6 landscape)
+// ══════════════════════════════════════════════════════════════════
+const SMALL_FORMAT_SIZES = {
+  STICKER:  { w: 1181, h: 1181, dpi: 300, label: 'Sticker · 100mm' },
+  POSTCARD: { w: 1748, h: 1240, dpi: 300, label: 'Postcard · A6'   },
+};
+
+// ── STICKER layout — QR dominant, full bleed image, clean type ──
+async function _drawStickerLayout(ctx, W, H) {
+  const sc    = W / 1181;
+  const pad   = Math.round(48 * sc);
+  const serif = '"Cormorant Garamond", Georgia, serif';
+  const mono  = '"DM Mono", "Courier New", monospace';
+  function sLS(px) { try { ctx.letterSpacing = px + 'px'; } catch {} }
+
+  ctx.fillStyle = '#080808';
+  ctx.fillRect(0, 0, W, H);
+
+  // Header — wordmark + reg tag
+  const wY = Math.round(44 * sc);
+  ctx.textBaseline = 'middle';
+  ctx.font = `300 ${Math.round(30 * sc)}px ${serif}`;
+  sLS(Math.round(4 * sc));
+  const aW = ctx.measureText('ARC').width, hW = ctx.measureText('H').width;
+  ctx.fillStyle = '#e8e4dc'; ctx.fillText('ARC', pad, wY);
+  ctx.fillStyle = '#c8a96e'; ctx.fillText('H',   pad + aW,      wY);
+  ctx.fillStyle = '#e8e4dc'; ctx.fillText('AI',  pad + aW + hW, wY);
+  sLS(0);
+
+  ctx.font = `400 ${Math.round(15 * sc)}px ${mono}`;
+  ctx.fillStyle = '#8fbcb0';
+  const tag  = (OBJECT.registration || 'AUX.IO').toUpperCase();
+  const tagW = ctx.measureText(tag).width;
+  ctx.fillText(tag, W - pad - tagW, wY);
+
+  // Divider
+  const hdrH = Math.round(72 * sc);
+  ctx.strokeStyle = '#1e1e1e'; ctx.lineWidth = Math.round(1 * sc);
+  ctx.beginPath(); ctx.moveTo(pad, hdrH); ctx.lineTo(W - pad, hdrH); ctx.stroke();
+
+  // Image — 42% of height
+  const imgTop = hdrH + Math.round(10 * sc);
+  const imgH   = Math.round(H * 0.42);
+  ctx.fillStyle = '#0f0f0f';
+  ctx.fillRect(0, imgTop, W, imgH);
+  const heroEl = document.querySelector('.v-hero img');
+  if (heroEl?.src) {
+    try {
+      const img = new Image(); img.crossOrigin = 'anonymous';
+      await new Promise((res, rej) => { img.onload = res; img.onerror = rej; img.src = heroEl.src; setTimeout(rej, 8000); });
+      const ia = img.naturalWidth / img.naturalHeight, aa = W / imgH;
+      let dw, dh, dx, dy;
+      if (ia > aa) { dw = W; dh = W / ia; dx = 0; dy = imgTop + (imgH - dh) / 2; }
+      else          { dh = imgH; dw = imgH * ia; dx = (W - dw) / 2; dy = imgTop; }
+      ctx.drawImage(img, dx, dy, dw, dh);
+    } catch { /* leave dark bg */ }
+  }
+
+  // Title (max 2 lines)
+  let curY = imgTop + imgH + Math.round(22 * sc);
+  ctx.textBaseline = 'top';
+  ctx.font = `300 ${Math.round(44 * sc)}px ${serif}`;
+  ctx.fillStyle = '#e8e4dc';
+  for (const ln of _wrapText(ctx, OBJECT.title || '', W - pad * 2).slice(0, 2)) {
+    ctx.fillText(ln, pad, curY);
+    curY += Math.round(52 * sc);
+  }
+
+  // Artist · date
+  ctx.font = `400 ${Math.round(18 * sc)}px ${mono}`;
+  ctx.fillStyle = '#5a5450';
+  ctx.fillText([OBJECT.artist, OBJECT.date].filter(Boolean).join(' · ').toUpperCase().substring(0, 52), pad, curY);
+  curY += Math.round(36 * sc);
+
+  // Divider
+  ctx.strokeStyle = '#1e1e1e';
+  ctx.beginPath(); ctx.moveTo(pad, curY); ctx.lineTo(W - pad, curY); ctx.stroke();
+  curY += Math.round(22 * sc);
+
+  // QR — minimum 20mm = 236px at 300dpi; use 270px for safe scan margin
+  const qrSize = Math.round(270 * sc);
+  const qrBg   = Math.round(12 * sc);
+  const qrX    = W - pad - qrSize;
+  const qrY    = curY + Math.round(6 * sc);
+  ctx.fillStyle = '#e8e4dc';
+  ctx.fillRect(qrX - qrBg, qrY - qrBg, qrSize + qrBg * 2, qrSize + qrBg * 2);
+  _drawQR(ctx, window.location.href, qrX, qrY, qrSize, '#080808');
+
+  // Scan prompt
+  ctx.font = `400 ${Math.round(16 * sc)}px ${mono}`;
+  ctx.fillStyle = '#5a5450';
+  ctx.fillText('SCAN TO', pad, curY + Math.round(6 * sc));
+  ctx.fillText('EXPLORE', pad, curY + Math.round(30 * sc));
+  ctx.font = `300 ${Math.round(38 * sc)}px ${serif}`;
+  ctx.fillStyle = '#c8a96e';
+  ctx.fillText('archai.io', pad, curY + Math.round(62 * sc));
+  ctx.font = `400 ${Math.round(13 * sc)}px ${mono}`;
+  ctx.fillStyle = '#3a3330';
+  ctx.fillText('#ARCHAIinTheWild', pad, curY + Math.round(118 * sc));
+
+  // Footer
+  const ftY = H - Math.round(34 * sc);
+  ctx.strokeStyle = '#1e1e1e';
+  ctx.beginPath(); ctx.moveTo(pad, ftY - Math.round(18 * sc)); ctx.lineTo(W - pad, ftY - Math.round(18 * sc)); ctx.stroke();
+  ctx.font = `400 ${Math.round(13 * sc)}px ${mono}`;
+  ctx.fillStyle = '#2a2826';
+  ctx.fillText((OBJECT.institution || 'ARCHAI').toUpperCase(), pad, ftY);
+}
+
+// ── POSTCARD layout — A6 landscape, image left / text+QR right ──
+async function _drawPostcardLayout(ctx, W, H) {
+  const sc    = W / 1748;
+  const pad   = Math.round(52 * sc);
+  const serif = '"Cormorant Garamond", Georgia, serif';
+  const mono  = '"DM Mono", "Courier New", monospace';
+  function sLS(px) { try { ctx.letterSpacing = px + 'px'; } catch {} }
+
+  ctx.fillStyle = '#080808';
+  ctx.fillRect(0, 0, W, H);
+
+  // Left panel — full-height image (45% width)
+  const imgPanelW = Math.round(W * 0.45);
+  ctx.fillStyle = '#0f0f0f';
+  ctx.fillRect(0, 0, imgPanelW, H);
+  const heroEl = document.querySelector('.v-hero img');
+  if (heroEl?.src) {
+    try {
+      const img = new Image(); img.crossOrigin = 'anonymous';
+      await new Promise((res, rej) => { img.onload = res; img.onerror = rej; img.src = heroEl.src; setTimeout(rej, 8000); });
+      const ia = img.naturalWidth / img.naturalHeight, aa = imgPanelW / H;
+      let dw, dh, dx, dy;
+      if (ia > aa) { dw = imgPanelW; dh = imgPanelW / ia; dx = 0; dy = (H - dh) / 2; }
+      else          { dh = H; dw = H * ia; dx = (imgPanelW - dw) / 2; dy = 0; }
+      ctx.drawImage(img, dx, dy, dw, dh);
+    } catch { /* dark bg */ }
+  }
+
+  // Vertical divider
+  ctx.strokeStyle = '#1e1e1e'; ctx.lineWidth = Math.round(1 * sc);
+  ctx.beginPath(); ctx.moveTo(imgPanelW, 0); ctx.lineTo(imgPanelW, H); ctx.stroke();
+
+  // Right panel
+  const rx = imgPanelW + pad;
+  const rw = W - imgPanelW - pad * 2;
+  let curY = pad;
+  ctx.textBaseline = 'top';
+
+  // ARCHAI wordmark
+  ctx.font = `300 ${Math.round(30 * sc)}px ${serif}`;
+  sLS(Math.round(5 * sc));
+  const aW = ctx.measureText('ARC').width, hW = ctx.measureText('H').width;
+  ctx.fillStyle = '#e8e4dc'; ctx.fillText('ARC', rx, curY);
+  ctx.fillStyle = '#c8a96e'; ctx.fillText('H',   rx + aW,      curY);
+  ctx.fillStyle = '#e8e4dc'; ctx.fillText('AI',  rx + aW + hW, curY);
+  sLS(0);
+
+  // Reg tag — top right of panel
+  ctx.font = `400 ${Math.round(14 * sc)}px ${mono}`;
+  ctx.fillStyle = '#8fbcb0';
+  const tag = (OBJECT.registration || 'AUX.IO').toUpperCase();
+  ctx.fillText(tag, W - pad - ctx.measureText(tag).width, curY + Math.round(6 * sc));
+  curY += Math.round(52 * sc);
+
+  ctx.strokeStyle = '#1e1e1e';
+  ctx.beginPath(); ctx.moveTo(rx, curY); ctx.lineTo(W - pad, curY); ctx.stroke();
+  curY += Math.round(32 * sc);
+
+  // Title
+  ctx.font = `300 ${Math.round(56 * sc)}px ${serif}`;
+  ctx.fillStyle = '#e8e4dc';
+  for (const ln of _wrapText(ctx, OBJECT.title || '', rw).slice(0, 2)) {
+    ctx.fillText(ln, rx, curY);
+    curY += Math.round(64 * sc);
+  }
+  curY += Math.round(4 * sc);
+
+  // Artist · date · type
+  ctx.font = `400 ${Math.round(19 * sc)}px ${mono}`;
+  ctx.fillStyle = '#5a5450';
+  ctx.fillText([OBJECT.artist, OBJECT.date, OBJECT.type].filter(Boolean).join(' · ').toUpperCase(), rx, curY);
+  curY += Math.round(32 * sc);
+
+  // Institution
+  ctx.font = `400 ${Math.round(19 * sc)}px ${mono}`;
+  ctx.fillStyle = '#8fbcb0';
+  ctx.fillText((OBJECT.institution || '').toUpperCase(), rx, curY);
+  curY += Math.round(40 * sc);
+
+  ctx.strokeStyle = '#1e1e1e';
+  ctx.beginPath(); ctx.moveTo(rx, curY); ctx.lineTo(W - pad, curY); ctx.stroke();
+  curY += Math.round(28 * sc);
+
+  // Description
+  ctx.font = `italic 300 ${Math.round(28 * sc)}px ${serif}`;
+  ctx.fillStyle = '#a09890';
+  const desc = (OBJECT.description || '').substring(0, 240);
+  for (const ln of _wrapText(ctx, desc + (OBJECT.description.length > 240 ? '…' : ''), rw).slice(0, 5)) {
+    ctx.fillText(ln, rx, curY);
+    curY += Math.round(38 * sc);
+  }
+
+  // QR + scan — pinned to bottom of right panel
+  const qrSize   = Math.round(200 * sc);
+  const qrBg     = Math.round(10 * sc);
+  const qrAreaTop = H - pad - qrSize - qrBg * 2 - Math.round(8 * sc);
+  const qrX      = W - pad - qrSize;
+
+  ctx.strokeStyle = '#1e1e1e';
+  ctx.beginPath(); ctx.moveTo(rx, qrAreaTop - Math.round(24 * sc)); ctx.lineTo(W - pad, qrAreaTop - Math.round(24 * sc)); ctx.stroke();
+
+  ctx.fillStyle = '#e8e4dc';
+  ctx.fillRect(qrX - qrBg, qrAreaTop - qrBg, qrSize + qrBg * 2, qrSize + qrBg * 2);
+  _drawQR(ctx, window.location.href, qrX, qrAreaTop, qrSize, '#080808');
+
+  ctx.font = `400 ${Math.round(15 * sc)}px ${mono}`;
+  ctx.fillStyle = '#5a5450';
+  ctx.fillText('SCAN TO EXPLORE', rx, qrAreaTop);
+  ctx.font = `300 ${Math.round(44 * sc)}px ${serif}`;
+  ctx.fillStyle = '#e8e4dc';
+  ctx.fillText('archai.io', rx, qrAreaTop + Math.round(22 * sc));
+  ctx.font = `400 ${Math.round(13 * sc)}px ${mono}`;
+  ctx.fillStyle = '#3a3330';
+  ctx.fillText('#ARCHAIinTheWild', rx, qrAreaTop + Math.round(82 * sc));
+
+  // Rights footer
+  const ftY = H - pad + Math.round(4 * sc);
+  ctx.strokeStyle = '#1e1e1e';
+  ctx.beginPath(); ctx.moveTo(rx, ftY - Math.round(22 * sc)); ctx.lineTo(W - pad, ftY - Math.round(22 * sc)); ctx.stroke();
+  ctx.font = `400 ${Math.round(13 * sc)}px ${mono}`;
+  ctx.fillStyle = '#2a2826';
+  ctx.fillText([OBJECT.licence || 'Open Access', OBJECT.institution || 'ARCHAI', `ARCHAI AUX.IO · ${new Date().getFullYear()}`].join(' · '), rx, ftY);
+}
+
+// ── DOWNLOAD ORCHESTRATOR for small formats ──
+async function downloadPosterSmall(sizeKey) {
+  const spec = SMALL_FORMAT_SIZES[sizeKey];
+  if (!spec) return;
+
+  const btns = [...document.querySelectorAll(`[data-size="${sizeKey}"]`)];
+  btns.forEach(b => { b.disabled = true; b.textContent = 'Generating…'; });
+  function restoreBtns() { btns.forEach(b => { b.disabled = false; b.textContent = spec.label; }); }
+
+  try {
+    await _loadScript('https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qr.js');
+  } catch { /* without QR */ }
+  try { await document.fonts.ready; } catch {}
+
+  const canvas = document.createElement('canvas');
+  canvas.width = spec.w; canvas.height = spec.h;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) { restoreBtns(); return; }
+
+  try {
+    if (sizeKey === 'STICKER')  await _drawStickerLayout(ctx, spec.w, spec.h);
+    if (sizeKey === 'POSTCARD') await _drawPostcardLayout(ctx, spec.w, spec.h);
+
+    canvas.toBlob(blob => {
+      restoreBtns();
+      if (!blob) return;
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `archai-${sizeKey.toLowerCase()}-${(OBJECT.registration || 'object').replace(/[^a-z0-9]/gi, '-').toLowerCase()}.png`;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 'image/png');
+  } catch (err) {
+    restoreBtns();
+    console.error('Small format poster error:', err);
   }
 }
 
