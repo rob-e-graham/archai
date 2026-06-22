@@ -9,11 +9,17 @@
 //   1. Vancouver Open Data — public art & murals (OGL Canada / CC BY)
 //   2. Brussels Street Art Trail (opendata.brussels.be) — CC BY 2.0
 //   3. NYC Parks Art in the Parks (NYC Open Data) — CC0 / public
+//   4. City of Melbourne — Outdoor Artworks (CC BY 4.0)
+//   5. San Francisco — Civic Art Collection (Public Domain)
+//   6. City of Chicago — Public Art (Public Domain)
 //
 // Usage:
 //   node streetart-harvester.js
 //   node streetart-harvester.js --limit 200
 //   node streetart-harvester.js --source vancouver
+//   node streetart-harvester.js --source melbourne
+//   node streetart-harvester.js --source sfgov
+//   node streetart-harvester.js --source chicago
 //   node streetart-harvester.js --dry-run
 //
 // Each source is flagged in the Qdrant payload so downstream filters
@@ -56,6 +62,33 @@ const SOURCES = {
     apiUrl:      'https://data.cityofnewyork.us/resource/8rj8-cwig.json?$limit=200',
     idPrefix:    'nyc',
     mapRecord:   mapNYC,
+  },
+  melbourne: {
+    name:        'City of Melbourne — Outdoor Artworks',
+    country:     'Australia',
+    licence:     'Creative Commons Attribution 4.0 (CC BY 4.0)',
+    sourceUrl:   'https://data.melbourne.vic.gov.au/explore/dataset/outdoor-artworks/',
+    apiUrl:      'https://data.melbourne.vic.gov.au/api/explore/v2.1/catalog/datasets/outdoor-artworks/records?limit=100',
+    idPrefix:    'mel',
+    mapRecord:   mapMelbourne,
+  },
+  sfgov: {
+    name:        'San Francisco — Civic Art Collection',
+    country:     'USA',
+    licence:     'San Francisco Open Data / Public Domain',
+    sourceUrl:   'https://data.sfgov.org/Culture-and-Recreation/Civic-Art-Collection/4hfa-5f7y',
+    apiUrl:      'https://data.sfgov.org/resource/4hfa-5f7y.json?$limit=200',
+    idPrefix:    'sf',
+    mapRecord:   mapSFGov,
+  },
+  chicago: {
+    name:        'City of Chicago — Public Art',
+    country:     'USA',
+    licence:     'Chicago Open Data / Public Domain',
+    sourceUrl:   'https://data.cityofchicago.org/Parks-Recreation/Public-Art/sj6t-9cju',
+    apiUrl:      'https://data.cityofchicago.org/resource/sj6t-9cju.json?$limit=200',
+    idPrefix:    'chi',
+    mapRecord:   mapChicago,
   },
 };
 
@@ -158,6 +191,98 @@ function mapNYC(r, source) {
   };
 }
 
+function mapMelbourne(r, source) {
+  const fields = r.fields || r;
+  const title  = fields.title || fields.artwork_title || fields.name || '';
+  const artist = fields.artist || fields.artist_name || fields.creator || 'Unknown';
+  const loc    = fields.location_description || fields.address || fields.suburb || '';
+  const year   = fields.year_installed || fields.year || fields.date_installed || '';
+  const medium = fields.medium || fields.type || fields.artwork_type || '';
+  const desc   = fields.description || fields.artwork_description || '';
+  const geo    = fields.geo_point_2d || {};
+  const lat    = geo.lat ?? fields.latitude ?? '';
+  const lon    = geo.lon ?? fields.longitude ?? '';
+  // Melbourne typically serves images via a photo_url or image field
+  const img    = fields.photo_url || fields.image_url || (fields.images && fields.images[0]?.url) || '';
+
+  if (!title && !artist) return null;
+
+  const description = [
+    title || 'Untitled',
+    artist !== 'Unknown' ? `by ${artist}` : '',
+    loc,
+    year ? `(${year})` : '',
+    medium,
+    desc,
+    'City of Melbourne Outdoor Artworks',
+  ].filter(Boolean).join('. ');
+
+  return {
+    title: title || 'Untitled', artist, address: loc, date_range: String(year), medium, description,
+    media_thumbnail: img, media_medium: img, media_large: img,
+    lat: String(lat), lon: String(lon),
+    source_url: source.sourceUrl,
+  };
+}
+
+function mapSFGov(r, source) {
+  const title  = r.title || r.artwork_title || '';
+  const artist = r.artist || r.artist_name || 'Unknown';
+  const loc    = r.location || r.address || r.neighborhood || '';
+  const year   = r.year_installed || r.year || '';
+  const medium = r.medium || r.artwork_medium || '';
+  const desc   = r.description || r.artwork_description || '';
+  const img    = r.image_url || r.photo_url || '';
+
+  if (!title && !artist) return null;
+
+  const description = [
+    title || 'Untitled',
+    artist !== 'Unknown' ? `by ${artist}` : '',
+    loc,
+    year ? `(${year})` : '',
+    medium,
+    desc,
+    'San Francisco Civic Art Collection',
+  ].filter(Boolean).join('. ');
+
+  return {
+    title: title || 'Untitled', artist, address: loc, date_range: String(year), medium, description,
+    media_thumbnail: img, media_medium: img, media_large: img,
+    lat: '', lon: '',
+    source_url: source.sourceUrl,
+  };
+}
+
+function mapChicago(r, source) {
+  const title  = r.title || r.artwork_title || '';
+  const artist = r.artist_name || r.artist || 'Unknown';
+  const loc    = r.address || r.park || r.location_description || '';
+  const year   = r.year || r.date_installed || '';
+  const medium = r.medium || r.type || '';
+  const desc   = r.description || '';
+  const img    = r.image_url || r.photo_url || '';
+
+  if (!title && !artist) return null;
+
+  const description = [
+    title || 'Untitled',
+    artist !== 'Unknown' ? `by ${artist}` : '',
+    loc,
+    year ? `(${year})` : '',
+    medium,
+    desc,
+    'City of Chicago Public Art',
+  ].filter(Boolean).join('. ');
+
+  return {
+    title: title || 'Untitled', artist, address: loc, date_range: String(year), medium, description,
+    media_thumbnail: img, media_medium: img, media_large: img,
+    lat: '', lon: '',
+    source_url: source.sourceUrl,
+  };
+}
+
 // ── HELPERS ─────────────────────────────────────────────────────
 const args    = process.argv.slice(2);
 const getArg  = (name, fallback) => { const i = args.indexOf('--' + name); return i !== -1 && args[i + 1] ? args[i + 1] : fallback; };
@@ -239,6 +364,7 @@ async function main() {
   console.log('\n  ╔══════════════════════════════════════════╗');
   console.log('  ║   ARCHAI — Street Art & Murals           ║');
   console.log('  ║   Vancouver · Brussels · NYC             ║');
+  console.log('  ║   Melbourne · San Francisco · Chicago    ║');
   console.log('  ╚══════════════════════════════════════════╝\n');
   if (DRY_RUN) console.log('  [DRY RUN — no Qdrant writes]\n');
 
@@ -333,7 +459,8 @@ async function main() {
   console.log(`  ✓ Street art harvest complete`);
   console.log(`  → ${globalSuccess} total objects embedded into '${COLLECTION}'`);
   console.log(`  → ${globalErrors} errors`);
-  console.log(`  → Sources: Vancouver (OGL), Brussels (CC BY 2.0), NYC Parks\n`);
+  console.log(`  → Sources: Vancouver (OGL), Brussels (CC BY 2.0), NYC Parks,`);
+  console.log(`             Melbourne (CC BY 4.0), San Francisco (Public Domain), Chicago (Public Domain)\n`);
 }
 
 main().catch(e => { console.error('Fatal:', e); process.exit(1); });

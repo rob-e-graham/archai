@@ -464,7 +464,8 @@ async function main() {
 
     const filename = `${nfcCode}.html`;
     fs.writeFileSync(path.join(OUTPUT_DIR, filename), trimGeneratedLines(html), 'utf-8');
-    generated.push({ nfcCode, title, reg, filename, source: sourceInstitution });
+    generated.push({ nfcCode, title, reg, filename, source: sourceInstitution,
+                     thumb: imgThumb || imgMedium, collection: obj.sourceCollection });
 
     // Progress
     process.stdout.write(`  → ${obj.auxLabel} · [${sourceInstitution.substring(0,3).toUpperCase()}] ${title.substring(0, 40)}${title.length > 40 ? '…' : ''}\n`);
@@ -500,13 +501,36 @@ async function main() {
 
 // ── INDEX PAGE ──────────────────────────────────────────────────
 function generateIndex(items) {
-  const rows = items.map(g =>
-    `<a href="${g.filename}" class="idx-item">
-      <span class="idx-nfc">${g.nfcCode.replace(/^NFC/, 'AUX.IO ')}</span>
-      <span class="idx-title">${escHtml(g.title)}</span>
-      <span class="idx-reg">${escHtml(g.reg)}</span>
-    </a>`
-  ).join('\n    ');
+  // Collect unique collections in insertion order
+  const byCollection = new Map();
+  items.forEach(g => {
+    const key = g.collection || 'unknown';
+    if (!byCollection.has(key)) byCollection.set(key, { label: g.source || key, count: 0 });
+    byCollection.get(key).count++;
+  });
+
+  const filterTabsHtml = [
+    `<button class="idx-filter active" data-col="all" onclick="filterBy(this,'all')">All (${items.length})</button>`,
+    ...[...byCollection.entries()].sort((a, b) => b[1].count - a[1].count).map(([key, {label, count}]) => {
+      const shortLabel = label.split('—')[0].split('|')[0].trim();
+      return `<button class="idx-filter" data-col="${escHtml(key)}" onclick="filterBy(this,'${key}')">${escHtml(shortLabel)} (${count})</button>`;
+    })
+  ].join('\n    ');
+
+  const rows = items.map(g => {
+    const thumbHtml = g.thumb
+      ? `<img src="${escHtml(g.thumb)}" loading="lazy" alt="" onerror="this.style.display='none'">`
+      : '<span class="idx-thumb-ph">▣</span>';
+    return `<a href="${escHtml(g.filename)}" class="idx-item" data-col="${escHtml(g.collection || '')}">
+      <div class="idx-thumb">${thumbHtml}</div>
+      <div class="idx-info">
+        <div class="idx-nfc">${escHtml(g.nfcCode.replace(/^NFC/, 'AUX.IO '))}</div>
+        <div class="idx-title">${escHtml(g.title)}</div>
+        <div class="idx-src">${escHtml(g.source || '')}</div>
+      </div>
+      ${g.reg ? `<div class="idx-reg">${escHtml(g.reg)}</div>` : ''}
+    </a>`;
+  }).join('\n    ');
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -516,25 +540,52 @@ function generateIndex(items) {
 <title>ARCHAI — Visitor Pages</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
-:root { --bg:#080808; --surface:#0f0f0f; --border:#1e1e1e; --text:#e8e4dc; --text2:#a09890; --text3:#5a5450; --accent:#c8a96e; --accent2:#8fbcb0; --mono:'DM Mono',monospace; --serif:'Cormorant Garamond',serif; }
+:root{--bg:#080808;--surface:#0f0f0f;--border:#1e1e1e;--border2:#282828;--text:#e8e4dc;--text2:#a09890;--text3:#5a5450;--accent:#c8a96e;--accent2:#8fbcb0;--mono:'DM Mono',monospace;--serif:'Cormorant Garamond',serif;}
 *{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--text);font-family:var(--serif);padding:32px 20px;min-height:100vh;}
+html,body{scrollbar-width:none;-ms-overflow-style:none;}
+html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0;display:none;}
+body{background:var(--bg);color:var(--text);font-family:var(--serif);padding:28px 20px 56px;min-height:100vh;}
 .logo{font-size:1.8rem;letter-spacing:10px;text-transform:uppercase;font-weight:300;text-align:center;margin-bottom:4px;}
 .logo span{font-style:italic;color:var(--accent);}
-.sub{font-family:var(--mono);font-size:0.5rem;color:var(--text3);letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:32px;}
-.count{font-family:var(--mono);font-size:0.56rem;color:var(--text3);margin-bottom:12px;letter-spacing:1px;}
-.idx-item{display:grid;grid-template-columns:70px 1fr auto;gap:10px;padding:12px 0;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background 0.1s;}
+.sub{font-family:var(--mono);font-size:0.5rem;color:var(--text3);letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:24px;}
+.idx-filters{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:16px;border-bottom:1px solid var(--border);margin-bottom:14px;}
+.idx-filter{font-family:var(--mono);font-size:0.44rem;letter-spacing:1.5px;text-transform:uppercase;padding:5px 10px;border:1px solid var(--border2);background:transparent;color:var(--text3);cursor:pointer;transition:all 0.15s;}
+.idx-filter:hover{border-color:var(--accent2);color:var(--accent2);}
+.idx-filter.active{border-color:var(--accent2);color:var(--accent2);background:rgba(143,188,176,0.07);}
+.idx-count{font-family:var(--mono);font-size:0.5rem;color:var(--text3);margin-bottom:10px;letter-spacing:1px;}
+.idx-item{display:grid;grid-template-columns:52px 1fr auto;gap:12px;padding:11px 0;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background 0.1s;align-items:center;}
 .idx-item:active{background:var(--surface);}
-.idx-nfc{font-family:var(--mono);font-size:0.62rem;color:var(--accent2);letter-spacing:2px;}
-.idx-title{font-family:var(--serif);font-size:0.95rem;color:var(--text);}
-.idx-reg{font-family:var(--mono);font-size:0.5rem;color:var(--text3);text-align:right;letter-spacing:1px;}
+.idx-item.hidden{display:none;}
+.idx-thumb{width:52px;height:52px;overflow:hidden;background:var(--surface);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.idx-thumb img{width:100%;height:100%;object-fit:cover;}
+.idx-thumb-ph{font-size:1.1rem;color:var(--text3);}
+.idx-info{min-width:0;}
+.idx-nfc{font-family:var(--mono);font-size:0.48rem;color:var(--accent2);letter-spacing:2px;margin-bottom:3px;}
+.idx-title{font-family:var(--serif);font-size:0.98rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px;}
+.idx-src{font-family:var(--mono);font-size:0.42rem;color:var(--text3);letter-spacing:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:uppercase;}
+.idx-reg{font-family:var(--mono);font-size:0.44rem;color:var(--text3);text-align:right;letter-spacing:1px;white-space:nowrap;flex-shrink:0;align-self:flex-start;padding-top:18px;}
 </style>
 </head>
 <body>
 <div class="logo">ARC<span>H</span>AI</div>
 <div class="sub">AUX.IO Visitor Pages · ${items.length} Objects</div>
-<div class="count">${items.length} pages generated</div>
+<div class="idx-filters">
+  ${filterTabsHtml}
+</div>
+<div class="idx-count" id="idx-count">${items.length} pages</div>
 ${rows}
+<script>
+function filterBy(btn, col) {
+  document.querySelectorAll('.idx-filter').forEach(b => b.classList.toggle('active', b === btn));
+  let vis = 0;
+  document.querySelectorAll('.idx-item').forEach(el => {
+    const show = col === 'all' || el.dataset.col === col;
+    el.classList.toggle('hidden', !show);
+    if (show) vis++;
+  });
+  document.getElementById('idx-count').textContent = vis + ' pages' + (col === 'all' ? '' : ' · ' + col.replace('archai_',''));
+}
+</script>
 </body>
 </html>`;
 }

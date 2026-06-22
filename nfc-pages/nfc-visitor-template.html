@@ -313,9 +313,24 @@ body::after {
   letter-spacing: 2px;
   text-transform: uppercase;
   line-height: 1.7;
-  margin-bottom: 20px;
+  margin-bottom: 6px;
   animation: slideUp 0.6s ease 0.2s both;
 }
+
+.v-institution {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  color: var(--accent2);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid rgba(143,188,176,0.15);
+  text-decoration: none;
+  animation: slideUp 0.6s ease 0.22s both;
+}
+.v-institution:hover { color: var(--accent); }
 
 .v-meta-strip {
   display: flex;
@@ -1106,9 +1121,9 @@ body::after {
 <div class="v-content">
   <div class="v-title">{{OBJECT_TITLE}}</div>
   <div class="v-sub">{{OBJECT_SUB}}</div>
+  <a class="v-institution" href="{{SOURCE_URL}}" target="_blank" rel="noopener noreferrer">{{SOURCE_INSTITUTION}}</a>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">{{SOURCE_INSTITUTION}}</span>
     {{LEGAL_STATUS_TAG}}
     {{DISCIPLINE_TAG}}
     {{INTERACTIVE_BADGE}}
