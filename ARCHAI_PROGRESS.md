@@ -1,6 +1,6 @@
 # ARCHAI Progress Log
 
-Last updated: 2026-06-07
+Last updated: 2026-06-23
 Maintained as an active handoff note so Claude, Codex, and Rob can quickly see where the work is up to if a session ends or tokens run out.
 
 Primary build planning is now also summarized in [ROADMAP.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ROADMAP.md). Use that for milestone order, and use this file for detailed handoff notes.
@@ -1051,3 +1051,39 @@ Dependency audit:
 - upgraded `node-cron` from 3.0.3 to 4.5.0, removing the vulnerable legacy `uuid` dependency;
 - `npm audit --omit=dev` now reports three moderate findings inherited through ReplayWeb.page's current `@webrecorder/wabac` XML parser;
 - npm's automated remediation would force ReplayWeb.page back to 1.0.0, so it was deliberately not applied; replay remains locally hosted, rights-gated, and should be upgraded when Webrecorder publishes a compatible dependency fix.
+
+## Public website demo console and hosting boundary - 2026-06-23
+
+The ARCHAI project page has been reorganised into one coherent three-path demo instead of separate, competing interfaces:
+
+- **Search Collections:** all 19 connected source collections are visible as live-count scope tabs, with `All sources` as the default;
+- **Talk to ARCHAI:** whole-collection conversation uses the same Curatorial, Collections, Exhibition, and Interpretation response lenses as the app;
+- **Visit AUX.IO:** an embedded phone preview links directly to the visitor experience and random-object path.
+
+Voice behavior on the website follows the stable phone-first design:
+
+- browser speech recognition fills the question field but never submits without review;
+- listening, error, ready, and read-aloud states are explicit;
+- browser voices remain selectable, with a neutral automatic preference;
+- typed questions remain available when browser speech recognition is unsupported.
+
+Scoped search was moved behind the existing curator-search endpoint. `POST /api/proxy/curator/search` now accepts an optional allowlisted `collection` value and applies `_source_collection` filtering server-side. This replaces the previous two-request browser sequence of embed plus arbitrary Qdrant search, reduces rate-limit pressure, and keeps public search on a purpose-built route.
+
+Verification completed:
+
+- backend JavaScript and website inline JavaScript syntax checks passed;
+- the launchd backend was restarted successfully;
+- a live Met-only query returned eight Met results through the local API test;
+- the website returned 50 public image-ready Met cards for `portrait painting`;
+- direct whole-collection conversation returned a grounded response with cited source objects;
+- desktop and 390 px mobile layouts showed no page-level horizontal overflow;
+- source tabs remain horizontally scrollable and conversation controls stack on mobile;
+- AUX.IO loaded inside the embedded phone preview.
+
+Hosting decision:
+
+- keep `fineartmedia.tech/archai` as the public integrated demo;
+- build a separate read-only app demo rather than publishing the staff app unchanged;
+- keep the operational staff app behind Tailscale, institutional VPN, or Cloudflare Access until server-side authentication and deny-by-default authorisation are complete.
+
+The full hosting boundary and launch checklist are in [docs/PUBLIC_APP_DEMO_HOSTING.md](./docs/PUBLIC_APP_DEMO_HOSTING.md). The key blocker is that the current prototype request context defaults unauthenticated requests to `admin`; client-side role switching is not a security boundary.

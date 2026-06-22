@@ -339,12 +339,13 @@ proxyRouter.post('/curator/converse', chatLimiter, async (req, res) => {
 const curatorSearchSchema = z.object({
   query: z.string().min(1).max(1000),
   limit: z.coerce.number().int().min(1).max(50).optional().default(10),
+  collection: z.enum(ALLOWED_COLLECTIONS).optional(),
 });
 
 proxyRouter.post('/curator/search', searchLimiter, async (req, res) => {
   try {
     const input = curatorSearchSchema.parse(req.body);
-    const results = await curatorSearch(input.query, input.limit);
+    const results = await curatorSearch(input.query, input.limit, input.collection || null);
     res.json({ ok: true, results });
   } catch (e) {
     if (e instanceof z.ZodError) {

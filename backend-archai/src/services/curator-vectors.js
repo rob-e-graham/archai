@@ -254,11 +254,13 @@ export function detectProvenanceFilter(query) {
   };
 }
 
-export async function curatorSearch(query, limit = 10) {
+export async function curatorSearch(query, limit = 10, collection = null) {
   const vector = await embed(query);
   if (!vector) return [];
 
-  const filter = detectProvenanceFilter(query);
+  const filter = collection
+    ? { must: [{ key: '_source_collection', match: { value: collection } }] }
+    : detectProvenanceFilter(query);
   const body = { vector, limit, with_payload: true };
   if (filter) body.filter = filter;
 

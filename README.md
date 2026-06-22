@@ -20,6 +20,8 @@ This repository contains an open-source reference implementation and associated 
 
 Current build planning is tracked in [ROADMAP.md](ROADMAP.md), [ARCHAI_PROGRESS.md](ARCHAI_PROGRESS.md), and [docs/APP_FUNCTIONAL_AUDIT_2026-06-03.md](docs/APP_FUNCTIONAL_AUDIT_2026-06-03.md).
 
+The proposed separation between the public website demo, a future read-only app demo, and the protected staff application is documented in [docs/PUBLIC_APP_DEMO_HOSTING.md](docs/PUBLIC_APP_DEMO_HOSTING.md).
+
 The current per-source public-image and AUX.IO publication decisions are recorded in [backend-archai/docs/PUBLIC_MEDIA_AUDIT_2026-06-22.md](backend-archai/docs/PUBLIC_MEDIA_AUDIT_2026-06-22.md).
 
 ARCHAI is a working research prototype, not a finished commercial product. FAMTEC is open to funded research partnerships, institutional pilot testing, accessibility evaluation, collection-data collaborations, software development support, grant partnerships, and feedback from museums, galleries, archives, universities, and aligned public-interest technology partners.
@@ -141,8 +143,10 @@ Comments submitted by visitors are AI-screened in real time:
 - Stored in SQLite — becomes part of the object's collection record
 - Comments included in curator vector collection for semantic search
 
-### ✅ Backend Proxy (Public Hosting Safety)
-Safe proxy layer for exposing ARCHAI publicly via Cloudflare Tunnel:
+### ⚠️ Prototype Backend Proxy
+The proxy provides useful public-demo protections, but it is not yet a complete authentication or authorisation boundary. The current staff app must remain private until the deny-by-default work in [docs/PUBLIC_APP_DEMO_HOSTING.md](docs/PUBLIC_APP_DEMO_HOSTING.md) is complete.
+
+Current controls include:
 - Rate limiting per IP (15 chat/min, 30 search/min)
 - Prompt injection pattern blocking (regex filter)
 - Safety wrapper prepended to all LLM system prompts
