@@ -147,46 +147,66 @@ async function fetchQAGOMARecords() {
 }
 
 // Normalise a raw QAGOMA CSV row into a clean record object.
-// Field names from the Queensland Government open data schema.
+// Column names from the December 2024 Queensland Government open data release:
+//   irn, PlaceCreated, DateCreated, PhyMediumText, CreditLine, Person, Title,
+//   PhyMediaCategory, AccessionNo, ObjectType, EdiImpression, Department,
+//   PhysicalDimensions, AcquiredDate, PhysicalCategory, CollectionOnlineAPI
 function normaliseRecord(row) {
-  // Common field name variants across QAGOMA data releases
   const get = (...keys) => {
     for (const k of keys) {
-      const val = (row[k] || row[k?.toLowerCase()] || '').trim();
+      const val = (row[k] || '').trim();
       if (val) return val;
     }
     return '';
   };
 
   return {
-    id:          get('Object ID', 'object_id', 'id', 'ID'),
-    title:       get('Title', 'title', 'Object Title'),
-    artist:      get('Artist', 'artist', 'Creator', 'Maker', 'maker'),
-    date:        get('Date', 'date', 'Creation Date', 'creation_date', 'Year'),
-    medium:      get('Medium', 'medium', 'Material', 'Technique'),
-    dimensions:  get('Dimensions', 'dimensions', 'Measurements'),
-    region:      get('Region', 'region', 'Country', 'Culture', 'Geography'),
-    nationality: get('Nationality', 'nationality'),
-    department:  get('Department', 'department', 'Gallery'),
-    credit:      get('Credit Line', 'credit_line', 'Credit', 'Acquisition'),
-    accession:   get('Accession Number', 'accession_number', 'Accession'),
-    imageUrl:    get('Image URL', 'image_url', 'Image', 'Thumbnail', 'thumbnail_url'),
-    thumbUrl:    get('Thumbnail URL', 'thumbnail_url', 'Thumbnail'),
-    rights:      get('Rights', 'rights', 'Licence', 'License', 'Copyright'),
-    description: get('Description', 'description', 'Notes', 'Synopsis'),
+    id:          get('irn', 'AccessionNo'),
+    title:       get('Title'),
+    artist:      get('Person'),
+    date:        get('DateCreated'),
+    medium:      get('PhyMediumText', 'PhyMediaCategory'),
+    dimensions:  get('PhysicalDimensions'),
+    region:      get('PlaceCreated'),
+    nationality: '',
+    objectType:  get('ObjectType', 'PhysicalCategory'),
+    department:  get('Department'),
+    credit:      get('CreditLine'),
+    accession:   get('AccessionNo', 'irn'),
+    apiUrl:      get('CollectionOnlineAPI'),
+    imageUrl:    '',
+    thumbUrl:    '',
+    rights:      '',
+    description: '',
   };
 }
 
-// Check if a record has an image URL available and open rights for display.
-function hasOpenImage(rec) {
-  if (!rec.imageUrl && !rec.thumbUrl) return false;
-  // If rights field is explicitly provided, require it to be open
-  const rights = rec.rights.toLowerCase();
-  if (rights && (
-    rights.includes('all rights reserved') ||
-    rights.includes('©') ||
-    rights.includes('copyright')
-  )) return false;
+// Attempt to fetch image URL from the per-object QAGOMA API endpoint.
+// The CollectionOnlineAPI column holds a JSON API URL for each object.
+async function fetchObjectImage(apiUrl) {
+  if (!apiUrl) return null;
+  try {
+    const res = await fetch(apiUrl, {
+      headers: { 'User-Agent': 'ARCHAI/1.0 (research; rob@fineartmedia.tech)', Accept: 'application/json' },
+      signal: AbortSignal.timeout(6000),
+    });
+    if (!res.ok) return null;
+    const data = await res.json();
+    // Try common image URL patterns in QAGOMA/EMu API responses
+    return data.image_url || data.imageUrl || data.thumbnail_url ||
+           data.media?.[0]?.url || data.images?.[0]?.url ||
+           data.primaryimage?.url || data.primaryImage?.url || null;
+  } catch (_) {
+    return null;
+  }
+}
+
+// Check if a record is usable — must have title and identifier.
+// Images are fetched per-object from the API; records without images
+// are still indexed as metadata-only (still valuable for semantic search).
+function isUsableRecord(rec) {
+  if (!rec.title) return false;
+  if (!rec.id && !rec.accession) return false;
   return true;
 }
 
@@ -257,39 +277,43 @@ async function main() {
 
   console.log(`  ✓ ${rawRecords.length} total records in dataset`);
 
-  // Normalise and filter
+  // Normalise and filter to records with at least a title and identifier
   const normalised = rawRecords
     .map(normaliseRecord)
-    .filter(rec => rec.id || rec.accession)          // must have some identifier
-    .filter(rec => rec.title)                         // must have a title
+    .filter(isUsableRecord)
     .filter(rec => !REGION_FILTER || rec.region.toLowerCase().includes(REGION_FILTER.toLowerCase()));
 
-  const imageBackedRecords = normalised.filter(hasOpenImage);
-  console.log(`  → ${imageBackedRecords.length} image-backed, open-rights records`);
-  console.log(`  → Processing up to ${LIMIT} records…\n`);
+  console.log(`  → ${normalised.length} usable records`);
+  console.log(`  → Processing up to ${LIMIT} records (fetching images from CollectionOnlineAPI)…\n`);
 
-  // Shuffle to get variety across region/medium when limiting
-  const shuffled = imageBackedRecords.sort(() => Math.random() - 0.5);
+  // Shuffle for variety across region/medium/objectType when limiting
+  const shuffled = normalised.sort(() => Math.random() - 0.5);
 
-  let success = 0, errors = 0;
+  let success = 0, errors = 0, withImage = 0;
 
   for (let i = 0; i < shuffled.length; i++) {
     if (success >= LIMIT) break;
     const rec = shuffled[i];
 
     try {
+      // Attempt to fetch image URL from per-object API (non-fatal if missing)
+      const imageUrl = await fetchObjectImage(rec.apiUrl);
+      if (imageUrl) withImage++;
+
       const description = [
         rec.title,
         rec.artist    ? `by ${rec.artist}` : '',
-        rec.nationality || rec.region ? `(${[rec.nationality, rec.region].filter(Boolean).join(', ')})` : '',
+        rec.region    ? `(${rec.region})` : '',
         rec.date,
         rec.medium,
+        rec.objectType ? `Type: ${rec.objectType}` : '',
         rec.dimensions ? `Dimensions: ${rec.dimensions}` : '',
         rec.department ? `Collection: ${rec.department}` : '',
-        rec.description,
         rec.credit,
         'Queensland Art Gallery | Gallery of Modern Art (QAGOMA), Brisbane',
       ].filter(Boolean).join('. ');
+
+      const sourceUrl = rec.apiUrl || qagomaUrl(rec.accession);
 
       const payload = {
         canonical_id:        `qagoma:${rec.id || rec.accession}`,
@@ -298,25 +322,25 @@ async function main() {
         accession_number:    rec.accession,
         title:               rec.title,
         artist:              rec.artist,
-        nationality:         rec.nationality,
         region:              rec.region,
         date_range:          rec.date,
         medium:              rec.medium,
+        object_type:         rec.objectType,
         dimensions:          rec.dimensions,
         department:          rec.department,
         credit_line:         rec.credit,
         description,
-        licence:             rec.rights || 'CC BY 4.0 (Queensland Open Data)',
+        licence:             'CC BY 4.0 (Queensland Open Data)',
         attribution:         `${rec.title}${rec.artist ? ` — ${rec.artist}` : ''}. QAGOMA Collection, Brisbane. CC BY 4.0.`,
-        source_url:          qagomaUrl(rec.accession),
-        media_thumbnail:     rec.thumbUrl || rec.imageUrl,
-        media_medium:        rec.imageUrl || rec.thumbUrl,
-        media_large:         rec.imageUrl || rec.thumbUrl,
+        source_url:          sourceUrl,
+        media_thumbnail:     imageUrl || null,
+        media_medium:        imageUrl || null,
+        media_large:         imageUrl || null,
         embedding_text:      description,
       };
 
       if (DRY_RUN) {
-        console.log(`  [dry] ${rec.title.substring(0, 60)}${rec.artist ? ` — ${rec.artist}` : ''}`);
+        console.log(`  [dry] ${rec.title.substring(0, 60)}${rec.artist ? ` — ${rec.artist}` : ''}${imageUrl ? ' 🖼' : ''}`);
         success++;
         continue;
       }
@@ -327,9 +351,9 @@ async function main() {
       await upsertPoint(ID_OFFSET + success, vector, payload);
       success++;
 
-      const pct = Math.round((i + 1) / shuffled.length * 100);
-      process.stdout.write(`  [${pct}%] ${success}/${shuffled.length} · ${rec.title.substring(0, 48)}\r`);
-      await sleep(120);
+      const pct = Math.round((i + 1) / Math.min(shuffled.length, LIMIT * 3) * 100);
+      process.stdout.write(`  [${pct}%] ${success}/${LIMIT} · ${rec.title.substring(0, 48)}\r`);
+      await sleep(150);
     } catch (e) {
       errors++;
       await sleep(300);
@@ -339,9 +363,9 @@ async function main() {
   console.log(`\n\n  ════════════════════════════════════════════`);
   console.log(`  ✓ QAGOMA harvest complete`);
   console.log(`  → ${success} objects embedded into '${COLLECTION}' (offset: ${ID_OFFSET})`);
+  console.log(`  → ${withImage} with image URL (via CollectionOnlineAPI)`);
   console.log(`  → ${errors} errors`);
   console.log(`  → Dataset: Queensland Government Open Data (CC BY 4.0)`);
-  console.log(`  → Image rights: per-item, open-media records only`);
   console.log(`  → Coverage: Asia-Pacific, Aboriginal & Torres Strait Islander,`);
   console.log(`              Australian, international modern/contemporary art\n`);
 }

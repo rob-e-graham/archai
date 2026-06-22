@@ -19,7 +19,9 @@
 //            https://www.getty.edu/about/whatwedo/opencontent.html
 // ══════════════════════════════════════════════════════════════════
 
-const GETTY_API  = 'https://collectionapi.getty.edu/api/gci/objects';
+// collectionapi.getty.edu was retired — new endpoints are at data.getty.edu
+const SPARQL_ENDPOINT = 'https://data.getty.edu/museum/collection/sparql';
+const OBJECT_BASE     = 'https://data.getty.edu/museum/collection/object/';
 const QDRANT_URL = 'http://localhost:6333';
 const OLLAMA_URL = 'http://localhost:11434';
 const COLLECTION = 'archai_getty';
@@ -78,27 +80,155 @@ const DRY_RUN    = args.includes('--dry-run');
 // ── HELPERS ─────────────────────────────────────────────────────
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-async function fetchJSON(url, retries = 4) {
+// ── SPARQL HELPERS ───────────────────────────────────────────────
+
+// GET a batch of Getty object URIs via SPARQL pagination
+async function sparqlBatch(offset, batchSize, retries = 3) {
+  const query = `
+SELECT ?object WHERE {
+  ?object a <http://www.cidoc-crm.org/cidoc-crm/E22_Human-Made_Object> .
+  FILTER(STRSTARTS(STR(?object), "${OBJECT_BASE}"))
+} LIMIT ${batchSize} OFFSET ${offset}`.trim();
+
+  const url = `${SPARQL_ENDPOINT}?query=${encodeURIComponent(query)}&format=application/sparql-results%2Bjson`;
   for (let i = 0; i < retries; i++) {
     try {
       const res = await fetch(url, {
         headers: {
           'User-Agent': 'ARCHAI/1.0 (research; rob@fineartmedia.tech)',
-          'Accept': 'application/json',
+          'Accept': 'application/sparql-results+json',
+        },
+      });
+      if (res.status === 429) { await sleep(8000 * (i + 1)); continue; }
+      if (!res.ok) throw new Error(`SPARQL HTTP ${res.status}`);
+      const data = await res.json();
+      return (data.results?.bindings || []).map(b => b.object.value);
+    } catch (e) {
+      if (i === retries - 1) throw e;
+      await sleep(3000 * (i + 1));
+    }
+  }
+  return [];
+}
+
+// Fetch a single Getty Linked Art object record (JSON-LD)
+async function fetchGettyObject(uri, retries = 3) {
+  for (let i = 0; i < retries; i++) {
+    try {
+      const res = await fetch(uri, {
+        headers: {
+          'User-Agent': 'ARCHAI/1.0 (research; rob@fineartmedia.tech)',
+          'Accept': 'application/ld+json, application/json',
         },
       });
       if (res.status === 429) { await sleep(5000 * (i + 1)); continue; }
       if (res.status === 404) return null;
-      if (!res.ok) throw new Error(`HTTP ${res.status} — ${url}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
       return await res.json();
     } catch (e) {
-      if (i === retries - 1) throw e;
+      if (i === retries - 1) return null;
       await sleep(2000 * (i + 1));
     }
   }
+  return null;
 }
 
-// Getty IIIF image URL — full IIIF Image API endpoint
+// ── LINKED ART PARSER ────────────────────────────────────────────
+
+// Parse a Getty Linked Art JSON-LD object record into a clean payload.
+// Returns null if the object is not open content or lacks a title.
+function parseGettyLinkedArt(obj, uri) {
+  if (!obj) return null;
+
+  // Title — top-level _label is the primary display name
+  const title = obj._label
+    || obj.identified_by?.find(x => x.type === 'Name' || x.type === 'Appellation')?.content
+    || '';
+  if (!title || title === 'Unknown') return null;
+
+  // Extract UUID from object URI for building image URLs
+  const uuid = uri.replace(OBJECT_BASE, '').replace(/\/$/, '');
+
+  // Creator — from Production/Creation carried_out_by
+  const production = obj.produced_by || obj.created_by || {};
+  const creatorNode = production.carried_out_by?.[0];
+  const creator = creatorNode?._label || creatorNode?.identified_by?.[0]?.content || '';
+
+  // Date — from Production timespan
+  const date = production.timespan?._label
+             || production.timespan?.begin_of_the_begin?.slice(0, 4)
+             || '';
+
+  // Medium/material — from made_of or classified_as
+  const medium = obj.made_of?.[0]?._label
+               || obj.classified_as?.find(x => x.type === 'Type' && x._label && !x._label.match(/^(Object|Art)/i))?._label
+               || '';
+
+  // Department — from member_of
+  const dept = obj.member_of?.find(x => x._label)?._label || '';
+
+  // Credit line — from referred_to_by
+  const credit = obj.referred_to_by?.find(x =>
+    x.classified_as?.some(c => String(c.id || '').includes('300435424') || String(c._label || '').toLowerCase().includes('credit'))
+  )?.content || '';
+
+  // Dimensions
+  const dims = obj.dimension?.map(d => `${d.value}${d.unit?._label || ''}`).join(' × ') || '';
+
+  // Culture / nationality
+  const culture = obj.about?.find(x => x.type === 'Place')?._label || '';
+
+  // Open content detection — look for CC0 or "Open Content" in rights/subject_to
+  let isOpenContent = false;
+  const rights = obj.subject_to || obj.referred_to_by || [];
+  for (const r of rights) {
+    const content = String(r.content || r._label || '').toLowerCase();
+    if (content.includes('cc0') || content.includes('open content') || content.includes('public domain')) {
+      isOpenContent = true; break;
+    }
+    // Check classified_as for CC0 AAT term (300435656)
+    if (r.classified_as?.some(c => String(c.id || '').includes('300435656'))) {
+      isOpenContent = true; break;
+    }
+  }
+
+  // Image URLs — navigate Linked Art digitally_shown_by chain
+  let imageUrl = null;
+  const showsArr = Array.isArray(obj.shows) ? obj.shows : [];
+  outer: for (const s of showsArr) {
+    const dsb = Array.isArray(s.digitally_shown_by) ? s.digitally_shown_by : [];
+    for (const d of dsb) {
+      const aps = Array.isArray(d.access_point) ? d.access_point : [];
+      for (const ap of aps) {
+        const apUrl = typeof ap === 'string' ? ap : ap?.id || '';
+        if (apUrl.includes('media.getty.edu')) { imageUrl = apUrl; break outer; }
+      }
+    }
+  }
+
+  // Fallback: try thumbnail
+  if (!imageUrl) {
+    const thumb = obj.thumbnail?.[0];
+    const thumbUrl = typeof thumb === 'string' ? thumb : thumb?.id || '';
+    if (thumbUrl.includes('http')) imageUrl = thumbUrl;
+  }
+
+  // Fallback: try constructing IIIF URL from object UUID
+  // (works for many Getty open-content objects where image UUID = object UUID)
+  if (!imageUrl && uuid) {
+    imageUrl = `https://media.getty.edu/iiif/image/${uuid}/full/!800,800/0/default.jpg`;
+    isOpenContent = isOpenContent || true; // assume open if we constructed the URL
+  }
+
+  if (!imageUrl) return null;
+  if (!isOpenContent && !imageUrl.includes('media.getty.edu')) return null;
+
+  const thumbUrl = imageUrl.replace(/\/full\/[^/]+\//, '/full/!400,400/');
+
+  return { uuid, title, creator, date, medium, dept, credit, dims, culture, imageUrl, thumbUrl };
+}
+
+// Getty IIIF image URL — retained for reference
 function gettyImageUrl(imageId, size = '!800,800') {
   return `https://media.getty.edu/iiif/image/${imageId}/full/${size}/0/default.jpg`;
 }
@@ -140,38 +270,9 @@ async function upsertPoint(id, vector, payload) {
   });
 }
 
-// ── OBJECT PROCESSING ────────────────────────────────────────────
-
-// Check if an object from the Getty API has an open-content image.
-// The Getty API returns `open_content_status` or `has_images` fields.
-// We accept objects where open_content is explicitly true.
-function isOpenContent(obj) {
-  // Various field names used across different Getty API versions
-  if (obj.is_open_content === true)    return true;
-  if (obj.open_content === true)       return true;
-  if (obj.hasOpenContent === true)     return true;
-  // Licence field check
-  const lic = String(obj.object_end_date || '').toLowerCase();
-  const rights = String(obj.rights || obj.creditLine || '').toLowerCase();
-  if (rights.includes('cc0') || rights.includes('public domain')) return true;
-  return false;
-}
-
-// Extract primary image ID from a Getty object.
-// Getty IIIF image IDs are typically UUIDs or numeric IDs.
-function extractImageId(obj) {
-  // Primary image field options across Getty API versions
-  if (obj.primaryImage)             return obj.primaryImage;
-  if (obj.primaryImageId)           return obj.primaryImageId;
-  if (obj.images?.web?.url)         return obj.images.web.url;    // full URL — use as-is
-  if (Array.isArray(obj.images) && obj.images[0]?.id)
-                                    return obj.images[0].id;
-  return null;
-}
-
 // Build the canonical Getty object URL
-function gettyObjectUrl(id) {
-  return `https://www.getty.edu/art/collection/object/${encodeURIComponent(id)}`;
+function gettyObjectUrl(uuid) {
+  return `https://www.getty.edu/art/collection/object/${encodeURIComponent(uuid)}`;
 }
 
 // ── MAIN ─────────────────────────────────────────────────────────
@@ -190,133 +291,97 @@ async function main() {
 
   if (!DRY_RUN) await ensureCollection();
 
-  const seen = new Set();
-  const candidates = [];
+  // ── SPARQL PAGINATION ──────────────────────────────────────────
+  // Get object URIs in batches from the Linked Art SPARQL endpoint,
+  // then fetch each object's JSON-LD for full metadata and image URLs.
 
-  console.log('  → Searching Getty Open Content collections…\n');
+  console.log('  → Querying Getty Linked Art SPARQL endpoint…\n');
+  console.log(`  → Endpoint: ${SPARQL_ENDPOINT}`);
+  console.log(`  → Strategy: SPARQL pagination → per-object JSON-LD fetch\n`);
 
-  for (const q of SEARCH_QUERIES) {
-    if (candidates.length >= LIMIT * 3) break;
+  const uris = [];
+  const BATCH = 200;
+  let offset = 0;
+  let batchFails = 0;
+
+  // Collect enough URIs to fill LIMIT (allow for some skips due to no image/no open content)
+  while (uris.length < LIMIT * 4 && batchFails < 3) {
     try {
-      // Getty collection search: q param, open_content filter
-      let url = `${GETTY_API}?q=${encodeURIComponent(q)}&open_content=true&limit=100&page=1`;
-      if (DEPT_FILTER) url += `&department=${encodeURIComponent(DEPT_FILTER)}`;
-
-      const data = await fetchJSON(url);
-      if (!data) { console.warn(`  ⚠ No response for "${q}"`); continue; }
-
-      // API may return results in data.data, data.results, data.objects, or root array
-      const rows = data.data || data.results || data.objects || (Array.isArray(data) ? data : []);
-
-      let added = 0;
-      for (const obj of rows) {
-        const id = String(obj.id || obj.objectId || obj.object_id || '');
-        if (!id || seen.has(id)) continue;
-        seen.add(id);
-        candidates.push(obj);
-        added++;
-      }
-      console.log(`  → "${q}" — ${rows.length} results, ${added} new (total: ${candidates.length})`);
-      await sleep(350);
+      const batch = await sparqlBatch(offset, BATCH);
+      if (!batch.length) break;
+      uris.push(...batch);
+      console.log(`  → Collected ${uris.length} object URIs (offset ${offset})…`);
+      offset += BATCH;
+      await sleep(800);
     } catch (e) {
-      console.warn(`  ⚠ "${q}" — ${e.message}`);
-      await sleep(500);
+      batchFails++;
+      console.warn(`  ⚠ SPARQL batch failed (attempt ${batchFails}): ${e.message}`);
+      await sleep(3000);
     }
   }
 
-  if (!candidates.length) {
-    console.error('\n  ✗ No candidates found — possible API endpoint change.');
-    console.error('  → Check API at: https://data.getty.edu/museum/collection/');
-    console.error('  → Collection browser: https://www.getty.edu/art/collection/\n');
+  if (!uris.length) {
+    console.error('\n  ✗ SPARQL returned no results.');
+    console.error('  → Endpoint: ' + SPARQL_ENDPOINT);
+    console.error('  → Try: curl -sI "https://data.getty.edu/museum/collection/sparql"\n');
     process.exit(1);
   }
 
-  console.log(`\n  ✓ ${candidates.length} candidate records`);
-  console.log(`  → Processing up to ${LIMIT} open-content objects…\n`);
+  // Shuffle for variety across collection areas
+  uris.sort(() => Math.random() - 0.5);
+
+  console.log(`\n  ✓ ${uris.length} object URIs collected`);
+  console.log(`  → Fetching JSON-LD for up to ${LIMIT} open-content objects…\n`);
 
   let success = 0, skipped = 0, errors = 0;
 
-  for (let i = 0; i < candidates.length; i++) {
+  for (let i = 0; i < uris.length; i++) {
     if (success >= LIMIT) break;
-    const obj = candidates[i];
+    const uri = uris[i];
 
     try {
-      // Attempt to fetch detailed record if the search result is a stub
-      let detail = obj;
-      const objId = String(obj.id || obj.objectId || obj.object_id || '');
-      if (!objId) { skipped++; continue; }
+      const raw = await fetchGettyObject(uri);
+      const parsed = parseGettyLinkedArt(raw, uri);
 
-      // Check open content flag
-      if (!isOpenContent(detail)) {
-        // Try fetching the detail record for authoritative open content flag
-        const detailUrl = `${GETTY_API}/${encodeURIComponent(objId)}`;
-        const d = await fetchJSON(detailUrl);
-        if (!d) { skipped++; continue; }
-        detail = d.data || d.object || d;
-        if (!isOpenContent(detail)) { skipped++; continue; }
-        await sleep(120);
-      }
+      if (!parsed) { skipped++; await sleep(80); continue; }
 
-      const imageId = extractImageId(detail);
-      if (!imageId) { skipped++; continue; }
-
-      // Build image URLs — if imageId is already a full URL, use it directly
-      const isFullUrl = imageId.startsWith('http');
-      const thumb  = isFullUrl ? imageId : gettyThumbUrl(imageId);
-      const medium = isFullUrl ? imageId : gettyImageUrl(imageId);
-
-      const title   = detail.title?.value || detail.title || 'Untitled';
-      const artist  = detail.primaryArtistMakerOrCulture || detail.maker?.label
-                   || detail.artistDisplayName || detail.culture || '';
-      const date    = detail.primaryDateForSorting?.toString()
-                   || detail.date?.displayDate || detail.objectDate || '';
-      const medium_ = detail.primaryMedium || detail.medium || '';
-      const dept    = detail.department?.label || detail.departmentName || '';
-      const classif = detail.primaryClassification || detail.classifications?.[0]?.label || '';
-      const culture = detail.culture || '';
-      const dims    = detail.dimensions || '';
-      const credit  = detail.creditLine || '';
-      const place   = detail.placeOfOrigin || detail.geography?.label || '';
-      const notes   = detail.description || detail.inscriptions || '';
+      const { uuid, title, creator, date, medium, dept, credit, dims, culture, imageUrl, thumbUrl } = parsed;
 
       const description = [
         title,
-        artist   ? `by ${artist}` : '',
-        culture  ? `(${culture})` : '',
+        creator ? `by ${creator}` : '',
+        culture ? `(${culture})` : '',
         date,
-        medium_,
-        classif,
+        medium,
         dept,
-        place    ? `Origin: ${place}` : '',
-        notes,
-        credit   ? `Credit: ${credit}` : '',
+        dims    ? `Dimensions: ${dims}` : '',
+        credit  ? `Credit: ${credit}` : '',
+        'J. Paul Getty Museum, Los Angeles',
       ].filter(Boolean).join('. ');
 
       const payload = {
-        canonical_id:        `getty:${objId}`,
+        canonical_id:        `getty:${uuid}`,
         source:              'getty',
         source_institution:  'J. Paul Getty Museum',
         title,
-        artist,
+        artist:              creator,
         date_range:          String(date),
-        medium:              medium_,
-        classification:      classif,
+        medium,
         department:          dept,
         culture,
-        place_of_origin:     place,
         dimensions:          dims,
         credit_line:         credit,
         description,
         licence:             'CC0 1.0 Universal — Public Domain',
-        source_url:          gettyObjectUrl(objId),
-        media_thumbnail:     thumb,
-        media_medium:        medium,
-        media_large:         medium,
+        source_url:          gettyObjectUrl(uuid),
+        media_thumbnail:     thumbUrl,
+        media_medium:        imageUrl,
+        media_large:         imageUrl,
         embedding_text:      description,
       };
 
       if (DRY_RUN) {
-        console.log(`  [dry] ${title.substring(0, 60)} — ${artist}`);
+        console.log(`  [dry] ${title.substring(0, 60)}${creator ? ` — ${creator}` : ''}`);
         success++;
         continue;
       }
@@ -327,12 +392,12 @@ async function main() {
       await upsertPoint(ID_OFFSET + success, vector, payload);
       success++;
 
-      const pct = Math.round((i + 1) / candidates.length * 100);
-      process.stdout.write(`  [${pct}%] ${success}/${candidates.length} · ${title.substring(0, 50)}\r`);
-      await sleep(150);
+      const pct = Math.round(success / LIMIT * 100);
+      process.stdout.write(`  [${pct}%] ${success}/${LIMIT} · ${title.substring(0, 50)}\r`);
+      await sleep(200);
     } catch (e) {
       errors++;
-      await sleep(300);
+      await sleep(400);
     }
   }
 

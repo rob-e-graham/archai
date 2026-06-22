@@ -19,7 +19,7 @@
 // Licence: CC0 — Public Domain
 // ══════════════════════════════════════════════════════════════════
 
-const TATE_CSV_URL = 'https://raw.githubusercontent.com/tategallery/collection/master/artworks.csv';
+const TATE_CSV_URL = 'https://raw.githubusercontent.com/tategallery/collection/master/artwork_data.csv';
 const QDRANT_URL   = 'http://localhost:6333';
 const OLLAMA_URL   = 'http://localhost:11434';
 const COLLECTION   = 'archai_tate';
