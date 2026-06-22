@@ -1,7 +1,7 @@
 # ARCHAI Partnership Email — Museum Digital & Technology Teams
 
 **Track**: Museum digital teams, CTO/CDO offices, collection data managers, innovation labs
-**Hook**: Self-hostable open-source infrastructure for conversational collection access
+**Hook**: Hosted infrastructure for conversational collection access — local LLM, no cloud dependency
 **Call to action**: Technical demo call / pilot integration / dataset contribution
 
 ---
@@ -25,7 +25,7 @@
 
 Hi [Name / Digital Team],
 
-I'm Rob, co-founder of ARCHAI — an open-source platform that layers conversational AI onto museum collections using local language models, Qdrant vector search, and NFC/QR-deployable visitor pages.
+I'm Rob, co-founder of ARCHAI — a platform that layers conversational AI onto museum collections using local language models, Qdrant vector search, and NFC/QR-deployable visitor pages.
 
 I'm writing because [Institution] has been a significant source in our collection — we've been building on your open-access data [via API/GitHub dataset/open data portal], and we'd love to explore a more formal collaboration.
 
@@ -35,7 +35,7 @@ I'm writing because [Institution] has been a significant source in our collectio
 - Vector search via Qdrant — semantic queries across 20,000+ objects from 17 institutions
 - Per-object AUX.IO pages: scannable via NFC or QR, conversational, mobile-first
 - Downloadable posters at A4 / A2 / A0 / sticker / postcard with IIIF images and attribution
-- Full open-source stack (MIT licence) on GitHub — self-hostable in an afternoon
+- Full technical documentation available — we support deployment and integration
 
 **What we can offer your institution:**
 
@@ -80,9 +80,9 @@ Rob
 
 ## Key messaging pillars for this track
 
-1. **Data sovereignty** — local LLM, no third-party data flows, self-hostable
+1. **Data sovereignty** — local LLM, no third-party data flows, no visitor data leaving your walls
 2. **Already using your data** — credibility through demonstrated use, not just pitch
-3. **Technically serious** — Qdrant, Ollama, IIIF, NFC, open source — speaks their language
+3. **Technically serious** — Qdrant, Ollama, IIIF, NFC — speaks their language
 4. **Licence-compliant by design** — legal harvest bot, per-item rights verification, exact terms followed
 5. **Supplement, not compete** — positions ARCHAI as a layer on top of the institution's canonical record
 6. **Reciprocal** — data quality feedback, co-authorship, research opportunities
@@ -107,7 +107,7 @@ Rob
 
 - Technical depth is a positive — these teams want to know it works
 - Lead with what you're already doing with their data (shows real commitment)
-- Emphasise open source / self-hostable — avoids procurement and vendor concerns
+- Emphasise hosted pilot with full technical support — avoids procurement and vendor concerns
 - Position as research collaboration, not a sales call
 - Reference shared values: open access, digital public good, local AI privacy
 

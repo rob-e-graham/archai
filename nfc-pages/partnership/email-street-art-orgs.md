@@ -25,7 +25,7 @@
 
 Hi [Name / Team],
 
-I'm Rob, co-founder of ARCHAI — an open-source cultural AI platform that makes museum collections conversational and street-deployable.
+I'm Rob, co-founder of ARCHAI — a cultural AI platform that makes museum collections conversational and street-deployable.
 
 We've been building something different: every object in our archive generates a living page — visitor can scan a QR code, ask questions, hear stories, dig into provenance. The page loads anywhere, works offline-first, and links back to the source institution's full record.
 
@@ -58,7 +58,7 @@ fineartmedia.tech/archai / GitHub: rob-e-graham/archai
 
 ---
 
-**P.S.** We're fully open source (MIT licence) — if you run events or festivals with tech capacity, we can help you self-host your own ARCHAI instance for a specific collection or theme.
+**P.S.** If you run events or festivals and want a custom-themed ARCHAI deployment for your collection or programme, get in touch — we can set one up for you.
 
 ---
 
@@ -84,7 +84,7 @@ Rob
 2. **Street-first framing** — posters designed for walls, not galleries
 3. **Archive as material** — 20,000+ works from 17 institutions, CC0/open access
 4. **#ARCHAIinTheWild** community hook — they can see other activations
-5. **Open source** — self-hosting option for orgs with tech capacity
+5. **Hosted pilots** — custom deployments available for events and organisations
 
 ## Organisations to target first
 

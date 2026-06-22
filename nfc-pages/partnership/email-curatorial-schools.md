@@ -25,7 +25,7 @@
 
 Dear [Prof / Dr / Name],
 
-I'm Rob, co-founder of ARCHAI — an open-source AI platform that makes museum collections conversational and physically deployable via NFC tags and QR codes.
+I'm Rob, co-founder of ARCHAI — an AI platform that makes museum collections conversational and physically deployable via NFC tags and QR codes.
 
 I'm reaching out because we think ARCHAI could be a genuinely useful live tool for curatorial and museum studies programmes — and I'd love to explore a pilot with your department.
 
@@ -44,12 +44,12 @@ ARCHAI connects students to real collections — The Met, Rijksmuseum, Tate, Wel
 - *Digital Curatorship*: Students build and deploy their own thematic collections using ARCHAI's Qdrant + Ollama infrastructure
 - *Collection Access & Legal Frameworks*: Our legal harvest-bot and collection-targets matrix give students a real worked example of CC0, CC BY, OGL, and metadata-only constraints
 - *Physical Exhibition Design*: The NFC/QR poster system lets students design real-world scanning experiences — for hallways, libraries, cafés, public spaces
-- *AI Ethics in Cultural Heritage*: Local LLM (no data sent to third parties), open source, no vendor lock-in — good model for discussion
+- *AI Ethics in Cultural Heritage*: Local LLM (no data sent to third parties), no vendor lock-in, full data sovereignty — excellent model for discussion
 - *Street Art & Interventions*: Our open call invites students to take ARCHAI posters into public space (#ARCHAIinTheWild)
 
 **What we're offering:**
 
-- Free hosted pilot for one class/cohort (or self-hosted — full MIT licence)
+- Free hosted pilot for one class/cohort
 - Guest lecture / workshop on AI infrastructure for cultural heritage (remote or in-person)
 - Student project mentorship — we're happy to supervise ARCHAI-adjacent thesis or studio projects
 - Co-authorship on any resulting research or case study, if that's useful
@@ -73,7 +73,7 @@ Hi [Name],
 
 Checking in on my note about ARCHAI as a teaching tool for curatorial programmes.
 
-The short version: it's a free, open-source museum AI — 20,000+ real objects, conversational access, NFC/QR deployment, downloadable posters. Students can deploy their own collection pages within a session.
+The short version: it's a free museum AI pilot — 20,000+ real objects, conversational access, NFC/QR deployment, downloadable posters. Students can deploy their own collection pages within a session.
 
 Happy to share a 5-minute demo video or talk through what a class pilot might look like whenever suits.
 
@@ -86,7 +86,7 @@ Rob
 1. **Real infrastructure, not a toy** — actual museum APIs, real Qdrant/Ollama stack, real legal frameworks
 2. **Hands-on and deployable** — students produce real artefacts (NFC pages, posters, exhibitions) not just essays
 3. **Pedagogically layered** — covers AI ethics, legal frameworks, collection access, exhibition design, physical deployment
-4. **Open source, no cost** — MIT licence, self-hostable, no vendor dependency
+4. **Free pilot, no cost** — hosted, no vendor dependency, data stays local
 5. **Research-friendly** — co-authorship, thesis mentorship, case study opportunities
 
 ## Institutions to target first
