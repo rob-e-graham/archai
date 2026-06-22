@@ -500,18 +500,26 @@ async function main() {
 }
 
 // ── COLLECTION GROUPS ───────────────────────────────────────────
-// Maps top-level navigation tabs to their member Qdrant collections.
+// Thematic tabs for the public AUX.IO index — ordered to surface the most
+// distinctive / conversation-starting categories first.
 // null cols = "show everything" (All tab).
 const INDEX_GROUPS = [
-  { key: 'all',       label: 'All',          cols: null },
-  { key: 'museums',   label: 'Art & Museums', cols: [
-    'archai_pilot','archai_met','archai_va','archai_aic','archai_cma',
-    'archai_rijks','archai_europeana','archai_auckland','archai_tepapa',
-    'archai_mplus','archai_brasiliana','archai_smithsonian','archai_tate',
-    'archai_getty','archai_wellcome','archai_qagoma',
+  { key: 'all',      label: 'All',                 cols: null },
+  { key: 'painting', label: 'Painting',            cols: [
+    'archai_met','archai_rijks','archai_tate','archai_cma',
+    'archai_getty','archai_aic','archai_europeana',
   ]},
-  { key: 'streetart', label: 'Street Art',   cols: ['archai_streetart'] },
-  { key: 'games',     label: 'Games',        cols: ['archai_rawg'] },
+  { key: 'design',   label: 'Design & Objects',   cols: [
+    'archai_va','archai_mplus','archai_smithsonian','archai_qagoma',
+  ]},
+  { key: 'pacific',  label: 'Pacific & Indigenous', cols: [
+    'archai_pilot','archai_auckland','archai_tepapa',
+  ]},
+  { key: 'history',  label: 'History & Science',  cols: [
+    'archai_wellcome','archai_brasiliana',
+  ]},
+  { key: 'streetart',label: 'Street Art',         cols: ['archai_streetart'] },
+  { key: 'games',    label: 'Games',              cols: ['archai_rawg'] },
 ];
 
 // ── INDEX PAGE ──────────────────────────────────────────────────
@@ -537,18 +545,24 @@ function generateIndex(items) {
       `<button class="idx-group${i === 0 ? ' active' : ''}" data-group="${g.key}" onclick="selectGroup(this,'${g.key}')">${escHtml(g.label)}<span class="idx-group-count">${groupCounts[g.key]}</span></button>`
     ).join('\n    ');
 
-  // Institution sub-tabs (shown inside the Museums group)
-  const museumCols = (INDEX_GROUPS.find(g => g.key === 'museums') || {}).cols || [];
-  const subTabsHtml = [
-    `<button class="idx-sub active" data-sub="all" onclick="selectSub(this,'all')">All Museums</button>`,
-    ...[...byColl.entries()]
-      .filter(([k]) => museumCols.includes(k))
-      .sort((a, b) => b[1].count - a[1].count)
-      .map(([key, {label, count}]) => {
-        const short = label.split('—')[0].split('|')[0].split(',')[0].trim();
-        return `<button class="idx-sub" data-sub="${escHtml(key)}" onclick="selectSub(this,'${key}')">${escHtml(short)} <span class="idx-sub-count">${count}</span></button>`;
-      })
-  ].join('\n    ');
+  // Per-group institution sub-tabs — built for every group that has > 1 collection.
+  // Keyed by group key so the client can swap them when the active tab changes.
+  const subTabsByGroup = {};
+  INDEX_GROUPS.forEach(g => {
+    if (!g.cols || g.cols.length <= 1) return;
+    const allLabel = `All ${g.label}`;
+    const subs = [
+      `<button class="idx-sub active" data-sub="all" onclick="selectSub(this,'all')">${escHtml(allLabel)}</button>`,
+      ...[...byColl.entries()]
+        .filter(([k]) => g.cols.includes(k))
+        .sort((a, b) => b[1].count - a[1].count)
+        .map(([key, {label, count}]) => {
+          const short = label.split('—')[0].split('|')[0].split(',')[0].trim();
+          return `<button class="idx-sub" data-sub="${escHtml(key)}" onclick="selectSub(this,'${key}')">${escHtml(short)} <span class="idx-sub-count">${count}</span></button>`;
+        })
+    ];
+    subTabsByGroup[g.key] = subs.join('');
+  });
 
   const rows = items.map(g => {
     const thumbHtml = g.thumb
@@ -565,10 +579,11 @@ function generateIndex(items) {
     </a>`;
   }).join('\n    ');
 
-  // Embed groups as JSON for the client-side filter
+  // Embed both group→cols map and per-group sub-tab HTML as JSON for client-side use
   const groupsJson = JSON.stringify(
     Object.fromEntries(INDEX_GROUPS.map(g => [g.key, g.cols]))
   );
+  const subTabsJson = JSON.stringify(subTabsByGroup);
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -596,10 +611,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--serif);min-height:
 .idx-group.active{color:var(--accent2);border-bottom-color:var(--accent2);}
 .idx-group-count{font-size:0.4rem;letter-spacing:1px;opacity:0.6;}
 
-/* ── INSTITUTION SUB-TABS ── shown only inside Museums group */
-.idx-subbar{padding:10px 20px 0;border-bottom:1px solid var(--border);display:flex;flex-wrap:nowrap;overflow-x:auto;gap:5px;scrollbar-width:none;min-height:40px;}
+/* ── INSTITUTION SUB-TABS ── shown when a multi-institution group is active */
+.idx-subbar{padding:10px 20px 0;border-bottom:1px solid var(--border);display:flex;flex-wrap:nowrap;overflow-x:auto;gap:5px;scrollbar-width:none;}
 .idx-subbar::-webkit-scrollbar{display:none;}
-.idx-subbar.hidden{display:none;}
+.idx-subbar.hidden{display:none;min-height:0;}
 .idx-sub{font-family:var(--mono);font-size:0.4rem;letter-spacing:1.2px;text-transform:uppercase;padding:4px 9px 8px;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--text3);cursor:pointer;white-space:nowrap;transition:all 0.15s;display:flex;align-items:center;gap:4px;margin-bottom:-1px;}
 .idx-sub:hover{color:var(--text2);}
 .idx-sub.active{color:var(--accent);border-bottom-color:var(--accent);}
@@ -631,9 +646,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--serif);min-height:
   ${groupTabsHtml}
 </div>
 
-<div class="idx-subbar hidden" id="idx-subbar">
-  ${subTabsHtml}
-</div>
+<div class="idx-subbar hidden" id="idx-subbar"></div>
 
 <div class="idx-body">
   <div class="idx-count" id="idx-count">${items.length} objects</div>
@@ -642,6 +655,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--serif);min-height:
 
 <script>
 const GROUPS = ${groupsJson};
+const SUB_TABS = ${subTabsJson};
 let activeGroup = 'all';
 let activeSub = 'all';
 
@@ -649,11 +663,11 @@ function selectGroup(btn, groupKey) {
   activeGroup = groupKey;
   activeSub = 'all';
   document.querySelectorAll('.idx-group').forEach(b => b.classList.toggle('active', b === btn));
-  // Reset sub-tabs
-  document.querySelectorAll('.idx-sub').forEach(b => b.classList.toggle('active', b.dataset.sub === 'all'));
-  // Show sub-bar only for museums group (multiple institutions)
-  const showSub = groupKey === 'museums';
-  document.getElementById('idx-subbar').classList.toggle('hidden', !showSub);
+  // Swap in this group's sub-tabs (or hide if none)
+  const subbar = document.getElementById('idx-subbar');
+  const subHtml = SUB_TABS[groupKey] || '';
+  subbar.innerHTML = subHtml;
+  subbar.classList.toggle('hidden', !subHtml);
   applyFilter();
 }
 
@@ -673,7 +687,7 @@ function applyFilter() {
     el.classList.toggle('hidden', !show);
     if (show) vis++;
   });
-  const label = activeGroup === 'all' ? '' : ' · ' + activeGroup.replace('archai_','');
+  const label = activeGroup === 'all' ? '' : ' · ' + activeGroup;
   document.getElementById('idx-count').textContent = vis + ' objects' + label;
 }
 </script>
