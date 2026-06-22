@@ -44,6 +44,7 @@ export const env = {
   auxPagesDir: process.env.AUX_PAGES_DIR || '',
   media: {
     cacheDir: process.env.MEDIA_CACHE_DIR || './data/runtime/media-cache',
+    manifestFile: process.env.MEDIA_MANIFEST_FILE || './data/runtime/media-manifests.json',
     streamMode: process.env.MEDIA_STREAM_MODE || 'local-cache',
   },
   headlessCms: {

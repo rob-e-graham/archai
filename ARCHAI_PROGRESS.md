@@ -952,3 +952,39 @@ Next safe increment:
 - Registered NGA with the legal harvest bot as a verified, ready source.
 - Full dry run passed: 68,592 open-access image records found, 60,135 fair-use/restricted image records rejected, and 63,200 image-backed objects eligible for rights-safe selection.
 - No NGA records have been written to Qdrant yet; the source is validated and ready for a deliberate live onboarding run.
+
+## Rights-cleared WACZ capture and durable replay — 2026-06-22
+
+Completed the first end-to-end born-digital preservation test using only ARCHAI/FAMTEC-owned public demonstrators.
+
+Implemented:
+
+- Added `backend-archai/scripts/capture-born-digital.sh` with an explicit `--rights-cleared` safety gate.
+- Pinned Browsertrix Crawler `1.12.4` for reproducible WACZ capture.
+- Added persistent media manifests at `MEDIA_MANIFEST_FILE`; runtime registrations now survive backend restarts.
+- Self-hosted pinned ReplayWeb.page `2.4.6` assets from the ARCHAI backend.
+- Added an isolated replay page at `GET /api/media/published/:mediaId/replay`.
+- Retained byte-range archive delivery at `GET /api/media/published/:mediaId/archive`.
+- Added owned mock records for the ARCHAI and AUX.IO public demonstrators.
+
+Verified local preservation packages:
+
+- `archai_public_2026-06-22.wacz`
+  - SHA-256: `660aee3eae32441ef6a5a9afafd42c8b644dd643b66339fc99b49e7addee979c`
+- `auxio_public_2026-06-22.wacz`
+  - SHA-256: `67c536fc9563f6a7f4a87ce4231ce3e867be000a75b5cbccd25cacaf2af95f70`
+
+Verification completed on a temporary backend instance:
+
+- manifest registration returned HTTP 201;
+- rights-cleared publication returned HTTP 200;
+- replay page and self-hosted replay assets returned HTTP 200;
+- WACZ range request returned HTTP 206;
+- both manifests remained published after a backend restart;
+- persisted checksums matched the captured WACZ packages.
+
+Important boundary:
+
+- Captured WACZ files and runtime manifests remain under ignored local preservation storage and are not committed to Git.
+- The active `:8787` backend should be restarted only after the collection-integration merge is complete.
+- Public replay remains limited to manifestations whose item-level rights are explicitly `cleared`.

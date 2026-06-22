@@ -20,6 +20,12 @@ async function statOrNull(p){
   try { return await fsp.stat(p); } catch { return null; }
 }
 
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>"']/g, (char) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+  }[char]));
+}
+
 mediaRouter.get('/published', (req, res) => {
   const objectId = req.query.objectId ? String(req.query.objectId) : undefined;
   const status = req.query.status ? String(req.query.status) : undefined;
@@ -169,4 +175,21 @@ mediaRouter.get('/published/:mediaId/archive', async (req, res) => {
     'Content-Range': `bytes ${start}-${end}/${st.size}`,
   });
   fs.createReadStream(localPath, { start, end }).pipe(res);
+});
+
+mediaRouter.get('/published/:mediaId/replay', (req, res) => {
+  const media = getPublishedMedia(req.params.mediaId);
+  if (!media) return res.status(404).send('Published media not found');
+  if (media.kind !== 'web_archive' || media.publishedStatus !== 'published' || media.rights?.status !== 'cleared') {
+    return res.status(403).send('Archived manifestation is not cleared and published for access');
+  }
+  const archiveUrl = `/api/media/published/${encodeURIComponent(media.mediaId)}/archive`;
+  const entryUrl = escapeHtml(media.entryUrl || media.capture?.entryUrl || media.capture?.originalUrl || '');
+  res.type('html').send(`<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${escapeHtml(media.manifestationLabel || 'ARCHAI archived interactive capture')}</title>
+<style>html,body{width:100%;height:100%;margin:0;background:#080908;color:#e7e2d8}replay-web-page{display:block;width:100%;height:100%}</style>
+<script src="/replay-assets/ui.js"></script></head><body>
+<replay-web-page replayBase="/replay-assets/" source="${archiveUrl}" url="${entryUrl}" embed="replay-with-info" sandbox></replay-web-page>
+</body></html>`);
 });

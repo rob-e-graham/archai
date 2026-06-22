@@ -158,3 +158,20 @@ Until those conditions are met, street-art targets remain discovery or metadata-
 4. Capture one institution-owned or artist-permissioned test work.
 5. Test replay, offline behaviour, accessibility, and fallback documentation.
 6. Add emulation only after the web-archive workflow is stable.
+
+## Local capture command
+
+For institution-owned, artist-permissioned, openly licensed, or public-domain web works:
+
+```bash
+cd backend-archai
+./scripts/capture-born-digital.sh \
+  --url https://example.org/approved-work \
+  --media-id approved_work_capture_01 \
+  --object-id COLLECTION_OBJECT_ID \
+  --rights-holder "Rights holder name" \
+  --rights-basis artist_permission \
+  --rights-cleared
+```
+
+The script pins Browsertrix Crawler `1.12.4`, creates a WACZ and screenshot, calculates SHA-256, writes a sidecar manifestation, registers it with ARCHAI, and publishes it through the rights gate. It refuses to run unless the operator explicitly supplies `--rights-cleared`.

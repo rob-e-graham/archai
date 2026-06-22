@@ -1,15 +1,51 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import { repo } from './objectRepository.js';
 import { publishedMediaSchema } from '../schemas/objectSchemas.js';
+import { env } from '../config/env.js';
 
 const runtimeMedia = [];
+let initialized = false;
+
+function manifestPath() {
+  return path.resolve(process.cwd(), env.media.manifestFile);
+}
+
+function persistMedia() {
+  const target = manifestPath();
+  fs.mkdirSync(path.dirname(target), { recursive: true });
+  const temporary = `${target}.tmp`;
+  const persisted = runtimeMedia.filter((media) => !media.seeded);
+  fs.writeFileSync(temporary, `${JSON.stringify(persisted, null, 2)}\n`, 'utf8');
+  fs.renameSync(temporary, target);
+}
+
+function loadPersistentMedia() {
+  const target = manifestPath();
+  if (!fs.existsSync(target)) return;
+  const values = JSON.parse(fs.readFileSync(target, 'utf8'));
+  if (!Array.isArray(values)) throw new Error(`Media manifest store must contain an array: ${target}`);
+  for (const value of values) {
+    const parsed = publishedMediaSchema.safeParse(value);
+    if (!parsed.success) {
+      console.warn(`[ARCHAI] Skipping invalid persisted media manifest: ${value?.mediaId || 'unknown'}`);
+      continue;
+    }
+    runtimeMedia.push({ ...value, ...parsed.data });
+  }
+}
 
 function ensureSeeded() {
-  if (runtimeMedia.length) return;
+  if (initialized) return;
+  initialized = true;
+  loadPersistentMedia();
   for (const obj of repo.state.objects) {
     const media = obj.media?.[0];
     if (!media) continue;
+    const mediaId = `pub_${obj.id.toLowerCase()}`;
+    if (runtimeMedia.some((record) => record.mediaId === mediaId)) continue;
     runtimeMedia.push({
-      mediaId: `pub_${obj.id.toLowerCase()}`,
+      mediaId,
       objectId: obj.id,
       kind: media.kind === 'video' ? 'video' : 'image',
       manifestationLabel: media.kind === 'video' ? 'Approved playback derivative' : 'Documentation image',
@@ -37,6 +73,7 @@ function ensureSeeded() {
       autoplayMuted: true,
       loop: media.kind === 'video',
       updatedAt: new Date().toISOString(),
+      seeded: true,
     });
   }
 }
@@ -56,6 +93,7 @@ export function registerMediaManifest(input) {
   const row = publishedMediaSchema.parse(input);
   if (runtimeMedia.some((media) => media.mediaId === row.mediaId)) return null;
   runtimeMedia.unshift({ ...row, updatedAt: new Date().toISOString() });
+  persistMedia();
   return runtimeMedia[0];
 }
 
@@ -78,6 +116,7 @@ export function publishMediaManifest({ objectId, mediaId, actor }) {
   if (!gate.ok) return { blocked: true, reason: gate.reason, media: row };
   row.publishedStatus = 'published';
   row.updatedAt = new Date().toISOString();
+  persistMedia();
   repo.audit({ type: 'media.publish', actor, summary: `Published media ${mediaId} for ${objectId}` });
   return row;
 }

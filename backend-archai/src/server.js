@@ -26,6 +26,13 @@ const auxPagesDir = env.auxPagesDir
   : path.resolve(__dirname, '../../nfc-pages/v');
 app.use('/aux', express.static(auxPagesDir));
 
+const replayAssetsDir = path.resolve(__dirname, '../node_modules/replaywebpage');
+app.use('/replay-assets', express.static(replayAssetsDir, {
+  setHeaders(res, filePath) {
+    if (filePath.endsWith('/sw.js')) res.setHeader('Service-Worker-Allowed', '/');
+  },
+}));
+
 function getAuxPages() {
   try {
     return fs.readdirSync(auxPagesDir)
