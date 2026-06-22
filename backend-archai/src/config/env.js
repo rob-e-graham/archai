@@ -29,6 +29,12 @@ export const env = {
     privateKey: process.env.RESOURCESPACE_API_PRIVATE_KEY || '',
     uploadCollection: process.env.RESOURCESPACE_UPLOAD_COLLECTION || '',
   },
+  eaasi: {
+    baseUrl: process.env.EAASI_BASE_URL || '',
+    oaiUrl: process.env.EAASI_OAI_URL || '',
+    apiToken: process.env.EAASI_API_TOKEN || '',
+    tenantId: process.env.EAASI_TENANT_ID || '',
+  },
   qdrant: {
     url: process.env.QDRANT_URL || 'http://localhost:6333',
     apiKey: process.env.QDRANT_API_KEY || '',

@@ -14,7 +14,9 @@ ARCHAI assesses metadata and media separately. An open metadata dataset is not a
 | Whitney Open Access | Public dataset/API metadata under CC0 | Do not infer that every artwork image or digital work is CC0 from the metadata licence | Metadata candidate; verify item-level media and terms before any thumbnail or replay |
 | Tate collection dataset | Historical 2014 metadata snapshot under CC0 | Images are excluded; dataset is no longer maintained | Research/enrichment source only, not a current image-backed demo collection |
 | Rhizome ArtBase | Research partnership, linked-data study, and permissioned collaboration | Artworks and images are presumed copyrighted; exhibition/republication needs artist permission and sometimes Rhizome approval | Partnership target, not an automatic harvester |
-| Street Art Cities | Discovery, artist/platform partnership discussion, possible linked records | No official open API and media-reuse licence was verified in this audit | Hold; do not scrape or harvest media |
+| Street Art Cities | Monthly JSON/CSV metadata for academic analysis, subject to its acceptable-use terms | Images are excluded; non-academic redistribution or integration requires express consent | Research-partnership target; do not add to the public demo without written permission |
+| RapidAPI and unofficial wrappers | Endpoint discovery only | Source authority, upstream consent, record provenance, and item-level media rights are not established by a wrapper listing | Do not integrate until verified directly with the originating collection |
+| Art UK street-art discovery | Potential institutional partnership and linked-record research | A secondary article is not an API or media licence | Contact Art UK and verify official access and item-level image terms first |
 
 ## Street art specifically
 
@@ -28,7 +30,9 @@ Useful street-art data can come from several classes of source:
 
 The best first source is usually a municipal commissioned-public-art register because the commissioning body can often provide stable identifiers, artist attribution, location history, and explicit media terms. Even then, each image may have a separate photographer licence.
 
-Street Art Cities is a valuable outreach target with global coverage, but no official open-data/API permission suitable for automated ARCHAI harvesting was established. Public visibility alone is insufficient. Seek a written research/data partnership before integration.
+Street Art Cities publishes official monthly JSON and CSV metadata exports for academic analysis. Its acceptable-use statement says that non-academic redistribution or integration requires express consent, and the standard exports deliberately exclude hunter images. ARCHAI can explore the metadata within a documented RMIT research context, but a public website integration should wait for a written research/data partnership and must not infer image rights from the metadata feed.
+
+Street Art Cities' contributor terms separately describe uploaded images and descriptions as CC BY-SA 4.0. That does not override the open-data feed's explicit exclusion of images or remove the need to preserve photographer attribution, artist rights, and platform terms at item level. The safe route is a direct partnership and an agreed machine-readable rights payload.
 
 For any street-art record, preserve:
 
@@ -81,6 +85,8 @@ This order adds modern and born-digital depth without weakening ARCHAI's rights-
 - Rhizome ArtBase About: https://artbase.rhizome.org/wiki/About
 - Rhizome ArtBase User Guide: https://artbase.rhizome.org/wiki/User%20Guide
 - Street Art Cities About: https://streetartcities.com/about
+- Street Art Cities Open Data and acceptable use: https://streetartcities.com/open-data
+- Street Art Cities contributor terms: https://streetartcities.com/legal/hunter
 - WACZ specification: https://specs.webrecorder.net/wacz/1.1.1/
 - ReplayWeb.page embedding: https://replayweb.page/docs/embedding/
 - Browsertrix documentation: https://docs.browsertrix.com/

@@ -32,6 +32,7 @@ const ALL_COLLECTIONS = [
   'archai_aic', 'archai_cma', 'archai_rijks', 'archai_europeana', 'archai_auckland', 'archai_tepapa', 'archai_mplus', 'archai_brasiliana',
   'archai_smithsonian', 'archai_tate', 'archai_streetart',
   'archai_getty', 'archai_wellcome', 'archai_qagoma', 'archai_rawg',
+  'archai_nga',
 ];
 const COLLECTION_LABELS = {
   archai_pilot:        'Museums Victoria',
@@ -52,6 +53,7 @@ const COLLECTION_LABELS = {
   archai_wellcome:     'Wellcome Collection',
   archai_qagoma:       'QAGOMA — Queensland Art Gallery | Gallery of Modern Art',
   archai_rawg:         'RAWG Video Games Database',
+  archai_nga:          'National Gallery of Art, Washington',
 };
 const OLLAMA_LAN_HOST = getArg('host', 'http://localhost:11434');
 // Default to backend-proxy mode so public AUX.IO pages can use the live chat API
@@ -61,6 +63,14 @@ const LIMIT = parseInt(getArg('limit', '5000'), 10);
 const OUTPUT_DIR = path.join(__dirname, 'v');
 const TEMPLATE_PATH = path.join(__dirname, 'nfc-visitor-template.html');
 const PORTAL_PATH = path.join(__dirname, 'captive-portal.html');
+const QR_VENDOR_PATH = path.join(__dirname, 'vendor', 'qrcode-generator.js');
+const AUX_ID_MAP_PATH = path.join(__dirname, 'aux-id-map.json');
+const PUBLIC_MEDIA_HOLDS = new Set([
+  // Tate's CC0 dataset excludes images. Getty remains held until every image
+  // is verified against an item-level Open Content statement.
+  'archai_tate',
+  'archai_getty',
+]);
 
 // ── HELPERS ─────────────────────────────────────────────────────
 function cleanText(s) {
@@ -96,6 +106,38 @@ function trimGeneratedLines(s) {
   return String(s || '').replace(/[ \t]+$/gm, '');
 }
 
+function loadAuxIdMap() {
+  if (!fs.existsSync(AUX_ID_MAP_PATH)) return {};
+  const parsed = JSON.parse(fs.readFileSync(AUX_ID_MAP_PATH, 'utf8'));
+  if (!parsed || Array.isArray(parsed) || typeof parsed !== 'object') {
+    throw new Error(`Invalid AUX.IO ID registry: ${AUX_ID_MAP_PATH}`);
+  }
+  return parsed;
+}
+
+function updateAuxIdMap(points, preferredPoints = points) {
+  const mapping = loadAuxIdMap();
+  let nextId = Math.max(0, ...Object.values(mapping).map(Number).filter(Number.isFinite)) + 1;
+  const preferredIds = preferredPoints
+    .map((point) => String(point.payload?.canonical_id || '').trim())
+    .filter(Boolean)
+    .sort((a, b) => a.localeCompare(b));
+  const preferredIdSet = new Set(preferredIds);
+  const remainingIds = points
+    .map((point) => String(point.payload?.canonical_id || '').trim())
+    .filter((canonicalId) => canonicalId && !preferredIdSet.has(canonicalId))
+    .sort((a, b) => a.localeCompare(b));
+  const canonicalIds = [...preferredIds, ...remainingIds];
+
+  for (const canonicalId of canonicalIds) {
+    if (!Number.isInteger(mapping[canonicalId]) || mapping[canonicalId] < 1) {
+      mapping[canonicalId] = nextId++;
+    }
+  }
+  fs.writeFileSync(AUX_ID_MAP_PATH, `${JSON.stringify(mapping, null, 2)}\n`, 'utf8');
+  return mapping;
+}
+
 function getObjectRightsInfo(payload = {}) {
   const licence = String(payload?.licence || '').trim();
   const mediaRightsTitle = String(payload?.media_rights_title || '').trim();
@@ -117,6 +159,7 @@ function getObjectRightsInfo(payload = {}) {
   let guidance = 'Review the source record and item-level rights before reuse.';
   let color = '#a09890';
   let border = 'rgba(160,152,144,0.28)';
+  let displayAllowed = false;
 
   if (/all rights reserved|rights reserved|in copyright|rightsstatements\.org\/vocab\/inc|api_preview_only/.test(normalized)) {
     status = 'Restricted';
@@ -133,19 +176,30 @@ function getObjectRightsInfo(payload = {}) {
     guidance = 'Reusable with attribution, and derivative use should keep the same licence terms.';
     color = '#9b8fbf';
     border = 'rgba(155,143,191,0.28)';
-  } else if (/cc by|creativecommons\.org\/licenses\/by\/|creative commons attribution|© auckland museum cc by/.test(normalized)) {
+    displayAllowed = true;
+  } else if (/cc by|creativecommons\.org\/licenses\/by\/|creative commons attribution|© auckland museum cc by|open government licen[cs]e/.test(normalized)) {
     status = 'Attribution required';
     guidance = 'Reusable with attribution to the source institution and creator where required.';
     color = '#8fbcb0';
     border = 'rgba(143,188,176,0.28)';
-  } else if (/cc0|creativecommons\.org\/publicdomain\/zero|creativecommons\.org\/publicdomain\/mark|public domain|public domain mark|rightsstatements\.org\/vocab\/noc|dom[ií]nio p[úu]blico|no known copyright restrictions|open access/.test(normalized)) {
+    displayAllowed = true;
+  } else if (/free with attribution|active link to rawg\.io/.test(normalized)) {
+    status = 'API display with attribution';
+    guidance = 'Display is permitted under the source API terms with an active source link; media redistribution is not granted.';
+    color = '#8fbcb0';
+    border = 'rgba(143,188,176,0.28)';
+    displayAllowed = true;
+  } else if (/cc0|creativecommons\.org\/publicdomain\/zero|creativecommons\.org\/publicdomain\/mark|public domain|public domain mark|rightsstatements\.org\/vocab\/noc|dom[ií]nio p[úu]blico|no known copyright restrictions/.test(normalized)) {
     status = 'Open access';
     guidance = 'Appears reusable under open-access or public-domain terms.';
     color = '#8fbcb0';
     border = 'rgba(143,188,176,0.28)';
+    displayAllowed = true;
   }
 
-  return { status, guidance, detail, color, border };
+  if (payload.media_public_display_allowed === false) displayAllowed = false;
+  const posterAllowed = payload.poster_download_allowed === true && payload.media_canvas_safe === true;
+  return { status, guidance, detail, color, border, displayAllowed, posterAllowed };
 }
 
 function buildInteractiveEmbed(p) {
@@ -247,33 +301,61 @@ async function main() {
     }
   }
 
-  // Shuffle so we get a mix of sources, not all MV first
-  for (let i = allPoints.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [allPoints[i], allPoints[j]] = [allPoints[j], allPoints[i]];
-  }
+  const allSourcePoints = [...allPoints];
 
   // Cap to limit
   allPoints = allPoints.slice(0, LIMIT);
 
-  // Only generate pages for objects with images or interactive content
-  const beforeFilter = allPoints.length;
+  // Only generate pages for objects with display-cleared media or approved
+  // interactive content. Metadata remains searchable in ARCHAI even when its
+  // media is held from the public AUX.IO layer.
+  let skippedRights = 0;
+  let skippedUnavailable = 0;
+  let skippedNoMedia = 0;
   allPoints = allPoints.filter(pt => {
     const p = pt.payload;
-    return p && (
+    const hasMedia = p && (
       p.media_medium || p.media_thumbnail || p.image_url || p.primaryImageSmall ||
       p.interactive_url || p.archive_source
     );
+    if (!hasMedia) {
+      skippedNoMedia++;
+      return false;
+    }
+    if (p.media_available === false) {
+      skippedUnavailable++;
+      return false;
+    }
+    if (PUBLIC_MEDIA_HOLDS.has(pt._sourceCollection)) {
+      skippedRights++;
+      return false;
+    }
+    const rights = getObjectRightsInfo(p);
+    if (!rights.displayAllowed) skippedRights++;
+    return rights.displayAllowed;
   });
-  const skippedNoImage = beforeFilter - allPoints.length;
-  if (skippedNoImage > 0) {
-    console.log(`  ⊘ Skipped ${skippedNoImage} objects without images or interactive content`);
+  if (skippedNoMedia > 0) console.log(`  ⊘ Skipped ${skippedNoMedia} metadata-only objects`);
+  if (skippedUnavailable > 0) console.log(`  ⊘ Skipped ${skippedUnavailable} unavailable or placeholder media records`);
+  if (skippedRights > 0) {
+    console.log(`  ⊘ Held ${skippedRights} objects from AUX.IO pending item-level media clearance`);
   }
 
   if (!allPoints.length) {
     console.error('\n  ✗ No objects found in any Qdrant collection.');
     process.exit(1);
   }
+
+  // Physical QR/NFC URLs must never move between objects. Bootstrap public,
+  // image-ready objects first so the active demo occupies low IDs, then reserve
+  // stable higher IDs for metadata-only and held records.
+  const auxIdMap = updateAuxIdMap(allSourcePoints, allPoints);
+  console.log(`  ✓ Stable AUX.IO ID registry: ${Object.keys(auxIdMap).length} canonical records`);
+
+  allPoints.sort((a, b) => {
+    const aId = auxIdMap[a.payload?.canonical_id] || Number.MAX_SAFE_INTEGER;
+    const bId = auxIdMap[b.payload?.canonical_id] || Number.MAX_SAFE_INTEGER;
+    return aId - bId;
+  });
 
   const sourceSummary = Object.entries(collectionCounts)
     .filter(([,c]) => c > 0)
@@ -283,6 +365,14 @@ async function main() {
 
   // Create output directory
   fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+
+  if (!fs.existsSync(QR_VENDOR_PATH)) {
+    throw new Error(`Self-hosted QR generator is missing: ${QR_VENDOR_PATH}`);
+  }
+  const outputVendorDir = path.join(OUTPUT_DIR, 'vendor');
+  fs.mkdirSync(outputVendorDir, { recursive: true });
+  fs.copyFileSync(QR_VENDOR_PATH, path.join(outputVendorDir, 'qrcode-generator.js'));
+  console.log('  ✓ Self-hosted QR generator copied');
 
   // LEGAL SAFETY: delete ALL existing NFC pages before regenerating so removed
   // or rights-restricted objects can never linger as orphaned, publicly-reachable
@@ -305,8 +395,8 @@ async function main() {
   const allObjects = allPoints.map((pt, i) => ({
     index: i,
     payload: pt.payload,
-    nfcCode: 'NFC' + String(i + 1).padStart(3, '0'), // filename stays NFC for URL compat
-    auxLabel: 'AUX.IO ' + String(i + 1).padStart(3, '0'), // display label
+    nfcCode: 'NFC' + String(auxIdMap[pt.payload.canonical_id]).padStart(3, '0'), // filename stays NFC for URL compat
+    auxLabel: 'AUX.IO ' + String(auxIdMap[pt.payload.canonical_id]).padStart(3, '0'), // display label
     sourceLabel: pt._sourceLabel || 'Collection',
     sourceCollection: pt._sourceCollection || 'archai_pilot'
   }));
@@ -334,7 +424,7 @@ async function main() {
     const didYouKnow = p.did_you_know || '';
     const provenance = p.provenance || '';
     const tombstone = p.tombstone || '';
-    const licence = p.licence || 'Open Access';
+    const licence = p.licence || '';
     const rights = getObjectRightsInfo(p);
     const sourceUrl = p.source_url || '#';
     const imgMedium = p.media_medium || p.media_thumbnail || '';
@@ -367,6 +457,24 @@ async function main() {
       <div class="v-rights-text"><strong style="color:${rights.color};font-weight:400;">${escHtml(rights.status)}</strong> — ${escHtml(rights.guidance)}</div>
       <div class="v-rights-detail">Licence / rights: ${escHtml(rights.detail)}</div>
     </div>`;
+    const posterDownloadHtml = rights.posterAllowed
+      ? `<details class="v-poster-wrap">
+  <summary class="v-poster-summary">Save / print with QR</summary>
+  <div class="v-poster-panel">
+  <div class="v-poster-label">Reusable interpretation material</div>
+  <div class="v-poster-sizes">
+    <button class="v-poster-btn" onclick="downloadPoster('A4')" data-size="A4">A4 · 300 dpi</button>
+    <button class="v-poster-btn" onclick="downloadPoster('A2')" data-size="A2">A2 · 150 dpi</button>
+    <button class="v-poster-btn" onclick="downloadPoster('A0')" data-size="A0">A0 · 150 dpi</button>
+  </div>
+  <div class="v-poster-sizes" style="margin-top:5px;">
+    <button class="v-poster-btn" onclick="downloadPosterSmall('STICKER')" data-size="STICKER">Sticker · 100mm</button>
+    <button class="v-poster-btn" onclick="downloadPosterSmall('POSTCARD')" data-size="POSTCARD">Postcard · A6</button>
+  </div>
+  <div class="v-poster-note">Available because this media record explicitly permits reusable derivatives.</div>
+  </div>
+</details>`
+      : '';
 
     // Chips
     const chips = ['What are you?', 'Tell me your history', 'How were you used?', 'What are you made of?'];
@@ -448,6 +556,7 @@ async function main() {
       .replace(/\{\{OBJECT_PROVENANCE\}\}/g, esc(truncate(provenance, 300)))
       .replace(/\{\{OBJECT_TOMBSTONE\}\}/g, esc(tombstone))
       .replace(/\{\{OBJECT_LICENCE\}\}/g, esc(licence))
+      .replace(/\{\{OBJECT_POSTER_ALLOWED\}\}/g, rights.posterAllowed ? 'true' : 'false')
       .replace(/\{\{OBJECT_COLLECTION\}\}/g, esc(obj.sourceCollection || 'archai_pilot'))
       .replace(/\{\{OBJECT_STORY\}\}/g, story)
       .replace(/\{\{SOURCE_URL\}\}/g, escHtml(sourceUrl))
@@ -456,6 +565,7 @@ async function main() {
       .replace(/\{\{DISCIPLINE_TAG\}\}/g, discTag)
       .replace(/\{\{LEGAL_STATUS_TAG\}\}/g, legalStatusTag)
       .replace(/\{\{RIGHTS_NOTE\}\}/g, rightsNote)
+      .replace(/\{\{POSTER_DOWNLOAD\}\}/g, posterDownloadHtml)
       .replace(/\{\{CHIPS_HTML\}\}/g, chipsHtml)
       .replace(/\{\{META_ROWS\}\}/g, metaRowsHtml)
       .replace(/\{\{RELATED_HTML\}\}/g, relatedHtml)
@@ -507,7 +617,7 @@ const INDEX_GROUPS = [
   { key: 'all',      label: 'All',                 cols: null },
   { key: 'painting', label: 'Painting',            cols: [
     'archai_met','archai_rijks','archai_tate','archai_cma',
-    'archai_getty','archai_aic','archai_europeana',
+    'archai_getty','archai_aic','archai_europeana','archai_nga',
   ]},
   { key: 'design',   label: 'Design & Objects',   cols: [
     'archai_va','archai_mplus','archai_smithsonian','archai_qagoma',

@@ -925,7 +925,7 @@ Legal/source findings:
 - Whitney provides CC0 open datasets/API data, but media still needs item-level verification.
 - Tate's CC0 dataset is an unmaintained 2014 metadata snapshot and excludes images.
 - Rhizome ArtBase is a strong research partner and methodological model, not a source to republish without artist/Rhizome permission.
-- No officially licensed open Street Art Cities harvesting API was verified; treat it as a partnership lead, not an automatic source.
+- Street Art Cities now publishes official monthly research datasets, but the standard exports exclude images and prohibit non-academic integration without express consent; treat it as a partnership lead rather than an automatic public-demo source.
 
 Verification:
 
@@ -988,3 +988,66 @@ Important boundary:
 - Captured WACZ files and runtime manifests remain under ignored local preservation storage and are not committed to Git.
 - The active `:8787` backend should be restarted only after the collection-integration merge is complete.
 - Public replay remains limited to manifestations whose item-level rights are explicitly `cleared`.
+
+## Nineteen-source integration, media audit, and QR output — 2026-06-22
+
+Integrated Claude's collection branch after preserving the pre-merge generated output in a named Git stash: `pre-claude-collection-integration-2026-06-22`.
+
+Collection state:
+
+- 19 connected source collections in Qdrant
+- 3147 staff-searchable records
+- Smithsonian and RAWG KeyTec credentials confirmed without exposing key values
+- Smithsonian refreshed to 145 item-level CC0 records
+- National Gallery of Art onboarded with 150 records; 60,135 fair-use/restricted image rows were excluded by `openaccess=1`
+- RAWG retained as attributed API display only; poster/sticker/postcard redistribution disabled
+- Tate corrected to CC0 metadata-only; its GitHub licence explicitly excludes images
+- Getty legacy media held after all 200 constructed URLs failed live image checks
+- QAGOMA retained as metadata-only pending formal media/API access
+
+Added `backend-archai/scripts/audit-public-media.js`:
+
+- checks HTTP response, real image content, known placeholders, and canvas CORS;
+- records `media_available`, `media_canvas_safe`, audit status, content type, and timestamp;
+- report-only by default and writes only with `--apply`;
+- Qdrant snapshots were taken for RAWG, Tate, Wellcome, street art, Getty, and QAGOMA before the rights migration.
+- per-source results and follow-up decisions are documented in `backend-archai/docs/PUBLIC_MEDIA_AUDIT_2026-06-22.md`.
+
+Audit result:
+
+- 2357 image URLs checked
+- 1884 available
+- 473 hidden as broken, blocked, placeholder, or non-image responses
+- 1284 canvas-safe
+- 790 metadata-only records
+- notable holds: Getty 200/200 broken; AIC 150/150 currently blocked by a Cloudflare image challenge; Brasiliana 113/120 returned 404
+
+AUX.IO result:
+
+- 1380 visitor pages regenerated from working, display-cleared media
+- 504 otherwise available records held by the public-media rights policy
+- 440 pages explicitly support reusable derivative outputs
+- A4, A2, A0, 100 mm sticker, and A6 postcard layouts all draw a QR code to the current AUX.IO page
+- QR generation is self-hosted from the MIT-licensed `qrcode-generator` library and fails closed rather than producing a QR-less asset
+- save/print formats are grouped under a compact `Save / print with QR` disclosure below the share controls
+- `nfc-pages/aux-id-map.json` now reserves a permanent numeric AUX.IO ID for every canonical record; a second full regeneration produced identical registry and representative page hashes, so existing physical QR/NFC links no longer drift when collection order changes
+
+Street-art source policy:
+
+- the six municipal public-art feeds remain a metadata-only staff collection until item-level media rights are available;
+- Street Art Cities' official monthly JSON/CSV exports are suitable for academic analysis, but exclude images and require express consent for non-academic integration;
+- Street Art Cities is recorded as a research-partnership target rather than harvested into the public demo;
+- RapidAPI wrappers and secondary listings are discovery leads only until source authority, provenance, and item-level rights are verified directly.
+
+EaaSI integration boundary:
+
+- added an optional EaaSI adapter and health check through `/api/integrations`;
+- OAI-PMH `Identify` is used only for configured-node discovery;
+- no session-launch URL is invented without an institutional node/API contract;
+- architecture and partnership path documented in `backend-archai/docs/EAASI_INTEGRATION.md`.
+
+Dependency audit:
+
+- upgraded `node-cron` from 3.0.3 to 4.5.0, removing the vulnerable legacy `uuid` dependency;
+- `npm audit --omit=dev` now reports three moderate findings inherited through ReplayWeb.page's current `@webrecorder/wabac` XML parser;
+- npm's automated remediation would force ReplayWeb.page back to 1.0.0, so it was deliberately not applied; replay remains locally hosted, rights-gated, and should be upgraded when Webrecorder publishes a compatible dependency fix.

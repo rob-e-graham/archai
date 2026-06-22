@@ -31,6 +31,14 @@ const INSTITUTION_META = {
   archai_tepapa:     { institution: 'Te Papa Tongarewa',               city: 'Wellington', state: '',             country: 'New Zealand' },
   archai_mplus:      { institution: 'M+',                               city: 'Hong Kong',  state: '',             country: 'Hong Kong' },
   archai_brasiliana: { institution: 'Brasiliana Museus',               city: '',           state: '',             country: 'Brazil' },
+  archai_smithsonian:{ institution: 'Smithsonian Institution',         city: 'Washington', state: 'District of Columbia', country: 'United States' },
+  archai_tate:       { institution: 'Tate',                             city: 'London',     state: '',             country: 'United Kingdom' },
+  archai_streetart:  { institution: 'Public Street Art Open Data',     city: '',           state: '',             country: 'International' },
+  archai_getty:      { institution: 'J. Paul Getty Museum',            city: 'Los Angeles',state: 'California',   country: 'United States' },
+  archai_wellcome:   { institution: 'Wellcome Collection',             city: 'London',     state: '',             country: 'United Kingdom' },
+  archai_qagoma:     { institution: 'QAGOMA',                          city: 'Brisbane',   state: 'Queensland',    country: 'Australia' },
+  archai_rawg:       { institution: 'RAWG Video Games Database',       city: '',           state: '',             country: 'International' },
+  archai_nga:        { institution: 'National Gallery of Art',         city: 'Washington', state: 'District of Columbia', country: 'United States' },
 };
 
 async function embed(text) {
@@ -212,6 +220,14 @@ const PROVENANCE_LEXICON = [
   { terms: ['te papa', 'tepapa', 'wellington'], match: { institution: 'Te Papa Tongarewa' } },
   { terms: ['m+', 'mplus', 'hong kong'], match: { institution: 'M+' } },
   { terms: ['brasiliana', 'brazil', 'brazilian'], match: { institution: 'Brasiliana Museus' } },
+  { terms: ['smithsonian', 'saam', 'cooper hewitt', 'washington dc'], match: { institution: 'Smithsonian Institution' } },
+  { terms: ['tate'], match: { institution: 'Tate' } },
+  { terms: ['street art', 'public mural', 'murals'], match: { institution: 'Public Street Art Open Data' } },
+  { terms: ['getty'], match: { institution: 'J. Paul Getty Museum' } },
+  { terms: ['wellcome'], match: { institution: 'Wellcome Collection' } },
+  { terms: ['qagoma', 'queensland art gallery'], match: { institution: 'QAGOMA' } },
+  { terms: ['rawg', 'video games', 'games collection'], match: { institution: 'RAWG Video Games Database' } },
+  { terms: ['national gallery of art', 'nga', 'washington gallery'], match: { institution: 'National Gallery of Art' } },
   // Country-level (broader) — only used if no specific institution matched
   { terms: ['australia', 'australian'], match: { institution_country: 'Australia' }, country: true },
   { terms: ['new zealand', 'aotearoa'], match: { institution_country: 'New Zealand' }, country: true },

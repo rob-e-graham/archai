@@ -190,6 +190,9 @@ function normalize(row, image) {
     metadata_licence: 'CC0 1.0',
     media_licence: 'NGA Open Access — openaccess=1',
     media_rights_mode: 'item-level published_images.openaccess flag',
+    media_public_display_allowed: true,
+    poster_download_allowed: true,
+    media_rights_basis: 'NGA published_images.csv openaccess=1',
     media_permission_type: ['openaccess=1'],
     rights_notes: [
       'Metadata released by the National Gallery of Art under CC0.',

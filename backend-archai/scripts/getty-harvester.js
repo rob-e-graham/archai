@@ -213,15 +213,8 @@ function parseGettyLinkedArt(obj, uri) {
     if (thumbUrl.includes('http')) imageUrl = thumbUrl;
   }
 
-  // Fallback: try constructing IIIF URL from object UUID
-  // (works for many Getty open-content objects where image UUID = object UUID)
-  if (!imageUrl && uuid) {
-    imageUrl = `https://media.getty.edu/iiif/image/${uuid}/full/!800,800/0/default.jpg`;
-    isOpenContent = isOpenContent || true; // assume open if we constructed the URL
-  }
-
   if (!imageUrl) return null;
-  if (!isOpenContent && !imageUrl.includes('media.getty.edu')) return null;
+  if (!isOpenContent) return null;
 
   const thumbUrl = imageUrl.replace(/\/full\/[^/]+\//, '/full/!400,400/');
 
@@ -373,6 +366,9 @@ async function main() {
         credit_line:         credit,
         description,
         licence:             'CC0 1.0 Universal — Public Domain',
+        media_public_display_allowed: true,
+        poster_download_allowed: true,
+        media_rights_basis:  'Explicit Getty Linked Art Open Content / CC0 statement',
         source_url:          gettyObjectUrl(uuid),
         media_thumbnail:     thumbUrl,
         media_medium:        imageUrl,

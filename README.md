@@ -2,7 +2,7 @@
 
 > "Museums are not silent repositories of Memory; they are living, thinking organisms, where imagination and knowledge, tradition and innovation meet." — Gayane Umerova, UNESCO, 2025
 
-**Version:** 11.5
+**Version:** 11.6
 **Author:** Rob Graham · FAMTEC (Fine Art Media Tech) / RMIT University
 **Status:** Working prototype — rights-aware multi-institution semantic search + LLM object chat + AUX.IO visitor pages
 **Target:** ISEA2026 Dubai, 6th Summit on New Media Art Archiving (April 11–12)
@@ -20,6 +20,8 @@ This repository contains an open-source reference implementation and associated 
 
 Current build planning is tracked in [ROADMAP.md](ROADMAP.md), [ARCHAI_PROGRESS.md](ARCHAI_PROGRESS.md), and [docs/APP_FUNCTIONAL_AUDIT_2026-06-03.md](docs/APP_FUNCTIONAL_AUDIT_2026-06-03.md).
 
+The current per-source public-image and AUX.IO publication decisions are recorded in [backend-archai/docs/PUBLIC_MEDIA_AUDIT_2026-06-22.md](backend-archai/docs/PUBLIC_MEDIA_AUDIT_2026-06-22.md).
+
 ARCHAI is a working research prototype, not a finished commercial product. FAMTEC is open to funded research partnerships, institutional pilot testing, accessibility evaluation, collection-data collaborations, software development support, grant partnerships, and feedback from museums, galleries, archives, universities, and aligned public-interest technology partners.
 
 For research, funding, testing, or development enquiries: rob@fineartmedia.tech
@@ -35,13 +37,17 @@ ARCHAI preserves source licence and rights metadata per object. Public-facing AR
 - all object views now surface a normalized legal status and the underlying licence / rights detail
 - non-commercial / preview-first objects remain clearly labeled and should be treated as research/demo media, not general commercial reuse assets
 
-Current audited public-demo mix:
-- `1091` open / public-domain objects
-- `165` attribution-required objects
-- `59` share-alike objects
-- `205` mixed / non-commercial / preview-first objects
-- `0` rights-restricted objects
-- `0` unknown-rights objects
+Current audited collection/media layers:
+
+- `3147` staff-searchable source records across `19` connected Qdrant collections
+- `790` metadata-only records with no public image
+- `2357` supplied image URLs tested on 22 June 2026
+- `1884` image URLs passed availability checks
+- `473` broken, blocked, placeholder, or non-image URLs hidden from visitor surfaces
+- `504` otherwise available media records held from AUX.IO by item/source rights policy
+- `1380` generated AUX.IO visitor pages with working, display-cleared media
+- `440` pages explicitly cleared for derivative poster/sticker/postcard generation
+- permanent numeric AUX.IO IDs are stored in `nfc-pages/aux-id-map.json`, so regenerating the catalogue does not move an existing QR or NFC tag to a different object
 
 ---
 
@@ -70,7 +76,7 @@ This repository, its commit history, and its git log constitute a verifiable res
 ## What's Working Right Now
 
 ### ✅ Multi-Collection Semantic Search
-Eleven live collection sources are in Qdrant right now, searchable simultaneously:
+Nineteen source collections are in Qdrant and searchable by staff. Public media is governed separately from metadata availability:
 
 | Collection | Source | Objects | Licence | Status |
 |-----------|--------|---------|---------|--------|
@@ -85,6 +91,14 @@ Eleven live collection sources are in Qdrant right now, searchable simultaneousl
 | `archai_tepapa` | Museum of New Zealand Te Papa Tongarewa | 95 | Non-commercial / preview-first, item rights attached | ✅ Live |
 | `archai_mplus` | M+, Hong Kong | 110 | CC0 metadata · non-commercial preview media | ✅ Live |
 | `archai_brasiliana` | Brasiliana Museus | 120 | Public domain / open-access, item-checked | ✅ Live |
+| `archai_smithsonian` | Smithsonian Institution | 145 | Item-level CC0 image gate | ✅ Live · 141 media healthy |
+| `archai_tate` | Tate | 150 | CC0 metadata only; images excluded | ✅ Staff metadata only |
+| `archai_streetart` | Six municipal open-data sources | 439 | OGL / CC BY / public data; per-media review | ✅ Staff metadata only |
+| `archai_getty` | J. Paul Getty Museum | 200 | Open Content verification required | ⚠️ Media held; legacy URLs failed audit |
+| `archai_wellcome` | Wellcome Collection | 150 | Item-level open licences | ✅ Live · 149 media healthy |
+| `archai_qagoma` | QAGOMA | 200 | CC BY metadata; media access pending | ✅ Staff metadata only |
+| `archai_rawg` | RAWG Video Games Database | 193 | API display with active attribution link | ✅ Display only; downloads disabled |
+| `archai_nga` | National Gallery of Art, Washington | 150 | CC0 metadata + `openaccess=1` image gate | ✅ Live · 150 media healthy |
 | `archai_curator` | All live collections + comments | Built on demand | Mixed | ✅ Live |
 
 - Query → embedded via nomic-embed-text → vector searched across all live collections → results merged by cosine similarity
@@ -93,13 +107,15 @@ Eleven live collection sources are in Qdrant right now, searchable simultaneousl
 - Sort by: name, date, discipline, source
 - Filter: with images (default), all, or source-specific subsets
 - Deduplicated by canonical_id across collections
-- Curator collection currently rebuilds across `1520` live objects
-- Auckland Museum, Te Papa, M+, and Brasiliana now extend the live stack into Aotearoa, Asia, and South America
+- Curator collection rebuilds from all `3147` current source records
+- Auckland Museum, Te Papa, M+, Brasiliana, Smithsonian, Wellcome, public-art data, games metadata, and NGA broaden the research corpus geographically and materially
 - Art Institute of Chicago is now harvested public-domain only at the API layer
 - Europeana is currently harvested with `reusability=open`
 - Te Papa media is ingested preview-first with item-level rights preserved for public-safe display
 - Brasiliana onboarding only admits public-domain / open-access records that pass item-level rights checks
 - Legal status is shown on object records in the main app, the public demo, and AUX.IO visitor pages
+- `audit-public-media.js` tests image response, content type, placeholders, and canvas CORS before regeneration
+- AUX.IO poster, sticker, and postcard tools are separately gated and include a self-hosted QR code
 
 ### ✅ Object-as-Speaker LLM Chat
 Each object speaks in first person via the local Qwen 2.5 stack, grounded in verified metadata:
@@ -253,7 +269,7 @@ Date extraction from titles, better Met filtering, incremental harvest. Run Harv
 │                    ARCHAI Frontend                      │
 │                 (ARCHAI_v10_8.html · browser)           │
 │                                                         │
-│  Search ──→ Ollama embed ──→ Qdrant (11 live collections)│
+│  Search ──→ Ollama embed ──→ Qdrant (19 source collections)│
 │  Chat   ──→ Ollama qwen2.5 ──→ grounded response        │
 │  AUX.IO ─→ Ollama qwen2.5 ──→ chat over LAN / proxy     │
 │  Sort   ──→ client-side on loaded objects               │
@@ -296,14 +312,17 @@ archai/
 │   │       ├── moderation.js      ← Ollama comment screening
 │   │       └── curator-vectors.js ← Curator collection builder
 │   ├── scripts/
-│   │   ├── met-harvester.js       ← Met NYC → Qdrant
-│   │   └── va-harvester.js        ← V&A London → Qdrant
+│   │   ├── nga-harvester.js       ← NGA CC0 + item-level open images
+│   │   ├── audit-public-media.js  ← Availability/CORS audit before AUX.IO
+│   │   └── ...                    ← Institution-specific legal harvesters
 │   └── data/archai.db             ← SQLite (created at runtime)
 ├── nfc-pages/
 │   ├── generate-nfc-pages.js      ← AUX.IO page generator from all live collections
 │   ├── nfc-visitor-template.html  ← AUX.IO mobile template
+│   ├── aux-id-map.json            ← Permanent canonical object → AUX.IO ID registry
 │   ├── captive-portal.html
-│   └── v/                         ← Generated pages (~1519, versioned for demo deployment)
+│   ├── vendor/qrcode-generator.js ← Self-hosted MIT QR generator
+│   └── v/                         ← 1380 audited visitor pages
 ├── docs/
 │   └── ARCHAI_ISEA2026_Rob_Graham.pdf
 └── docker-compose.yml
@@ -355,6 +374,7 @@ Mac Studio M2 Max · 64GB · 1TB. Base institutional deployment: ~$3,500–5,000
 | **v11.5** | **Main app alignment pass: roadmap added, audit refreshed, default browse now favours image-backed demo objects, result cards remain rights-aware, and AUX.IO management uses a larger live-object working set while generated-page sync remains the next step** |
 | **v11.5.6** | **AUX.IO management workflow deepened: staff can create a new AUX.IO record, edit placement, assign from loaded records, draft an institution-owned object for testing, preview the visitor page, and export/save rights-aware config data** |
 | **v11.5.7** | **AUX.IO save path made real for the current backend session: new tag assignments and institution draft objects can be posted to `/api/nfc`, stored in the runtime repository, audited, and returned to the app while Directus remains the production persistence target** |
+| **v11.6** | **Nineteen collection sources and 3147 staff-searchable records aligned across app/backend; NGA onboarded with an item-level open-access gate; 2357 image URLs audited; 473 broken images and 504 rights-held media records removed from public presentation; 1380 AUX.IO pages regenerated; 440 rights-cleared pages gain compact QR poster/sticker/postcard tools; born-digital WACZ replay and an EaaSI integration boundary documented** |
 
 ---
 

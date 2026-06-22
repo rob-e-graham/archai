@@ -26,7 +26,13 @@ const OLLAMA_URL = env.ollama.baseUrl;
 const EMBED_MODEL = env.ollama.embedModel;
 const CHAT_MODEL = env.ollama.chatModel || 'qwen2.5:7b';
 const CURATOR_MODEL = env.ollama.curatorModel || 'qwen2.5:32b';
-const ALLOWED_COLLECTIONS = ['archai_pilot', 'archai_met', 'archai_va', 'archai_aic', 'archai_cma', 'archai_rijks', 'archai_europeana', 'archai_auckland', 'archai_tepapa', 'archai_mplus', 'archai_brasiliana'];
+const ALLOWED_COLLECTIONS = [
+  'archai_pilot', 'archai_met', 'archai_va', 'archai_aic', 'archai_cma',
+  'archai_rijks', 'archai_europeana', 'archai_auckland', 'archai_tepapa',
+  'archai_mplus', 'archai_brasiliana', 'archai_smithsonian', 'archai_tate',
+  'archai_streetart', 'archai_getty', 'archai_wellcome', 'archai_qagoma', 'archai_rawg',
+  'archai_nga',
+];
 const COLLECTION_INSTITUTIONS = {
   archai_pilot: 'Museums Victoria',
   archai_met: 'The Metropolitan Museum of Art',
@@ -38,7 +44,15 @@ const COLLECTION_INSTITUTIONS = {
   archai_auckland: 'Auckland Museum',
   archai_tepapa: 'Te Papa Tongarewa',
   archai_mplus: 'M+, Hong Kong',
-  archai_brasiliana: 'Brasiliana Museus'
+  archai_brasiliana: 'Brasiliana Museus',
+  archai_smithsonian: 'Smithsonian Institution',
+  archai_tate: 'Tate',
+  archai_streetart: 'Public Street Art',
+  archai_getty: 'J. Paul Getty Museum',
+  archai_wellcome: 'Wellcome Collection',
+  archai_qagoma: 'QAGOMA',
+  archai_rawg: 'RAWG Video Games Database',
+  archai_nga: 'National Gallery of Art, Washington',
 };
 
 // ── Personality config ────────────────────────────────────────────
@@ -377,7 +391,9 @@ proxyRouter.get('/random-object', searchLimiter, async (_req, res) => {
         type: p.type || p.object_type || p.classification || '',
         description: p.description || p.ai || '',
         registration: p.registration_number || p.accession_number || '',
-        image: p.image_url || p.primaryImageSmall || p.media_medium || p.media_large || p.media_thumbnail || '',
+        image: (p.media_available === false || p.media_public_display_allowed === false || ['archai_tate', 'archai_getty'].includes(collection))
+          ? ''
+          : (p.image_url || p.primaryImageSmall || p.media_medium || p.media_large || p.media_thumbnail || ''),
       },
     });
   } catch (e) {
