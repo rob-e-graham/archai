@@ -58,7 +58,7 @@ Would your team be open to a 30-minute technical call? Happy to walk through the
 Best,
 Rob Graham
 ARCHAI — rob@fineartmedia.tech
-archai.io / GitHub: fineartmedia/archai
+fineartmedia.tech/archai / GitHub: rob-e-graham/archai
 
 ---
 

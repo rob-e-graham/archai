@@ -31,7 +31,7 @@ const ALL_COLLECTIONS = [
   'archai_pilot', 'archai_met', 'archai_va',
   'archai_aic', 'archai_cma', 'archai_rijks', 'archai_europeana', 'archai_auckland', 'archai_tepapa', 'archai_mplus', 'archai_brasiliana',
   'archai_smithsonian', 'archai_tate', 'archai_streetart',
-  'archai_getty', 'archai_wellcome', 'archai_qagoma',
+  'archai_getty', 'archai_wellcome', 'archai_qagoma', 'archai_rawg',
 ];
 const COLLECTION_LABELS = {
   archai_pilot:        'Museums Victoria',
@@ -51,6 +51,7 @@ const COLLECTION_LABELS = {
   archai_getty:        'J. Paul Getty Museum',
   archai_wellcome:     'Wellcome Collection',
   archai_qagoma:       'QAGOMA — Queensland Art Gallery | Gallery of Modern Art',
+  archai_rawg:         'RAWG Video Games Database',
 };
 const OLLAMA_LAN_HOST = getArg('host', 'http://localhost:11434');
 // Default to backend-proxy mode so public AUX.IO pages can use the live chat API

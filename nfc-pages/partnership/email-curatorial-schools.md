@@ -61,7 +61,7 @@ Would a 20-minute call make sense to explore what might work for your programme?
 Warm regards,
 Rob Graham
 ARCHAI — rob@fineartmedia.tech
-archai.io / GitHub: fineartmedia/archai
+fineartmedia.tech/archai / GitHub: rob-e-graham/archai
 
 ---
 
