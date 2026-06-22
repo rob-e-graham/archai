@@ -213,13 +213,8 @@ function parseGettyLinkedArt(obj, uri) {
     if (thumbUrl.includes('http')) imageUrl = thumbUrl;
   }
 
-  // Fallback: try constructing IIIF URL from object UUID
-  // (works for many Getty open-content objects where image UUID = object UUID)
-  if (!imageUrl && uuid) {
-    imageUrl = `https://media.getty.edu/iiif/image/${uuid}/full/!800,800/0/default.jpg`;
-    isOpenContent = isOpenContent || true; // assume open if we constructed the URL
-  }
-
+  // Do NOT construct a speculative IIIF URL from the object UUID — the image resource ID
+  // in Getty's IIIF service is different from the object UUID and results in 404s.
   if (!imageUrl) return null;
   if (!isOpenContent && !imageUrl.includes('media.getty.edu')) return null;
 
