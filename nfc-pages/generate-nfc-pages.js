@@ -499,22 +499,55 @@ async function main() {
   console.log(`\n  Serve with: python3 -m http.server 8000\n`);
 }
 
+// ── COLLECTION GROUPS ───────────────────────────────────────────
+// Maps top-level navigation tabs to their member Qdrant collections.
+// null cols = "show everything" (All tab).
+const INDEX_GROUPS = [
+  { key: 'all',       label: 'All',          cols: null },
+  { key: 'museums',   label: 'Art & Museums', cols: [
+    'archai_pilot','archai_met','archai_va','archai_aic','archai_cma',
+    'archai_rijks','archai_europeana','archai_auckland','archai_tepapa',
+    'archai_mplus','archai_brasiliana','archai_smithsonian','archai_tate',
+    'archai_getty','archai_wellcome','archai_qagoma',
+  ]},
+  { key: 'streetart', label: 'Street Art',   cols: ['archai_streetart'] },
+  { key: 'games',     label: 'Games',        cols: ['archai_rawg'] },
+];
+
 // ── INDEX PAGE ──────────────────────────────────────────────────
 function generateIndex(items) {
-  // Collect unique collections in insertion order
-  const byCollection = new Map();
-  items.forEach(g => {
-    const key = g.collection || 'unknown';
-    if (!byCollection.has(key)) byCollection.set(key, { label: g.source || key, count: 0 });
-    byCollection.get(key).count++;
+  // Count items per group and per institution
+  const groupCounts = {};
+  const byColl = new Map();
+  INDEX_GROUPS.forEach(g => { groupCounts[g.key] = 0; });
+
+  items.forEach(item => {
+    const col = item.collection || 'unknown';
+    if (!byColl.has(col)) byColl.set(col, { label: item.source || col, count: 0 });
+    byColl.get(col).count++;
+    INDEX_GROUPS.forEach(g => {
+      if (!g.cols || g.cols.includes(col)) groupCounts[g.key]++;
+    });
   });
 
-  const filterTabsHtml = [
-    `<button class="idx-filter active" data-col="all" onclick="filterBy(this,'all')">All (${items.length})</button>`,
-    ...[...byCollection.entries()].sort((a, b) => b[1].count - a[1].count).map(([key, {label, count}]) => {
-      const shortLabel = label.split('—')[0].split('|')[0].trim();
-      return `<button class="idx-filter" data-col="${escHtml(key)}" onclick="filterBy(this,'${key}')">${escHtml(shortLabel)} (${count})</button>`;
-    })
+  // Group tabs HTML
+  const groupTabsHtml = INDEX_GROUPS
+    .filter(g => groupCounts[g.key] > 0)
+    .map((g, i) =>
+      `<button class="idx-group${i === 0 ? ' active' : ''}" data-group="${g.key}" onclick="selectGroup(this,'${g.key}')">${escHtml(g.label)}<span class="idx-group-count">${groupCounts[g.key]}</span></button>`
+    ).join('\n    ');
+
+  // Institution sub-tabs (shown inside the Museums group)
+  const museumCols = (INDEX_GROUPS.find(g => g.key === 'museums') || {}).cols || [];
+  const subTabsHtml = [
+    `<button class="idx-sub active" data-sub="all" onclick="selectSub(this,'all')">All Museums</button>`,
+    ...[...byColl.entries()]
+      .filter(([k]) => museumCols.includes(k))
+      .sort((a, b) => b[1].count - a[1].count)
+      .map(([key, {label, count}]) => {
+        const short = label.split('—')[0].split('|')[0].split(',')[0].trim();
+        return `<button class="idx-sub" data-sub="${escHtml(key)}" onclick="selectSub(this,'${key}')">${escHtml(short)} <span class="idx-sub-count">${count}</span></button>`;
+      })
   ].join('\n    ');
 
   const rows = items.map(g => {
@@ -532,6 +565,11 @@ function generateIndex(items) {
     </a>`;
   }).join('\n    ');
 
+  // Embed groups as JSON for the client-side filter
+  const groupsJson = JSON.stringify(
+    Object.fromEntries(INDEX_GROUPS.map(g => [g.key, g.cols]))
+  );
+
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -544,15 +582,32 @@ function generateIndex(items) {
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body{scrollbar-width:none;-ms-overflow-style:none;}
 html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0;display:none;}
-body{background:var(--bg);color:var(--text);font-family:var(--serif);padding:28px 20px 56px;min-height:100vh;}
-.logo{font-size:1.8rem;letter-spacing:10px;text-transform:uppercase;font-weight:300;text-align:center;margin-bottom:4px;}
+body{background:var(--bg);color:var(--text);font-family:var(--serif);min-height:100vh;}
+.idx-header{padding:28px 20px 0;text-align:center;}
+.logo{font-size:1.8rem;letter-spacing:10px;text-transform:uppercase;font-weight:300;margin-bottom:4px;}
 .logo span{font-style:italic;color:var(--accent);}
-.sub{font-family:var(--mono);font-size:0.5rem;color:var(--text3);letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:24px;}
-.idx-filters{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:16px;border-bottom:1px solid var(--border);margin-bottom:14px;}
-.idx-filter{font-family:var(--mono);font-size:0.44rem;letter-spacing:1.5px;text-transform:uppercase;padding:5px 10px;border:1px solid var(--border2);background:transparent;color:var(--text3);cursor:pointer;transition:all 0.15s;}
-.idx-filter:hover{border-color:var(--accent2);color:var(--accent2);}
-.idx-filter.active{border-color:var(--accent2);color:var(--accent2);background:rgba(143,188,176,0.07);}
-.idx-count{font-family:var(--mono);font-size:0.5rem;color:var(--text3);margin-bottom:10px;letter-spacing:1px;}
+.sub{font-family:var(--mono);font-size:0.5rem;color:var(--text3);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;}
+
+/* ── GROUP TABS ── primary navigation */
+.idx-groups{display:flex;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;}
+.idx-groups::-webkit-scrollbar{display:none;}
+.idx-group{flex:1;min-width:fit-content;font-family:var(--mono);font-size:0.48rem;letter-spacing:2px;text-transform:uppercase;padding:13px 14px 11px;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--text3);cursor:pointer;transition:all 0.15s;white-space:nowrap;display:flex;flex-direction:column;align-items:center;gap:3px;margin-bottom:-1px;}
+.idx-group:hover{color:var(--text2);}
+.idx-group.active{color:var(--accent2);border-bottom-color:var(--accent2);}
+.idx-group-count{font-size:0.4rem;letter-spacing:1px;opacity:0.6;}
+
+/* ── INSTITUTION SUB-TABS ── shown only inside Museums group */
+.idx-subbar{padding:10px 20px 0;border-bottom:1px solid var(--border);display:flex;flex-wrap:nowrap;overflow-x:auto;gap:5px;scrollbar-width:none;min-height:40px;}
+.idx-subbar::-webkit-scrollbar{display:none;}
+.idx-subbar.hidden{display:none;}
+.idx-sub{font-family:var(--mono);font-size:0.4rem;letter-spacing:1.2px;text-transform:uppercase;padding:4px 9px 8px;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--text3);cursor:pointer;white-space:nowrap;transition:all 0.15s;display:flex;align-items:center;gap:4px;margin-bottom:-1px;}
+.idx-sub:hover{color:var(--text2);}
+.idx-sub.active{color:var(--accent);border-bottom-color:var(--accent);}
+.idx-sub-count{opacity:0.5;font-size:0.36rem;}
+
+/* ── LIST ── */
+.idx-body{padding:0 20px 56px;}
+.idx-count{font-family:var(--mono);font-size:0.48rem;color:var(--text3);padding:10px 0 4px;letter-spacing:1px;border-bottom:1px solid var(--border);margin-bottom:0;}
 .idx-item{display:grid;grid-template-columns:52px 1fr auto;gap:12px;padding:11px 0;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background 0.1s;align-items:center;}
 .idx-item:active{background:var(--surface);}
 .idx-item.hidden{display:none;}
@@ -560,30 +615,66 @@ body{background:var(--bg);color:var(--text);font-family:var(--serif);padding:28p
 .idx-thumb img{width:100%;height:100%;object-fit:cover;}
 .idx-thumb-ph{font-size:1.1rem;color:var(--text3);}
 .idx-info{min-width:0;}
-.idx-nfc{font-family:var(--mono);font-size:0.48rem;color:var(--accent2);letter-spacing:2px;margin-bottom:3px;}
+.idx-nfc{font-family:var(--mono);font-size:0.44rem;color:var(--accent2);letter-spacing:2px;margin-bottom:3px;}
 .idx-title{font-family:var(--serif);font-size:0.98rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px;}
-.idx-src{font-family:var(--mono);font-size:0.42rem;color:var(--text3);letter-spacing:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:uppercase;}
-.idx-reg{font-family:var(--mono);font-size:0.44rem;color:var(--text3);text-align:right;letter-spacing:1px;white-space:nowrap;flex-shrink:0;align-self:flex-start;padding-top:18px;}
+.idx-src{font-family:var(--mono);font-size:0.4rem;color:var(--text3);letter-spacing:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:uppercase;}
+.idx-reg{font-family:var(--mono);font-size:0.42rem;color:var(--text3);text-align:right;letter-spacing:1px;white-space:nowrap;flex-shrink:0;align-self:flex-start;padding-top:18px;}
 </style>
 </head>
 <body>
-<div class="logo">ARC<span>H</span>AI</div>
-<div class="sub">AUX.IO Visitor Pages · ${items.length} Objects</div>
-<div class="idx-filters">
-  ${filterTabsHtml}
+<div class="idx-header">
+  <div class="logo">ARC<span>H</span>AI</div>
+  <div class="sub">AUX.IO Visitor Pages · ${items.length} Objects</div>
 </div>
-<div class="idx-count" id="idx-count">${items.length} pages</div>
-${rows}
+
+<div class="idx-groups">
+  ${groupTabsHtml}
+</div>
+
+<div class="idx-subbar hidden" id="idx-subbar">
+  ${subTabsHtml}
+</div>
+
+<div class="idx-body">
+  <div class="idx-count" id="idx-count">${items.length} objects</div>
+  ${rows}
+</div>
+
 <script>
-function filterBy(btn, col) {
-  document.querySelectorAll('.idx-filter').forEach(b => b.classList.toggle('active', b === btn));
+const GROUPS = ${groupsJson};
+let activeGroup = 'all';
+let activeSub = 'all';
+
+function selectGroup(btn, groupKey) {
+  activeGroup = groupKey;
+  activeSub = 'all';
+  document.querySelectorAll('.idx-group').forEach(b => b.classList.toggle('active', b === btn));
+  // Reset sub-tabs
+  document.querySelectorAll('.idx-sub').forEach(b => b.classList.toggle('active', b.dataset.sub === 'all'));
+  // Show sub-bar only for museums group (multiple institutions)
+  const showSub = groupKey === 'museums';
+  document.getElementById('idx-subbar').classList.toggle('hidden', !showSub);
+  applyFilter();
+}
+
+function selectSub(btn, subKey) {
+  activeSub = subKey;
+  document.querySelectorAll('.idx-sub').forEach(b => b.classList.toggle('active', b === btn));
+  applyFilter();
+}
+
+function applyFilter() {
+  const groupCols = GROUPS[activeGroup];
   let vis = 0;
   document.querySelectorAll('.idx-item').forEach(el => {
-    const show = col === 'all' || el.dataset.col === col;
+    const col = el.dataset.col;
+    let show = !groupCols || groupCols.includes(col);
+    if (show && activeSub !== 'all') show = col === activeSub;
     el.classList.toggle('hidden', !show);
     if (show) vis++;
   });
-  document.getElementById('idx-count').textContent = vis + ' pages' + (col === 'all' ? '' : ' · ' + col.replace('archai_',''));
+  const label = activeGroup === 'all' ? '' : ' · ' + activeGroup.replace('archai_','');
+  document.getElementById('idx-count').textContent = vis + ' objects' + label;
 }
 </script>
 </body>
