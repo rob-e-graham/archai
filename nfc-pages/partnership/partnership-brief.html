@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARCHAI — Partnership Brief 2026</title>
+  <style>
+    :root {
+      --bg:       #080808;
+      --surface:  #111111;
+      --surface2: #181818;
+      --border:   #2a2a2a;
+      --text1:    #e8e8e8;
+      --text2:    #a0a0a0;
+      --text3:    #606060;
+      --accent:   #c8a96e;
+      --accent2:  #7ea8c8;
+      --accent3:  #b87ec8;
+      --mono:     'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+      --sans:     'Inter', system-ui, sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: var(--bg);
+      color: var(--text1);
+      font-family: var(--sans);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    /* ── PRINT OVERRIDES ── */
+    @media print {
+      body { background: #fff; color: #111; font-size: 11pt; }
+      :root {
+        --bg: #fff; --surface: #f8f8f8; --surface2: #f0f0f0;
+        --border: #ddd; --text1: #111; --text2: #444; --text3: #777;
+        --accent: #8b6914; --accent2: #2a6896; --accent3: #7a3c96;
+      }
+      .no-print { display: none !important; }
+      section { break-inside: avoid; }
+      a { color: inherit; text-decoration: none; }
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(8,8,8,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--text1);
+    }
+
+    .nav-tag {
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text3);
+      border: 1px solid var(--border);
+      padding: 4px 10px;
+    }
+
+    .nav-print {
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid rgba(200,169,110,0.3);
+      padding: 6px 14px;
+      background: none;
+      cursor: pointer;
+      transition: all 0.12s;
+    }
+    .nav-print:hover { background: rgba(200,169,110,0.08); }
+
+    /* ── LAYOUT ── */
+    .brief {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 60px 24px 100px;
+    }
+
+    /* ── HEADER ── */
+    .brief-header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 40px;
+      margin-bottom: 50px;
+    }
+
+    .brief-eyebrow {
+      font-family: var(--mono);
+      font-size: 0.55rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .brief-subtitle {
+      font-size: 1.1rem;
+      color: var(--text2);
+      max-width: 580px;
+      margin-bottom: 28px;
+    }
+
+    .brief-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .brief-meta-item {
+      font-family: var(--mono);
+      font-size: 0.5rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text3);
+    }
+
+    .brief-meta-item span {
+      color: var(--text2);
+      display: block;
+      font-size: 0.6rem;
+      margin-top: 2px;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      margin-bottom: 50px;
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.48rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 14px;
+    }
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 8px;
+      margin-top: 24px;
+    }
+
+    p {
+      color: var(--text2);
+      margin-bottom: 14px;
+      font-size: 0.95rem;
+    }
+
+    strong { color: var(--text1); }
+
+    /* ── STAT ROW ── */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin: 24px 0;
+    }
+
+    .stat {
+      background: var(--surface);
+      padding: 20px 18px;
+    }
+
+    .stat-num {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--text1);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 0.45rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text3);
+    }
+
+    /* ── COLLECTION TABLE ── */
+    .collection-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      margin: 20px 0;
+    }
+
+    .collection-table th {
+      font-family: var(--mono);
+      font-size: 0.42rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text3);
+      text-align: left;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .collection-table td {
+      padding: 9px 12px;
+      border-bottom: 1px solid rgba(42,42,42,0.5);
+      color: var(--text2);
+      vertical-align: top;
+    }
+
+    .collection-table td:first-child {
+      color: var(--text1);
+      font-weight: 500;
+    }
+
+    .badge {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.42rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 2px 7px;
+      border-radius: 2px;
+    }
+
+    .badge-cc0 { background: rgba(126,168,200,0.15); color: var(--accent2); border: 1px solid rgba(126,168,200,0.3); }
+    .badge-ccby { background: rgba(200,169,110,0.12); color: var(--accent); border: 1px solid rgba(200,169,110,0.25); }
+    .badge-meta { background: rgba(96,96,96,0.2); color: var(--text3); border: 1px solid var(--border); }
+
+    /* ── TRACK CARDS ── */
+    .track-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin: 20px 0;
+    }
+
+    .track-card {
+      background: var(--surface);
+      padding: 24px 20px;
+    }
+
+    .track-icon {
+      font-size: 1.4rem;
+      margin-bottom: 10px;
+    }
+
+    .track-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text1);
+      margin-bottom: 8px;
+    }
+
+    .track-desc {
+      font-size: 0.8rem;
+      color: var(--text2);
+      line-height: 1.5;
+    }
+
+    .track-tags {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .track-tag {
+      font-family: var(--mono);
+      font-size: 0.4rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text3);
+      border: 1px solid var(--border);
+      padding: 3px 7px;
+    }
+
+    /* ── TECH STACK ── */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin: 20px 0;
+    }
+
+    .tech-item {
+      background: var(--surface);
+      padding: 16px 18px;
+    }
+
+    .tech-name {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--text1);
+      margin-bottom: 4px;
+    }
+
+    .tech-desc {
+      font-size: 0.75rem;
+      color: var(--text3);
+    }
+
+    /* ── PRINT SIZES TABLE ── */
+    .sizes-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      margin: 16px 0;
+    }
+
+    .sizes-table th {
+      font-family: var(--mono);
+      font-size: 0.42rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text3);
+      text-align: left;
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sizes-table td {
+      padding: 8px 12px;
+      border-bottom: 1px solid rgba(42,42,42,0.5);
+      color: var(--text2);
+    }
+
+    /* ── CONTACT BLOCK ── */
+    .contact-block {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      padding: 32px;
+      margin-top: 16px;
+    }
+
+    .contact-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text1);
+      margin-bottom: 4px;
+    }
+
+    .contact-role {
+      font-family: var(--mono);
+      font-size: 0.5rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--text3);
+      margin-bottom: 16px;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .contact-link {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.5px;
+    }
+
+    .contact-link:hover { text-decoration: underline; }
+
+    /* ── QUOTE BLOCK ── */
+    blockquote {
+      border-left: 2px solid var(--accent);
+      margin: 24px 0;
+      padding: 16px 24px;
+      background: var(--surface2);
+    }
+
+    blockquote p {
+      font-size: 1.05rem;
+      color: var(--text1);
+      font-style: italic;
+      margin: 0;
+    }
+
+    /* ── UL/OL ── */
+    ul, ol {
+      color: var(--text2);
+      padding-left: 20px;
+      margin-bottom: 16px;
+    }
+
+    li {
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+    }
+
+    li strong { color: var(--text1); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">ARCHAI</div>
+    <div class="nav-tag">Partnership Brief · 2026</div>
+    <button class="nav-print no-print" onclick="window.print()">Print / PDF</button>
+  </nav>
+
+  <div class="brief">
+
+    <!-- ── HEADER ── -->
+    <header class="brief-header">
+      <div class="brief-eyebrow">Partnership Brief · June 2026</div>
+      <h1>The Museum<br>Without Walls</h1>
+      <p class="brief-subtitle">ARCHAI is an AI platform that makes cultural collections conversational, physical, and deployable anywhere — on walls, stickers, gallery floors, and classroom projects.</p>
+      <div class="brief-meta">
+        <div class="brief-meta-item">Status<span>Pre-Launch / Active</span></div>
+        <div class="brief-meta-item">Licence<span>All Rights Reserved</span></div>
+        <div class="brief-meta-item">Collections<span>18 collections</span></div>
+        <div class="brief-meta-item">Objects<span>20,000+</span></div>
+        <div class="brief-meta-item">Contact<span>rob@fineartmedia.tech</span></div>
+      </div>
+    </header>
+
+    <!-- ── WHAT IS ARCHAI ── -->
+    <section>
+      <div class="section-label">Overview</div>
+      <h2>What is ARCHAI?</h2>
+      <p>ARCHAI is an infrastructure platform that connects open-access museum collections to a conversational AI layer, then deploys that layer as scannable NFC and QR pages — on physical objects, printed posters, gallery labels, or anywhere with a surface and a wall.</p>
+      <p>Every object in the ARCHAI system generates a living visitor page. Scan a code, ask a question, get a real answer sourced from the collection record. The conversation runs on a local language model — no visitor data leaves the device, no third-party API in the loop.</p>
+
+      <blockquote>
+        <p>"We're not building a competing collection site. We're building the next layer — conversational, physical, deployable, open."</p>
+      </blockquote>
+
+      <div class="stat-row">
+        <div class="stat">
+          <div class="stat-num">17</div>
+          <div class="stat-label">Source institutions</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">20K+</div>
+          <div class="stat-label">Objects indexed</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">5</div>
+          <div class="stat-label">Print formats (A0→sticker)</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">CC0</div>
+          <div class="stat-label">Legal standard for display</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">©</div>
+          <div class="stat-label">All rights reserved</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">Local</div>
+          <div class="stat-label">AI (no cloud, no leakage)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── HOW IT WORKS ── -->
+    <section>
+      <div class="section-label">Architecture</div>
+      <h2>How it works</h2>
+
+      <p>The ARCHAI stack is three layers:</p>
+
+      <ol>
+        <li><strong>Harvest layer</strong> — harvesters pull open-access data from museum APIs (CC0, CC BY, OGL). Every record passes a legal gate before reaching the collection. Embeddings generated via Ollama (<code>nomic-embed-text</code>) stored in Qdrant.</li>
+        <li><strong>Conversation layer</strong> — object queries use vector search (cosine similarity) to retrieve context, then pass it to a local LLM (qwen2.5:32b or compatible). No cloud API required. No visitor data transmitted.</li>
+        <li><strong>Deployment layer</strong> — each object generates an HTML visitor page (AUX.IO). Pages are static-first, mobile-first, and scannable via NFC tag or QR code. Downloadable posters in 5 sizes.</li>
+      </ol>
+
+      <div class="tech-grid">
+        <div class="tech-item">
+          <div class="tech-name">Ollama</div>
+          <div class="tech-desc">Local LLM inference. qwen2.5:32b for conversation. nomic-embed-text for embeddings.</div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-name">Qdrant</div>
+          <div class="tech-desc">Vector database. Cosine similarity search across 20K+ object embeddings.</div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-name">Node.js / Express</div>
+          <div class="tech-desc">Backend API. Proxy layer between visitor pages and local Ollama.</div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-name">IIIF</div>
+          <div class="tech-desc">Image serving. Rijksmuseum, AIC, Wellcome, Getty, Tate — all via standard IIIF endpoints.</div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-name">NFC / QR</div>
+          <div class="tech-desc">Physical deployment. NFC-212 tags or printed QR codes trigger visitor pages on any device.</div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-name">Canvas API</div>
+          <div class="tech-desc">In-browser poster generation. A4–A0–sticker–postcard PNG at 150–300 dpi.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── COLLECTIONS ── -->
+    <section>
+      <div class="section-label">Current Collections</div>
+      <h2>Live and planned sources</h2>
+      <p>All sources pass a legal harvest gate before data is indexed. Images are served only where the source licence explicitly permits public display.</p>
+
+      <table class="collection-table">
+        <thead>
+          <tr>
+            <th>Institution</th>
+            <th>Region</th>
+            <th>Licence</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>The Metropolitan Museum of Art</td><td>USA</td><td><span class="badge badge-cc0">CC0</span></td><td>Live</td></tr>
+          <tr><td>Art Institute of Chicago</td><td>USA</td><td><span class="badge badge-cc0">CC0</span></td><td>Live</td></tr>
+          <tr><td>Cleveland Museum of Art</td><td>USA</td><td><span class="badge badge-cc0">CC0</span></td><td>Live</td></tr>
+          <tr><td>Rijksmuseum, Amsterdam</td><td>Netherlands</td><td><span class="badge badge-cc0">CC0</span></td><td>Live</td></tr>
+          <tr><td>Europeana</td><td>Europe (4000+)</td><td><span class="badge badge-ccby">Mixed / CC BY</span></td><td>Live</td></tr>
+          <tr><td>Auckland Museum</td><td>New Zealand</td><td><span class="badge badge-ccby">Mixed</span></td><td>Live</td></tr>
+          <tr><td>Te Papa Tongarewa</td><td>New Zealand</td><td><span class="badge badge-ccby">CC BY 4.0</span></td><td>Live</td></tr>
+          <tr><td>M+, Hong Kong</td><td>Hong Kong</td><td><span class="badge badge-cc0">CC0 metadata</span></td><td>Live</td></tr>
+          <tr><td>Brasiliana Museus</td><td>Brazil</td><td><span class="badge badge-ccby">Open Access</span></td><td>Live</td></tr>
+          <tr><td>Tate Collection</td><td>UK</td><td><span class="badge badge-cc0">CC0 (pre-1920)</span></td><td>Live</td></tr>
+          <tr><td>Smithsonian SAAM + Cooper Hewitt</td><td>USA</td><td><span class="badge badge-cc0">CC0</span></td><td>Live</td></tr>
+          <tr><td>Street Art (Vancouver · Brussels · NYC · Melbourne · San Francisco · Chicago)</td><td>Global</td><td><span class="badge badge-ccby">OGL / CC BY / PD</span></td><td>Live</td></tr>
+          <tr><td>J. Paul Getty Museum</td><td>USA</td><td><span class="badge badge-cc0">CC0</span></td><td>Live</td></tr>
+          <tr><td>Wellcome Collection</td><td>UK</td><td><span class="badge badge-ccby">CC BY 4.0</span></td><td>Live</td></tr>
+          <tr><td>QAGOMA, Brisbane</td><td>Australia</td><td><span class="badge badge-ccby">CC BY 4.0 (metadata-only)</span></td><td>Live (metadata)</td></tr>
+          <tr><td>RAWG Video Games Database</td><td>Specialist / Games</td><td><span class="badge badge-ccby">Attribution (rawg.io)</span></td><td>Live</td></tr>
+          <tr><td>Victoria and Albert Museum</td><td>UK</td><td><span class="badge badge-ccby">Mixed</span></td><td>Live (partial)</td></tr>
+          <tr><td>Museums Victoria</td><td>Australia</td><td><span class="badge badge-cc0">CC0</span></td><td>Live (pilot)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ── POSTER SYSTEM ── -->
+    <section>
+      <div class="section-label">Print Deployment</div>
+      <h2>Downloadable poster system</h2>
+      <p>Every object page includes a download button for high-resolution printable posters. Generated entirely in-browser via Canvas API — no server, no upload, no account. Output is a PNG with the object image, title, artist, institution credit, QR code, and ARCHAI branding.</p>
+
+      <table class="sizes-table">
+        <thead>
+          <tr>
+            <th>Format</th>
+            <th>Dimensions</th>
+            <th>Resolution</th>
+            <th>Intended use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>A4</td>
+            <td>210 × 297 mm</td>
+            <td>300 dpi / 2480 × 3508px</td>
+            <td>Office print, handout, zine, classroom</td>
+          </tr>
+          <tr>
+            <td>A2</td>
+            <td>420 × 594 mm</td>
+            <td>150 dpi / 2480 × 3508px</td>
+            <td>Gallery print, studio wall, paste-up</td>
+          </tr>
+          <tr>
+            <td>A0</td>
+            <td>841 × 1189 mm</td>
+            <td>150 dpi / 4961 × 7016px</td>
+            <td>Large format print, exhibition poster</td>
+          </tr>
+          <tr>
+            <td>Sticker (100mm sq)</td>
+            <td>100 × 100 mm</td>
+            <td>300 dpi / 1181 × 1181px</td>
+            <td>Street sticker, guerrilla distribution, event giveaway</td>
+          </tr>
+          <tr>
+            <td>Postcard (A6)</td>
+            <td>148 × 105 mm (landscape)</td>
+            <td>300 dpi / 1748 × 1240px</td>
+            <td>Mail, exhibition giveaway, postcard art</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ── PARTNERSHIP TRACKS ── -->
+    <section>
+      <div class="section-label">Collaboration</div>
+      <h2>Three partnership tracks</h2>
+
+      <div class="track-grid">
+        <div class="track-card">
+          <div class="track-icon">🎨</div>
+          <div class="track-title">Street Art & Public Art Orgs</div>
+          <div class="track-desc">Take ARCHAI posters into public space. Paste-ups, interventions, zines, festivals. Archive objects meet street art. #ARCHAIinTheWild community.</div>
+          <div class="track-tags">
+            <span class="track-tag">Free posters</span>
+            <span class="track-tag">Open call</span>
+            <span class="track-tag">Street activation</span>
+          </div>
+        </div>
+        <div class="track-card">
+          <div class="track-icon">🎓</div>
+          <div class="track-title">Curatorial Schools & Education</div>
+          <div class="track-desc">Live pedagogical tool for curatorial students. Real collections, real AI, real deployment. Guest lectures, thesis mentorship, research co-authorship.</div>
+          <div class="track-tags">
+            <span class="track-tag">Free pilot</span>
+            <span class="track-tag">Guest lecture</span>
+            <span class="track-tag">Research collab</span>
+          </div>
+        </div>
+        <div class="track-card">
+          <div class="track-icon">🏛</div>
+          <div class="track-title">Museum Digital Teams</div>
+          <div class="track-desc">Self-hostable infrastructure for conversational collection access. Data sovereignty, local LLM, no third-party API flows. Technical demo + integration support.</div>
+          <div class="track-tags">
+            <span class="track-tag">Self-hosted</span>
+            <span class="track-tag">Technical demo</span>
+            <span class="track-tag">Data integration</span>
+          </div>
+        </div>
+      </div>
+
+      <h3>What we offer in all tracks</h3>
+      <ul>
+        <li><strong>Free pilot access</strong> — no cost for research and educational pilots</li>
+        <li><strong>Hosted deployment</strong> — we run it, you use it; no infrastructure burden on your side</li>
+        <li><strong>Technical support</strong> — we'll help you get it running and customised</li>
+        <li><strong>Co-design</strong> — your use case shapes future development</li>
+        <li><strong>Attribution</strong> — your institution/organisation named in every deployment</li>
+      </ul>
+
+      <h3>What we ask in return</h3>
+      <ul>
+        <li>Tag us when you deploy (#ARCHAIinTheWild or @archai_io)</li>
+        <li>Share feedback — what works, what doesn't, what's missing</li>
+        <li>Link back to the source collection (we take attribution seriously)</li>
+        <li>Tell us if something's wrong with how we're representing a collection</li>
+      </ul>
+    </section>
+
+    <!-- ── LEGAL / ETHICS ── -->
+    <section>
+      <div class="section-label">Legal & Ethics</div>
+      <h2>Open access, properly done</h2>
+      <p>ARCHAI takes rights seriously. Every source in our pipeline passes a legal harvest gate before data is indexed. The rules are explicit and enforced in code:</p>
+      <ul>
+        <li><strong>CC0 or equivalent open licence required</strong> for any image displayed publicly on AUX.IO</li>
+        <li><strong>CC BY attribution</strong> stored in every Qdrant payload and rendered on every visitor page</li>
+        <li><strong>Metadata-only mode</strong> for sources where images are not cleared (Whitney, MoMA, Harvard)</li>
+        <li><strong>Cultural sensitivity</strong> reviews flagged in the collection matrix for Pacific, Indigenous, and sacred material</li>
+        <li><strong>No API keys committed</strong> — all credentials via macOS Keychain or environment variables</li>
+        <li><strong>Local LLM only</strong> — no visitor conversation data sent to third-party servers</li>
+      </ul>
+      <p>The full collection targets matrix, legal harvest bot, and rights verification status are documented and available on request.</p>
+    </section>
+
+    <!-- ── CONTACT ── -->
+    <section>
+      <div class="section-label">Get In Touch</div>
+      <h2>Start a conversation</h2>
+      <p>We're a small team. Email goes directly to a founder. Response time: usually same day.</p>
+
+      <div class="contact-block">
+        <div class="contact-name">Rob Graham</div>
+        <div class="contact-role">Co-founder · ARCHAI / Fine Art Media Tech</div>
+        <div class="contact-links">
+          <a class="contact-link" href="mailto:rob@fineartmedia.tech">rob@fineartmedia.tech</a>
+          <a class="contact-link" href="https://fineartmedia.tech/archai">fineartmedia.tech/archai</a>
+          <a class="contact-link" href="https://github.com/rob-e-graham/archai">github.com/rob-e-graham/archai</a>
+        </div>
+      </div>
+
+      <p style="margin-top: 24px; font-size: 0.85rem;">For street art and education partnerships, the fastest path is an email saying what you're working on and when. For technical integrations, link us to your collection's open data endpoint and we'll come back with a concrete proposal.</p>
+    </section>
+
+  </div>
+
+</body>
+</html>

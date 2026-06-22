@@ -78,16 +78,16 @@
     "translation_mode": "source-first",
     "access_mode": "dataset",
     "api_key": "none",
-    "metadata_rights": "open data dataset",
-    "image_rights": "dataset verified, image reuse recheck recommended",
-    "public_demo_policy": "approved_dataset_with_image_rights_recheck",
-    "quality_gate": "schema-stable + image-availability-checked + attribution-preserved",
+    "metadata_rights": "CC BY 4.0 (Queensland Government open data, CKAN CSV)",
+    "image_rights": "metadata-only — per-object image API (collection.qagoma.qld.gov.au) is behind Cloudflare bot mitigation, returns HTTP 403 to automated requests",
+    "public_demo_policy": "approved_metadata_only_pending_image_api_access",
+    "quality_gate": "schema-stable + attribution-preserved (images excluded until API access arranged)",
     "cultural_protocol": "Review any Indigenous or culturally sensitive material in downstream records",
-    "verification_status": "partially_verified_2026_06_02",
+    "verification_status": "partially_verified_2026_06_22",
     "official_docs": [
       "https://www.data.qld.gov.au/dataset/qagoma-collection"
     ],
-    "notes": "Strong Australian and Asia-Pacific balancing source. Good dataset shape for onboarding, but image reuse terms should be rechecked at item level before public AUX.IO exposure."
+    "notes": "Strong Australian and Asia-Pacific balancing source. Metadata (CC BY 4.0) harvests cleanly via CKAN CSV. The per-object image API is Cloudflare-protected and blocks all automated requests (HTTP 403), so QAGOMA records are metadata-only and are skipped by the image-only AUX.IO page generator. Partnership outreach to the QAGOMA digital team for formal API/media access is the path to enabling images."
   },
   {
     "id": "nma",
@@ -335,5 +335,277 @@
       "https://raw.githubusercontent.com/NationalGalleryOfArt/opendata/main/documentation/Data%20Dictionary.txt"
     ],
     "notes": "Daily NGA CMS export with stable object IDs, UUIDs, IIIF media, accessibility text, and a machine-readable item-level open-access gate. The harvester streams the large CSV files and never ingests images marked openaccess=0."
+  },
+
+  {
+    "id": "smithsonian",
+    "name": "Smithsonian Open Access (SAAM + Cooper Hewitt)",
+    "region": "North America",
+    "focus": ["American modern art", "design", "industrial design", "graphic design", "applied arts", "technology"],
+    "status": "planned",
+    "priority": 16,
+    "harvester_script": "smithsonian-harvester.js",
+    "translation_mode": "source-first",
+    "access_mode": "api",
+    "api_key": "free_registration",
+    "api_key_url": "https://api.data.gov/signup",
+    "api_key_env": "SMITHSONIAN_API_KEY",
+    "metadata_rights": "CC0 — Public Domain (CC0-flagged items only)",
+    "image_rights": "CC0 — Public Domain (filtered to usage.access=CC0 in API response)",
+    "public_demo_policy": "approved_open",
+    "quality_gate": "CC0-flag-present + image-backed + unit-in-approved-list",
+    "cultural_protocol": "Low cultural sensitivity risk; standard museum sensitivity review applies",
+    "verification_status": "verified_2026_06_21",
+    "official_docs": [
+      "https://www.si.edu/openaccess/devtools",
+      "https://edan.si.edu/openaccess/docs/",
+      "https://www.si.edu/openaccess/faq"
+    ],
+    "notes": "Covers Smithsonian American Art Museum (SAAM) and Cooper Hewitt National Design Museum (CHSDM) as priority units. CC0 is verified at item level via the API's usage.access field — only records flagged CC0 are harvested. Free API key from api.data.gov required. Massive balance gain for modern American art and design."
+  },
+
+  {
+    "id": "tate",
+    "name": "Tate Collection",
+    "region": "Europe",
+    "focus": ["British art", "modern art", "Turner", "Pre-Raphaelites", "early modernism"],
+    "status": "planned",
+    "priority": 17,
+    "harvester_script": "tate-harvester.js",
+    "translation_mode": "source-first",
+    "access_mode": "github_dataset",
+    "api_key": "none",
+    "metadata_rights": "CC0 (GitHub dataset)",
+    "image_rights": "CC0 for public domain works (Tate Open Access 2019). Harvester restricted to pre-1920 works only.",
+    "public_demo_policy": "approved_open",
+    "quality_gate": "year < 1920 + thumbnailUrl-present + CC0-confirmed",
+    "cultural_protocol": "Standard museum sensitivity review; no known Indigenous or restricted material",
+    "verification_status": "verified_2026_06_21",
+    "official_docs": [
+      "https://github.com/tategallery/collection",
+      "https://www.tate.org.uk/about-us/policies-and-procedures/website-terms-use"
+    ],
+    "notes": "Dataset harvested from GitHub (CC0). Images served from tate.org.uk CDN. Harvester applies a strict pre-1920 creation-year filter to ensure all works and their images are in the public domain. Covers Turner, Blake, Constable, Rossetti, Millais, Sargent, Whistler, and early European modernists held by Tate."
+  },
+
+  {
+    "id": "streetart",
+    "name": "Street Art & Public Murals (multi-city open data)",
+    "region": "Global",
+    "focus": ["street art", "murals", "public art", "urban art", "graffiti"],
+    "status": "planned",
+    "priority": 18,
+    "harvester_script": "streetart-harvester.js",
+    "translation_mode": "source-first",
+    "access_mode": "open_data_api",
+    "api_key": "none",
+    "metadata_rights": "OGL Canada (Vancouver) · CC BY 2.0 (Brussels) · NYC Open Data / Public Domain (NYC) · CC BY 4.0 (Melbourne) · Public Domain (San Francisco) · Public Domain (Chicago)",
+    "image_rights": "per-source: OGL / CC BY / public domain — all allow public display with attribution",
+    "public_demo_policy": "approved_with_attribution",
+    "quality_gate": "title-present + source-attribution-in-payload",
+    "cultural_protocol": "Low cultural sensitivity risk; standard public art context",
+    "verification_status": "verified_2026_06_22",
+    "official_docs": [
+      "https://opendata.vancouver.ca/explore/dataset/public-art/",
+      "https://opendata.brussels.be/explore/dataset/parcours_street_art/",
+      "https://data.cityofnewyork.us/Recreation/Art-in-the-Parks/4pt5-3vv4",
+      "https://data.melbourne.vic.gov.au/explore/dataset/outdoor-artworks/",
+      "https://data.sfgov.org/Culture-and-Recreation/Civic-Art-Collection/4hfa-5f7y",
+      "https://data.cityofchicago.org/Parks-Recreation/Public-Art/sj6t-9cju"
+    ],
+    "notes": "Aggregates six city open-data portals: Vancouver Public Art (OGL Canada), Brussels Street Art Trail (CC BY 2.0), NYC Parks Art in the Parks (public domain), City of Melbourne Outdoor Artworks (CC BY 4.0), San Francisco Civic Art Collection (public domain), and City of Chicago Public Art (public domain). No API key required for any source. Geolocation data (lat/lon) preserved in payload for future map views. Source attribution attached per record."
+  },
+
+  {
+    "id": "whitney",
+    "name": "Whitney Museum of American Art",
+    "region": "North America",
+    "focus": ["20th century American art", "contemporary art", "painting", "sculpture", "photography", "video art"],
+    "status": "planned",
+    "priority": 19,
+    "translation_mode": "source-first",
+    "access_mode": "dataset_metadata_only",
+    "api_key": "none",
+    "metadata_rights": "CC0 (artists.csv + artworks.csv dataset)",
+    "image_rights": "NOT CC0 — images of in-copyright works require separate licensing via Whitney Images & Permissions. Metadata-only harvest recommended.",
+    "public_demo_policy": "metadata_only_no_image_display",
+    "quality_gate": "metadata-only + no image display + attribution on all records",
+    "cultural_protocol": "Standard museum review; 20th–21st C American art context",
+    "verification_status": "verified_2026_06_21",
+    "official_docs": [
+      "https://whitney.org/open-access",
+      "https://github.com/whitneymuseum/open-access",
+      "https://whitney.org/collection/images-and-permissions"
+    ],
+    "notes": "CC0 covers metadata (artist names, titles, dates, mediums, dimensions) only. Images of Whitney collection works are NOT open access — most are in-copyright contemporary art. Can be harvested for semantic search and conversation layers without image display. Strong gain for 20th–21st C American art coverage in search results."
+  },
+
+  {
+    "id": "moma",
+    "name": "Museum of Modern Art (MoMA)",
+    "region": "North America",
+    "focus": ["modern art", "contemporary art", "painting", "sculpture", "film", "design", "photography"],
+    "status": "planned",
+    "priority": 20,
+    "translation_mode": "source-first",
+    "access_mode": "github_dataset_metadata_only",
+    "api_key": "none",
+    "metadata_rights": "CC0 (GitHub dataset — 124K works)",
+    "image_rights": "NOT included in CC0 dataset. Images licensed via Art Resource (North America) or Scala Archives. Cannot display images without separate licensing.",
+    "public_demo_policy": "metadata_only_no_image_display",
+    "quality_gate": "metadata-only + no image display + attribution",
+    "cultural_protocol": "Standard museum review",
+    "verification_status": "verified_2026_06_21",
+    "official_docs": [
+      "https://github.com/MuseumofModernArt/collection",
+      "https://www.moma.org/collection/about/licensing"
+    ],
+    "notes": "124K works as CC0 metadata on GitHub. No images available under open licence — images must be licensed separately through Art Resource. Valuable for enriching semantic search with modern/contemporary art vocabulary, artist names, and classification. Do not surface image fields from this source."
+  },
+
+  {
+    "id": "harvard",
+    "name": "Harvard Art Museums",
+    "region": "North America",
+    "focus": ["art history", "modern art", "ancient art", "provenance research"],
+    "status": "planned",
+    "priority": 21,
+    "translation_mode": "source-first",
+    "access_mode": "api",
+    "api_key": "free_registration",
+    "api_key_url": "https://harvardartmuseums.org/collections/api",
+    "metadata_rights": "Non-commercial use only",
+    "image_rights": "Non-commercial use only. 2-week caching limit. Attribution required on every page.",
+    "public_demo_policy": "noncommercial_only",
+    "quality_gate": "non-commercial-context + attribution-on-every-page + 2500-req-per-day-limit + 2-week-cache-max",
+    "cultural_protocol": "Standard museum sensitivity review",
+    "verification_status": "verified_2026_06_21",
+    "official_docs": [
+      "https://harvardartmuseums.org/collections/api",
+      "https://harvardartmuseums.org/terms-of-use",
+      "https://github.com/harvardartmuseums/api-docs"
+    ],
+    "notes": "Rich provenance, exhibition history, and object verification fields. 200K+ objects. Non-commercial restriction means this is suitable for the ARCHAI research context but must be reviewed before any commercial deployment. API key free, rate limit 2500 req/day, 2-week caching maximum — do not store records indefinitely without re-checking terms."
+  },
+
+  {
+    "id": "rhizome",
+    "name": "Rhizome ArtBase",
+    "region": "Specialist / Born-Digital",
+    "focus": ["net art", "software art", "web art", "interactive media", "born-digital", "new media", "html art"],
+    "status": "planned",
+    "priority": 22,
+    "translation_mode": "source-first",
+    "access_mode": "sparql_linked_open_data",
+    "api_key": "none",
+    "metadata_rights": "Linked Open Data / open (Wikibase infrastructure)",
+    "image_rights": "Per artwork — net art works are typically web-hosted; screenshots/thumbnails need per-work review",
+    "public_demo_policy": "approved_metadata_with_per_work_media_check",
+    "quality_gate": "metadata-complete + artwork-url-live + media-rights-per-work",
+    "cultural_protocol": "Net art may contain content requiring review before public display",
+    "verification_status": "pending_verification",
+    "official_docs": [
+      "https://rhizome.org/editorial/2021/apr/26/the-artbase-relaunches-welcome-to-linked-open-data/",
+      "http://archive.rhizome.org/"
+    ],
+    "notes": "The canonical born-digital art archive. 2,100+ net art, software art, browser art, and HTML works. Wikibase/SPARQL infrastructure since 2021 NEH CARES rebuild. Maps directly onto the ARCHAI Born-Digital & New Media tagging theme. Needs a dedicated SPARQL harvester and per-work media rights check before image display."
+  },
+
+  {
+    "id": "rawg",
+    "name": "RAWG Video Games Database",
+    "region": "Specialist / Games",
+    "focus": ["video games", "games as cultural objects", "interactive media", "digital culture"],
+    "status": "planned",
+    "priority": 23,
+    "translation_mode": "source-first",
+    "access_mode": "api",
+    "api_key": "free_registration",
+    "api_key_url": "https://rawg.io/apidocs",
+    "api_key_env": "RAWG_API_KEY",
+    "metadata_rights": "Free with attribution for non-commercial and small projects (<100K MAU)",
+    "image_rights": "Attribution required — active hyperlink back to rawg.io on every page where data is displayed",
+    "public_demo_policy": "approved_with_attribution",
+    "quality_gate": "attribution-link-on-every-display-page + under-100K-MAU",
+    "cultural_protocol": "Game content may require content-rating review before public display",
+    "verification_status": "verified_2026_06_21",
+    "official_docs": [
+      "https://rawg.io/apidocs",
+      "https://rawg.io/tos_api"
+    ],
+    "notes": "300K+ games with metadata, screenshots, release dates, genres, platforms. Treats video games as cultural objects in the ARCHAI collection — a major modernising addition. Attribution hyperlink to rawg.io required on every page where data is displayed. Free for the ARCHAI research / demo context. Build harvester targeting landmark games by decade, genre, and cultural significance."
+  },
+
+  {
+    "id": "getty",
+    "name": "J. Paul Getty Museum",
+    "region": "North America",
+    "focus": ["Greek/Roman antiquities", "European painting", "illuminated manuscripts", "photography", "drawings", "decorative arts"],
+    "status": "planned",
+    "priority": 24,
+    "harvester_script": "getty-harvester.js",
+    "translation_mode": "source-first",
+    "access_mode": "api",
+    "api_key": "none",
+    "metadata_rights": "CC0 1.0 Universal",
+    "image_rights": "CC0 1.0 Universal — Getty Open Content Program (~140,000 images). Harvested via the Linked Art SPARQL endpoint (data.getty.edu/museum/collection/sparql) + per-object CIDOC-CRM JSON-LD; IIIF image service. The legacy collectionapi.getty.edu endpoint was retired and is no longer used.",
+    "public_demo_policy": "approved_open",
+    "quality_gate": "linked-art-image-present + CC0-confirmed",
+    "cultural_protocol": "Low cultural sensitivity risk; ancient art objects should use respectful contextualisation for Indigenous or sacred objects",
+    "verification_status": "verified_2026_06_22",
+    "official_docs": [
+      "https://www.getty.edu/about/whatwedo/opencontent.html",
+      "https://data.getty.edu/museum/collection/",
+      "https://www.getty.edu/art/collection/"
+    ],
+    "notes": "The Getty Open Content Program releases ~140,000 high-resolution images as CC0 with no restrictions. Collection strengths: ancient Greek and Roman art, European paintings (Rembrandt, Rubens, Titian, Van Dyck), illuminated manuscripts, Italian drawings, 19th-century photography, French decorative arts. IIIF image API available for all open content. No key required."
+  },
+
+  {
+    "id": "wellcome",
+    "name": "Wellcome Collection",
+    "region": "Europe",
+    "focus": ["anatomy", "medical art", "scientific illustration", "natural history", "medical instruments", "manuscripts", "photography"],
+    "status": "planned",
+    "priority": 25,
+    "harvester_script": "wellcome-harvester.js",
+    "translation_mode": "source-first",
+    "access_mode": "api",
+    "api_key": "none",
+    "metadata_rights": "CC BY 4.0 / CC0 per item",
+    "image_rights": "CC BY 4.0 for majority of collection. Verified per-item via license.id in API response. Attribution required.",
+    "public_demo_policy": "approved_with_attribution",
+    "quality_gate": "open-licence-in-approved-set + image-backed + attribution-in-payload",
+    "cultural_protocol": "Medical imagery may include human remains, anatomical subjects, or historical treatments requiring sensitive framing; historical mental health material requires care",
+    "verification_status": "verified_2026_06_22",
+    "official_docs": [
+      "https://developers.wellcomecollection.org/catalogue",
+      "https://api.wellcomecollection.org/catalogue/v2",
+      "https://wellcomecollection.org/pages/Wvlk4yAAAB8A3ufp"
+    ],
+    "notes": "Unique interdisciplinary collection at the intersection of art, science, and medicine. ~750,000 items including anatomical illustrations, wax models, scientific photographs, apothecary objects, pharmaceutical packaging, manuscripts, and art about the body and health. Wellcome Catalogue API v2 is free, no key required, JSON responses with IIIF images. Attribution required on all CC BY items."
+  },
+
+  {
+    "id": "artblocks",
+    "name": "Art Blocks (On-Chain Generative Art)",
+    "region": "Specialist / Born-Digital",
+    "focus": ["generative art", "algorithmic art", "on-chain art", "NFT", "born-digital"],
+    "status": "planned",
+    "priority": 24,
+    "translation_mode": "source-first",
+    "access_mode": "graphql_blockchain",
+    "api_key": "none",
+    "metadata_rights": "On-chain / public blockchain data — open",
+    "image_rights": "Generated images: owned by token holders. Metadata and project descriptions are public. Static preview images require per-project rights check.",
+    "public_demo_policy": "pending_verification",
+    "quality_gate": "metadata-only-until-image-rights-confirmed + attribution-to-artist-and-artblocks",
+    "cultural_protocol": "Standard contemporary art review",
+    "verification_status": "pending_verification",
+    "official_docs": [
+      "https://docs.artblocks.io/",
+      "https://docs.artblocks.io/protocol/overview/"
+    ],
+    "notes": "Ethereum on-chain generative art platform. Project scripts, dependency libraries, and token hashes stored immutably on-chain. GraphQL available via The Graph subgraph. Image rights are complex — each minted token is owned by the collector, though project descriptions and scripts are public. Start with metadata-only harvest; confirm image display rights per project before surfacing media."
   }
 ]

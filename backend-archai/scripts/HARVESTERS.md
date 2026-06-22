@@ -4,6 +4,8 @@ Each harvester fetches objects from a museum API, generates embeddings via Ollam
 
 ## Available Harvesters
 
+### Existing (live)
+
 | Harvester | Institution | Country | Objects | Images | API Key | Licence |
 |-----------|------------|---------|---------|--------|---------|---------|
 | `met-harvester.js` | The Metropolitan Museum of Art | 🇺🇸 USA | 470K+ | ✅ | None | CC0 |
@@ -18,6 +20,41 @@ Each harvester fetches objects from a museum API, generates embeddings via Ollam
 | `brasiliana-harvester.js` | Brasiliana Museus | 🇧🇷 Brazil | Large Tainacan platform | ✅ | None | Public domain / open-access, item-checked |
 
 **Museums Victoria** objects are in the `archai_pilot` collection (harvested separately via the pipeline).
+
+### New — Modern Art, Design, Science & Street Art
+
+| Harvester | Institution / Source | Type | Images | API Key | Licence |
+|-----------|---------------------|------|--------|---------|---------|
+| `smithsonian-harvester.js` | Smithsonian SAAM + Cooper Hewitt | Modern American art + design | ✅ CC0-flagged only | 🔑 Free (api.data.gov) | CC0 |
+| `tate-harvester.js` | Tate Collection | British art, Turner → early Modernism | ✅ pre-1920 PD works | None | CC0 |
+| `streetart-harvester.js` | Vancouver + Brussels + NYC + Melbourne + San Francisco + Chicago open data | Street art & public murals | ✅ per-source | None | OGL / CC BY / Public Domain |
+| `getty-harvester.js` | J. Paul Getty Museum, Los Angeles | Greek/Roman antiquities, European painting, manuscripts, photography | ✅ CC0 open content | None | CC0 |
+| `wellcome-harvester.js` | Wellcome Collection, London | Anatomy, science, medicine, natural history, medical art | ✅ per-item open licence | None | CC BY 4.0 / CC0 |
+| `qagoma-harvester.js` | QAGOMA — Queensland Art Gallery \| GOMA | Asia-Pacific contemporary, Aboriginal & Torres Strait Islander, Australian art | ⚠️ Metadata-only (Cloudflare blocks image API) | None | CC BY 4.0 (QLD Open Data) |
+| `rawg-harvester.js` | RAWG Video Games Database | Video games as cultural objects | ✅ per-item (attribution link required) | 🔑 Free (rawg.io) | RAWG ToS — attribution to rawg.io on every display page |
+
+**Legal status of new harvesters:**
+
+- **Smithsonian**: CC0 verified at item level via API `usage.access` field. Only CC0-flagged records are harvested. Images and metadata cleared for public display including commercial use. Free key required — register at api.data.gov.
+- **Tate**: Data and public-domain-work images are CC0 (Tate Open Access, 2019). Harvester applies a hard `year < 1920` filter so every harvested object and its image is safely in the public domain. No contemporary in-copyright works are included.
+- **Street Art**: Six open-data city portals (Vancouver, Brussels, NYC, Melbourne, San Francisco, Chicago), each with explicit open licences. Attribution is stored per-record in the Qdrant payload. No key required.
+- **Getty**: CC0 via the Getty Open Content Program (~140,000 images). Harvester uses the Linked Art SPARQL endpoint at `data.getty.edu/museum/collection/sparql` and parses CIDOC-CRM JSON-LD per object. No key required.
+- **Wellcome**: CC BY 4.0 or better, verified per item via the `license.id` API field. Only records with an open-licence image are harvested. Attribution is stored in payload. No key required.
+- **QAGOMA**: Queensland Government open data (CC BY 4.0) downloaded as a CSV via the CKAN API. Metadata rights are clear, but the per-object image API (`collection.qagoma.qld.gov.au/api/objects/`) is behind Cloudflare bot mitigation and returns HTTP 403 to all automated requests — so QAGOMA records are **metadata-only** until formal API/media access is arranged. Metadata-only records have no `media_thumbnail` and are therefore skipped by the AUX.IO page generator (image-backed objects only at demo stage).
+- **RAWG**: Video game metadata and cover images via the RAWG API. Free key required (register at rawg.io). RAWG's ToS requires an active hyperlink back to rawg.io on every page that displays their data — the AUX.IO template renders this attribution automatically.
+
+**Sources NOT suitable for image display (metadata-only):**
+
+| Source | Reason | Use case |
+|--------|--------|----------|
+| Whitney Museum | CC0 covers metadata only; images require separate licensing | Semantic search enrichment |
+| MoMA (GitHub dataset) | CC0 metadata only; images via Art Resource licence only | Semantic search enrichment |
+| Harvard Art Museums | Non-commercial use only; 2-week cache limit | Research context only |
+| AniList / Jikan (MyAnimeList) | Cover art is studio/publisher-owned IP; ToS prohibits scraping for DB population | ❌ Not used — anime imagery is not openly licensed |
+| TMDB (movies/TV) | Non-commercial only + explicit AI/ML ban in ToS | ❌ Not used — incompatible with sovereign AI model |
+| MusicBrainz / Cover Art Archive | Metadata is CC0, but cover art is CC BY-NC-SA (non-commercial) | Metadata-only enrichment if needed |
+
+> **Note on anime / animation**: Direct anime APIs (AniList, Jikan, TMDB) cannot supply legally displayable images — covers are commercial IP. Animation content for ARCHAI should instead come from **Wikimedia Commons** (CC-licensed production art, historical animation stills, posters released under open licences), filtered by licence metadata. See Future targets below.
 
 ## Quick Start
 
@@ -70,12 +107,49 @@ node tepapa-harvester.js --limit 120
 node mplus-harvester.js --limit 120
 node brasiliana-harvester.js --limit 120
 
+# Modern art + design + science (no key needed unless noted)
+node tate-harvester.js --limit 150              # No key needed
+node streetart-harvester.js --limit 300         # No key needed (6 cities)
+node getty-harvester.js --limit 200             # No key needed (CC0 Open Content)
+node wellcome-harvester.js --limit 150          # No key needed (CC BY 4.0)
+node qagoma-harvester.js --limit 200            # No key needed (QLD Open Data — metadata-only)
+RAWG_API_KEY=xxx node rawg-harvester.js --limit 200                 # Free key: rawg.io
+SMITHSONIAN_API_KEY=xxx node smithsonian-harvester.js --limit 200   # Free key: api.data.gov
+
+# Street art — single source
+node streetart-harvester.js --source vancouver --limit 100
+node streetart-harvester.js --source brussels --limit 100
+node streetart-harvester.js --source nyc --limit 100
+node streetart-harvester.js --source melbourne --limit 100
+node streetart-harvester.js --source sfgov --limit 100
+node streetart-harvester.js --source chicago --limit 100
+
+# Smithsonian — specific unit
+SMITHSONIAN_API_KEY=xxx node smithsonian-harvester.js --unit CHSDM --limit 100  # Cooper Hewitt only
+SMITHSONIAN_API_KEY=xxx node smithsonian-harvester.js --unit SAAM --limit 100   # American Art only
+
+# Getty — specific department
+node getty-harvester.js --department "Antiquities" --limit 100
+
+# Wellcome — specific work type (k=pictures, l=3d objects)
+node wellcome-harvester.js --worktype k --limit 100
+
+# QAGOMA — specific region
+node qagoma-harvester.js --region "Asia Pacific" --limit 100
+
 # Dry run (no writes)
 node cleveland-harvester.js --dry-run
 node aucklandmuseum-harvester.js --dry-run
 node tepapa-harvester.js --dry-run
 node mplus-harvester.js --dry-run
 node brasiliana-harvester.js --dry-run
+node tate-harvester.js --dry-run
+node streetart-harvester.js --dry-run
+node getty-harvester.js --dry-run
+node wellcome-harvester.js --dry-run
+node qagoma-harvester.js --dry-run
+RAWG_API_KEY=xxx node rawg-harvester.js --dry-run
+SMITHSONIAN_API_KEY=xxx node smithsonian-harvester.js --dry-run
 ```
 
 ## After Harvesting
@@ -100,7 +174,16 @@ node generate-nfc-pages.js --limit 300
 | `archai_auckland` | 7,000,000+ | Auckland Museum |
 | `archai_tepapa` | 8,000,000+ | Te Papa Tongarewa |
 | `archai_mplus` | 9,000,000+ | M+, Hong Kong |
+| `archai_getty` | 10,000,000+ | J. Paul Getty Museum |
+| `archai_wellcome` | 11,000,000+ | Wellcome Collection |
 | `archai_brasiliana` | 12,000,000+ | Brasiliana Museus |
+| `archai_qagoma` | 13,000,000+ | QAGOMA (Queensland Art Gallery / GOMA) |
+| `archai_smithsonian` | 14,000,000+ | Smithsonian (SAAM + Cooper Hewitt) |
+| `archai_tate` | 15,000,000+ | Tate Collection |
+| `archai_streetart` | 16,000,000+ | Street Art (Vancouver · Brussels · NYC · Melbourne · San Francisco · Chicago) |
+| `archai_rawg` | 17,000,000+ | RAWG Video Games Database |
+
+> **Note on ID offsets**: The `archai_smithsonian`, `archai_tate`, and `archai_streetart` harvesters were initially documented with conflicting offsets (2M, 3M, 5M — same as older collections). The table above assigns them new non-conflicting offsets in the 14–16M range. Update the harvester `ID_OFFSET` constants if you are re-harvesting from scratch into a fresh Qdrant instance. Existing production data at legacy offsets remains valid until a full re-harvest.
 
 ## Data Richness
 
@@ -122,6 +205,10 @@ famtec run archai -- node europeana-harvester.js
 - **Te Papa**: optional registered key or built-in guest-token fallback for development
 - **M+**: public GraphQL endpoint currently works without separate registration for metadata access
 - **Brasiliana Museus**: public Tainacan / WordPress API, no key required
+- **Smithsonian Open Access**: https://api.data.gov/signup (free registration, instant) — set `SMITHSONIAN_API_KEY`
+- **Tate**: no key required (GitHub dataset)
+- **Street Art (Vancouver/Brussels/NYC/Melbourne/San Francisco/Chicago)**: no key required (open city data portals)
+- **RAWG**: https://rawg.io/apidocs (free key) — set `RAWG_API_KEY`; attribution link to rawg.io required on every display page
 
 ## International Expansion Notes
 
@@ -134,11 +221,15 @@ ARCHAI is moving toward translation-aware onboarding at ingest time, not only in
 ### Available but no public API
 - ColBase (Japan) — 4 national museums, web-only, no REST API
 - MNBA Buenos Aires — on Google Arts & Culture only
-- Smithsonian — huge collection but poor image delivery via API
 
-### Future targets
-- Harvard Art Museums (needs API key)
-- Cooper Hewitt / Smithsonian Design (needs API key)
-- Brooklyn Museum (needs API key)
-- DigitalNZ (partner-rights gate still needed before public AUX.IO use)
-- Tokyo Museum Collection / ToMuCo (technically explored, but currently held out of live onboarding on public-rights grounds)
+### Future targets — born-digital & modern culture
+- **Rhizome ArtBase** (SPARQL/Linked Open Data) — net art, software art, browser art. Needs dedicated SPARQL harvester + per-work media review.
+- **Wikimedia Commons** (MediaWiki Action API) — broadest open-licensed cultural pool: animation/anime production art, architecture, indigenous objects, historical photography, scientific illustration. Filter by CC0/CC BY/CC BY-SA via licence metadata. One category-configurable harvester can feed multiple AUX.IO tabs. **Researched, not yet built.**
+- **DPLA** (api.dp.la/v2) — 36M+ US cultural-heritage records, CC0 metadata + per-item rights field. Free key. Thumbnails + metadata, links to source institution. **Researched, not yet built.**
+- **NASA Image and Video Library** (images-api.nasa.gov) — 140K+ public-domain space mission images. No restrictions. **Researched, not yet built.**
+- **Art Blocks** (GraphQL/The Graph) — on-chain generative art. Image rights complex (token holder owns the output). Start metadata-only.
+- **Whitney Museum** — CC0 metadata only, images NOT open. Useful for semantic search enrichment without image display.
+- **MoMA dataset** (GitHub) — CC0 metadata only. Same pattern as Whitney.
+- **Harvard Art Museums** — non-commercial only, rich provenance data. Research context only.
+- **DigitalNZ** — partner-rights gate still needed before public AUX.IO use.
+- **Tokyo Museum Collection / ToMuCo** — technically explored, held out on public-rights grounds.

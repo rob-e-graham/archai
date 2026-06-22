@@ -29,20 +29,29 @@ const getArg = (name, fallback) => {
 const QDRANT_URL = getArg('qdrant', 'http://localhost:6333');
 const ALL_COLLECTIONS = [
   'archai_pilot', 'archai_met', 'archai_va',
-  'archai_aic', 'archai_cma', 'archai_rijks', 'archai_europeana', 'archai_auckland', 'archai_tepapa', 'archai_mplus', 'archai_brasiliana'
+  'archai_aic', 'archai_cma', 'archai_rijks', 'archai_europeana', 'archai_auckland', 'archai_tepapa', 'archai_mplus', 'archai_brasiliana',
+  'archai_smithsonian', 'archai_tate', 'archai_streetart',
+  'archai_getty', 'archai_wellcome', 'archai_qagoma', 'archai_rawg',
 ];
 const COLLECTION_LABELS = {
-  archai_pilot: 'Museums Victoria',
-  archai_met: 'The Metropolitan Museum of Art',
-  archai_va: 'Victoria and Albert Museum, London',
-  archai_aic: 'Art Institute of Chicago',
-  archai_cma: 'Cleveland Museum of Art',
-  archai_rijks: 'Rijksmuseum, Amsterdam',
-  archai_europeana: 'Europeana',
-  archai_auckland: 'Auckland Museum',
-  archai_tepapa: 'Museum of New Zealand Te Papa Tongarewa',
-  archai_mplus: 'M+, Hong Kong',
-  archai_brasiliana: 'Brasiliana Museus'
+  archai_pilot:        'Museums Victoria',
+  archai_met:          'The Metropolitan Museum of Art',
+  archai_va:           'Victoria and Albert Museum, London',
+  archai_aic:          'Art Institute of Chicago',
+  archai_cma:          'Cleveland Museum of Art',
+  archai_rijks:        'Rijksmuseum, Amsterdam',
+  archai_europeana:    'Europeana',
+  archai_auckland:     'Auckland Museum',
+  archai_tepapa:       'Museum of New Zealand Te Papa Tongarewa',
+  archai_mplus:        'M+, Hong Kong',
+  archai_brasiliana:   'Brasiliana Museus',
+  archai_smithsonian:  'Smithsonian Institution',
+  archai_tate:         'Tate',
+  archai_streetart:    'Public Street Art',
+  archai_getty:        'J. Paul Getty Museum',
+  archai_wellcome:     'Wellcome Collection',
+  archai_qagoma:       'QAGOMA — Queensland Art Gallery | Gallery of Modern Art',
+  archai_rawg:         'RAWG Video Games Database',
 };
 const OLLAMA_LAN_HOST = getArg('host', 'http://localhost:11434');
 // Default to backend-proxy mode so public AUX.IO pages can use the live chat API
@@ -139,6 +148,39 @@ function getObjectRightsInfo(payload = {}) {
   return { status, guidance, detail, color, border };
 }
 
+function buildInteractiveEmbed(p) {
+  const interactiveUrl = String(p.interactive_url || '').trim();
+  const archiveSource  = String(p.archive_source  || '').trim();
+  const archiveSeed    = String(p.archive_seed_url || '').trim();
+  if (!interactiveUrl && !archiveSource) return '';
+
+  const isWARC = !!archiveSource;
+  const label  = isWARC ? 'Archived interactive work' : 'Interactive work';
+
+  let frameHtml;
+  if (isWARC) {
+    const seedAttr = archiveSeed ? ` url="${escHtml(archiveSeed)}"` : '';
+    frameHtml = `<replay-web-page source="${escHtml(archiveSource)}"${seedAttr} embed="replayonly" sandbox></replay-web-page>`;
+  } else {
+    frameHtml = `<iframe data-src="${escHtml(interactiveUrl)}" title="${escHtml(p.title || 'Interactive work')}" sandbox="allow-scripts allow-same-origin allow-forms" allowfullscreen loading="lazy"></iframe>`;
+  }
+
+  return `<div class="v-interactive" id="v-interactive-block">
+  <div class="v-interactive-header">
+    <span class="v-interactive-label">${label}</span>
+    <span class="v-interactive-pill">${isWARC ? 'WARC Archive' : 'Live Embed'}</span>
+  </div>
+  <p class="v-interactive-note">Experience this work directly — opens within the page in a sandboxed frame.</p>
+  <button class="v-interactive-launch" onclick="launchInteractive()">Launch interactive work</button>
+  <div class="v-interactive-frame-wrap" id="v-interactive-frame">
+    <div class="v-interactive-frame-loading" id="v-interactive-loading">Loading…</div>
+    ${frameHtml}
+    <button class="v-interactive-close" onclick="closeInteractive()">✕ Close</button>
+  </div>
+  <p class="v-interactive-disclaimer">Runs in a sandboxed iframe. ${isWARC ? 'Replay powered by ReplayWeb.page.' : 'Content provided by the source institution.'}</p>
+</div>`;
+}
+
 // ── MAIN ────────────────────────────────────────────────────────
 async function main() {
   console.log('\n  ╔══════════════════════════════════════════════╗');
@@ -214,15 +256,18 @@ async function main() {
   // Cap to limit
   allPoints = allPoints.slice(0, LIMIT);
 
-  // Only generate pages for objects with images
+  // Only generate pages for objects with images or interactive content
   const beforeFilter = allPoints.length;
   allPoints = allPoints.filter(pt => {
     const p = pt.payload;
-    return p && (p.media_medium || p.media_thumbnail || p.image_url || p.primaryImageSmall);
+    return p && (
+      p.media_medium || p.media_thumbnail || p.image_url || p.primaryImageSmall ||
+      p.interactive_url || p.archive_source
+    );
   });
   const skippedNoImage = beforeFilter - allPoints.length;
   if (skippedNoImage > 0) {
-    console.log(`  ⊘ Skipped ${skippedNoImage} objects without images`);
+    console.log(`  ⊘ Skipped ${skippedNoImage} objects without images or interactive content`);
   }
 
   if (!allPoints.length) {
@@ -295,6 +340,10 @@ async function main() {
     const imgMedium = p.media_medium || p.media_thumbnail || '';
     const imgThumb = p.media_thumbnail || '';
     const sourceInstitution = obj.sourceLabel;
+    const interactiveEmbedHtml = buildInteractiveEmbed(p);
+    const interactiveBadgeHtml = interactiveEmbedHtml
+      ? '<span class="v-meta-tag interactive">Interactive</span>'
+      : '';
 
     // Build hero image
     const heroHtml = imgMedium
@@ -409,11 +458,14 @@ async function main() {
       .replace(/\{\{RIGHTS_NOTE\}\}/g, rightsNote)
       .replace(/\{\{CHIPS_HTML\}\}/g, chipsHtml)
       .replace(/\{\{META_ROWS\}\}/g, metaRowsHtml)
-      .replace(/\{\{RELATED_HTML\}\}/g, relatedHtml);
+      .replace(/\{\{RELATED_HTML\}\}/g, relatedHtml)
+      .replace(/\{\{INTERACTIVE_EMBED\}\}/g, interactiveEmbedHtml)
+      .replace(/\{\{INTERACTIVE_BADGE\}\}/g, interactiveBadgeHtml);
 
     const filename = `${nfcCode}.html`;
     fs.writeFileSync(path.join(OUTPUT_DIR, filename), trimGeneratedLines(html), 'utf-8');
-    generated.push({ nfcCode, title, reg, filename, source: sourceInstitution });
+    generated.push({ nfcCode, title, reg, filename, source: sourceInstitution,
+                     thumb: imgThumb || imgMedium, collection: obj.sourceCollection });
 
     // Progress
     process.stdout.write(`  → ${obj.auxLabel} · [${sourceInstitution.substring(0,3).toUpperCase()}] ${title.substring(0, 40)}${title.length > 40 ? '…' : ''}\n`);
@@ -447,15 +499,91 @@ async function main() {
   console.log(`\n  Serve with: python3 -m http.server 8000\n`);
 }
 
+// ── COLLECTION GROUPS ───────────────────────────────────────────
+// Thematic tabs for the public AUX.IO index — ordered to surface the most
+// distinctive / conversation-starting categories first.
+// null cols = "show everything" (All tab).
+const INDEX_GROUPS = [
+  { key: 'all',      label: 'All',                 cols: null },
+  { key: 'painting', label: 'Painting',            cols: [
+    'archai_met','archai_rijks','archai_tate','archai_cma',
+    'archai_getty','archai_aic','archai_europeana',
+  ]},
+  { key: 'design',   label: 'Design & Objects',   cols: [
+    'archai_va','archai_mplus','archai_smithsonian','archai_qagoma',
+  ]},
+  { key: 'pacific',  label: 'Pacific & Indigenous', cols: [
+    'archai_pilot','archai_auckland','archai_tepapa',
+  ]},
+  { key: 'history',  label: 'History & Science',  cols: [
+    'archai_wellcome','archai_brasiliana',
+  ]},
+  { key: 'streetart',label: 'Street Art',         cols: ['archai_streetart'] },
+  { key: 'games',    label: 'Games',              cols: ['archai_rawg'] },
+];
+
 // ── INDEX PAGE ──────────────────────────────────────────────────
 function generateIndex(items) {
-  const rows = items.map(g =>
-    `<a href="${g.filename}" class="idx-item">
-      <span class="idx-nfc">${g.nfcCode.replace(/^NFC/, 'AUX.IO ')}</span>
-      <span class="idx-title">${escHtml(g.title)}</span>
-      <span class="idx-reg">${escHtml(g.reg)}</span>
-    </a>`
-  ).join('\n    ');
+  // Count items per group and per institution
+  const groupCounts = {};
+  const byColl = new Map();
+  INDEX_GROUPS.forEach(g => { groupCounts[g.key] = 0; });
+
+  items.forEach(item => {
+    const col = item.collection || 'unknown';
+    if (!byColl.has(col)) byColl.set(col, { label: item.source || col, count: 0 });
+    byColl.get(col).count++;
+    INDEX_GROUPS.forEach(g => {
+      if (!g.cols || g.cols.includes(col)) groupCounts[g.key]++;
+    });
+  });
+
+  // Group tabs HTML
+  const groupTabsHtml = INDEX_GROUPS
+    .filter(g => groupCounts[g.key] > 0)
+    .map((g, i) =>
+      `<button class="idx-group${i === 0 ? ' active' : ''}" data-group="${g.key}" onclick="selectGroup(this,'${g.key}')">${escHtml(g.label)}<span class="idx-group-count">${groupCounts[g.key]}</span></button>`
+    ).join('\n    ');
+
+  // Per-group institution sub-tabs — built for every group that has > 1 collection.
+  // Keyed by group key so the client can swap them when the active tab changes.
+  const subTabsByGroup = {};
+  INDEX_GROUPS.forEach(g => {
+    if (!g.cols || g.cols.length <= 1) return;
+    const allLabel = `All ${g.label}`;
+    const subs = [
+      `<button class="idx-sub active" data-sub="all" onclick="selectSub(this,'all')">${escHtml(allLabel)}</button>`,
+      ...[...byColl.entries()]
+        .filter(([k]) => g.cols.includes(k))
+        .sort((a, b) => b[1].count - a[1].count)
+        .map(([key, {label, count}]) => {
+          const short = label.split('—')[0].split('|')[0].split(',')[0].trim();
+          return `<button class="idx-sub" data-sub="${escHtml(key)}" onclick="selectSub(this,'${key}')">${escHtml(short)} <span class="idx-sub-count">${count}</span></button>`;
+        })
+    ];
+    subTabsByGroup[g.key] = subs.join('');
+  });
+
+  const rows = items.map(g => {
+    const thumbHtml = g.thumb
+      ? `<img src="${escHtml(g.thumb)}" loading="lazy" alt="" onerror="this.style.display='none'">`
+      : '<span class="idx-thumb-ph">▣</span>';
+    return `<a href="${escHtml(g.filename)}" class="idx-item" data-col="${escHtml(g.collection || '')}">
+      <div class="idx-thumb">${thumbHtml}</div>
+      <div class="idx-info">
+        <div class="idx-nfc">${escHtml(g.nfcCode.replace(/^NFC/, 'AUX.IO '))}</div>
+        <div class="idx-title">${escHtml(g.title)}</div>
+        <div class="idx-src">${escHtml(g.source || '')}</div>
+      </div>
+      ${g.reg ? `<div class="idx-reg">${escHtml(g.reg)}</div>` : ''}
+    </a>`;
+  }).join('\n    ');
+
+  // Embed both group→cols map and per-group sub-tab HTML as JSON for client-side use
+  const groupsJson = JSON.stringify(
+    Object.fromEntries(INDEX_GROUPS.map(g => [g.key, g.cols]))
+  );
+  const subTabsJson = JSON.stringify(subTabsByGroup);
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -465,25 +593,104 @@ function generateIndex(items) {
 <title>ARCHAI — Visitor Pages</title>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
-:root { --bg:#080808; --surface:#0f0f0f; --border:#1e1e1e; --text:#e8e4dc; --text2:#a09890; --text3:#5a5450; --accent:#c8a96e; --accent2:#8fbcb0; --mono:'DM Mono',monospace; --serif:'Cormorant Garamond',serif; }
+:root{--bg:#080808;--surface:#0f0f0f;--border:#1e1e1e;--border2:#282828;--text:#e8e4dc;--text2:#a09890;--text3:#5a5450;--accent:#c8a96e;--accent2:#8fbcb0;--mono:'DM Mono',monospace;--serif:'Cormorant Garamond',serif;}
 *{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--text);font-family:var(--serif);padding:32px 20px;min-height:100vh;}
-.logo{font-size:1.8rem;letter-spacing:10px;text-transform:uppercase;font-weight:300;text-align:center;margin-bottom:4px;}
+html,body{scrollbar-width:none;-ms-overflow-style:none;}
+html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0;display:none;}
+body{background:var(--bg);color:var(--text);font-family:var(--serif);min-height:100vh;}
+.idx-header{padding:28px 20px 0;text-align:center;}
+.logo{font-size:1.8rem;letter-spacing:10px;text-transform:uppercase;font-weight:300;margin-bottom:4px;}
 .logo span{font-style:italic;color:var(--accent);}
-.sub{font-family:var(--mono);font-size:0.5rem;color:var(--text3);letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:32px;}
-.count{font-family:var(--mono);font-size:0.56rem;color:var(--text3);margin-bottom:12px;letter-spacing:1px;}
-.idx-item{display:grid;grid-template-columns:70px 1fr auto;gap:10px;padding:12px 0;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background 0.1s;}
+.sub{font-family:var(--mono);font-size:0.5rem;color:var(--text3);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;}
+
+/* ── GROUP TABS ── primary navigation */
+.idx-groups{display:flex;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;}
+.idx-groups::-webkit-scrollbar{display:none;}
+.idx-group{flex:1;min-width:fit-content;font-family:var(--mono);font-size:0.48rem;letter-spacing:2px;text-transform:uppercase;padding:13px 14px 11px;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--text3);cursor:pointer;transition:all 0.15s;white-space:nowrap;display:flex;flex-direction:column;align-items:center;gap:3px;margin-bottom:-1px;}
+.idx-group:hover{color:var(--text2);}
+.idx-group.active{color:var(--accent2);border-bottom-color:var(--accent2);}
+.idx-group-count{font-size:0.4rem;letter-spacing:1px;opacity:0.6;}
+
+/* ── INSTITUTION SUB-TABS ── shown when a multi-institution group is active */
+.idx-subbar{padding:10px 20px 0;border-bottom:1px solid var(--border);display:flex;flex-wrap:nowrap;overflow-x:auto;gap:5px;scrollbar-width:none;}
+.idx-subbar::-webkit-scrollbar{display:none;}
+.idx-subbar.hidden{display:none;min-height:0;}
+.idx-sub{font-family:var(--mono);font-size:0.4rem;letter-spacing:1.2px;text-transform:uppercase;padding:4px 9px 8px;border:none;border-bottom:2px solid transparent;background:transparent;color:var(--text3);cursor:pointer;white-space:nowrap;transition:all 0.15s;display:flex;align-items:center;gap:4px;margin-bottom:-1px;}
+.idx-sub:hover{color:var(--text2);}
+.idx-sub.active{color:var(--accent);border-bottom-color:var(--accent);}
+.idx-sub-count{opacity:0.5;font-size:0.36rem;}
+
+/* ── LIST ── */
+.idx-body{padding:0 20px 56px;}
+.idx-count{font-family:var(--mono);font-size:0.48rem;color:var(--text3);padding:10px 0 4px;letter-spacing:1px;border-bottom:1px solid var(--border);margin-bottom:0;}
+.idx-item{display:grid;grid-template-columns:52px 1fr auto;gap:12px;padding:11px 0;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background 0.1s;align-items:center;}
 .idx-item:active{background:var(--surface);}
-.idx-nfc{font-family:var(--mono);font-size:0.62rem;color:var(--accent2);letter-spacing:2px;}
-.idx-title{font-family:var(--serif);font-size:0.95rem;color:var(--text);}
-.idx-reg{font-family:var(--mono);font-size:0.5rem;color:var(--text3);text-align:right;letter-spacing:1px;}
+.idx-item.hidden{display:none;}
+.idx-thumb{width:52px;height:52px;overflow:hidden;background:var(--surface);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.idx-thumb img{width:100%;height:100%;object-fit:cover;}
+.idx-thumb-ph{font-size:1.1rem;color:var(--text3);}
+.idx-info{min-width:0;}
+.idx-nfc{font-family:var(--mono);font-size:0.44rem;color:var(--accent2);letter-spacing:2px;margin-bottom:3px;}
+.idx-title{font-family:var(--serif);font-size:0.98rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px;}
+.idx-src{font-family:var(--mono);font-size:0.4rem;color:var(--text3);letter-spacing:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:uppercase;}
+.idx-reg{font-family:var(--mono);font-size:0.42rem;color:var(--text3);text-align:right;letter-spacing:1px;white-space:nowrap;flex-shrink:0;align-self:flex-start;padding-top:18px;}
 </style>
 </head>
 <body>
-<div class="logo">ARC<span>H</span>AI</div>
-<div class="sub">AUX.IO Visitor Pages · ${items.length} Objects</div>
-<div class="count">${items.length} pages generated</div>
-${rows}
+<div class="idx-header">
+  <div class="logo">ARC<span>H</span>AI</div>
+  <div class="sub">AUX.IO Visitor Pages · ${items.length} Objects</div>
+</div>
+
+<div class="idx-groups">
+  ${groupTabsHtml}
+</div>
+
+<div class="idx-subbar hidden" id="idx-subbar"></div>
+
+<div class="idx-body">
+  <div class="idx-count" id="idx-count">${items.length} objects</div>
+  ${rows}
+</div>
+
+<script>
+const GROUPS = ${groupsJson};
+const SUB_TABS = ${subTabsJson};
+let activeGroup = 'all';
+let activeSub = 'all';
+
+function selectGroup(btn, groupKey) {
+  activeGroup = groupKey;
+  activeSub = 'all';
+  document.querySelectorAll('.idx-group').forEach(b => b.classList.toggle('active', b === btn));
+  // Swap in this group's sub-tabs (or hide if none)
+  const subbar = document.getElementById('idx-subbar');
+  const subHtml = SUB_TABS[groupKey] || '';
+  subbar.innerHTML = subHtml;
+  subbar.classList.toggle('hidden', !subHtml);
+  applyFilter();
+}
+
+function selectSub(btn, subKey) {
+  activeSub = subKey;
+  document.querySelectorAll('.idx-sub').forEach(b => b.classList.toggle('active', b === btn));
+  applyFilter();
+}
+
+function applyFilter() {
+  const groupCols = GROUPS[activeGroup];
+  let vis = 0;
+  document.querySelectorAll('.idx-item').forEach(el => {
+    const col = el.dataset.col;
+    let show = !groupCols || groupCols.includes(col);
+    if (show && activeSub !== 'all') show = col === activeSub;
+    el.classList.toggle('hidden', !show);
+    if (show) vis++;
+  });
+  const label = activeGroup === 'all' ? '' : ' · ' + activeGroup;
+  document.getElementById('idx-count').textContent = vis + ' objects' + label;
+}
+</script>
 </body>
 </html>`;
 }
