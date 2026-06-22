@@ -21,19 +21,25 @@ Each harvester fetches objects from a museum API, generates embeddings via Ollam
 
 **Museums Victoria** objects are in the `archai_pilot` collection (harvested separately via the pipeline).
 
-### New — Modern Art, Design & Street Art
+### New — Modern Art, Design, Science & Street Art
 
 | Harvester | Institution / Source | Type | Images | API Key | Licence |
 |-----------|---------------------|------|--------|---------|---------|
 | `smithsonian-harvester.js` | Smithsonian SAAM + Cooper Hewitt | Modern American art + design | ✅ CC0-flagged only | 🔑 Free (api.data.gov) | CC0 |
 | `tate-harvester.js` | Tate Collection | British art, Turner → early Modernism | ✅ pre-1920 PD works | None | CC0 |
 | `streetart-harvester.js` | Vancouver + Brussels + NYC open data | Street art & public murals | ✅ per-source | None | OGL / CC BY / Public Domain |
+| `getty-harvester.js` | J. Paul Getty Museum, Los Angeles | Greek/Roman antiquities, European painting, manuscripts, photography | ✅ CC0 open content | None | CC0 |
+| `wellcome-harvester.js` | Wellcome Collection, London | Anatomy, science, medicine, natural history, medical art | ✅ per-item open licence | None | CC BY 4.0 / CC0 |
+| `qagoma-harvester.js` | QAGOMA — Queensland Art Gallery \| GOMA | Asia-Pacific contemporary, Aboriginal & Torres Strait Islander, Australian art | ✅ per-item open licence | None | CC BY 4.0 (QLD Open Data) |
 
 **Legal status of new harvesters:**
 
 - **Smithsonian**: CC0 verified at item level via API `usage.access` field. Only CC0-flagged records are harvested. Images and metadata cleared for public display including commercial use. Free key required — register at api.data.gov.
 - **Tate**: Data and public-domain-work images are CC0 (Tate Open Access, 2019). Harvester applies a hard `year < 1920` filter so every harvested object and its image is safely in the public domain. No contemporary in-copyright works are included.
 - **Street Art**: Three open-data city portals, each with explicit open licences. Attribution is stored per-record in the Qdrant payload. No key required.
+- **Getty**: CC0 via the Getty Open Content Program (~140,000 images). Harvester checks `is_open_content` flag per object. No key required.
+- **Wellcome**: CC BY 4.0 or better, verified per item via the `license.id` API field. Only records with an open-licence image are harvested. Attribution is stored in payload. No key required.
+- **QAGOMA**: Queensland Government open data (CC BY 4.0). Downloaded as a CSV via the CKAN API. Only image-backed records without explicit copyright restrictions are harvested. Image reuse should be rechecked at item level before large-scale AUX.IO display expansion.
 
 **Sources NOT suitable for image display (metadata-only):**
 
@@ -85,9 +91,12 @@ node tepapa-harvester.js --limit 120
 node mplus-harvester.js --limit 120
 node brasiliana-harvester.js --limit 120
 
-# Modern art + design (new)
+# Modern art + design + science (no key needed unless noted)
 node tate-harvester.js --limit 150              # No key needed
 node streetart-harvester.js --limit 300         # No key needed (Vancouver + Brussels + NYC)
+node getty-harvester.js --limit 200             # No key needed (CC0 Open Content)
+node wellcome-harvester.js --limit 150          # No key needed (CC BY 4.0)
+node qagoma-harvester.js --limit 200            # No key needed (QLD Open Data)
 SMITHSONIAN_API_KEY=xxx node smithsonian-harvester.js --limit 200   # Free key: api.data.gov
 
 # Street art — single source
@@ -99,6 +108,15 @@ node streetart-harvester.js --source nyc --limit 100
 SMITHSONIAN_API_KEY=xxx node smithsonian-harvester.js --unit CHSDM --limit 100  # Cooper Hewitt only
 SMITHSONIAN_API_KEY=xxx node smithsonian-harvester.js --unit SAAM --limit 100   # American Art only
 
+# Getty — specific department
+node getty-harvester.js --department "Antiquities" --limit 100
+
+# Wellcome — specific work type (k=pictures, l=3d objects)
+node wellcome-harvester.js --worktype k --limit 100
+
+# QAGOMA — specific region
+node qagoma-harvester.js --region "Asia Pacific" --limit 100
+
 # Dry run (no writes)
 node cleveland-harvester.js --dry-run
 node aucklandmuseum-harvester.js --dry-run
@@ -107,6 +125,9 @@ node mplus-harvester.js --dry-run
 node brasiliana-harvester.js --dry-run
 node tate-harvester.js --dry-run
 node streetart-harvester.js --dry-run
+node getty-harvester.js --dry-run
+node wellcome-harvester.js --dry-run
+node qagoma-harvester.js --dry-run
 SMITHSONIAN_API_KEY=xxx node smithsonian-harvester.js --dry-run
 ```
 
@@ -132,10 +153,15 @@ node generate-nfc-pages.js --limit 300
 | `archai_auckland` | 7,000,000+ | Auckland Museum |
 | `archai_tepapa` | 8,000,000+ | Te Papa Tongarewa |
 | `archai_mplus` | 9,000,000+ | M+, Hong Kong |
+| `archai_getty` | 10,000,000+ | J. Paul Getty Museum |
+| `archai_wellcome` | 11,000,000+ | Wellcome Collection |
 | `archai_brasiliana` | 12,000,000+ | Brasiliana Museus |
-| `archai_smithsonian` | 2,000,000+ | Smithsonian (SAAM + Cooper Hewitt) |
-| `archai_tate` | 3,000,000+ | Tate Collection |
-| `archai_streetart` | 5,000,000+ | Street Art (Vancouver · Brussels · NYC) |
+| `archai_qagoma` | 13,000,000+ | QAGOMA (Queensland Art Gallery / GOMA) |
+| `archai_smithsonian` | 14,000,000+ | Smithsonian (SAAM + Cooper Hewitt) |
+| `archai_tate` | 15,000,000+ | Tate Collection |
+| `archai_streetart` | 16,000,000+ | Street Art (Vancouver · Brussels · NYC) |
+
+> **Note on ID offsets**: The `archai_smithsonian`, `archai_tate`, and `archai_streetart` harvesters were initially documented with conflicting offsets (2M, 3M, 5M — same as older collections). The table above assigns them new non-conflicting offsets in the 14–16M range. Update the harvester `ID_OFFSET` constants if you are re-harvesting from scratch into a fresh Qdrant instance. Existing production data at legacy offsets remains valid until a full re-harvest.
 
 ## Data Richness
 

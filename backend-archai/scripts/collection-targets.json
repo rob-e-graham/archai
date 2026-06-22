@@ -510,6 +510,56 @@
   },
 
   {
+    "id": "getty",
+    "name": "J. Paul Getty Museum",
+    "region": "North America",
+    "focus": ["Greek/Roman antiquities", "European painting", "illuminated manuscripts", "photography", "drawings", "decorative arts"],
+    "status": "planned",
+    "priority": 24,
+    "harvester_script": "getty-harvester.js",
+    "translation_mode": "source-first",
+    "access_mode": "api",
+    "api_key": "none",
+    "metadata_rights": "CC0 1.0 Universal",
+    "image_rights": "CC0 1.0 Universal — Getty Open Content Program (~140,000 images). Verified per-item via open_content flag in API response.",
+    "public_demo_policy": "approved_open",
+    "quality_gate": "open-content-flag-true + image-backed + CC0-confirmed",
+    "cultural_protocol": "Low cultural sensitivity risk; ancient art objects should use respectful contextualisation for Indigenous or sacred objects",
+    "verification_status": "verified_2026_06_22",
+    "official_docs": [
+      "https://www.getty.edu/about/whatwedo/opencontent.html",
+      "https://data.getty.edu/museum/collection/",
+      "https://www.getty.edu/art/collection/"
+    ],
+    "notes": "The Getty Open Content Program releases ~140,000 high-resolution images as CC0 with no restrictions. Collection strengths: ancient Greek and Roman art, European paintings (Rembrandt, Rubens, Titian, Van Dyck), illuminated manuscripts, Italian drawings, 19th-century photography, French decorative arts. IIIF image API available for all open content. No key required."
+  },
+
+  {
+    "id": "wellcome",
+    "name": "Wellcome Collection",
+    "region": "Europe",
+    "focus": ["anatomy", "medical art", "scientific illustration", "natural history", "medical instruments", "manuscripts", "photography"],
+    "status": "planned",
+    "priority": 25,
+    "harvester_script": "wellcome-harvester.js",
+    "translation_mode": "source-first",
+    "access_mode": "api",
+    "api_key": "none",
+    "metadata_rights": "CC BY 4.0 / CC0 per item",
+    "image_rights": "CC BY 4.0 for majority of collection. Verified per-item via license.id in API response. Attribution required.",
+    "public_demo_policy": "approved_with_attribution",
+    "quality_gate": "open-licence-in-approved-set + image-backed + attribution-in-payload",
+    "cultural_protocol": "Medical imagery may include human remains, anatomical subjects, or historical treatments requiring sensitive framing; historical mental health material requires care",
+    "verification_status": "verified_2026_06_22",
+    "official_docs": [
+      "https://developers.wellcomecollection.org/catalogue",
+      "https://api.wellcomecollection.org/catalogue/v2",
+      "https://wellcomecollection.org/pages/Wvlk4yAAAB8A3ufp"
+    ],
+    "notes": "Unique interdisciplinary collection at the intersection of art, science, and medicine. ~750,000 items including anatomical illustrations, wax models, scientific photographs, apothecary objects, pharmaceutical packaging, manuscripts, and art about the body and health. Wellcome Catalogue API v2 is free, no key required, JSON responses with IIIF images. Attribution required on all CC BY items."
+  },
+
+  {
     "id": "artblocks",
     "name": "Art Blocks (On-Chain Generative Art)",
     "region": "Specialist / Born-Digital",
