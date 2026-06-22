@@ -311,5 +311,29 @@
     "verification_status": "pending_verification",
     "official_docs": [],
     "notes": "Useful discovery layer for Australian breadth, but better as metadata and reference enrichment than first-wave AUX.IO media source."
+  },
+  {
+    "id": "nga",
+    "name": "National Gallery of Art, Washington",
+    "region": "North America",
+    "focus": ["fine art", "photography", "works on paper", "sculpture", "open-access images"],
+    "status": "ready",
+    "priority": 16,
+    "harvester_script": "nga-harvester.js",
+    "translation_mode": "source-first",
+    "access_mode": "daily_csv_and_iiif",
+    "api_key": "none",
+    "metadata_rights": "CC0 1.0",
+    "image_rights": "item-level openaccess flag in published_images.csv",
+    "public_demo_policy": "approved_open",
+    "quality_gate": "openaccess=1 + image-backed + source provenance; exclude openaccess=0 fair-use derivatives",
+    "cultural_protocol": "Retain source descriptions and review sensitive records independently of copyright status",
+    "verification_status": "verified_2026_06_22",
+    "official_docs": [
+      "https://github.com/NationalGalleryOfArt/opendata",
+      "https://www.nga.gov/open-access-images.html",
+      "https://raw.githubusercontent.com/NationalGalleryOfArt/opendata/main/documentation/Data%20Dictionary.txt"
+    ],
+    "notes": "Daily NGA CMS export with stable object IDs, UUIDs, IIIF media, accessibility text, and a machine-readable item-level open-access gate. The harvester streams the large CSV files and never ingests images marked openaccess=0."
   }
 ]

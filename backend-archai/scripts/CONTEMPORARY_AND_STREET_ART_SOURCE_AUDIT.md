@@ -9,6 +9,7 @@ ARCHAI assesses metadata and media separately. An open metadata dataset is not a
 | Source | What is usable now | What is not cleared | ARCHAI decision |
 |---|---|---|---|
 | Smithsonian Open Access | Item-level assets explicitly designated CC0, plus associated open metadata | Records or media carrying usage conditions, contractual restrictions, cultural sensitivity, or no CC0 designation | Strong next harvester, but ingest only item-level CC0 assets |
+| National Gallery of Art | CC0 metadata and IIIF images explicitly marked `openaccess=1` | Images marked `openaccess=0` are fair-use display derivatives | Approved; strict item-level harvester implemented |
 | MoMA collection dataset | Collection metadata under CC0 | Images are expressly excluded from the dataset licence | Metadata/interrogation candidate; metadata-only public cards unless separately licensed media exists |
 | Whitney Open Access | Public dataset/API metadata under CC0 | Do not infer that every artwork image or digital work is CC0 from the metadata licence | Metadata candidate; verify item-level media and terms before any thumbnail or replay |
 | Tate collection dataset | Historical 2014 metadata snapshot under CC0 | Images are excluded; dataset is no longer maintained | Research/enrichment source only, not a current image-backed demo collection |
@@ -59,11 +60,12 @@ Contact published by Rhizome for research partnerships: `research@rhizome.org`.
 ## Safe modern-art onboarding order
 
 1. Smithsonian item-level CC0 media and metadata
-2. MoMA CC0 metadata, with no copied artwork images
-3. Whitney CC0 metadata after confirming API implementation details
-4. Direct artist/institution permissioned born-digital pilot
-5. Rhizome research partnership
-6. Municipal street-art/open-public-art partnership
+2. National Gallery of Art item-level open-access IIIF media and CC0 metadata
+3. MoMA CC0 metadata, with no copied artwork images
+4. Whitney CC0 metadata after confirming API implementation details
+5. Direct artist/institution permissioned born-digital pilot
+6. Rhizome research partnership
+7. Municipal street-art/open-public-art partnership
 
 This order adds modern and born-digital depth without weakening ARCHAI's rights-aware foundation.
 
@@ -71,6 +73,7 @@ This order adds modern and born-digital depth without weakening ARCHAI's rights-
 
 - Smithsonian Open Access FAQ and API: https://www.si.edu/openaccess
 - Smithsonian Terms of Use: https://www.si.edu/termsofuse
+- National Gallery of Art Open Data: https://github.com/NationalGalleryOfArt/opendata
 - MoMA collection dataset: https://github.com/MuseumofModernArt/collection
 - Whitney Open Access: https://whitney.org/open-access
 - Tate collection dataset: https://github.com/tategallery/collection

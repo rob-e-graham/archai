@@ -25,6 +25,15 @@ Each harvester fetches objects from a museum API, generates embeddings via Ollam
 
 Before adding or refreshing public-demo collection data, run the legal harvest bot. It reads `collection-targets.json`, checks each target's policy and verification state, and only runs harvesters that pass the current legal / quality gate.
 
+### National Gallery of Art
+
+```bash
+node scripts/nga-harvester.js --dry-run --limit 30
+node scripts/nga-harvester.js --limit 150
+```
+
+The NGA export is large, so the harvester streams `objects.csv` and `published_images.csv` directly. Metadata is CC0. Public media is accepted only when the source record explicitly contains `openaccess=1`; fair-use images marked `0` are counted and excluded.
+
 ```bash
 # Report only from the repository root: shows ready/live/review/blocked queues
 npm --prefix backend-archai run harvest:legal

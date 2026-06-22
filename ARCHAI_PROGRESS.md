@@ -940,3 +940,15 @@ Next safe increment:
 2. Capture one institution-owned or artist-permissioned pilot work with Browsertrix.
 3. Persist manifests and rights reviews in the institutional CMS/DAMS instead of runtime memory.
 4. Build the Smithsonian harvester with a strict item-level CC0 media gate.
+
+## National Gallery of Art onboarding — 2026-06-22
+
+- Verified the NGA collection dataset is CC0 and updated approximately daily.
+- Confirmed linked media has a separate item-level `openaccess` field.
+- Added `nga-harvester.js`, which streams the large CSV exports without cloning the roughly 5 GB repository.
+- The harvester joins objects to IIIF images using the NGA TMS object ID.
+- It accepts only `published_images.openaccess=1` and explicitly counts/excludes `openaccess=0` fair-use derivatives.
+- Preserves source UUIDs, stable object links, IIIF bases, assistive image descriptions, dimensions, provenance, attribution, and Wikidata IDs.
+- Registered NGA with the legal harvest bot as a verified, ready source.
+- Full dry run passed: 68,592 open-access image records found, 60,135 fair-use/restricted image records rejected, and 63,200 image-backed objects eligible for rights-safe selection.
+- No NGA records have been written to Qdrant yet; the source is validated and ready for a deliberate live onboarding run.
