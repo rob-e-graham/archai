@@ -902,3 +902,41 @@ Important boundary:
 - This is runtime-session persistence, not durable production storage.
 - Directus or SQLite-backed persistence is still required before public/institutional deployment.
 - The current implementation is useful for demo realism and workflow testing: create object → assign AUX.IO → preview → save to backend session.
+
+## Born-digital manifestation and legal-source pass — 2026-06-22
+
+Reviewed the proposed street-art, contemporary-art, and born-digital sources against authoritative licence and access information. The earlier source notes were too optimistic about the reuse of modern-art images.
+
+Implemented:
+
+- Expanded published media from image/video/audio into a manifestation model covering documents, 3D, software, web archives, emulation, and live external works.
+- Added structured manifestation-level rights and capture provenance schemas.
+- Added curator manifest registration at `POST /api/media/published`.
+- Added a publication gate: media cannot publish until rights are explicitly `cleared`; WACZ captures also require capture provenance.
+- Added byte-range WACZ delivery at `GET /api/media/published/:mediaId/archive` for cleared, published captures.
+- Added [BORN_DIGITAL_CAPTURE_AND_REPLAY.md](./backend-archai/docs/BORN_DIGITAL_CAPTURE_AND_REPLAY.md).
+- Added [CONTEMPORARY_AND_STREET_ART_SOURCE_AUDIT.md](./backend-archai/scripts/CONTEMPORARY_AND_STREET_ART_SOURCE_AUDIT.md).
+- Linked the new model from the AUX.IO runtime and collection onboarding documents.
+
+Legal/source findings:
+
+- Smithsonian item-level CC0 assets are the strongest next modern-content candidate.
+- MoMA metadata is CC0, but its artwork images are expressly excluded.
+- Whitney provides CC0 open datasets/API data, but media still needs item-level verification.
+- Tate's CC0 dataset is an unmaintained 2014 metadata snapshot and excludes images.
+- Rhizome ArtBase is a strong research partner and methodological model, not a source to republish without artist/Rhizome permission.
+- No officially licensed open Street Art Cities harvesting API was verified; treat it as a partnership lead, not an automatic source.
+
+Verification:
+
+- JavaScript syntax checks passed for the changed backend files.
+- Manifest schema validation passed.
+- Live backend test: review-gated WACZ registration succeeded and publication was correctly blocked with HTTP 409.
+- Live backend test: rights-cleared WACZ with capture provenance published successfully; archive delivery correctly returned 404 while the actual WACZ was absent.
+
+Next safe increment:
+
+1. Self-host a pinned ReplayWeb.page viewer on an isolated replay origin.
+2. Capture one institution-owned or artist-permissioned pilot work with Browsertrix.
+3. Persist manifests and rights reviews in the institutional CMS/DAMS instead of runtime memory.
+4. Build the Smithsonian harvester with a strict item-level CC0 media gate.

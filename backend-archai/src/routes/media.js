@@ -3,15 +3,17 @@ import fs from 'node:fs';
 import fsp from 'node:fs/promises';
 import path from 'node:path';
 import { requireRole } from '../middleware/requireRole.js';
-import { listPublishedMedia, getPublishedMedia, publishMediaManifest } from '../services/mediaPublishService.js';
+import { ZodError } from 'zod';
+import { listPublishedMedia, getPublishedMedia, publishMediaManifest, registerMediaManifest } from '../services/mediaPublishService.js';
 import { repo } from '../services/objectRepository.js';
 import { env } from '../config/env.js';
 
 export const mediaRouter = Router();
 
-function safeMediaCachePath(mediaId){
-  const safe = String(mediaId).replace(/[^a-zA-Z0-9._-]/g, '_');
-  return path.resolve(process.cwd(), env.media.cacheDir, `${safe}.mp4`);
+function safeMediaCachePath(media, fallbackExtension = ''){
+  const requested = media.storageFilename || `${media.mediaId}${fallbackExtension}`;
+  const safe = path.basename(String(requested)).replace(/[^a-zA-Z0-9._-]/g, '_');
+  return path.resolve(process.cwd(), env.media.cacheDir, safe);
 }
 
 async function statOrNull(p){
@@ -24,6 +26,20 @@ mediaRouter.get('/published', (req, res) => {
   res.json({ ok: true, media: listPublishedMedia({ objectId, status }) });
 });
 
+mediaRouter.post('/published', requireRole('curator'), (req, res) => {
+  try {
+    const media = registerMediaManifest(req.body);
+    if (!media) return res.status(409).json({ ok: false, error: 'mediaId already exists' });
+    repo.audit({ type: 'media.register', actor: req.archai.user.email, summary: `Registered media ${media.mediaId} for ${media.objectId}` });
+    res.status(201).json({ ok: true, media });
+  } catch (error) {
+    if (error instanceof ZodError) {
+      return res.status(400).json({ ok: false, error: 'Invalid media manifest', issues: error.issues });
+    }
+    throw error;
+  }
+});
+
 mediaRouter.get('/published/:mediaId/manifest', (req, res) => {
   const media = getPublishedMedia(req.params.mediaId);
   if (!media) return res.status(404).json({ ok: false, error: 'Published media not found' });
@@ -34,6 +50,7 @@ mediaRouter.post('/published/:mediaId/publish', requireRole('curator'), (req, re
   const objectId = String(req.body?.objectId || '');
   const media = publishMediaManifest({ objectId, mediaId: req.params.mediaId, actor: req.archai.user.email });
   if (!media) return res.status(404).json({ ok: false, error: 'Published media record not found' });
+  if (media.blocked) return res.status(409).json({ ok: false, error: media.reason, media: media.media });
   const objectRecord = repo.getObject(objectId);
   if (objectRecord) {
     const publishedMedia = listPublishedMedia({ objectId });
@@ -62,7 +79,7 @@ mediaRouter.get('/published/:mediaId/stream', async (req, res) => {
     return res.status(400).json({ ok: false, error: `Streaming endpoint is for video/audio. Use poster/thumb for ${media.kind}.`, media });
   }
 
-  const localPath = safeMediaCachePath(req.params.mediaId);
+  const localPath = safeMediaCachePath(media, media.kind === 'audio' ? '.mp3' : '.mp4');
   const st = await statOrNull(localPath);
   if (!st || !st.isFile()) {
     return res.status(404).json({
@@ -107,6 +124,49 @@ mediaRouter.get('/published/:mediaId/stream', async (req, res) => {
     'Content-Range': `bytes ${start}-${end}/${st.size}`,
     'Accept-Ranges': 'bytes',
     'Cache-Control': 'private, max-age=60',
+  });
+  fs.createReadStream(localPath, { start, end }).pipe(res);
+});
+
+mediaRouter.get('/published/:mediaId/archive', async (req, res) => {
+  const media = getPublishedMedia(req.params.mediaId);
+  if (!media) return res.status(404).json({ ok: false, error: 'Published media not found' });
+  if (media.kind !== 'web_archive') {
+    return res.status(400).json({ ok: false, error: 'Archive delivery is only available for web_archive manifestations' });
+  }
+  if (media.publishedStatus !== 'published' || media.rights?.status !== 'cleared') {
+    return res.status(403).json({ ok: false, error: 'Archived manifestation is not cleared and published for access' });
+  }
+
+  const localPath = safeMediaCachePath(media, '.wacz');
+  const st = await statOrNull(localPath);
+  if (!st || !st.isFile()) {
+    return res.status(404).json({ ok: false, error: 'Local WACZ capture not found', expectedLocalPath: localPath });
+  }
+
+  const range = req.headers.range;
+  res.set({
+    'Content-Type': 'application/wacz+zip',
+    'Accept-Ranges': 'bytes',
+    'Cache-Control': 'private, max-age=60',
+    'Content-Disposition': `inline; filename="${path.basename(localPath)}"`,
+  });
+  if (!range) {
+    res.set('Content-Length', String(st.size));
+    fs.createReadStream(localPath).pipe(res);
+    return;
+  }
+
+  const match = /bytes=(\d*)-(\d*)/.exec(range);
+  if (!match) return res.status(416).end();
+  const start = match[1] ? Number(match[1]) : 0;
+  const end = match[2] ? Number(match[2]) : st.size - 1;
+  if (!Number.isFinite(start) || !Number.isFinite(end) || start > end || end >= st.size) {
+    return res.status(416).set('Content-Range', `bytes */${st.size}`).end();
+  }
+  res.status(206).set({
+    'Content-Length': String(end - start + 1),
+    'Content-Range': `bytes ${start}-${end}/${st.size}`,
   });
   fs.createReadStream(localPath, { start, end }).pipe(res);
 });

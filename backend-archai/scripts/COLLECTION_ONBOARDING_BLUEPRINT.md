@@ -74,7 +74,10 @@ Every new harvester should aim to output these core fields where possible:
 - `media_thumbnail`
 - `media_medium`
 - `media_large`
+- `manifestations`
 - `embedding_text`
+
+`manifestations` keeps each accessible representation separate. A born-digital work may have a live URL, WACZ capture, software package, emulated runtime, video walkthrough, and screenshots with different rights and access conditions. See `backend-archai/docs/BORN_DIGITAL_CAPTURE_AND_REPLAY.md`.
 
 ## Translation-aware payload additions
 
@@ -130,6 +133,7 @@ Use the legal / quality gate matrix before starting any new harvester:
 
 - [INTERNATIONAL_ONBOARDING_MATRIX.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/backend-archai/scripts/INTERNATIONAL_ONBOARDING_MATRIX.md)
 - [collection-targets.json](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/backend-archai/scripts/collection-targets.json)
+- [CONTEMPORARY_AND_STREET_ART_SOURCE_AUDIT.md](./CONTEMPORARY_AND_STREET_ART_SOURCE_AUDIT.md)
 
 ### Australia / Aotearoa / Pacific
 
@@ -178,6 +182,8 @@ This keeps the interface fast and consistent.
 - Do not depend on live translation to make a record legible.
 - Do not flatten culturally sensitive metadata into generic text.
 - Do not treat rights metadata as optional.
+- Do not treat a public API or public webpage as permission to copy and replay contemporary media.
+- Do not describe a screenshot or video walkthrough as the interactive work itself.
 
 ## Current implementation start
 
