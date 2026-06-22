@@ -78,16 +78,16 @@
     "translation_mode": "source-first",
     "access_mode": "dataset",
     "api_key": "none",
-    "metadata_rights": "open data dataset",
-    "image_rights": "dataset verified, image reuse recheck recommended",
-    "public_demo_policy": "approved_dataset_with_image_rights_recheck",
-    "quality_gate": "schema-stable + image-availability-checked + attribution-preserved",
+    "metadata_rights": "CC BY 4.0 (Queensland Government open data, CKAN CSV)",
+    "image_rights": "metadata-only — per-object image API (collection.qagoma.qld.gov.au) is behind Cloudflare bot mitigation, returns HTTP 403 to automated requests",
+    "public_demo_policy": "approved_metadata_only_pending_image_api_access",
+    "quality_gate": "schema-stable + attribution-preserved (images excluded until API access arranged)",
     "cultural_protocol": "Review any Indigenous or culturally sensitive material in downstream records",
-    "verification_status": "partially_verified_2026_06_02",
+    "verification_status": "partially_verified_2026_06_22",
     "official_docs": [
       "https://www.data.qld.gov.au/dataset/qagoma-collection"
     ],
-    "notes": "Strong Australian and Asia-Pacific balancing source. Good dataset shape for onboarding, but image reuse terms should be rechecked at item level before public AUX.IO exposure."
+    "notes": "Strong Australian and Asia-Pacific balancing source. Metadata (CC BY 4.0) harvests cleanly via CKAN CSV. The per-object image API is Cloudflare-protected and blocks all automated requests (HTTP 403), so QAGOMA records are metadata-only and are skipped by the image-only AUX.IO page generator. Partnership outreach to the QAGOMA digital team for formal API/media access is the path to enabling images."
   },
   {
     "id": "nma",
@@ -375,18 +375,21 @@
     "translation_mode": "source-first",
     "access_mode": "open_data_api",
     "api_key": "none",
-    "metadata_rights": "OGL Canada (Vancouver) · CC BY 2.0 (Brussels) · NYC Open Data / Public Domain (NYC)",
+    "metadata_rights": "OGL Canada (Vancouver) · CC BY 2.0 (Brussels) · NYC Open Data / Public Domain (NYC) · CC BY 4.0 (Melbourne) · Public Domain (San Francisco) · Public Domain (Chicago)",
     "image_rights": "per-source: OGL / CC BY / public domain — all allow public display with attribution",
     "public_demo_policy": "approved_with_attribution",
     "quality_gate": "title-present + source-attribution-in-payload",
     "cultural_protocol": "Low cultural sensitivity risk; standard public art context",
-    "verification_status": "verified_2026_06_21",
+    "verification_status": "verified_2026_06_22",
     "official_docs": [
       "https://opendata.vancouver.ca/explore/dataset/public-art/",
       "https://opendata.brussels.be/explore/dataset/parcours_street_art/",
-      "https://data.cityofnewyork.us/Recreation/Art-in-the-Parks/4pt5-3vv4"
+      "https://data.cityofnewyork.us/Recreation/Art-in-the-Parks/4pt5-3vv4",
+      "https://data.melbourne.vic.gov.au/explore/dataset/outdoor-artworks/",
+      "https://data.sfgov.org/Culture-and-Recreation/Civic-Art-Collection/4hfa-5f7y",
+      "https://data.cityofchicago.org/Parks-Recreation/Public-Art/sj6t-9cju"
     ],
-    "notes": "Aggregates three city open-data portals: Vancouver Public Art (OGL Canada), Brussels Street Art Trail (CC BY 2.0), and NYC Parks Art in the Parks (public domain). No API key required for any source. Geolocation data (lat/lon) preserved in payload for future map views. Source attribution attached per record."
+    "notes": "Aggregates six city open-data portals: Vancouver Public Art (OGL Canada), Brussels Street Art Trail (CC BY 2.0), NYC Parks Art in the Parks (public domain), City of Melbourne Outdoor Artworks (CC BY 4.0), San Francisco Civic Art Collection (public domain), and City of Chicago Public Art (public domain). No API key required for any source. Geolocation data (lat/lon) preserved in payload for future map views. Source attribution attached per record."
   },
 
   {
@@ -521,9 +524,9 @@
     "access_mode": "api",
     "api_key": "none",
     "metadata_rights": "CC0 1.0 Universal",
-    "image_rights": "CC0 1.0 Universal — Getty Open Content Program (~140,000 images). Verified per-item via open_content flag in API response.",
+    "image_rights": "CC0 1.0 Universal — Getty Open Content Program (~140,000 images). Harvested via the Linked Art SPARQL endpoint (data.getty.edu/museum/collection/sparql) + per-object CIDOC-CRM JSON-LD; IIIF image service. The legacy collectionapi.getty.edu endpoint was retired and is no longer used.",
     "public_demo_policy": "approved_open",
-    "quality_gate": "open-content-flag-true + image-backed + CC0-confirmed",
+    "quality_gate": "linked-art-image-present + CC0-confirmed",
     "cultural_protocol": "Low cultural sensitivity risk; ancient art objects should use respectful contextualisation for Indigenous or sacred objects",
     "verification_status": "verified_2026_06_22",
     "official_docs": [

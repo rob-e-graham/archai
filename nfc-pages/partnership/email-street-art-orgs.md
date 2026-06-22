@@ -37,7 +37,7 @@ We're running an open call for street artists, collectives, and public art organ
 
 **What we're offering:**
 
-- Free A4 / A2 / A0 / sticker / postcard downloads for any object in our archive (20,000+ works across 17 institutions, growing weekly)
+- Free A4 / A2 / A0 / sticker / postcard downloads for any object in our archive (20,000+ works across 18 collections, growing weekly)
 - The **open-call page** for your community to participate: [https://fineartmedia.tech/archai/open-call]
 - Hashtag **#ARCHAIinTheWild** for community visibility
 - Happy to co-create custom poster runs for your organisation's upcoming events
@@ -82,7 +82,7 @@ Rob
 
 1. **Free, immediate value** — no account, no cost, download now
 2. **Street-first framing** — posters designed for walls, not galleries
-3. **Archive as material** — 20,000+ works from 17 institutions, CC0/open access
+3. **Archive as material** — 20,000+ works from 18 collections, CC0/open access
 4. **#ARCHAIinTheWild** community hook — they can see other activations
 5. **Hosted pilots** — custom deployments available for events and organisations
 

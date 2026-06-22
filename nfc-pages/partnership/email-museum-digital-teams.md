@@ -32,7 +32,7 @@ I'm writing because [Institution] has been a significant source in our collectio
 **What ARCHAI does technically:**
 
 - Local LLM (Ollama / qwen2.5:32b or compatible) — no visitor data sent to third-party APIs
-- Vector search via Qdrant — semantic queries across 20,000+ objects from 17 institutions
+- Vector search via Qdrant — semantic queries across 20,000+ objects from 18 collections
 - Per-object AUX.IO pages: scannable via NFC or QR, conversational, mobile-first
 - Downloadable posters at A4 / A2 / A0 / sticker / postcard with IIIF images and attribution
 - Full technical documentation available — we support deployment and integration
@@ -47,7 +47,7 @@ I'm writing because [Institution] has been a significant source in our collectio
 
 **What's already working:**
 
-We currently harvest and serve [17 institutions including The Met, Rijksmuseum, Tate, Wellcome Collection, Smithsonian, Getty, Te Papa, M+, Brasiliana Museus, QAGOMA, and others]. Every harvest respects the source licence exactly — CC0 for image display, CC BY with attribution preserved in payload, metadata-only where images aren't cleared.
+We currently harvest and serve [18 collections including The Met, Rijksmuseum, Tate, Wellcome Collection, Smithsonian, Getty, Te Papa, M+, Brasiliana Museus, QAGOMA, multi-city street art, and others]. Every harvest respects the source licence exactly — CC0 for image display, CC BY with attribution preserved in payload, metadata-only where images aren't cleared.
 
 **What we're not:**
 
