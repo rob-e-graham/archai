@@ -63,16 +63,33 @@ async function fetchJSON(url, retries = 4) {
   }
 }
 
-// Inline CSV parser — handles quoted fields and commas inside quotes.
+// Inline CSV parser — handles quoted fields containing commas AND embedded newlines.
+// The QAGOMA CSV has multi-line quoted fields (e.g. CreditLine), so we must collect
+// whole records character-by-character before splitting on columns.
 function parseCSV(text) {
-  const lines = text.split(/\r?\n/);
-  if (!lines.length) return [];
-  const headers = splitCSVLine(lines[0]);
+  const records = [];
+  let buf = '';
+  let inQ = false;
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (c === '"') {
+      if (inQ && text[i + 1] === '"') { buf += '"'; i++; } // escaped ""
+      else { inQ = !inQ; buf += c; }                       // keep quote for splitCSVLine
+    } else if ((c === '\n' || c === '\r') && !inQ) {
+      if (c === '\r' && text[i + 1] === '\n') i++;         // consume \r\n as one
+      if (buf) { records.push(buf); buf = ''; }
+    } else {
+      buf += c;
+    }
+  }
+  if (buf) records.push(buf);
+  if (!records.length) return [];
+
+  const headers = splitCSVLine(records[0]);
   const rows = [];
-  for (let i = 1; i < lines.length; i++) {
-    const line = lines[i].trim();
-    if (!line) continue;
-    const vals = splitCSVLine(line);
+  for (let i = 1; i < records.length; i++) {
+    if (!records[i].trim()) continue;
+    const vals = splitCSVLine(records[i]);
     const obj = {};
     headers.forEach((h, idx) => { obj[h.trim()] = (vals[idx] || '').trim(); });
     rows.push(obj);
