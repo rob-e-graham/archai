@@ -198,24 +198,12 @@ function normaliseRecord(row) {
   };
 }
 
-// Attempt to fetch image URL from the per-object QAGOMA API endpoint.
-// The CollectionOnlineAPI column holds a JSON API URL for each object.
-async function fetchObjectImage(apiUrl) {
-  if (!apiUrl) return null;
-  try {
-    const res = await fetch(apiUrl, {
-      headers: { 'User-Agent': 'ARCHAI/1.0 (research; rob@fineartmedia.tech)', Accept: 'application/json' },
-      signal: AbortSignal.timeout(6000),
-    });
-    if (!res.ok) return null;
-    const data = await res.json();
-    // Try common image URL patterns in QAGOMA/EMu API responses
-    return data.image_url || data.imageUrl || data.thumbnail_url ||
-           data.media?.[0]?.url || data.images?.[0]?.url ||
-           data.primaryimage?.url || data.primaryImage?.url || null;
-  } catch (_) {
-    return null;
-  }
+// QAGOMA image API (collection.qagoma.qld.gov.au/api/objects/{irn}) is protected
+// by Cloudflare bot mitigation and returns HTTP 403 for all automated requests.
+// Images are therefore metadata-only until formal API access is arranged with QAGOMA.
+// This is a strong prompt for partnership outreach — see nfc-pages/partnership/email-museum-digital-teams.md
+function fetchObjectImage(_apiUrl) {
+  return Promise.resolve(null);
 }
 
 // Check if a record is usable — must have title and identifier.
@@ -380,8 +368,9 @@ async function main() {
   console.log(`\n\n  ════════════════════════════════════════════`);
   console.log(`  ✓ QAGOMA harvest complete`);
   console.log(`  → ${success} objects embedded into '${COLLECTION}' (offset: ${ID_OFFSET})`);
-  console.log(`  → ${withImage} with image URL (via CollectionOnlineAPI)`);
   console.log(`  → ${errors} errors`);
+  console.log(`  → Images: metadata-only (QAGOMA image API is Cloudflare-protected)`);
+  console.log(`  → To add images: request API access via QAGOMA partnership outreach`);
   console.log(`  → Dataset: Queensland Government Open Data (CC BY 4.0)`);
   console.log(`  → Coverage: Asia-Pacific, Aboriginal & Torres Strait Islander,`);
   console.log(`              Australian, international modern/contemporary art\n`);
