@@ -30,7 +30,7 @@ The research draws on a lineage extending from the Greek method of loci (Simonid
 
 **Sovereign infrastructure** — all AI inference (Ollama / qwen2.5:32b), vector search (Qdrant), and data processing runs locally. No visitor query, no object record, and no institutional data is transmitted to third-party cloud services.
 
-**Cross-institutional semantic search** — nomic-embed-text embeddings (768-dimension) index 20,000+ objects across 18 international collections simultaneously. Queries are natural language; results are merged by cosine similarity across all collections.
+**Cross-institutional semantic search** — nomic-embed-text embeddings (768-dimension) index the current 3,147-record pilot corpus across international museum, gallery, open-data, and digital-culture sources. Queries are natural language; results are merged by cosine similarity across all collections.
 
 **Physical deployment** — a five-format downloadable artefact system (A4, A2, A0, postcard, sticker) generated client-side via Canvas API. Each format embeds a QR code linking to the live AUX.IO conversation page, a IIIF-sourced image from the originating institution, and full attribution. Museum objects enter public space — paste-up, zine, mural companion — while remaining connected to a live conversational interface.
 
@@ -40,7 +40,7 @@ The research draws on a lineage extending from the Greek method of loci (Simonid
 
 ## Collection Status — June 2026
 
-18 collections · 20,000+ objects · 2,357 AUX.IO visitor pages generated
+20 live collections/data sources · 3,147 current records · 1,519 public AUX.IO visitor pages generated
 
 | Collection | Institution | Objects | Licence | Status |
 |---|---|---|---|---|
@@ -60,7 +60,7 @@ The research draws on a lineage extending from the Greek method of loci (Simonid
 | `archai_smithsonian` | Smithsonian Institution | 150 | CC0 (API flag gate) | Live |
 | `archai_getty` | J. Paul Getty Museum, Los Angeles | 200 | CC0 (Linked Art SPARQL) | Live |
 | `archai_qagoma` | QAGOMA, Brisbane | — | Metadata-only (image API blocked) | Partial |
-| `archai_streetart` | Municipal Open Data — 6 cities | varies | CC BY 4.0 / Open Government / Public Domain | Live |
+| `archai_streetart` | Municipal public/street-art data | 439 | Brussels CC BY 4.0 images; other municipal feeds metadata/source-link only | Mixed: 139 public images + staff metadata |
 | `archai_rawg` | RAWG Video Games Database | varies | RAWG API (attribution required) | Live |
 | `archai_curator` | All live collections + visitor comments | Built on demand | Mixed | Live |
 
@@ -76,11 +76,11 @@ Twelve interconnected contributions characterise the research:
 4. **Conversational objects** — individual collection items speaking to visitors from their own validated metadata, via NFC tap or QR scan.
 5. **Five-layer hallucination prevention** — structured metadata schemas, AI epistemic constraints, real-time validation, human curator sign-off, and post-launch monitoring.
 6. **Transferable hardware reference implementation** — a sovereign, scalable open-source stack adaptable to institutions of varying size. Total capital investment: approximately AUD 10,000–20,000 one-time; no subscriptions.
-7. **Cross-institutional open data pipeline** — automated harvesting from 18 international sources with per-source licence verification, IIIF integration, and legal gate enforcement at point of ingest.
+7. **Cross-institutional open data pipeline** — automated harvesting from international museum, gallery, open-data, and digital-culture sources with per-source licence verification, IIIF integration, and legal gate enforcement at point of ingest.
 8. **Physical deployment layer** — five-format downloadable artefact system (A4/A2/A0/postcard/sticker) generated client-side via Canvas API, enabling museum objects to enter public space with live QR links back to conversational interfaces.
 9. **Multilingual audio interface** — voice input (Whisper, local), voice output (Coqui TTS), extending conversational access across languages and interaction modalities.
 10. **Multi-category public cultural data integration** — municipal open data (street and public art, six cities) and interactive digital culture (RAWG games) integrated under identical licence-gate enforcement as institutional museum collections.
-11. **Thematic discovery navigation** — seven disciplinary group tabs with per-institution sub-tabs across 2,357 objects, enabling cross-collection discovery without controlled vocabulary dependency.
+11. **Thematic discovery navigation** — disciplinary group tabs with per-institution sub-tabs across the current 3,147-record corpus, enabling cross-collection discovery without controlled vocabulary dependency.
 12. **Legal gate enforcement at scale** — per-source rights verification documented in a collection-targets matrix, implemented in harvester code, and surfaced on every public object page.
 
 ---
@@ -90,7 +90,7 @@ Twelve interconnected contributions characterise the research:
 ```
 ┌──────────────────────────────────────────────────────────────────┐
 │  LAYER 3 — Interface                                             │
-│  ARCHAI Web App (v11.5) · AUX.IO Visitor Pages (2,357 pages)    │
+│  ARCHAI Web App (v11.5) · AUX.IO Visitor Pages (1,519 pages)    │
 │  Role-aware · NFC/QR/link/beacon · Curator · Collections ·      │
 │  Technician · Volunteer · Visitor · Admin                        │
 └──────────────────────┬───────────────────────────────────────────┘
@@ -141,7 +141,7 @@ From any AUX.IO page, a visitor may:
 - download a print-ready poster in five formats
 - share the page, copy the link, or post directly
 - submit a response that joins the collection record (curator-reviewed before publication)
-- navigate to related objects across all 18 collections
+- navigate to related objects across the current live collection set
 
 The open call **#ARCHAIinTheWild** invites communities — street artists, collectives, educators, zine makers — to take AUX.IO posters into public space. Every poster embeds a QR code that connects back to the live conversational interface.
 
@@ -175,7 +175,7 @@ archai/
 │   ├── aux-id-map.json            ← Permanent canonical object → AUX.IO ID registry
 │   ├── captive-portal.html
 │   ├── vendor/qrcode-generator.js ← Self-hosted MIT QR generator
-│   └── v/                         ← 1380 audited visitor pages
+│   └── v/                         ← 1519 audited visitor pages
 ├── docs/
 │   ├── ARCHAI_ISEA2026_Rob_Graham.pdf         ← Conference paper
 │   └── ARCHAI_ISEA2026_UPDATE_2026-06.md      ← Post-submission update
@@ -252,6 +252,7 @@ ARCHAI is a working research prototype, not a finished commercial product. All p
 | **v11.5.6** | **AUX.IO management workflow deepened: staff can create a new AUX.IO record, edit placement, assign from loaded records, draft an institution-owned object for testing, preview the visitor page, and export/save rights-aware config data** |
 | **v11.5.7** | **AUX.IO save path made real for the current backend session: new tag assignments and institution draft objects can be posted to `/api/nfc`, stored in the runtime repository, audited, and returned to the app while Directus remains the production persistence target** |
 | **v11.6** | **Nineteen collection sources and 3147 staff-searchable records aligned across app/backend; NGA onboarded with an item-level open-access gate; 2357 image URLs audited; 473 broken images and 504 rights-held media records removed from public presentation; 1380 AUX.IO pages regenerated; 440 rights-cleared pages gain compact QR poster/sticker/postcard tools; born-digital WACZ replay and an EaaSI integration boundary documented** |
+| **v11.6.1** | **Brussels public street-art images enabled through the dataset's CC BY 4.0 licence, Vancouver/Melbourne municipal feeds retained as metadata/source-link only, curator rebuilt to 3147 records, and AUX.IO regenerated to 1519 public pages with 139 street-art pages** |
 
 ---
 

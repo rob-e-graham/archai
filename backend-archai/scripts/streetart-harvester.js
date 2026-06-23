@@ -48,7 +48,10 @@ const SOURCES = {
   brussels: {
     name:        'City of Brussels — Street Art Trail',
     country:     'Belgium',
-    licence:     'Creative Commons Attribution 2.0 (CC BY 2.0)',
+    licence:     'Creative Commons Attribution 4.0 (CC BY 4.0)',
+    licenceUrl:  'https://creativecommons.org/licenses/by/4.0/deed.en',
+    mediaDisplayAllowed: true,
+    mediaRightsBasis: 'Brussels Open Data dataset reports CC BY 4.0 and exposes image files; attribution preserved from record metadata',
     sourceUrl:   'https://opendata.brussels.be/explore/dataset/parcours_street_art/',
     apiUrl:      'https://opendata.brussels.be/api/explore/v2.1/catalog/datasets/parcours_street_art/records?limit=100',
     idPrefix:    'bru',
@@ -103,9 +106,10 @@ function mapVancouver(r, source) {
     .filter(Boolean).join('; ') || 'Unknown';
   const address = fields.locationonsite || fields.geo_local_area || '';
   const year    = fields.yearofinstallation || fields.year_of_installation || '';
-  const medium  = fields.type_of_art_work || fields.medium || '';
-  const desc    = fields.description_of_artwork || '';
-  const img     = fields.photo_url || (fields.photos && fields.photos[0]) || '';
+  const medium  = fields.type_of_art_work || fields.primarymaterial || fields.type || fields.medium || '';
+  const desc    = fields.description_of_artwork || fields.descriptionofwork || '';
+  const photo   = fields.photourl || fields.photo_url || '';
+  const img     = typeof photo === 'object' ? (photo.url || '') : (photo || (fields.photos && fields.photos[0]) || '');
   const lat     = fields.geo_point_2d?.lat ?? '';
   const lon     = fields.geo_point_2d?.lon ?? '';
 
@@ -125,19 +129,24 @@ function mapVancouver(r, source) {
     title, artist, address, date_range: String(year), medium, description,
     media_thumbnail: img, media_medium: img, media_large: img,
     lat: String(lat), lon: String(lon),
-    source_url: source.sourceUrl,
+    source_url: fields.url || source.sourceUrl,
+    media_credit: fields.photocredits || '',
   };
 }
 
 function mapBrussels(r, source) {
   const fields = r.fields || r;
-  const title   = fields.titre_oeuvre || fields.title || fields.naam_werk || '';
-  const artist  = fields.artiste || fields.artist || fields.kunstenaar || 'Unknown';
-  const address = fields.adresse || fields.address || fields.adres || '';
-  const year    = fields.annee || fields.year || fields.jaar || '';
+  const title   = fields.name_en || fields.name_fr || fields.name_nl || fields.titre_oeuvre || fields.title || fields.naam_werk || '';
+  const artist  = fields.artist_name || fields.artiste || fields.artist || fields.kunstenaar || 'Unknown';
+  const address = fields.location_en || fields.address_fr || fields.address_nl || fields.adresse || fields.address || fields.adres || '';
+  const year    = fields.real_date || fields.annee || fields.year || fields.jaar || '';
   const medium  = fields.technique || fields.medium || '';
-  const desc    = fields.description || fields.omschrijving || fields.description_fr || '';
-  const img     = fields.photo?.url || fields.image || '';
+  const desc    = fields.description_en || fields.description || fields.omschrijving || fields.description_fr || fields.description_nl || '';
+  const image   = fields.url_image || fields.photo || fields.image || '';
+  const img     = typeof image === 'object' ? (image.url || '') : (image || '');
+  const mediaCredit = typeof image === 'object' && image.filename
+    ? image.filename.replace(/^.*?©-?/, '').replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ').trim()
+    : '';
   const geo     = fields.geoloc || fields.geo_point_2d || {};
   const lat     = geo.lat ?? '';
   const lon     = geo.lon ?? '';
@@ -158,7 +167,8 @@ function mapBrussels(r, source) {
     title: title || 'Untitled', artist, address, date_range: String(year), medium, description,
     media_thumbnail: img, media_medium: img, media_large: img,
     lat: String(lat), lon: String(lon),
-    source_url: source.sourceUrl,
+    source_url: fields.url_en || fields.url_fr || fields.url_nl || source.sourceUrl,
+    media_credit: mediaCredit || 'City of Brussels / source record',
   };
 }
 
@@ -425,9 +435,14 @@ async function main() {
           lon:                mapped.lon,
           description:        mapped.description,
           licence:            source.licence,
-          media_public_display_allowed: false,
+          licence_url:         source.licenceUrl || '',
+          media_public_display_allowed: Boolean(source.mediaDisplayAllowed && mapped.media_thumbnail),
           poster_download_allowed: false,
-          media_rights_basis: 'Municipal metadata only; artist and photographer media rights require item-level review',
+          media_rights_basis: source.mediaDisplayAllowed && mapped.media_thumbnail
+            ? source.mediaRightsBasis
+            : 'Municipal metadata only; artist and photographer media rights require item-level review',
+          attribution:         mapped.media_credit || source.name,
+          media_credit:        mapped.media_credit || '',
           source_url:         mapped.source_url,
           media_thumbnail:    mapped.media_thumbnail,
           media_medium:       mapped.media_medium,
@@ -462,7 +477,7 @@ async function main() {
   console.log(`  ✓ Street art harvest complete`);
   console.log(`  → ${globalSuccess} total objects embedded into '${COLLECTION}'`);
   console.log(`  → ${globalErrors} errors`);
-  console.log(`  → Sources: Vancouver (OGL), Brussels (CC BY 2.0), NYC Parks,`);
+  console.log(`  → Sources: Vancouver (OGL), Brussels (CC BY 4.0), NYC Parks,`);
   console.log(`             Melbourne (CC BY 4.0), San Francisco (Public Domain), Chicago (Public Domain)\n`);
 }
 

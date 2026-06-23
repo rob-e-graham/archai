@@ -24,12 +24,16 @@ This audit tested the first supplied image URL for every image-bearing record. I
 | RAWG | 193 | 193 | 193 | 0 | 193 | 0 | API display with an active RAWG link; redistribution/derivative downloads disabled |
 | Rijksmuseum | 150 | 150 | 150 | 0 | 150 | 0 | Public-domain display works; print derivatives remain fail-closed until explicitly migrated |
 | Smithsonian Institution | 145 | 145 | 141 | 4 | 141 | 141 | Only item-level `usage.access=CC0` media; print formats enabled for healthy images |
-| Municipal street-art data | 439 | 0 | 0 | 0 | 0 | 0 | Metadata-only; artist and photographer media rights require item-level review |
+| Municipal street-art data | 439 | 139 | 139 | 0 | 139 | 0 | Brussels CC BY 4.0 images enabled for display; Vancouver and Melbourne remain metadata/source-link only |
 | Tate | 150 | 0 | 0 | 0 | 0 | 0 | CC0 metadata only; Tate's dataset explicitly excludes images |
 | Te Papa Tongarewa | 95 | 95 | 95 | 0 | 0 | 0 | Preview-first/item-specific rights; held from the current exact-rights AUX.IO gate |
 | Victoria and Albert Museum | 300 | 300 | 299 | 1 | 0 | 0 | Media is technically healthy but held pending an explicit reusable-media migration |
 | Wellcome Collection | 150 | 150 | 149 | 1 | 149 | 149 | Item-level open licences; derivative-friendly records gain print formats |
-| **Total** | **3147** | **2357** | **1884** | **473** | **1380** | **440** | **790 metadata-only records; 504 otherwise healthy records held by public-media policy** |
+| **Total** | **3147** | **2496** | **2023** | **473** | **1519** | **440** | **651 metadata-only records; 504 otherwise healthy records held by public-media policy** |
+
+## Update — 23 June 2026
+
+The street-art harvester was updated after discovering that the Brussels Open Data feed exposes image files through `url_image` and reports CC BY 4.0 in the dataset metadata. ARCHAI now enables public display for 139 Brussels street-art records, preserves source URLs and media credit strings, and keeps poster/postcard download disabled. Other municipal public-art feeds remain metadata-only until direct image URLs and item-level media rights are clearer.
 
 ## Publication rules
 
@@ -64,3 +68,4 @@ Then rebuild `archai_curator`, regenerate AUX.IO, and run the generated-page ver
 - Re-harvest Getty only from explicit item-level Open Content image references.
 - Review V&A, Te Papa, M+, Met, Rijksmuseum, CMA, and Europeana media terms source by source before enabling derivative downloads.
 - Seek a written Street Art Cities research/data partnership before any public integration; its standard academic exports exclude images.
+- Repair or replace the NYC Parks street/public-art endpoint; the previously configured Socrata endpoint returned 404 during the 23 June re-harvest.

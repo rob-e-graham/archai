@@ -1093,3 +1093,29 @@ Hosting decision:
 - keep the operational staff app behind Tailscale, institutional VPN, or Cloudflare Access until server-side authentication and deny-by-default authorisation are complete.
 
 The full hosting boundary and launch checklist are in [docs/PUBLIC_APP_DEMO_HOSTING.md](./docs/PUBLIC_APP_DEMO_HOSTING.md). The key blocker is that the current prototype request context defaults unauthenticated requests to `admin`; client-side role switching is not a security boundary.
+
+## Street-art image recovery and rights split - 2026-06-23
+
+Street/public-art records were present in `archai_streetart` but looked absent from the website because the public demo correctly filtered to image-ready records. The initial street-art harvest had also missed Brussels' current image field name (`url_image`) and treated all municipal street/public-art feeds as metadata-only.
+
+What changed:
+
+- updated `backend-archai/scripts/streetart-harvester.js` to read Brussels `url_image.url`, English/French/Dutch titles and descriptions, source record URLs, and media credit strings;
+- corrected Brussels dataset licence to CC BY 4.0 using the dataset metadata reported by the Opendatasoft API;
+- enabled `media_public_display_allowed` only for Brussels records with image URLs;
+- preserved `poster_download_allowed: false` for street art, so source-authorised display is separated from derivative poster/postcard reuse;
+- kept Vancouver and Melbourne records searchable as metadata/source-link records until direct image URLs and media rights are clearer;
+- noted that the previous NYC Open Data endpoint currently returns 404 and needs endpoint repair before it should be considered part of the live street-art source set.
+
+Operational result:
+
+- `archai_streetart` remains at 439 records;
+- 139 Brussels street-art records now have public-display image URLs and CC BY 4.0 rights text;
+- 300 remaining public-art records remain metadata-only;
+- `archai_curator` was rebuilt successfully with 3147 records;
+- AUX.IO was regenerated with 1519 visitor pages, including 139 Public Street Art pages.
+
+Website behaviour:
+
+- if a scoped source returns metadata but no public image-ready records, the public demo now shows a clear metadata-only panel with title, maker/place/date, media-rights basis, and source-record link instead of appearing broken;
+- image-enabled Brussels street-art searches now return image cards in the normal website search grid.
