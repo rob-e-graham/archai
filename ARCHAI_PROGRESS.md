@@ -20,6 +20,12 @@ Protect what is already working while we improve it:
 - treat desktop microphone selection and Whisper capture as an additive next layer
 - avoid replacing the live phone experience until a better path is genuinely proven
 
+## 2026-06-22 licence update
+
+- Replaced MPL-2.0 in `LICENSE` with All Rights Reserved notice (Copyright © 2026 Rob Graham)
+- `backend-archai/package.json` licence field changed from `MPL-2.0` to `UNLICENSED`
+- README and website copy update deferred to Codex pass (in progress)
+
 ## 2026-06-07 focus update
 
 Rob asked to start moving all next goals forward rather than only discussing them.

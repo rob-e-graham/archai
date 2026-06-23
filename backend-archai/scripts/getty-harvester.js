@@ -213,6 +213,8 @@ function parseGettyLinkedArt(obj, uri) {
     if (thumbUrl.includes('http')) imageUrl = thumbUrl;
   }
 
+  // Do NOT construct a speculative IIIF URL from the object UUID — the image resource ID
+  // in Getty's IIIF service is different from the object UUID and results in 404s.
   if (!imageUrl) return null;
   if (!isOpenContent) return null;
 

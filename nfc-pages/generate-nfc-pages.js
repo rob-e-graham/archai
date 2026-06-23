@@ -437,7 +437,7 @@ async function main() {
 
     // Build hero image
     const heroHtml = imgMedium
-      ? `<img src="${escHtml(imgMedium)}" alt="${escHtml(title)}" loading="eager">`
+      ? `<img src="${escHtml(imgMedium)}" alt="${escHtml(title)}" loading="eager" onerror="heroImageError(this)">`
       : `<div class="v-hero-empty">No image available<br>${escHtml(reg)}</div>`;
 
     // Build sub line
@@ -525,7 +525,7 @@ async function main() {
       const rNfc = allObjects[ri].nfcCode;
       const rSrc = allObjects[ri].sourceLabel || '';
       return `<a class="v-rel-card" href="${rNfc}.html">
-        <div class="v-rel-thumb">${rThumb ? `<img src="${escHtml(rThumb)}" loading="lazy">` : '<span class="v-rel-thumb-empty">▣</span>'}</div>
+        <div class="v-rel-thumb">${rThumb ? `<img src="${escHtml(rThumb)}" loading="lazy" onerror="this.closest('.v-rel-thumb').innerHTML='<span class=\\'v-rel-thumb-empty\\'>▣</span>'">` : '<span class="v-rel-thumb-empty">▣</span>'}</div>
         <div class="v-rel-title">${escHtml(rTitle)}</div>
         <div class="v-rel-meta">${escHtml(rSrc)}${rReg ? ' · ' + escHtml(rReg) : ''}</div>
       </a>`;

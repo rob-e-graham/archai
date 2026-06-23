@@ -1248,6 +1248,12 @@ body::after {
 // ARCHAI AUX.IO Visitor Page — Object Chat via Ollama (LAN)
 // ══════════════════════════════════════════════════════════════════
 
+// ── HERO IMAGE FALLBACK ─────────────────────────────────────────
+function heroImageError(img) {
+  const hero = img.closest('.v-hero');
+  if (hero) hero.innerHTML = '<div class="v-hero-empty">Image unavailable</div>';
+}
+
 // ── CONFIG ──────────────────────────────────────────────────────
 const OLLAMA_HOST = '{{OLLAMA_HOST}}';
 const BACKEND_PROXY = '{{BACKEND_PROXY}}';
