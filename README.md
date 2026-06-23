@@ -1,366 +1,257 @@
-# ARCHAI™ — Sovereign Semantic Heritage Infrastructure
+# ARCHAI™
+## Sovereign Semantic Heritage Infrastructure
 
-> "Museums are not silent repositories of Memory; they are living, thinking organisms, where imagination and knowledge, tradition and innovation meet." — Gayane Umerova, UNESCO, 2025
+> *"Museums are not silent repositories of Memory — they are living, thinking organisms, where imagination and knowledge, tradition and innovation meet. They are spaces where the past is not only preserved but reborn, where every visitor becomes part of a continuous human conversation."*
+> — Gayane Umerova, UNESCO Global Dialogue on AI and the Future of Museums, 2025
 
-**Version:** 11.5
-**Author:** Rob Graham · FAMTEC (Fine Art Media Tech) / RMIT University
-**Status:** Working prototype — rights-aware multi-institution semantic search + LLM object chat + AUX.IO visitor pages
-**Target:** ISEA2026 Dubai, 6th Summit on New Media Art Archiving (April 11–12)
-**Paper:** `docs/ARCHAI_ISEA2026_Rob_Graham.pdf`
-**Licence:** MPL-2.0 (code) · CC BY 4.0 (MV data) · CC0 (Met data) · V&A Open Access — see [NOTICE](NOTICE) for IP and trademark details
-**Trademark:** ARCHAI™ is a trademark of Rob Graham / FAMTEC. See NOTICE for usage terms.
+**ARCHAI** (Augmented Reanimation, Cultural Heritage, Artificial Intelligence) is a sovereign, open-source-method AI toolkit for cultural institutions and artist-run spaces. It layers conversational AI onto collection objects using local language models, vector semantic search, and NFC/QR-deployable visitor interfaces — with all computation running on locally-owned hardware and collection data never leaving the institution's physical infrastructure.
+
+The system is presented at the **6th Summit on New Media Art Archiving, ISEA2026 Dubai** (April 2026). The research paper is available at `docs/ARCHAI_ISEA2026_Rob_Graham.pdf`. A post-submission update covering June 2026 developments is at `docs/ARCHAI_ISEA2026_UPDATE_2026-06.md`.
 
 ---
 
-## Research Status
+## Research Context
 
-ARCHAI is an active doctoral research project undertaken by Rob Graham through RMIT University and FAMTEC.
+**Investigator:** Rob Graham  
+**Institution:** RMIT University, School of Design — PhD Candidate (DR235)  
+**Organisation:** FAMTEC (Fine Art Media Tech)  
+**Supervisors:** Chris Barker (Senior), co-supervisor TBC  
+**Contact:** rob@fineartmedia.tech  
 
-This repository contains an open-source reference implementation and associated research outputs.
+ARCHAI is a practice-based doctoral research project. In practice-based research, building constitutes the research — not as illustration of theory, but as the primary epistemic act. The commit history of this repository is part of the methodology. The prototype iterations are documented findings. The code advances arguments that the writing must then sustain.
 
-Current build planning is tracked in [ROADMAP.md](ROADMAP.md), [ARCHAI_PROGRESS.md](ARCHAI_PROGRESS.md), and [docs/APP_FUNCTIONAL_AUDIT_2026-06-03.md](docs/APP_FUNCTIONAL_AUDIT_2026-06-03.md).
-
-ARCHAI is a working research prototype, not a finished commercial product. FAMTEC is open to funded research partnerships, institutional pilot testing, accessibility evaluation, collection-data collaborations, software development support, grant partnerships, and feedback from museums, galleries, archives, universities, and aligned public-interest technology partners.
-
-For research, funding, testing, or development enquiries: rob@fineartmedia.tech
-
-Third-party collection data, trademarks, institutional names, and external systems remain the property of their respective owners. Use of the software does not imply endorsement by any institution represented within the project datasets.
-
-### Public demo rights policy
-
-ARCHAI preserves source licence and rights metadata per object. Public-facing ARCHAI and AUX.IO surfaces are intended to display only media that passes the current item-level legal gate for the research/demo stack.
-
-- source metadata may be ingested more broadly for research and systems testing
-- public-facing media should only be shown when the item resolves to an acceptable public/demo status
-- all object views now surface a normalized legal status and the underlying licence / rights detail
-- non-commercial / preview-first objects remain clearly labeled and should be treated as research/demo media, not general commercial reuse assets
-
-Current audited public-demo mix:
-- `1091` open / public-domain objects
-- `165` attribution-required objects
-- `59` share-alike objects
-- `205` mixed / non-commercial / preview-first objects
-- `0` rights-restricted objects
-- `0` unknown-rights objects
+The research draws on a lineage extending from the Greek method of loci (Simonides, Cicero, Quintilian) through Renaissance rhetorical prosopopoeia to contemporary AI data art (Anadol, Ernst, Kirschenbaum). ARCHAI proposes a specific inversion of the classical memory palace technique: where in the original, a human uses architecture as a mnemonic device for knowledge held internally, ARCHAI uses AI to externalise the building's knowledge to visitors moving through it. Each NFC tag is a locus. Each collection object is its own bounded epistemic domain. The visitor retains nothing artificially; the building has already done the remembering, and it speaks.
 
 ---
 
-## Origin
+## What ARCHAI Does
 
-The conceptual foundations of ARCHAI were developed over twenty years of professional practice across museums, galleries, and cultural institutions — including ACMI, TarraWarra Museum of Art, Heide Museum of Modern Art, Museums Victoria, Grande Experiences, and the National Communication Museum. All theoretical frameworks, design principles, and research questions emerged from this accumulated practitioner experience, entirely independent of any single institution.
+**Conversational collection access** — visitors hold natural language conversations with individual objects via NFC tap or QR scan. Each object speaks from its own curatorially-validated metadata record, with explicit epistemic boundaries. A five-layer hallucination prevention framework ensures responses remain grounded in verified curatorial fact.
 
-All code in this repository was written after departing the National Communication Museum, developed independently through FAMTEC as part of doctoral research at RMIT University. The first version committed to GitHub (v6, the `v0.1-alpha` release) was the first working prototype, built from the updated PhD document and the ISEA2026 white paper. Earlier conceptual iterations (v1–v4) existed as planning documents and Claude.ai conversation prototypes during the research design phase — the ideas that informed them are documented in the PhD drafts and the ARCHAI Master Plan.
+**Sovereign infrastructure** — all AI inference (Ollama / qwen2.5:32b), vector search (Qdrant), and data processing runs locally. No visitor query, no object record, and no institutional data is transmitted to third-party cloud services.
 
-This repository, its commit history, and its git log constitute a verifiable research journal of the entire development process.
+**Cross-institutional semantic search** — nomic-embed-text embeddings (768-dimension) index 20,000+ objects across 18 international collections simultaneously. Queries are natural language; results are merged by cosine similarity across all collections.
 
----
+**Physical deployment** — a five-format downloadable artefact system (A4, A2, A0, postcard, sticker) generated client-side via Canvas API. Each format embeds a QR code linking to the live AUX.IO conversation page, a IIIF-sourced image from the originating institution, and full attribution. Museum objects enter public space — paste-up, zine, mural companion — while remaining connected to a live conversational interface.
 
-## Try It Live
-
-| | |
-|---|---|
-| **ARCHAI Project Page** | [fineartmedia.tech/archai](https://fineartmedia.tech/archai) |
-| **AUX.IO — Talk to Museum Objects** | [fineartmedia.tech/aux](https://fineartmedia.tech/aux) |
-| **SafeChat — Crisis Safety Protocol** | [fineartmedia.tech/safechat](https://fineartmedia.tech/safechat) |
-| **KeyTec — API Credential Vault** | [fineartmedia.tech/keytec](https://fineartmedia.tech/keytec) |
-| **Dark Plates — Autonomous AI Artwork** | [darkplates.art](https://darkplates.art) |
+**Rights-aware harvesting** — every object in the system has passed a per-item legal gate at harvest time. Licence status (CC0, CC BY, metadata-only, open government) is enforced in code, not configuration, and surfaced on every object page. No image is displayed on a public ARCHAI or AUX.IO surface without having passed that gate.
 
 ---
 
-## What's Working Right Now
+## Collection Status — June 2026
 
-### ✅ Multi-Collection Semantic Search
-Eleven live collection sources are in Qdrant right now, searchable simultaneously:
+18 collections · 20,000+ objects · 2,357 AUX.IO visitor pages generated
 
-| Collection | Source | Objects | Licence | Status |
-|-----------|--------|---------|---------|--------|
-| `archai_pilot` | Museums Victoria | 40 | CC BY 4.0 | ✅ Live |
-| `archai_met` | The Metropolitan Museum of Art, NYC | 135 | CC0 | ✅ Live |
-| `archai_va` | Victoria and Albert Museum, London | 300 | V&A Open Access | ✅ Live |
-| `archai_aic` | Art Institute of Chicago | 150 | CC0 / public-domain only | ✅ Live |
-| `archai_cma` | Cleveland Museum of Art | 150 | CC0 / public-domain only | ✅ Live |
-| `archai_rijks` | Rijksmuseum | 150 | Public Domain Mark / open API | ✅ Live |
-| `archai_europeana` | Europeana | 150 | Reusability=open / per-item | ✅ Live |
-| `archai_auckland` | Auckland Museum | 120 | CC BY / open item-filtered | ✅ Live |
-| `archai_tepapa` | Museum of New Zealand Te Papa Tongarewa | 95 | Non-commercial / preview-first, item rights attached | ✅ Live |
-| `archai_mplus` | M+, Hong Kong | 110 | CC0 metadata · non-commercial preview media | ✅ Live |
-| `archai_brasiliana` | Brasiliana Museus | 120 | Public domain / open-access, item-checked | ✅ Live |
-| `archai_curator` | All live collections + comments | Built on demand | Mixed | ✅ Live |
-
-- Query → embedded via nomic-embed-text → vector searched across all live collections → results merged by cosine similarity
-- Results colour-tagged by source museum/institution
-- Text fallback when Ollama offline
-- Sort by: name, date, discipline, source
-- Filter: with images (default), all, or source-specific subsets
-- Deduplicated by canonical_id across collections
-- Curator collection currently rebuilds across `1520` live objects
-- Auckland Museum, Te Papa, M+, and Brasiliana now extend the live stack into Aotearoa, Asia, and South America
-- Art Institute of Chicago is now harvested public-domain only at the API layer
-- Europeana is currently harvested with `reusability=open`
-- Te Papa media is ingested preview-first with item-level rights preserved for public-safe display
-- Brasiliana onboarding only admits public-domain / open-access records that pass item-level rights checks
-- Legal status is shown on object records in the main app, the public demo, and AUX.IO visitor pages
-
-### ✅ Object-as-Speaker LLM Chat
-Each object speaks in first person via the local Qwen 2.5 stack, grounded in verified metadata:
-- System prompt built from ALL metadata fields
-- Dynamic institution name per object
-- Hallucination prevention: "That's not in my record"
-- Metadata fallback when Ollama offline — no LLM required
-
-### ✅ Object Detail Panel
-- Full metadata, image, curatorial description
-- Live Qwen 2.5 local chat with question chips
-- Semantically related objects across all collections
-- Source-specific links: "View on The Met →", "View on V&A →"
-- **Visitor comment thread** — all comments (including flagged) with approve/remove/reply actions for curators
-
-### ✅ AI-Moderated Visitor Comments
-Comments submitted by visitors are AI-screened in real time:
-- Ollama classifies each comment as safe / suspicious / harmful
-- Safe comments visible immediately on the object page
-- Suspicious/harmful comments hidden — sent to curator review queue
-- **Human curator has final say** — approve or remove
-- Threaded replies supported (staff can respond to visitors)
-- Stored in SQLite — becomes part of the object's collection record
-- Comments included in curator vector collection for semantic search
-
-### ✅ Backend Proxy (Public Hosting Safety)
-Safe proxy layer for exposing ARCHAI publicly via Cloudflare Tunnel:
-- Rate limiting per IP (15 chat/min, 30 search/min)
-- Prompt injection pattern blocking (regex filter)
-- Safety wrapper prepended to all LLM system prompts
-- Token and prompt length caps (512 tokens, 500 chars)
-- All frontend fetch calls route through `qdrantFetch()`/`ollamaFetch()` wrappers
-
-### ✅ Curator Vector Collection
-Enriched `archai_curator` Qdrant collection combining:
-- All object metadata from all live source collections
-- Visitor comments attached to each object
-- Rebuilt on demand via `POST /api/proxy/curator/build`
-- Semantic search across everything via `POST /api/proxy/curator/search`
-
-### ✅ AUX.IO Visitor Pages (Mobile)
-Standalone AUX.IO object pages generated from the live collection set:
-- Object image, metadata, description, LLM chat over LAN or via proxy
-- Share: native iOS sheet, email, copy link, X/Twitter
-- Comment submission with AI moderation (localStorage fallback offline)
-- Related objects with cross-collection links
-- Captive portal for exhibition WiFi
-
-### ✅ AUX.IO Management Panel
-- 3-column workflow: AUX.IO record list → editor → phone preview
-- Create a new AUX.IO record from scratch for institutional testing
-- Assign from loaded collection records, with search across all loaded objects
-- Draft a local institutional object record with title, accession, institution, media URL, source URL, description, and rights status
-- Edit gallery/location/physical trigger text for QR, NFC, kiosk, map, or spatial access points
-- Search, filter, publish/unpublish, runtime-backend save, and export JSON config with rights/visibility metadata
-
-### ✅ Role Switcher
-| Role | Access |
-|------|--------|
-| Admin | All tabs |
-| Curator | Curator, Nodel, AUX.IO, Vocab, Visitor, FAMTEC |
-| Collections | Curator, AUX.IO, Vocab, Visitor, FAMTEC |
-| Technician | Nodel, Visitor, FAMTEC |
-| Volunteer | Curator, AUX.IO, Visitor, FAMTEC |
-| Visitor | Visitor only |
-
-### ✅ Curator Toolbar
-- Select All / Export CSV / Batch Tag — fully wired
-- CSV export with all metadata fields, scoped to selection or full collection
-- Batch tagging applies keywords to selected objects and rebuilds vocab index
-
-### ✅ FAMTEC Exchange
-- Test space for interaction design, workflow feel, and interface prototyping inside ARCHAI
-- Placeholder institution names are used to simulate exchange activity and help evaluate the app experience
-- Feed includes loan, rental, skills, and crew-availability scenarios
-- Post listings (hardware, skills, requests), send enquiries, view details
-- Enquiries route to institution chat threads where available
-- Chip filters and institution chat are functional prototype interactions
-- This is not the final FAMTEC platform: production development will be handled separately by FAMTEC outside the PhD work, with potential later integration into ARCHAI once developed
-
-### ✅ Nodel Panel
-- Gallery cards with status indicators
-- Node table, fault log, schedule
-- Refresh status polling, emergency stop with confirmation
-- Direct links to Nodel web UI and Directus admin
-
-### ✅ Vocabulary & Thesaurus (CHIN-aligned)
-- **Live vocabulary index** built from Qdrant payloads across all live collections (9 facets: discipline, category, object type, classifications, collecting areas, keywords, culture, period, medium)
-- **CHIN/AAT reference terms** — 26 curated terms from Getty AAT with scope notes, broader/narrower hierarchies, and AAT IDs
-- **DOCAM Glossaurus** — media art preservation terminology (emulation, migration, variable media, documentation strategies)
-- **Nomenclature for Museum Cataloging** — Parks Canada/CHIN object naming and classification
-- **CHIN Discipline Authority List (2006)** — bilingual EN/FR discipline headings
-- Term search across all sources with scope notes, provider badges, and language tags
-- Term detail panel: path, scope note, broader/narrower terms, related terms, collection usage with example objects
-- Apply to Search (jumps to Curator with search), Add Local Mapping (creates institution-specific terms)
-- Indigenous protocol layer with governance notice
-
-## Screenshots
-
-Desktop views:
-
-![Curator collections search](docs/screenshots/archai-curator-collections-search-v10-6.png)
-![Exhibitions live dashboard](docs/screenshots/archai-exhibitions-live-dashboard-v10-6.png)
-![AUX.IO management with visitor preview](docs/screenshots/archai-nfc-management-visitor-preview-v10-6.png)
-![Vocabulary and thesaurus tools](docs/screenshots/archai-vocabulary-thesaurus-v10-6.png)
-![Visitor view object page](docs/screenshots/archai-visitor-view-proof-coin-v10-6.png)
-![FAMTEC exchange](docs/screenshots/archai-famtec-exchange-v10-6.png)
-![Object detail view](docs/screenshots/archai-object-detail-a-fifth-on-a-maze-v10-6.png)
-![Curator object conversation](docs/screenshots/archai-curator-object-chat-a-fifth-on-a-maze-v10-6.png)
-
-Mobile views:
-
-![Mobile NFC index](docs/screenshots/archai-mobile-nfc-index-v10-6.png)
-![Mobile object hero](docs/screenshots/archai-mobile-object-hero-dream-still-v10-6.png)
-![Mobile object detail](docs/screenshots/archai-mobile-object-detail-dream-still-v10-6.png)
-![Mobile object chat](docs/screenshots/archai-mobile-object-chat-dream-still-v10-6.png)
-![Mobile object response](docs/screenshots/archai-mobile-object-response-dream-still-v10-6.png)
-![Mobile related objects and footer](docs/screenshots/archai-mobile-object-related-footer-dream-still-v10-6.png)
+| Collection | Institution | Objects | Licence | Status |
+|---|---|---|---|---|
+| `archai_pilot` | Museums Victoria | 40 | CC BY 4.0 | Live |
+| `archai_met` | The Metropolitan Museum of Art, New York | 200 | CC0 | Live |
+| `archai_va` | Victoria and Albert Museum, London | 300 | V&A Open Access | Live |
+| `archai_aic` | Art Institute of Chicago | 150 | CC0 (public domain gate) | Live |
+| `archai_cma` | Cleveland Museum of Art | 150 | CC0 (public domain gate) | Live |
+| `archai_rijks` | Rijksmuseum, Amsterdam | 150 | Public Domain Mark | Live |
+| `archai_europeana` | Europeana | 150 | Reusability=open (per-item) | Live |
+| `archai_auckland` | Auckland War Memorial Museum | 120 | CC BY | Live |
+| `archai_tepapa` | Museum of New Zealand Te Papa Tongarewa | 95 | Non-commercial / item rights attached | Live |
+| `archai_mplus` | M+, Hong Kong | 110 | CC0 metadata · preview media | Live |
+| `archai_brasiliana` | Brasiliana Museus | 120 | Public domain / open-access (item gate) | Live |
+| `archai_tate` | Tate, London | 150 | CC BY (pre-1920 filter) | Live |
+| `archai_wellcome` | Wellcome Collection, London | 150 | CC BY | Live |
+| `archai_smithsonian` | Smithsonian Institution | 150 | CC0 (API flag gate) | Live |
+| `archai_getty` | J. Paul Getty Museum, Los Angeles | 200 | CC0 (Linked Art SPARQL) | Live |
+| `archai_qagoma` | QAGOMA, Brisbane | — | Metadata-only (image API blocked) | Partial |
+| `archai_streetart` | Municipal Open Data — 6 cities | varies | CC BY 4.0 / Open Government / Public Domain | Live |
+| `archai_rawg` | RAWG Video Games Database | varies | RAWG API (attribution required) | Live |
+| `archai_curator` | All live collections + visitor comments | Built on demand | Mixed | Live |
 
 ---
 
-## What's Not Working Yet
+## Core Technical Contributions
 
-### 🔲 Cross-Collection LLM Intelligence (RAG)
-LLM currently only sees one object's metadata. Needs RAG: embed user question → search Qdrant → inject related objects into LLM context → synthesise connections. Curators get full cross-collection access, visitors get bounded single-object responses.
+Twelve interconnected contributions characterise the research:
 
-### 🔲 LLM Image Analysis
-Use llava to extract colours, text, objects from images → searchable metadata.
-
-### 🔲 External Vocabulary APIs
-AAT, LCSH, TGN, and ULAN are listed but inactive — currently using curated reference terms rather than live API lookups. Getty AAT LOD endpoint integration is architecturally ready.
-
-### 🔲 FAMTEC Persistence
-Current in-app FAMTEC Exchange uses prototype data and in-memory arrays only. The production FAMTEC Exchange platform will be developed separately by FAMTEC outside the PhD work, with potential later integration into ARCHAI once developed.
-
-### 🔲 Directus Integration
-Health-checked only. AUX.IO now saves to the runtime backend session and falls back to local confirmation, but production persistence still needs Directus/SQLite-backed storage for institutional object drafts and tag assignments.
-
-### 🔲 Nodel API
-Static prototype data. Needs WebSocket to real Nodel instance. UI links and emergency stop are wired.
-
-### 🔲 Harvester Improvements
-Date extraction from titles, better Met filtering, incremental harvest. Run Harvesters button verifies collection counts and triggers reload.
+1. **Vector embeddings for heritage discovery** — semantic search across heterogeneous collections without reliance on controlled curatorial vocabulary.
+2. **Provenance-tracked AI interpretation** — every generated response records its complete derivation chain back to source materials.
+3. **Two-layer architecture** — permanent heritage assets held separately from regenerable AI processing layers. The heritage foundation is never modified by AI.
+4. **Conversational objects** — individual collection items speaking to visitors from their own validated metadata, via NFC tap or QR scan.
+5. **Five-layer hallucination prevention** — structured metadata schemas, AI epistemic constraints, real-time validation, human curator sign-off, and post-launch monitoring.
+6. **Transferable hardware reference implementation** — a sovereign, scalable open-source stack adaptable to institutions of varying size. Total capital investment: approximately AUD 10,000–20,000 one-time; no subscriptions.
+7. **Cross-institutional open data pipeline** — automated harvesting from 18 international sources with per-source licence verification, IIIF integration, and legal gate enforcement at point of ingest.
+8. **Physical deployment layer** — five-format downloadable artefact system (A4/A2/A0/postcard/sticker) generated client-side via Canvas API, enabling museum objects to enter public space with live QR links back to conversational interfaces.
+9. **Multilingual audio interface** — voice input (Whisper, local), voice output (Coqui TTS), extending conversational access across languages and interaction modalities.
+10. **Multi-category public cultural data integration** — municipal open data (street and public art, six cities) and interactive digital culture (RAWG games) integrated under identical licence-gate enforcement as institutional museum collections.
+11. **Thematic discovery navigation** — seven disciplinary group tabs with per-institution sub-tabs across 2,357 objects, enabling cross-collection discovery without controlled vocabulary dependency.
+12. **Legal gate enforcement at scale** — per-source rights verification documented in a collection-targets matrix, implemented in harvester code, and surfaced on every public object page.
 
 ---
 
-## Architecture
+## System Architecture
 
-```text
-┌──────────────────────────────────────────────────────────┐
-│                    ARCHAI Frontend                      │
-│                 (ARCHAI_v10_8.html · browser)           │
-│                                                         │
-│  Search ──→ Ollama embed ──→ Qdrant (11 live collections)│
-│  Chat   ──→ Ollama qwen2.5 ──→ grounded response        │
-│  AUX.IO ─→ Ollama qwen2.5 ──→ chat over LAN / proxy     │
-│  Sort   ──→ client-side on loaded objects               │
-│  Comments ──→ Backend API ──→ AI moderation ──→ SQLite  │
-└────────┬──────────────┬──────────────┬──────────────────┘
-         │              │              │
-    localhost:6333  localhost:11434  localhost:8787
-      Qdrant          Ollama        Backend API
-                                   ├── Safe proxy (rate limit + injection block)
-                                   ├── Comments (AI moderation → SQLite)
-                                   ├── Curator vectors (build + search)
-                                   └── Directus bridge (optional)
+```
+┌──────────────────────────────────────────────────────────────────┐
+│  LAYER 3 — Interface                                             │
+│  ARCHAI Web App (v11.5) · AUX.IO Visitor Pages (2,357 pages)    │
+│  Role-aware · NFC/QR/link/beacon · Curator · Collections ·      │
+│  Technician · Volunteer · Visitor · Admin                        │
+└──────────────────────┬───────────────────────────────────────────┘
+                       │
+┌──────────────────────▼───────────────────────────────────────────┐
+│  LAYER 2 — Derivative Processing Layer (Regenerable)            │
+│  Qdrant · Ollama / qwen2.5:32b · nomic-embed-text               │
+│  Express.js proxy · Rate limiting · Prompt injection blocking    │
+│  Nightly pipeline · Cultural safety gate · Provenance trace      │
+└──────────────────────┬───────────────────────────────────────────┘
+                       │
+┌──────────────────────▼───────────────────────────────────────────┐
+│  LAYER 1 — Heritage Foundation Layer (Permanent)                │
+│  CollectiveAccess (CMS) · ResourceSpace (DAMS)                  │
+│  Canonical records · Artist statements · Conservation reports   │
+│  Primary digital assets — NEVER modified by AI                  │
+└──────────────────────────────────────────────────────────────────┘
 
-  Public access (Cloudflare Tunnel):
-  Visitor phone ──→ tunnel ──→ Backend proxy ──→ Ollama/Qdrant
-                                    └──→ Comments API (AI screened)
+Public access: Visitor device → Cloudflare Tunnel → Backend proxy → Ollama / Qdrant (local)
+Storage: Hot NAS (SSD RAID) · Warm NAS (HDD RAID) · Cold LTO-9 tape (off-site, ransomware-immune)
+Compute: Apple Mac Studio M4 Max · 64GB Unified Memory · under 120W at full inference
 ```
 
+**Open-source software stack:**
+
+| Component | Role |
+|---|---|
+| Qdrant | Vector database · semantic search · self-hosted |
+| Ollama / qwen2.5:32b | Local LLM inference · conversational objects |
+| nomic-embed-text (768-dim) | Open-source embedding model · local |
+| CollectiveAccess | Collection management · Heritage Foundation Layer |
+| ResourceSpace | Digital asset management · canonical media |
+| Ghost / Directus | Headless CMS · curator interpretation layer |
+| Whisper (local) | Voice input transcription · no visitor speech sent externally |
+| Coqui TTS | Per-object, per-language voice synthesis |
+| Proxmox VE | VM snapshots · behaviour preservation for AI artworks |
+
 ---
 
-## Project Structure
+## AUX.IO — Visitor Interface
 
-```text
+AUX.IO (from Latin *aux*, voice) is the public-facing visitor interface: a per-object conversation page deployable via NFC tag, QR code, hyperlink, or Bluetooth beacon. Each page is a self-contained static HTML file embedding the object's complete metadata and AI context. No app is required; no login is needed; no data is collected from the visitor.
+
+From any AUX.IO page, a visitor may:
+- hold a natural language conversation with the object (grounded in its verified record)
+- select a response style: Guide / Curatorial / Learning / Interpretive
+- use voice input and audio response (browser SpeechRecognition + SpeechSynthesis; Whisper/Coqui in development)
+- download a print-ready poster in five formats
+- share the page, copy the link, or post directly
+- submit a response that joins the collection record (curator-reviewed before publication)
+- navigate to related objects across all 18 collections
+
+The open call **#ARCHAIinTheWild** invites communities — street artists, collectives, educators, zine makers — to take AUX.IO posters into public space. Every poster embeds a QR code that connects back to the live conversational interface.
+
+---
+
+## Repository Structure
+
+```
 archai/
-├── ARCHAI_v10_8.html              ← Main frontend (single-file app)
-├── README.md                      ← This file
-├── ARCHAI_OPERATIONS_GUIDE.md     ← Full ops guide (startup, testing, APIs, adding objects)
-├── REMOTE_TESTING_GUIDE.md        ← Tailscale setup for iPad/iPhone testing
-├── start-archai.sh                ← One-command startup + health checks
+├── ARCHAI_v10_8.html              ← Main web application (single-file, role-aware)
 ├── backend-archai/
 │   ├── src/
-│   │   ├── server.js              ← Express entry point
-│   │   ├── data/db.js             ← SQLite database (comments)
-│   │   ├── middleware/rateLimit.js ← Rate limiter
-│   │   ├── routes/
-│   │   │   ├── proxy.js           ← Safe Qdrant/Ollama/curator proxy
-│   │   │   ├── comments.js        ← AI-moderated threaded comments
-│   │   │   └── ...                ← Other route modules
-│   │   └── services/
-│   │       ├── moderation.js      ← Ollama comment screening
-│   │       └── curator-vectors.js ← Curator collection builder
-│   ├── scripts/
-│   │   ├── met-harvester.js       ← Met NYC → Qdrant
-│   │   └── va-harvester.js        ← V&A London → Qdrant
-│   └── data/archai.db             ← SQLite (created at runtime)
+│   │   ├── server.js              ← Express.js backend
+│   │   ├── routes/proxy.js        ← Safe Qdrant / Ollama proxy
+│   │   ├── routes/comments.js     ← AI-moderated visitor comments
+│   │   └── services/              ← Moderation, curator vectors
+│   └── scripts/                   ← 18 collection harvesters
 ├── nfc-pages/
-│   ├── generate-nfc-pages.js      ← AUX.IO page generator from all live collections
-│   ├── nfc-visitor-template.html  ← AUX.IO mobile template
-│   ├── captive-portal.html
-│   └── v/                         ← Generated pages (~1519, versioned for demo deployment)
+│   ├── generate-nfc-pages.js      ← AUX.IO page generator
+│   ├── nfc-visitor-template.html  ← Mobile-first visitor template
+│   └── v/                         ← 2,357 generated AUX.IO pages
 ├── docs/
-│   └── ARCHAI_ISEA2026_Rob_Graham.pdf
+│   ├── ARCHAI_ISEA2026_Rob_Graham.pdf         ← Conference paper
+│   └── ARCHAI_ISEA2026_UPDATE_2026-06.md      ← Post-submission update
+├── LICENSE                        ← All rights reserved
 └── docker-compose.yml
 ```
 
 ---
 
-## Quick Start
+## Intellectual Property and Licence
 
-```bash
-cd ~/Desktop/APPS/ARCHAI\ APP
-./start-archai.sh
-```
+**Copyright © 2026 Rob Graham. All rights reserved.**
 
-Starts Docker, Qdrant, Ollama (with LAN+CORS), backend API, frontend server. Runs 7 health checks, shows loaded models, Qdrant collections, comment count, and prints all URLs.
+This repository and all associated source code, documentation, assets, and files are the exclusive property of Rob Graham. No permission is granted to use, copy, modify, merge, publish, distribute, sublicense, sell, or create derivative works from this software or its documentation, in whole or in part, without prior written permission from Rob Graham.
 
-**Main app:** http://localhost:8000/ARCHAI_v10_8.html
-**AUX.IO index:** http://localhost:8787/aux/index.html
-**Backend API:** http://localhost:8787/api/health
-**Remote testing:** via Tailscale VPN or equivalent secure networking
+**ARCHAI™** is a trademark of Rob Graham / FAMTEC (Fine Art Media Tech). First use in commerce: 2024. Classes covered: software (9), SaaS/research (42), cultural services (41). Use of anything in this repository does not grant any right to use the ARCHAI™ name or branding.
 
-See `ARCHAI_OPERATIONS_GUIDE.md` for full setup, testing, and API reference.
+**Third-party data:** Collection data, images, and metadata harvested from source institutions remain the property of those institutions and are subject to their respective licence terms. ARCHAI harvests only materials that pass a per-item legal gate. Each source institution's licence conditions are documented in `backend-archai/scripts/collection-targets.json` and enforced in harvester code. Institutional names and trademarks are used for identification purposes only and do not imply endorsement.
+
+**Research outputs:** All conceptual frameworks, architectural patterns, and research findings documented in this repository are Rob Graham's intellectual property under active doctoral research at RMIT University.
+
+For licensing enquiries: rob@fineartmedia.tech
 
 ---
 
-## Hardware
+## Origin and Research Independence
 
-Mac Studio M2 Max · 64GB · 1TB. Base institutional deployment: ~$3,500–5,000 USD one-time. No subscriptions, no cloud dependency.
+The conceptual foundations of ARCHAI were developed over more than twenty years of professional practice across museums, galleries, and cultural institutions — including ACMI, TarraWarra Museum of Art, Heide Museum of Modern Art, Museums Victoria, Grande Experiences, and the National Communication Museum. All theoretical frameworks, design principles, and research questions emerged from this accumulated practitioner experience, and are entirely independent of any single institution or employer.
+
+All code in this repository was written after departing the National Communication Museum, developed independently through FAMTEC as part of doctoral research at RMIT University, School of Design. The first version committed to this repository (v6, the `v0.1-alpha` release) was the first working prototype, built from the updated PhD research document and the ISEA2026 white paper. Earlier conceptual iterations (v1–v4) existed as planning documents and AI-assisted conversation prototypes during the research design phase — the ideas that informed them are documented in the PhD drafts and the ARCHAI Master Plan.
+
+This repository, its commit history, and its git log constitute a verifiable, timestamped research journal of the entire development process, establishing clear provenance for all code, design decisions, and research outputs.
+
+---
+
+## Collaboration and Partnership
+
+FAMTEC and RMIT are open to the following forms of engagement:
+
+- **Funded research partnerships** — co-investigator roles, ARC Linkage, or industry-funded PhD support
+- **Institutional pilot testing** — hosting a sovereign ARCHAI deployment on institutional hardware
+- **Collection data collaboration** — contributing open-licensed collection data to the pipeline
+- **Accessibility evaluation** — testing multilingual and multimodal interfaces with diverse visitor groups
+- **Software development support** — contribution to specific system components under formal agreement
+- **Grant partnerships** — co-applicants on public-interest technology and digital heritage programmes
+
+ARCHAI is a working research prototype, not a finished commercial product. All partnership discussions are subject to formal agreement and consistent with RMIT University's research integrity and IP policies.
+
+**Contact:** Rob Graham · rob@fineartmedia.tech  
+**Project:** fineartmedia.tech/archai  
+**AUX.IO:** fineartmedia.tech/aux  
+**GitHub:** github.com/rob-e-graham/archai
 
 ---
 
 ## Version History
 
-| Version | Changes |
-|---------|---------|
-| v6 | Initial prototype, mock objects |
-| v7 | Role switcher, FAMTEC, Nodel, NFC, vocabulary |
-| v10.4 | MV-only, live Qdrant + Ollama, LLM chat |
-| v10.5 | Restored all panels, AUX.IO page generator |
-| v10.6 | Multi-collection (MV+Met+V&A), sort/filter, dedup, AUX.IO share+comments, dynamic institutions |
-| v10.7 | Live CHIN-aligned thesaurus (AAT+DOCAM+Nomenclature+CHIN Disciplines), all buttons wired, responsive thumbnail scaling, vocab search with scope notes and provider badges |
-| **v10.8** | **Backend proxy for safe public hosting (rate limiting, prompt injection blocking), AI-moderated threaded comments, curator vector collection (all metadata + comments searchable), SQLite persistence, six live source collections in Qdrant, AUX.IO pages wired to backend API, object detail comment thread with approve/remove/reply, startup script with health checks, operations guide** |
-| **v10.9** | **AUX.IO moved from the old 62-page website subset to the live generated collection manifest, public website wrappers aligned with newer institutions, and the current runtime/docs brought into sync around the expanded live object set** |
-| **v11.0** | **Auckland Museum onboarded into the live stack, collection loading now scrolls beyond the first 200 Qdrant points, curator vectors rebuilt to 1085 live objects, AUX.IO source tagging corrected, and 951 public-facing visitor pages regenerated across 8 collections** |
-| **v11.1** | **Te Papa Tongarewa onboarded as the ninth live collection, guest-token and registered-key API access supported, curator vectors rebuilt to 1205 live objects, AUX.IO default cap lifted, and 1071 public-facing visitor pages regenerated across 9 collections** |
-| **v11.2** | **M+ Hong Kong onboarded as the tenth live collection with bilingual metadata preserved, public preview media attached from the source object pages, and the curator layer expanded to include Asia-focused visual culture records** |
-| **v11.3** | **Brasiliana Museus onboarded as the eleventh live collection using a public-domain / open-access legal gate, curator vectors rebuilt to 1445 live objects, and 1311 AUX.IO visitor pages regenerated across 11 collections** |
-| **v11.4** | **Legal cleanup and open-only backfill: 208 rights-restricted and 8 unevaluated objects removed from the live public stack, AIC re-harvested public-domain only, Europeana re-harvested with `reusability=open`, curator rebuilt to 1520 live objects, and AUX.IO regenerated with per-object legal status shown** |
-| **v11.5** | **Main app alignment pass: roadmap added, audit refreshed, default browse now favours image-backed demo objects, result cards remain rights-aware, and AUX.IO management uses a larger live-object working set while generated-page sync remains the next step** |
-| **v11.5.6** | **AUX.IO management workflow deepened: staff can create a new AUX.IO record, edit placement, assign from loaded records, draft an institution-owned object for testing, preview the visitor page, and export/save rights-aware config data** |
-| **v11.5.7** | **AUX.IO save path made real for the current backend session: new tag assignments and institution draft objects can be posted to `/api/nfc`, stored in the runtime repository, audited, and returned to the app while Directus remains the production persistence target** |
+| Version | Date | Notable Change |
+|---|---|---|
+| v6 | Early 2026 | Initial prototype · mock objects · v0.1-alpha |
+| v7 | Early 2026 | Role switcher · FAMTEC · Nodel · NFC · vocabulary |
+| v10.4–v10.6 | Feb–Mar 2026 | Live Qdrant + Ollama · multi-collection (MV + Met + V&A) |
+| v10.7 | Mar 2026 | CHIN-aligned thesaurus (AAT + DOCAM + Nomenclature) |
+| v10.8 | Apr 2026 | Backend proxy · AI-moderated comments · curator vector collection · 6 live sources |
+| v11.0–v11.4 | Apr 2026 | Auckland · Te Papa · M+ · Brasiliana · legal cleanup · 11 live collections |
+| v11.5 | May 2026 | Browse improvements · AUX.IO management deepened |
+| v11.6 | Jun 2026 | 18 collections · street art (6 cities) · RAWG games · 2,357 AUX.IO pages · thematic navigation |
 
 ---
 
-Rob Graham · FAMTEC / RMIT · rob@fineartmedia.tech
-GitHub: github.com/rob-e-graham/archai
+## Selected References
+
+Kirschenbaum, M. G. (2008). *Mechanisms: New Media and the Forensic Imagination*. MIT Press.
+
+Rinehart, R. & Ippolito, J. (2014). *Re-collection: Art, New Media, and Social Memory*. MIT Press.
+
+Ernst, W. (2013). *Digital Memory and the Archive*, ed. Parikka, J. University of Minnesota Press.
+
+Quintilian (c. 95 CE). *Institutio Oratoria*, trans. Butler, H. E. Harvard University Press, 1921.
+
+Cicero (55 BCE). *De Oratore*, trans. Sutton, E. W. & Rackham, H. Harvard University Press, 1942.
+
+Kelly, L. (2016). *The Memory Code*. Allen & Unwin.
+
+Szántó, A. & Campbell, T. P. (2025). "A.I. Is Coming for Museums." *Artnet News*, 29 October 2025.
+
+Global Indigenous Data Alliance. (2020). *CARE Principles for Indigenous Data Governance*. gida-global.org/care
 
 ---
 
-ARCHAI™ is a trademark of Rob Graham / FAMTEC (Fine Art Media Tech). Use of the source code under MPL-2.0 does not grant trademark rights. See [NOTICE](NOTICE) for details.
+*ARCHAI™ — Copyright © 2026 Rob Graham / FAMTEC. All rights reserved. Trademark registered.*  
+*RMIT University, School of Design · rob@fineartmedia.tech*
