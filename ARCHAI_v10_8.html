@@ -605,7 +605,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
     </div>
   </div>
   <div>
-    <div class="header-meta"><b id="clockDisplay">—</b><br><span>Build v11.5 · 11 live collections · rights-aware onboarding · AUX.IO working set</span></div>
+    <div class="header-meta"><b id="clockDisplay">—</b><br><span>Build v11.6 · 19 connected collections · rights-aware media · AUX.IO working set</span></div>
     <div class="header-links">
       <a class="header-link" href="http://localhost:11434" target="_blank">Ollama LLM</a>
       <a class="header-link" href="http://localhost:8055/admin" target="_blank">Directus CMS</a>
@@ -1138,7 +1138,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 
 <script>
 // ═══════════════════════════════════════════════════════════════════
-// ARCHAI™ v11.5 — Multi-Collection · Backend-Aware · Live LLM Chat
+// ARCHAI™ v11.6 — Multi-Collection · Backend-Aware · Live LLM Chat
 // Collection objects loaded from Qdrant. Comments and curator vectors via backend APIs.
 // ═══════════════════════════════════════════════════════════════════
 
@@ -2171,7 +2171,13 @@ function checkDirectus() {
 // ═══════════════════════════════════════════════════════════════════
 // LOAD OBJECTS FROM QDRANT — All Collections
 // ═══════════════════════════════════════════════════════════════════
-const COLLECTIONS = ['archai_pilot', 'archai_met', 'archai_va', 'archai_aic', 'archai_cma', 'archai_rijks', 'archai_europeana', 'archai_auckland', 'archai_tepapa', 'archai_mplus', 'archai_brasiliana'];
+const COLLECTIONS = [
+  'archai_pilot', 'archai_met', 'archai_va', 'archai_aic', 'archai_cma',
+  'archai_rijks', 'archai_europeana', 'archai_auckland', 'archai_tepapa',
+  'archai_mplus', 'archai_brasiliana', 'archai_smithsonian', 'archai_tate',
+  'archai_streetart', 'archai_getty', 'archai_wellcome', 'archai_qagoma', 'archai_rawg',
+  'archai_nga'
+];
 const COLLECTION_LABELS = {
   archai_pilot: { name: 'Museums Victoria', short: 'MV', colour: 'rgba(143,188,176,0.7)', border: 'rgba(143,188,176,0.3)' },
   archai_met: { name: 'The Met, NYC', short: 'Met', colour: 'rgba(200,169,110,0.7)', border: 'rgba(200,169,110,0.3)' },
@@ -2183,7 +2189,15 @@ const COLLECTION_LABELS = {
   archai_auckland: { name: 'Auckland Museum', short: 'AKL', colour: 'rgba(124,196,172,0.82)', border: 'rgba(124,196,172,0.34)' },
   archai_tepapa: { name: 'Te Papa Tongarewa', short: 'TP', colour: 'rgba(96,166,154,0.84)', border: 'rgba(96,166,154,0.34)' },
   archai_mplus: { name: 'M+, Hong Kong', short: 'M+', colour: 'rgba(216,158,88,0.84)', border: 'rgba(216,158,88,0.34)' },
-  archai_brasiliana: { name: 'Brasiliana Museus', short: 'BR', colour: 'rgba(190,132,82,0.84)', border: 'rgba(190,132,82,0.34)' }
+  archai_brasiliana: { name: 'Brasiliana Museus', short: 'BR', colour: 'rgba(190,132,82,0.84)', border: 'rgba(190,132,82,0.34)' },
+  archai_smithsonian: { name: 'Smithsonian Institution', short: 'SI', colour: 'rgba(113,177,206,0.84)', border: 'rgba(113,177,206,0.34)' },
+  archai_tate: { name: 'Tate', short: 'Tate', colour: 'rgba(190,156,104,0.84)', border: 'rgba(190,156,104,0.34)' },
+  archai_streetart: { name: 'Public Street Art', short: 'Street', colour: 'rgba(216,124,144,0.82)', border: 'rgba(216,124,144,0.34)' },
+  archai_getty: { name: 'J. Paul Getty Museum', short: 'Getty', colour: 'rgba(195,154,98,0.84)', border: 'rgba(195,154,98,0.34)' },
+  archai_wellcome: { name: 'Wellcome Collection', short: 'Well', colour: 'rgba(112,186,163,0.84)', border: 'rgba(112,186,163,0.34)' },
+  archai_qagoma: { name: 'QAGOMA', short: 'QAG', colour: 'rgba(174,139,199,0.84)', border: 'rgba(174,139,199,0.34)' },
+  archai_rawg: { name: 'RAWG Video Games Database', short: 'RAWG', colour: 'rgba(122,166,216,0.84)', border: 'rgba(122,166,216,0.34)' },
+  archai_nga: { name: 'National Gallery of Art, Washington', short: 'NGA', colour: 'rgba(202,166,104,0.84)', border: 'rgba(202,166,104,0.34)' }
 };
 
 function getCollectionLabel(col) {
@@ -2259,11 +2273,15 @@ function getObjectRightsInfo(payload = {}) {
     status = 'Share alike';
     guidance = 'Reusable with attribution, and derivative use should keep the same licence terms.';
     color = 'var(--accent3)';
-  } else if (/cc by|https?:\/\/creativecommons\.org\/licenses\/by\/|creative commons attribution|© auckland museum cc by/.test(normalized)) {
+  } else if (/cc by|https?:\/\/creativecommons\.org\/licenses\/by\/|creative commons attribution|© auckland museum cc by|open government licen[cs]e/.test(normalized)) {
     status = 'Attribution required';
     guidance = 'Reusable with attribution to the source institution and creator where required.';
     color = 'var(--accent2)';
-  } else if (/cc0|https?:\/\/creativecommons\.org\/publicdomain\/zero|https?:\/\/creativecommons\.org\/publicdomain\/mark|public domain|public domain mark|rightsstatements\.org\/vocab\/noc|dom[ií]nio p[úu]blico|no known copyright restrictions|open access/.test(normalized)) {
+  } else if (/free with attribution|active link to rawg\.io/.test(normalized)) {
+    status = 'API display with attribution';
+    guidance = 'Display is permitted with an active source link; downloadable redistribution is not granted.';
+    color = 'var(--accent2)';
+  } else if (/cc0|https?:\/\/creativecommons\.org\/publicdomain\/zero|https?:\/\/creativecommons\.org\/publicdomain\/mark|public domain|public domain mark|rightsstatements\.org\/vocab\/noc|dom[ií]nio p[úu]blico|no known copyright restrictions/.test(normalized)) {
     status = 'Open access';
     guidance = 'Appears reusable under open-access or public-domain terms.';
     color = 'var(--ok)';
@@ -2407,6 +2425,9 @@ function getResultMatchCues(query, payload, max = 3) {
 }
 
 function pickSearchImage(payload = {}) {
+  if (payload.media_available === false) return '';
+  if (payload.media_public_display_allowed === false) return '';
+  if (['tate', 'getty'].includes(String(payload.source || '').toLowerCase())) return '';
   return payload.media_medium
     || payload.media_large
     || payload.media_thumbnail
@@ -2621,7 +2642,7 @@ function loadMVObjects() {
     renderVisitorList();
     buildVocabIndex();
 
-    console.log('ARCHAI™ v11.5: loaded', totalCount, 'objects from', Object.keys(counts).filter(k => counts[k] > 0).length, 'collections');
+    console.log('ARCHAI™ v11.6: loaded', totalCount, 'objects from', Object.keys(counts).filter(k => counts[k] > 0).length, 'collections');
   })
   .catch(e => {
     document.getElementById('collectionVal').textContent = 'Qdrant offline';
@@ -4163,7 +4184,15 @@ function buildVocabIndex() {
     archai_auckland: 'Auckland Museum',
     archai_tepapa: 'Te Papa Tongarewa',
     archai_mplus: 'M+, Hong Kong',
-    archai_brasiliana: 'Brasiliana Museus'
+    archai_brasiliana: 'Brasiliana Museus',
+    archai_smithsonian: 'Smithsonian Institution',
+    archai_tate: 'Tate',
+    archai_streetart: 'Public Street Art',
+    archai_getty: 'J. Paul Getty Museum',
+    archai_wellcome: 'Wellcome Collection',
+    archai_qagoma: 'QAGOMA',
+    archai_rawg: 'RAWG Video Games Database',
+    archai_nga: 'National Gallery of Art, Washington'
   };
 
   for (const [key, obj] of Object.entries(OBJECTS)) {
@@ -4524,7 +4553,7 @@ function escQ(s) {
 }
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js?v=11.5.7').catch(() => {});
+  navigator.serviceWorker.register('/sw.js?v=11.6').catch(() => {});
 }
 </script>
 </body>

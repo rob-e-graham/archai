@@ -1,6 +1,6 @@
 # ARCHAI Progress Log
 
-Last updated: 2026-06-07
+Last updated: 2026-06-23
 Maintained as an active handoff note so Claude, Codex, and Rob can quickly see where the work is up to if a session ends or tokens run out.
 
 Primary build planning is now also summarized in [ROADMAP.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ROADMAP.md). Use that for milestone order, and use this file for detailed handoff notes.
@@ -908,3 +908,188 @@ Important boundary:
 - This is runtime-session persistence, not durable production storage.
 - Directus or SQLite-backed persistence is still required before public/institutional deployment.
 - The current implementation is useful for demo realism and workflow testing: create object → assign AUX.IO → preview → save to backend session.
+
+## Born-digital manifestation and legal-source pass — 2026-06-22
+
+Reviewed the proposed street-art, contemporary-art, and born-digital sources against authoritative licence and access information. The earlier source notes were too optimistic about the reuse of modern-art images.
+
+Implemented:
+
+- Expanded published media from image/video/audio into a manifestation model covering documents, 3D, software, web archives, emulation, and live external works.
+- Added structured manifestation-level rights and capture provenance schemas.
+- Added curator manifest registration at `POST /api/media/published`.
+- Added a publication gate: media cannot publish until rights are explicitly `cleared`; WACZ captures also require capture provenance.
+- Added byte-range WACZ delivery at `GET /api/media/published/:mediaId/archive` for cleared, published captures.
+- Added [BORN_DIGITAL_CAPTURE_AND_REPLAY.md](./backend-archai/docs/BORN_DIGITAL_CAPTURE_AND_REPLAY.md).
+- Added [CONTEMPORARY_AND_STREET_ART_SOURCE_AUDIT.md](./backend-archai/scripts/CONTEMPORARY_AND_STREET_ART_SOURCE_AUDIT.md).
+- Linked the new model from the AUX.IO runtime and collection onboarding documents.
+
+Legal/source findings:
+
+- Smithsonian item-level CC0 assets are the strongest next modern-content candidate.
+- MoMA metadata is CC0, but its artwork images are expressly excluded.
+- Whitney provides CC0 open datasets/API data, but media still needs item-level verification.
+- Tate's CC0 dataset is an unmaintained 2014 metadata snapshot and excludes images.
+- Rhizome ArtBase is a strong research partner and methodological model, not a source to republish without artist/Rhizome permission.
+- Street Art Cities now publishes official monthly research datasets, but the standard exports exclude images and prohibit non-academic integration without express consent; treat it as a partnership lead rather than an automatic public-demo source.
+
+Verification:
+
+- JavaScript syntax checks passed for the changed backend files.
+- Manifest schema validation passed.
+- Live backend test: review-gated WACZ registration succeeded and publication was correctly blocked with HTTP 409.
+- Live backend test: rights-cleared WACZ with capture provenance published successfully; archive delivery correctly returned 404 while the actual WACZ was absent.
+
+Next safe increment:
+
+1. Self-host a pinned ReplayWeb.page viewer on an isolated replay origin.
+2. Capture one institution-owned or artist-permissioned pilot work with Browsertrix.
+3. Persist manifests and rights reviews in the institutional CMS/DAMS instead of runtime memory.
+4. Build the Smithsonian harvester with a strict item-level CC0 media gate.
+
+## National Gallery of Art onboarding — 2026-06-22
+
+- Verified the NGA collection dataset is CC0 and updated approximately daily.
+- Confirmed linked media has a separate item-level `openaccess` field.
+- Added `nga-harvester.js`, which streams the large CSV exports without cloning the roughly 5 GB repository.
+- The harvester joins objects to IIIF images using the NGA TMS object ID.
+- It accepts only `published_images.openaccess=1` and explicitly counts/excludes `openaccess=0` fair-use derivatives.
+- Preserves source UUIDs, stable object links, IIIF bases, assistive image descriptions, dimensions, provenance, attribution, and Wikidata IDs.
+- Registered NGA with the legal harvest bot as a verified, ready source.
+- Full dry run passed: 68,592 open-access image records found, 60,135 fair-use/restricted image records rejected, and 63,200 image-backed objects eligible for rights-safe selection.
+- No NGA records have been written to Qdrant yet; the source is validated and ready for a deliberate live onboarding run.
+
+## Rights-cleared WACZ capture and durable replay — 2026-06-22
+
+Completed the first end-to-end born-digital preservation test using only ARCHAI/FAMTEC-owned public demonstrators.
+
+Implemented:
+
+- Added `backend-archai/scripts/capture-born-digital.sh` with an explicit `--rights-cleared` safety gate.
+- Pinned Browsertrix Crawler `1.12.4` for reproducible WACZ capture.
+- Added persistent media manifests at `MEDIA_MANIFEST_FILE`; runtime registrations now survive backend restarts.
+- Self-hosted pinned ReplayWeb.page `2.4.6` assets from the ARCHAI backend.
+- Added an isolated replay page at `GET /api/media/published/:mediaId/replay`.
+- Retained byte-range archive delivery at `GET /api/media/published/:mediaId/archive`.
+- Added owned mock records for the ARCHAI and AUX.IO public demonstrators.
+
+Verified local preservation packages:
+
+- `archai_public_2026-06-22.wacz`
+  - SHA-256: `660aee3eae32441ef6a5a9afafd42c8b644dd643b66339fc99b49e7addee979c`
+- `auxio_public_2026-06-22.wacz`
+  - SHA-256: `67c536fc9563f6a7f4a87ce4231ce3e867be000a75b5cbccd25cacaf2af95f70`
+
+Verification completed on a temporary backend instance:
+
+- manifest registration returned HTTP 201;
+- rights-cleared publication returned HTTP 200;
+- replay page and self-hosted replay assets returned HTTP 200;
+- WACZ range request returned HTTP 206;
+- both manifests remained published after a backend restart;
+- persisted checksums matched the captured WACZ packages.
+
+Important boundary:
+
+- Captured WACZ files and runtime manifests remain under ignored local preservation storage and are not committed to Git.
+- The active `:8787` backend should be restarted only after the collection-integration merge is complete.
+- Public replay remains limited to manifestations whose item-level rights are explicitly `cleared`.
+
+## Nineteen-source integration, media audit, and QR output — 2026-06-22
+
+Integrated Claude's collection branch after preserving the pre-merge generated output in a named Git stash: `pre-claude-collection-integration-2026-06-22`.
+
+Collection state:
+
+- 19 connected source collections in Qdrant
+- 3147 staff-searchable records
+- Smithsonian and RAWG KeyTec credentials confirmed without exposing key values
+- Smithsonian refreshed to 145 item-level CC0 records
+- National Gallery of Art onboarded with 150 records; 60,135 fair-use/restricted image rows were excluded by `openaccess=1`
+- RAWG retained as attributed API display only; poster/sticker/postcard redistribution disabled
+- Tate corrected to CC0 metadata-only; its GitHub licence explicitly excludes images
+- Getty legacy media held after all 200 constructed URLs failed live image checks
+- QAGOMA retained as metadata-only pending formal media/API access
+
+Added `backend-archai/scripts/audit-public-media.js`:
+
+- checks HTTP response, real image content, known placeholders, and canvas CORS;
+- records `media_available`, `media_canvas_safe`, audit status, content type, and timestamp;
+- report-only by default and writes only with `--apply`;
+- Qdrant snapshots were taken for RAWG, Tate, Wellcome, street art, Getty, and QAGOMA before the rights migration.
+- per-source results and follow-up decisions are documented in `backend-archai/docs/PUBLIC_MEDIA_AUDIT_2026-06-22.md`.
+
+Audit result:
+
+- 2357 image URLs checked
+- 1884 available
+- 473 hidden as broken, blocked, placeholder, or non-image responses
+- 1284 canvas-safe
+- 790 metadata-only records
+- notable holds: Getty 200/200 broken; AIC 150/150 currently blocked by a Cloudflare image challenge; Brasiliana 113/120 returned 404
+
+AUX.IO result:
+
+- 1380 visitor pages regenerated from working, display-cleared media
+- 504 otherwise available records held by the public-media rights policy
+- 440 pages explicitly support reusable derivative outputs
+- A4, A2, A0, 100 mm sticker, and A6 postcard layouts all draw a QR code to the current AUX.IO page
+- QR generation is self-hosted from the MIT-licensed `qrcode-generator` library and fails closed rather than producing a QR-less asset
+- save/print formats are grouped under a compact `Save / print with QR` disclosure below the share controls
+- `nfc-pages/aux-id-map.json` now reserves a permanent numeric AUX.IO ID for every canonical record; a second full regeneration produced identical registry and representative page hashes, so existing physical QR/NFC links no longer drift when collection order changes
+
+Street-art source policy:
+
+- the six municipal public-art feeds remain a metadata-only staff collection until item-level media rights are available;
+- Street Art Cities' official monthly JSON/CSV exports are suitable for academic analysis, but exclude images and require express consent for non-academic integration;
+- Street Art Cities is recorded as a research-partnership target rather than harvested into the public demo;
+- RapidAPI wrappers and secondary listings are discovery leads only until source authority, provenance, and item-level rights are verified directly.
+
+EaaSI integration boundary:
+
+- added an optional EaaSI adapter and health check through `/api/integrations`;
+- OAI-PMH `Identify` is used only for configured-node discovery;
+- no session-launch URL is invented without an institutional node/API contract;
+- architecture and partnership path documented in `backend-archai/docs/EAASI_INTEGRATION.md`.
+
+Dependency audit:
+
+- upgraded `node-cron` from 3.0.3 to 4.5.0, removing the vulnerable legacy `uuid` dependency;
+- `npm audit --omit=dev` now reports three moderate findings inherited through ReplayWeb.page's current `@webrecorder/wabac` XML parser;
+- npm's automated remediation would force ReplayWeb.page back to 1.0.0, so it was deliberately not applied; replay remains locally hosted, rights-gated, and should be upgraded when Webrecorder publishes a compatible dependency fix.
+
+## Public website demo console and hosting boundary - 2026-06-23
+
+The ARCHAI project page has been reorganised into one coherent three-path demo instead of separate, competing interfaces:
+
+- **Search Collections:** all 19 connected source collections are visible as live-count scope tabs, with `All sources` as the default;
+- **Talk to ARCHAI:** whole-collection conversation uses the same Curatorial, Collections, Exhibition, and Interpretation response lenses as the app;
+- **Visit AUX.IO:** an embedded phone preview links directly to the visitor experience and random-object path.
+
+Voice behavior on the website follows the stable phone-first design:
+
+- browser speech recognition fills the question field but never submits without review;
+- listening, error, ready, and read-aloud states are explicit;
+- browser voices remain selectable, with a neutral automatic preference;
+- typed questions remain available when browser speech recognition is unsupported.
+
+Scoped search was moved behind the existing curator-search endpoint. `POST /api/proxy/curator/search` now accepts an optional allowlisted `collection` value and applies `_source_collection` filtering server-side. This replaces the previous two-request browser sequence of embed plus arbitrary Qdrant search, reduces rate-limit pressure, and keeps public search on a purpose-built route.
+
+Verification completed:
+
+- backend JavaScript and website inline JavaScript syntax checks passed;
+- the launchd backend was restarted successfully;
+- a live Met-only query returned eight Met results through the local API test;
+- the website returned 50 public image-ready Met cards for `portrait painting`;
+- direct whole-collection conversation returned a grounded response with cited source objects;
+- desktop and 390 px mobile layouts showed no page-level horizontal overflow;
+- source tabs remain horizontally scrollable and conversation controls stack on mobile;
+- AUX.IO loaded inside the embedded phone preview.
+
+Hosting decision:
+
+- keep `fineartmedia.tech/archai` as the public integrated demo;
+- build a separate read-only app demo rather than publishing the staff app unchanged;
+- keep the operational staff app behind Tailscale, institutional VPN, or Cloudflare Access until server-side authentication and deny-by-default authorisation are complete.
+
+The full hosting boundary and launch checklist are in [docs/PUBLIC_APP_DEMO_HOSTING.md](./docs/PUBLIC_APP_DEMO_HOSTING.md). The key blocker is that the current prototype request context defaults unauthenticated requests to `admin`; client-side role switching is not a security boundary.

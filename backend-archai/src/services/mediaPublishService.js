@@ -1,16 +1,54 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import { repo } from './objectRepository.js';
+import { publishedMediaSchema } from '../schemas/objectSchemas.js';
+import { env } from '../config/env.js';
 
 const runtimeMedia = [];
+let initialized = false;
+
+function manifestPath() {
+  return path.resolve(process.cwd(), env.media.manifestFile);
+}
+
+function persistMedia() {
+  const target = manifestPath();
+  fs.mkdirSync(path.dirname(target), { recursive: true });
+  const temporary = `${target}.tmp`;
+  const persisted = runtimeMedia.filter((media) => !media.seeded);
+  fs.writeFileSync(temporary, `${JSON.stringify(persisted, null, 2)}\n`, 'utf8');
+  fs.renameSync(temporary, target);
+}
+
+function loadPersistentMedia() {
+  const target = manifestPath();
+  if (!fs.existsSync(target)) return;
+  const values = JSON.parse(fs.readFileSync(target, 'utf8'));
+  if (!Array.isArray(values)) throw new Error(`Media manifest store must contain an array: ${target}`);
+  for (const value of values) {
+    const parsed = publishedMediaSchema.safeParse(value);
+    if (!parsed.success) {
+      console.warn(`[ARCHAI] Skipping invalid persisted media manifest: ${value?.mediaId || 'unknown'}`);
+      continue;
+    }
+    runtimeMedia.push({ ...value, ...parsed.data });
+  }
+}
 
 function ensureSeeded() {
-  if (runtimeMedia.length) return;
+  if (initialized) return;
+  initialized = true;
+  loadPersistentMedia();
   for (const obj of repo.state.objects) {
     const media = obj.media?.[0];
     if (!media) continue;
+    const mediaId = `pub_${obj.id.toLowerCase()}`;
+    if (runtimeMedia.some((record) => record.mediaId === mediaId)) continue;
     runtimeMedia.push({
-      mediaId: `pub_${obj.id.toLowerCase()}`,
+      mediaId,
       objectId: obj.id,
       kind: media.kind === 'video' ? 'video' : 'image',
+      manifestationLabel: media.kind === 'video' ? 'Approved playback derivative' : 'Documentation image',
       resourceSpaceId: obj.source?.resourceSpaceId || null,
       playbackUrl: media.kind === 'video' ? `/api/media/published/pub_${obj.id.toLowerCase()}/stream` : null,
       posterUrl: `/api/media/published/pub_${obj.id.toLowerCase()}/poster`,
@@ -19,10 +57,23 @@ function ensureSeeded() {
       durationSeconds: media.kind === 'video' ? 180 : null,
       captionsUrl: null,
       rightsLabel: 'Prototype / local approved derivative',
+      rights: {
+        status: 'cleared',
+        basis: 'institution_approved',
+        licence: null,
+        rightsHolder: 'FAMTEC prototype',
+        creditLine: 'FAMTEC prototype / local approved derivative',
+        sourceUrl: null,
+        reviewedBy: 'system-seed',
+        reviewedAt: new Date().toISOString(),
+        notes: 'Mock record for local interface testing only.',
+      },
+      capture: null,
       publishedStatus: obj.workflow?.state === 'published' ? 'published' : 'approved',
       autoplayMuted: true,
       loop: media.kind === 'video',
       updatedAt: new Date().toISOString(),
+      seeded: true,
     });
   }
 }
@@ -37,12 +88,35 @@ export function getPublishedMedia(mediaId) {
   return runtimeMedia.find((m) => m.mediaId === mediaId);
 }
 
+export function registerMediaManifest(input) {
+  ensureSeeded();
+  const row = publishedMediaSchema.parse(input);
+  if (runtimeMedia.some((media) => media.mediaId === row.mediaId)) return null;
+  runtimeMedia.unshift({ ...row, updatedAt: new Date().toISOString() });
+  persistMedia();
+  return runtimeMedia[0];
+}
+
+export function canPublishMedia(media) {
+  if (!media) return { ok: false, reason: 'Published media record not found' };
+  if (media.rights?.status !== 'cleared') {
+    return { ok: false, reason: 'Media rights must be cleared before publication' };
+  }
+  if (media.kind === 'web_archive' && !media.capture) {
+    return { ok: false, reason: 'Web archives require capture provenance before publication' };
+  }
+  return { ok: true };
+}
+
 export function publishMediaManifest({ objectId, mediaId, actor }) {
   ensureSeeded();
   const row = runtimeMedia.find((m) => m.mediaId === mediaId && m.objectId === objectId);
   if (!row) return null;
+  const gate = canPublishMedia(row);
+  if (!gate.ok) return { blocked: true, reason: gate.reason, media: row };
   row.publishedStatus = 'published';
   row.updatedAt = new Date().toISOString();
+  persistMedia();
   repo.audit({ type: 'media.publish', actor, summary: `Published media ${mediaId} for ${objectId}` });
   return row;
 }

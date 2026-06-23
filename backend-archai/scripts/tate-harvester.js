@@ -3,9 +3,9 @@
 // ARCHAI — Tate Collection Harvester
 // Fetches from the Tate's GitHub open-access dataset (CC0).
 // Covers British art from Turner, Blake, Constable and Pre-Raphaelites
-// through early Modernism. Restricted to works where creation year
-// < 1920 so all objects are safely in the public domain and their
-// images are covered by the Tate Open Access CC0 release (2019).
+// through early Modernism. Tate's GitHub release is metadata-only:
+// its CC0 dedication explicitly excludes images. This harvester therefore
+// keeps Tate useful for staff semantic search without republishing media.
 //
 // No API key required.
 //
@@ -15,8 +15,8 @@
 //   node tate-harvester.js --dry-run
 //
 // Data:    https://github.com/tategallery/collection (CC0)
-// Images:  https://www.tate.org.uk/art/ (CC0 for public domain works)
-// Licence: CC0 — Public Domain
+// Images:  excluded from this ingestion
+// Licence: CC0 metadata only
 // ══════════════════════════════════════════════════════════════════
 
 const TATE_CSV_URL = 'https://raw.githubusercontent.com/tategallery/collection/master/artwork_data.csv';
@@ -137,14 +137,14 @@ async function main() {
   const rows = parseCSV(csvText);
   console.log(`  ✓ ${rows.length.toLocaleString()} total records in dataset`);
 
-  // Filter: must have a creation year below the PD cutoff, a non-empty
-  // thumbnailUrl (image exists), and a title.
+  // Filter to older works for a focused research subset. Images remain held
+  // regardless of object age because the dataset's CC0 licence covers metadata.
   const eligible = rows.filter(r => {
     const year = parseInt(r.year, 10);
-    return !isNaN(year) && year < PD_YEAR_CUTOFF && r.thumbnailUrl && r.title;
+    return !isNaN(year) && year < PD_YEAR_CUTOFF && r.title;
   });
 
-  console.log(`  ✓ ${eligible.length.toLocaleString()} eligible (pre-${PD_YEAR_CUTOFF}, image-backed)`);
+  console.log(`  ✓ ${eligible.length.toLocaleString()} eligible metadata records (pre-${PD_YEAR_CUTOFF})`);
   console.log(`  → Processing up to ${LIMIT} objects\n`);
 
   if (!DRY_RUN) await ensureCollection();
@@ -173,7 +173,6 @@ async function main() {
         'Tate Collection, London',
       ].filter(Boolean).join('. ');
 
-      const thumbUrl = upgradeImageUrl(r.thumbnailUrl);
       const pageUrl  = r.url ? upgradeImageUrl(r.url) : `https://www.tate.org.uk/art/artworks/${r.accession_number}`;
 
       const payload = {
@@ -190,11 +189,14 @@ async function main() {
         dimensions:         dims,
         accession_number:   r.accession_number || '',
         description,
-        licence:            'CC0 — Public Domain (Tate Open Access)',
+        licence:            'CC0 metadata only — Tate images excluded',
+        media_public_display_allowed: false,
+        poster_download_allowed: false,
+        media_rights_basis: 'Tate GitHub README states images are not included in the CC0 dataset',
         source_url:         pageUrl,
-        media_thumbnail:    thumbUrl,
-        media_medium:       thumbUrl,
-        media_large:        thumbUrl,
+        media_thumbnail:    null,
+        media_medium:       null,
+        media_large:        null,
         embedding_text:     description,
       };
 
@@ -223,7 +225,7 @@ async function main() {
   console.log(`  ✓ Tate harvest complete`);
   console.log(`  → ${success} objects embedded into '${COLLECTION}'`);
   console.log(`  → ${errors} errors`);
-  console.log(`  → Licence: CC0 — Public Domain (Tate Open Access, pre-${PD_YEAR_CUTOFF} works only)`);
+  console.log(`  → Licence: CC0 metadata only; Tate images excluded`);
   console.log(`  → Artists: Turner, Blake, Constable, Rossetti, Millais, Whistler, Sargent and more\n`);
 }
 

@@ -26,9 +26,9 @@ Each harvester fetches objects from a museum API, generates embeddings via Ollam
 | Harvester | Institution / Source | Type | Images | API Key | Licence |
 |-----------|---------------------|------|--------|---------|---------|
 | `smithsonian-harvester.js` | Smithsonian SAAM + Cooper Hewitt | Modern American art + design | ✅ CC0-flagged only | 🔑 Free (api.data.gov) | CC0 |
-| `tate-harvester.js` | Tate Collection | British art, Turner → early Modernism | ✅ pre-1920 PD works | None | CC0 |
+| `tate-harvester.js` | Tate Collection | British art, Turner → early Modernism | Metadata only | None | CC0 metadata; images excluded |
 | `streetart-harvester.js` | Vancouver + Brussels + NYC + Melbourne + San Francisco + Chicago open data | Street art & public murals | ✅ per-source | None | OGL / CC BY / Public Domain |
-| `getty-harvester.js` | J. Paul Getty Museum, Los Angeles | Greek/Roman antiquities, European painting, manuscripts, photography | ✅ CC0 open content | None | CC0 |
+| `getty-harvester.js` | J. Paul Getty Museum, Los Angeles | Greek/Roman antiquities, European painting, manuscripts, photography | Held until explicit item Open Content verification | None | CC0 only where explicitly identified |
 | `wellcome-harvester.js` | Wellcome Collection, London | Anatomy, science, medicine, natural history, medical art | ✅ per-item open licence | None | CC BY 4.0 / CC0 |
 | `qagoma-harvester.js` | QAGOMA — Queensland Art Gallery \| GOMA | Asia-Pacific contemporary, Aboriginal & Torres Strait Islander, Australian art | ⚠️ Metadata-only (Cloudflare blocks image API) | None | CC BY 4.0 (QLD Open Data) |
 | `rawg-harvester.js` | RAWG Video Games Database | Video games as cultural objects | ✅ per-item (attribution link required) | 🔑 Free (rawg.io) | RAWG ToS — attribution to rawg.io on every display page |
@@ -61,6 +61,15 @@ Each harvester fetches objects from a museum API, generates embeddings via Ollam
 ### Legal gate first
 
 Before adding or refreshing public-demo collection data, run the legal harvest bot. It reads `collection-targets.json`, checks each target's policy and verification state, and only runs harvesters that pass the current legal / quality gate.
+
+### National Gallery of Art
+
+```bash
+node scripts/nga-harvester.js --dry-run --limit 30
+node scripts/nga-harvester.js --limit 150
+```
+
+The NGA export is large, so the harvester streams `objects.csv` and `published_images.csv` directly. Metadata is CC0. Public media is accepted only when the source record explicitly contains `openaccess=1`; fair-use images marked `0` are counted and excluded.
 
 ```bash
 # Report only from the repository root: shows ready/live/review/blocked queues
@@ -99,9 +108,9 @@ node mplus-harvester.js --limit 120
 node brasiliana-harvester.js --limit 120
 
 # Modern art + design + science (no key needed unless noted)
-node tate-harvester.js --limit 150              # No key needed
+node tate-harvester.js --limit 150              # CC0 metadata only; no images
 node streetart-harvester.js --limit 300         # No key needed (6 cities)
-node getty-harvester.js --limit 200             # No key needed (CC0 Open Content)
+node getty-harvester.js --limit 200             # Review output; explicit Open Content only
 node wellcome-harvester.js --limit 150          # No key needed (CC BY 4.0)
 node qagoma-harvester.js --limit 200            # No key needed (QLD Open Data — metadata-only)
 RAWG_API_KEY=xxx node rawg-harvester.js --limit 200                 # Free key: rawg.io
@@ -145,6 +154,15 @@ SMITHSONIAN_API_KEY=xxx node smithsonian-harvester.js --dry-run
 
 ## After Harvesting
 
+Audit all supplied image URLs before public regeneration:
+
+```bash
+node audit-public-media.js
+node audit-public-media.js --apply --concurrency 20
+```
+
+The audit records whether each URL returns a real image and whether cross-origin canvas use is permitted. ARCHAI keeps failed media out of result cards and AUX.IO while retaining the canonical metadata for staff search. Take a Qdrant snapshot before applying a large policy migration.
+
 Regenerate AUX.IO pages:
 ```bash
 cd ../nfc-pages
@@ -173,6 +191,7 @@ node generate-nfc-pages.js --limit 300
 | `archai_tate` | 15,000,000+ | Tate Collection |
 | `archai_streetart` | 16,000,000+ | Street Art (Vancouver · Brussels · NYC · Melbourne · San Francisco · Chicago) |
 | `archai_rawg` | 17,000,000+ | RAWG Video Games Database |
+| `archai_nga` | 13,000,000 + NGA object ID | National Gallery of Art, Washington |
 
 > **Note on ID offsets**: The `archai_smithsonian`, `archai_tate`, and `archai_streetart` harvesters were initially documented with conflicting offsets (2M, 3M, 5M — same as older collections). The table above assigns them new non-conflicting offsets in the 14–16M range. Update the harvester `ID_OFFSET` constants if you are re-harvesting from scratch into a fresh Qdrant instance. Existing production data at legacy offsets remains valid until a full re-harvest.
 

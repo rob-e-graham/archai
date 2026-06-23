@@ -53,6 +53,15 @@ const OPEN_LICENCES = new Set([
   'inc-1-0',
 ]);
 
+const DERIVATIVE_DOWNLOAD_LICENCES = new Set([
+  'cc-by',
+  'cc-by-sa',
+  'cc0',
+  'pdm',
+  'ogl',
+  'ogl-uk',
+]);
+
 // Queries spanning Wellcome's extraordinary interdisciplinary scope
 const SEARCH_QUERIES = [
   // Medical and anatomical art
@@ -334,6 +343,9 @@ async function main() {
         subjects,
         description,
         licence,
+        media_public_display_allowed: true,
+        poster_download_allowed: DERIVATIVE_DOWNLOAD_LICENCES.has(licId.toLowerCase()),
+        media_rights_basis: `Wellcome item/image licence: ${licId || 'not recorded'}`,
         attribution:         `Wellcome Collection. ${licence}`,
         source_url:          wellcomeUrl(work.id),
         media_thumbnail:     img.thumbnail,

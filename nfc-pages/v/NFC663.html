@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#080808">
-<title>cloak, evening — ARCHAI</title>
+<title>Die Stadt der Qual (The City of Agony) (in-text plate) from mock-up of Georg Heym: Umbra Vitae (Georg Heym: Shadow of Life) — ARCHAI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
@@ -29,6 +29,9 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 
+/* Phone-first: hide the document scrollbar everywhere (still scrolls). This keeps
+   the page clean on a real phone AND removes the iframe scrollbar when the page
+   is embedded in the public /aux wrapper (which frames it at ~390px wide). */
 html, body { scrollbar-width: none; -ms-overflow-style: none; }
 html::-webkit-scrollbar, body::-webkit-scrollbar { width: 0; height: 0; display: none; }
 
@@ -159,6 +162,138 @@ body::after {
   text-transform: uppercase;
 }
 
+/* ── INTERACTIVE / BORN-DIGITAL EMBED ── */
+.v-interactive {
+  border: 1px solid rgba(155,143,191,0.3);
+  background: rgba(155,143,191,0.04);
+  margin: 0 0 0;
+  animation: slideUp 0.6s ease 0.15s both;
+}
+.v-interactive-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(155,143,191,0.18);
+}
+.v-interactive-label {
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent3);
+}
+.v-interactive-pill {
+  font-family: var(--mono);
+  font-size: 0.44rem;
+  padding: 2px 8px;
+  border: 1px solid rgba(155,143,191,0.4);
+  color: var(--accent3);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.v-interactive-body {
+  padding: 14px 16px;
+}
+.v-interactive-note {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--text2);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+.v-interactive-launch {
+  width: 100%;
+  padding: 12px 16px;
+  background: transparent;
+  border: 1px solid rgba(155,143,191,0.5);
+  color: var(--accent3);
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.15s;
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.v-interactive-launch:active,
+.v-interactive-launch.active {
+  background: rgba(155,143,191,0.08);
+  border-color: var(--accent3);
+}
+.v-interactive-launch:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.v-interactive-frame-wrap {
+  display: none;
+  margin-top: 12px;
+  border: 1px solid rgba(155,143,191,0.2);
+  background: #000;
+  overflow: hidden;
+  position: relative;
+}
+.v-interactive-frame-wrap.open {
+  display: block;
+}
+.v-interactive-frame-wrap iframe,
+.v-interactive-frame-wrap replay-web-page {
+  width: 100%;
+  min-height: 480px;
+  border: none;
+  display: block;
+}
+.v-interactive-frame-loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  color: var(--accent3);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  animation: pulse 1.5s ease-in-out infinite;
+  pointer-events: none;
+}
+.v-interactive-frame-loading.hidden { display: none; }
+.v-interactive-close {
+  margin-top: 8px;
+  width: 100%;
+  padding: 8px;
+  background: transparent;
+  border: 1px solid var(--border2);
+  color: var(--text3);
+  font-family: var(--mono);
+  font-size: 0.46rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  display: none;
+}
+.v-interactive-close.open { display: block; }
+.v-interactive-disclaimer {
+  margin-top: 10px;
+  font-family: var(--mono);
+  font-size: 0.42rem;
+  color: var(--text3);
+  line-height: 1.7;
+  letter-spacing: 0.5px;
+}
+/* Badge in meta strip for interactive works */
+.v-meta-tag.interactive {
+  border-color: rgba(155,143,191,0.4);
+  color: rgba(155,143,191,0.8);
+}
+
 /* ── CONTENT ── */
 .v-content { padding: 24px 20px 32px; }
 
@@ -178,9 +313,24 @@ body::after {
   letter-spacing: 2px;
   text-transform: uppercase;
   line-height: 1.7;
-  margin-bottom: 20px;
+  margin-bottom: 6px;
   animation: slideUp 0.6s ease 0.2s both;
 }
+
+.v-institution {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  color: var(--accent2);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding-bottom: 14px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid rgba(143,188,176,0.15);
+  text-decoration: none;
+  animation: slideUp 0.6s ease 0.22s both;
+}
+.v-institution:hover { color: var(--accent); }
 
 .v-meta-strip {
   display: flex;
@@ -801,6 +951,76 @@ body::after {
 }
 .v-share-icon { font-size: 0.7rem; }
 
+/* ── POSTER DOWNLOAD ── */
+.v-poster-wrap {
+  margin-bottom: 22px;
+  animation: slideUp 0.6s ease 0.38s both;
+}
+.v-poster-summary {
+  list-style: none;
+  padding: 13px 16px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text2);
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.v-poster-summary::-webkit-details-marker { display: none; }
+.v-poster-summary::after { content: '+'; float: right; color: var(--accent); }
+.v-poster-wrap[open] .v-poster-summary::after { content: '−'; }
+.v-poster-panel {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-top: 0;
+  background: rgba(255,255,255,0.015);
+}
+.v-poster-label {
+  font-family: var(--mono);
+  font-size: 0.46rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 8px;
+}
+.v-poster-sizes {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+.v-poster-btn {
+  flex: 1;
+  padding: 10px 8px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text3);
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.12s;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-poster-btn:active:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(200,169,110,0.06);
+}
+.v-poster-btn:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+.v-poster-note {
+  font-family: var(--mono);
+  font-size: 0.42rem;
+  color: var(--text3);
+  letter-spacing: 0.5px;
+  line-height: 1.7;
+}
+
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(12px); }
   to { opacity: 1; transform: translateY(0); }
@@ -851,6 +1071,7 @@ body::after {
       0 0 0 1px rgba(255,255,255,0.03),
       0 24px 70px rgba(0,0,0,0.62),
       inset 0 1px 0 rgba(255,255,255,0.03);
+    /* Scroll like a real phone — no visible scrollbar inside the mockup */
     scrollbar-width: none;
     -ms-overflow-style: none;
   }
@@ -912,18 +1133,21 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://api.aucklandmuseum.com/id/media/v/358757?rendering=standard.jpg" alt="cloak, evening" loading="eager">
+  <img src="https://api.nga.gov/iiif/e1356cfe-2521-49f2-b763-0c31c00039c9/full/!800,800/0/default.jpg" alt="Die Stadt der Qual (The City of Agony) (in-text plate) from mock-up of Georg Heym: Umbra Vitae (Georg Heym: Shadow of Life)" loading="eager">
 </div>
+
+
 
 <!-- CONTENT -->
 <div class="v-content">
-  <div class="v-title">cloak, evening</div>
-  <div class="v-sub">ecrm:E22_Man-Made_Object · Unknown · 1965.78.880</div>
+  <div class="v-title">Die Stadt der Qual (The City of Agony) (in-text plate) from mock-up of Georg Heym: Umbra Vitae (Georg Heym: Shadow of Life)</div>
+  <div class="v-sub">volume · 1912/1922 · 2012.92.40.18</div>
+  <a class="v-institution" href="https://www.nga.gov/collection/art-object-page.228103.html" target="_blank" rel="noopener noreferrer">National Gallery of Art, Washington</a>
 
   <div class="v-meta-strip">
-    <span class="v-meta-tag mv">Auckland Museum</span>
-    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Attribution required</span>
-    <span class="v-meta-tag">Social History</span>
+    <span class="v-meta-tag legal" style="border-color:rgba(143,188,176,0.28);color:#8fbcb0;">Open access</span>
+    <span class="v-meta-tag">CG-W</span>
+
   </div>
 
   <!-- SHARE -->
@@ -934,11 +1158,28 @@ body::after {
     <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
   </div>
 
-  <div class="v-story"><strong>cloak, evening</strong> — Black brocade evening cloak, heavily trimmed with black jet beads, lace and tassels. Black lace ruching right round front.</div>
+  <details class="v-poster-wrap">
+  <summary class="v-poster-summary">Save / print with QR</summary>
+  <div class="v-poster-panel">
+  <div class="v-poster-label">Reusable interpretation material</div>
+  <div class="v-poster-sizes">
+    <button class="v-poster-btn" onclick="downloadPoster('A4')" data-size="A4">A4 · 300 dpi</button>
+    <button class="v-poster-btn" onclick="downloadPoster('A2')" data-size="A2">A2 · 150 dpi</button>
+    <button class="v-poster-btn" onclick="downloadPoster('A0')" data-size="A0">A0 · 150 dpi</button>
+  </div>
+  <div class="v-poster-sizes" style="margin-top:5px;">
+    <button class="v-poster-btn" onclick="downloadPosterSmall('STICKER')" data-size="STICKER">Sticker · 100mm</button>
+    <button class="v-poster-btn" onclick="downloadPosterSmall('POSTCARD')" data-size="POSTCARD">Postcard · A6</button>
+  </div>
+  <div class="v-poster-note">Available because this media record explicitly permits reusable derivatives.</div>
+  </div>
+</details>
+
+  <div class="v-story"><strong>Die Stadt der Qual (The City of Agony) (in-text plate) from mock-up of Georg Heym: Umbra Vitae (Georg Heym: Shadow of Life)</strong> — The image displays sharply angled lines and blocky shapes in an abstract composition. Within the forms, there are figures reminiscent of people with elongated bodies and angular features. The black lines contrast against the white background, creating a dynamic flow. There are elements that suggest …</div>
   <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
       <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Attribution required</strong> — Reusable with attribution to the source institution and creator where required.</div>
-      <div class="v-rights-detail">Licence / rights: © Auckland Museum CC BY</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — NGA Open Access</div>
     </div>
 
   <div class="v-divider"></div>
@@ -995,15 +1236,18 @@ body::after {
   <!-- METADATA -->
   <div class="v-meta-card">
     <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">1965.78.880</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">Social History</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">Unknown</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">Auckland Museum</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">ecrm:E22_Man-Made_Object</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Attribution required</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Reusable with attribution to the source institution and creator where required.</span></div>
-    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">© Auckland Museum CC BY</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2012.92.40.18</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Ernst Ludwig Kirchner</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">woodcut from a bound volume with 51 woodcuts (including cover and front and back endpapers) on wove paper</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Discipline</span><span class="v-meta-value">CG-W</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Category</span><span class="v-meta-value">volume</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Date / Period</span><span class="v-meta-value">1912/1922</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Dimensions</span><span class="v-meta-value">book: 21.7 × 14.5 × 1.3 cm (8 9/16 × 5 11/16 × 1/2 in.)</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Location</span><span class="v-meta-value">National Gallery of Art, Washington</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Object Type</span><span class="v-meta-value">volume</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
+    <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — NGA Open Access</span></div>
   </div>
 
   <!-- COMMENT -->
@@ -1018,24 +1262,24 @@ body::after {
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC661.html">
-        <div class="v-rel-thumb"><img src="https://iiif.micr.io/wlzop/full/max/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Portret van Willem I, graaf van Holland</div>
-        <div class="v-rel-meta">Rijksmuseum, Amsterdam · 20010015</div>
+        <div class="v-rel-thumb"><img src="https://api.nga.gov/iiif/989425c5-193c-4d98-94cd-155d2165bcc1/full/!800,800/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Die Schlösser (The Castles) (in-text plate) from mock-up of Georg Heym: Umbra Vitae (Georg Heym: Shadow of Life)</div>
+        <div class="v-rel-meta">National Gallery of Art, Washington · 2012.92.40.16</div>
       </a>
       <a class="v-rel-card" href="NFC662.html">
-        <div class="v-rel-thumb"><img src="https://media.tepapa.govt.nz/collection/619972/preview" loading="lazy"></div>
-        <div class="v-rel-title">One Rupee</div>
-        <div class="v-rel-meta">Museum of New Zealand Te Papa Tongarewa · NU005368</div>
+        <div class="v-rel-thumb"><img src="https://api.nga.gov/iiif/eb2ca7f5-fa52-4e2b-84dd-e0447bc88075/full/!800,800/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Die Städte (The Cities) (in-text plate) from mock-up of Georg Heym: Umbra Vitae (Georg Heym: Shadow of Life)</div>
+        <div class="v-rel-meta">National Gallery of Art, Washington · 2012.92.40.17</div>
       </a>
       <a class="v-rel-card" href="NFC664.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2021NB9593/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Dechayotic</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · E.43-2021</div>
+        <div class="v-rel-thumb"><img src="https://api.nga.gov/iiif/c2bfa864-dc0b-46c7-bf21-689d3335aa8b/full/!800,800/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Die Irren III (The Mad III) (in-text plate) from mock-up of Georg Heym: Umbra Vitae (Georg Heym: Shadow of Life)</div>
+        <div class="v-rel-meta">National Gallery of Art, Washington · 2012.92.40.21</div>
       </a>
       <a class="v-rel-card" href="NFC665.html">
-        <div class="v-rel-thumb"><img src="https://framemark.vam.ac.uk/collections/2011ER6468/full/!600,600/0/default.jpg" loading="lazy"></div>
-        <div class="v-rel-title">Print</div>
-        <div class="v-rel-meta">Victoria and Albert Museum, London · CIRC.1072-1967</div>
+        <div class="v-rel-thumb"><img src="https://api.nga.gov/iiif/5b8d231d-52e8-4715-b147-d23b2a5f4d41/full/!800,800/0/default.jpg" loading="lazy"></div>
+        <div class="v-rel-title">Die Blinden Frauen (The Blind Women) (in-text plate) from mock-up of Georg Heym: Umbra Vitae (Georg Heym: Shadow of Life)</div>
+        <div class="v-rel-meta">National Gallery of Art, Washington · 2012.92.40.30</div>
       </a></div>
   </div>
 </div>
@@ -1048,7 +1292,7 @@ body::after {
     FAMTEC · RMIT · Open Heritage Data<br>
     All processing local · data sovereignty preserved
   </div>
-  <a class="v-footer-link" href="https://api.aucklandmuseum.com/id/humanhistory/object/1557" target="_blank">View on Collections Website →</a>
+  <a class="v-footer-link" href="https://www.nga.gov/collection/art-object-page.228103.html" target="_blank">View on Collections Website →</a>
 </div>
 
 <script>
@@ -1080,26 +1324,27 @@ const API_ORIGIN = USE_PROXY
 
 // ── BAKED METADATA (injected at generation time) ────────────────
 const OBJECT = {
-  title: `cloak, evening`,
-  type: `ecrm:E22_Man-Made_Object`,
-  date: `Unknown`,
-  registration: `1965.78.880`,
-  location: `Auckland Museum`,
-  discipline: `Social History`,
-  category: `ecrm:E22_Man-Made_Object`,
-  description: `Black brocade evening cloak, heavily trimmed with black jet beads, lace and tassels. Black lace ruching right round front.`,
-  medium: ``,
-  artist: ``,
+  title: `Die Stadt der Qual (The City of Agony) (in-text plate) from mock-up of Georg Heym: Umbra Vitae (Georg Heym: Shadow of Life)`,
+  type: `volume`,
+  date: `1912/1922`,
+  registration: `2012.92.40.18`,
+  location: `National Gallery of Art, Washington`,
+  discipline: `CG-W`,
+  category: `volume`,
+  description: `The image displays sharply angled lines and blocky shapes in an abstract composition. Within the forms, there are figures reminiscent of people with elongated bodies and angular features. The black lines contrast against the white background, creating a dynamic flow. There are elements that suggest architecture, like buildings and a steeple, enhancing the urban scene.`,
+  medium: `woodcut from a bound volume with 51 woodcuts (including cover and front and back endpapers) on wove paper`,
+  artist: `Ernst Ludwig Kirchner`,
   culture: ``,
-  dimensions: ``,
+  dimensions: `book: 21.7 × 14.5 × 1.3 cm (8 9/16 × 5 11/16 × 1/2 in.)`,
   wall_description: ``,
   fun_fact: ``,
   did_you_know: ``,
-  provenance: ``,
+  provenance: `Ernst Ludwig Kirchner; Walter Kern [1898-1966], Winterthur (Lugt 1567a); Erna Kirchner, Kirchner's wife, acquired from Walter Kern, June 20, 1940. Hans Bolliger, Zurich (?); [1] (Galerie Kornfeld, Bern, 21 June 1985, no. 104); (via Wolfgang Wittrock Kunsthandel, Düsseldorf); Ruth Cole Kainen [1922-2…`,
   tombstone: ``,
-  licence: `© Auckland Museum CC BY`,
-  source_url: `https://api.aucklandmuseum.com/id/humanhistory/object/1557`,
-  institution: `Auckland Museum`
+  licence: `CC0 — NGA Open Access`,
+  poster_download_allowed: true,
+  source_url: `https://www.nga.gov/collection/art-object-page.228103.html`,
+  institution: `National Gallery of Art, Washington`
 };
 
 // Build rich context from available fields
@@ -1630,6 +1875,555 @@ function shareX() {
 }
 
 // ══════════════════════════════════════════════════════════════════
+// POSTER DOWNLOAD
+// Renders a canvas poster (A4 / A2 / A0) with object image, metadata,
+// QR code, and ARCHAI branding, then triggers a PNG download.
+// QR lib loaded on demand from cdnjs; poster still renders without it.
+// ══════════════════════════════════════════════════════════════════
+const POSTER_SIZES = {
+  A4: { w: 2480, h: 3508, dpi: 300 },
+  A2: { w: 2480, h: 3508, dpi: 150 },  // same pixel count — print at A2 = 150 dpi
+  A0: { w: 4961, h: 7016, dpi: 150 },
+};
+
+function _loadScript(src) {
+  return new Promise((resolve, reject) => {
+    if ((window.__ps = window.__ps || {})[src]) { resolve(); return; }
+    const s = document.createElement('script');
+    s.src = src;
+    s.onload = () => { window.__ps[src] = true; resolve(); };
+    s.onerror = reject;
+    document.head.appendChild(s);
+  });
+}
+
+function _wrapText(ctx, text, maxW) {
+  const words = String(text || '').split(' ');
+  const lines = [];
+  let line = '';
+  for (const word of words) {
+    const test = line ? line + ' ' + word : word;
+    if (ctx.measureText(test).width > maxW && line) { lines.push(line); line = word; }
+    else line = test;
+  }
+  if (line) lines.push(line);
+  return lines;
+}
+
+function _drawQR(ctx, url, x, y, size, fgColor) {
+  if (typeof qrcode === 'undefined') return 0;
+  try {
+    const qr = qrcode(0, 'M');
+    qr.addData(url);
+    qr.make();
+    const count = qr.getModuleCount();
+    const mod = Math.floor(size / count);
+    ctx.fillStyle = fgColor || '#080808';
+    for (let r = 0; r < count; r++)
+      for (let c = 0; c < count; c++)
+        if (qr.isDark(r, c)) ctx.fillRect(x + c * mod, y + r * mod, mod, mod);
+    return mod * count;
+  } catch { return 0; }
+}
+
+async function downloadPoster(sizeKey) {
+  if (!OBJECT.poster_download_allowed) return;
+  const spec = POSTER_SIZES[sizeKey] || POSTER_SIZES.A4;
+  const W = spec.w, H = spec.h, sc = W / 2480;
+
+  const btns = [...document.querySelectorAll('.v-poster-btn')];
+  const active = btns.find(b => b.dataset.size === sizeKey);
+  btns.forEach(b => { b.disabled = true; });
+  if (active) active.textContent = 'Generating…';
+
+  function restoreBtns() {
+    btns.forEach(b => {
+      b.disabled = false;
+      const sz = b.dataset.size;
+      if (sz && POSTER_SIZES[sz]) b.textContent = `${sz} · ${POSTER_SIZES[sz].dpi} dpi`;
+    });
+  }
+
+  try {
+    await _loadScript(new URL('vendor/qrcode-generator.js', window.location.href).href);
+  } catch {
+    restoreBtns();
+    alert('The local QR component is unavailable, so this asset was not generated.');
+    return;
+  }
+
+  try { await document.fonts.ready; } catch { /* ok */ }
+
+  try {
+  const canvas = document.createElement('canvas');
+  canvas.width = W; canvas.height = H;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) { restoreBtns(); return; }
+
+  const pad = Math.round(120 * sc);
+  const innerW = W - pad * 2;
+  const serif = '"Cormorant Garamond", Georgia, serif';
+  const mono  = '"DM Mono", "Courier New", monospace';
+  function setLS(px) { try { ctx.letterSpacing = px + 'px'; } catch {} }
+
+  // ── BACKGROUND
+  ctx.fillStyle = '#080808';
+  ctx.fillRect(0, 0, W, H);
+
+  // ── HEADER — wordmark + tag
+  const headerH  = Math.round(180 * sc);
+  const wordmarkY = Math.round(108 * sc);
+  ctx.textBaseline = 'middle';
+  ctx.font = `300 ${Math.round(54 * sc)}px ${serif}`;
+  setLS(Math.round(6 * sc));
+  const arcW = ctx.measureText('ARC').width;
+  const hW   = ctx.measureText('H').width;
+  ctx.fillStyle = '#e8e4dc'; ctx.fillText('ARC', pad, wordmarkY);
+  ctx.fillStyle = '#c8a96e'; ctx.fillText('H',   pad + arcW,      wordmarkY);
+  ctx.fillStyle = '#e8e4dc'; ctx.fillText('AI',  pad + arcW + hW, wordmarkY);
+  setLS(0);
+
+  const tagText = (OBJECT.registration || 'AUX.IO').toUpperCase();
+  ctx.font = `400 ${Math.round(20 * sc)}px ${mono}`;
+  ctx.fillStyle = '#8fbcb0';
+  const tagTW  = ctx.measureText(tagText).width;
+  const tagPad = Math.round(10 * sc);
+  ctx.strokeStyle = 'rgba(143,188,176,0.3)';
+  ctx.lineWidth   = Math.round(1.5 * sc);
+  ctx.strokeRect(W - pad - tagTW - tagPad * 2, wordmarkY - Math.round(14 * sc), tagTW + tagPad * 2, Math.round(28 * sc));
+  ctx.fillText(tagText, W - pad - tagTW - tagPad, wordmarkY);
+
+  // Header divider
+  ctx.strokeStyle = '#1e1e1e';
+  ctx.lineWidth = Math.round(1 * sc);
+  ctx.beginPath(); ctx.moveTo(pad, headerH); ctx.lineTo(W - pad, headerH); ctx.stroke();
+
+  // ── IMAGE — full bleed, 44 % of height
+  const imgTop = headerH + Math.round(16 * sc);
+  const imgH   = Math.round(H * 0.44);
+  ctx.fillStyle = '#0f0f0f';
+  ctx.fillRect(0, imgTop, W, imgH);
+
+  const heroImg = document.querySelector('.v-hero img');
+  if (heroImg?.src) {
+    try {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      await new Promise((res, rej) => {
+        img.onload = res; img.onerror = rej;
+        img.src = heroImg.src;
+        setTimeout(rej, 8000);
+      });
+      const ia = img.naturalWidth / img.naturalHeight;
+      const aa = W / imgH;
+      let dw, dh, dx, dy;
+      if (ia > aa) { dw = W; dh = W / ia; dx = 0; dy = imgTop + (imgH - dh) / 2; }
+      else          { dh = imgH; dw = imgH * ia; dx = (W - dw) / 2; dy = imgTop; }
+      ctx.drawImage(img, dx, dy, dw, dh);
+    } catch {
+      ctx.fillStyle = '#161616';
+      ctx.fillRect(0, imgTop, W, imgH);
+      ctx.font = `italic 300 ${Math.round(26 * sc)}px ${serif}`;
+      ctx.fillStyle = '#3a3330';
+      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+      ctx.fillText('Image not available (CORS)', W / 2, imgTop + imgH / 2);
+      ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+    }
+  }
+
+  // ── TEXT BLOCK
+  let curY = imgTop + imgH + Math.round(48 * sc);
+  ctx.textBaseline = 'top';
+
+  // Title
+  ctx.font = `300 ${Math.round(68 * sc)}px ${serif}`;
+  ctx.fillStyle = '#e8e4dc';
+  for (const ln of _wrapText(ctx, OBJECT.title || '', innerW).slice(0, 3)) {
+    ctx.fillText(ln, pad, curY);
+    curY += Math.round(80 * sc);
+  }
+  curY += Math.round(8 * sc);
+
+  // Artist · date · type
+  ctx.font = `400 ${Math.round(24 * sc)}px ${mono}`;
+  ctx.fillStyle = '#5a5450';
+  ctx.fillText([OBJECT.artist, OBJECT.date, OBJECT.type].filter(Boolean).join(' · ').toUpperCase(), pad, curY);
+  curY += Math.round(40 * sc);
+
+  // Institution
+  ctx.font = `400 ${Math.round(24 * sc)}px ${mono}`;
+  ctx.fillStyle = '#8fbcb0';
+  ctx.fillText((OBJECT.institution || '').toUpperCase(), pad, curY);
+  curY += Math.round(48 * sc);
+
+  // Divider
+  ctx.strokeStyle = '#1e1e1e'; ctx.lineWidth = Math.round(1 * sc);
+  ctx.beginPath(); ctx.moveTo(pad, curY); ctx.lineTo(W - pad, curY); ctx.stroke();
+  curY += Math.round(36 * sc);
+
+  // Description excerpt
+  ctx.font = `italic 300 ${Math.round(32 * sc)}px ${serif}`;
+  ctx.fillStyle = '#a09890';
+  const desc    = OBJECT.description || '';
+  const excerpt = desc.substring(0, 300) + (desc.length > 300 ? '…' : '');
+  for (const ln of _wrapText(ctx, excerpt, innerW).slice(0, 5)) {
+    ctx.fillText(ln, pad, curY);
+    curY += Math.round(46 * sc);
+  }
+
+  // ── QR + SCAN — pinned above footer
+  const footerH    = Math.round(260 * sc);
+  const qrAreaTop  = H - footerH - Math.round(360 * sc);
+  const qrSize     = Math.round(300 * sc);
+  const qrX        = W - pad - qrSize - Math.round(20 * sc);
+  const qrBg       = Math.round(16 * sc);
+
+  // Divider above QR
+  ctx.strokeStyle = '#1e1e1e';
+  ctx.beginPath(); ctx.moveTo(pad, qrAreaTop - Math.round(28 * sc)); ctx.lineTo(W - pad, qrAreaTop - Math.round(28 * sc)); ctx.stroke();
+
+  // QR light background + code
+  ctx.fillStyle = '#e8e4dc';
+  ctx.fillRect(qrX - qrBg, qrAreaTop - qrBg, qrSize + qrBg * 2, qrSize + qrBg * 2);
+  _drawQR(ctx, window.location.href, qrX, qrAreaTop, qrSize, '#080808');
+
+  // Scan prompt (left column)
+  ctx.textBaseline = 'top';
+  ctx.font = `400 ${Math.round(20 * sc)}px ${mono}`;
+  ctx.fillStyle = '#5a5450';
+  ctx.fillText('SCAN TO EXPLORE', pad, qrAreaTop);
+
+  ctx.font = `300 ${Math.round(52 * sc)}px ${serif}`;
+  ctx.fillStyle = '#e8e4dc';
+  ctx.fillText('fineartmedia.tech/aux', pad, qrAreaTop + Math.round(34 * sc));
+
+  ctx.font = `400 ${Math.round(18 * sc)}px ${mono}`;
+  ctx.fillStyle = '#3a3330';
+  const urlW = qrX - pad - Math.round(32 * sc);
+  _wrapText(ctx, window.location.href, urlW).slice(0, 3).forEach((l, i) => {
+    ctx.fillText(l, pad, qrAreaTop + Math.round((96 + i * 28) * sc));
+  });
+
+  // ── FOOTER
+  const footerLineY = H - footerH;
+  ctx.strokeStyle = '#1e1e1e';
+  ctx.beginPath(); ctx.moveTo(pad, footerLineY); ctx.lineTo(W - pad, footerLineY); ctx.stroke();
+
+  ctx.font = `400 ${Math.round(18 * sc)}px ${mono}`;
+  ctx.fillStyle = '#3a3330';
+  ctx.fillText(
+    [OBJECT.licence || 'Rights recorded on object page', OBJECT.institution || 'ARCHAI', `ARCHAI AUX.IO · ${new Date().getFullYear()}`].join(' · '),
+    pad, footerLineY + Math.round(24 * sc)
+  );
+
+  // Centred ARCHAI wordmark at bottom
+  setLS(Math.round(8 * sc));
+  ctx.font = `300 ${Math.round(26 * sc)}px ${serif}`;
+  ctx.fillStyle = '#2a2826';
+  ctx.textAlign = 'center';
+  ctx.fillText('ARCHAI', W / 2, H - Math.round(72 * sc));
+  ctx.textAlign = 'left';
+  setLS(0);
+
+  // ── EXPORT
+  canvas.toBlob(blob => {
+    restoreBtns();
+    if (!blob) return;
+    const url = URL.createObjectURL(blob);
+    const a   = document.createElement('a');
+    a.href     = url;
+    a.download = `archai-poster-${sizeKey}-${(OBJECT.registration || 'object').replace(/[^a-z0-9]/gi, '-').toLowerCase()}.png`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }, 'image/png');
+
+  } catch (err) {
+    restoreBtns();
+    console.error('Poster generation error:', err);
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════
+// SMALL FORMAT — Sticker (100mm sq) + Postcard (A6 landscape)
+// ══════════════════════════════════════════════════════════════════
+const SMALL_FORMAT_SIZES = {
+  STICKER:  { w: 1181, h: 1181, dpi: 300, label: 'Sticker · 100mm' },
+  POSTCARD: { w: 1748, h: 1240, dpi: 300, label: 'Postcard · A6'   },
+};
+
+// ── STICKER layout — QR dominant, full bleed image, clean type ──
+async function _drawStickerLayout(ctx, W, H) {
+  const sc    = W / 1181;
+  const pad   = Math.round(48 * sc);
+  const serif = '"Cormorant Garamond", Georgia, serif';
+  const mono  = '"DM Mono", "Courier New", monospace';
+  function sLS(px) { try { ctx.letterSpacing = px + 'px'; } catch {} }
+
+  ctx.fillStyle = '#080808';
+  ctx.fillRect(0, 0, W, H);
+
+  // Header — wordmark + reg tag
+  const wY = Math.round(44 * sc);
+  ctx.textBaseline = 'middle';
+  ctx.font = `300 ${Math.round(30 * sc)}px ${serif}`;
+  sLS(Math.round(4 * sc));
+  const aW = ctx.measureText('ARC').width, hW = ctx.measureText('H').width;
+  ctx.fillStyle = '#e8e4dc'; ctx.fillText('ARC', pad, wY);
+  ctx.fillStyle = '#c8a96e'; ctx.fillText('H',   pad + aW,      wY);
+  ctx.fillStyle = '#e8e4dc'; ctx.fillText('AI',  pad + aW + hW, wY);
+  sLS(0);
+
+  ctx.font = `400 ${Math.round(15 * sc)}px ${mono}`;
+  ctx.fillStyle = '#8fbcb0';
+  const tag  = (OBJECT.registration || 'AUX.IO').toUpperCase();
+  const tagW = ctx.measureText(tag).width;
+  ctx.fillText(tag, W - pad - tagW, wY);
+
+  // Divider
+  const hdrH = Math.round(72 * sc);
+  ctx.strokeStyle = '#1e1e1e'; ctx.lineWidth = Math.round(1 * sc);
+  ctx.beginPath(); ctx.moveTo(pad, hdrH); ctx.lineTo(W - pad, hdrH); ctx.stroke();
+
+  // Image — 42% of height
+  const imgTop = hdrH + Math.round(10 * sc);
+  const imgH   = Math.round(H * 0.42);
+  ctx.fillStyle = '#0f0f0f';
+  ctx.fillRect(0, imgTop, W, imgH);
+  const heroEl = document.querySelector('.v-hero img');
+  if (heroEl?.src) {
+    try {
+      const img = new Image(); img.crossOrigin = 'anonymous';
+      await new Promise((res, rej) => { img.onload = res; img.onerror = rej; img.src = heroEl.src; setTimeout(rej, 8000); });
+      const ia = img.naturalWidth / img.naturalHeight, aa = W / imgH;
+      let dw, dh, dx, dy;
+      if (ia > aa) { dw = W; dh = W / ia; dx = 0; dy = imgTop + (imgH - dh) / 2; }
+      else          { dh = imgH; dw = imgH * ia; dx = (W - dw) / 2; dy = imgTop; }
+      ctx.drawImage(img, dx, dy, dw, dh);
+    } catch { /* leave dark bg */ }
+  }
+
+  // Title (max 2 lines)
+  let curY = imgTop + imgH + Math.round(22 * sc);
+  ctx.textBaseline = 'top';
+  ctx.font = `300 ${Math.round(44 * sc)}px ${serif}`;
+  ctx.fillStyle = '#e8e4dc';
+  for (const ln of _wrapText(ctx, OBJECT.title || '', W - pad * 2).slice(0, 2)) {
+    ctx.fillText(ln, pad, curY);
+    curY += Math.round(52 * sc);
+  }
+
+  // Artist · date
+  ctx.font = `400 ${Math.round(18 * sc)}px ${mono}`;
+  ctx.fillStyle = '#5a5450';
+  ctx.fillText([OBJECT.artist, OBJECT.date].filter(Boolean).join(' · ').toUpperCase().substring(0, 52), pad, curY);
+  curY += Math.round(36 * sc);
+
+  // Divider
+  ctx.strokeStyle = '#1e1e1e';
+  ctx.beginPath(); ctx.moveTo(pad, curY); ctx.lineTo(W - pad, curY); ctx.stroke();
+  curY += Math.round(22 * sc);
+
+  // QR — minimum 20mm = 236px at 300dpi; use 270px for safe scan margin
+  const qrSize = Math.round(270 * sc);
+  const qrBg   = Math.round(12 * sc);
+  const qrX    = W - pad - qrSize;
+  const qrY    = curY + Math.round(6 * sc);
+  ctx.fillStyle = '#e8e4dc';
+  ctx.fillRect(qrX - qrBg, qrY - qrBg, qrSize + qrBg * 2, qrSize + qrBg * 2);
+  _drawQR(ctx, window.location.href, qrX, qrY, qrSize, '#080808');
+
+  // Scan prompt
+  ctx.font = `400 ${Math.round(16 * sc)}px ${mono}`;
+  ctx.fillStyle = '#5a5450';
+  ctx.fillText('SCAN TO', pad, curY + Math.round(6 * sc));
+  ctx.fillText('EXPLORE', pad, curY + Math.round(30 * sc));
+  ctx.font = `300 ${Math.round(38 * sc)}px ${serif}`;
+  ctx.fillStyle = '#c8a96e';
+  ctx.fillText('fineartmedia.tech/aux', pad, curY + Math.round(62 * sc));
+  ctx.font = `400 ${Math.round(13 * sc)}px ${mono}`;
+  ctx.fillStyle = '#3a3330';
+  ctx.fillText('#ARCHAIinTheWild', pad, curY + Math.round(118 * sc));
+
+  // Footer
+  const ftY = H - Math.round(34 * sc);
+  ctx.strokeStyle = '#1e1e1e';
+  ctx.beginPath(); ctx.moveTo(pad, ftY - Math.round(18 * sc)); ctx.lineTo(W - pad, ftY - Math.round(18 * sc)); ctx.stroke();
+  ctx.font = `400 ${Math.round(13 * sc)}px ${mono}`;
+  ctx.fillStyle = '#2a2826';
+  ctx.fillText((OBJECT.institution || 'ARCHAI').toUpperCase(), pad, ftY);
+}
+
+// ── POSTCARD layout — A6 landscape, image left / text+QR right ──
+async function _drawPostcardLayout(ctx, W, H) {
+  const sc    = W / 1748;
+  const pad   = Math.round(52 * sc);
+  const serif = '"Cormorant Garamond", Georgia, serif';
+  const mono  = '"DM Mono", "Courier New", monospace';
+  function sLS(px) { try { ctx.letterSpacing = px + 'px'; } catch {} }
+
+  ctx.fillStyle = '#080808';
+  ctx.fillRect(0, 0, W, H);
+
+  // Left panel — full-height image (45% width)
+  const imgPanelW = Math.round(W * 0.45);
+  ctx.fillStyle = '#0f0f0f';
+  ctx.fillRect(0, 0, imgPanelW, H);
+  const heroEl = document.querySelector('.v-hero img');
+  if (heroEl?.src) {
+    try {
+      const img = new Image(); img.crossOrigin = 'anonymous';
+      await new Promise((res, rej) => { img.onload = res; img.onerror = rej; img.src = heroEl.src; setTimeout(rej, 8000); });
+      const ia = img.naturalWidth / img.naturalHeight, aa = imgPanelW / H;
+      let dw, dh, dx, dy;
+      if (ia > aa) { dw = imgPanelW; dh = imgPanelW / ia; dx = 0; dy = (H - dh) / 2; }
+      else          { dh = H; dw = H * ia; dx = (imgPanelW - dw) / 2; dy = 0; }
+      ctx.drawImage(img, dx, dy, dw, dh);
+    } catch { /* dark bg */ }
+  }
+
+  // Vertical divider
+  ctx.strokeStyle = '#1e1e1e'; ctx.lineWidth = Math.round(1 * sc);
+  ctx.beginPath(); ctx.moveTo(imgPanelW, 0); ctx.lineTo(imgPanelW, H); ctx.stroke();
+
+  // Right panel
+  const rx = imgPanelW + pad;
+  const rw = W - imgPanelW - pad * 2;
+  let curY = pad;
+  ctx.textBaseline = 'top';
+
+  // ARCHAI wordmark
+  ctx.font = `300 ${Math.round(30 * sc)}px ${serif}`;
+  sLS(Math.round(5 * sc));
+  const aW = ctx.measureText('ARC').width, hW = ctx.measureText('H').width;
+  ctx.fillStyle = '#e8e4dc'; ctx.fillText('ARC', rx, curY);
+  ctx.fillStyle = '#c8a96e'; ctx.fillText('H',   rx + aW,      curY);
+  ctx.fillStyle = '#e8e4dc'; ctx.fillText('AI',  rx + aW + hW, curY);
+  sLS(0);
+
+  // Reg tag — top right of panel
+  ctx.font = `400 ${Math.round(14 * sc)}px ${mono}`;
+  ctx.fillStyle = '#8fbcb0';
+  const tag = (OBJECT.registration || 'AUX.IO').toUpperCase();
+  ctx.fillText(tag, W - pad - ctx.measureText(tag).width, curY + Math.round(6 * sc));
+  curY += Math.round(52 * sc);
+
+  ctx.strokeStyle = '#1e1e1e';
+  ctx.beginPath(); ctx.moveTo(rx, curY); ctx.lineTo(W - pad, curY); ctx.stroke();
+  curY += Math.round(32 * sc);
+
+  // Title
+  ctx.font = `300 ${Math.round(56 * sc)}px ${serif}`;
+  ctx.fillStyle = '#e8e4dc';
+  for (const ln of _wrapText(ctx, OBJECT.title || '', rw).slice(0, 2)) {
+    ctx.fillText(ln, rx, curY);
+    curY += Math.round(64 * sc);
+  }
+  curY += Math.round(4 * sc);
+
+  // Artist · date · type
+  ctx.font = `400 ${Math.round(19 * sc)}px ${mono}`;
+  ctx.fillStyle = '#5a5450';
+  ctx.fillText([OBJECT.artist, OBJECT.date, OBJECT.type].filter(Boolean).join(' · ').toUpperCase(), rx, curY);
+  curY += Math.round(32 * sc);
+
+  // Institution
+  ctx.font = `400 ${Math.round(19 * sc)}px ${mono}`;
+  ctx.fillStyle = '#8fbcb0';
+  ctx.fillText((OBJECT.institution || '').toUpperCase(), rx, curY);
+  curY += Math.round(40 * sc);
+
+  ctx.strokeStyle = '#1e1e1e';
+  ctx.beginPath(); ctx.moveTo(rx, curY); ctx.lineTo(W - pad, curY); ctx.stroke();
+  curY += Math.round(28 * sc);
+
+  // Description
+  ctx.font = `italic 300 ${Math.round(28 * sc)}px ${serif}`;
+  ctx.fillStyle = '#a09890';
+  const desc = (OBJECT.description || '').substring(0, 240);
+  for (const ln of _wrapText(ctx, desc + (OBJECT.description.length > 240 ? '…' : ''), rw).slice(0, 5)) {
+    ctx.fillText(ln, rx, curY);
+    curY += Math.round(38 * sc);
+  }
+
+  // QR + scan — pinned to bottom of right panel
+  const qrSize   = Math.round(200 * sc);
+  const qrBg     = Math.round(10 * sc);
+  const qrAreaTop = H - pad - qrSize - qrBg * 2 - Math.round(8 * sc);
+  const qrX      = W - pad - qrSize;
+
+  ctx.strokeStyle = '#1e1e1e';
+  ctx.beginPath(); ctx.moveTo(rx, qrAreaTop - Math.round(24 * sc)); ctx.lineTo(W - pad, qrAreaTop - Math.round(24 * sc)); ctx.stroke();
+
+  ctx.fillStyle = '#e8e4dc';
+  ctx.fillRect(qrX - qrBg, qrAreaTop - qrBg, qrSize + qrBg * 2, qrSize + qrBg * 2);
+  _drawQR(ctx, window.location.href, qrX, qrAreaTop, qrSize, '#080808');
+
+  ctx.font = `400 ${Math.round(15 * sc)}px ${mono}`;
+  ctx.fillStyle = '#5a5450';
+  ctx.fillText('SCAN TO EXPLORE', rx, qrAreaTop);
+  ctx.font = `300 ${Math.round(44 * sc)}px ${serif}`;
+  ctx.fillStyle = '#e8e4dc';
+  ctx.fillText('fineartmedia.tech/aux', rx, qrAreaTop + Math.round(22 * sc));
+  ctx.font = `400 ${Math.round(13 * sc)}px ${mono}`;
+  ctx.fillStyle = '#3a3330';
+  ctx.fillText('#ARCHAIinTheWild', rx, qrAreaTop + Math.round(82 * sc));
+
+  // Rights footer
+  const ftY = H - pad + Math.round(4 * sc);
+  ctx.strokeStyle = '#1e1e1e';
+  ctx.beginPath(); ctx.moveTo(rx, ftY - Math.round(22 * sc)); ctx.lineTo(W - pad, ftY - Math.round(22 * sc)); ctx.stroke();
+  ctx.font = `400 ${Math.round(13 * sc)}px ${mono}`;
+  ctx.fillStyle = '#2a2826';
+  ctx.fillText([OBJECT.licence || 'Rights recorded on object page', OBJECT.institution || 'ARCHAI', `ARCHAI AUX.IO · ${new Date().getFullYear()}`].join(' · '), rx, ftY);
+}
+
+// ── DOWNLOAD ORCHESTRATOR for small formats ──
+async function downloadPosterSmall(sizeKey) {
+  if (!OBJECT.poster_download_allowed) return;
+  const spec = SMALL_FORMAT_SIZES[sizeKey];
+  if (!spec) return;
+
+  const btns = [...document.querySelectorAll(`[data-size="${sizeKey}"]`)];
+  btns.forEach(b => { b.disabled = true; b.textContent = 'Generating…'; });
+  function restoreBtns() { btns.forEach(b => { b.disabled = false; b.textContent = spec.label; }); }
+
+  try {
+    await _loadScript(new URL('vendor/qrcode-generator.js', window.location.href).href);
+  } catch {
+    restoreBtns();
+    alert('The local QR component is unavailable, so this asset was not generated.');
+    return;
+  }
+  try { await document.fonts.ready; } catch {}
+
+  const canvas = document.createElement('canvas');
+  canvas.width = spec.w; canvas.height = spec.h;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) { restoreBtns(); return; }
+
+  try {
+    if (sizeKey === 'STICKER')  await _drawStickerLayout(ctx, spec.w, spec.h);
+    if (sizeKey === 'POSTCARD') await _drawPostcardLayout(ctx, spec.w, spec.h);
+
+    canvas.toBlob(blob => {
+      restoreBtns();
+      if (!blob) return;
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `archai-${sizeKey.toLowerCase()}-${(OBJECT.registration || 'object').replace(/[^a-z0-9]/gi, '-').toLowerCase()}.png`;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 'image/png');
+  } catch (err) {
+    restoreBtns();
+    console.error('Small format poster error:', err);
+  }
+}
+
+// ══════════════════════════════════════════════════════════════════
 // COMMENTS — saved to backend (AI moderated), localStorage fallback
 // ══════════════════════════════════════════════════════════════════
 const COMMENTS_API = USE_PROXY
@@ -1680,7 +2474,7 @@ function submitComment() {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       objectId: OBJECT.registration,
-      collection: 'archai_auckland',
+      collection: 'archai_nga',
       text,
       authorType: 'visitor',
     }),
@@ -1716,6 +2510,49 @@ function submitComment() {
 
 function escHTML(s) {
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ══════════════════════════════════════════════════════════════════
+// INTERACTIVE / BORN-DIGITAL EMBED
+// Lazy-loads the iframe or ReplayWeb.page player when the visitor
+// taps "Launch". The frame stays hidden until then to avoid heavy
+// network requests on arrival.
+// ══════════════════════════════════════════════════════════════════
+function launchInteractive() {
+  const wrap = document.getElementById('interactiveFrameWrap');
+  const btn  = document.getElementById('interactiveLaunchBtn');
+  const closeBtn = document.getElementById('interactiveCloseBtn');
+  const loader = document.getElementById('interactiveLoader');
+  if (!wrap) return;
+
+  wrap.classList.add('open');
+  if (btn) { btn.classList.add('active'); btn.disabled = true; btn.textContent = 'Loading…'; }
+  if (closeBtn) closeBtn.classList.add('open');
+
+  const iframe = wrap.querySelector('iframe');
+  if (iframe && iframe.dataset.src) {
+    iframe.src = iframe.dataset.src;
+    iframe.onload = () => { if (loader) loader.classList.add('hidden'); if (btn) btn.textContent = 'Running'; };
+    iframe.onerror = () => { if (loader) loader.classList.add('hidden'); if (btn) btn.textContent = 'Error loading'; };
+  } else {
+    if (loader) loader.classList.add('hidden');
+    if (btn) btn.textContent = 'Running';
+  }
+}
+
+function closeInteractive() {
+  const wrap = document.getElementById('interactiveFrameWrap');
+  const btn  = document.getElementById('interactiveLaunchBtn');
+  const closeBtn = document.getElementById('interactiveCloseBtn');
+  if (!wrap) return;
+
+  wrap.classList.remove('open');
+  if (closeBtn) closeBtn.classList.remove('open');
+  if (btn) { btn.disabled = false; btn.classList.remove('active'); btn.textContent = '▶ Launch interactive'; }
+
+  // Unload iframe to stop running scripts/audio
+  const iframe = wrap.querySelector('iframe');
+  if (iframe && iframe.src) { iframe.src = 'about:blank'; }
 }
 
 // Init comments on load

@@ -154,15 +154,28 @@ archai/
 ├── ARCHAI_v10_8.html              ← Main web application (single-file, role-aware)
 ├── backend-archai/
 │   ├── src/
-│   │   ├── server.js              ← Express.js backend
-│   │   ├── routes/proxy.js        ← Safe Qdrant / Ollama proxy
-│   │   ├── routes/comments.js     ← AI-moderated visitor comments
-│   │   └── services/              ← Moderation, curator vectors
-│   └── scripts/                   ← 18 collection harvesters
+│   │   ├── server.js              ← Express entry point
+│   │   ├── data/db.js             ← SQLite database (comments)
+│   │   ├── middleware/rateLimit.js ← Rate limiter
+│   │   ├── routes/
+│   │   │   ├── proxy.js           ← Safe Qdrant/Ollama/curator proxy
+│   │   │   ├── comments.js        ← AI-moderated threaded comments
+│   │   │   └── ...                ← Other route modules
+│   │   └── services/
+│   │       ├── moderation.js      ← Ollama comment screening
+│   │       └── curator-vectors.js ← Curator collection builder
+│   ├── scripts/
+│   │   ├── nga-harvester.js       ← NGA CC0 + item-level open images
+│   │   ├── audit-public-media.js  ← Availability/CORS audit before AUX.IO
+│   │   └── ...                    ← Institution-specific legal harvesters
+│   └── data/archai.db             ← SQLite (created at runtime)
 ├── nfc-pages/
-│   ├── generate-nfc-pages.js      ← AUX.IO page generator
-│   ├── nfc-visitor-template.html  ← Mobile-first visitor template
-│   └── v/                         ← 2,357 generated AUX.IO pages
+│   ├── generate-nfc-pages.js      ← AUX.IO page generator from all live collections
+│   ├── nfc-visitor-template.html  ← AUX.IO mobile template
+│   ├── aux-id-map.json            ← Permanent canonical object → AUX.IO ID registry
+│   ├── captive-portal.html
+│   ├── vendor/qrcode-generator.js ← Self-hosted MIT QR generator
+│   └── v/                         ← 1380 audited visitor pages
 ├── docs/
 │   ├── ARCHAI_ISEA2026_Rob_Graham.pdf         ← Conference paper
 │   └── ARCHAI_ISEA2026_UPDATE_2026-06.md      ← Post-submission update
@@ -220,16 +233,25 @@ ARCHAI is a working research prototype, not a finished commercial product. All p
 
 ## Version History
 
-| Version | Date | Notable Change |
-|---|---|---|
-| v6 | Early 2026 | Initial prototype · mock objects · v0.1-alpha |
-| v7 | Early 2026 | Role switcher · FAMTEC · Nodel · NFC · vocabulary |
-| v10.4–v10.6 | Feb–Mar 2026 | Live Qdrant + Ollama · multi-collection (MV + Met + V&A) |
-| v10.7 | Mar 2026 | CHIN-aligned thesaurus (AAT + DOCAM + Nomenclature) |
-| v10.8 | Apr 2026 | Backend proxy · AI-moderated comments · curator vector collection · 6 live sources |
-| v11.0–v11.4 | Apr 2026 | Auckland · Te Papa · M+ · Brasiliana · legal cleanup · 11 live collections |
-| v11.5 | May 2026 | Browse improvements · AUX.IO management deepened |
-| v11.6 | Jun 2026 | 18 collections · street art (6 cities) · RAWG games · 2,357 AUX.IO pages · thematic navigation |
+| Version | Changes |
+|---------|---------|
+| v6 | Initial prototype, mock objects |
+| v7 | Role switcher, FAMTEC, Nodel, NFC, vocabulary |
+| v10.4 | MV-only, live Qdrant + Ollama, LLM chat |
+| v10.5 | Restored all panels, AUX.IO page generator |
+| v10.6 | Multi-collection (MV+Met+V&A), sort/filter, dedup, AUX.IO share+comments, dynamic institutions |
+| v10.7 | Live CHIN-aligned thesaurus (AAT+DOCAM+Nomenclature+CHIN Disciplines), all buttons wired, responsive thumbnail scaling, vocab search with scope notes and provider badges |
+| **v10.8** | **Backend proxy for safe public hosting (rate limiting, prompt injection blocking), AI-moderated threaded comments, curator vector collection (all metadata + comments searchable), SQLite persistence, six live source collections in Qdrant, AUX.IO pages wired to backend API, object detail comment thread with approve/remove/reply, startup script with health checks, operations guide** |
+| **v10.9** | **AUX.IO moved from the old 62-page website subset to the live generated collection manifest, public website wrappers aligned with newer institutions, and the current runtime/docs brought into sync around the expanded live object set** |
+| **v11.0** | **Auckland Museum onboarded into the live stack, collection loading now scrolls beyond the first 200 Qdrant points, curator vectors rebuilt to 1085 live objects, AUX.IO source tagging corrected, and 951 public-facing visitor pages regenerated across 8 collections** |
+| **v11.1** | **Te Papa Tongarewa onboarded as the ninth live collection, guest-token and registered-key API access supported, curator vectors rebuilt to 1205 live objects, AUX.IO default cap lifted, and 1071 public-facing visitor pages regenerated across 9 collections** |
+| **v11.2** | **M+ Hong Kong onboarded as the tenth live collection with bilingual metadata preserved, public preview media attached from the source object pages, and the curator layer expanded to include Asia-focused visual culture records** |
+| **v11.3** | **Brasiliana Museus onboarded as the eleventh live collection using a public-domain / open-access legal gate, curator vectors rebuilt to 1445 live objects, and 1311 AUX.IO visitor pages regenerated across 11 collections** |
+| **v11.4** | **Legal cleanup and open-only backfill: 208 rights-restricted and 8 unevaluated objects removed from the live public stack, AIC re-harvested public-domain only, Europeana re-harvested with `reusability=open`, curator rebuilt to 1520 live objects, and AUX.IO regenerated with per-object legal status shown** |
+| **v11.5** | **Main app alignment pass: roadmap added, audit refreshed, default browse now favours image-backed demo objects, result cards remain rights-aware, and AUX.IO management uses a larger live-object working set while generated-page sync remains the next step** |
+| **v11.5.6** | **AUX.IO management workflow deepened: staff can create a new AUX.IO record, edit placement, assign from loaded records, draft an institution-owned object for testing, preview the visitor page, and export/save rights-aware config data** |
+| **v11.5.7** | **AUX.IO save path made real for the current backend session: new tag assignments and institution draft objects can be posted to `/api/nfc`, stored in the runtime repository, audited, and returned to the app while Directus remains the production persistence target** |
+| **v11.6** | **Nineteen collection sources and 3147 staff-searchable records aligned across app/backend; NGA onboarded with an item-level open-access gate; 2357 image URLs audited; 473 broken images and 504 rights-held media records removed from public presentation; 1380 AUX.IO pages regenerated; 440 rights-cleared pages gain compact QR poster/sticker/postcard tools; born-digital WACZ replay and an EaaSI integration boundary documented** |
 
 ---
 

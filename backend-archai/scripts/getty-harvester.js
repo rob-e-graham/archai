@@ -216,7 +216,7 @@ function parseGettyLinkedArt(obj, uri) {
   // Do NOT construct a speculative IIIF URL from the object UUID — the image resource ID
   // in Getty's IIIF service is different from the object UUID and results in 404s.
   if (!imageUrl) return null;
-  if (!isOpenContent && !imageUrl.includes('media.getty.edu')) return null;
+  if (!isOpenContent) return null;
 
   const thumbUrl = imageUrl.replace(/\/full\/[^/]+\//, '/full/!400,400/');
 
@@ -368,6 +368,9 @@ async function main() {
         credit_line:         credit,
         description,
         licence:             'CC0 1.0 Universal — Public Domain',
+        media_public_display_allowed: true,
+        poster_download_allowed: true,
+        media_rights_basis:  'Explicit Getty Linked Art Open Content / CC0 statement',
         source_url:          gettyObjectUrl(uuid),
         media_thumbnail:     thumbUrl,
         media_medium:        imageUrl,

@@ -3,6 +3,7 @@ import { env } from '../config/env.js';
 import { collectiveAccessAdapter } from '../adapters/collectiveAccessAdapter.js';
 import { resourceSpaceAdapter } from '../adapters/resourceSpaceAdapter.js';
 import { qdrantAdapter } from '../adapters/qdrantAdapter.js';
+import { eaasiAdapter } from '../adapters/eaasiAdapter.js';
 
 export const integrationsRouter = Router();
 
@@ -43,6 +44,7 @@ integrationsRouter.get('/', async (_req, res) => {
       resourceSpace: await resourceSpaceAdapter.health(),
       qdrant: await qdrantAdapter.health(),
       ollama: await ollamaHealth(),
+      eaasi: await eaasiAdapter.health(),
     },
   });
 });

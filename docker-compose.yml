@@ -40,7 +40,14 @@ services:
       # Data
       AUX_PAGES_DIR: /app/public/aux
       MEDIA_CACHE_DIR: /app/data/runtime/media-cache
+      MEDIA_MANIFEST_FILE: /app/data/runtime/media-manifests.json
       MEDIA_STREAM_MODE: local-cache
+      # Optional institutional EaaSI node. Keep tokens in deployment secrets,
+      # not in this repository.
+      EAASI_BASE_URL: ""
+      EAASI_OAI_URL: ""
+      EAASI_API_TOKEN: ""
+      EAASI_TENANT_ID: ""
       RESTRICTED_FLAGS: secret-sacred,community-restricted,embargoed
     volumes:
       - archai_data:/app/data

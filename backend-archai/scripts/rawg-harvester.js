@@ -317,6 +317,9 @@ async function main() {
         description,
         // ATTRIBUTION — required by RAWG terms; must be rendered as clickable link
         licence:                'Free with attribution — active link to rawg.io required on every display page',
+        media_public_display_allowed: true,
+        poster_download_allowed: false,
+        media_rights_basis:     'RAWG API display terms; redistribution and derivative downloads not granted',
         rawg_attribution_url:   'https://rawg.io',
         source_url:             rawgUrl(slug),
         media_thumbnail:        game.background_image || '',

@@ -312,6 +312,30 @@
     "official_docs": [],
     "notes": "Useful discovery layer for Australian breadth, but better as metadata and reference enrichment than first-wave AUX.IO media source."
   },
+  {
+    "id": "nga",
+    "name": "National Gallery of Art, Washington",
+    "region": "North America",
+    "focus": ["fine art", "photography", "works on paper", "sculpture", "open-access images"],
+    "status": "ready",
+    "priority": 16,
+    "harvester_script": "nga-harvester.js",
+    "translation_mode": "source-first",
+    "access_mode": "daily_csv_and_iiif",
+    "api_key": "none",
+    "metadata_rights": "CC0 1.0",
+    "image_rights": "item-level openaccess flag in published_images.csv",
+    "public_demo_policy": "approved_open",
+    "quality_gate": "openaccess=1 + image-backed + source provenance; exclude openaccess=0 fair-use derivatives",
+    "cultural_protocol": "Retain source descriptions and review sensitive records independently of copyright status",
+    "verification_status": "verified_2026_06_22",
+    "official_docs": [
+      "https://github.com/NationalGalleryOfArt/opendata",
+      "https://www.nga.gov/open-access-images.html",
+      "https://raw.githubusercontent.com/NationalGalleryOfArt/opendata/main/documentation/Data%20Dictionary.txt"
+    ],
+    "notes": "Daily NGA CMS export with stable object IDs, UUIDs, IIIF media, accessibility text, and a machine-readable item-level open-access gate. The harvester streams the large CSV files and never ingests images marked openaccess=0."
+  },
 
   {
     "id": "smithsonian",
@@ -352,16 +376,16 @@
     "access_mode": "github_dataset",
     "api_key": "none",
     "metadata_rights": "CC0 (GitHub dataset)",
-    "image_rights": "CC0 for public domain works (Tate Open Access 2019). Harvester restricted to pre-1920 works only.",
-    "public_demo_policy": "approved_open",
-    "quality_gate": "year < 1920 + thumbnailUrl-present + CC0-confirmed",
+    "image_rights": "Images are explicitly excluded from the CC0 GitHub dataset and require separate Tate permission/licensing.",
+    "public_demo_policy": "metadata_only_no_image_display",
+    "quality_gate": "metadata-only + no image fields + source attribution",
     "cultural_protocol": "Standard museum sensitivity review; no known Indigenous or restricted material",
     "verification_status": "verified_2026_06_21",
     "official_docs": [
       "https://github.com/tategallery/collection",
       "https://www.tate.org.uk/about-us/policies-and-procedures/website-terms-use"
     ],
-    "notes": "Dataset harvested from GitHub (CC0). Images served from tate.org.uk CDN. Harvester applies a strict pre-1920 creation-year filter to ensure all works and their images are in the public domain. Covers Turner, Blake, Constable, Rossetti, Millais, Sargent, Whistler, and early European modernists held by Tate."
+    "notes": "The unmaintained 2014 GitHub snapshot is useful CC0 metadata, but its README explicitly excludes images. ARCHAI keeps these records staff-searchable and does not publish Tate media in AUX.IO."
   },
 
   {
@@ -369,16 +393,16 @@
     "name": "Street Art & Public Murals (multi-city open data)",
     "region": "Global",
     "focus": ["street art", "murals", "public art", "urban art", "graffiti"],
-    "status": "planned",
+    "status": "live_metadata_only",
     "priority": 18,
     "harvester_script": "streetart-harvester.js",
     "translation_mode": "source-first",
     "access_mode": "open_data_api",
     "api_key": "none",
     "metadata_rights": "OGL Canada (Vancouver) · CC BY 2.0 (Brussels) · NYC Open Data / Public Domain (NYC) · CC BY 4.0 (Melbourne) · Public Domain (San Francisco) · Public Domain (Chicago)",
-    "image_rights": "per-source: OGL / CC BY / public domain — all allow public display with attribution",
-    "public_demo_policy": "approved_with_attribution",
-    "quality_gate": "title-present + source-attribution-in-payload",
+    "image_rights": "No image fields are currently published. Any future media must pass per-item photographer and artwork-rights review.",
+    "public_demo_policy": "metadata_only_until_item_media_review",
+    "quality_gate": "title-present + source-attribution-in-payload + no inferred media rights",
     "cultural_protocol": "Low cultural sensitivity risk; standard public art context",
     "verification_status": "verified_2026_06_22",
     "official_docs": [
@@ -389,7 +413,30 @@
       "https://data.sfgov.org/Culture-and-Recreation/Civic-Art-Collection/4hfa-5f7y",
       "https://data.cityofchicago.org/Parks-Recreation/Public-Art/sj6t-9cju"
     ],
-    "notes": "Aggregates six city open-data portals: Vancouver Public Art (OGL Canada), Brussels Street Art Trail (CC BY 2.0), NYC Parks Art in the Parks (public domain), City of Melbourne Outdoor Artworks (CC BY 4.0), San Francisco Civic Art Collection (public domain), and City of Chicago Public Art (public domain). No API key required for any source. Geolocation data (lat/lon) preserved in payload for future map views. Source attribution attached per record."
+    "notes": "Aggregates six city open-data portals: Vancouver Public Art (OGL Canada), Brussels Street Art Trail (CC BY 2.0), NYC Parks Art in the Parks (public domain), City of Melbourne Outdoor Artworks (CC BY 4.0), San Francisco Civic Art Collection (public domain), and City of Chicago Public Art (public domain). No API key required. Geolocation and source attribution are preserved. The current live collection is metadata-only while media provenance and artist/photographer rights are reviewed."
+  },
+
+  {
+    "id": "streetart-cities-partnership",
+    "name": "Street Art Cities Open Data Initiative",
+    "region": "Global",
+    "focus": ["street art", "artists", "geolocation", "urban culture", "research partnership"],
+    "status": "partnership_required",
+    "priority": 19,
+    "translation_mode": "source-first",
+    "access_mode": "monthly_json_csv_academic_use",
+    "api_key": "none",
+    "metadata_rights": "Academic analysis under the platform's acceptable-use statement; non-academic redistribution or integration requires express consent.",
+    "image_rights": "Images are explicitly excluded from the standard open-data exports.",
+    "public_demo_policy": "hold_until_written_partnership",
+    "quality_gate": "written permission + canonical source links + artist and location provenance + explicit item media rights",
+    "cultural_protocol": "Preserve artist, hunter/photographer, location precision, work status, takedown, and community context.",
+    "verification_status": "verified_2026_06_22",
+    "official_docs": [
+      "https://streetartcities.com/open-data",
+      "https://streetartcities.com/legal/hunter"
+    ],
+    "notes": "Promising RMIT research and outreach source. Do not scrape images or publish the metadata as an ARCHAI public-demo integration without written consent from Street Art Cities."
   },
 
   {
@@ -500,16 +547,16 @@
     "api_key_url": "https://rawg.io/apidocs",
     "api_key_env": "RAWG_API_KEY",
     "metadata_rights": "Free with attribution for non-commercial and small projects (<100K MAU)",
-    "image_rights": "Attribution required — active hyperlink back to rawg.io on every page where data is displayed",
-    "public_demo_policy": "approved_with_attribution",
-    "quality_gate": "attribution-link-on-every-display-page + under-100K-MAU",
+    "image_rights": "API display allowed with an active RAWG link under the selected plan; downloadable redistribution/derivative rights are not granted.",
+    "public_demo_policy": "api_display_with_attribution_no_downloads",
+    "quality_gate": "active RAWG link on every display + plan limits observed + poster/sticker/postcard disabled",
     "cultural_protocol": "Game content may require content-rating review before public display",
     "verification_status": "verified_2026_06_21",
     "official_docs": [
       "https://rawg.io/apidocs",
       "https://rawg.io/tos_api"
     ],
-    "notes": "300K+ games with metadata, screenshots, release dates, genres, platforms. Treats video games as cultural objects in the ARCHAI collection — a major modernising addition. Attribution hyperlink to rawg.io required on every page where data is displayed. Free for the ARCHAI research / demo context. Build harvester targeting landmark games by decade, genre, and cultural significance."
+    "notes": "300K+ games with metadata, screenshots, release dates, genres, and platforms. RAWG requires an active link on every page using its data/images and prohibits further distribution of the service. ARCHAI permits linked API display only; downloadable interpretation materials remain disabled."
   },
 
   {

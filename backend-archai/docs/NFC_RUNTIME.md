@@ -107,3 +107,9 @@ Yes, NFC visitor pages can play videos sourced from ResourceSpace, but productio
 ## Next production step
 
 Move from server-rendered inline HTML to a dedicated `nfc-pages/` frontend bundle that consumes `/api/nfc/tags/:tagId`, `/api/chat/object`, and a published media playback endpoint (e.g. `/api/media/published/:mediaId/stream`).
+
+## Born-digital and interactive works
+
+AUX.IO may also present approved live links, archived web captures, software documentation, and emulated experiences. These are separate manifestations of an object, not interchangeable thumbnails.
+
+See [BORN_DIGITAL_CAPTURE_AND_REPLAY.md](./BORN_DIGITAL_CAPTURE_AND_REPLAY.md) for the rights model, WACZ workflow, replay isolation, and publication requirements.
