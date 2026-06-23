@@ -35,6 +35,8 @@ This audit tested the first supplied image URL for every image-bearing record. I
 
 The street-art harvester was updated after discovering that the Brussels Open Data feed exposes image files through `url_image` and reports CC BY 4.0 in the dataset metadata. ARCHAI now enables public display for 139 Brussels street-art records, preserves source URLs and media credit strings, and keeps poster/postcard download disabled. Other municipal public-art feeds remain metadata-only until direct image URLs and item-level media rights are clearer.
 
+Being visible in public space, being non-profit, and linking back to the source are not sufficient public-publication gates on their own. ARCHAI should only publish an image publicly when the source provides an open licence, public-domain/open-content statement, explicit government/open-data permission, or written permission that covers the intended display context.
+
 ## Publication rules
 
 1. `media_available === false` hides a broken or placeholder image without deleting its metadata.
