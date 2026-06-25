@@ -175,3 +175,66 @@ cd backend-archai
 ```
 
 The script pins Browsertrix Crawler `1.12.4`, creates a WACZ and screenshot, calculates SHA-256, writes a sidecar manifestation, registers it with ARCHAI, and publishes it through the rights gate. It refuses to run unless the operator explicitly supplies `--rights-cleared`.
+
+## Local interactive demo
+
+A rights-safe synthetic CD-ROM-style access-copy demo is registered as:
+
+```text
+mediaId: cdrom_window_1997_demo
+kind: interactive
+play: /api/media/published/cdrom_window_1997_demo/play
+source: /born-digital/cdrom-window-1997/index.html
+```
+
+It is not a recovered artwork and does not use copied operating-system assets. It exists to demonstrate the manifestation player, sandboxing, and rights-gated publication workflow before connecting real artist- or institution-approved software/media-art access copies.
+
+A first real open-source creative-coding manifestation is also registered:
+
+```text
+mediaId: epicycloid_2017_open_demo
+kind: interactive
+play: /api/media/published/epicycloid_2017_open_demo/play
+source: /born-digital/epicycloid-2017-open/index.html
+upstream: https://github.com/fepegar/creative-coding
+licence: MIT
+```
+
+This is not presented as a museum-owned artwork. It is a rights-clean open-source interactive sketch used to test how ARCHAI can preserve attribution, licence, access-copy files, and sandboxed playback for real born-digital/creative-code material.
+
+## WACZ access-copy fallback
+
+Full browser replay is useful, but it should not be the only public access path. During local testing on 23 June 2026, the archived AUX.IO and ARCHAI WACZ files loaded in ReplayWeb.page but the embedded replay iframe still reported "Archived Page Not Found" despite valid page metadata, timestamps, WACZ downloads, and screenshot/text records.
+
+ARCHAI now treats WACZ replay in two layers:
+
+```text
+Stable access page:
+/api/media/published/<mediaId>/replay
+
+Extracted capture screenshot:
+/api/media/published/<mediaId>/capture-image
+
+Experimental full ReplayWeb route:
+/api/media/published/<mediaId>/replay-web
+```
+
+The stable access page displays the verified `urn:view:` screenshot extracted from the WACZ, source URL, rights label, capture timestamp, WACZ download, and a link to the beta ReplayWeb route. This gives curators and visitors a trustworthy access-copy view even when full dynamic browser replay needs further QA.
+
+Keep this distinction in future designs:
+
+- **Access copy:** reliable, rights-cleared, explainable, and available now.
+- **Replay/emulation:** powerful but must be tested per object, per browser, and per rights context.
+- **Download/package:** available only when the manifestation is cleared and publication policy allows it.
+
+## Specialist media-lab sources
+
+NASA Image and Video Library was tested as a high-value public-media source for video/image playback R&D. ARCHAI ingested a small `archai_nasa` lab collection from the official API, but it is intentionally excluded from the main curator aggregate and public AUX.IO generation by default.
+
+Why:
+
+- NASA is valuable for testing video, captions, archival media, and science/technology interpretation.
+- NASA is not a museum/gallery collection in the same sense as the GLAM sources that define the public ARCHAI demo.
+- NASA media also carries no-endorsement and logo/emblem restrictions that should remain visible in any downstream use.
+
+Use NASA media only as labelled media-lab material, or promote individual records manually when the demo explicitly calls for a science/media playback example. Do not let specialist lab collections auto-flow into the museum/gallery search layer.

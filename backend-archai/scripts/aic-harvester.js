@@ -13,6 +13,8 @@
 // Licence: CC0 (public domain) for qualifying works
 // ══════════════════════════════════════════════════════════════════
 
+import { buildIiifImageSet } from './lib/iiif.js';
+
 const AIC_API = 'https://api.artic.edu/api/v1';
 const QDRANT_URL = 'http://localhost:6333';
 const OLLAMA_URL = 'http://localhost:11434';
@@ -173,8 +175,11 @@ async function main() {
       // Never ingest those — we cannot publish copyrighted media.
       if (!a.is_public_domain) { errors++; continue; }
 
-      const imgUrl = `${IIIF_BASE}/${a.image_id}/full/843,/0/default.jpg`;
-      const thumbUrl = `${IIIF_BASE}/${a.image_id}/full/200,/0/default.jpg`;
+      const iiifImages = buildIiifImageSet(`${IIIF_BASE}/${a.image_id}`, {
+        thumbnail: 200,
+        display: 843,
+        large: 1600,
+      });
 
       const payload = {
         canonical_id: `aic:${a.id}`,
@@ -196,9 +201,12 @@ async function main() {
         dimensions: a.dimensions || '',
         licence: a.is_public_domain ? 'CC0 — Public Domain' : 'All rights reserved',
         source_url: `https://www.artic.edu/artworks/${a.id}`,
-        media_thumbnail: thumbUrl,
-        media_medium: imgUrl,
-        media_large: imgUrl,
+        media_thumbnail: iiifImages.media_thumbnail,
+        media_medium: iiifImages.media_medium,
+        media_large: iiifImages.media_large,
+        media_iiif_base: iiifImages.iiif_base,
+        media_iiif_info_url: iiifImages.iiif_info_url,
+        media_iiif_available: true,
         embedding_text: description
       };
 

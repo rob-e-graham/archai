@@ -11,7 +11,7 @@ This audit tested the first supplied image URL for every image-bearing record. I
 | Source | Records | URLs supplied | Healthy | Hidden/broken | AUX.IO pages | QR print formats | Current decision |
 |---|---:|---:|---:|---:|---:|---:|---|
 | Art Institute of Chicago | 150 | 150 | 0 | 150 | 0 | 0 | Current image endpoint returns a Cloudflare HTML challenge; metadata remains staff-searchable |
-| Auckland Museum | 120 | 120 | 119 | 1 | 119 | 0 | Public display with item attribution; derivative output remains disabled |
+| Auckland Museum | 120 | 120 | 120 | 0 | 120 | 0 | Public display with item attribution; derivative output remains disabled |
 | Brasiliana Museus | 120 | 120 | 7 | 113 | 7 | 0 | Only seven current image URLs resolve; do not show the 404 records |
 | Cleveland Museum of Art | 150 | 150 | 150 | 0 | 150 | 0 | Public display works; remote images are not currently canvas-safe |
 | Europeana | 150 | 150 | 150 | 0 | 150 | 0 | `reusability=open` display set; remote images are not currently canvas-safe |
@@ -19,23 +19,35 @@ This audit tested the first supplied image URL for every image-bearing record. I
 | Metropolitan Museum of Art | 135 | 135 | 135 | 0 | 135 | 0 | Public-domain display works; print derivatives remain fail-closed until explicitly migrated |
 | M+ | 110 | 110 | 110 | 0 | 0 | 0 | Preview/non-commercial media is held from AUX.IO |
 | National Gallery of Art | 150 | 150 | 150 | 0 | 150 | 150 | CC0 metadata and `published_images.openaccess=1` media; print formats enabled |
-| Museums Victoria | 40 | 39 | 36 | 3 | 36 | 0 | CC BY display set; one metadata-only record and three failed images remain staff-searchable |
+| Museums Victoria | 40 | 39 | 39 | 0 | 39 | 0 | CC BY display set; one metadata-only record remains staff-searchable |
 | QAGOMA | 200 | 0 | 0 | 0 | 0 | 0 | CC BY metadata only; no object media published |
 | RAWG | 193 | 193 | 193 | 0 | 193 | 0 | API display with an active RAWG link; redistribution/derivative downloads disabled |
 | Rijksmuseum | 150 | 150 | 150 | 0 | 150 | 0 | Public-domain display works; print derivatives remain fail-closed until explicitly migrated |
-| Smithsonian Institution | 145 | 145 | 141 | 4 | 141 | 141 | Only item-level `usage.access=CC0` media; print formats enabled for healthy images |
+| Smithsonian Institution | 145 | 145 | 139 | 6 | 139 | 139 | Only item-level `usage.access=CC0` media; print formats enabled for healthy images |
 | Municipal street-art data | 439 | 139 | 139 | 0 | 139 | 0 | Brussels CC BY 4.0 images enabled for display; Vancouver and Melbourne remain metadata/source-link only |
 | Tate | 150 | 0 | 0 | 0 | 0 | 0 | CC0 metadata only; Tate's dataset explicitly excludes images |
 | Te Papa Tongarewa | 95 | 95 | 95 | 0 | 0 | 0 | Preview-first/item-specific rights; held from the current exact-rights AUX.IO gate |
 | Victoria and Albert Museum | 300 | 300 | 299 | 1 | 0 | 0 | Media is technically healthy but held pending an explicit reusable-media migration |
-| Wellcome Collection | 150 | 150 | 149 | 1 | 149 | 149 | Item-level open licences; derivative-friendly records gain print formats |
-| **Total** | **3147** | **2496** | **2023** | **473** | **1519** | **440** | **651 metadata-only records; 504 otherwise healthy records held by public-media policy** |
+| Wellcome Collection | 150 | 150 | 150 | 0 | 150 | 150 | Item-level open licences; derivative-friendly records gain print formats |
+| **Total** | **3147** | **2496** | **2026** | **470** | **1522** | **439** | **651 metadata-only records; 504 otherwise healthy records held by public-media policy** |
 
 ## Update — 23 June 2026
 
 The street-art harvester was updated after discovering that the Brussels Open Data feed exposes image files through `url_image` and reports CC BY 4.0 in the dataset metadata. ARCHAI now enables public display for 139 Brussels street-art records, preserves source URLs and media credit strings, and keeps poster/postcard download disabled. Other municipal public-art feeds remain metadata-only until direct image URLs and item-level media rights are clearer.
 
 Being visible in public space, being non-profit, and linking back to the source are not sufficient public-publication gates on their own. ARCHAI should only publish an image publicly when the source provides an open licence, public-domain/open-content statement, explicit government/open-data permission, or written permission that covers the intended display context.
+
+## Update — 23 June 2026 legal harvest refresh
+
+The legal harvest bot was run again against ready sources. National Gallery of Art refreshed cleanly with 150 open-access image-backed records. Smithsonian loaded the KeyTec API key from the macOS keychain, found 1887 candidate records, embedded 145 item-level CC0 records, and skipped 1742 records without CC0 media. Getty was dry-run only and remains held because the current pass did not expose usable item-level Open Content image URLs.
+
+After applying the public-media audit with `--apply --concurrency 20`, `archai_curator` was rebuilt to 3147 records and AUX.IO was regenerated to 1522 public visitor pages. The current public gate is:
+
+- 2026 healthy media records.
+- 470 hidden or broken media records.
+- 651 metadata-only records.
+- 504 otherwise healthy records held from AUX.IO by source/publication policy.
+- 439 poster/postcard-capable records where both `poster_download_allowed` and `media_canvas_safe` are true.
 
 ## Publication rules
 

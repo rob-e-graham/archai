@@ -13,6 +13,8 @@
 // Licence: V&A Open Access — non-commercial
 // ══════════════════════════════════════════════════════════════════
 
+import { buildIiifImageSet } from './lib/iiif.js';
+
 const VA_API = 'https://api.vam.ac.uk/v2';
 const QDRANT_URL = 'http://localhost:6333';
 const OLLAMA_URL = 'http://localhost:11434';
@@ -139,10 +141,17 @@ async function main() {
       const imageId = rec._primaryImageId || '';
 
       // Image URLs from V&A IIIF
-      const thumbUrl = (rec._images && rec._images._primary_thumbnail) ||
-        (imageId ? `https://framemark.vam.ac.uk/collections/${imageId}/full/!200,200/0/default.jpg` : '');
-      const mediumUrl = imageId ? `https://framemark.vam.ac.uk/collections/${imageId}/full/!600,600/0/default.jpg` : '';
-      const largeUrl = imageId ? `https://framemark.vam.ac.uk/collections/${imageId}/full/!1200,1200/0/default.jpg` : '';
+      const iiifImages = imageId
+        ? buildIiifImageSet(`https://framemark.vam.ac.uk/collections/${imageId}`, {
+            thumbnail: 200,
+            display: 600,
+            large: 1200,
+            mode: 'fit',
+          })
+        : null;
+      const thumbUrl = (rec._images && rec._images._primary_thumbnail) || iiifImages?.media_thumbnail || '';
+      const mediumUrl = iiifImages?.media_medium || '';
+      const largeUrl = iiifImages?.media_large || '';
 
       const location = rec._currentLocation && rec._currentLocation.displayName
         ? rec._currentLocation.displayName : 'V&A, London';
@@ -166,6 +175,9 @@ async function main() {
         media_thumbnail: thumbUrl,
         media_medium: mediumUrl,
         media_large: largeUrl,
+        media_iiif_base: iiifImages?.iiif_base || '',
+        media_iiif_info_url: iiifImages?.iiif_info_url || '',
+        media_iiif_available: Boolean(iiifImages?.iiif_base),
         embedding_text: description
       };
 

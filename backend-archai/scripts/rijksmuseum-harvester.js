@@ -15,6 +15,8 @@
 // Licence: CC0 / Public Domain Mark
 // ══════════════════════════════════════════════════════════════════
 
+import { buildIiifImageSet } from './lib/iiif.js';
+
 const OAI_URL = 'https://data.rijksmuseum.nl/oai';
 const QDRANT_URL = 'http://localhost:6333';
 const OLLAMA_URL = 'http://localhost:11434';
@@ -71,6 +73,12 @@ function parseRecords(xml) {
     // Only keep records with images and titles
     if (!img || !titles.length) continue;
 
+    const iiifImages = buildIiifImageSet(img, {
+      thumbnail: 400,
+      display: 1000,
+      large: 1600,
+    });
+
     records.push({
       id,
       title: titles[0],
@@ -82,8 +90,10 @@ function parseRecords(xml) {
       dimensions: formats.find(f => f.match(/^\d+.*x.*\d+|cm|mm/i)) || '',
       type: types[0] || '',
       subjects: subjects,
-      imageUrl: img,
-      thumbUrl: img.replace('/full/max/', '/full/400,/'),
+      imageUrl: iiifImages.media_medium || img,
+      thumbUrl: iiifImages.media_thumbnail || img.replace('/full/max/', '/full/400,/'),
+      iiifBase: iiifImages.iiif_base,
+      iiifInfoUrl: iiifImages.iiif_info_url,
       rights: rights[0] || 'Public Domain',
     });
   }
@@ -230,7 +240,10 @@ async function main() {
         source_url: `https://www.rijksmuseum.nl/en/collection/${objNum}`,
         media_thumbnail: r.thumbUrl,
         media_medium: r.imageUrl,
-        media_large: r.imageUrl,
+        media_large: r.iiifBase ? buildIiifImageSet(r.iiifBase, { thumbnail: 400, display: 1000, large: 1600 }).media_large : r.imageUrl,
+        media_iiif_base: r.iiifBase || '',
+        media_iiif_info_url: r.iiifInfoUrl || '',
+        media_iiif_available: Boolean(r.iiifBase),
         richness_score: r.richness,
         embedding_text: embeddingParts
       };

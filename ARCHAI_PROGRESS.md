@@ -1,6 +1,6 @@
 # ARCHAI Progress Log
 
-Last updated: 2026-06-23
+Last updated: 2026-06-24
 Maintained as an active handoff note so Claude, Codex, and Rob can quickly see where the work is up to if a session ends or tokens run out.
 
 Primary build planning is now also summarized in [ROADMAP.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ROADMAP.md). Use that for milestone order, and use this file for detailed handoff notes.
@@ -19,6 +19,14 @@ Protect what is already working while we improve it:
 - keep the current phone/browser voice path stable
 - treat desktop microphone selection and Whisper capture as an additive next layer
 - avoid replacing the live phone experience until a better path is genuinely proven
+
+## 2026-06-24 website audio + AUX.IO demo alignment
+
+- Tightened the public website `Talk to ARCHAI` audio flow so captured speech automatically asks ARCHAI when recording ends or the user presses Stop.
+- Added clearer live/pending audio states and active button feedback to match the smoother AUX.IO voice interaction.
+- Updated the website voice selector scoring to prefer modern/neutral browser voices and strongly avoid legacy novelty voices.
+- Pinned the embedded AUX.IO phone preview to a stable generated page (`NFC585.html`) instead of loading the lightweight website `aux.html`, while keeping the Surprise button pointed at the live random AUX.IO route.
+- Verified the website inline script passes `node --check` after extraction and confirmed the pinned local backend AUX.IO page returns HTTP 200.
 
 ## 2026-06-22 licence update
 
@@ -1119,3 +1127,283 @@ Website behaviour:
 
 - if a scoped source returns metadata but no public image-ready records, the public demo now shows a clear metadata-only panel with title, maker/place/date, media-rights basis, and source-record link instead of appearing broken;
 - image-enabled Brussels street-art searches now return image cards in the normal website search grid.
+
+## Legal harvest refresh and AUX.IO cleanup - 2026-06-23
+
+Rob asked to start the next legal harvests and keep the media gates strict. Codex posted the working state to Claude in Huggle so the next pass can continue without resetting or flattening the dirty worktree.
+
+Harvests and verification:
+
+- `backend-archai/scripts/legal-harvest-bot.js --report` showed National Gallery of Art, Smithsonian, and Getty as the ready queue.
+- NGA was dry-run checked, then refreshed live: 150 open-access image-backed records were upserted into `archai_nga`.
+- Smithsonian loaded `SMITHSONIAN_API_KEY` from KeyTec/macOS keychain and refreshed live: 145 item-level CC0 records were embedded into `archai_smithsonian`; 1742 records without CC0 media were skipped.
+- Getty was dry-run checked only. The current pass found no usable Open Content image URLs, so Getty remains held until image extraction is repaired from explicit source data.
+- `archai_curator` was rebuilt successfully to 3147 records.
+- A Smithsonian search through the curator endpoint returned source-specific results, confirming the refreshed collection is searchable.
+
+Media publication gate:
+
+- `backend-archai/scripts/audit-public-media.js --apply --concurrency 20` was run after harvest.
+- Current audit totals: 2496 supplied image URLs checked; 2026 healthy; 470 hidden or broken; 1426 canvas-safe; 651 metadata-only.
+- AUX.IO was regenerated after the audit and now publishes 1522 clean visitor pages.
+- The generator skipped 651 metadata-only records, 470 unavailable/placeholder media records, and held 504 otherwise healthy records from AUX.IO because the source/publication policy is not yet explicit enough.
+- Poster/postcard/download controls remain fail-closed: only 439 records currently pass both `poster_download_allowed` and `media_canvas_safe`.
+
+Current AUX.IO page breakdown after regeneration:
+
+- Auckland Museum: 120 pages.
+- Brasiliana Museus: 7 pages.
+- Cleveland Museum of Art: 150 pages.
+- Europeana: 150 pages.
+- The Metropolitan Museum of Art: 135 pages.
+- Museums Victoria: 39 pages.
+- National Gallery of Art, Washington: 150 pages.
+- RAWG Video Games Database: 193 pages.
+- Rijksmuseum, Amsterdam: 150 pages.
+- Smithsonian Institution: 139 pages.
+- Wellcome Collection: 150 pages.
+- Public Street Art: 139 pages.
+
+Follow-ups for Claude/Codex:
+
+- Repair Getty image extraction from item-level Open Content fields; do not manufacture URLs.
+- Repair Brasiliana broken image URLs from source data; only 7 of 120 are currently public-display healthy.
+- Investigate the six hidden Smithsonian URLs.
+- Replace or proxy the AIC image route only if an officially supported, rights-safe browser-readable path exists.
+- Keep Vancouver/Melbourne/other municipal public-art records metadata/source-link only unless image rights are explicit.
+- Keep the website positioned as a public demo and the main ARCHAI app as the primary staff-facing system.
+
+## Born-digital manifestation player demo - 2026-06-23
+
+Added a small rights-safe synthetic CD-ROM/media-art demo to prove the interactive manifestation path without using copyrighted legacy software or operating-system assets.
+
+- Added `/born-digital` static access-copy serving in the backend.
+- Added `GET /api/media/published/:mediaId/play` for published and rights-cleared interactive/html/emulation manifests.
+- Registered `cdrom_window_1997_demo` in `backend-archai/data/runtime/media-manifests.json`.
+- Created `backend-archai/data/runtime/born-digital/cdrom-window-1997/index.html` as an original 1990s-style interactive stand-in.
+- Documented the demo in `backend-archai/docs/BORN_DIGITAL_CAPTURE_AND_REPLAY.md`.
+
+Test URL after backend restart:
+
+```text
+http://localhost:8787/api/media/published/cdrom_window_1997_demo/play
+```
+
+This is a placeholder for the real workflow: institution-owned, artist-permissioned, openly licensed, or public-domain software/media works should be registered as manifestations with explicit rights and access policy before public replay.
+
+Added a first real open-source creative-coding manifestation:
+
+- Imported an `Epicycloid` p5.js sketch from Fernando's `creative-coding` repository under the MIT licence.
+- Preserved upstream attribution and licence text in the access-copy folder.
+- Registered `epicycloid_2017_open_demo` as `interactive`, `published`, and `rights.status=cleared`.
+- Verified `/api/media/published/epicycloid_2017_open_demo/play` returns 200.
+
+Test URL:
+
+```text
+http://localhost:8787/api/media/published/epicycloid_2017_open_demo/play
+```
+
+## WACZ replay access-copy fallback - 2026-06-23
+
+Rob tested the replay links and the full ReplayWeb.page route did not reliably replay the captured HTML, even though the WACZ files, page metadata, screenshots, and archive download endpoints were valid.
+
+What changed:
+
+- Added `GET /api/media/published/:mediaId/capture-image` to extract the verified `urn:view:` PNG screenshot from the WACZ screenshot WARC.
+- Changed `GET /api/media/published/:mediaId/replay` into a stable ARCHAI access-copy page showing the captured screenshot, original source link, rights label, capture timestamp, WACZ download, and a separate ReplayWeb beta link.
+- Moved the experimental full ReplayWeb loader to `GET /api/media/published/:mediaId/replay-web`.
+- Kept `GET /api/media/published/:mediaId/play` routing web archives to the stable access-copy page, while interactive HTML manifests still open in the sandboxed player.
+
+Verified locally:
+
+```text
+http://localhost:8787/api/media/published/auxio_public_2026-06-22/play
+http://localhost:8787/api/media/published/archai_public_2026-06-22/capture-image
+http://localhost:8787/api/media/published/cdrom_window_1997_demo/play
+http://localhost:8787/api/media/published/epicycloid_2017_open_demo/play
+```
+
+Current limitation:
+
+- The underlying ReplayWeb beta route can load the WACZ metadata and timestamp, but still reports "Archived Page Not Found" for the captured page iframe. Treat full dynamic replay as QA/investigation, not the public demo path, until the WACZ lookup mismatch is resolved.
+
+## NASA media-lab harvest quarantined from core GLAM app - 2026-06-23
+
+Rob queried whether NASA fits the core GLAM institution feel. Decision: keep NASA useful for media/playback R&D, but do not treat it as a normal museum/gallery source in the main ARCHAI app or public AUX.IO demo.
+
+What happened:
+
+- Added `backend-archai/scripts/nasa-harvester.js` for official NASA Image and Video Library records.
+- Dry-run passed with logo/patch/insignia records skipped.
+- Live-ingested 120 NASA public-media records into `archai_nasa` for lab testing: mostly archival space images and video records.
+- Audio-only search currently returned long podcast-style records without the same clean preview/playback gate, so no audio records were embedded in the top-up pass.
+- Changed the registry entry from automatic `ready` to `media_lab` with `media_lab_not_public_demo`.
+- Added an explicit `archai_nasa` exclusion to `backend-archai/src/services/curator-vectors.js` so future curator rebuilds do not accidentally merge NASA into the core museum/gallery search layer.
+
+Current boundary:
+
+- `archai_nasa` may be used for media-player, video, caption, and science/technology playback tests.
+- It is not in the hardcoded main app collection list, not in AUX.IO generation, and not in automatic legal-harvest runs.
+- Promote individual NASA records only if the project intentionally needs a science/media example and the UI clearly labels it as a specialist media-lab source, not a museum/gallery institution.
+
+## Runtime alignment/refactor audit - 2026-06-23
+
+Completed a stabilisation pass after the WACZ replay/access-copy work.
+
+What changed:
+
+- moved WACZ ZIP/WARC screenshot extraction into `backend-archai/src/services/waczAccessService.js`
+- kept `backend-archai/src/routes/media.js` focused on routing and presentation
+- added `backend-archai/scripts/smoke-test-runtime.js`
+- added `npm --prefix backend-archai run test:smoke`
+- created `docs/APP_ALIGNMENT_AUDIT_2026-06-23.md` as the current handover/audit snapshot
+
+Verified:
+
+- backend health is OK
+- Ollama is online on `qwen2.5:14b`
+- Qdrant is live
+- runtime reports `3267` collection objects, `3147` curator vectors, `21` Qdrant collections, and `6414` total vectors
+- AUX.IO manifest reports `1522` pages
+- local runtime smoke tests passed
+- public stability checks passed for backend tunnel, ARCHAI demo, AUX page, and Dark Plates
+- local static app server is reachable at `http://localhost:8000/ARCHAI_v10_8.html`
+
+Known drift to clean next:
+
+- app header/source labels still contain hardcoded counts and should read from `/api/health`
+- full ReplayWeb dynamic replay remains beta; stable access-copy pages are the public-safe route
+- Codex browser tooling could not open local `localhost` app URLs in this session even though shell checks confirmed the app server is reachable
+
+## AUX.IO collapsible panel layout demo - 2026-06-24
+
+Rob suggested using the Dark Plates-style dropdown pattern to reduce visual load on AUX.IO pages while keeping the visitor experience warm and object-led.
+
+What changed:
+
+- [nfc-pages/nfc-visitor-template.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/nfc-visitor-template.html) now wraps heavier utility sections in collapsible panels:
+  - Share / save
+  - Legal status / source
+  - Object record
+  - Visitor response
+- Related objects remain visible by default because they support exploration and feel important to the visitor flow.
+- The object image, title, source, story, and "Ask this object" chat remain immediate rather than hidden.
+- AUX.IO pages were regenerated from the updated template after the layout pass.
+
+Local test:
+
+```text
+http://localhost:8000/nfc-pages/v/NFC001.html
+```
+
+Design note:
+
+- This is a first interface demo, not a final lock-in. The next pass should test it on phone, especially whether the collapsed legal/object-record sections still feel discoverable enough for curators and serious users.
+
+## Auckland Museum image rescue - 2026-06-25
+
+Rob flagged blurry Auckland Museum images on AUX.IO, especially `AUX.IO 001 / NFC001` where a tiny table image was being stretched inside the mobile visitor page.
+
+Root cause:
+
+- Auckland's normal media URLs such as `https://api.aucklandmuseum.com/id/media/v/{id}?rendering=standard.jpg` and `?rendering=original.jpg` return very small derivatives for many records, often around 70px wide.
+- The source metadata and rights were valid; the problem was the derivative route, not the AUX.IO layout.
+
+Fix applied:
+
+- Updated [backend-archai/scripts/aucklandmuseum-harvester.js](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/backend-archai/scripts/aucklandmuseum-harvester.js) so future Auckland harvests use the IIIF-style derivative path:
+  - thumbnails: `/full/300,/0/default.jpg`
+  - page display: `/full/800,/0/default.jpg`
+- Updated all 120 existing `archai_auckland` Qdrant payloads in place, without re-embedding the records.
+- Regenerated AUX.IO pages from the updated payloads.
+
+Verification:
+
+- `NFC001.html` now uses `https://api.aucklandmuseum.com/id/media/v/40382/full/800,/0/default.jpg` for the hero image.
+- Sample Auckland derivative tested with `sips`: `800 x 800`.
+- AUX.IO public manifest still reports `1522` pages, so Auckland was rescued rather than removed.
+
+Next quality gate:
+
+- Extend the public media audit to store measured image dimensions and hold any future records below a minimum display threshold, so low-resolution derivatives cannot slip into public AUX.IO again.
+
+## IIIF helper and first harvester alignment - 2026-06-25
+
+After the Auckland image rescue, Rob asked whether IIIF could become a broader ARCHAI feature rather than a one-off image fix.
+
+What changed:
+
+- Added [backend-archai/scripts/lib/iiif.js](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/backend-archai/scripts/lib/iiif.js), a shared helper for IIIF Image API URL normalisation.
+- Added [backend-archai/docs/IIIF_INTEGRATION_NOTES.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/backend-archai/docs/IIIF_INTEGRATION_NOTES.md).
+- Wired the helper into the first IIIF-capable harvesters:
+  - Auckland Museum
+  - Art Institute of Chicago
+  - National Gallery of Art, Washington
+  - Rijksmuseum
+  - V&A
+  - Wellcome Collection
+- Backfilled the current Qdrant payloads with explicit IIIF availability fields where detectable:
+  - `archai_auckland`: 120 records
+  - `archai_aic`: 150 records
+  - `archai_nga`: 150 records
+  - `archai_rijks`: 150 records
+  - `archai_va`: 300 records
+  - `archai_wellcome`: 150 records
+  - Total: 1,020 records
+
+New payload pattern for future harvests:
+
+```text
+media_thumbnail
+media_medium
+media_large
+media_iiif_base
+media_iiif_info_url
+media_iiif_available
+```
+
+Why it matters:
+
+- ARCHAI can now distinguish ordinary static images from zoomable/region-addressable IIIF images.
+- This opens the path for "Look closer" mode, curatorial region annotations, citation of visual evidence, and richer AUX.IO object experiences.
+- Rights remain separate from IIIF availability: an object can be IIIF-capable but still not public-display or derivative-download cleared.
+
+Next build:
+
+- Add IIIF availability to the media audit and app UI.
+- Prototype a small AUX.IO "Look closer" view for IIIF objects.
+- Add staff-side region annotations as an ARCHAI overlay, not as edits to source records.
+
+## AUX.IO Look Closer prototype - 2026-06-25
+
+Built the first visible IIIF feature into generated AUX.IO visitor pages.
+
+What changed:
+
+- Updated [nfc-pages/nfc-visitor-template.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/nfc-visitor-template.html) with a `Look closer` button, lightweight modal viewer, zoom controls, and source-image open link.
+- Updated [nfc-pages/generate-nfc-pages.js](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/generate-nfc-pages.js) so the viewer only appears when a record has `media_iiif_available`, `media_iiif_base`, and a large/display image.
+- Regenerated [nfc-pages/v/](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v) from the current Qdrant payloads.
+
+Current regeneration result:
+
+- `1522` public AUX.IO visitor pages generated.
+- `651` metadata-only records skipped.
+- `470` unavailable or placeholder-media records skipped.
+- `504` records held from AUX.IO pending item-level media clearance.
+- `NFC001.html` now has `Look closer` and uses the Auckland IIIF route `https://api.aucklandmuseum.com/id/media/v/40382/full/800,/0/default.jpg`.
+
+Verification:
+
+```bash
+node --check nfc-pages/generate-nfc-pages.js
+node --check /tmp/archai-nfc-template-inline-sanitized.js
+git diff --check -- nfc-pages/generate-nfc-pages.js nfc-pages/nfc-visitor-template.html ARCHAI_PROGRESS.md
+node nfc-pages/generate-nfc-pages.js
+rg -n "Look closer|iiifViewer|OBJECT_IIIF|IIIF_LOOK|full/800|Open image" nfc-pages/v/NFC001.html
+```
+
+Notes:
+
+- This is deliberately simple: browser-native zoom via a scaled image in an overflow canvas, not a full OpenSeadragon-style deep zoom viewer yet.
+- Next sensible step is a measured image-quality audit that records dimensions and automatically suppresses low-resolution derivatives from public AUX.IO while keeping their metadata searchable in ARCHAI.

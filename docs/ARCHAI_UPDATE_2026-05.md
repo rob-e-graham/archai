@@ -159,7 +159,7 @@ The ARCHAI™ toolkit will be released as fully open-source upon completion of t
 
 ---
 
-## 7. Technical Summary (v10.8)
+## 7. Technical Summary (v10.9)
 
 | Component | Technology | Purpose |
 |-----------|-----------|---------|

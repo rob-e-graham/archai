@@ -24,6 +24,7 @@ import {
   collectLanguages,
   buildDisplayTexts
 } from './lib/multilingual.js';
+import { buildIiifImageSet } from './lib/iiif.js';
 import { createHash } from 'node:crypto';
 
 const AUCKLAND_SEARCH_API = 'https://api.aucklandmuseum.com/search/collectionsonline/_search';
@@ -173,6 +174,14 @@ function mediaUrl(primaryRepresentation, rendering = 'standard.jpg') {
   // Force https — the Auckland API serves http by default, which is blocked
   // as mixed content on the https site. The API fully supports https.
   const secure = String(primaryRepresentation).replace(/^http:\/\//, 'https://');
+  // The documented `?rendering=standard/original` routes currently return
+  // ~70px derivatives for many records. The IIIF-style media path gives a
+  // stable 800px public derivative, which is suitable for AUX.IO display.
+  if (/api\.aucklandmuseum\.com\/id\/media\/v\/\d+$/i.test(secure)) {
+    const images = buildIiifImageSet(secure, { thumbnail: 300, display: 800, large: 800, includeInfo: false });
+    if (rendering === 'thumbnail.jpg') return images.media_thumbnail;
+    return images.media_medium;
+  }
   return `${secure}?rendering=${rendering}`;
 }
 
@@ -247,6 +256,9 @@ function normalizeSourceRecord(id, source, focus) {
   ]).slice(0, 10);
   const rights = uniq(source.copyright || []);
   const primaryRepresentation = source.primaryRepresentation || '';
+  const iiifImages = /api\.aucklandmuseum\.com\/id\/media\/v\/\d+$/i.test(String(primaryRepresentation))
+    ? buildIiifImageSet(primaryRepresentation, { thumbnail: 300, display: 800, large: 800, includeInfo: false })
+    : null;
 
   const titleTranslations = normalizeMultilingualField(title);
   if (maoriTitle) titleTranslations.mi = maoriTitle;
@@ -302,9 +314,12 @@ function normalizeSourceRecord(id, source, focus) {
     credit_line: creditLine,
     licence: rights.join(' · ') || 'Per-record rights',
     source_url: sourceUrl,
-    media_thumbnail: mediaUrl(primaryRepresentation, 'thumbnail.jpg'),
-    media_medium: mediaUrl(primaryRepresentation, 'standard.jpg'),
-    media_large: mediaUrl(primaryRepresentation, 'original.jpg'),
+    media_thumbnail: iiifImages?.media_thumbnail || mediaUrl(primaryRepresentation, 'thumbnail.jpg'),
+    media_medium: iiifImages?.media_medium || mediaUrl(primaryRepresentation, 'standard.jpg'),
+    media_large: iiifImages?.media_large || mediaUrl(primaryRepresentation, 'original.jpg'),
+    media_iiif_base: iiifImages?.iiif_base || '',
+    media_iiif_info_url: iiifImages?.iiif_info_url || '',
+    media_iiif_available: Boolean(iiifImages?.iiif_base),
     title_translations: titleTranslations,
     description_translations: descriptionTranslations,
     creator_translations: normalizeMultilingualField(contributors.join(', ')),

@@ -32,6 +32,19 @@ app.use('/replay-assets', express.static(replayAssetsDir, {
     if (filePath.endsWith('/sw.js')) res.setHeader('Service-Worker-Allowed', '/');
   },
 }));
+app.use('/replay', express.static(replayAssetsDir, {
+  setHeaders(res, filePath) {
+    if (filePath.endsWith('/sw.js')) res.setHeader('Service-Worker-Allowed', '/replay/');
+  },
+}));
+
+const bornDigitalDir = path.resolve(__dirname, '../data/runtime/born-digital');
+app.use('/born-digital', express.static(bornDigitalDir, {
+  setHeaders(res) {
+    res.setHeader('X-Content-Type-Options', 'nosniff');
+    res.setHeader('Cache-Control', 'private, max-age=60');
+  },
+}));
 
 function getAuxPages() {
   try {

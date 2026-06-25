@@ -24,6 +24,8 @@
 //            Always check per-item licence field — not all items are CC.
 // ══════════════════════════════════════════════════════════════════
 
+import { buildIiifImageSet } from './lib/iiif.js';
+
 const WELLCOME_API  = 'https://api.wellcomecollection.org/catalogue/v2/works';
 const QDRANT_URL    = 'http://localhost:6333';
 const OLLAMA_URL    = 'http://localhost:11434';
@@ -159,9 +161,17 @@ function extractImage(work) {
   // Check for a thumbnail at work level
   if (work.thumbnail?.url) {
     const base = work.thumbnail.url.replace(/\/full\/.*$/, '');
+    const iiifImages = buildIiifImageSet(base, {
+      thumbnail: 400,
+      display: 800,
+      large: 1600,
+    });
     return {
-      thumbnail: `${base}/full/400,/0/default.jpg`,
-      medium:    `${base}/full/800,/0/default.jpg`,
+      thumbnail: iiifImages.media_thumbnail,
+      medium: iiifImages.media_medium,
+      large: iiifImages.media_large,
+      iiifBase: iiifImages.iiif_base,
+      iiifInfoUrl: iiifImages.iiif_info_url,
     };
   }
   return null;
@@ -350,7 +360,10 @@ async function main() {
         source_url:          wellcomeUrl(work.id),
         media_thumbnail:     img.thumbnail,
         media_medium:        img.medium,
-        media_large:         img.medium,
+        media_large:         img.large || img.medium,
+        media_iiif_base:     img.iiifBase || '',
+        media_iiif_info_url: img.iiifInfoUrl || '',
+        media_iiif_available: Boolean(img.iiifBase),
         embedding_text:      description,
       };
 

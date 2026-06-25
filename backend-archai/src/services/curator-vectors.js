@@ -10,6 +10,11 @@ const OLLAMA_URL = env.ollama.baseUrl;
 const EMBED_MODEL = env.ollama.embedModel;
 const CURATOR_COLLECTION = 'archai_curator';
 const VECTOR_SIZE = 768;
+const EXCLUDED_SOURCE_COLLECTIONS = new Set([
+  // Specialist media lab material is useful for playback/R&D, but should not
+  // dilute the core GLAM curator aggregate unless deliberately promoted.
+  'archai_nasa',
+]);
 
 const getCommentsByObject = db.prepare(
   'SELECT text, author_type, ai_flag, created_at FROM comments WHERE object_id = ? ORDER BY created_at ASC'
@@ -65,7 +70,8 @@ async function listSourceCollections() {
   const data = await resp.json();
   return (data.result?.collections || [])
     .map((row) => row.name)
-    .filter((name) => name.startsWith('archai_') && name !== CURATOR_COLLECTION);
+    .filter((name) => name.startsWith('archai_') && name !== CURATOR_COLLECTION)
+    .filter((name) => !EXCLUDED_SOURCE_COLLECTIONS.has(name));
 }
 
 function buildCuratorText(payload, comments, meta) {

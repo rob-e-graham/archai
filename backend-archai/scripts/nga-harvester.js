@@ -10,6 +10,7 @@
 //   node nga-harvester.js --limit 150
 
 import { fetchCsvRows } from './lib/csv-stream.js';
+import { buildIiifImageSet } from './lib/iiif.js';
 
 const DATA_BASE = 'https://raw.githubusercontent.com/NationalGalleryOfArt/opendata/main/data';
 const OBJECTS_URL = `${DATA_BASE}/objects.csv`;
@@ -46,10 +47,6 @@ function stableTieBreaker(value) {
     hash = Math.imul(hash, 16777619);
   }
   return hash >>> 0;
-}
-
-function iiifSize(base, size) {
-  return base ? `${base}/full/!${size},${size}/0/default.jpg` : '';
 }
 
 async function embed(value) {
@@ -101,7 +98,12 @@ async function collectOpenImages() {
     const candidate = {
       uuid: row.uuid,
       iiifUrl: row.iiifurl,
-      thumbnail: row.iiifthumburl || iiifSize(row.iiifurl, 200),
+      thumbnail: row.iiifthumburl || buildIiifImageSet(row.iiifurl, {
+        thumbnail: 200,
+        display: 800,
+        large: 1600,
+        mode: 'fit',
+      }).media_thumbnail,
       assistiveText: text(row.assistivetext),
       viewType: row.viewtype,
       sequence: integer(row.sequence, 9999),
@@ -134,6 +136,12 @@ function richness(row, image) {
 
 function normalize(row, image) {
   const objectId = integer(row.objectid);
+  const iiifImages = buildIiifImageSet(image.iiifUrl, {
+    thumbnail: 200,
+    display: 800,
+    large: 1600,
+    mode: 'fit',
+  });
   const title = text(row.title) || 'Untitled';
   const classification = text(row.visualbrowserclassification || row.classification || row.subclassification) || 'Artwork';
   const artist = text(row.attribution);
@@ -177,10 +185,12 @@ function normalize(row, image) {
     markings: text(row.markings),
     wikidata_id: text(row.wikidataid),
     source_url: sourceUrl,
-    media_thumbnail: image.thumbnail,
-    media_medium: iiifSize(image.iiifUrl, 800),
-    media_large: iiifSize(image.iiifUrl, 1600),
-    media_iiif_base: image.iiifUrl,
+    media_thumbnail: image.thumbnail || iiifImages.media_thumbnail,
+    media_medium: iiifImages.media_medium,
+    media_large: iiifImages.media_large,
+    media_iiif_base: iiifImages.iiif_base,
+    media_iiif_info_url: iiifImages.iiif_info_url,
+    media_iiif_available: true,
     media_uuid: image.uuid,
     media_width: image.width,
     media_height: image.height,

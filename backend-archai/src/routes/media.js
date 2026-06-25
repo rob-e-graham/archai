@@ -7,6 +7,7 @@ import { ZodError } from 'zod';
 import { listPublishedMedia, getPublishedMedia, publishMediaManifest, registerMediaManifest } from '../services/mediaPublishService.js';
 import { repo } from '../services/objectRepository.js';
 import { env } from '../config/env.js';
+import { extractWaczScreenshot, getWaczPageInfo } from '../services/waczAccessService.js';
 
 export const mediaRouter = Router();
 
@@ -177,7 +178,101 @@ mediaRouter.get('/published/:mediaId/archive', async (req, res) => {
   fs.createReadStream(localPath, { start, end }).pipe(res);
 });
 
-mediaRouter.get('/published/:mediaId/replay', (req, res) => {
+mediaRouter.get('/published/:mediaId/capture-image', async (req, res) => {
+  const media = getPublishedMedia(req.params.mediaId);
+  if (!media) return res.status(404).send('Published media not found');
+  if (media.kind !== 'web_archive' || media.publishedStatus !== 'published' || media.rights?.status !== 'cleared') {
+    return res.status(403).send('Archived manifestation is not cleared and published for access');
+  }
+  const localPath = safeMediaCachePath(media, '.wacz');
+  const st = await statOrNull(localPath);
+  if (!st || !st.isFile()) {
+    return res.status(404).send('Local WACZ capture not found');
+  }
+  try {
+    const payload = extractWaczScreenshot(localPath);
+    if (!payload) return res.status(404).send('No PNG payload found in screenshot WARC');
+    res.set({
+      'Content-Type': 'image/png',
+      'Content-Length': String(payload.length),
+      'Cache-Control': 'private, max-age=300',
+    });
+    res.send(payload);
+  } catch (error) {
+    console.error('[media] WACZ screenshot extraction failed', error);
+    res.status(500).send('Unable to extract capture screenshot');
+  }
+});
+
+mediaRouter.get('/published/:mediaId/replay', async (req, res) => {
+  const media = getPublishedMedia(req.params.mediaId);
+  if (!media) return res.status(404).send('Published media not found');
+  if (media.kind !== 'web_archive' || media.publishedStatus !== 'published' || media.rights?.status !== 'cleared') {
+    return res.status(403).send('Archived manifestation is not cleared and published for access');
+  }
+  const localPath = safeMediaCachePath(media, '.wacz');
+  const st = await statOrNull(localPath);
+  if (!st || !st.isFile()) {
+    return res.status(404).send('Local WACZ capture not found');
+  }
+
+  const pageInfo = getWaczPageInfo(localPath);
+  const originalUrl = pageInfo?.url || media.entryUrl || media.capture?.entryUrl || media.capture?.originalUrl || '';
+  const capturedAt = pageInfo?.ts || media.capture?.capturedAt || media.updatedAt || '';
+  const replayWebUrl = `/api/media/published/${encodeURIComponent(media.mediaId)}/replay-web`;
+  const imageUrl = `/api/media/published/${encodeURIComponent(media.mediaId)}/capture-image`;
+  const archiveUrl = `/api/media/published/${encodeURIComponent(media.mediaId)}/archive`;
+
+  res.type('html').send(`<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${escapeHtml(media.manifestationLabel || 'ARCHAI archived capture')}</title>
+<style>
+:root{color-scheme:dark;--paper:#e8e2d6;--muted:#918b81;--line:rgba(199,174,109,.26);--gold:#c7ae6d;--aqua:#8bc8bf}
+*{box-sizing:border-box}body{margin:0;background:#050605;color:var(--paper);font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.wrap{min-height:100vh;padding:28px clamp(18px,4vw,58px);background:radial-gradient(circle at 25% 15%,rgba(139,200,191,.07),transparent 30%),linear-gradient(180deg,#090a09,#030403)}
+.kicker{color:var(--gold);letter-spacing:.22em;text-transform:uppercase;font-size:12px}.title{font-family:Georgia,serif;font-size:clamp(34px,6vw,82px);line-height:.95;margin:18px 0 12px}
+.meta{display:flex;flex-wrap:wrap;gap:10px 18px;color:var(--muted);font-size:13px;margin-bottom:26px}.panel{border:1px solid var(--line);background:rgba(255,255,255,.025);padding:18px;margin:18px 0}
+.shot{display:block;width:100%;max-height:70vh;object-fit:contain;background:#000;border:1px solid rgba(255,255,255,.08)}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px}.btn{color:var(--paper);border:1px solid var(--line);padding:12px 16px;text-decoration:none;letter-spacing:.14em;text-transform:uppercase;font-size:12px}.btn.primary{border-color:rgba(139,200,191,.65);color:var(--aqua)}
+.note{max-width:980px;color:#b7b0a7;font-family:system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.6}.status{color:var(--aqua)}
+</style></head><body><main class="wrap">
+<div class="kicker">ARCHAI preserved media access copy</div>
+<h1 class="title">${escapeHtml(media.manifestationLabel || media.mediaId)}</h1>
+<div class="meta">
+  <span>${escapeHtml(media.mediaId)}</span>
+  <span>${escapeHtml(media.kind)}</span>
+  <span class="status">${escapeHtml(media.rightsLabel || 'rights-cleared access copy')}</span>
+  ${capturedAt ? `<span>Captured ${escapeHtml(capturedAt)}</span>` : ''}
+</div>
+<p class="note">This is a stable access view generated from the WACZ preservation package. Full dynamic browser replay is still marked as beta for this capture, so ARCHAI shows the verified capture screenshot first and keeps the original WACZ available for review.</p>
+<section class="panel"><img class="shot" src="${imageUrl}" alt="Captured replay view for ${escapeHtml(originalUrl || media.mediaId)}"></section>
+<div class="actions">
+  ${originalUrl ? `<a class="btn primary" href="${escapeHtml(originalUrl)}" target="_blank" rel="noreferrer">Open live source</a>` : ''}
+  <a class="btn" href="${replayWebUrl}">Open ReplayWeb beta</a>
+  <a class="btn" href="${archiveUrl}">Download WACZ</a>
+</div>
+</main></body></html>`);
+});
+
+mediaRouter.get('/published/:mediaId/replay-web', (req, res) => {
+  const media = getPublishedMedia(req.params.mediaId);
+  if (!media) return res.status(404).send('Published media not found');
+  if (media.kind !== 'web_archive' || media.publishedStatus !== 'published' || media.rights?.status !== 'cleared') {
+    return res.status(403).send('Archived manifestation is not cleared and published for access');
+  }
+  const archiveUrl = `/api/media/published/${encodeURIComponent(media.mediaId)}/archive`;
+  const entryUrl = media.entryUrl || media.capture?.entryUrl || media.capture?.originalUrl || '';
+  const params = new URLSearchParams({
+    source: archiveUrl,
+    embed: 'replay-with-info',
+    noMediaDownload: '1',
+  });
+  const hash = entryUrl ? `#${new URLSearchParams({ url: entryUrl }).toString()}` : '';
+  const replayUrl = `/replay/?${params.toString()}${hash}`;
+  res.redirect(302, replayUrl);
+});
+
+mediaRouter.get('/published/:mediaId/replay-embed', (req, res) => {
   const media = getPublishedMedia(req.params.mediaId);
   if (!media) return res.status(404).send('Published media not found');
   if (media.kind !== 'web_archive' || media.publishedStatus !== 'published' || media.rights?.status !== 'cleared') {
@@ -191,5 +286,45 @@ mediaRouter.get('/published/:mediaId/replay', (req, res) => {
 <style>html,body{width:100%;height:100%;margin:0;background:#080908;color:#e7e2d8}replay-web-page{display:block;width:100%;height:100%}</style>
 <script src="/replay-assets/ui.js"></script></head><body>
 <replay-web-page replayBase="/replay-assets/" source="${archiveUrl}" url="${entryUrl}" embed="replay-with-info" sandbox></replay-web-page>
+</body></html>`);
+});
+
+mediaRouter.get('/published/:mediaId/play', (req, res) => {
+  const media = getPublishedMedia(req.params.mediaId);
+  if (!media) return res.status(404).send('Published media not found');
+  if (media.publishedStatus !== 'published' || media.rights?.status !== 'cleared') {
+    return res.status(403).send('Manifestation is not cleared and published for access');
+  }
+
+  if (media.kind === 'web_archive') {
+    return res.redirect(`/api/media/published/${encodeURIComponent(media.mediaId)}/replay`);
+  }
+
+  const playableKinds = new Set(['interactive', 'html', 'live_external', 'software', 'emulation']);
+  if (!playableKinds.has(media.kind)) {
+    return res.status(400).json({ ok: false, error: `Play route is for interactive/html/emulation manifests, not ${media.kind}` });
+  }
+
+  const src = media.interactiveUrl || media.externalUrl || media.playbackUrl;
+  if (!src) return res.status(404).send('No playable URL has been registered for this manifestation');
+
+  const sandbox = [
+    'allow-scripts',
+    'allow-forms',
+    'allow-pointer-lock',
+    'allow-same-origin',
+  ].join(' ');
+  res.type('html').send(`<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>${escapeHtml(media.manifestationLabel || media.mediaId)}</title>
+<style>
+html,body{width:100%;height:100%;margin:0;background:#050605;color:#e7e2d8;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.bar{box-sizing:border-box;display:flex;align-items:center;gap:16px;min-height:48px;padding:10px 16px;border-bottom:1px solid rgba(199,174,109,.25);background:#0c0d0c}
+.kicker{color:#c7ae6d;letter-spacing:.18em;text-transform:uppercase;font-size:12px}
+.note{opacity:.65;font-size:12px}
+iframe{display:block;width:100%;height:calc(100% - 49px);border:0;background:#111}
+</style></head><body>
+<div class="bar"><span class="kicker">ARCHAI manifestation player</span><span class="note">${escapeHtml(media.kind)} · ${escapeHtml(media.rightsLabel || 'rights-cleared access copy')}</span></div>
+<iframe src="${escapeHtml(src)}" title="${escapeHtml(media.manifestationLabel || media.mediaId)}" sandbox="${sandbox}" allow="autoplay; fullscreen"></iframe>
 </body></html>`);
 });

@@ -4,16 +4,16 @@
 > *"Museums are not silent repositories of Memory — they are living, thinking organisms, where imagination and knowledge, tradition and innovation meet. They are spaces where the past is not only preserved but reborn, where every visitor becomes part of a continuous human conversation."*
 > — Gayane Umerova, UNESCO Global Dialogue on AI and the Future of Museums, 2025
 
-**ARCHAI** (Augmented Reanimation, Cultural Heritage, Artificial Intelligence) is a sovereign, open-source-method AI toolkit for cultural institutions and artist-run spaces. It layers conversational AI onto collection objects using local language models, vector semantic search, and NFC/QR-deployable visitor interfaces — with all computation running on locally-owned hardware and collection data never leaving the institution's physical infrastructure.
+**ARCHAI** (Augmented Reanimation, Cultural Heritage, Artificial Intelligence) is a sovereign, open-source-method AI toolkit for cultural institutions and artist-run spaces. It layers conversational AI onto collection objects using local language models, vector semantic search, and AUX.IO visitor interfaces (deployable via NFC, QR, hyperlink, or beacon) — with all computation running on locally-owned hardware and collection data never leaving the institution's physical infrastructure.
 
-The system is presented at the **6th Summit on New Media Art Archiving, ISEA2026 Dubai** (April 2026). The research paper is available at `docs/ARCHAI_ISEA2026_Rob_Graham.pdf`. A post-submission update covering June 2026 developments is at `docs/ARCHAI_ISEA2026_UPDATE_2026-06.md`.
+The research paper (#999) was accepted for the **6th Summit on New Media Art Archiving, ISEA2026 Dubai**. The paper is at `docs/ARCHAI_ISEA2026_Rob_Graham.pdf`. A post-submission update covering June 2026 developments is at `docs/ARCHAI_ISEA2026_UPDATE_2026-06.md`.
 
 ---
 
 ## Research Context
 
 **Investigator:** Rob Graham  
-**Institution:** RMIT University, School of Design — PhD Candidate (DR235)  
+**Institution:** RMIT University, School of Design — PhD Researcher (DR235)  
 **Organisation:** FAMTEC (Fine Art Media Tech)  
 **Supervisors:** Chris Barker (Senior), co-supervisor TBC  
 **Contact:** rob@fineartmedia.tech  

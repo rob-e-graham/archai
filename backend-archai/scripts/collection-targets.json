@@ -317,7 +317,7 @@
     "name": "National Gallery of Art, Washington",
     "region": "North America",
     "focus": ["fine art", "photography", "works on paper", "sculpture", "open-access images"],
-    "status": "ready",
+    "status": "media_lab",
     "priority": 16,
     "harvester_script": "nga-harvester.js",
     "translation_mode": "source-first",
@@ -607,6 +607,31 @@
       "https://wellcomecollection.org/pages/Wvlk4yAAAB8A3ufp"
     ],
     "notes": "Unique interdisciplinary collection at the intersection of art, science, and medicine. ~750,000 items including anatomical illustrations, wax models, scientific photographs, apothecary objects, pharmaceutical packaging, manuscripts, and art about the body and health. Wellcome Catalogue API v2 is free, no key required, JSON responses with IIIF images. Attribution required on all CC BY items."
+  },
+
+  {
+    "id": "nasa",
+    "name": "NASA Image and Video Library",
+    "region": "Specialist / Space and Media",
+    "focus": ["space exploration", "science media", "video", "audio", "born-digital media", "technology"],
+    "status": "ready",
+    "priority": 24,
+    "harvester_script": "nasa-harvester.js",
+    "translation_mode": "source-first",
+    "access_mode": "api",
+    "api_key": "none",
+    "metadata_rights": "NASA public metadata",
+    "image_rights": "NASA media is generally not copyrighted unless otherwise noted; names, initials, emblems, and logos cannot imply endorsement.",
+    "public_demo_policy": "media_lab_not_public_demo",
+    "quality_gate": "official NASA API + preview-backed + skip logos/insignia/patches + preserve source URL and no-endorsement note + manual promotion before public GLAM demo",
+    "cultural_protocol": "Science and mission media; review human, disaster, military, and sensitive mission contexts before visitor interpretation",
+    "verification_status": "verified_2026_06_23",
+    "official_docs": [
+      "https://images.nasa.gov/docs/images.nasa.gov_api_docs.pdf",
+      "https://www.nasa.gov/nasa-brand-center/images-and-media/",
+      "https://www.nasa.gov/nasa-brand-center/nasa-media-usage-guidelines/"
+    ],
+    "notes": "High-value media integration source for ARCHAI's media lab: public images, archival films, mission audio, captions, and manifest URLs. Kept out of the main GLAM app aggregate by default because NASA is not a museum/gallery source. Promote individual records only when testing media playback, science/technology interpretation, or born-digital workflows."
   },
 
   {

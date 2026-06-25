@@ -429,6 +429,11 @@ async function main() {
     const sourceUrl = p.source_url || '#';
     const imgMedium = p.media_medium || p.media_thumbnail || '';
     const imgThumb = p.media_thumbnail || '';
+    const iiifBase = p.media_iiif_base || '';
+    const iiifDisplay = p.media_medium || '';
+    const iiifLarge = p.media_large || p.media_medium || '';
+    const iiifInfoUrl = p.media_iiif_info_url || '';
+    const iiifAvailable = p.media_iiif_available === true && !!iiifBase && !!iiifLarge;
     const sourceInstitution = obj.sourceLabel;
     const interactiveEmbedHtml = buildInteractiveEmbed(p);
     const interactiveBadgeHtml = interactiveEmbedHtml
@@ -439,6 +444,30 @@ async function main() {
     const heroHtml = imgMedium
       ? `<img src="${escHtml(imgMedium)}" alt="${escHtml(title)}" loading="eager" onerror="heroImageError(this)">`
       : `<div class="v-hero-empty">No image available<br>${escHtml(reg)}</div>`;
+    const iiifLookCloserHtml = iiifAvailable
+      ? `<div class="v-look-closer">
+  <button class="v-look-btn" onclick="openIiifViewer()">Look closer <span>Zoomable source image</span></button>
+</div>
+<div class="v-iiif-viewer" id="iiifViewer" aria-hidden="true" role="dialog" aria-label="Look closer at object image" data-zoom="1">
+  <div class="v-iiif-panel">
+    <div class="v-iiif-head">
+      <div class="v-iiif-title">Look closer · IIIF image</div>
+      <button class="v-iiif-close" onclick="closeIiifViewer()">Close</button>
+    </div>
+    <div class="v-iiif-canvas" id="iiifCanvas">
+      <img id="iiifViewerImage" src="" alt="${escHtml(title)}">
+    </div>
+    <div class="v-iiif-controls">
+      <button onclick="stepIiifZoom(-1)">Zoom out</button>
+      <button onclick="setIiifZoom(1)">Reset</button>
+      <button onclick="stepIiifZoom(1)">Zoom in</button>
+      <a href="${escHtml(iiifLarge)}" target="_blank" rel="noopener noreferrer">Open image</a>
+      ${iiifInfoUrl ? `<a href="${escHtml(iiifInfoUrl)}" target="_blank" rel="noopener noreferrer">IIIF info</a>` : ''}
+      <div class="v-iiif-note">IIIF lets AUX.IO request useful source-image sizes while attribution and legal status remain visible.</div>
+    </div>
+  </div>
+</div>`
+      : '';
 
     // Build sub line
     const subParts = [type, date, reg].filter(Boolean);
@@ -461,17 +490,22 @@ async function main() {
       ? `<details class="v-poster-wrap">
   <summary class="v-poster-summary">Save / print with QR</summary>
   <div class="v-poster-panel">
-  <div class="v-poster-label">Reusable interpretation material</div>
+  <div class="v-poster-group">
+  <div class="v-poster-label">Exhibition posters</div>
   <div class="v-poster-sizes">
-    <button class="v-poster-btn" onclick="downloadPoster('A4')" data-size="A4">A4 · 300 dpi</button>
-    <button class="v-poster-btn" onclick="downloadPoster('A2')" data-size="A2">A2 · 150 dpi</button>
-    <button class="v-poster-btn" onclick="downloadPoster('A0')" data-size="A0">A0 · 150 dpi</button>
+    <button class="v-poster-btn" onclick="downloadPoster('A4')" data-size="A4">A4 poster<br>300 dpi</button>
+    <button class="v-poster-btn" onclick="downloadPoster('A2')" data-size="A2">A2 poster<br>150 dpi</button>
+    <button class="v-poster-btn" onclick="downloadPoster('A0')" data-size="A0">A0 poster<br>150 dpi</button>
   </div>
-  <div class="v-poster-sizes" style="margin-top:5px;">
-    <button class="v-poster-btn" onclick="downloadPosterSmall('STICKER')" data-size="STICKER">Sticker · 100mm</button>
-    <button class="v-poster-btn" onclick="downloadPosterSmall('POSTCARD')" data-size="POSTCARD">Postcard · A6</button>
   </div>
-  <div class="v-poster-note">Available because this media record explicitly permits reusable derivatives.</div>
+  <div class="v-poster-group">
+  <div class="v-poster-label">Handout formats</div>
+  <div class="v-poster-sizes">
+    <button class="v-poster-btn" onclick="downloadPosterSmall('STICKER')" data-size="STICKER">Access sticker<br>100mm</button>
+    <button class="v-poster-btn" onclick="downloadPosterSmall('POSTCARD')" data-size="POSTCARD">Visitor postcard<br>A6</button>
+  </div>
+  </div>
+  <div class="v-poster-note">Balanced print layouts with QR access, source attribution, and rights language. Available because this media record explicitly permits reusable derivatives.</div>
   </div>
 </details>`
       : '';
@@ -557,11 +591,17 @@ async function main() {
       .replace(/\{\{OBJECT_TOMBSTONE\}\}/g, esc(tombstone))
       .replace(/\{\{OBJECT_LICENCE\}\}/g, esc(licence))
       .replace(/\{\{OBJECT_POSTER_ALLOWED\}\}/g, rights.posterAllowed ? 'true' : 'false')
+      .replace(/\{\{OBJECT_IIIF_AVAILABLE\}\}/g, iiifAvailable ? 'true' : 'false')
+      .replace(/\{\{OBJECT_IIIF_BASE\}\}/g, esc(iiifBase))
+      .replace(/\{\{OBJECT_IIIF_DISPLAY\}\}/g, esc(iiifDisplay))
+      .replace(/\{\{OBJECT_IIIF_LARGE\}\}/g, esc(iiifLarge))
+      .replace(/\{\{OBJECT_IIIF_INFO_URL\}\}/g, esc(iiifInfoUrl))
       .replace(/\{\{OBJECT_COLLECTION\}\}/g, esc(obj.sourceCollection || 'archai_pilot'))
       .replace(/\{\{OBJECT_STORY\}\}/g, story)
       .replace(/\{\{SOURCE_URL\}\}/g, escHtml(sourceUrl))
       .replace(/\{\{SOURCE_INSTITUTION\}\}/g, escHtml(sourceInstitution))
       .replace(/\{\{HERO_IMAGE\}\}/g, heroHtml)
+      .replace(/\{\{IIIF_LOOK_CLOSER\}\}/g, iiifLookCloserHtml)
       .replace(/\{\{DISCIPLINE_TAG\}\}/g, discTag)
       .replace(/\{\{LEGAL_STATUS_TAG\}\}/g, legalStatusTag)
       .replace(/\{\{RIGHTS_NOTE\}\}/g, rightsNote)

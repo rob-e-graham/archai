@@ -162,6 +162,131 @@ body::after {
   text-transform: uppercase;
 }
 
+/* ── IIIF LOOK CLOSER ── */
+.v-look-closer {
+  padding: 0 20px 18px;
+  margin-top: -8px;
+  animation: slideUp 0.6s ease 0.18s both;
+}
+.v-look-btn {
+  width: 100%;
+  padding: 13px 14px;
+  background: rgba(143,188,176,0.035);
+  border: 1px solid rgba(143,188,176,0.34);
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-look-btn span {
+  display: block;
+  margin-top: 5px;
+  color: var(--text3);
+  font-size: 0.42rem;
+  letter-spacing: 1px;
+}
+.v-iiif-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: none;
+  align-items: stretch;
+  justify-content: center;
+  padding: 18px;
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(12px);
+}
+.v-iiif-viewer.open { display: flex; }
+.v-iiif-panel {
+  width: min(100%, 960px);
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  border: 1px solid rgba(143,188,176,0.28);
+  background: #050505;
+  box-shadow: 0 22px 80px rgba(0,0,0,0.7);
+}
+.v-iiif-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.v-iiif-title {
+  font-family: var(--mono);
+  font-size: 0.54rem;
+  color: var(--accent2);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.v-iiif-close {
+  border: 1px solid rgba(255,255,255,0.12);
+  background: transparent;
+  color: var(--text3);
+  padding: 8px 10px;
+  font-family: var(--mono);
+  font-size: 0.48rem;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.v-iiif-canvas {
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  cursor: grab;
+  scrollbar-color: rgba(143,188,176,0.32) transparent;
+}
+.v-iiif-canvas:active { cursor: grabbing; }
+.v-iiif-canvas img {
+  width: min(100%, 1000px);
+  max-width: none;
+  height: auto;
+  transform-origin: center center;
+  transition: transform 0.18s ease;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.55);
+}
+.v-iiif-viewer[data-zoom="2"] .v-iiif-canvas img { transform: scale(1.55); }
+.v-iiif-viewer[data-zoom="3"] .v-iiif-canvas img { transform: scale(2.25); }
+.v-iiif-controls {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  padding: 12px 16px 16px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+.v-iiif-controls button,
+.v-iiif-controls a {
+  display: block;
+  text-align: center;
+  padding: 11px 8px;
+  border: 1px solid rgba(143,188,176,0.24);
+  color: var(--text3);
+  background: transparent;
+  font-family: var(--mono);
+  font-size: 0.46rem;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+}
+.v-iiif-note {
+  grid-column: 1 / -1;
+  color: var(--text3);
+  font-family: var(--mono);
+  font-size: 0.43rem;
+  line-height: 1.7;
+  letter-spacing: 0.7px;
+}
+
 /* ── INTERACTIVE / BORN-DIGITAL EMBED ── */
 .v-interactive {
   border: 1px solid rgba(155,143,191,0.3);
@@ -385,6 +510,71 @@ body::after {
   color: var(--text3);
   line-height: 1.7;
   margin-top: 8px;
+}
+
+/* ── COLLAPSIBLE INFO PANELS ── */
+.v-panel {
+  margin-bottom: 14px;
+  border: 1px solid rgba(143,188,176,0.16);
+  background: rgba(255,255,255,0.015);
+  animation: slideUp 0.6s ease 0.36s both;
+}
+.v-panel[open] {
+  border-color: rgba(143,188,176,0.3);
+  background: rgba(143,188,176,0.025);
+}
+.v-panel-summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 13px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  -webkit-tap-highlight-color: transparent;
+}
+.v-panel-summary::-webkit-details-marker { display: none; }
+.v-panel-summary::after {
+  content: "+";
+  color: var(--accent2);
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  line-height: 1;
+}
+.v-panel[open] .v-panel-summary::after { content: "−"; }
+.v-panel-title {
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+.v-panel-hint {
+  margin-left: auto;
+  font-family: var(--mono);
+  font-size: 0.44rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(143,188,176,0.72);
+}
+.v-panel-body {
+  padding: 0 14px 14px;
+}
+.v-panel-body .v-share,
+.v-panel-body .v-poster-wrap,
+.v-panel-body .v-rights-note,
+.v-panel-body .v-meta-card,
+.v-panel-body .v-comment {
+  margin-bottom: 0;
+  animation: none;
+}
+.v-panel-body .v-poster-wrap {
+  margin-top: 10px;
+}
+.v-panel-body .v-rights-note,
+.v-panel-body .v-meta-card,
+.v-panel-body .v-comment {
+  border-color: rgba(255,255,255,0.08);
 }
 
 /* ── DIVIDER ── */
@@ -972,11 +1162,12 @@ body::after {
 .v-poster-summary::after { content: '+'; float: right; color: var(--accent); }
 .v-poster-wrap[open] .v-poster-summary::after { content: '−'; }
 .v-poster-panel {
-  padding: 12px;
+  padding: 14px;
   border: 1px solid var(--border);
   border-top: 0;
   background: rgba(255,255,255,0.015);
 }
+.v-poster-group + .v-poster-group { margin-top: 10px; }
 .v-poster-label {
   font-family: var(--mono);
   font-size: 0.46rem;
@@ -992,12 +1183,14 @@ body::after {
 }
 .v-poster-btn {
   flex: 1;
+  min-height: 44px;
   padding: 10px 8px;
   background: var(--surface);
   border: 1px solid var(--border);
   color: var(--text3);
   font-family: var(--mono);
   font-size: 0.5rem;
+  line-height: 1.45;
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
@@ -1014,6 +1207,7 @@ body::after {
   cursor: wait;
 }
 .v-poster-note {
+  margin-top: 8px;
   font-family: var(--mono);
   font-size: 0.42rem;
   color: var(--text3);
@@ -1133,8 +1327,9 @@ body::after {
 
 <!-- HERO IMAGE -->
 <div class="v-hero">
-  <img src="https://openaccess-cdn.clevelandart.org/2021.67/2021.67_web.jpg" alt="Portrait of Ernestine Nadar, the artist's wife, wearing fur stole" loading="eager">
+  <img src="https://openaccess-cdn.clevelandart.org/2021.67/2021.67_web.jpg" alt="Portrait of Ernestine Nadar, the artist's wife, wearing fur stole" loading="eager" onerror="heroImageError(this)">
 </div>
+
 
 
 
@@ -1150,22 +1345,7 @@ body::after {
 
   </div>
 
-  <!-- SHARE -->
-  <div class="v-share">
-    <button class="v-share-btn" onclick="shareNative()" id="shareNativeBtn"><span class="v-share-icon">↗</span> Share</button>
-    <button class="v-share-btn" onclick="shareEmail()"><span class="v-share-icon">✉</span> Email</button>
-    <button class="v-share-btn" onclick="copyLink(this)"><span class="v-share-icon">⎘</span> Copy Link</button>
-    <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
-  </div>
-
-
-
   <div class="v-story"><strong>Portrait of Ernestine Nadar, the artist's wife, wearing fur stole</strong> — This striking and unusual uncut sheet of carte-de-visite exposures was taken by one of France’s most successful early portraitist photographers, Nadar. His wife Ernestine frequently modeled for him, including when he tried out new equipment or processes such as these gelatin silver prints. These por…</div>
-  <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
-      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
-      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
-      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
-    </div>
 
   <div class="v-divider"></div>
 
@@ -1216,12 +1396,48 @@ body::after {
     <div class="v-response" id="chatResponse"></div>
   </div>
 
+  <details class="v-panel">
+    <summary class="v-panel-summary">
+      <span class="v-panel-title">Visitor response</span>
+      <span class="v-panel-hint">Leave a note</span>
+    </summary>
+    <div class="v-panel-body">
+      <div class="v-comment">
+        <div class="v-comment-label">Leave a response — your note joins the collection record</div>
+        <textarea class="v-comment-input" id="commentInput" placeholder="What did this object make you think or feel?"></textarea>
+        <button class="v-comment-btn" id="commentBtn" onclick="submitComment()">Submit Response</button>
+        <div class="v-prev-comments" id="prevComments"></div>
+      </div>
+    </div>
+  </details>
+
   <div class="v-divider"></div>
 
-  <!-- METADATA -->
-  <div class="v-meta-card">
-    <div class="v-meta-card-label">Object Record</div>
-    <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2021.67</span></div>
+  <details class="v-panel">
+    <summary class="v-panel-summary">
+      <span class="v-panel-title">Share / save</span>
+      <span class="v-panel-hint">Links and downloads</span>
+    </summary>
+    <div class="v-panel-body">
+      <div class="v-share">
+        <button class="v-share-btn" onclick="shareNative()" id="shareNativeBtn"><span class="v-share-icon">↗</span> Share</button>
+        <button class="v-share-btn" onclick="shareEmail()"><span class="v-share-icon">✉</span> Email</button>
+        <button class="v-share-btn" onclick="copyLink(this)"><span class="v-share-icon">⎘</span> Copy Link</button>
+        <button class="v-share-btn" onclick="shareX()"><span class="v-share-icon">𝕏</span> Post</button>
+      </div>
+
+    </div>
+  </details>
+
+  <details class="v-panel">
+    <summary class="v-panel-summary">
+      <span class="v-panel-title">Object record</span>
+      <span class="v-panel-hint">Full metadata</span>
+    </summary>
+    <div class="v-panel-body">
+      <div class="v-meta-card">
+        <div class="v-meta-card-label">Object Record</div>
+        <div class="v-meta-row"><span class="v-meta-key">Registration</span><span class="v-meta-value">2021.67</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Artist / Maker</span><span class="v-meta-value">Nadar (French, 1820–1910)</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Material</span><span class="v-meta-value">uncut sheet of three matte gelatin silver carte-de-visites</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Culture</span><span class="v-meta-value">France</span></div>
@@ -1234,36 +1450,44 @@ body::after {
     <div class="v-meta-row"><span class="v-meta-key">Legal Status</span><span class="v-meta-value">Open access</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Reuse Guidance</span><span class="v-meta-value">Appears reusable under open-access or public-domain terms.</span></div>
     <div class="v-meta-row"><span class="v-meta-key">Licence / Rights</span><span class="v-meta-value">CC0 — Public Domain</span></div>
-  </div>
+      </div>
+    </div>
+  </details>
 
-  <!-- COMMENT -->
-  <div class="v-comment">
-    <div class="v-comment-label">Leave a response — your note joins the collection record</div>
-    <textarea class="v-comment-input" id="commentInput" placeholder="What did this object make you think or feel?"></textarea>
-    <button class="v-comment-btn" id="commentBtn" onclick="submitComment()">Submit Response</button>
-    <div class="v-prev-comments" id="prevComments"></div>
-  </div>
+  <details class="v-panel">
+    <summary class="v-panel-summary">
+      <span class="v-panel-title">Legal status / source</span>
+      <span class="v-panel-hint">Rights and reuse</span>
+    </summary>
+    <div class="v-panel-body">
+      <div class="v-rights-note" style="border-color:rgba(143,188,176,0.28);">
+      <div class="v-rights-label" style="color:#8fbcb0;">Legal status</div>
+      <div class="v-rights-text"><strong style="color:#8fbcb0;font-weight:400;">Open access</strong> — Appears reusable under open-access or public-domain terms.</div>
+      <div class="v-rights-detail">Licence / rights: CC0 — Public Domain</div>
+    </div>
+    </div>
+  </details>
 
   <!-- RELATED OBJECTS -->
   <div class="v-related">
     <div class="v-related-label">Related Objects</div>
     <div class="v-related-grid"><a class="v-rel-card" href="NFC247.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2021.64/2021.64_web.jpg" loading="lazy"></div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2021.64/2021.64_web.jpg" loading="lazy" onerror="this.closest('.v-rel-thumb').innerHTML='<span class=\'v-rel-thumb-empty\'>▣</span>'"></div>
         <div class="v-rel-title">La Belle Jardinère: le magasin de la rue de la Cité pendant sa demolition, Paris</div>
         <div class="v-rel-meta">Cleveland Museum of Art · 2021.64</div>
       </a>
       <a class="v-rel-card" href="NFC248.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2021.65/2021.65_web.jpg" loading="lazy"></div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2021.65/2021.65_web.jpg" loading="lazy" onerror="this.closest('.v-rel-thumb').innerHTML='<span class=\'v-rel-thumb-empty\'>▣</span>'"></div>
         <div class="v-rel-title">Fontaine du Jardin du Luxembourg (grotte de Marie de Médécis)</div>
         <div class="v-rel-meta">Cleveland Museum of Art · 2021.65</div>
       </a>
       <a class="v-rel-card" href="NFC250.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2021.66/2021.66_web.jpg" loading="lazy"></div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2021.66/2021.66_web.jpg" loading="lazy" onerror="this.closest('.v-rel-thumb').innerHTML='<span class=\'v-rel-thumb-empty\'>▣</span>'"></div>
         <div class="v-rel-title">Gioachino Antonio Rossini</div>
         <div class="v-rel-meta">Cleveland Museum of Art · 2021.66</div>
       </a>
       <a class="v-rel-card" href="NFC251.html">
-        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2021.214/2021.214_web.jpg" loading="lazy"></div>
+        <div class="v-rel-thumb"><img src="https://openaccess-cdn.clevelandart.org/2021.214/2021.214_web.jpg" loading="lazy" onerror="this.closest('.v-rel-thumb').innerHTML='<span class=\'v-rel-thumb-empty\'>▣</span>'"></div>
         <div class="v-rel-title">Louvre, Façade rue de Rivoli, Paris</div>
         <div class="v-rel-meta">Cleveland Museum of Art · 2021.214</div>
       </a></div>
@@ -1285,6 +1509,12 @@ body::after {
 // ══════════════════════════════════════════════════════════════════
 // ARCHAI AUX.IO Visitor Page — Object Chat via Ollama (LAN)
 // ══════════════════════════════════════════════════════════════════
+
+// ── HERO IMAGE FALLBACK ─────────────────────────────────────────
+function heroImageError(img) {
+  const hero = img.closest('.v-hero');
+  if (hero) hero.innerHTML = '<div class="v-hero-empty">Image unavailable</div>';
+}
 
 // ── CONFIG ──────────────────────────────────────────────────────
 const OLLAMA_HOST = 'http://localhost:11434';
@@ -1329,9 +1559,53 @@ const OBJECT = {
   tombstone: `Portrait of Ernestine Nadar, the artist's wife, wearing fur stole, c. 1880–83. Nadar (French, 1820–1910). Uncut sheet of three matte gelatin silver carte-de-visites; overall: 10.8 x 21.9 cm (4 1/4 x 8 5/8 in.). The Cleveland Museum of Art, Gift of Michael Mattis and Judith Hochberg, 2021.67`,
   licence: `CC0 — Public Domain`,
   poster_download_allowed: false,
+  iiif_available: false,
+  iiif_base: ``,
+  iiif_display: `https://openaccess-cdn.clevelandart.org/2021.67/2021.67_web.jpg`,
+  iiif_large: `https://openaccess-cdn.clevelandart.org/2021.67/2021.67_print.jpg`,
+  iiif_info_url: ``,
   source_url: `https://clevelandart.org/art/2021.67`,
   institution: `Cleveland Museum of Art`
 };
+
+let iiifZoomLevel = 1;
+
+function openIiifViewer() {
+  if (!OBJECT.iiif_available || !OBJECT.iiif_large) return;
+  const viewer = document.getElementById('iiifViewer');
+  const img = document.getElementById('iiifViewerImage');
+  if (!viewer || !img) return;
+  img.src = OBJECT.iiif_large || OBJECT.iiif_display;
+  img.alt = OBJECT.title || 'Object detail';
+  iiifZoomLevel = 1;
+  viewer.dataset.zoom = '1';
+  viewer.classList.add('open');
+  viewer.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeIiifViewer() {
+  const viewer = document.getElementById('iiifViewer');
+  if (!viewer) return;
+  viewer.classList.remove('open');
+  viewer.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+function setIiifZoom(level) {
+  const viewer = document.getElementById('iiifViewer');
+  if (!viewer) return;
+  iiifZoomLevel = Math.max(1, Math.min(3, level));
+  viewer.dataset.zoom = String(iiifZoomLevel);
+}
+
+function stepIiifZoom(delta) {
+  setIiifZoom(iiifZoomLevel + delta);
+}
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeIiifViewer();
+});
 
 // Build rich context from available fields
 const richFields = [
@@ -1385,24 +1659,24 @@ const VISITOR_NEUTRAL_VOICE_PREFERENCES = [
 
 const VISITOR_TONES = {
   guide: {
-    note: 'Friendly, welcoming, and easy to follow for most visitors.',
-    instruction: 'Speak like a thoughtful gallery guide. Be welcoming, clear, and concise. 3-4 sentences max.',
-    placeholder: 'Ask for a simple introduction or guided explanation…'
+    note: 'A welcoming gallery-guide voice: clear, calm, and easy to follow.',
+    instruction: 'Speak like a thoughtful gallery guide standing beside the visitor. Be warm, concise, and practical. Start with what the visitor can understand from the record, then offer one useful observation. 3-4 short sentences max.',
+    placeholder: 'Ask for a simple introduction, guided explanation, or first thing to notice…'
   },
   curatorial: {
-    note: 'A little more interpretive and museum-like, while staying accessible.',
-    instruction: 'Speak with a curatorial tone. Focus on interpretation, materials, and why the object matters, while staying readable to a general visitor.',
-    placeholder: 'Ask about interpretation, materials, or significance…'
+    note: 'A curator-style reading for visitors who want deeper context and significance.',
+    instruction: 'Speak like a curator writing for an interested public audience. Focus on significance, materials, maker/date/context, and relationships suggested by the record. Use museum language carefully, but explain it. Do not overstate what the record proves.',
+    placeholder: 'Ask about significance, context, materials, or why this object matters…'
   },
   learning: {
-    note: 'Uses simpler language and adds context for students and first-time visitors.',
-    instruction: 'Speak for a learning audience. Use plain language, explain terms simply, and make the object easy to understand without sounding childish.',
-    placeholder: 'Ask in simple language about what it is, how it was used, or why it matters…'
+    note: 'For students, families, and first-time visitors: plain language with helpful context.',
+    instruction: 'Speak like an education guide. Use plain language, define specialist terms, and give one question or observation that helps someone look more closely. Be respectful and never childish. Keep the answer grounded in the record.',
+    placeholder: 'Ask what it is, how it was used, or what a student should notice…'
   },
   interpretive: {
-    note: 'More reflective and atmospheric, while still grounded in the record.',
-    instruction: 'Speak in a reflective interpretive voice. Stay grounded in the record, but allow a little more atmosphere and curiosity.',
-    placeholder: 'Ask for a more reflective reading grounded in the record…'
+    note: 'A reflective visitor-facing reading: sensory, thoughtful, and still evidence-based.',
+    instruction: 'Speak like a public interpretation writer. Offer a reflective reading that helps the visitor slow down, notice details, and connect the record to broader human or cultural questions. Keep the tone grounded, not mystical or sentimental. Say plainly when the record is limited.',
+    placeholder: 'Ask for a reflective reading, looking prompt, or visitor-friendly story…'
   }
 };
 
@@ -1867,9 +2141,9 @@ function shareX() {
 // QR lib loaded on demand from cdnjs; poster still renders without it.
 // ══════════════════════════════════════════════════════════════════
 const POSTER_SIZES = {
-  A4: { w: 2480, h: 3508, dpi: 300 },
-  A2: { w: 2480, h: 3508, dpi: 150 },  // same pixel count — print at A2 = 150 dpi
-  A0: { w: 4961, h: 7016, dpi: 150 },
+  A4: { w: 2480, h: 3508, dpi: 300, label: 'A4 poster<br>300 dpi' },
+  A2: { w: 2480, h: 3508, dpi: 150, label: 'A2 poster<br>150 dpi' },  // same pixel count — print at A2 = 150 dpi
+  A0: { w: 4961, h: 7016, dpi: 150, label: 'A0 poster<br>150 dpi' },
 };
 
 function _loadScript(src) {
@@ -1912,6 +2186,69 @@ function _drawQR(ctx, url, x, y, size, fgColor) {
   } catch { return 0; }
 }
 
+function _posterText() {
+  return {
+    title: OBJECT.title || 'Untitled object',
+    meta: [OBJECT.artist, OBJECT.date, OBJECT.type].filter(Boolean).join(' · '),
+    institution: OBJECT.institution || 'ARCHAI',
+    registration: (OBJECT.registration || 'AUX.IO').toUpperCase(),
+    rights: [OBJECT.licence || 'Rights recorded on object page', OBJECT.institution || 'ARCHAI', `ARCHAI AUX.IO · ${new Date().getFullYear()}`].join(' · '),
+    description: OBJECT.description || '',
+  };
+}
+
+function _drawArchaiWordmark(ctx, x, y, size, serif, letterSpacing = 4, align = 'left') {
+  const oldAlign = ctx.textAlign;
+  const oldBaseline = ctx.textBaseline;
+  const oldLS = ctx.letterSpacing;
+  try { ctx.letterSpacing = letterSpacing + 'px'; } catch {}
+  ctx.font = `300 ${size}px ${serif}`;
+  ctx.textAlign = align;
+  ctx.textBaseline = 'alphabetic';
+  const originX = align === 'center' ? x - ctx.measureText('ARCHAI').width / 2 : x;
+  const arcW = ctx.measureText('ARC').width;
+  const hW = ctx.measureText('H').width;
+  ctx.fillStyle = '#e8e4dc'; ctx.fillText('ARC', originX, y);
+  ctx.fillStyle = '#c8a96e'; ctx.fillText('H', originX + arcW, y);
+  ctx.fillStyle = '#e8e4dc'; ctx.fillText('AI', originX + arcW + hW, y);
+  try { ctx.letterSpacing = oldLS || '0px'; } catch {}
+  ctx.textAlign = oldAlign;
+  ctx.textBaseline = oldBaseline;
+}
+
+async function _loadPosterImage() {
+  const heroImg = document.querySelector('.v-hero img');
+  if (!heroImg?.src) return null;
+  const img = new Image();
+  img.crossOrigin = 'anonymous';
+  await new Promise((res, rej) => {
+    img.onload = res;
+    img.onerror = rej;
+    img.src = heroImg.src;
+    setTimeout(rej, 8000);
+  });
+  return img;
+}
+
+function _drawImageContain(ctx, img, x, y, w, h, bg = '#10100f') {
+  ctx.fillStyle = bg;
+  ctx.fillRect(x, y, w, h);
+  if (!img) return;
+  const ia = img.naturalWidth / img.naturalHeight;
+  const aa = w / h;
+  let dw, dh, dx, dy;
+  if (ia > aa) { dw = w; dh = w / ia; dx = x; dy = y + (h - dh) / 2; }
+  else { dh = h; dw = h * ia; dx = x + (w - dw) / 2; dy = y; }
+  ctx.drawImage(img, dx, dy, dw, dh);
+}
+
+function _drawLabel(ctx, text, x, y, mono, size, color = '#5a5450') {
+  ctx.font = `400 ${size}px ${mono}`;
+  ctx.fillStyle = color;
+  ctx.textBaseline = 'top';
+  ctx.fillText(String(text || '').toUpperCase(), x, y);
+}
+
 async function downloadPoster(sizeKey) {
   if (!OBJECT.poster_download_allowed) return;
   const spec = POSTER_SIZES[sizeKey] || POSTER_SIZES.A4;
@@ -1926,7 +2263,7 @@ async function downloadPoster(sizeKey) {
     btns.forEach(b => {
       b.disabled = false;
       const sz = b.dataset.size;
-      if (sz && POSTER_SIZES[sz]) b.textContent = `${sz} · ${POSTER_SIZES[sz].dpi} dpi`;
+      if (sz && POSTER_SIZES[sz]) b.innerHTML = POSTER_SIZES[sz].label;
     });
   }
 
@@ -1941,178 +2278,90 @@ async function downloadPoster(sizeKey) {
   try { await document.fonts.ready; } catch { /* ok */ }
 
   try {
-  const canvas = document.createElement('canvas');
-  canvas.width = W; canvas.height = H;
-  const ctx = canvas.getContext('2d');
-  if (!ctx) { restoreBtns(); return; }
+    const canvas = document.createElement('canvas');
+    canvas.width = W; canvas.height = H;
+    const ctx = canvas.getContext('2d');
+    if (!ctx) { restoreBtns(); return; }
 
-  const pad = Math.round(120 * sc);
-  const innerW = W - pad * 2;
-  const serif = '"Cormorant Garamond", Georgia, serif';
-  const mono  = '"DM Mono", "Courier New", monospace';
-  function setLS(px) { try { ctx.letterSpacing = px + 'px'; } catch {} }
+    const pad = Math.round(150 * sc);
+    const serif = '"Cormorant Garamond", Georgia, serif';
+    const mono = '"DM Mono", "Courier New", monospace';
+    const t = _posterText();
+    let hero = null;
+    try { hero = await _loadPosterImage(); } catch {}
 
-  // ── BACKGROUND
-  ctx.fillStyle = '#080808';
-  ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = '#080808';
+    ctx.fillRect(0, 0, W, H);
 
-  // ── HEADER — wordmark + tag
-  const headerH  = Math.round(180 * sc);
-  const wordmarkY = Math.round(108 * sc);
-  ctx.textBaseline = 'middle';
-  ctx.font = `300 ${Math.round(54 * sc)}px ${serif}`;
-  setLS(Math.round(6 * sc));
-  const arcW = ctx.measureText('ARC').width;
-  const hW   = ctx.measureText('H').width;
-  ctx.fillStyle = '#e8e4dc'; ctx.fillText('ARC', pad, wordmarkY);
-  ctx.fillStyle = '#c8a96e'; ctx.fillText('H',   pad + arcW,      wordmarkY);
-  ctx.fillStyle = '#e8e4dc'; ctx.fillText('AI',  pad + arcW + hW, wordmarkY);
-  setLS(0);
+    const topY = Math.round(124 * sc);
+    _drawArchaiWordmark(ctx, pad, topY, Math.round(56 * sc), serif, Math.round(6 * sc));
+    _drawLabel(ctx, 'AUX.IO visitor access material', pad, topY + Math.round(40 * sc), mono, Math.round(18 * sc), '#5a5450');
+    ctx.font = `400 ${Math.round(18 * sc)}px ${mono}`;
+    ctx.fillStyle = '#8fbcb0';
+    const regW = ctx.measureText(t.registration).width;
+    ctx.fillText(t.registration, W - pad - regW, topY + Math.round(18 * sc));
 
-  const tagText = (OBJECT.registration || 'AUX.IO').toUpperCase();
-  ctx.font = `400 ${Math.round(20 * sc)}px ${mono}`;
-  ctx.fillStyle = '#8fbcb0';
-  const tagTW  = ctx.measureText(tagText).width;
-  const tagPad = Math.round(10 * sc);
-  ctx.strokeStyle = 'rgba(143,188,176,0.3)';
-  ctx.lineWidth   = Math.round(1.5 * sc);
-  ctx.strokeRect(W - pad - tagTW - tagPad * 2, wordmarkY - Math.round(14 * sc), tagTW + tagPad * 2, Math.round(28 * sc));
-  ctx.fillText(tagText, W - pad - tagTW - tagPad, wordmarkY);
+    const imageX = pad;
+    const imageY = Math.round(260 * sc);
+    const imageW = W - pad * 2;
+    const imageH = Math.round(H * 0.405);
+    ctx.strokeStyle = '#1e1e1e';
+    ctx.lineWidth = Math.max(1, Math.round(1 * sc));
+    ctx.strokeRect(imageX, imageY, imageW, imageH);
+    _drawImageContain(ctx, hero, imageX + Math.round(18 * sc), imageY + Math.round(18 * sc), imageW - Math.round(36 * sc), imageH - Math.round(36 * sc), '#0f0f0f');
 
-  // Header divider
-  ctx.strokeStyle = '#1e1e1e';
-  ctx.lineWidth = Math.round(1 * sc);
-  ctx.beginPath(); ctx.moveTo(pad, headerH); ctx.lineTo(W - pad, headerH); ctx.stroke();
+    const textTop = imageY + imageH + Math.round(72 * sc);
+    const qrSize = Math.round(330 * sc);
+    const qrPad = Math.round(18 * sc);
+    const qrX = W - pad - qrSize - qrPad * 2;
+    const qrY = textTop + Math.round(14 * sc);
+    const copyW = qrX - pad - Math.round(80 * sc);
 
-  // ── IMAGE — full bleed, 44 % of height
-  const imgTop = headerH + Math.round(16 * sc);
-  const imgH   = Math.round(H * 0.44);
-  ctx.fillStyle = '#0f0f0f';
-  ctx.fillRect(0, imgTop, W, imgH);
-
-  const heroImg = document.querySelector('.v-hero img');
-  if (heroImg?.src) {
-    try {
-      const img = new Image();
-      img.crossOrigin = 'anonymous';
-      await new Promise((res, rej) => {
-        img.onload = res; img.onerror = rej;
-        img.src = heroImg.src;
-        setTimeout(rej, 8000);
-      });
-      const ia = img.naturalWidth / img.naturalHeight;
-      const aa = W / imgH;
-      let dw, dh, dx, dy;
-      if (ia > aa) { dw = W; dh = W / ia; dx = 0; dy = imgTop + (imgH - dh) / 2; }
-      else          { dh = imgH; dw = imgH * ia; dx = (W - dw) / 2; dy = imgTop; }
-      ctx.drawImage(img, dx, dy, dw, dh);
-    } catch {
-      ctx.fillStyle = '#161616';
-      ctx.fillRect(0, imgTop, W, imgH);
-      ctx.font = `italic 300 ${Math.round(26 * sc)}px ${serif}`;
-      ctx.fillStyle = '#3a3330';
-      ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      ctx.fillText('Image not available (CORS)', W / 2, imgTop + imgH / 2);
-      ctx.textAlign = 'left'; ctx.textBaseline = 'top';
+    ctx.textBaseline = 'top';
+    ctx.font = `300 ${Math.round(74 * sc)}px ${serif}`;
+    ctx.fillStyle = '#e8e4dc';
+    let curY = textTop;
+    for (const line of _wrapText(ctx, t.title, copyW).slice(0, 3)) {
+      ctx.fillText(line, pad, curY);
+      curY += Math.round(84 * sc);
     }
-  }
 
-  // ── TEXT BLOCK
-  let curY = imgTop + imgH + Math.round(48 * sc);
-  ctx.textBaseline = 'top';
+    curY += Math.round(18 * sc);
+    _drawLabel(ctx, t.meta, pad, curY, mono, Math.round(22 * sc), '#5a5450');
+    curY += Math.round(44 * sc);
+    _drawLabel(ctx, t.institution, pad, curY, mono, Math.round(22 * sc), '#8fbcb0');
 
-  // Title
-  ctx.font = `300 ${Math.round(68 * sc)}px ${serif}`;
-  ctx.fillStyle = '#e8e4dc';
-  for (const ln of _wrapText(ctx, OBJECT.title || '', innerW).slice(0, 3)) {
-    ctx.fillText(ln, pad, curY);
-    curY += Math.round(80 * sc);
-  }
-  curY += Math.round(8 * sc);
+    const descY = curY + Math.round(78 * sc);
+    ctx.strokeStyle = '#1e1e1e';
+    ctx.beginPath(); ctx.moveTo(pad, descY - Math.round(32 * sc)); ctx.lineTo(qrX - Math.round(40 * sc), descY - Math.round(32 * sc)); ctx.stroke();
+    ctx.font = `italic 300 ${Math.round(30 * sc)}px ${serif}`;
+    ctx.fillStyle = '#a09890';
+    const excerpt = t.description.substring(0, 260) + (t.description.length > 260 ? '...' : '');
+    let descLineY = descY;
+    for (const line of _wrapText(ctx, excerpt, copyW).slice(0, 4)) {
+      ctx.fillText(line, pad, descLineY);
+      descLineY += Math.round(42 * sc);
+    }
 
-  // Artist · date · type
-  ctx.font = `400 ${Math.round(24 * sc)}px ${mono}`;
-  ctx.fillStyle = '#5a5450';
-  ctx.fillText([OBJECT.artist, OBJECT.date, OBJECT.type].filter(Boolean).join(' · ').toUpperCase(), pad, curY);
-  curY += Math.round(40 * sc);
+    ctx.fillStyle = '#e8e4dc';
+    ctx.fillRect(qrX, qrY, qrSize + qrPad * 2, qrSize + qrPad * 2);
+    _drawQR(ctx, window.location.href, qrX + qrPad, qrY + qrPad, qrSize, '#080808');
+    _drawLabel(ctx, 'Scan to explore', qrX, qrY + qrSize + qrPad * 2 + Math.round(30 * sc), mono, Math.round(18 * sc), '#5a5450');
+    ctx.font = `300 ${Math.round(42 * sc)}px ${serif}`;
+    ctx.fillStyle = '#e8e4dc';
+    ctx.fillText('fineartmedia.tech/aux', qrX, qrY + qrSize + qrPad * 2 + Math.round(60 * sc));
 
-  // Institution
-  ctx.font = `400 ${Math.round(24 * sc)}px ${mono}`;
-  ctx.fillStyle = '#8fbcb0';
-  ctx.fillText((OBJECT.institution || '').toUpperCase(), pad, curY);
-  curY += Math.round(48 * sc);
+    const footerY = H - Math.round(230 * sc);
+    ctx.strokeStyle = '#1e1e1e';
+    ctx.beginPath(); ctx.moveTo(pad, footerY); ctx.lineTo(W - pad, footerY); ctx.stroke();
+    _drawLabel(ctx, t.rights, pad, footerY + Math.round(30 * sc), mono, Math.round(16 * sc), '#3a3330');
+    ctx.font = `300 ${Math.round(28 * sc)}px ${serif}`;
+    ctx.fillStyle = '#2a2826';
+    ctx.textAlign = 'center';
+    ctx.fillText('ARCHAI', W / 2, H - Math.round(80 * sc));
+    ctx.textAlign = 'left';
 
-  // Divider
-  ctx.strokeStyle = '#1e1e1e'; ctx.lineWidth = Math.round(1 * sc);
-  ctx.beginPath(); ctx.moveTo(pad, curY); ctx.lineTo(W - pad, curY); ctx.stroke();
-  curY += Math.round(36 * sc);
-
-  // Description excerpt
-  ctx.font = `italic 300 ${Math.round(32 * sc)}px ${serif}`;
-  ctx.fillStyle = '#a09890';
-  const desc    = OBJECT.description || '';
-  const excerpt = desc.substring(0, 300) + (desc.length > 300 ? '…' : '');
-  for (const ln of _wrapText(ctx, excerpt, innerW).slice(0, 5)) {
-    ctx.fillText(ln, pad, curY);
-    curY += Math.round(46 * sc);
-  }
-
-  // ── QR + SCAN — pinned above footer
-  const footerH    = Math.round(260 * sc);
-  const qrAreaTop  = H - footerH - Math.round(360 * sc);
-  const qrSize     = Math.round(300 * sc);
-  const qrX        = W - pad - qrSize - Math.round(20 * sc);
-  const qrBg       = Math.round(16 * sc);
-
-  // Divider above QR
-  ctx.strokeStyle = '#1e1e1e';
-  ctx.beginPath(); ctx.moveTo(pad, qrAreaTop - Math.round(28 * sc)); ctx.lineTo(W - pad, qrAreaTop - Math.round(28 * sc)); ctx.stroke();
-
-  // QR light background + code
-  ctx.fillStyle = '#e8e4dc';
-  ctx.fillRect(qrX - qrBg, qrAreaTop - qrBg, qrSize + qrBg * 2, qrSize + qrBg * 2);
-  _drawQR(ctx, window.location.href, qrX, qrAreaTop, qrSize, '#080808');
-
-  // Scan prompt (left column)
-  ctx.textBaseline = 'top';
-  ctx.font = `400 ${Math.round(20 * sc)}px ${mono}`;
-  ctx.fillStyle = '#5a5450';
-  ctx.fillText('SCAN TO EXPLORE', pad, qrAreaTop);
-
-  ctx.font = `300 ${Math.round(52 * sc)}px ${serif}`;
-  ctx.fillStyle = '#e8e4dc';
-  ctx.fillText('fineartmedia.tech/aux', pad, qrAreaTop + Math.round(34 * sc));
-
-  ctx.font = `400 ${Math.round(18 * sc)}px ${mono}`;
-  ctx.fillStyle = '#3a3330';
-  const urlW = qrX - pad - Math.round(32 * sc);
-  _wrapText(ctx, window.location.href, urlW).slice(0, 3).forEach((l, i) => {
-    ctx.fillText(l, pad, qrAreaTop + Math.round((96 + i * 28) * sc));
-  });
-
-  // ── FOOTER
-  const footerLineY = H - footerH;
-  ctx.strokeStyle = '#1e1e1e';
-  ctx.beginPath(); ctx.moveTo(pad, footerLineY); ctx.lineTo(W - pad, footerLineY); ctx.stroke();
-
-  ctx.font = `400 ${Math.round(18 * sc)}px ${mono}`;
-  ctx.fillStyle = '#3a3330';
-  ctx.fillText(
-    [OBJECT.licence || 'Rights recorded on object page', OBJECT.institution || 'ARCHAI', `ARCHAI AUX.IO · ${new Date().getFullYear()}`].join(' · '),
-    pad, footerLineY + Math.round(24 * sc)
-  );
-
-  // Centred ARCHAI wordmark at bottom
-  setLS(Math.round(8 * sc));
-  ctx.font = `300 ${Math.round(26 * sc)}px ${serif}`;
-  ctx.fillStyle = '#2a2826';
-  ctx.textAlign = 'center';
-  ctx.fillText('ARCHAI', W / 2, H - Math.round(72 * sc));
-  ctx.textAlign = 'left';
-  setLS(0);
-
-  // ── EXPORT
-  canvas.toBlob(blob => {
+    canvas.toBlob(blob => {
     restoreBtns();
     if (!blob) return;
     const url = URL.createObjectURL(blob);
@@ -2123,7 +2372,7 @@ async function downloadPoster(sizeKey) {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-  }, 'image/png');
+    }, 'image/png');
 
   } catch (err) {
     restoreBtns();
@@ -2135,234 +2384,133 @@ async function downloadPoster(sizeKey) {
 // SMALL FORMAT — Sticker (100mm sq) + Postcard (A6 landscape)
 // ══════════════════════════════════════════════════════════════════
 const SMALL_FORMAT_SIZES = {
-  STICKER:  { w: 1181, h: 1181, dpi: 300, label: 'Sticker · 100mm' },
-  POSTCARD: { w: 1748, h: 1240, dpi: 300, label: 'Postcard · A6'   },
+  STICKER:  { w: 1181, h: 1181, dpi: 300, label: 'Access sticker<br>100mm' },
+  POSTCARD: { w: 1748, h: 1240, dpi: 300, label: 'Visitor postcard<br>A6' },
 };
 
 // ── STICKER layout — QR dominant, full bleed image, clean type ──
 async function _drawStickerLayout(ctx, W, H) {
-  const sc    = W / 1181;
-  const pad   = Math.round(48 * sc);
+  const sc = W / 1181;
+  const pad = Math.round(70 * sc);
   const serif = '"Cormorant Garamond", Georgia, serif';
-  const mono  = '"DM Mono", "Courier New", monospace';
-  function sLS(px) { try { ctx.letterSpacing = px + 'px'; } catch {} }
+  const mono = '"DM Mono", "Courier New", monospace';
+  const t = _posterText();
+  let hero = null;
+  try { hero = await _loadPosterImage(); } catch {}
 
   ctx.fillStyle = '#080808';
   ctx.fillRect(0, 0, W, H);
 
-  // Header — wordmark + reg tag
-  const wY = Math.round(44 * sc);
-  ctx.textBaseline = 'middle';
-  ctx.font = `300 ${Math.round(30 * sc)}px ${serif}`;
-  sLS(Math.round(4 * sc));
-  const aW = ctx.measureText('ARC').width, hW = ctx.measureText('H').width;
-  ctx.fillStyle = '#e8e4dc'; ctx.fillText('ARC', pad, wY);
-  ctx.fillStyle = '#c8a96e'; ctx.fillText('H',   pad + aW,      wY);
-  ctx.fillStyle = '#e8e4dc'; ctx.fillText('AI',  pad + aW + hW, wY);
-  sLS(0);
+  _drawArchaiWordmark(ctx, pad, Math.round(86 * sc), Math.round(34 * sc), serif, Math.round(4 * sc));
+  _drawLabel(ctx, t.registration, W - pad - Math.round(260 * sc), Math.round(62 * sc), mono, Math.round(14 * sc), '#8fbcb0');
 
-  ctx.font = `400 ${Math.round(15 * sc)}px ${mono}`;
-  ctx.fillStyle = '#8fbcb0';
-  const tag  = (OBJECT.registration || 'AUX.IO').toUpperCase();
-  const tagW = ctx.measureText(tag).width;
-  ctx.fillText(tag, W - pad - tagW, wY);
+  const qrSize = Math.round(430 * sc);
+  const qrPad = Math.round(22 * sc);
+  const qrX = Math.round((W - qrSize - qrPad * 2) / 2);
+  const qrY = Math.round(156 * sc);
+  ctx.fillStyle = '#e8e4dc';
+  ctx.fillRect(qrX, qrY, qrSize + qrPad * 2, qrSize + qrPad * 2);
+  _drawQR(ctx, window.location.href, qrX + qrPad, qrY + qrPad, qrSize, '#080808');
 
-  // Divider
-  const hdrH = Math.round(72 * sc);
-  ctx.strokeStyle = '#1e1e1e'; ctx.lineWidth = Math.round(1 * sc);
-  ctx.beginPath(); ctx.moveTo(pad, hdrH); ctx.lineTo(W - pad, hdrH); ctx.stroke();
-
-  // Image — 42% of height
-  const imgTop = hdrH + Math.round(10 * sc);
-  const imgH   = Math.round(H * 0.42);
-  ctx.fillStyle = '#0f0f0f';
-  ctx.fillRect(0, imgTop, W, imgH);
-  const heroEl = document.querySelector('.v-hero img');
-  if (heroEl?.src) {
-    try {
-      const img = new Image(); img.crossOrigin = 'anonymous';
-      await new Promise((res, rej) => { img.onload = res; img.onerror = rej; img.src = heroEl.src; setTimeout(rej, 8000); });
-      const ia = img.naturalWidth / img.naturalHeight, aa = W / imgH;
-      let dw, dh, dx, dy;
-      if (ia > aa) { dw = W; dh = W / ia; dx = 0; dy = imgTop + (imgH - dh) / 2; }
-      else          { dh = imgH; dw = imgH * ia; dx = (W - dw) / 2; dy = imgTop; }
-      ctx.drawImage(img, dx, dy, dw, dh);
-    } catch { /* leave dark bg */ }
-  }
-
-  // Title (max 2 lines)
-  let curY = imgTop + imgH + Math.round(22 * sc);
-  ctx.textBaseline = 'top';
+  _drawLabel(ctx, 'Scan to explore this object', pad, qrY + qrSize + qrPad * 2 + Math.round(48 * sc), mono, Math.round(16 * sc), '#5a5450');
   ctx.font = `300 ${Math.round(44 * sc)}px ${serif}`;
   ctx.fillStyle = '#e8e4dc';
-  for (const ln of _wrapText(ctx, OBJECT.title || '', W - pad * 2).slice(0, 2)) {
-    ctx.fillText(ln, pad, curY);
-    curY += Math.round(52 * sc);
-  }
+  ctx.textBaseline = 'top';
+  ctx.fillText('fineartmedia.tech/aux', pad, qrY + qrSize + qrPad * 2 + Math.round(80 * sc));
 
-  // Artist · date
-  ctx.font = `400 ${Math.round(18 * sc)}px ${mono}`;
-  ctx.fillStyle = '#5a5450';
-  ctx.fillText([OBJECT.artist, OBJECT.date].filter(Boolean).join(' · ').toUpperCase().substring(0, 52), pad, curY);
-  curY += Math.round(36 * sc);
-
-  // Divider
+  const thumb = Math.round(170 * sc);
+  const thumbY = H - pad - thumb;
   ctx.strokeStyle = '#1e1e1e';
-  ctx.beginPath(); ctx.moveTo(pad, curY); ctx.lineTo(W - pad, curY); ctx.stroke();
-  curY += Math.round(22 * sc);
+  ctx.strokeRect(pad, thumbY, thumb, thumb);
+  _drawImageContain(ctx, hero, pad + Math.round(8 * sc), thumbY + Math.round(8 * sc), thumb - Math.round(16 * sc), thumb - Math.round(16 * sc), '#0f0f0f');
 
-  // QR — minimum 20mm = 236px at 300dpi; use 270px for safe scan margin
-  const qrSize = Math.round(270 * sc);
-  const qrBg   = Math.round(12 * sc);
-  const qrX    = W - pad - qrSize;
-  const qrY    = curY + Math.round(6 * sc);
+  let curY = thumbY + Math.round(4 * sc);
+  const textX = pad + thumb + Math.round(34 * sc);
+  const textW = W - textX - pad;
+  ctx.textBaseline = 'top';
+  ctx.font = `300 ${Math.round(34 * sc)}px ${serif}`;
   ctx.fillStyle = '#e8e4dc';
-  ctx.fillRect(qrX - qrBg, qrY - qrBg, qrSize + qrBg * 2, qrSize + qrBg * 2);
-  _drawQR(ctx, window.location.href, qrX, qrY, qrSize, '#080808');
-
-  // Scan prompt
-  ctx.font = `400 ${Math.round(16 * sc)}px ${mono}`;
-  ctx.fillStyle = '#5a5450';
-  ctx.fillText('SCAN TO', pad, curY + Math.round(6 * sc));
-  ctx.fillText('EXPLORE', pad, curY + Math.round(30 * sc));
-  ctx.font = `300 ${Math.round(38 * sc)}px ${serif}`;
-  ctx.fillStyle = '#c8a96e';
-  ctx.fillText('fineartmedia.tech/aux', pad, curY + Math.round(62 * sc));
-  ctx.font = `400 ${Math.round(13 * sc)}px ${mono}`;
-  ctx.fillStyle = '#3a3330';
-  ctx.fillText('#ARCHAIinTheWild', pad, curY + Math.round(118 * sc));
-
-  // Footer
-  const ftY = H - Math.round(34 * sc);
-  ctx.strokeStyle = '#1e1e1e';
-  ctx.beginPath(); ctx.moveTo(pad, ftY - Math.round(18 * sc)); ctx.lineTo(W - pad, ftY - Math.round(18 * sc)); ctx.stroke();
-  ctx.font = `400 ${Math.round(13 * sc)}px ${mono}`;
-  ctx.fillStyle = '#2a2826';
-  ctx.fillText((OBJECT.institution || 'ARCHAI').toUpperCase(), pad, ftY);
+  for (const ln of _wrapText(ctx, t.title, textW).slice(0, 2)) {
+    ctx.fillText(ln, textX, curY);
+    curY += Math.round(40 * sc);
+  }
+  _drawLabel(ctx, t.institution, textX, curY + Math.round(14 * sc), mono, Math.round(13 * sc), '#8fbcb0');
 }
 
 // ── POSTCARD layout — A6 landscape, image left / text+QR right ──
 async function _drawPostcardLayout(ctx, W, H) {
-  const sc    = W / 1748;
-  const pad   = Math.round(52 * sc);
+  const sc = W / 1748;
+  const pad = Math.round(74 * sc);
   const serif = '"Cormorant Garamond", Georgia, serif';
-  const mono  = '"DM Mono", "Courier New", monospace';
-  function sLS(px) { try { ctx.letterSpacing = px + 'px'; } catch {} }
+  const mono = '"DM Mono", "Courier New", monospace';
+  const t = _posterText();
+  let hero = null;
+  try { hero = await _loadPosterImage(); } catch {}
 
   ctx.fillStyle = '#080808';
   ctx.fillRect(0, 0, W, H);
 
-  // Left panel — full-height image (45% width)
-  const imgPanelW = Math.round(W * 0.45);
-  ctx.fillStyle = '#0f0f0f';
-  ctx.fillRect(0, 0, imgPanelW, H);
-  const heroEl = document.querySelector('.v-hero img');
-  if (heroEl?.src) {
-    try {
-      const img = new Image(); img.crossOrigin = 'anonymous';
-      await new Promise((res, rej) => { img.onload = res; img.onerror = rej; img.src = heroEl.src; setTimeout(rej, 8000); });
-      const ia = img.naturalWidth / img.naturalHeight, aa = imgPanelW / H;
-      let dw, dh, dx, dy;
-      if (ia > aa) { dw = imgPanelW; dh = imgPanelW / ia; dx = 0; dy = (H - dh) / 2; }
-      else          { dh = H; dw = H * ia; dx = (imgPanelW - dw) / 2; dy = 0; }
-      ctx.drawImage(img, dx, dy, dw, dh);
-    } catch { /* dark bg */ }
-  }
+  _drawArchaiWordmark(ctx, pad, Math.round(92 * sc), Math.round(34 * sc), serif, Math.round(5 * sc));
+  _drawLabel(ctx, t.registration, W - pad - Math.round(260 * sc), Math.round(66 * sc), mono, Math.round(14 * sc), '#8fbcb0');
 
-  // Vertical divider
-  ctx.strokeStyle = '#1e1e1e'; ctx.lineWidth = Math.round(1 * sc);
-  ctx.beginPath(); ctx.moveTo(imgPanelW, 0); ctx.lineTo(imgPanelW, H); ctx.stroke();
+  const imageW = Math.round(W * 0.43);
+  const imageH = H - pad * 2 - Math.round(74 * sc);
+  const imageX = pad;
+  const imageY = Math.round(136 * sc);
+  ctx.strokeStyle = '#1e1e1e';
+  ctx.strokeRect(imageX, imageY, imageW, imageH);
+  _drawImageContain(ctx, hero, imageX + Math.round(12 * sc), imageY + Math.round(12 * sc), imageW - Math.round(24 * sc), imageH - Math.round(24 * sc), '#0f0f0f');
 
-  // Right panel
-  const rx = imgPanelW + pad;
-  const rw = W - imgPanelW - pad * 2;
-  let curY = pad;
+  const rx = imageX + imageW + Math.round(70 * sc);
+  const rw = W - rx - pad;
+  let curY = imageY;
   ctx.textBaseline = 'top';
 
-  // ARCHAI wordmark
-  ctx.font = `300 ${Math.round(30 * sc)}px ${serif}`;
-  sLS(Math.round(5 * sc));
-  const aW = ctx.measureText('ARC').width, hW = ctx.measureText('H').width;
-  ctx.fillStyle = '#e8e4dc'; ctx.fillText('ARC', rx, curY);
-  ctx.fillStyle = '#c8a96e'; ctx.fillText('H',   rx + aW,      curY);
-  ctx.fillStyle = '#e8e4dc'; ctx.fillText('AI',  rx + aW + hW, curY);
-  sLS(0);
+  _drawLabel(ctx, 'AUX.IO visitor postcard', rx, curY, mono, Math.round(14 * sc), '#5a5450');
+  curY += Math.round(48 * sc);
 
-  // Reg tag — top right of panel
-  ctx.font = `400 ${Math.round(14 * sc)}px ${mono}`;
-  ctx.fillStyle = '#8fbcb0';
-  const tag = (OBJECT.registration || 'AUX.IO').toUpperCase();
-  ctx.fillText(tag, W - pad - ctx.measureText(tag).width, curY + Math.round(6 * sc));
-  curY += Math.round(52 * sc);
-
-  ctx.strokeStyle = '#1e1e1e';
-  ctx.beginPath(); ctx.moveTo(rx, curY); ctx.lineTo(W - pad, curY); ctx.stroke();
-  curY += Math.round(32 * sc);
-
-  // Title
-  ctx.font = `300 ${Math.round(56 * sc)}px ${serif}`;
+  ctx.font = `300 ${Math.round(52 * sc)}px ${serif}`;
   ctx.fillStyle = '#e8e4dc';
-  for (const ln of _wrapText(ctx, OBJECT.title || '', rw).slice(0, 2)) {
+  for (const ln of _wrapText(ctx, t.title, rw).slice(0, 3)) {
     ctx.fillText(ln, rx, curY);
-    curY += Math.round(64 * sc);
+    curY += Math.round(58 * sc);
   }
-  curY += Math.round(4 * sc);
-
-  // Artist · date · type
-  ctx.font = `400 ${Math.round(19 * sc)}px ${mono}`;
-  ctx.fillStyle = '#5a5450';
-  ctx.fillText([OBJECT.artist, OBJECT.date, OBJECT.type].filter(Boolean).join(' · ').toUpperCase(), rx, curY);
-  curY += Math.round(32 * sc);
-
-  // Institution
-  ctx.font = `400 ${Math.round(19 * sc)}px ${mono}`;
-  ctx.fillStyle = '#8fbcb0';
-  ctx.fillText((OBJECT.institution || '').toUpperCase(), rx, curY);
-  curY += Math.round(40 * sc);
+  curY += Math.round(16 * sc);
+  _drawLabel(ctx, t.meta, rx, curY, mono, Math.round(17 * sc), '#5a5450');
+  curY += Math.round(34 * sc);
+  _drawLabel(ctx, t.institution, rx, curY, mono, Math.round(17 * sc), '#8fbcb0');
+  curY += Math.round(58 * sc);
 
   ctx.strokeStyle = '#1e1e1e';
   ctx.beginPath(); ctx.moveTo(rx, curY); ctx.lineTo(W - pad, curY); ctx.stroke();
-  curY += Math.round(28 * sc);
+  curY += Math.round(34 * sc);
 
-  // Description
-  ctx.font = `italic 300 ${Math.round(28 * sc)}px ${serif}`;
+  ctx.font = `italic 300 ${Math.round(25 * sc)}px ${serif}`;
   ctx.fillStyle = '#a09890';
-  const desc = (OBJECT.description || '').substring(0, 240);
-  for (const ln of _wrapText(ctx, desc + (OBJECT.description.length > 240 ? '…' : ''), rw).slice(0, 5)) {
+  const desc = t.description.substring(0, 210) + (t.description.length > 210 ? '...' : '');
+  for (const ln of _wrapText(ctx, desc, rw).slice(0, 4)) {
     ctx.fillText(ln, rx, curY);
-    curY += Math.round(38 * sc);
+    curY += Math.round(34 * sc);
   }
 
-  // QR + scan — pinned to bottom of right panel
-  const qrSize   = Math.round(200 * sc);
-  const qrBg     = Math.round(10 * sc);
-  const qrAreaTop = H - pad - qrSize - qrBg * 2 - Math.round(8 * sc);
-  const qrX      = W - pad - qrSize;
+  const qrSize = Math.round(210 * sc);
+  const qrPad = Math.round(12 * sc);
+  const qrX = W - pad - qrSize - qrPad * 2;
+  const qrY = H - pad - qrSize - qrPad * 2 - Math.round(54 * sc);
 
   ctx.strokeStyle = '#1e1e1e';
-  ctx.beginPath(); ctx.moveTo(rx, qrAreaTop - Math.round(24 * sc)); ctx.lineTo(W - pad, qrAreaTop - Math.round(24 * sc)); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(rx, qrY - Math.round(34 * sc)); ctx.lineTo(W - pad, qrY - Math.round(34 * sc)); ctx.stroke();
 
   ctx.fillStyle = '#e8e4dc';
-  ctx.fillRect(qrX - qrBg, qrAreaTop - qrBg, qrSize + qrBg * 2, qrSize + qrBg * 2);
-  _drawQR(ctx, window.location.href, qrX, qrAreaTop, qrSize, '#080808');
+  ctx.fillRect(qrX, qrY, qrSize + qrPad * 2, qrSize + qrPad * 2);
+  _drawQR(ctx, window.location.href, qrX + qrPad, qrY + qrPad, qrSize, '#080808');
 
-  ctx.font = `400 ${Math.round(15 * sc)}px ${mono}`;
-  ctx.fillStyle = '#5a5450';
-  ctx.fillText('SCAN TO EXPLORE', rx, qrAreaTop);
-  ctx.font = `300 ${Math.round(44 * sc)}px ${serif}`;
+  _drawLabel(ctx, 'Scan to explore', rx, qrY + Math.round(8 * sc), mono, Math.round(15 * sc), '#5a5450');
+  ctx.font = `300 ${Math.round(38 * sc)}px ${serif}`;
   ctx.fillStyle = '#e8e4dc';
-  ctx.fillText('fineartmedia.tech/aux', rx, qrAreaTop + Math.round(22 * sc));
-  ctx.font = `400 ${Math.round(13 * sc)}px ${mono}`;
-  ctx.fillStyle = '#3a3330';
-  ctx.fillText('#ARCHAIinTheWild', rx, qrAreaTop + Math.round(82 * sc));
+  ctx.fillText('fineartmedia.tech/aux', rx, qrY + Math.round(44 * sc));
 
-  // Rights footer
-  const ftY = H - pad + Math.round(4 * sc);
-  ctx.strokeStyle = '#1e1e1e';
-  ctx.beginPath(); ctx.moveTo(rx, ftY - Math.round(22 * sc)); ctx.lineTo(W - pad, ftY - Math.round(22 * sc)); ctx.stroke();
-  ctx.font = `400 ${Math.round(13 * sc)}px ${mono}`;
-  ctx.fillStyle = '#2a2826';
-  ctx.fillText([OBJECT.licence || 'Rights recorded on object page', OBJECT.institution || 'ARCHAI', `ARCHAI AUX.IO · ${new Date().getFullYear()}`].join(' · '), rx, ftY);
+  _drawLabel(ctx, t.rights, rx, H - pad + Math.round(8 * sc), mono, Math.round(12 * sc), '#2a2826');
 }
 
 // ── DOWNLOAD ORCHESTRATOR for small formats ──
@@ -2373,7 +2521,7 @@ async function downloadPosterSmall(sizeKey) {
 
   const btns = [...document.querySelectorAll(`[data-size="${sizeKey}"]`)];
   btns.forEach(b => { b.disabled = true; b.textContent = 'Generating…'; });
-  function restoreBtns() { btns.forEach(b => { b.disabled = false; b.textContent = spec.label; }); }
+  function restoreBtns() { btns.forEach(b => { b.disabled = false; b.innerHTML = spec.label; }); }
 
   try {
     await _loadScript(new URL('vendor/qrcode-generator.js', window.location.href).href);

@@ -1,172 +1,174 @@
-# What If Museum Objects Could Talk Back?
+# Cultivating a Living Archive
 
-*Introducing ARCHAI™ — sovereign AI infrastructure that lets cultural heritage speak for itself.*
+*I built ARCHAI™ from scratch on a Mac, with local AI, Claude, Codex, and a stubborn belief that museum collections should be able to speak without giving themselves away.*
 
----
+I want to start with the thing itself, not the theory.
 
-## AUX.IO — Archai User eXperience: data In, data Out
+Here are three little object pages from the current ARCHAI NFC build:
 
-Before we get into what ARCHAI™ does — a quick note on naming. The public interface is called **AUX** (aux.io). It stands for **A**rchai **U**ser e**X**perience — **data In, data Out**. Because that's what this is: a bidirectional channel. You put questions in. The collection speaks back. You contribute knowledge. It becomes part of the record. In and out. The auxiliary port connecting people to culture.
+[Jacques-Louis David's 1788 portrait of Antoine Laurent Lavoisier and Marie Anne Lavoisier](https://fineartmedia.tech/nfc-pages/v/NFC120.html), built from public-domain collection data from The Metropolitan Museum of Art.
 
----
+[Dynatron TV23A Falcon](https://fineartmedia.tech/nfc-pages/v/NFC010.html), a 1949 television from the Victoria and Albert Museum collection.
 
-## The moment it clicked
+[Coin - Guinea, Charles II, Great Britain, 1679](https://fineartmedia.tech/nfc-pages/v/NFC046.html), a Museums Victoria object with a compact but surprisingly rich historical record.
 
-I was standing in front of a 150-year-old proof coin at Museums Victoria, reading the same three-line label that's been there since 2019. Registration number. Date. "Gold, proof." That's it. That's all most visitors will ever learn about this object.
+They are not finished products. They are not slick museum interactives. They are working fragments: phone-sized object pages with an image where one exists, a verified record, a source link, related objects, share controls, a visitor response box, and a small conversational interface that lets the object answer from its own metadata.
 
-But the collection database has pages of information — who commissioned it, the political context of its minting, the metallurgical techniques, the provenance chain that brought it from the Royal Mint to Melbourne. An entire biography, locked behind a staff login.
+That is enough to show the shape of the idea.
 
-I thought: what if the coin could just *tell you*?
+What if every object in a collection could become a doorway like this?
 
----
+Not a chatbot pretending to be alive. Not a vendor kiosk with a museum skin. Not another cloud service quietly collecting visitor conversations somewhere the institution cannot see. Just a page, a record, a model, and a boundary around what the object can honestly say.
 
-## Objects speaking as themselves
+That boundary matters. A collection object should be allowed to say, in effect: this is what my record knows; this is what it does not know.
 
-ARCHAI™ is a research toolkit I've been building as part of my PhD at RMIT University (Design). The core idea is old — *prosopopoeia*, the rhetorical device of giving voice to inanimate things. What's new is making it work with verified institutional data, on sovereign infrastructure, without sending anything to the cloud.
+That is the heart of ARCHAI.
 
-Here's what happens when you tap an NFC tag next to that proof coin:
+Making the depth of the archive available at the moment curiosity appears.
 
-1. Your phone opens a page
-2. The coin introduces itself — in first person — using its actual museum record
-3. You can ask it questions: "When were you made?" "What are you made of?" "Why are you significant?"
-4. It answers from its verified metadata. If you ask something it doesn't know, it says so.
+## How I got here
 
-No hallucination. No making things up. No sending your conversation to OpenAI.
+ARCHAI did not appear because I wanted to make a museum chatbot.
 
----
+It came out of years of working around cultural technology and seeing the same pattern again and again: beautiful collections trapped behind systems that did not really talk to each other; public interfaces that showed only a thin slice of what the institution knew; digital projects arriving as vendor packages; strategy slowly becoming dependence on someone else's platform.
 
-## The technical bit (for those who care)
+The knowledge was there. The care was there. The records were there. The people were there.
 
-ARCHAI™ runs entirely on a single Mac Studio (~$3,500 USD). No subscriptions. No API keys to third parties. No cloud dependency.
+But the interface between people, objects, data, and institutional memory was too thin.
 
-The stack:
-- **Qdrant** vector database — stores museum objects as 768-dimensional semantic embeddings
-- **Ollama** running llama3 — provides the conversational layer
-- **nomic-embed-text** — converts questions and metadata into searchable vectors
-- **Express.js** backend — rate limiting, prompt injection protection, AI comment moderation
-- **SQLite** — persistent storage for visitor interactions
+While writing my PhD application, that frustration started turning into a research direction: an open-source, sovereign, semantic AI toolkit for GLAM institutions. Not a chatbot bolted onto a collection website. Not a cloud service wearing a museum badge. A tool that institutions could own, inspect, adapt, and run themselves.
 
-Three museum collections are currently searchable simultaneously: Museums Victoria (194 objects, CC BY 4.0), The Metropolitan Museum of Art (100 objects, CC0), and the Victoria and Albert Museum (80 objects, V&A Open Access).
+Writing the application gave the ideas shape. Writing the code tested whether they could stand up.
 
-### The five-layer hallucination prevention framework
+When I started the PhD in late February and early March 2026, I began using Claude and Codex deliberately to test new ways of building and coding. Not to outsource the idea. More like studio tools. I wanted to see whether AI coding systems could help me turn a theoretical research direction into solid, inspectable, working code.
 
-This is the research contribution that matters most. Museum objects cannot lie:
+So I started building.
 
-1. **Obtext grounding** — every conversation is anchored to a structured data format containing only verified institutional metadata
-2. **Safety wrapper** — the LLM is constrained to its assigned role and cannot be re-directed
-3. **Token limits** — responses are capped at 512 tokens, preventing extended confabulation
-4. **Prompt injection blocking** — common jailbreak patterns are detected and rejected before reaching the model
-5. **Graceful uncertainty** — when asked something outside its record, the object says "That's not in my verified record" rather than inventing an answer
+At first it was local HTML experiments and a question I could not leave alone. Then a browser interface. Then a vector database. Then local language models. Then NFC pages. Then a backend proxy. Then comments. Then moderation. Then a PWA. Then conversational search.
 
----
+At some point I looked up and realised I was no longer sketching an idea.
 
-## Why "sovereign"?
+I was maintaining infrastructure.
 
-The museum sector is being sold AI solutions that require sending collection data — and visitor interaction data — to commercial cloud providers. This creates:
+The criticism is the thing I made.
 
-- **Dependency** — if the provider changes pricing or terms, the institution loses access to its own AI capabilities
-- **Data sovereignty** — visitor interactions, which are culturally sensitive research data, leave the institution's control
-- **Homogeneity** — every museum using the same cloud API gets the same generic responses
+## What ARCHAI is, in plain language
 
-ARCHAI™ takes the opposite approach. Everything runs on hardware the institution owns and controls. The AI model is open-source. The data never leaves the building. The total cost is a one-time hardware purchase, not a monthly subscription.
+ARCHAI is an open-source, local-first AI toolkit for cultural heritage collections.
 
-This isn't anti-cloud ideology — it's practical. A regional museum with a $50k annual budget can deploy this. A national institution concerned about data sovereignty can trust it. A researcher studying visitor behaviour can access everything locally.
+It runs on a Mac Studio in my current development setup. It uses Qdrant for vector search, Ollama for local language models, Node/Express for the backend, SQLite for visitor comments, and ordinary browser pages for the interface. The current prototype searches across Museums Victoria, The Met, and the V&A.
 
----
+The point is not that this is the biggest possible system. It is not.
 
-## AI-moderated visitor comments (or: making audience knowledge permanent)
+The point is that it works without handing the archive to a platform.
 
-Here's something museums waste every day: visitor knowledge.
+That is the punk bit, really. Own the machine. Own the model. Own the conversation.
 
-When someone stands in front of an object and says "My grandmother had one of these — she used it for X" — that's primary source material. It's oral history. It's contextual information that no curator would have access to otherwise.
+Museums should not have to rent their own memory back from a cloud provider.
 
-In most museums, that knowledge evaporates. Or it ends up as an Instagram comment that the institution will never see.
+The code is published under MPL-2.0, open enough to inspect, fork, repair, and adapt, while still protecting the ARCHAI™ name and the research context around it. That feels important to me. Open source should not mean careless. Especially not with cultural material.
 
-ARCHAI™ captures visitor comments as part of the object's collection record. Each comment is:
-- **AI-screened** in real time (safe / suspicious / harmful)
-- **Curated by humans** — the AI flags, a person decides
-- **Threaded** — staff can reply, creating persistent Q&A records
-- **Searchable** — comments are embedded into the curator vector collection, discoverable by semantic search
+## Objects speaking, carefully
 
-This means a curator can search "objects visitors connect to family memories" and find patterns across the entire collection. Visitor knowledge becomes institutional knowledge — properly attributed, safely moderated, permanently preserved.
+The old word at the centre of this is *prosopopoeia*: giving voice to something silent.
 
----
+I love that this supposedly new problem has an ancient root. People have always wanted objects, places, and absent voices to speak. The difference here is that a museum object cannot just say whatever a story needs it to say. It has to stay inside its record.
 
-## Obtext: the data format that makes objects conversational
+So ARCHAI asks objects to speak from verified metadata. If the data is thin, the answer should be thin. If the record does not know something, the object should say so. That is not a failure of the system. That is archival honesty.
 
-I've been developing a concept called **Obtext** (Object Context) — the structured data format that contains everything an AI system needs to speak authentically as a museum object.
+I have been calling the structured object context **Obtext**: object context in a form both humans and AI can read. It can hold identity, physical properties, dates, significance, media links, related people and objects, and also constraints: what the object should not claim to know.
 
-Think of it as the object's biography in a format that both humans and AI can read. It includes:
-- Identity (what it is, where it lives)
-- Physical properties (materials, condition, dimensions)
-- Temporal context (when made, when acquired, exhibition history)
-- Significance (why it matters, cultural context)
-- Constraints (what it explicitly does *not* know)
+That is what lets the conversation travel. You might open the Lavoisier page in the article, save the object context, and later keep learning at home: following the source record, asking another question, comparing related objects, or sharing the trail with a class or a friend.
 
-The constraints field is crucial. By telling the AI what the object doesn't know, we prevent it from filling gaps with plausible-sounding fabrication. An 1866 proof coin doesn't know about cryptocurrency, and its Obtext record ensures it won't pretend to.
+The museum remains the source of authority.
 
----
+The conversation can travel, but the evidence boundary travels with it.
 
-## The database talks back: conversational search
+## What changed in the latest build
 
-Here's the latest development, and it's the one that changes everything.
+The new version is less of a demo and more of a small working stack.
 
-Most museum search works like Google circa 2005: type words, get a list. But what if you could *talk to the entire collection?* Not search it — converse with it.
+There is now a backend proxy, so public access does not mean exposing Ollama or Qdrant directly. There is rate limiting, prompt-injection blocking, schema validation, and token limits. There are AI-moderated visitor comments, where safe responses can appear and suspicious or harmful ones go to curator review. There is a curator vector collection that combines object metadata with reviewed contributions so staff can search across records and public memory together.
 
-ARCHAI™ now has a **conversational search engine**. You ask a question in natural language — "What objects connect ancient Rome to 1980s Melbourne?" — and the collection intelligence responds. Not as a list of results. As a curator. It searches semantically, finds the objects, and then *explains the connections*. It cites specific titles, dates, materials. It suggests paths you didn't know existed.
+And there is conversational search.
 
-The architecture:
-1. Your question hits the LLM
-2. The LLM searches the vector database semantically
-3. It retrieves relevant objects from all three collections
-4. It synthesises a conversational response *with those objects as context*
-5. You see both the curatorial response and the object cards
+That one still feels a bit electric to me. Instead of typing keywords and getting a list, you ask the collection a question in normal language. The system searches semantically, retrieves relevant objects, and then answers with those objects as evidence. You still see the cards. You still see the objects. But the database has started to talk back.
 
-This is the move from search to dialogue. From query to conversation. The database doesn't just return results — it *talks back*.
+Again, carefully.
 
----
+Always with the objects visible underneath.
 
-## AUX.IO: one page to access them all
+## Why sovereignty matters
 
-The latest development is **AUX** — a universal access page that works with any entry method:
+The museum sector is being sold AI at speed. Some of it is useful. Some of it is shiny nonsense. A lot of it asks institutions to send collection data, visitor data, or interpretive work into systems they do not own and cannot properly inspect.
 
-- **NFC tag** on a physical label → opens AUX
-- **QR code** in a print catalogue → opens AUX
-- **Hyperlink** shared on social media → opens AUX
-- **Bluetooth beacon** broadcasting a URL → opens AUX
+That is not a small detail.
 
-Same page, same experience, any entry point. The object speaks regardless of how you arrived.
+If a museum cannot control the machine that mediates its own collection, it has given away something deeper than a software contract. It has given away part of the relationship between the public and cultural memory.
 
-The name is Latin for "voice" — because that's what the page provides. A voice for objects that have been silent behind three-line labels for decades.
+ARCHAI is my counter-proposal. Small machine. Local model. Open code. Visible records. Human authority.
 
----
+Not anti-technology.
+
+Anti-lock-in.
+
+Not anti-institution.
+
+Anti-dependence.
+
+I do not think every museum needs to become a software company. But I do think cultural institutions need tools they can understand, repair, refuse, and reshape.
+
+## Visitor knowledge matters too
+
+There is another part of this that keeps pulling at me.
+
+Visitors know things.
+
+Someone sees an object and remembers a parent using one. Someone recognises a tool from a factory. Someone hears a song in a lantern slide. Someone knows why an object mattered in a household, a suburb, a scene, a community.
+
+Most of that knowledge disappears.
+
+ARCHAI treats visitor responses as a possible contribution layer, not as instant truth. A visitor comment should not rewrite the collection record. But with consent, attribution, moderation, and curator review, it can sit beside the record as dated, reviewable cultural evidence.
+
+That is what I mean by a living archive. Not chaos. Not the public overwriting the institution. A conversation between institutional memory and public memory, with the boundary visible.
+
+## What this does not solve
+
+I do not want to oversell this.
+
+ARCHAI does not replace curators. It does not solve cultural sensitivity by itself. It does not magically preserve embodied experience, community authority, or time-based work just because it has a vector database attached.
+
+A local system still needs maintenance. It needs backups. It needs people who understand what it is doing. Sensitive material needs governance before it ever enters an AI pipeline. Visitor contributions need consent, retention rules, and removal pathways.
+
+That is why I keep calling ARCHAI infrastructure, not automation.
+
+The goal is not to make culture frictionless.
+
+The goal is to make cultural knowledge more discoverable while keeping authority, uncertainty, and responsibility visible.
 
 ## Where this is going
 
-ARCHAI™ is my doctoral research at RMIT University, supervised by Chris Barker in the School of Design. It was presented at ISEA2026 in Dubai (April 2026) and the 6th Summit on New Media Art Archiving.
+Next, I want to keep growing the object pages into a fuller AUX experience: NFC, QR, links, maybe beacons later, all pointing into the same object context. I want Obtext to become more formal. I want conversational search to get sharper. I want multimodal search: image, colour, sound, maybe gesture. I want institutions to be able to run this themselves without needing a cloud subscription or a magic priesthood.
 
-**Near-term:**
-- Multimodal search (find objects by colour, by visual similarity, by sound)
-- Public deployment via Cloudflare Tunnel
-- Formal Obtext specification
-- Institution partnership pilots
+This is doctoral research, but it is also a working build.
 
-**Longer-term:**
-- The toolkit will be released as fully open-source after the PhD
-- Any institution will be able to deploy sovereign heritage AI for the cost of a single computer
-- The research explores what happens when audiences can genuinely converse with collections — not just read about them
+That feels important.
 
----
+The repository is here: [github.com/rob-e-graham/archai](https://github.com/rob-e-graham/archai)
 
-## Try it
+The project page is here: [fineartmedia.tech/archai.html](https://fineartmedia.tech/archai.html)
 
-The ARCHAI™ project page is live at [fineartmedia.tech/archai.html](https://fineartmedia.tech/archai.html). When the backend is running, you can search across all three museum collections and talk to any object.
+And the three current object-page examples are here again, because honestly the thing makes more sense when you click it:
 
-The code is on [GitHub](https://github.com/rob-e-graham/archai) under MPL-2.0.
+[Lavoisier portrait](https://fineartmedia.tech/nfc-pages/v/NFC120.html)
 
-If you work in museums, cultural heritage, or digital humanities and this resonates — I'd love to hear from you: rob@fineartmedia.tech
+[Dynatron TV23A Falcon](https://fineartmedia.tech/nfc-pages/v/NFC010.html)
 
----
+[Charles II guinea](https://fineartmedia.tech/nfc-pages/v/NFC046.html)
+
+One object. One page. One working pathway.
+
+Then another.
 
 *Rob Graham is a PhD candidate at RMIT University (Design), founder of FAMTEC (Fine Art Media Tech), and former Head of Technology at the National Communication Museum. His research focuses on sovereign AI infrastructure for cultural heritage institutions.*
 

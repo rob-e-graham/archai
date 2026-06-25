@@ -64,6 +64,7 @@ Use this as the working log for museum/gallery contact. Keep notes factual and r
 | RMIT research office | ARC and internal funding advice | Draft | Confirm current schemes and eligibility |
 | Museums Victoria | local GLAM pilot, science/history/technology collections | Draft | Rights feedback + possible pilot discussion |
 | ACMI | media art, screen culture, born-digital preservation | Draft | Strong fit for future media/born-digital track |
+| Sophie Lieberman Consulting | cultural strategy, partnership brokering, sector positioning | Draft | Potential strategic advisor / conversation about ARCHAI as a GLAM research partnership and funding pathway |
 | Powerhouse / MAAS | Australian applied arts/science/technology | Draft | Strong tech/data balance |
 | State Library Victoria | public access, digital collections, archives | Draft | Collection discovery and rights-aware search |
 | Heide / TarraWarra | gallery-scale visitor and interpretation pilots | Draft | Good for focused AUX.IO testing |
