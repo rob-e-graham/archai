@@ -238,24 +238,26 @@ body::after {
   min-height: 0;
   overflow: auto;
   overscroll-behavior: contain;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   padding: 20px;
   cursor: grab;
   scrollbar-color: rgba(143,188,176,0.32) transparent;
+  user-select: none;
+  touch-action: none;
 }
-.v-iiif-canvas:active { cursor: grabbing; }
+.v-iiif-canvas.dragging { cursor: grabbing; }
 .v-iiif-canvas img {
+  display: block;
   width: min(100%, 1000px);
   max-width: none;
   height: auto;
-  transform-origin: center center;
-  transition: transform 0.18s ease;
+  margin: 0 auto;
+  transition: width 0.18s ease;
   box-shadow: 0 18px 50px rgba(0,0,0,0.55);
+  pointer-events: none;
 }
-.v-iiif-viewer[data-zoom="2"] .v-iiif-canvas img { transform: scale(1.55); }
-.v-iiif-viewer[data-zoom="3"] .v-iiif-canvas img { transform: scale(2.25); }
+.v-iiif-viewer[data-zoom="2"] .v-iiif-canvas img { width: min(155%, 1550px); }
+.v-iiif-viewer[data-zoom="3"] .v-iiif-canvas img { width: min(225%, 2250px); }
 .v-iiif-controls {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1566,6 +1568,16 @@ B…`,
 };
 
 let iiifZoomLevel = 1;
+let iiifDragState = null;
+
+function centerIiifCanvas() {
+  const canvas = document.getElementById('iiifCanvas');
+  if (!canvas) return;
+  requestAnimationFrame(() => {
+    canvas.scrollLeft = Math.max(0, (canvas.scrollWidth - canvas.clientWidth) / 2);
+    canvas.scrollTop = Math.max(0, (canvas.scrollHeight - canvas.clientHeight) / 2);
+  });
+}
 
 function openIiifViewer() {
   if (!OBJECT.iiif_available || !OBJECT.iiif_large) return;
@@ -1574,11 +1586,13 @@ function openIiifViewer() {
   if (!viewer || !img) return;
   img.src = OBJECT.iiif_large || OBJECT.iiif_display;
   img.alt = OBJECT.title || 'Object detail';
+  img.onload = centerIiifCanvas;
   iiifZoomLevel = 1;
   viewer.dataset.zoom = '1';
   viewer.classList.add('open');
   viewer.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
+  centerIiifCanvas();
 }
 
 function closeIiifViewer() {
@@ -1594,6 +1608,7 @@ function setIiifZoom(level) {
   if (!viewer) return;
   iiifZoomLevel = Math.max(1, Math.min(3, level));
   viewer.dataset.zoom = String(iiifZoomLevel);
+  centerIiifCanvas();
 }
 
 function stepIiifZoom(delta) {
@@ -1603,6 +1618,49 @@ function stepIiifZoom(delta) {
 document.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') closeIiifViewer();
 });
+
+function bindIiifPan() {
+  const canvas = document.getElementById('iiifCanvas');
+  if (!canvas || canvas.dataset.panBound === 'true') return;
+  canvas.dataset.panBound = 'true';
+
+  canvas.addEventListener('pointerdown', (event) => {
+    const viewer = document.getElementById('iiifViewer');
+    if (!viewer || !viewer.classList.contains('open')) return;
+    iiifDragState = {
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      startY: event.clientY,
+      scrollLeft: canvas.scrollLeft,
+      scrollTop: canvas.scrollTop
+    };
+    canvas.classList.add('dragging');
+    canvas.setPointerCapture(event.pointerId);
+    event.preventDefault();
+  });
+
+  canvas.addEventListener('pointermove', (event) => {
+    if (!iiifDragState || iiifDragState.pointerId !== event.pointerId) return;
+    const dx = event.clientX - iiifDragState.startX;
+    const dy = event.clientY - iiifDragState.startY;
+    canvas.scrollLeft = iiifDragState.scrollLeft - dx;
+    canvas.scrollTop = iiifDragState.scrollTop - dy;
+    event.preventDefault();
+  });
+
+  const endDrag = (event) => {
+    if (!iiifDragState || iiifDragState.pointerId !== event.pointerId) return;
+    iiifDragState = null;
+    canvas.classList.remove('dragging');
+    try { canvas.releasePointerCapture(event.pointerId); } catch (_) {}
+  };
+
+  canvas.addEventListener('pointerup', endDrag);
+  canvas.addEventListener('pointercancel', endDrag);
+  canvas.addEventListener('pointerleave', endDrag);
+}
+
+document.addEventListener('DOMContentLoaded', bindIiifPan);
 
 // Build rich context from available fields
 const richFields = [

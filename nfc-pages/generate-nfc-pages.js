@@ -615,7 +615,7 @@ async function main() {
     const filename = `${nfcCode}.html`;
     fs.writeFileSync(path.join(OUTPUT_DIR, filename), trimGeneratedLines(html), 'utf-8');
     generated.push({ nfcCode, title, reg, filename, source: sourceInstitution,
-                     thumb: imgThumb || imgMedium, collection: obj.sourceCollection });
+                     thumb: imgMedium || imgThumb, collection: obj.sourceCollection });
 
     // Progress
     process.stdout.write(`  → ${obj.auxLabel} · [${sourceInstitution.substring(0,3).toUpperCase()}] ${title.substring(0, 40)}${title.length > 40 ? '…' : ''}\n`);
@@ -718,7 +718,8 @@ function generateIndex(items) {
     const thumbHtml = g.thumb
       ? `<img src="${escHtml(g.thumb)}" loading="lazy" alt="" onerror="this.style.display='none'">`
       : '<span class="idx-thumb-ph">▣</span>';
-    return `<a href="${escHtml(g.filename)}" class="idx-item" data-col="${escHtml(g.collection || '')}">
+    const searchText = [g.nfcCode, g.title, g.source, g.reg, g.collection].filter(Boolean).join(' ').toLowerCase();
+    return `<a href="${escHtml(g.filename)}" class="idx-item" data-col="${escHtml(g.collection || '')}" data-search="${escHtml(searchText)}">
       <div class="idx-thumb">${thumbHtml}</div>
       <div class="idx-info">
         <div class="idx-nfc">${escHtml(g.nfcCode.replace(/^NFC/, 'AUX.IO '))}</div>
@@ -747,11 +748,17 @@ function generateIndex(items) {
 *{box-sizing:border-box;margin:0;padding:0;}
 html,body{scrollbar-width:none;-ms-overflow-style:none;}
 html::-webkit-scrollbar,body::-webkit-scrollbar{width:0;height:0;display:none;}
-body{background:var(--bg);color:var(--text);font-family:var(--serif);min-height:100vh;}
-.idx-header{padding:28px 20px 0;text-align:center;}
+body{background:radial-gradient(circle at 50% 0%,rgba(143,188,176,0.06),transparent 340px),var(--bg);color:var(--text);font-family:var(--serif);min-height:100vh;}
+.idx-shell{width:min(100%,820px);margin:0 auto;}
+.idx-header{padding:30px 20px 0;text-align:center;}
 .logo{font-size:1.8rem;letter-spacing:10px;text-transform:uppercase;font-weight:300;margin-bottom:4px;}
 .logo span{font-style:italic;color:var(--accent);}
 .sub{font-family:var(--mono);font-size:0.5rem;color:var(--text3);letter-spacing:2px;text-transform:uppercase;margin-bottom:20px;}
+.idx-search-wrap{padding:0 20px 16px;}
+.idx-search{display:grid;grid-template-columns:1fr auto;border:1px solid var(--border2);background:rgba(255,255,255,0.018);}
+.idx-search input{min-width:0;padding:13px 14px;background:transparent;border:none;color:var(--text);font-family:var(--mono);font-size:0.62rem;letter-spacing:1px;outline:none;}
+.idx-search input::placeholder{color:var(--text3);}
+.idx-search button{padding:0 14px;border:none;border-left:1px solid var(--border2);background:transparent;color:var(--accent2);font-family:var(--mono);font-size:0.48rem;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;}
 
 /* ── GROUP TABS ── primary navigation */
 .idx-groups{display:flex;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none;}
@@ -773,23 +780,39 @@ body{background:var(--bg);color:var(--text);font-family:var(--serif);min-height:
 /* ── LIST ── */
 .idx-body{padding:0 20px 56px;}
 .idx-count{font-family:var(--mono);font-size:0.48rem;color:var(--text3);padding:10px 0 4px;letter-spacing:1px;border-bottom:1px solid var(--border);margin-bottom:0;}
-.idx-item{display:grid;grid-template-columns:52px 1fr auto;gap:12px;padding:11px 0;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background 0.1s;align-items:center;}
+.idx-item{display:grid;grid-template-columns:76px minmax(0,1fr) auto;gap:18px;padding:14px 0;border-bottom:1px solid var(--border);text-decoration:none;color:inherit;transition:background 0.1s;align-items:center;}
 .idx-item:active{background:var(--surface);}
 .idx-item.hidden{display:none;}
-.idx-thumb{width:52px;height:52px;overflow:hidden;background:var(--surface);flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.idx-thumb{width:76px;height:76px;overflow:hidden;background:var(--surface);flex-shrink:0;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.04);}
 .idx-thumb img{width:100%;height:100%;object-fit:cover;}
 .idx-thumb-ph{font-size:1.1rem;color:var(--text3);}
 .idx-info{min-width:0;}
 .idx-nfc{font-family:var(--mono);font-size:0.44rem;color:var(--accent2);letter-spacing:2px;margin-bottom:3px;}
 .idx-title{font-family:var(--serif);font-size:0.98rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px;}
 .idx-src{font-family:var(--mono);font-size:0.4rem;color:var(--text3);letter-spacing:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-transform:uppercase;}
-.idx-reg{font-family:var(--mono);font-size:0.42rem;color:var(--text3);text-align:right;letter-spacing:1px;white-space:nowrap;flex-shrink:0;align-self:flex-start;padding-top:18px;}
+.idx-reg{font-family:var(--mono);font-size:0.42rem;color:var(--text3);text-align:right;letter-spacing:1px;white-space:nowrap;flex-shrink:0;align-self:flex-start;padding-top:22px;}
+@media(max-width:640px){
+  .idx-shell{width:100%;}
+  .idx-header{padding-top:24px;}
+  .idx-groups{justify-content:flex-start;}
+  .idx-item{grid-template-columns:70px minmax(0,1fr);gap:14px;}
+  .idx-thumb{width:70px;height:70px;}
+  .idx-reg{display:none;}
+}
 </style>
 </head>
 <body>
+<div class="idx-shell">
 <div class="idx-header">
   <div class="logo">ARC<span>H</span>AI</div>
   <div class="sub">AUX.IO Visitor Pages · ${items.length} Objects</div>
+</div>
+
+<div class="idx-search-wrap">
+  <div class="idx-search">
+    <input id="idx-search-input" type="search" placeholder="Search objects, institutions, AUX.IO numbers..." autocomplete="off" oninput="applyFilter()">
+    <button type="button" onclick="clearIndexSearch()">Clear</button>
+  </div>
 </div>
 
 <div class="idx-groups">
@@ -801,6 +824,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--serif);min-height:
 <div class="idx-body">
   <div class="idx-count" id="idx-count">${items.length} objects</div>
   ${rows}
+</div>
 </div>
 
 <script>
@@ -827,18 +851,34 @@ function selectSub(btn, subKey) {
   applyFilter();
 }
 
+function getIndexSearchTerm() {
+  const input = document.getElementById('idx-search-input');
+  return input ? input.value.trim().toLowerCase() : '';
+}
+
+function clearIndexSearch() {
+  const input = document.getElementById('idx-search-input');
+  if (!input) return;
+  input.value = '';
+  input.focus();
+  applyFilter();
+}
+
 function applyFilter() {
   const groupCols = GROUPS[activeGroup];
+  const term = getIndexSearchTerm();
   let vis = 0;
   document.querySelectorAll('.idx-item').forEach(el => {
     const col = el.dataset.col;
     let show = !groupCols || groupCols.includes(col);
     if (show && activeSub !== 'all') show = col === activeSub;
+    if (show && term) show = (el.dataset.search || '').includes(term);
     el.classList.toggle('hidden', !show);
     if (show) vis++;
   });
   const label = activeGroup === 'all' ? '' : ' · ' + activeGroup;
-  document.getElementById('idx-count').textContent = vis + ' objects' + label;
+  const searchLabel = term ? ' · search' : '';
+  document.getElementById('idx-count').textContent = vis + ' objects' + label + searchLabel;
 }
 </script>
 </body>

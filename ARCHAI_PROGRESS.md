@@ -1407,3 +1407,35 @@ Notes:
 
 - This is deliberately simple: browser-native zoom via a scaled image in an overflow canvas, not a full OpenSeadragon-style deep zoom viewer yet.
 - Next sensible step is a measured image-quality audit that records dimensions and automatically suppresses low-resolution derivatives from public AUX.IO while keeping their metadata searchable in ARCHAI.
+
+## AUX.IO index and IIIF viewer polish - 2026-06-27
+
+Rob tested the new Auckland/IIIF pages and found two UX issues:
+
+- Zooming into the `Look closer` image did not allow mouse/touch panning.
+- The AUX.IO index still showed Auckland's "Digital image not yet created" placeholders because the index preferred `media_thumbnail` before the repaired `media_medium`.
+
+Fixes applied:
+
+- Updated [nfc-pages/nfc-visitor-template.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/nfc-visitor-template.html) so `Look closer` uses real layout zoom plus pointer-event drag panning. Mouse, trackpad, and touch should now be able to drag around a zoomed image.
+- Updated [nfc-pages/generate-nfc-pages.js](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/generate-nfc-pages.js) so the generated AUX.IO index:
+  - prefers `media_medium` over `media_thumbnail` for list thumbnails;
+  - includes a simple client-side search box across AUX.IO number, title, source, registration, and collection;
+  - centers the directory in a narrower shell with larger thumbnails so it reads less like a raw export.
+- Regenerated [nfc-pages/v/](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v).
+
+Verification:
+
+```bash
+node --check nfc-pages/generate-nfc-pages.js
+node --check /tmp/archai-nfc-template-inline-sanitized.js
+node nfc-pages/generate-nfc-pages.js
+curl -s 'http://127.0.0.1:8000/nfc-pages/v/' | rg -n "idx-search-input|full/800|AUX.IO 001|data-search"
+curl -s 'http://127.0.0.1:8000/nfc-pages/v/NFC001.html?akl=800' | rg -n "bindIiifPan|pointerdown|pointermove|dragging|touch-action"
+```
+
+Current result:
+
+- Public AUX.IO page count remains `1522`.
+- `AUX.IO 001` on the index now uses `https://api.aucklandmuseum.com/id/media/v/40382/full/800,/0/default.jpg`.
+- The generated object page contains `bindIiifPan`, `pointerdown`, `pointermove`, and `dragging` support.
