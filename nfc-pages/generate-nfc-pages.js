@@ -446,7 +446,7 @@ async function main() {
       : `<div class="v-hero-empty">No image available<br>${escHtml(reg)}</div>`;
     const iiifLookCloserHtml = iiifAvailable
       ? `<div class="v-look-closer">
-  <button class="v-look-btn" onclick="openIiifViewer()">Look closer <span>Zoomable source image</span></button>
+  <button class="v-look-btn" onclick="openIiifViewer()">Look closer <span>Zoom image</span></button>
 </div>
 <div class="v-iiif-viewer" id="iiifViewer" aria-hidden="true" role="dialog" aria-label="Look closer at object image" data-zoom="1">
   <div class="v-iiif-panel">
@@ -462,8 +462,7 @@ async function main() {
       <button onclick="setIiifZoom(1)">Reset</button>
       <button onclick="stepIiifZoom(1)">Zoom in</button>
       <a href="${escHtml(iiifLarge)}" target="_blank" rel="noopener noreferrer">Open image</a>
-      ${iiifInfoUrl ? `<a href="${escHtml(iiifInfoUrl)}" target="_blank" rel="noopener noreferrer">IIIF info</a>` : ''}
-      <div class="v-iiif-note">IIIF lets AUX.IO request useful source-image sizes while attribution and legal status remain visible.</div>
+      <div class="v-iiif-note">Drag to pan when zoomed. IIIF lets AUX.IO request useful source-image sizes while attribution and legal status remain visible.</div>
     </div>
   </div>
 </div>`

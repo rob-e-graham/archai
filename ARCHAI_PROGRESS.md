@@ -1439,3 +1439,39 @@ Current result:
 - Public AUX.IO page count remains `1522`.
 - `AUX.IO 001` on the index now uses `https://api.aucklandmuseum.com/id/media/v/40382/full/800,/0/default.jpg`.
 - The generated object page contains `bindIiifPan`, `pointerdown`, `pointermove`, and `dragging` support.
+
+## App / website object-view alignment - 2026-06-27
+
+Rob reviewed the AUX.IO and staff object views before the Monday partner/investor mailout and identified three alignment issues:
+
+- the AUX.IO `Look closer` affordance was visually too bulky under the hero image;
+- the visitor-facing `IIIF info` control opened raw IIIF JSON, which reads as broken to non-technical users;
+- the staff/demo object views showed legal/admin detail before the interpretive conversation, making the workflow feel less like a curatorial review.
+
+Fixes applied:
+
+- Updated [nfc-pages/nfc-visitor-template.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/nfc-visitor-template.html) so `Look closer` is a compact floating pill over the image area instead of a large full-width block.
+- Updated [nfc-pages/generate-nfc-pages.js](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/generate-nfc-pages.js) to remove the raw `IIIF info` link from public AUX.IO pages while keeping `Open image`, zoom, reset, and drag-to-pan guidance.
+- Regenerated [nfc-pages/v/](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v) so all `1522` public AUX.IO pages carry the new visitor controls.
+- Updated [ARCHAI_v10_8.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ARCHAI_v10_8.html) so the actual app object detail view now presents image, key metadata, and object interrogation before expandable `Full Metadata Record` and `Legal Status / Source Use` sections.
+- Mirrored the same workflow direction into the public website demo object modal in `/Users/robgraham/Desktop/APPS/fineartmedia-tech-web/archai.html`.
+- Added `/Users/robgraham/Desktop/APPS/fineartmedia-tech-web/app.html` as a hosted WIP copy of the full ARCHAI app shell with `window.ARCHAI_API_BASE` pointing at `https://archai-api.fineartmedia.tech`.
+
+Verification:
+
+```bash
+node nfc-pages/generate-nfc-pages.js
+node --check /tmp/nfc001.js
+node --check /tmp/archai-app-inline.js
+node --check /tmp/famtec-archai-inline.js
+node --check /tmp/app.html.js
+curl -I http://127.0.0.1:8000/nfc-pages/v/NFC001.html
+rg -n "IIIF info|Zoomable source image" nfc-pages/v/NFC001.html nfc-pages/v/NFC674.html
+```
+
+Current result:
+
+- `IIIF info` no longer appears in generated visitor pages.
+- `Look closer` remains available for IIIF-capable objects, now with clearer `Drag to pan when zoomed` wording.
+- Staff/demo object review sits above legal/admin details.
+- Full app hosting is now available as a WIP static shell at `/app.html`; it still depends on the ARCHAI backend API for live search/chat behaviour.

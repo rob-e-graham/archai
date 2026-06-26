@@ -164,28 +164,38 @@ body::after {
 
 /* ── IIIF LOOK CLOSER ── */
 .v-look-closer {
-  padding: 0 20px 18px;
-  margin-top: -8px;
+  display: flex;
+  justify-content: center;
+  padding: 0 20px 10px;
+  margin-top: -30px;
+  position: relative;
+  z-index: 4;
+  pointer-events: none;
   animation: slideUp 0.6s ease 0.18s both;
 }
 .v-look-btn {
-  width: 100%;
-  padding: 13px 14px;
-  background: rgba(143,188,176,0.035);
-  border: 1px solid rgba(143,188,176,0.34);
+  width: auto;
+  padding: 8px 13px;
+  border-radius: 999px;
+  background: rgba(5,5,5,0.72);
+  border: 1px solid rgba(143,188,176,0.42);
   color: var(--accent2);
   font-family: var(--mono);
-  font-size: 0.56rem;
-  letter-spacing: 2px;
+  font-size: 0.48rem;
+  letter-spacing: 1.7px;
   text-transform: uppercase;
   cursor: pointer;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.38);
+  backdrop-filter: blur(10px);
   -webkit-tap-highlight-color: transparent;
+  pointer-events: auto;
 }
 .v-look-btn span {
-  display: block;
-  margin-top: 5px;
+  display: inline;
+  margin-top: 0;
+  margin-left: 6px;
   color: var(--text3);
-  font-size: 0.42rem;
+  font-size: 0.38rem;
   letter-spacing: 1px;
 }
 .v-iiif-viewer {
@@ -260,7 +270,7 @@ body::after {
 .v-iiif-viewer[data-zoom="3"] .v-iiif-canvas img { width: min(225%, 2250px); }
 .v-iiif-controls {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 8px;
   padding: 12px 16px 16px;
   border-top: 1px solid rgba(255,255,255,0.08);
@@ -1309,6 +1319,13 @@ body::after {
     top: 72px;
   }
 }
+
+@media (max-width: 480px) {
+  .v-look-btn span { display: none; }
+  .v-iiif-viewer { padding: 10px; }
+  .v-iiif-canvas { padding: 12px; }
+  .v-iiif-controls { grid-template-columns: repeat(2, 1fr); }
+}
 </style>
 </head>
 <body>
@@ -1332,7 +1349,7 @@ body::after {
   <img src="https://api.nga.gov/iiif/4a8b893a-7c76-4493-a498-3d54f0a6000c/full/!800,800/0/default.jpg" alt="Funeral Procession of a Saint with Angels" loading="eager" onerror="heroImageError(this)">
 </div>
 <div class="v-look-closer">
-  <button class="v-look-btn" onclick="openIiifViewer()">Look closer <span>Zoomable source image</span></button>
+  <button class="v-look-btn" onclick="openIiifViewer()">Look closer <span>Zoom image</span></button>
 </div>
 <div class="v-iiif-viewer" id="iiifViewer" aria-hidden="true" role="dialog" aria-label="Look closer at object image" data-zoom="1">
   <div class="v-iiif-panel">
@@ -1348,8 +1365,7 @@ body::after {
       <button onclick="setIiifZoom(1)">Reset</button>
       <button onclick="stepIiifZoom(1)">Zoom in</button>
       <a href="https://api.nga.gov/iiif/4a8b893a-7c76-4493-a498-3d54f0a6000c/full/!1600,1600/0/default.jpg" target="_blank" rel="noopener noreferrer">Open image</a>
-      <a href="https://api.nga.gov/iiif/4a8b893a-7c76-4493-a498-3d54f0a6000c/info.json" target="_blank" rel="noopener noreferrer">IIIF info</a>
-      <div class="v-iiif-note">IIIF lets AUX.IO request useful source-image sizes while attribution and legal status remain visible.</div>
+      <div class="v-iiif-note">Drag to pan when zoomed. IIIF lets AUX.IO request useful source-image sizes while attribution and legal status remain visible.</div>
     </div>
   </div>
 </div>

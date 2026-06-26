@@ -429,7 +429,12 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 .od-meta-key{font-family:var(--mono);font-size:0.49rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text3);margin-bottom:3px;}
 .od-meta-val{font-size:0.66rem;color:var(--text1);word-break:break-word;}
 .od-description-wrap{padding:22px 36px;border-bottom:1px solid var(--border);}
-.od-full-meta-wrap{padding:20px 36px;border-bottom:1px solid var(--border);}
+.od-detail-block{border-bottom:1px solid var(--border);}
+.od-detail-block summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 36px;cursor:pointer;list-style:none;font-family:var(--mono);font-size:0.58rem;letter-spacing:1.8px;text-transform:uppercase;color:var(--accent);}
+.od-detail-block summary::-webkit-details-marker{display:none;}
+.od-detail-block summary::after{content:"+";color:var(--text3);font-size:0.9rem;letter-spacing:0;}
+.od-detail-block[open] summary::after{content:"−";}
+.od-full-meta-wrap{padding:0 36px 22px;}
 .od-full-meta-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:6px 20px;}
 .od-lower{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid var(--border);}
 .od-chat-col{padding:24px 36px;border-right:1px solid var(--border);}
@@ -1057,12 +1062,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
       <div id="od-description" style="font-size:0.82rem;color:var(--text2);line-height:1.75;max-width:880px;">—</div>
     </div>
 
-    <div class="od-full-meta-wrap">
-      <div class="section-label" style="margin-bottom:10px;">Full Metadata Record — Qdrant Payload</div>
-      <div id="od-full-meta" class="od-full-meta-grid"></div>
-    </div>
-    <div id="od-rights-note-wrap"></div>
-
     <div class="od-lower">
       <div class="od-chat-col">
         <div class="section-label" style="margin-bottom:10px;">Interrogate this Object — live local LLM</div>
@@ -1121,6 +1120,17 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
         </div>
       </div>
     </div>
+
+    <details class="od-detail-block">
+      <summary>Full Metadata Record — Qdrant Payload</summary>
+      <div class="od-full-meta-wrap">
+        <div id="od-full-meta" class="od-full-meta-grid"></div>
+      </div>
+    </details>
+    <details class="od-detail-block" id="od-rights-detail">
+      <summary>Legal Status / Source Use</summary>
+      <div id="od-rights-note-wrap" class="od-full-meta-wrap"></div>
+    </details>
     <div class="od-comments-section">
       <div class="section-label" style="margin-bottom:10px;">Visitor Comments <span id="od-comment-count" style="color:var(--text3);font-size:0.5rem;"></span></div>
       <div id="od-comments-list" class="od-comments-list"></div>
@@ -3492,9 +3502,6 @@ function openObjectDetail(objKey) {
     ['Location', p.museum_location || o.location || '—'],
     ['Category', p.category || '—'],
     ['Object Type', p.object_type || '—'],
-    ['Legal Status', rights.status],
-    ['Reuse Guidance', rights.guidance],
-    ['Licence / Rights', rights.detail],
     ['Canonical ID', p.canonical_id || o.id || '—'],
   ];
   document.getElementById('od-meta-grid').innerHTML = keyMeta.map(([k, v]) =>
@@ -3508,7 +3515,7 @@ function openObjectDetail(objKey) {
     linksEl.innerHTML += `<a href="${p.source_url}" target="_blank" class="btn" style="font-size:0.55rem">View on ${escQ(getInstitutionName(o))} →</a>`;
   }
   if (p.media_large || p.media_medium) {
-    linksEl.innerHTML += `<a href="${p.media_large || p.media_medium}" target="_blank" class="btn" style="font-size:0.55rem">Full-res Image →</a>`;
+    linksEl.innerHTML += `<a href="${p.media_large || p.media_medium}" target="_blank" class="btn" style="font-size:0.55rem">Look Closer / Source Image →</a>`;
   }
   linksEl.innerHTML += `<a href="http://localhost:8055/admin" target="_blank" class="btn" style="font-size:0.55rem">Edit in Directus →</a>`;
 
