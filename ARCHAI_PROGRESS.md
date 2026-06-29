@@ -5,6 +5,31 @@ Maintained as an active handoff note so Claude, Codex, and Rob can quickly see w
 
 Primary build planning is now also summarized in [ROADMAP.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ROADMAP.md). Use that for milestone order, and use this file for detailed handoff notes.
 
+## 2026-06-30 AUX.IO management working-set clarity
+
+Rob could not work out how to load an object into AUX.IO from the staff app, so the management panel has been simplified around a clearer test workflow.
+
+Implemented in [ARCHAI_v10_8.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ARCHAI_v10_8.html):
+
+- AUX.IO Management now starts with `10` randomly selected loaded demo records.
+- The remaining `110` AUX.IO records are intentionally empty slots ready for assignment.
+- The sidebar now explains the working set: loaded demo records vs empty assignable slots.
+- Empty records read as `Empty slot — assign object` instead of looking like broken data.
+- Opening the AUX.IO Management tab auto-selects the first empty slot when nothing is already selected.
+- Empty-slot editor copy now gives a clear three-step workflow: search/browse, click `Assign`, preview/save/publish.
+- The object picker placeholder now explains that staff can search by title, object number, institution, material, or rights.
+
+Why this matters:
+
+- AUX.IO now feels more like a museum/gallery setup bench: a few working examples, then many empty tags/QRs ready to assign.
+- This supports institutional testing where staff need to create visitor pages for their own objects, not only browse preloaded public demo objects.
+
+Verification:
+
+- `ARCHAI_v10_8.html` inline script parses cleanly.
+- Local static server on `http://127.0.0.1:8000/ARCHAI_v10_8.html` returned `HTTP 200`.
+- Served page contains `AUX_IO_PRELOADED_COUNT = 10`, `AUX_IO_EMPTY_SLOT_COUNT`, and the new empty-slot workflow language.
+
 ## 2026-06-29 v11.6.3 WIP clarity, Auckland hold, voice auto-read, and funding prep
 
 Rob asked for a full app audit/update pass before partner and investor outreach, with clearer WIP language, tighter AUX.IO behaviour, safer Auckland image handling, and RMIT-Breakthrough Victoria planning captured properly.

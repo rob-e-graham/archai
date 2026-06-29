@@ -210,10 +210,13 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 .nfc-fchip{font-family:var(--mono);font-size:0.54rem;padding:3px 7px;border:1px solid var(--border2);color:var(--text3);cursor:pointer;transition:all 0.12s;text-transform:uppercase;letter-spacing:1px;}
 .nfc-fchip:hover{border-color:var(--nfc);color:var(--nfc);}
 .nfc-fchip.active{border-color:var(--nfc);color:var(--nfc);background:rgba(126,207,207,0.07);}
+.nfc-workset-note{font-family:var(--mono);font-size:0.54rem;line-height:1.65;color:var(--text3);border:1px solid rgba(126,207,207,0.18);background:rgba(126,207,207,0.035);padding:8px 9px;margin-bottom:10px;letter-spacing:0.04em;}
+.nfc-workset-note strong{color:var(--nfc);font-weight:700;}
 .nfc-card{padding:11px 13px;border:1px solid var(--border);margin-bottom:6px;cursor:pointer;transition:all 0.15s;position:relative;}
 .nfc-card:hover{border-color:var(--border2);background:var(--surface);}
 .nfc-card.active{border-color:var(--nfc);background:rgba(126,207,207,0.05);}
 .nfc-card.unassigned{opacity:0.55;}
+.nfc-card.unassigned .nfc-object-name{color:var(--nfc);font-family:var(--mono);font-size:0.62rem;text-transform:uppercase;letter-spacing:0.12em;}
 .nfc-card-header{display:flex;justify-content:space-between;align-items:start;margin-bottom:4px;}
 .nfc-code{font-family:var(--mono);font-size:0.72rem;color:var(--nfc);letter-spacing:2px;text-transform:uppercase;}
 .nfc-status-badge{font-family:var(--mono);font-size:0.5rem;padding:2px 6px;border:1px solid currentColor;text-transform:uppercase;letter-spacing:1px;}
@@ -276,6 +279,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 .aux-textarea{min-height:72px;resize:vertical;font-family:var(--serif);font-style:italic;font-size:0.84rem;line-height:1.55;}
 .aux-input:focus,.aux-select:focus,.aux-textarea:focus{border-color:var(--nfc);}
 .aux-helper{font-family:var(--mono);font-size:0.54rem;line-height:1.6;color:var(--text3);margin-top:7px;}
+.aux-step-note{font-family:var(--mono);font-size:0.6rem;line-height:1.75;color:var(--text2);border:1px dashed rgba(126,207,207,0.34);background:rgba(126,207,207,0.045);padding:12px;margin-bottom:12px;}
+.aux-step-note strong{color:var(--nfc);text-transform:uppercase;letter-spacing:0.12em;font-size:0.52rem;display:block;margin-bottom:5px;}
 .aux-pill-row{display:flex;flex-wrap:wrap;gap:5px;margin-top:9px;}
 .aux-mini-pill{font-family:var(--mono);font-size:0.5rem;padding:3px 7px;border:1px solid rgba(126,207,207,0.24);color:var(--nfc);text-transform:uppercase;letter-spacing:1px;}
 @media(max-width:900px){.aux-field-grid{grid-template-columns:1fr}}
@@ -641,7 +646,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
     </div>
   </div>
   <div>
-    <div class="header-meta"><b id="clockDisplay">—</b><br><span>Build v11.6 · 19 connected collections · rights-aware media · AUX.IO working set</span></div>
+    <div class="header-meta"><b id="clockDisplay">—</b><br><span>Build v11.6.4 · 19 connected collections · rights-aware media · AUX.IO setup bench</span></div>
     <div class="header-links">
       <a class="header-link" href="http://localhost:11434" target="_blank">Ollama LLM</a>
       <a class="header-link" href="http://localhost:8055/admin" target="_blank">Directus CMS</a>
@@ -930,6 +935,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
         <div class="nfc-fchip" onclick="nfcFilter(this,'draft')">Draft</div>
         <div class="nfc-fchip" onclick="nfcFilter(this,'unassigned')">Unassigned</div>
       </div>
+      <div class="nfc-workset-note" id="nfcWorksetNote">Loading AUX.IO workset…</div>
       <div id="nfcList"></div>
     </div>
     <div class="nfc-editor-col" id="nfcEditor">
@@ -1323,6 +1329,8 @@ const nfcVisibility = {};
 
 const CURATOR_SEARCH_LIMIT = 50;
 const AUX_IO_MANAGEMENT_LIMIT = 120;
+const AUX_IO_PRELOADED_COUNT = 10;
+const AUX_IO_EMPTY_SLOT_COUNT = AUX_IO_MANAGEMENT_LIMIT - AUX_IO_PRELOADED_COUNT;
 const SEARCH_STOPWORDS = new Set([
   'the', 'and', 'for', 'with', 'from', 'into', 'about', 'across', 'through',
   'this', 'that', 'these', 'those', 'what', 'which', 'where', 'when', 'your',
@@ -2775,26 +2783,36 @@ function generateNFCTags() {
   NFC_TAGS.length = 0;
   const keys = Object.keys(OBJECTS)
     .filter(k => hasUsableObjectImage(OBJECTS[k]._mv || {}))
-    .slice(0, AUX_IO_MANAGEMENT_LIMIT);
+    .sort(() => Math.random() - 0.5)
+    .slice(0, AUX_IO_PRELOADED_COUNT);
   keys.forEach((k, i) => {
     const tag = {
       code: 'NFC' + String(i + 1).padStart(3, '0'),
-      status: i < 90 ? 'live' : 'draft',
+      status: 'live',
       objectId: k,
       location: 'Exhibition Space — ' + (OBJECTS[k].location || 'TBC'),
-      scans: i < 90 ? (i * 7) % 64 + 5 : 0,
-      lastScan: i < 90 ? ((i * 11) % 58 + 1) + ' min ago' : 'Never'
+      scans: (i * 7) % 64 + 5,
+      lastScan: ((i * 11) % 58 + 1) + ' min ago'
     };
     NFC_TAGS.push(tag);
     nfcVisibility[tag.code] = {...NFC_VIS_DEFAULTS};
   });
-  // Add a small pool of unassigned tags for workflow testing.
-  for (let i = keys.length; i < keys.length + 8; i++) {
-    const tag = { code: 'NFC' + String(i + 1).padStart(3, '0'), status: 'unassigned', objectId: null, location: 'Unassigned — Storage', scans: 0, lastScan: 'Never' };
+  // Most slots are intentionally empty so institutions can test assigning their own objects.
+  for (let i = keys.length; i < keys.length + AUX_IO_EMPTY_SLOT_COUNT; i++) {
+    const tag = { code: 'NFC' + String(i + 1).padStart(3, '0'), status: 'unassigned', objectId: null, location: 'Empty slot — assign object', scans: 0, lastScan: 'Never' };
     NFC_TAGS.push(tag);
     nfcVisibility[tag.code] = {...NFC_VIS_DEFAULTS};
   }
   document.getElementById('nfcTabCount').textContent = NFC_TAGS.length;
+  updateNFCWorksetNote();
+}
+
+function updateNFCWorksetNote() {
+  const el = document.getElementById('nfcWorksetNote');
+  if (!el) return;
+  const loaded = NFC_TAGS.filter(t => t.objectId).length;
+  const empty = NFC_TAGS.filter(t => !t.objectId).length;
+  el.innerHTML = `<strong>${loaded}</strong> loaded demo AUX.IO records · <strong>${empty}</strong> empty slots ready to assign. Select an empty slot, search the collection, then click <strong>Assign</strong>.`;
 }
 
 function displayAuxCode(code) {
@@ -2816,6 +2834,10 @@ function switchTab(name, el) {
   if (el) el.classList.add('active');
   const panel = document.getElementById('panel-' + name);
   if (panel) panel.classList.add('active');
+  if (name === 'nfc' && NFC_TAGS.length && !activeNFCCode) {
+    const firstEmpty = NFC_TAGS.find(t => !t.objectId) || NFC_TAGS[0];
+    selectNFC(firstEmpty.code);
+  }
 }
 function setChip(el) { el.closest('.filter-group').querySelectorAll('.chip').forEach(c => c.classList.remove('active')); el.classList.add('active'); }
 function togglePill(el) { el.classList.toggle('active'); }
@@ -4163,12 +4185,13 @@ function renderNFCList(filter = 'all', search = '') {
     const obj = t.objectId ? OBJECTS[t.objectId] : null;
     return `<div class="nfc-card ${(!t.objectId) ? 'unassigned' : ''} ${activeNFCCode === t.code ? 'active' : ''}" onclick="selectNFC('${t.code}')">
       <div class="nfc-card-header"><div class="nfc-code">${displayAuxCode(t.code)}</div><div class="nfc-status-badge ${t.status}">${t.status}</div></div>
-      <div class="nfc-object-name">${obj ? escQ(obj.title) : '— Unassigned —'}</div>
-      <div class="nfc-object-id">${obj ? escQ(obj.id) : 'No object linked'}</div>
+      <div class="nfc-object-name">${obj ? escQ(obj.title) : 'Empty slot — assign object'}</div>
+      <div class="nfc-object-id">${obj ? escQ(obj.id) : 'Ready for collection object or draft record'}</div>
       <div class="nfc-location">${escQ(t.location)}</div>
       <div class="nfc-scans">Scans: ${t.scans} · Last: ${t.lastScan}</div>
     </div>`;
   }).join('') || '<div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);padding:10px;">No AUX.IO tags match filter.</div>';
+  updateNFCWorksetNote();
 }
 
 function nfcFilter(el, f) { document.querySelectorAll('.nfc-fchip').forEach(c => c.classList.remove('active')); el.classList.add('active'); renderNFCList(f, document.querySelector('.nfc-search').value.toLowerCase()); }
@@ -4220,8 +4243,8 @@ function renderNFCEditor(tag) {
       </div>
     </div>
     <div class="aux-workflow-note">
-      AUX.IO workflow: create or select an object record, choose what visitors can see, preview the phone page, then publish the tag. Demo data is loaded here, but institutions can draft their own object records below.
-      <div class="aux-pill-row"><span class="aux-mini-pill">Create</span><span class="aux-mini-pill">Assign</span><span class="aux-mini-pill">Preview</span><span class="aux-mini-pill">Publish</span></div>
+      AUX.IO workflow: use one of the 10 loaded examples, or select an empty slot and assign an object from the collection. You can also draft a new institution-owned object record for testing.
+      <div class="aux-pill-row"><span class="aux-mini-pill">Choose slot</span><span class="aux-mini-pill">Assign object</span><span class="aux-mini-pill">Preview visitor page</span><span class="aux-mini-pill">Publish</span></div>
     </div>
     <div class="editor-section">
       <div class="editor-section-title"><span>AUX.IO Placement</span></div>
@@ -4239,10 +4262,10 @@ function renderNFCEditor(tag) {
           <div class="ao-thumb">${obj._mv && pickSearchImage(obj._mv) ? `<img src="${pickSearchImage(obj._mv)}" loading="lazy">` : escQ(obj.dams)}</div>
         <div><div class="ao-title">${escQ(obj.title)}</div><div class="ao-id">${escQ([obj.id, (obj.type || '').substring(0,30), obj.year].filter(Boolean).join(' · '))}</div></div>
         <div class="ao-remove" onclick="clearAssignment('${tag.code}')">Remove</div>
-      </div>` : `<div style="font-family:var(--mono);font-size:0.62rem;color:var(--text3);margin-bottom:12px;padding:10px;border:1px dashed var(--border2)">No object assigned — select from the collection below</div>`}
+      </div>` : `<div class="aux-step-note"><strong>Empty AUX.IO slot</strong>Step 1: search or browse below. Step 2: click <b>Assign</b> on an object. Step 3: preview the phone page, then save or publish.</div>`}
       <div style="font-family:var(--mono);font-size:0.56rem;color:var(--text3);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;">Assign from Collection</div>
-      <div class="object-picker"><input class="op-search" type="text" placeholder="Search all loaded objects by title, ID, institution, rights…" oninput="filterObjectPicker(this,'${tag.code}')"><div id="opItems-${tag.code}">${renderObjectPickerItems(tag.code, '')}</div></div>
-      <div class="aux-helper">Initial shortlist favours image-backed records for speed. Search reaches all loaded records, including objects without images. For public visitor pages, use image-backed records or add a media URL in the institutional draft form.</div>
+      <div class="object-picker"><input class="op-search" type="text" placeholder="Type 2+ letters: title, object no., institution, material, rights…" oninput="filterObjectPicker(this,'${tag.code}')"><div id="opItems-${tag.code}">${renderObjectPickerItems(tag.code, '')}</div></div>
+      <div class="aux-helper">The default shortlist shows image-backed records that are safer for public visitor pages. Searching reaches all loaded records, including metadata-only objects for staff testing.</div>
     </div>
     <div class="editor-section">
       <div class="editor-section-title"><span>Create Institution Object Draft</span></div>

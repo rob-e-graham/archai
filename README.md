@@ -257,6 +257,7 @@ ARCHAI is a working research prototype, not a finished commercial product. All p
 | **v11.6.1** | **Brussels public street-art images enabled through the dataset's CC BY 4.0 licence, Vancouver/Melbourne municipal feeds retained as metadata/source-link only, curator rebuilt to 3147 records, and AUX.IO regenerated to 1519 public pages with 139 street-art pages** |
 | **v11.6.2** | **Auckland placeholder-media audit added; high-resolution Auckland API placeholders are now detected by content hash and held from public AUX.IO while remaining searchable in the staff database. Curatorial object detail gained share/copy, save-to-project, read-summary, and a local project-list workspace for staff testing. AUX.IO regenerated to 1,402 public pages after placeholder and rights gates.** |
 | **v11.6.3** | **Draft-demo clarity pass: main app now declares itself as an institutional WIP, adds Training Mode guidance, applies safer Auckland media filtering throughout staff/result views, and AUX.IO voice questions auto-read replies while typed questions remain text-first.** |
+| **v11.6.4** | **AUX.IO Management now opens as a clearer institutional setup bench: 10 loaded demo records plus 110 empty assignable slots, with first-empty-slot selection and clearer assign/preview/publish guidance for staff testing.** |
 
 ---
 
