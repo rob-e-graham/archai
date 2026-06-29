@@ -1717,6 +1717,7 @@ let visitorSpeechRecognition = null;
 let visitorSpeechListening = false;
 let visitorSpeechStatus = '';
 let visitorVoiceChoice = 'archai-neutral';
+let visitorAutoSpeakNextReply = false;
 
 const VISITOR_LEGACY_VOICE_PATTERNS = [
   /alex/i, /fred/i, /bruce/i, /ralph/i, /albert/i,
@@ -1960,6 +1961,7 @@ function ensureVisitorSpeechRecognition() {
     if (input) input.value = transcript;
     const finalResult = Array.from(event.results || []).some(result => result.isFinal);
     if (finalResult) {
+      visitorAutoSpeakNextReply = true;
       visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
       updateVisitorSpeechUI();
       askObject(transcript);
@@ -2067,6 +2069,7 @@ function askObject(presetQ) {
   const q = presetQ || input.value.trim();
   if (!q) return;
   input.value = '';
+  const shouldAutoSpeakReply = Boolean(presetQ && visitorAutoSpeakNextReply);
 
   const resp = document.getElementById('chatResponse');
   resp.innerHTML = '<span class="thinking-label">Considering your question</span><span class="thinking-dots"><span></span><span></span><span></span></span>';
@@ -2121,6 +2124,10 @@ function askObject(presetQ) {
     resp.textContent = reply;
     resp.className = 'v-response';
     updateVisitorSpeechUI();
+    if (shouldAutoSpeakReply) {
+      visitorAutoSpeakNextReply = false;
+      speakVisitorReply();
+    }
   })
   .catch(() => {
     clearInterval(thinkingInterval);
@@ -2131,6 +2138,10 @@ function askObject(presetQ) {
     resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
     resp.className = 'v-response';
     updateVisitorSpeechUI();
+    if (shouldAutoSpeakReply) {
+      visitorAutoSpeakNextReply = false;
+      speakVisitorReply();
+    }
   });
 }
 

@@ -5,6 +5,37 @@ Maintained as an active handoff note so Claude, Codex, and Rob can quickly see w
 
 Primary build planning is now also summarized in [ROADMAP.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ROADMAP.md). Use that for milestone order, and use this file for detailed handoff notes.
 
+## 2026-06-29 v11.6.3 WIP clarity, Auckland hold, voice auto-read, and funding prep
+
+Rob asked for a full app audit/update pass before partner and investor outreach, with clearer WIP language, tighter AUX.IO behaviour, safer Auckland image handling, and RMIT-Breakthrough Victoria planning captured properly.
+
+Implemented:
+
+- [ARCHAI_v10_8.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ARCHAI_v10_8.html) now displays a visible `Draft institutional demo / WIP` banner and a `Training Mode` overlay.
+- Training Mode explains the current test flow: collection search, object review, AUX.IO publishing, vocabulary/thesaurus use, CMS/DAMS connectors, and current prototype boundaries.
+- Staff-side image rendering now routes through the same safer image picker across search cards, conversational result cards, object detail, source-image links, related objects, AUX.IO management preview, and visitor-preview thumbnails.
+- Auckland image URLs are upgraded from the low-resolution `?rendering=` routes to the 800px derivative path where possible, but records marked `media_placeholder` or `media_available: false` are held from image display.
+- [nfc-pages/nfc-visitor-template.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/nfc-visitor-template.html) now auto-reads the response only when the visitor asked by voice. Typed questions remain text-first with manual `Read Reply`.
+- [backend-archai/scripts/audit-auckland-placeholder-media.js](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/backend-archai/scripts/audit-auckland-placeholder-media.js) was run against Qdrant.
+- Auckland audit result: `120` checked, `120` held as placeholder/unavailable, `0` restored.
+- AUX.IO was regenerated after the audit and now publishes `1,402` public visitor pages.
+- Generated AUX.IO pages no longer contain `Auckland Museum` or `Digital image not yet created`.
+- Public website copy in [fineartmedia-tech-web/archai.html](/Users/robgraham/Desktop/APPS/fineartmedia-tech-web/archai.html) now reports `1,402` rights-gated AUX.IO pages and moves the `Open full app WIP` link out of the AUX.IO visitor-flow panel into the staff-facing `Talk to ARCHAI` panel.
+- Added [docs/ARCHAI_INSTITUTIONAL_TESTING_ROADMAP.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/ARCHAI_INSTITUTIONAL_TESTING_ROADMAP.md).
+- Added [docs/RMIT_BV_PRE_SEED_PREP.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/RMIT_BV_PRE_SEED_PREP.md), including a draft reply to Eric Hoefgen and a Lean Canvas / risk-assumption framing.
+
+Important decision:
+
+- Auckland remains useful as staff-searchable metadata, but should not be used as public AUX.IO image media until a different Auckland media route, API access mode, or replacement harvest set provides genuinely usable images.
+
+Next recommended app jobs:
+
+- Move local object project lists into Directus or backend persistence.
+- Add a dedicated custom harvester / CMS-DAMS connector tab.
+- Add guided training tasks per role: Curator, Collections, Exhibition/AV, Interpretation, AUX.IO Publisher.
+- Build an institutional test script that checks collection search, object review, AUX.IO publish, legal status, image zoom, voice question, and project export.
+- Prepare RMIT IP&C / NoD discussion and partner validation outreach for GLAM pilots.
+
 ## Current focus
 
 Keep the system clean, fast, and aligned with the ARCHAI white paper:

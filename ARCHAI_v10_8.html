@@ -36,7 +36,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 .header-meta{font-family:var(--mono);font-size:0.62rem;color:var(--text3);text-align:right;line-height:2;}
 .header-meta b{color:var(--text2);}
 .header-links{display:flex;gap:8px;margin-top:4px;justify-content:flex-end;}
-.header-link{font-family:var(--mono);font-size:0.52rem;padding:3px 8px;border:1px solid var(--border2);color:var(--text3);text-decoration:none;text-transform:uppercase;letter-spacing:1px;transition:all 0.12s;}
+.header-link{font-family:var(--mono);font-size:0.52rem;padding:3px 8px;border:1px solid var(--border2);color:var(--text3);text-decoration:none;text-transform:uppercase;letter-spacing:1px;transition:all 0.12s;background:transparent;cursor:pointer;}
 .header-link:hover{border-color:var(--accent);color:var(--accent);}
 .role-select-wrap{display:flex;align-items:center;gap:8px;margin-top:6px;justify-content:flex-end;}
 .role-select-label{font-family:var(--mono);font-size:0.52rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);}
@@ -61,6 +61,23 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
 .infra-name{color:var(--text3);text-transform:uppercase;letter-spacing:1px;font-size:0.56rem;flex:0 0 auto;}
 .infra-val{color:var(--text2);margin-left:auto;font-size:0.58rem;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:right;}
+.wip-banner{display:flex;gap:12px;align-items:flex-start;border-bottom:1px solid rgba(207,177,107,0.24);background:linear-gradient(90deg,rgba(207,177,107,0.08),rgba(124,196,172,0.03));padding:10px 24px;font-family:var(--mono);font-size:0.58rem;line-height:1.6;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;}
+.wip-banner strong{color:var(--accent2);font-weight:700;}
+.wip-banner button{margin-left:auto;white-space:nowrap;}
+.training-overlay{position:fixed;inset:0;z-index:3000;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.78);backdrop-filter:blur(16px);padding:28px;}
+.training-overlay.open{display:flex;}
+.training-modal{width:min(980px,94vw);max-height:88vh;overflow:auto;border:1px solid var(--border2);background:linear-gradient(180deg,rgba(18,18,16,0.98),rgba(8,8,7,0.98));box-shadow:0 24px 80px rgba(0,0,0,0.65);}
+.training-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;padding:24px 28px;border-bottom:1px solid var(--border);}
+.training-kicker{font-family:var(--mono);font-size:0.56rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent2);margin-bottom:8px;}
+.training-title{font-family:var(--serif);font-size:1.8rem;color:var(--text);}
+.training-close{font-family:var(--mono);font-size:0.55rem;text-transform:uppercase;letter-spacing:0.12em;border:1px solid var(--border2);padding:9px 12px;color:var(--text3);cursor:pointer;}
+.training-body{padding:24px 28px 30px;}
+.training-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;}
+.training-card{border:1px solid var(--border);background:rgba(255,255,255,0.018);padding:16px;}
+.training-card h4{margin:0 0 8px;font-family:var(--serif);font-size:1rem;color:var(--text);}
+.training-card p{margin:0;font-size:0.72rem;line-height:1.75;color:var(--text2);}
+.training-card code{font-family:var(--mono);font-size:0.62rem;color:var(--accent);}
+@media(max-width:760px){.training-grid{grid-template-columns:1fr}.wip-banner{display:block}.wip-banner button{margin-top:8px}}
 
 /* TABS */
 .tabs{display:flex;border-bottom:1px solid var(--border);padding:0 48px;background:var(--bg);position:sticky;top:73px;z-index:100;overflow-x:auto;}
@@ -630,6 +647,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
       <a class="header-link" href="http://localhost:8055/admin" target="_blank">Directus CMS</a>
       <a class="header-link" href="http://localhost:6333/dashboard" target="_blank">Qdrant</a>
       <a class="header-link" href="https://github.com/rob-e-graham/archai" target="_blank">GitHub</a>
+      <button class="header-link" type="button" onclick="openTrainingOverlay()">Training Mode</button>
     </div>
     <div class="role-select-wrap">
       <span class="role-select-label">Role</span>
@@ -656,6 +674,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
   <div class="infra-item compact"><div class="dot dot-ok"></div><span class="infra-name">Collections</span><span class="infra-val" id="collectionVal">Loading…</span></div>
   <div class="infra-item"><div class="dot dot-idle" id="metDot"></div><span class="infra-name">US APIs</span><span class="infra-val" id="metVal">—</span></div>
   <div class="infra-item"><div class="dot dot-idle" id="vaDot"></div><span class="infra-name">EU APIs</span><span class="infra-val" id="vaVal">—</span></div>
+</div>
+
+<div class="wip-banner">
+  <div><strong>Draft institutional demo / WIP.</strong> Testing the ARCHAI semantic layer, staff collection search, AUX.IO publishing, voice/audio access, rights-aware media, IIIF viewing, and CMS/DAMS connector workflows before partner deployment.</div>
+  <button class="header-link" type="button" onclick="openTrainingOverlay()">How to test</button>
 </div>
 
 <!-- TABS -->
@@ -1167,6 +1190,28 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
   </div>
 </div>
 
+<div class="training-overlay" id="trainingOverlay" role="dialog" aria-modal="true" aria-labelledby="trainingTitle">
+  <div class="training-modal">
+    <div class="training-head">
+      <div>
+        <div class="training-kicker">Draft demo guide</div>
+        <div class="training-title" id="trainingTitle">Testing ARCHAI as an institutional toolkit</div>
+      </div>
+      <button class="training-close" type="button" onclick="closeTrainingOverlay()">Close</button>
+    </div>
+    <div class="training-body">
+      <div class="training-grid">
+        <div class="training-card"><h4>1. Search the collection</h4><p>Use <code>Converse</code> for semantic questions across the database, <code>Classic Search</code> for direct matching, and image/colour modes as developing test lanes. Metadata-only records stay searchable, while public views require safer media and rights gates.</p></div>
+        <div class="training-card"><h4>2. Review an object</h4><p>Open any object and switch between Curatorial, Collections, Exhibition, and Interpretation lenses. These are staff-facing response modes, not visitor questions: they shape how ARCHAI reads the same record.</p></div>
+        <div class="training-card"><h4>3. Build AUX.IO pages</h4><p>In AUX.IO Management, select or create an object, assign it to a QR/NFC/spatial trigger, choose visibility options, preview the phone page, then publish. Production should save these edits in Directus or the institution's CMS/DAMS layer.</p></div>
+        <div class="training-card"><h4>4. Use vocabulary tools</h4><p>The thesaurus layer helps staff standardise terms, map local language to AAT/LCSH/TGN-style vocabularies, and flag culturally sensitive terminology before it becomes public interpretation.</p></div>
+        <div class="training-card"><h4>5. Connect CMS and DAMS</h4><p>The harvester layer is the next institutional-testing focus: custom connectors for APIs, CMS, DAMS, spreadsheets, IIIF manifests, and local media stores while preserving source records separately from interpretation.</p></div>
+        <div class="training-card"><h4>6. Current boundaries</h4><p>Nodel/exhibition ops and FAMTEC Exchange remain prototype modules. The strongest current lanes are collection search, object review, AUX.IO publishing, rights/media gating, IIIF viewing, and browser voice access.</p></div>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 // ═══════════════════════════════════════════════════════════════════
 // ARCHAI™ v11.6 — Multi-Collection · Backend-Aware · Live LLM Chat
@@ -1192,6 +1237,20 @@ const USE_PROXY = Boolean(API_BASE);
 // so object/visitor chat always runs through the qwen + personality + SafeChat
 // proxy instead of falling back to raw local Ollama (llama3).
 const BACKEND_BASE = IS_LOCAL ? 'http://localhost:8787' : (window.ARCHAI_API_BASE || API_BASE || '');
+
+function openTrainingOverlay() {
+  const overlay = document.getElementById('trainingOverlay');
+  if (overlay) overlay.classList.add('open');
+}
+
+function closeTrainingOverlay() {
+  const overlay = document.getElementById('trainingOverlay');
+  if (overlay) overlay.classList.remove('open');
+}
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') closeTrainingOverlay();
+});
 
 function qdrantFetch(path, options) {
   if (USE_PROXY) {
@@ -2455,22 +2514,44 @@ function getResultMatchCues(query, payload, max = 3) {
   return cues;
 }
 
+function isAucklandPayload(payload = {}) {
+  const source = String(payload._source_collection || payload.source_collection || payload.source || payload.collection || '').toLowerCase();
+  const institution = String(payload.source_institution || payload.institution || payload.museum_location || '').toLowerCase();
+  return source.includes('auckland') || institution.includes('auckland museum');
+}
+
+function upgradeAucklandImageUrl(url = '') {
+  const raw = String(url || '').trim();
+  if (!raw) return '';
+  const secure = raw.replace(/^http:\/\//, 'https://');
+  const match = secure.match(/https:\/\/api\.aucklandmuseum\.com\/id\/media\/v\/(\d+)/i);
+  if (match) return `https://api.aucklandmuseum.com/id/media/v/${match[1]}/full/800,/0/default.jpg`;
+  return secure;
+}
+
+function isHeldImageUrl(url = '') {
+  return /digital image not yet created|no[ _-]?image|placeholder/i.test(String(url || ''));
+}
+
 function pickSearchImage(payload = {}) {
   if (payload.media_available === false) return '';
+  if (payload.media_placeholder === true) return '';
   if (payload.media_public_display_allowed === false) return '';
   if (['tate', 'getty'].includes(String(payload.source || '').toLowerCase())) return '';
-  return payload.media_medium
+  const image = payload.media_medium
     || payload.media_large
     || payload.media_thumbnail
     || payload.image_url
     || payload.primaryImageSmall
     || '';
+  const safeImage = isAucklandPayload(payload) ? upgradeAucklandImageUrl(image) : image;
+  return isHeldImageUrl(safeImage) ? '' : safeImage;
 }
 
 function hasUsableObjectImage(payload = {}) {
   const image = pickSearchImage(payload);
   if (!image) return false;
-  if (/digital image not yet created|no[ _-]?image|placeholder/i.test(image)) return false;
+  if (isHeldImageUrl(image)) return false;
   return true;
 }
 
@@ -3217,8 +3298,9 @@ function famtecDetails(title) {
 // ═══════════════════════════════════════════════════════════════════
 function thumbHTML(o) {
   const p = o._mv;
-  if (p && p.media_thumbnail) {
-    return `<img src="${p.media_thumbnail}" alt="${escQ(o.title)}" loading="lazy"
+  const image = p ? pickSearchImage(p) : '';
+  if (image) {
+    return `<img src="${image}" alt="${escQ(o.title)}" loading="lazy"
       onerror="this.outerHTML='<div style=\\'font-size:0.42rem;opacity:0.2;text-align:center\\'>▣<br>${escQ(o.dams)}</div>'">`; 
   }
   return `<div style="font-size:1rem;opacity:0.15;margin-bottom:3px">▣</div><div style="font-size:0.44rem">${o.dams}</div>`;
@@ -3326,8 +3408,10 @@ function doConverse() {
             chat: { default: 'I am ' + obj.title + '.' }
           };
         }
+        const objPayload = { ...obj, _source_collection: obj.collection, source_institution: obj.institution, media_medium: obj.image };
+        const objImage = pickSearchImage(objPayload);
         html += `<div class="convo-obj-card" onclick="openObj('${objKey}')">`;
-        if (obj.image) html += `<img src="${obj.image}" loading="lazy" onerror="this.style.display='none'">`;
+        if (objImage) html += `<img src="${objImage}" loading="lazy" onerror="this.style.display='none'">`;
         html += `<div class="coc-title">${obj.title}</div>`;
         html += `<div class="coc-meta">${obj.institution} · ${(obj.score*100).toFixed(0)}%</div>`;
         html += `</div>`;
@@ -3358,8 +3442,10 @@ function renderConvoResults(objects) {
     const label = COLLECTION_LABELS[obj.collection] || COLLECTION_LABELS.archai_pilot;
     const rights = getObjectRightsInfo(obj);
     const objKey = (obj.collection || 'archai_pilot') + '_c_' + (obj.registration || Math.random().toString(36).slice(2,8));
-    const thumbInner = obj.image
-      ? `<img src="${obj.image}" style="width:100%;height:100%;object-fit:cover" loading="lazy" onerror="this.style.display='none'">`
+    const objPayload = { ...obj, _source_collection: obj.collection, source_institution: obj.institution, media_medium: obj.image };
+    const objImage = pickSearchImage(objPayload);
+    const thumbInner = objImage
+      ? `<img src="${objImage}" style="width:100%;height:100%;object-fit:cover" loading="lazy" onerror="this.style.display='none'">`
       : `<div style="font-size:1rem;opacity:0.15;margin-bottom:3px">▣</div>`;
     return `<div class="result-card" onclick="openObj('${objKey}')">
       <div class="thumb"><div class="thumb-live"></div>${thumbInner}</div>
@@ -3496,7 +3582,7 @@ function odCurrentObjectRecord() {
     date: p.date_range || String(o.year || ''),
     type: p.object_type || o.type || p.discipline || '',
     source_url: p.source_url || '',
-    media_url: p.media_large || p.media_medium || p.media_thumbnail || '',
+    media_url: pickSearchImage(p),
     rights: getObjectRightsInfo(p).status,
   };
 }
@@ -3671,7 +3757,7 @@ function openObjectDetail(objKey) {
   const rights = getObjectRightsInfo(p);
 
   // Image
-  const imgSrc = p.media_large || p.media_medium || p.media_thumbnail || null;
+  const imgSrc = pickSearchImage(p) || null;
   const imgCol = document.getElementById('od-image-col');
   if (imgSrc) {
     imgCol.innerHTML = `<img src="${imgSrc}" alt="${escQ(displayTitle)}" loading="lazy"
@@ -3705,8 +3791,9 @@ function openObjectDetail(objKey) {
   if (p.source_url) {
     linksEl.innerHTML += `<a href="${p.source_url}" target="_blank" class="btn" style="font-size:0.55rem">View on ${escQ(getInstitutionName(o))} →</a>`;
   }
-  if (p.media_large || p.media_medium) {
-    linksEl.innerHTML += `<a href="${p.media_large || p.media_medium}" target="_blank" class="btn" style="font-size:0.55rem">Look Closer / Source Image →</a>`;
+  const sourceImage = pickSearchImage(p);
+  if (sourceImage) {
+    linksEl.innerHTML += `<a href="${sourceImage}" target="_blank" class="btn" style="font-size:0.55rem">Look Closer / Source Image →</a>`;
   }
   linksEl.innerHTML += `<button class="btn" onclick="odShareCurrentObject()">Share / Copy</button>`;
   linksEl.innerHTML += `<button class="btn" onclick="odSaveCurrentObjectToProject()">Save to Project</button>`;
@@ -3927,8 +4014,9 @@ function odLoadRelated(objKey, o) {
           chat: { default: 'I am ' + (p.title || 'an object') + ' in the ' + label.name + ' collection.' }
         };
       }
-      const thumb = p.media_thumbnail
-        ? `<img src="${p.media_thumbnail}" style="width:100%;height:100%;object-fit:cover;" loading="lazy">`
+      const relImage = pickSearchImage(p);
+      const thumb = relImage
+        ? `<img src="${relImage}" style="width:100%;height:100%;object-fit:cover;" loading="lazy">`
         : '<span style="font-size:0.5rem;opacity:0.2">▣</span>';
       return `<div class="od-rel-card" onclick="openObjectDetail('${relKey}')">
         <div class="od-rel-thumb">${thumb}</div>
@@ -3950,8 +4038,9 @@ function odLoadRelated(objKey, o) {
     relEl.innerHTML = '<div style="font-family:var(--mono);font-size:0.48rem;color:var(--text3);margin-bottom:8px;">⚡ Ollama offline — showing collection objects (not similarity-ranked)</div>' +
       otherKeys.map(k => {
         const ro = OBJECTS[k]; const rp = ro._mv || {};
-        const thumb = rp.media_thumbnail
-          ? `<img src="${rp.media_thumbnail}" style="width:100%;height:100%;object-fit:cover;" loading="lazy">`
+        const relImage = pickSearchImage(rp);
+        const thumb = relImage
+          ? `<img src="${relImage}" style="width:100%;height:100%;object-fit:cover;" loading="lazy">`
           : '<span style="font-size:0.5rem;opacity:0.2">▣</span>';
         return `<div class="od-rel-card" onclick="openObjectDetail('${k}')">
           <div class="od-rel-thumb">${thumb}</div>
@@ -4186,7 +4275,7 @@ function renderNFCPreview(tag) {
   const vis = nfcVisibility[tag.code];
   const p = obj && obj._mv ? obj._mv : null;
   // Use medium image for phone preview (better quality than thumbnail)
-  const imgSrc = p && (p.media_medium || p.media_thumbnail);
+  const imgSrc = p ? pickSearchImage(p) : '';
 
   document.getElementById('nfcPreview').innerHTML = `
     <div class="preview-frame">
@@ -4209,7 +4298,7 @@ function renderNFCPreview(tag) {
             <div class="pf-rel-label">Related objects</div>
             <div class="pf-rel-grid">
               ${Object.keys(OBJECTS).filter(id => id !== tag.objectId).slice(0, 3).map(id => {
-                const ro = OBJECTS[id]; const rt = ro._mv && ro._mv.media_thumbnail;
+                const ro = OBJECTS[id]; const rt = ro._mv && pickSearchImage(ro._mv);
                 return `<div class="pf-rel-item">
                   <div class="pf-rel-thumb">${rt ? `<img src="${rt}" loading="lazy">` : '▣'}</div>
                   <div class="pf-rel-title">${ro.title.substring(0, 18)}</div>
@@ -4627,7 +4716,7 @@ function renderVPage(objId) {
   document.getElementById('vSub').textContent = [o.type, o.year, o.location].filter(Boolean).join(' · ');
 
   const imgEl = document.getElementById('vImg');
-  const thumbSrc = p.media_medium || p.media_thumbnail;
+  const thumbSrc = pickSearchImage(p);
   imgEl.innerHTML = thumbSrc ? `<img src="${thumbSrc}" loading="lazy" style="max-height:300px;object-fit:contain">` : 'No image available';
 
   document.getElementById('vStory').innerHTML = `<strong>${o.title}</strong> — ${(o.ai || '').substring(0, 300)}`;
@@ -4642,7 +4731,7 @@ function renderVPage(objId) {
   document.getElementById('vRelated').innerHTML = Object.keys(OBJECTS)
     .filter(id => id !== objId).slice(0, 3).map(id => {
       const ro = OBJECTS[id];
-      const rThumb = ro._mv && ro._mv.media_thumbnail;
+      const rThumb = ro._mv && pickSearchImage(ro._mv);
       return `<div class="rel-card" onclick="switchVPage('${id}',null)">
         <div class="rel-thumb">${rThumb ? `<img src="${rThumb}" loading="lazy">` : '▣'}</div>
         <div class="rel-title">${ro.title}</div>

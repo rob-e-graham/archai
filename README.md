@@ -42,6 +42,8 @@ The research draws on a lineage extending from the Greek method of loci (Simonid
 
 20 live collections/data sources · 3,147+ current records · 1,402 public AUX.IO visitor pages generated
 
+ARCHAI is currently a draft institutional demo / WIP build. The current strongest testing lanes are semantic collection search, object review, AUX.IO publishing, rights-aware media, IIIF viewing, and browser voice access. Nodel/exhibition operations, FAMTEC Exchange, CMS/DAMS connector generalisation, and persistent project workspaces remain active development areas.
+
 | Collection | Institution | Objects | Licence | Status |
 |---|---|---|---|---|
 | `archai_pilot` | Museums Victoria | 40 | CC BY 4.0 | Live |
@@ -90,14 +92,14 @@ Twelve interconnected contributions characterise the research:
 ```
 ┌──────────────────────────────────────────────────────────────────┐
 │  LAYER 3 — Interface                                             │
-│  ARCHAI Web App (v11.5) · AUX.IO Visitor Pages (1,519 pages)    │
+│  ARCHAI Web App (v11.6) · AUX.IO Visitor Pages (1,402 pages)    │
 │  Role-aware · NFC/QR/link/beacon · Curator · Collections ·      │
 │  Technician · Volunteer · Visitor · Admin                        │
 └──────────────────────┬───────────────────────────────────────────┘
                        │
 ┌──────────────────────▼───────────────────────────────────────────┐
 │  LAYER 2 — Derivative Processing Layer (Regenerable)            │
-│  Qdrant · Ollama / qwen2.5:32b · nomic-embed-text               │
+│  Qdrant · Ollama / qwen/qwen2.5 stack · nomic-embed-text        │
 │  Express.js proxy · Rate limiting · Prompt injection blocking    │
 │  Nightly pipeline · Cultural safety gate · Provenance trace      │
 └──────────────────────┬───────────────────────────────────────────┘
@@ -175,7 +177,7 @@ archai/
 │   ├── aux-id-map.json            ← Permanent canonical object → AUX.IO ID registry
 │   ├── captive-portal.html
 │   ├── vendor/qrcode-generator.js ← Self-hosted MIT QR generator
-│   └── v/                         ← 1519 audited visitor pages
+│   └── v/                         ← 1402 audited visitor pages
 ├── docs/
 │   ├── ARCHAI_ISEA2026_Rob_Graham.pdf         ← Conference paper
 │   └── ARCHAI_ISEA2026_UPDATE_2026-06.md      ← Post-submission update
@@ -254,6 +256,7 @@ ARCHAI is a working research prototype, not a finished commercial product. All p
 | **v11.6** | **Nineteen collection sources and 3147 staff-searchable records aligned across app/backend; NGA onboarded with an item-level open-access gate; 2357 image URLs audited; 473 broken images and 504 rights-held media records removed from public presentation; 1380 AUX.IO pages regenerated; 440 rights-cleared pages gain compact QR poster/sticker/postcard tools; born-digital WACZ replay and an EaaSI integration boundary documented** |
 | **v11.6.1** | **Brussels public street-art images enabled through the dataset's CC BY 4.0 licence, Vancouver/Melbourne municipal feeds retained as metadata/source-link only, curator rebuilt to 3147 records, and AUX.IO regenerated to 1519 public pages with 139 street-art pages** |
 | **v11.6.2** | **Auckland placeholder-media audit added; high-resolution Auckland API placeholders are now detected by content hash and held from public AUX.IO while remaining searchable in the staff database. Curatorial object detail gained share/copy, save-to-project, read-summary, and a local project-list workspace for staff testing. AUX.IO regenerated to 1,402 public pages after placeholder and rights gates.** |
+| **v11.6.3** | **Draft-demo clarity pass: main app now declares itself as an institutional WIP, adds Training Mode guidance, applies safer Auckland media filtering throughout staff/result views, and AUX.IO voice questions auto-read replies while typed questions remain text-first.** |
 
 ---
 
