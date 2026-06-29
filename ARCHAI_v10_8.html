@@ -428,6 +428,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 .od-meta-item{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);padding:8px 10px;}
 .od-meta-key{font-family:var(--mono);font-size:0.49rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text3);margin-bottom:3px;}
 .od-meta-val{font-size:0.66rem;color:var(--text1);word-break:break-word;}
+.od-action-strip{margin-top:14px;display:flex;gap:6px;flex-wrap:wrap;align-items:center;}
+.od-action-strip .btn{font-size:0.55rem;}
+.od-action-status{font-family:var(--mono);font-size:0.52rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent2);min-height:1em;padding:7px 2px;}
 .od-description-wrap{padding:22px 36px;border-bottom:1px solid var(--border);}
 .od-detail-block{border-bottom:1px solid var(--border);}
 .od-detail-block summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 36px;cursor:pointer;list-style:none;font-family:var(--mono);font-size:0.58rem;letter-spacing:1.8px;text-transform:uppercase;color:var(--accent);}
@@ -488,6 +491,17 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 .od-rel-title{font-family:var(--serif);font-size:0.82rem;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:2px;}
 .od-rel-meta{font-family:var(--mono);font-size:0.5rem;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px;}
 .od-rel-score{font-family:var(--mono);font-size:0.5rem;color:var(--accent);}
+.od-project-wrap{padding:0 36px 22px;}
+.od-project-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:12px;}
+.od-project-title{font-family:var(--serif);font-size:1rem;color:var(--text);}
+.od-project-note{font-size:0.72rem;color:var(--text3);line-height:1.6;max-width:760px;}
+.od-project-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;}
+.od-project-list{border:1px solid var(--border);background:rgba(255,255,255,0.015);}
+.od-project-item{display:grid;grid-template-columns:1fr auto;gap:12px;padding:10px 12px;border-bottom:1px solid var(--border);}
+.od-project-item:last-child{border-bottom:0;}
+.od-project-item-title{font-family:var(--serif);font-size:0.9rem;color:var(--text);}
+.od-project-item-meta{font-family:var(--mono);font-size:0.5rem;text-transform:uppercase;letter-spacing:1px;color:var(--text3);margin-top:3px;}
+.od-project-empty{font-family:var(--mono);font-size:0.58rem;color:var(--text3);letter-spacing:0.08em;text-transform:uppercase;padding:14px;}
 .od-back-btn{font-family:var(--mono);font-size:0.56rem;color:var(--text3);cursor:pointer;padding:12px 36px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px;transition:color 0.12s;}
 .od-back-btn:hover{color:var(--accent);}
 
@@ -1053,7 +1067,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
         <div id="od-title" class="od-title">—</div>
         <div id="od-sub" class="od-sub">—</div>
         <div id="od-meta-grid" class="od-meta-grid"></div>
-        <div style="margin-top:14px;display:flex;gap:6px;flex-wrap:wrap;" id="od-source-links"></div>
+        <div class="od-action-strip" id="od-source-links"></div>
       </div>
     </div>
 
@@ -1120,6 +1134,13 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
         </div>
       </div>
     </div>
+
+    <details class="od-detail-block" id="od-project-detail" open>
+      <summary>Project List / Selected Objects</summary>
+      <div class="od-project-wrap" id="od-project-panel">
+        <div class="od-project-empty">No objects saved yet.</div>
+      </div>
+    </details>
 
     <details class="od-detail-block">
       <summary>Full Metadata Record — Qdrant Payload</summary>
@@ -3458,6 +3479,176 @@ function openObj(id) {
   openObjectDetail(id);
 }
 
+// ── Object Detail: curatorial actions + project list ─────────────
+const OD_PROJECT_KEY = 'archai.curatorialProject.v1';
+
+function odCurrentObjectRecord() {
+  const id = window._odCurrentId;
+  const o = id ? OBJECTS[id] : null;
+  if (!o) return null;
+  const p = o._mv || {};
+  return {
+    id,
+    canonical_id: p.canonical_id || o.id || id,
+    title: getDisplayTitle(p, o.title || 'Object'),
+    institution: getInstitutionName(o),
+    registration: getDisplayRegistration(p, o.dams || ''),
+    date: p.date_range || String(o.year || ''),
+    type: p.object_type || o.type || p.discipline || '',
+    source_url: p.source_url || '',
+    media_url: p.media_large || p.media_medium || p.media_thumbnail || '',
+    rights: getObjectRightsInfo(p).status,
+  };
+}
+
+function odSetActionStatus(message) {
+  const el = document.getElementById('od-action-status');
+  if (!el) return;
+  el.textContent = message || '';
+  if (message) setTimeout(() => { if (el.textContent === message) el.textContent = ''; }, 2600);
+}
+
+function odReadProject() {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(OD_PROJECT_KEY) || '{}');
+    return { title: parsed.title || 'Current object list', objects: Array.isArray(parsed.objects) ? parsed.objects : [] };
+  } catch {
+    return { title: 'Current object list', objects: [] };
+  }
+}
+
+function odWriteProject(project) {
+  localStorage.setItem(OD_PROJECT_KEY, JSON.stringify(project));
+}
+
+function odCopyText(text, successMessage) {
+  if (navigator.clipboard?.writeText) {
+    navigator.clipboard.writeText(text).then(() => odSetActionStatus(successMessage || 'Copied'));
+    return;
+  }
+  const textarea = document.createElement('textarea');
+  textarea.value = text;
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand('copy');
+  textarea.remove();
+  odSetActionStatus(successMessage || 'Copied');
+}
+
+function odShareCurrentObject() {
+  const record = odCurrentObjectRecord();
+  if (!record) return;
+  const url = new URL(location.href);
+  url.searchParams.set('object', record.canonical_id);
+  const text = `${record.title}\n${record.institution}${record.registration ? ' · ' + record.registration : ''}\n${record.source_url || url.toString()}`;
+  if (navigator.share) {
+    navigator.share({ title: record.title, text, url: record.source_url || url.toString() })
+      .then(() => odSetActionStatus('Shared'))
+      .catch(() => odCopyText(text, 'Copied share text'));
+  } else {
+    odCopyText(text, 'Copied share text');
+  }
+}
+
+function odSaveCurrentObjectToProject() {
+  const record = odCurrentObjectRecord();
+  if (!record) return;
+  const project = odReadProject();
+  const existing = project.objects.findIndex(item => item.canonical_id === record.canonical_id);
+  if (existing >= 0) project.objects[existing] = record;
+  else project.objects.push(record);
+  project.updated = new Date().toISOString();
+  odWriteProject(project);
+  odRenderProjectPanel();
+  odSetActionStatus(existing >= 0 ? 'Project item updated' : 'Saved to project');
+}
+
+function odRemoveProjectObject(canonicalId) {
+  const project = odReadProject();
+  project.objects = project.objects.filter(item => item.canonical_id !== canonicalId);
+  project.updated = new Date().toISOString();
+  odWriteProject(project);
+  odRenderProjectPanel();
+  odSetActionStatus('Removed from project');
+}
+
+function odCopyProjectList() {
+  const project = odReadProject();
+  const lines = project.objects.map((item, index) =>
+    `${index + 1}. ${item.title} — ${item.institution}${item.registration ? ' · ' + item.registration : ''}${item.source_url ? '\n   ' + item.source_url : ''}`
+  );
+  odCopyText(`${project.title}\n\n${lines.join('\n') || 'No objects saved yet.'}`, 'Project list copied');
+}
+
+function odExportProjectJSON() {
+  const project = odReadProject();
+  const blob = new Blob([JSON.stringify(project, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'archai-project-list.json';
+  a.click();
+  URL.revokeObjectURL(url);
+  odSetActionStatus('Project JSON exported');
+}
+
+function odRenderProjectPanel() {
+  const panel = document.getElementById('od-project-panel');
+  if (!panel) return;
+  const project = odReadProject();
+  const count = project.objects.length;
+  const list = count ? project.objects.map(item => `
+    <div class="od-project-item">
+      <div>
+        <div class="od-project-item-title">${escQ(item.title)}</div>
+        <div class="od-project-item-meta">${escQ(item.institution)}${item.registration ? ' · ' + escQ(item.registration) : ''}${item.rights ? ' · ' + escQ(item.rights) : ''}</div>
+      </div>
+      <button class="btn" onclick="odRemoveProjectObject('${escQ(item.canonical_id)}')">Remove</button>
+    </div>
+  `).join('') : '<div class="od-project-empty">No objects saved yet. Use “Save to Project” on object records to build a working list.</div>';
+
+  panel.innerHTML = `
+    <div class="od-project-head">
+      <div>
+        <div class="od-project-title">${escQ(project.title)}</div>
+        <div class="od-project-note">A lightweight staff workspace for building object lists, exhibition shortlists, research sets, or collection-review batches. Saved locally in this browser for now; Directus-backed project persistence is the next production step.</div>
+      </div>
+      <div class="od-project-actions">
+        <button class="btn" onclick="odCopyProjectList()" ${count ? '' : 'disabled'}>Copy List</button>
+        <button class="btn" onclick="odExportProjectJSON()" ${count ? '' : 'disabled'}>Export JSON</button>
+      </div>
+    </div>
+    <div class="od-project-list">${list}</div>
+  `;
+}
+
+function odSpeakObjectSummary() {
+  if (!window.speechSynthesis) {
+    odSetActionStatus('Speech unavailable');
+    return;
+  }
+  const record = odCurrentObjectRecord();
+  if (!record) return;
+  const o = OBJECTS[window._odCurrentId];
+  const p = o?._mv || {};
+  const desc = p.description || o?.ai || '';
+  const text = `${record.title}. ${record.institution}. ${record.date ? record.date + '. ' : ''}${record.type ? record.type + '. ' : ''}${desc ? desc.substring(0, 420) : 'No description is available in the local record.'}`;
+  window.speechSynthesis.cancel();
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = getOdSpeechLanguageCode();
+  const selectedVoice = resolveOdSpeechVoice(utterance.lang);
+  if (selectedVoice) {
+    utterance.voice = selectedVoice;
+    utterance.lang = selectedVoice.lang || utterance.lang;
+  }
+  utterance.rate = 0.98;
+  utterance.pitch = 1;
+  utterance.onstart = () => odSetActionStatus('Reading summary');
+  utterance.onend = () => odSetActionStatus('Summary finished');
+  utterance.onerror = () => odSetActionStatus('Speech failed');
+  window.speechSynthesis.speak(utterance);
+}
+
 function openObjectDetail(objKey) {
   const o = OBJECTS[objKey];
   if (!o) return;
@@ -3517,7 +3708,11 @@ function openObjectDetail(objKey) {
   if (p.media_large || p.media_medium) {
     linksEl.innerHTML += `<a href="${p.media_large || p.media_medium}" target="_blank" class="btn" style="font-size:0.55rem">Look Closer / Source Image →</a>`;
   }
+  linksEl.innerHTML += `<button class="btn" onclick="odShareCurrentObject()">Share / Copy</button>`;
+  linksEl.innerHTML += `<button class="btn" onclick="odSaveCurrentObjectToProject()">Save to Project</button>`;
+  linksEl.innerHTML += `<button class="btn" onclick="odSpeakObjectSummary()">Read Summary</button>`;
   linksEl.innerHTML += `<a href="http://localhost:8055/admin" target="_blank" class="btn" style="font-size:0.55rem">Edit in Directus →</a>`;
+  linksEl.innerHTML += `<span class="od-action-status" id="od-action-status"></span>`;
 
   // Description
   const descEl = document.getElementById('od-description');
@@ -3555,6 +3750,7 @@ function openObjectDetail(objKey) {
   ).join('');
   document.getElementById('od-chat-in').value = '';
   updateOdSpeechUI();
+  odRenderProjectPanel();
 
   // Related objects
   document.getElementById('od-related').innerHTML = '<div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);padding:4px 0;">Finding related objects via Qdrant…</div>';

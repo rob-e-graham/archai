@@ -40,7 +40,7 @@ The research draws on a lineage extending from the Greek method of loci (Simonid
 
 ## Collection Status — June 2026
 
-20 live collections/data sources · 3,147 current records · 1,519 public AUX.IO visitor pages generated
+20 live collections/data sources · 3,147+ current records · 1,402 public AUX.IO visitor pages generated
 
 | Collection | Institution | Objects | Licence | Status |
 |---|---|---|---|---|
@@ -51,7 +51,7 @@ The research draws on a lineage extending from the Greek method of loci (Simonid
 | `archai_cma` | Cleveland Museum of Art | 150 | CC0 (public domain gate) | Live |
 | `archai_rijks` | Rijksmuseum, Amsterdam | 150 | Public Domain Mark | Live |
 | `archai_europeana` | Europeana | 150 | Reusability=open (per-item) | Live |
-| `archai_auckland` | Auckland War Memorial Museum | 120 | CC BY | Live |
+| `archai_auckland` | Auckland War Memorial Museum | 120 | CC BY | Searchable metadata; public media held pending real image derivatives |
 | `archai_tepapa` | Museum of New Zealand Te Papa Tongarewa | 95 | Non-commercial / item rights attached | Live |
 | `archai_mplus` | M+, Hong Kong | 110 | CC0 metadata · preview media | Live |
 | `archai_brasiliana` | Brasiliana Museus | 120 | Public domain / open-access (item gate) | Live |
@@ -253,6 +253,7 @@ ARCHAI is a working research prototype, not a finished commercial product. All p
 | **v11.5.7** | **AUX.IO save path made real for the current backend session: new tag assignments and institution draft objects can be posted to `/api/nfc`, stored in the runtime repository, audited, and returned to the app while Directus remains the production persistence target** |
 | **v11.6** | **Nineteen collection sources and 3147 staff-searchable records aligned across app/backend; NGA onboarded with an item-level open-access gate; 2357 image URLs audited; 473 broken images and 504 rights-held media records removed from public presentation; 1380 AUX.IO pages regenerated; 440 rights-cleared pages gain compact QR poster/sticker/postcard tools; born-digital WACZ replay and an EaaSI integration boundary documented** |
 | **v11.6.1** | **Brussels public street-art images enabled through the dataset's CC BY 4.0 licence, Vancouver/Melbourne municipal feeds retained as metadata/source-link only, curator rebuilt to 3147 records, and AUX.IO regenerated to 1519 public pages with 139 street-art pages** |
+| **v11.6.2** | **Auckland placeholder-media audit added; high-resolution Auckland API placeholders are now detected by content hash and held from public AUX.IO while remaining searchable in the staff database. Curatorial object detail gained share/copy, save-to-project, read-summary, and a local project-list workspace for staff testing. AUX.IO regenerated to 1,402 public pages after placeholder and rights gates.** |
 
 ---
 

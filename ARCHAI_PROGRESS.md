@@ -1453,6 +1453,41 @@ Fixes applied:
 - Updated [nfc-pages/nfc-visitor-template.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/nfc-visitor-template.html) so `Look closer` is a compact floating pill over the image area instead of a large full-width block.
 - Updated [nfc-pages/generate-nfc-pages.js](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/generate-nfc-pages.js) to remove the raw `IIIF info` link from public AUX.IO pages while keeping `Open image`, zoom, reset, and drag-to-pan guidance.
 - Regenerated [nfc-pages/v/](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v) so all `1522` public AUX.IO pages carry the new visitor controls.
+
+## Curatorial object actions and Auckland media hold - 2026-06-29
+
+Rob flagged that staff-facing object records need the same practical actions as AUX.IO: share/save/audio controls, plus a way for curators and collections staff to build object lists or project sets. Rob also showed Auckland objects still displaying the "Digital image not yet created" placeholder through the supposedly repaired IIIF route.
+
+What changed:
+
+- [ARCHAI_v10_8.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ARCHAI_v10_8.html) now adds object-level staff actions in the detail view:
+  - `Share / Copy`
+  - `Save to Project`
+  - `Read Summary`
+  - existing source image / source record / Directus edit links remain visible.
+- A new local browser-based `Project List / Selected Objects` panel was added to staff object detail. It is intentionally a prototype workspace for shortlists, collection review batches, interpretation drafts, or exhibition planning. Production persistence should move to Directus.
+- [fineartmedia-tech-web/archai.html](/Users/robgraham/Desktop/APPS/fineartmedia-tech-web/archai.html) mirrors the same object actions in the public website demo modal so the demo and main app describe the same workflow.
+- [backend-archai/scripts/aucklandmuseum-harvester.js](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/backend-archai/scripts/aucklandmuseum-harvester.js) now knows the new high-resolution Auckland placeholder hash: `3af9d4afa5fe4cc79ccbe168ad66e978`.
+- Added [backend-archai/scripts/audit-auckland-placeholder-media.js](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/backend-archai/scripts/audit-auckland-placeholder-media.js), a repeatable Qdrant audit that hashes Auckland media URLs and marks placeholder images as `media_available: false`.
+
+Audit result:
+
+- Auckland checked: `120` records.
+- Auckland held as placeholders: `120` records.
+- Real Auckland media restored: `0` records.
+
+Resulting AUX.IO state:
+
+- AUX.IO was regenerated after the Auckland hold.
+- Public visitor pages now publish `1,402` records.
+- Auckland remains searchable in the staff database but is no longer published as public AUX.IO image pages until a genuinely usable image route or better harvest set is found.
+- `AUX.IO 001-119` are intentionally absent for now because the permanent ID registry must not silently move physical QR/NFC IDs onto different objects.
+
+Verification:
+
+- Main app inline script parses cleanly with Node `vm.Script`.
+- Website demo inline script parses cleanly with Node `vm.Script`.
+- Generated AUX.IO pages no longer contain `Auckland Museum` or `Digital image not yet created`.
 - Updated [ARCHAI_v10_8.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ARCHAI_v10_8.html) so the actual app object detail view now presents image, key metadata, and object interrogation before expandable `Full Metadata Record` and `Legal Status / Source Use` sections.
 - Mirrored the same workflow direction into the public website demo object modal in `/Users/robgraham/Desktop/APPS/fineartmedia-tech-web/archai.html`.
 - Added `/Users/robgraham/Desktop/APPS/fineartmedia-tech-web/app.html` as a hosted WIP copy of the full ARCHAI app shell with `window.ARCHAI_API_BASE` pointing at `https://archai-api.fineartmedia.tech`.

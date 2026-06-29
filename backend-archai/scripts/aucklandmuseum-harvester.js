@@ -35,7 +35,9 @@ const EMBED_MODEL = 'nomic-embed-text';
 const POINT_ID_OFFSET = 7000000;
 const AUCKLAND_PLACEHOLDER_HASHES = new Set([
   '8824d0781730427b72813fa1678a2b02',
-  '53000f8668ef40d519eb97aa73cfdb48'
+  '53000f8668ef40d519eb97aa73cfdb48',
+  // IIIF /full/800 route can return a high-resolution placeholder image.
+  '3af9d4afa5fe4cc79ccbe168ad66e978'
 ]);
 
 const SEARCH_QUERIES = [
