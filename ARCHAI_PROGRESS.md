@@ -5,30 +5,35 @@ Maintained as an active handoff note so Claude, Codex, and Rob can quickly see w
 
 Primary build planning is now also summarized in [ROADMAP.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ROADMAP.md). Use that for milestone order, and use this file for detailed handoff notes.
 
-## 2026-06-30 AUX.IO management working-set clarity
+## 2026-06-30 AUX.IO management working-set clarity + seeded demo objects
 
 Rob could not work out how to load an object into AUX.IO from the staff app, so the management panel has been simplified around a clearer test workflow.
 
 Implemented in [ARCHAI_v10_8.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ARCHAI_v10_8.html):
 
-- AUX.IO Management now starts with `10` randomly selected loaded demo records.
+- AUX.IO Management now starts with `10` loaded demo records.
+- Claude curated the preferred "wow range" seed list in Huggle (born-digital/game records, Wellcome art/science records, musical instruments, street art, early photo/projection media).
+- Codex wired the app to prefer that curated seed list when those records are present, then fill any missing slots from image-backed safe records.
 - The remaining `110` AUX.IO records are intentionally empty slots ready for assignment.
 - The sidebar now explains the working set: loaded demo records vs empty assignable slots.
 - Empty records read as `Empty slot — assign object` instead of looking like broken data.
 - Opening the AUX.IO Management tab auto-selects the first empty slot when nothing is already selected.
 - Empty-slot editor copy now gives a clear three-step workflow: search/browse, click `Assign`, preview/save/publish.
+- Creating an institution draft with a blank title no longer throws a browser alert. It creates a clearly labelled `AUX.IO ### draft object` so demonstrations can proceed quickly, then staff can rename/enrich it.
 - The object picker placeholder now explains that staff can search by title, object number, institution, material, or rights.
+- Search/seed matching now strips diacritics, improving matches for international records such as `écorché`.
 
 Why this matters:
 
-- AUX.IO now feels more like a museum/gallery setup bench: a few working examples, then many empty tags/QRs ready to assign.
+- AUX.IO now feels more like a museum/gallery setup bench: a strong curated default set, then many empty tags/QRs ready to assign.
 - This supports institutional testing where staff need to create visitor pages for their own objects, not only browse preloaded public demo objects.
+- The public website's hosted full app demo at `/app.html` was synced to this build and retains `window.ARCHAI_API_BASE = https://archai-api.fineartmedia.tech`.
 
 Verification:
 
 - `ARCHAI_v10_8.html` inline script parses cleanly.
 - Local static server on `http://127.0.0.1:8000/ARCHAI_v10_8.html` returned `HTTP 200`.
-- Served page contains `AUX_IO_PRELOADED_COUNT = 10`, `AUX_IO_EMPTY_SLOT_COUNT`, and the new empty-slot workflow language.
+- Served page contains `AUX_IO_PRELOADED_COUNT = 10`, `AUX_IO_DEMO_SEED_TERMS`, `AUX_IO_EMPTY_SLOT_COUNT`, and the new empty-slot workflow language.
 
 ## 2026-06-29 v11.6.3 WIP clarity, Auckland hold, voice auto-read, and funding prep
 
@@ -1566,3 +1571,57 @@ Current result:
 - `Look closer` remains available for IIIF-capable objects, now with clearer `Drag to pan when zoomed` wording.
 - Staff/demo object review sits above legal/admin details.
 - Full app hosting is now available as a WIP static shell at `/app.html`; it still depends on the ARCHAI backend API for live search/chat behaviour.
+
+## AUX.IO seeded demo and print-material redesign - 2026-06-30
+
+Rob tested the full hosted app and found the AUX.IO create-demo workflow still failing on the public website with the old "Add an object title..." alert. Claude also asked that the first loaded AUX.IO demo records be the curated "wow" set rather than generic random records.
+
+Fixes applied:
+
+- [ARCHAI_v10_8.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ARCHAI_v10_8.html) now uses Build `v11.6.5`.
+- The AUX.IO startup set now resolves against a curated seed list where possible:
+  - Disco Elysium
+  - Pentiment
+  - Dwarf Fortress
+  - A crucified ecorche
+  - Interior of the base of the human skull
+  - Aseroe rubra
+  - Crocodile whistle
+  - Bass Ophicleide
+  - Black-Figure Hydria / Theseus
+  - Jef Aerosol / Warhol / Basquiat / Twiggy
+  - Photographie Lunaire / Tycho
+  - Old Father Thames lantern slide
+- Seed matching now strips diacritics so titles like `écorché` can match plain `ecorche`.
+- Creating a new institutional AUX.IO draft no longer requires a title. If the title is blank, the app creates a safe placeholder such as `AUX.IO 003 draft object`, assigns it, and lets staff rename/enrich it.
+- The public website WIP copy at `/Users/robgraham/Desktop/APPS/fineartmedia-tech-web/app.html` was synced from the current full app and keeps `window.ARCHAI_API_BASE = 'https://archai-api.fineartmedia.tech'`.
+
+Print/export redesign:
+
+- Added [docs/AUX_IO_PRINT_DESIGN_PRINCIPLES.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/AUX_IO_PRINT_DESIGN_PRINCIPLES.md) as a compact design brief for posters, postcards, and stickers.
+- Reworked [nfc-pages/nfc-visitor-template.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/nfc-visitor-template.html) print exports around an archival broadside system:
+  - warm paper ground instead of a flat black screen-style poster;
+  - object-first image hierarchy;
+  - stronger QR/access block;
+  - lighter, clearer metadata;
+  - matching poster, postcard, and sticker family.
+- Regenerated [nfc-pages/v/](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v) so public AUX.IO pages carry the new export template.
+- Added first approval previews:
+  - [docs/design-previews/aux-io-poster-approval-preview.png](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/design-previews/aux-io-poster-approval-preview.png)
+  - [docs/design-previews/aux-io-postcard-approval-preview.png](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/design-previews/aux-io-postcard-approval-preview.png)
+  - [docs/design-previews/aux-io-sticker-approval-preview.png](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/design-previews/aux-io-sticker-approval-preview.png)
+
+Verification:
+
+```bash
+node nfc-pages/generate-nfc-pages.js
+node -e "/* generated page inline JS parse check */"
+node -e "/* website app.html inline JS parse check */"
+git diff --check
+git -C /Users/robgraham/Desktop/APPS/fineartmedia-tech-web diff --check
+```
+
+Notes:
+
+- The raw `nfc-visitor-template.html` still contains generator placeholders, so parse checks should be run against generated pages such as `nfc-pages/v/NFC1308.html`, not the unfilled template itself.
+- The print previews are approval images, not the only outputs. Live A0/A2/A4/postcard/sticker PNGs are still generated client-side from each AUX.IO object page.

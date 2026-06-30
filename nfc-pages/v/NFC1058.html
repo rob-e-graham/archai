@@ -2410,82 +2410,99 @@ async function downloadPoster(sizeKey) {
     const ctx = canvas.getContext('2d');
     if (!ctx) { restoreBtns(); return; }
 
-    const pad = Math.round(150 * sc);
+    const pad = Math.round(130 * sc);
     const serif = '"Cormorant Garamond", Georgia, serif';
     const mono = '"DM Mono", "Courier New", monospace';
     const t = _posterText();
     let hero = null;
     try { hero = await _loadPosterImage(); } catch {}
 
-    ctx.fillStyle = '#080808';
+    const paper = '#ece4d7';
+    const ink = '#080808';
+    const muted = '#736b62';
+    const pale = '#f7f2ea';
+    const teal = '#467f77';
+    const gold = '#9f7b35';
+
+    ctx.fillStyle = paper;
     ctx.fillRect(0, 0, W, H);
 
-    const topY = Math.round(124 * sc);
-    _drawArchaiWordmark(ctx, pad, topY, Math.round(56 * sc), serif, Math.round(6 * sc));
-    _drawLabel(ctx, 'AUX.IO visitor access material', pad, topY + Math.round(40 * sc), mono, Math.round(18 * sc), '#5a5450');
-    ctx.font = `400 ${Math.round(18 * sc)}px ${mono}`;
-    ctx.fillStyle = '#8fbcb0';
-    const regW = ctx.measureText(t.registration).width;
-    ctx.fillText(t.registration, W - pad - regW, topY + Math.round(18 * sc));
+    // Archive-broadside layout: clear hierarchy, strong image, QR as an access block.
+    ctx.strokeStyle = 'rgba(8,8,8,0.18)';
+    ctx.lineWidth = Math.max(2, Math.round(2 * sc));
+    ctx.strokeRect(pad * 0.55, pad * 0.55, W - pad * 1.1, H - pad * 1.1);
+
+    const topY = Math.round(105 * sc);
+    _drawArchaiWordmark(ctx, pad, topY, Math.round(54 * sc), serif, Math.round(7 * sc));
+    _drawLabel(ctx, 'AUX.IO object encounter', pad, topY + Math.round(42 * sc), mono, Math.round(17 * sc), muted);
+
+    _drawLabel(ctx, 'Scan / ask / listen', W - pad - Math.round(420 * sc), topY - Math.round(8 * sc), mono, Math.round(18 * sc), muted);
+    ctx.font = `700 ${Math.round(20 * sc)}px ${mono}`;
+    ctx.fillStyle = teal;
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'top';
+    ctx.fillText(t.registration, W - pad, topY + Math.round(34 * sc));
+    ctx.textAlign = 'left';
 
     const imageX = pad;
-    const imageY = Math.round(260 * sc);
+    const imageY = Math.round(235 * sc);
     const imageW = W - pad * 2;
-    const imageH = Math.round(H * 0.405);
-    ctx.strokeStyle = '#1e1e1e';
-    ctx.lineWidth = Math.max(1, Math.round(1 * sc));
-    ctx.strokeRect(imageX, imageY, imageW, imageH);
-    _drawImageContain(ctx, hero, imageX + Math.round(18 * sc), imageY + Math.round(18 * sc), imageW - Math.round(36 * sc), imageH - Math.round(36 * sc), '#0f0f0f');
+    const imageH = Math.round(H * 0.535);
+    ctx.fillStyle = ink;
+    ctx.fillRect(imageX, imageY, imageW, imageH);
+    ctx.fillStyle = 'rgba(0,0,0,0.12)';
+    ctx.fillRect(imageX + Math.round(24 * sc), imageY + Math.round(24 * sc), imageW, imageH);
+    _drawImageContain(ctx, hero, imageX + Math.round(34 * sc), imageY + Math.round(34 * sc), imageW - Math.round(68 * sc), imageH - Math.round(68 * sc), '#11110f');
 
-    const textTop = imageY + imageH + Math.round(72 * sc);
-    const qrSize = Math.round(330 * sc);
-    const qrPad = Math.round(18 * sc);
-    const qrX = W - pad - qrSize - qrPad * 2;
-    const qrY = textTop + Math.round(14 * sc);
-    const copyW = qrX - pad - Math.round(80 * sc);
+    const infoTop = imageY + imageH + Math.round(84 * sc);
+    const qrSize = Math.round(355 * sc);
+    const qrPad = Math.round(24 * sc);
+    const qrBlockW = qrSize + qrPad * 2 + Math.round(70 * sc);
+    const qrX = W - pad - qrBlockW + Math.round(35 * sc);
+    const qrY = infoTop + Math.round(18 * sc);
+    const copyW = W - pad * 2 - qrBlockW - Math.round(80 * sc);
 
     ctx.textBaseline = 'top';
-    ctx.font = `300 ${Math.round(74 * sc)}px ${serif}`;
-    ctx.fillStyle = '#e8e4dc';
-    let curY = textTop;
-    for (const line of _wrapText(ctx, t.title, copyW).slice(0, 3)) {
+    ctx.font = `300 ${Math.round(92 * sc)}px ${serif}`;
+    ctx.fillStyle = ink;
+    let curY = infoTop;
+    for (const line of _wrapText(ctx, t.title, copyW).slice(0, 4)) {
       ctx.fillText(line, pad, curY);
-      curY += Math.round(84 * sc);
+      curY += Math.round(98 * sc);
     }
 
-    curY += Math.round(18 * sc);
-    _drawLabel(ctx, t.meta, pad, curY, mono, Math.round(22 * sc), '#5a5450');
-    curY += Math.round(44 * sc);
-    _drawLabel(ctx, t.institution, pad, curY, mono, Math.round(22 * sc), '#8fbcb0');
+    curY += Math.round(22 * sc);
+    _drawLabel(ctx, t.meta || 'Collection record', pad, curY, mono, Math.round(20 * sc), muted);
+    curY += Math.round(42 * sc);
+    _drawLabel(ctx, t.institution, pad, curY, mono, Math.round(21 * sc), teal);
 
     const descY = curY + Math.round(78 * sc);
-    ctx.strokeStyle = '#1e1e1e';
-    ctx.beginPath(); ctx.moveTo(pad, descY - Math.round(32 * sc)); ctx.lineTo(qrX - Math.round(40 * sc), descY - Math.round(32 * sc)); ctx.stroke();
-    ctx.font = `italic 300 ${Math.round(30 * sc)}px ${serif}`;
-    ctx.fillStyle = '#a09890';
-    const excerpt = t.description.substring(0, 260) + (t.description.length > 260 ? '...' : '');
+    ctx.strokeStyle = 'rgba(8,8,8,0.22)';
+    ctx.beginPath(); ctx.moveTo(pad, descY - Math.round(34 * sc)); ctx.lineTo(pad + copyW, descY - Math.round(34 * sc)); ctx.stroke();
+    ctx.font = `italic 300 ${Math.round(31 * sc)}px ${serif}`;
+    ctx.fillStyle = '#4d4640';
+    const excerpt = t.description.substring(0, 300) + (t.description.length > 300 ? '...' : '');
     let descLineY = descY;
-    for (const line of _wrapText(ctx, excerpt, copyW).slice(0, 4)) {
+    for (const line of _wrapText(ctx, excerpt, copyW).slice(0, 5)) {
       ctx.fillText(line, pad, descLineY);
-      descLineY += Math.round(42 * sc);
+      descLineY += Math.round(40 * sc);
     }
 
-    ctx.fillStyle = '#e8e4dc';
+    ctx.fillStyle = ink;
+    ctx.fillRect(qrX - Math.round(35 * sc), qrY - Math.round(35 * sc), qrBlockW, qrSize + qrPad * 2 + Math.round(170 * sc));
+    ctx.fillStyle = pale;
     ctx.fillRect(qrX, qrY, qrSize + qrPad * 2, qrSize + qrPad * 2);
     _drawQR(ctx, window.location.href, qrX + qrPad, qrY + qrPad, qrSize, '#080808');
-    _drawLabel(ctx, 'Scan to explore', qrX, qrY + qrSize + qrPad * 2 + Math.round(30 * sc), mono, Math.round(18 * sc), '#5a5450');
-    ctx.font = `300 ${Math.round(42 * sc)}px ${serif}`;
-    ctx.fillStyle = '#e8e4dc';
-    ctx.fillText('fineartmedia.tech/aux', qrX, qrY + qrSize + qrPad * 2 + Math.round(60 * sc));
+    _drawLabel(ctx, 'Scan to ask this object', qrX, qrY + qrSize + qrPad * 2 + Math.round(34 * sc), mono, Math.round(17 * sc), '#8f867b');
+    ctx.font = `300 ${Math.round(40 * sc)}px ${serif}`;
+    ctx.fillStyle = pale;
+    ctx.fillText('fineartmedia.tech/aux', qrX, qrY + qrSize + qrPad * 2 + Math.round(70 * sc));
 
-    const footerY = H - Math.round(230 * sc);
-    ctx.strokeStyle = '#1e1e1e';
+    const footerY = H - Math.round(170 * sc);
+    ctx.strokeStyle = 'rgba(8,8,8,0.2)';
     ctx.beginPath(); ctx.moveTo(pad, footerY); ctx.lineTo(W - pad, footerY); ctx.stroke();
-    _drawLabel(ctx, t.rights, pad, footerY + Math.round(30 * sc), mono, Math.round(16 * sc), '#3a3330');
-    ctx.font = `300 ${Math.round(28 * sc)}px ${serif}`;
-    ctx.fillStyle = '#2a2826';
-    ctx.textAlign = 'center';
-    ctx.fillText('ARCHAI', W / 2, H - Math.round(80 * sc));
+    _drawLabel(ctx, t.rights, pad, footerY + Math.round(28 * sc), mono, Math.round(15 * sc), muted);
+    _drawLabel(ctx, 'ARCHAI · AUX.IO · RIGHTS-AWARE VISITOR ACCESS', W - pad - Math.round(720 * sc), footerY + Math.round(28 * sc), mono, Math.round(15 * sc), gold);
     ctx.textAlign = 'left';
 
     canvas.toBlob(blob => {
@@ -2518,50 +2535,57 @@ const SMALL_FORMAT_SIZES = {
 // ── STICKER layout — QR dominant, full bleed image, clean type ──
 async function _drawStickerLayout(ctx, W, H) {
   const sc = W / 1181;
-  const pad = Math.round(70 * sc);
+  const pad = Math.round(58 * sc);
   const serif = '"Cormorant Garamond", Georgia, serif';
   const mono = '"DM Mono", "Courier New", monospace';
   const t = _posterText();
   let hero = null;
   try { hero = await _loadPosterImage(); } catch {}
 
-  ctx.fillStyle = '#080808';
+  const paper = '#ece4d7';
+  const ink = '#080808';
+  const teal = '#467f77';
+  ctx.fillStyle = paper;
   ctx.fillRect(0, 0, W, H);
 
-  _drawArchaiWordmark(ctx, pad, Math.round(86 * sc), Math.round(34 * sc), serif, Math.round(4 * sc));
-  _drawLabel(ctx, t.registration, W - pad - Math.round(260 * sc), Math.round(62 * sc), mono, Math.round(14 * sc), '#8fbcb0');
+  ctx.strokeStyle = 'rgba(8,8,8,0.25)';
+  ctx.lineWidth = Math.max(2, Math.round(2 * sc));
+  ctx.strokeRect(pad * 0.65, pad * 0.65, W - pad * 1.3, H - pad * 1.3);
 
-  const qrSize = Math.round(430 * sc);
-  const qrPad = Math.round(22 * sc);
+  _drawArchaiWordmark(ctx, pad, Math.round(86 * sc), Math.round(34 * sc), serif, Math.round(5 * sc));
+  _drawLabel(ctx, t.registration, W - pad - Math.round(245 * sc), Math.round(62 * sc), mono, Math.round(14 * sc), teal);
+
+  const qrSize = Math.round(520 * sc);
+  const qrPad = Math.round(26 * sc);
   const qrX = Math.round((W - qrSize - qrPad * 2) / 2);
-  const qrY = Math.round(156 * sc);
-  ctx.fillStyle = '#e8e4dc';
+  const qrY = Math.round(148 * sc);
+  ctx.fillStyle = '#f8f2ea';
   ctx.fillRect(qrX, qrY, qrSize + qrPad * 2, qrSize + qrPad * 2);
   _drawQR(ctx, window.location.href, qrX + qrPad, qrY + qrPad, qrSize, '#080808');
 
-  _drawLabel(ctx, 'Scan to explore this object', pad, qrY + qrSize + qrPad * 2 + Math.round(48 * sc), mono, Math.round(16 * sc), '#5a5450');
-  ctx.font = `300 ${Math.round(44 * sc)}px ${serif}`;
-  ctx.fillStyle = '#e8e4dc';
+  _drawLabel(ctx, 'Scan to ask this object', pad, qrY + qrSize + qrPad * 2 + Math.round(45 * sc), mono, Math.round(17 * sc), '#6f675f');
+  ctx.font = `300 ${Math.round(46 * sc)}px ${serif}`;
+  ctx.fillStyle = ink;
   ctx.textBaseline = 'top';
   ctx.fillText('fineartmedia.tech/aux', pad, qrY + qrSize + qrPad * 2 + Math.round(80 * sc));
 
-  const thumb = Math.round(170 * sc);
+  const thumb = Math.round(155 * sc);
   const thumbY = H - pad - thumb;
-  ctx.strokeStyle = '#1e1e1e';
-  ctx.strokeRect(pad, thumbY, thumb, thumb);
-  _drawImageContain(ctx, hero, pad + Math.round(8 * sc), thumbY + Math.round(8 * sc), thumb - Math.round(16 * sc), thumb - Math.round(16 * sc), '#0f0f0f');
+  ctx.fillStyle = ink;
+  ctx.fillRect(pad, thumbY, thumb, thumb);
+  _drawImageContain(ctx, hero, pad + Math.round(7 * sc), thumbY + Math.round(7 * sc), thumb - Math.round(14 * sc), thumb - Math.round(14 * sc), '#111');
 
   let curY = thumbY + Math.round(4 * sc);
   const textX = pad + thumb + Math.round(34 * sc);
   const textW = W - textX - pad;
   ctx.textBaseline = 'top';
   ctx.font = `300 ${Math.round(34 * sc)}px ${serif}`;
-  ctx.fillStyle = '#e8e4dc';
+  ctx.fillStyle = ink;
   for (const ln of _wrapText(ctx, t.title, textW).slice(0, 2)) {
     ctx.fillText(ln, textX, curY);
     curY += Math.round(40 * sc);
   }
-  _drawLabel(ctx, t.institution, textX, curY + Math.round(14 * sc), mono, Math.round(13 * sc), '#8fbcb0');
+  _drawLabel(ctx, t.institution, textX, curY + Math.round(14 * sc), mono, Math.round(13 * sc), teal);
 }
 
 // ── POSTCARD layout — A6 landscape, image left / text+QR right ──
@@ -2574,18 +2598,26 @@ async function _drawPostcardLayout(ctx, W, H) {
   let hero = null;
   try { hero = await _loadPosterImage(); } catch {}
 
-  ctx.fillStyle = '#080808';
+  const paper = '#ece4d7';
+  const ink = '#080808';
+  const muted = '#6f675f';
+  const teal = '#467f77';
+  ctx.fillStyle = paper;
   ctx.fillRect(0, 0, W, H);
 
-  _drawArchaiWordmark(ctx, pad, Math.round(92 * sc), Math.round(34 * sc), serif, Math.round(5 * sc));
-  _drawLabel(ctx, t.registration, W - pad - Math.round(260 * sc), Math.round(66 * sc), mono, Math.round(14 * sc), '#8fbcb0');
+  ctx.strokeStyle = 'rgba(8,8,8,0.22)';
+  ctx.lineWidth = Math.max(2, Math.round(2 * sc));
+  ctx.strokeRect(pad * 0.55, pad * 0.55, W - pad * 1.1, H - pad * 1.1);
 
-  const imageW = Math.round(W * 0.43);
+  _drawArchaiWordmark(ctx, pad, Math.round(92 * sc), Math.round(34 * sc), serif, Math.round(5 * sc));
+  _drawLabel(ctx, t.registration, W - pad - Math.round(260 * sc), Math.round(66 * sc), mono, Math.round(14 * sc), teal);
+
+  const imageW = Math.round(W * 0.47);
   const imageH = H - pad * 2 - Math.round(74 * sc);
   const imageX = pad;
   const imageY = Math.round(136 * sc);
-  ctx.strokeStyle = '#1e1e1e';
-  ctx.strokeRect(imageX, imageY, imageW, imageH);
+  ctx.fillStyle = ink;
+  ctx.fillRect(imageX, imageY, imageW, imageH);
   _drawImageContain(ctx, hero, imageX + Math.round(12 * sc), imageY + Math.round(12 * sc), imageW - Math.round(24 * sc), imageH - Math.round(24 * sc), '#0f0f0f');
 
   const rx = imageX + imageW + Math.round(70 * sc);
@@ -2593,27 +2625,27 @@ async function _drawPostcardLayout(ctx, W, H) {
   let curY = imageY;
   ctx.textBaseline = 'top';
 
-  _drawLabel(ctx, 'AUX.IO visitor postcard', rx, curY, mono, Math.round(14 * sc), '#5a5450');
+  _drawLabel(ctx, 'AUX.IO visitor postcard', rx, curY, mono, Math.round(14 * sc), muted);
   curY += Math.round(48 * sc);
 
   ctx.font = `300 ${Math.round(52 * sc)}px ${serif}`;
-  ctx.fillStyle = '#e8e4dc';
+  ctx.fillStyle = ink;
   for (const ln of _wrapText(ctx, t.title, rw).slice(0, 3)) {
     ctx.fillText(ln, rx, curY);
     curY += Math.round(58 * sc);
   }
   curY += Math.round(16 * sc);
-  _drawLabel(ctx, t.meta, rx, curY, mono, Math.round(17 * sc), '#5a5450');
+  _drawLabel(ctx, t.meta || 'Collection record', rx, curY, mono, Math.round(17 * sc), muted);
   curY += Math.round(34 * sc);
-  _drawLabel(ctx, t.institution, rx, curY, mono, Math.round(17 * sc), '#8fbcb0');
+  _drawLabel(ctx, t.institution, rx, curY, mono, Math.round(17 * sc), teal);
   curY += Math.round(58 * sc);
 
-  ctx.strokeStyle = '#1e1e1e';
+  ctx.strokeStyle = 'rgba(8,8,8,0.22)';
   ctx.beginPath(); ctx.moveTo(rx, curY); ctx.lineTo(W - pad, curY); ctx.stroke();
   curY += Math.round(34 * sc);
 
   ctx.font = `italic 300 ${Math.round(25 * sc)}px ${serif}`;
-  ctx.fillStyle = '#a09890';
+  ctx.fillStyle = '#4d4640';
   const desc = t.description.substring(0, 210) + (t.description.length > 210 ? '...' : '');
   for (const ln of _wrapText(ctx, desc, rw).slice(0, 4)) {
     ctx.fillText(ln, rx, curY);
@@ -2625,19 +2657,19 @@ async function _drawPostcardLayout(ctx, W, H) {
   const qrX = W - pad - qrSize - qrPad * 2;
   const qrY = H - pad - qrSize - qrPad * 2 - Math.round(54 * sc);
 
-  ctx.strokeStyle = '#1e1e1e';
+  ctx.strokeStyle = 'rgba(8,8,8,0.22)';
   ctx.beginPath(); ctx.moveTo(rx, qrY - Math.round(34 * sc)); ctx.lineTo(W - pad, qrY - Math.round(34 * sc)); ctx.stroke();
 
-  ctx.fillStyle = '#e8e4dc';
+  ctx.fillStyle = '#f8f2ea';
   ctx.fillRect(qrX, qrY, qrSize + qrPad * 2, qrSize + qrPad * 2);
   _drawQR(ctx, window.location.href, qrX + qrPad, qrY + qrPad, qrSize, '#080808');
 
-  _drawLabel(ctx, 'Scan to explore', rx, qrY + Math.round(8 * sc), mono, Math.round(15 * sc), '#5a5450');
+  _drawLabel(ctx, 'Scan to ask this object', rx, qrY + Math.round(8 * sc), mono, Math.round(15 * sc), muted);
   ctx.font = `300 ${Math.round(38 * sc)}px ${serif}`;
-  ctx.fillStyle = '#e8e4dc';
+  ctx.fillStyle = ink;
   ctx.fillText('fineartmedia.tech/aux', rx, qrY + Math.round(44 * sc));
 
-  _drawLabel(ctx, t.rights, rx, H - pad + Math.round(8 * sc), mono, Math.round(12 * sc), '#2a2826');
+  _drawLabel(ctx, t.rights, rx, H - pad + Math.round(8 * sc), mono, Math.round(12 * sc), '#6f675f');
 }
 
 // ── DOWNLOAD ORCHESTRATOR for small formats ──

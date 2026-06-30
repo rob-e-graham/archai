@@ -646,7 +646,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
     </div>
   </div>
   <div>
-    <div class="header-meta"><b id="clockDisplay">—</b><br><span>Build v11.6.4 · 19 connected collections · rights-aware media · AUX.IO setup bench</span></div>
+    <div class="header-meta"><b id="clockDisplay">—</b><br><span>Build v11.6.5 · 19 connected collections · rights-aware media · AUX.IO setup bench</span></div>
     <div class="header-links">
       <a class="header-link" href="http://localhost:11434" target="_blank">Ollama LLM</a>
       <a class="header-link" href="http://localhost:8055/admin" target="_blank">Directus CMS</a>
@@ -1331,6 +1331,20 @@ const CURATOR_SEARCH_LIMIT = 50;
 const AUX_IO_MANAGEMENT_LIMIT = 120;
 const AUX_IO_PRELOADED_COUNT = 10;
 const AUX_IO_EMPTY_SLOT_COUNT = AUX_IO_MANAGEMENT_LIMIT - AUX_IO_PRELOADED_COUNT;
+const AUX_IO_DEMO_SEED_TERMS = [
+  'disco elysium',
+  'pentiment',
+  'dwarf fortress',
+  'crucified ecorche',
+  'interior of the base of the human skull',
+  'aseroe rubra',
+  'crocodile whistle',
+  'bass ophicleide',
+  'black figure hydria theseus',
+  'jef aerosol warhol basquiat twiggy',
+  'photographie lunaire tycho',
+  'old father thames'
+];
 const SEARCH_STOPWORDS = new Set([
   'the', 'and', 'for', 'with', 'from', 'into', 'about', 'across', 'through',
   'this', 'that', 'these', 'those', 'what', 'which', 'where', 'when', 'your',
@@ -2391,6 +2405,8 @@ function getObjectRightsInfo(payload = {}) {
 function normalizeSearchText(value = '') {
   return String(value || '')
     .toLowerCase()
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
     .replace(/&/g, ' and ')
     .replace(/<[^>]+>/g, ' ')
     .replace(/[^\p{L}\p{N}\s-]+/gu, ' ')
@@ -2781,10 +2797,9 @@ function loadMVObjects() {
 
 function generateNFCTags() {
   NFC_TAGS.length = 0;
-  const keys = Object.keys(OBJECTS)
-    .filter(k => hasUsableObjectImage(OBJECTS[k]._mv || {}))
-    .sort(() => Math.random() - 0.5)
-    .slice(0, AUX_IO_PRELOADED_COUNT);
+  const imageBackedKeys = Object.keys(OBJECTS)
+    .filter(k => hasUsableObjectImage(OBJECTS[k]._mv || {}));
+  const keys = getAuxDemoSeedKeys(imageBackedKeys);
   keys.forEach((k, i) => {
     const tag = {
       code: 'NFC' + String(i + 1).padStart(3, '0'),
@@ -2805,6 +2820,46 @@ function generateNFCTags() {
   }
   document.getElementById('nfcTabCount').textContent = NFC_TAGS.length;
   updateNFCWorksetNote();
+}
+
+function getAuxDemoSeedKeys(imageBackedKeys) {
+  const used = new Set();
+  const selected = [];
+  const haystackFor = key => {
+    const o = OBJECTS[key] || {};
+    const p = o._mv || {};
+    return normalizeSearchText([
+      key, o.id, o.title, o.type, o.year, o.dams, o.location, o.ai,
+      p.title, p.description, p.institution, p.source_collection,
+      p.accession_number, p.object_type, p.medium, p.creator, p.artist,
+      Array.isArray(p.keywords) ? p.keywords.join(' ') : p.keywords
+    ].filter(Boolean).join(' '));
+  };
+
+  const haystacks = new Map(imageBackedKeys.map(key => [key, haystackFor(key)]));
+  AUX_IO_DEMO_SEED_TERMS.forEach(term => {
+    if (selected.length >= AUX_IO_PRELOADED_COUNT) return;
+    const needles = normalizeSearchText(term).split(/\s+/).filter(Boolean);
+    const match = imageBackedKeys.find(key => {
+      if (used.has(key)) return false;
+      const haystack = haystacks.get(key) || '';
+      return needles.every(needle => haystack.includes(needle));
+    });
+    if (match) {
+      used.add(match);
+      selected.push(match);
+    }
+  });
+
+  if (selected.length < AUX_IO_PRELOADED_COUNT) {
+    imageBackedKeys
+      .filter(key => !used.has(key))
+      .sort(() => Math.random() - 0.5)
+      .slice(0, AUX_IO_PRELOADED_COUNT - selected.length)
+      .forEach(key => selected.push(key));
+  }
+
+  return selected;
 }
 
 function updateNFCWorksetNote() {
@@ -4270,7 +4325,7 @@ function renderNFCEditor(tag) {
     <div class="editor-section">
       <div class="editor-section-title"><span>Create Institution Object Draft</span></div>
       <div class="aux-field-grid">
-        <div class="aux-field"><label>Object title</label><input id="aux-new-title-${tag.code}" class="aux-input" placeholder="Untitled object / artwork title"></div>
+        <div class="aux-field"><label>Object title <span style="color:var(--text3);font-weight:400;">/ optional for quick demo</span></label><input id="aux-new-title-${tag.code}" class="aux-input" placeholder="Leave blank to create an AUX.IO draft object"></div>
         <div class="aux-field"><label>Institution / collection</label><input id="aux-new-inst-${tag.code}" class="aux-input" placeholder="Your museum or gallery"></div>
         <div class="aux-field"><label>Accession / object no.</label><input id="aux-new-accession-${tag.code}" class="aux-input" placeholder="2026.001"></div>
         <div class="aux-field"><label>Object type / medium</label><input id="aux-new-type-${tag.code}" class="aux-input" placeholder="Video installation, textile, painting..."></div>
@@ -4280,8 +4335,8 @@ function renderNFCEditor(tag) {
         <div class="aux-field full"><label>Source record URL</label><input id="aux-new-source-${tag.code}" class="aux-input" placeholder="https://collections.yourmuseum.org/object/..."></div>
         <div class="aux-field full"><label>Visitor description / interpretation seed</label><textarea id="aux-new-desc-${tag.code}" class="aux-textarea" placeholder="Short object description, curatorial note, access note, or draft interpretation..."></textarea></div>
       </div>
-      <button class="btn nfc" onclick="createInstitutionObjectForAux('${tag.code}')">Create Object + Assign to AUX.IO</button>
-      <div class="aux-helper">This creates a local prototype object record so museums can test AUX.IO with their own material. Production should save this to Directus and preserve full source metadata separately from visitor interpretation.</div>
+      <button class="btn nfc" onclick="createInstitutionObjectForAux('${tag.code}')">Create Draft + Assign to AUX.IO</button>
+      <div class="aux-helper">This creates a local prototype object record so museums can test AUX.IO with their own material. You can start blank for a quick demo, then rename and enrich it. Production should save this to Directus and preserve full source metadata separately from visitor interpretation.</div>
     </div>
     <div class="editor-section">
       <div class="editor-section-title"><span>Visitor Content Visibility</span></div>
@@ -4356,10 +4411,11 @@ function createInstitutionObjectForAux(code) {
   const tag = NFC_TAGS.find(t => t.code === code);
   if (!tag) return;
   const read = key => document.getElementById(`aux-new-${key}-${code}`)?.value?.trim() || '';
-  const title = read('title');
+  let title = read('title');
+  const titleInput = document.getElementById(`aux-new-title-${code}`);
   if (!title) {
-    alert('Add an object title before creating the institutional draft.');
-    return;
+    title = `${displayAuxCode(code)} draft object`;
+    if (titleInput) titleInput.value = title;
   }
 
   const institution = read('inst') || 'Institution draft';
