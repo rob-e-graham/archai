@@ -6,11 +6,12 @@ Working note for poster, postcard, and sticker templates.
 
 AUX.IO print materials should feel like gallery access objects, not generic QR flyers. They should carry the authority of a museum label, the clarity of wayfinding, and the quiet curiosity of an invitation.
 
-The current system uses an archival broadside direction:
+The current system now uses a black public-space / street-gallery direction:
 
-- Warm paper ground instead of full black so prints feel legible, tactile, and less like a screen capture.
-- One dominant image field so the object remains the first read.
-- A strong QR/access block that is clearly functional and not visually apologetic.
+- Black ground so the material feels like ARCHAI/AUX.IO and can hold its own outside the gallery, including streets, laneways, and pop-up contexts.
+- One dominant hero image so the object remains the first read from a distance.
+- The aqua image border frames the actual rendered image, not the empty holding area, so portrait and landscape images both feel intentional.
+- A strong black-on-white QR/access block with a tight border for scan reliability without looking pasted on.
 - Sparse metadata hierarchy: title, date/type, institution, rights line, and access URL.
 - A shared visual language across A0/A2/A4 poster, A6 postcard, and 100 mm sticker.
 
@@ -22,12 +23,13 @@ The current system uses an archival broadside direction:
 - Make a system: poster, postcard, and sticker should feel like one institutional kit.
 - Keep rights visible: source, licence, and attribution remain present without dominating the visitor invitation.
 - Respect print: safe margins, high contrast, and clean hierarchy matter more than decorative density.
+- Test across image shapes: portrait, landscape, small artefacts, screenshots, archival documents, and born-digital stills must all survive the same system.
 
 ## Format Roles
 
 ### Poster
 
-Primary gallery or event object. It should work from across a room and invite scanning.
+Primary public-space object. It should work from across a room, across a laneway, or on a notice wall and invite scanning.
 
 Priority order:
 
@@ -39,7 +41,7 @@ Priority order:
 
 ### Postcard
 
-Takeaway object. It can carry a little more text and should feel collectible.
+Takeaway object. It can carry a little more text and should feel collectible while preserving the same black/image-first language.
 
 Priority order:
 
@@ -51,7 +53,7 @@ Priority order:
 
 ### Sticker
 
-Object label or fast access marker. It must be QR-first.
+Object label or fast access marker. It must be simple, tough, and QR-first.
 
 Priority order:
 

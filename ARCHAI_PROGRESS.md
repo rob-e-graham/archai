@@ -1625,3 +1625,48 @@ Notes:
 
 - The raw `nfc-visitor-template.html` still contains generator placeholders, so parse checks should be run against generated pages such as `nfc-pages/v/NFC1308.html`, not the unfilled template itself.
 - The print previews are approval images, not the only outputs. Live A0/A2/A4/postcard/sticker PNGs are still generated client-side from each AUX.IO object page.
+
+## AUX.IO black public-space print family - 2026-06-30
+
+Rob pushed the print direction away from a quiet gallery handout toward public/street use: posters may sit in streets, laneways, pop-ups, or non-gallery contexts, so the image must act as the hero and the QR must remain instantly scannable.
+
+Design decisions applied:
+
+- Replaced the warm paper print-export system with a black ARCHAI/AUX.IO street-gallery system.
+- Kept the object image as the dominant visual in the A4/A2/A0 poster exports.
+- Added shared print helpers so the aqua border is drawn around the actual rendered image rectangle, not around the empty black image holder. This matters for portrait, landscape, square, and awkward archival-image ratios.
+- Kept production QR codes black-on-white for reliability, but tightened the white block with a deliberate black border and aqua outer stroke.
+- Reworked A6 postcard and 100 mm sticker exports to match the same system.
+- Metadata now sits directly below or beside the object image depending on format, with AUX.IO carrying the deeper record.
+- Generated multiple approval previews across different object types:
+  - anatomical print
+  - ancient ceramic fragment
+  - lunar photograph
+  - born-digital/game image
+
+Files changed:
+
+- [nfc-pages/nfc-visitor-template.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/nfc-visitor-template.html)
+- [nfc-pages/v/](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v)
+- [docs/AUX_IO_PRINT_DESIGN_PRINCIPLES.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/AUX_IO_PRINT_DESIGN_PRINCIPLES.md)
+
+Verification:
+
+```bash
+node nfc-pages/generate-nfc-pages.js
+node - <<'NODE'
+const fs=require('fs');
+for (const file of ['nfc-pages/v/NFC1308.html','nfc-pages/v/NFC273.html','nfc-pages/v/NFC926.html']) {
+  const html=fs.readFileSync(file,'utf8');
+  const scripts=[...html.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/gi)].map(m=>m[1]).filter(Boolean);
+  scripts.forEach((code)=>new Function(code));
+  console.log('ok', file, scripts.length);
+}
+NODE
+git diff --check
+```
+
+Remaining design QA:
+
+- Test printed or screen-displayed QR scanning under real phone conditions.
+- If inverted QR is desired aesthetically, keep it as an alternate only after outdoor/low-light scan tests.
