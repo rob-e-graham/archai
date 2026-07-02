@@ -1670,3 +1670,121 @@ Remaining design QA:
 
 - Test printed or screen-displayed QR scanning under real phone conditions.
 - If inverted QR is desired aesthetically, keep it as an alternate only after outdoor/low-light scan tests.
+
+## AUX.IO print legibility correction - 2026-07-01
+
+Rob reviewed the A0/A2/A4, postcard, and sticker exports and identified the key production issue: the print materials were still behaving too much like a screen layout. Text was too small from distance, some labels sat too close to the border, sticker images were undersized, and the access language implied tap/NFC/map even though the printed materials are QR-led.
+
+Changes applied:
+
+- Reframed print copy as QR-first: `SCAN QR TO TALK TO THIS IMAGE`.
+- Removed small `tap / NFC / map / spatial trigger` print labels from poster callouts.
+- Increased poster title, object-description, metadata, QR-caption, and footer sizes for distance readability.
+- Added larger safe margins so text and QR blocks do not sit against the outer frame.
+- Enlarged the QR block and kept black-on-white QR for reliable scanning, with a tight black inner border and aqua outer rule.
+- Increased image-border breathing room so the aqua rule surrounds the actual rendered artwork without choking the image.
+- Enlarged sticker hero images and sticker QR blocks so the sticker functions as a public access marker rather than a miniature web page.
+- Increased postcard title, description, metadata, and access text while keeping the A6 layout balanced.
+- Regenerated [nfc-pages/v/](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v) from the updated template.
+- Final tuning pass simplified the poster top edge to brand/provenance only, removed the small top-right access label, increased the main CTA again, and moved the registration into the information band so no important print text sits close to the border.
+
+Verification:
+
+```bash
+node nfc-pages/generate-nfc-pages.js
+node - <<'NODE'
+const fs = require('fs');
+const files = ['nfc-pages/v/NFC120.html','nfc-pages/v/NFC273.html','nfc-pages/v/NFC635.html','nfc-pages/v/NFC926.html','nfc-pages/v/NFC1308.html','nfc-pages/v/NFC2163.html','nfc-pages/v/NFC3147.html','nfc-pages/v/index.html'];
+for (const file of files) {
+  const html = fs.readFileSync(file, 'utf8');
+  const scripts = [...html.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/gi)].map(m => m[1]).filter(Boolean);
+  for (const code of scripts) new Function(code);
+  console.log('ok', file, scripts.length);
+}
+NODE
+git diff --check
+```
+
+Next visual QA:
+
+- Refresh an AUX.IO object page before exporting new proofs, because the PNGs are generated client-side from the current HTML.
+- Test one portrait object, one landscape object, and one square/awkward archival object across A0/A4/postcard/sticker.
+- Confirm QR scan reliability from street/poster distance before exploring inverted or stylised QR options.
+
+## AUX.IO print system final tightening - 2026-07-01
+
+Second pass after Rob's close-read of the proof set.
+
+Key corrections:
+
+- Increased poster safe margins again so the top labels, title, QR block, and footer no longer sit close to the page edge.
+- Removed the small top-right `SCAN / TAP / ASK` style language from the poster system. Print assets are now explicitly QR-led.
+- Top brand now reads as a quiet header: `ARCHAI`, `QR VISITOR ACCESS`, and `AUX.IO`.
+- Enlarged poster title, source metadata, description excerpt, QR caption, URL, and footer copy for distance readability.
+- Reduced poster hero height slightly to create a stronger information band below the image without shrinking the image into a label.
+- Increased image-border breathing room so the aqua rule frames the actual rendered image rather than hugging image content or empty black space.
+- Enlarged sticker hero region and tightened sticker typography/QR placement so it behaves like a public access marker.
+- Increased postcard safe margins, title, metadata, description, and QR access copy.
+- Reworded small-format access copy to `SCAN QR TO TALK TO THIS IMAGE`.
+
+Verification:
+
+```bash
+node nfc-pages/generate-nfc-pages.js
+node - <<'NODE'
+const fs = require('fs');
+const files = ['nfc-pages/v/NFC120.html','nfc-pages/v/NFC273.html','nfc-pages/v/NFC631.html','nfc-pages/v/NFC926.html','nfc-pages/v/NFC1308.html','nfc-pages/v/NFC2163.html','nfc-pages/v/NFC3147.html','nfc-pages/v/index.html'];
+for (const file of files) {
+  const html = fs.readFileSync(file, 'utf8');
+  const scripts = [...html.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/gi)].map(m => m[1]).filter(Boolean);
+  for (const code of scripts) new Function(code);
+  console.log('ok', file, scripts.length);
+}
+NODE
+git diff --check
+```
+
+Result:
+
+- 1,402 AUX.IO pages regenerated from the current 19-collection stack.
+- Runtime scripts validated on a mixed sample of Brasiliana, Cleveland, Europeana, Wellcome, public street art, and index pages.
+- Next proof should be exported fresh from the browser because old Downloads PNGs are stale.
+
+## AUX.IO print geometry fix - 2026-07-02
+
+Rob reviewed the next proof set and found three production blockers: postcard source/rights text was colliding, QR codes were visually off-centre in their cards, and the sticker QR could overlap the hero image. The print system now has stricter layout rules rather than fixed-position assumptions.
+
+Changes applied:
+
+- QR modules are now centred inside the QR card even when the QR library renders a slightly smaller module grid than the requested square.
+- Metadata values now fit within their own columns, preventing source and rights text from overlapping.
+- The postcard metadata grid now uses a real gutter between source/rights columns.
+- Sticker QR was reduced and forced below the hero-image frame so it no longer collides with the artwork.
+- Sticker hero/text spacing was rebalanced so the image remains dominant while the title/institution/QR prompt stay readable.
+- Postcard title, metadata, description, and access text were slightly enlarged while retaining safe margins.
+- Print copy remains QR-first: `SCAN QR TO TALK TO THIS IMAGE`.
+- Regenerated 1,402 AUX.IO pages from the current 19-collection stack.
+- Follow-up cleanup after Claude's pass: replaced remaining `SCAN QR TO START THE CONVERSATION` print labels with `SCAN QR TO TALK TO THIS IMAGE`, then regenerated and revalidated the AUX.IO pages.
+
+Verification:
+
+```bash
+node nfc-pages/generate-nfc-pages.js
+node - <<'NODE'
+const fs = require('fs');
+const files = ['nfc-pages/v/NFC120.html','nfc-pages/v/NFC273.html','nfc-pages/v/NFC631.html','nfc-pages/v/NFC926.html','nfc-pages/v/NFC1308.html','nfc-pages/v/NFC2163.html','nfc-pages/v/NFC3147.html','nfc-pages/v/index.html'];
+for (const file of files) {
+  const html = fs.readFileSync(file, 'utf8');
+  const scripts = [...html.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/gi)].map(m => m[1]).filter(Boolean);
+  for (const code of scripts) new Function(code);
+  console.log('ok', file, scripts.length);
+}
+NODE
+git diff --check
+```
+
+Next visual QA:
+
+- Export fresh A0/A4/postcard/sticker PNGs from the browser before judging; older files in Downloads will not reflect these geometry changes.
+- Test one portrait image, one landscape image, one square-ish object, and one long-title object.
+- If a single artwork still feels cramped, tune the format rules rather than manually positioning an individual object.
