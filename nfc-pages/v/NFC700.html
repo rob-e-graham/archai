@@ -1039,6 +1039,29 @@ body::after {
   transition: all 0.12s;
 }
 .v-footer-link:active { border-color: var(--accent2); color: var(--accent2); }
+.v-footer-home {
+  display: inline-block;
+  margin-top: 14px;
+  font-family: var(--mono);
+  font-size: 0.5rem;
+  color: var(--accent2);
+  text-decoration: none;
+  border: 1px solid var(--accent2);
+  padding: 8px 16px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: all 0.12s;
+}
+.v-footer-home:active { background: var(--accent2); color: #000; }
+.v-footer-by {
+  display: block;
+  margin-top: 12px;
+  font-family: var(--mono);
+  font-size: 0.4rem;
+  color: var(--text3);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
 
 /* ── COMMENT ── */
 .v-comment {
@@ -1560,6 +1583,8 @@ body::after {
     All processing local · data sovereignty preserved
   </div>
   <a class="v-footer-link" href="https://www.nga.gov/collection/art-object-page.4911.html" target="_blank">View on Collections Website →</a>
+  <div><a class="v-footer-home" href="https://fineartmedia.tech/archai" target="_blank" rel="noopener">← About ARCHAI · Talk to a Whole Collection</a></div>
+  <div class="v-footer-by">A project by Rob Graham · FAMTEC · rob@fineartmedia.tech</div>
 </div>
 
 <script>
@@ -1751,6 +1776,9 @@ let visitorSpeechListening = false;
 let visitorSpeechStatus = '';
 let visitorVoiceChoice = 'archai-neutral';
 let visitorAutoSpeakNextReply = false;
+let visitorSpeechDraftTranscript = '';
+let visitorSpeechSubmitted = false;
+let visitorSpeechPrimed = false;
 
 const VISITOR_LEGACY_VOICE_PATTERNS = [
   /alex/i, /fred/i, /bruce/i, /ralph/i, /albert/i,
@@ -1918,6 +1946,26 @@ function setVisitorVoicePreference(value) {
   updateVisitorVoiceNote();
 }
 
+function primeVisitorSpeechPlayback() {
+  if (visitorSpeechPrimed || typeof speechSynthesis === 'undefined') return;
+  visitorSpeechPrimed = true;
+  try {
+    if (typeof speechSynthesis.resume === 'function') speechSynthesis.resume();
+    const utterance = new SpeechSynthesisUtterance(' ');
+    utterance.volume = 0;
+    utterance.rate = 1;
+    utterance.pitch = 1;
+    const selectedVoice = resolveVisitorSpeechVoice(getVisitorSpeechLanguageCode());
+    if (selectedVoice) {
+      utterance.voice = selectedVoice;
+      utterance.lang = selectedVoice.lang || getVisitorSpeechLanguageCode();
+    }
+    speechSynthesis.speak(utterance);
+  } catch {
+    // Some browsers reject silent priming; normal read-back still remains available.
+  }
+}
+
 function getVisitorVoiceIndicatorState(message = '') {
   const text = String(message || visitorSpeechStatus || '').toLowerCase();
   if (visitorSpeechListening || text.includes('listening')) return 'live';
@@ -1981,6 +2029,8 @@ function ensureVisitorSpeechRecognition() {
 
   recognition.onstart = () => {
     visitorSpeechListening = true;
+    visitorSpeechSubmitted = false;
+    visitorSpeechDraftTranscript = '';
     updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
   };
 
@@ -1990,10 +2040,12 @@ function ensureVisitorSpeechRecognition() {
       .join(' ')
       .trim();
     if (!transcript) return;
+    visitorSpeechDraftTranscript = transcript;
     const input = document.getElementById('chatInput');
     if (input) input.value = transcript;
     const finalResult = Array.from(event.results || []).some(result => result.isFinal);
-    if (finalResult) {
+    if (finalResult && !visitorSpeechSubmitted) {
+      visitorSpeechSubmitted = true;
       visitorAutoSpeakNextReply = true;
       visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
       updateVisitorSpeechUI();
@@ -2013,6 +2065,15 @@ function ensureVisitorSpeechRecognition() {
 
   recognition.onend = () => {
     visitorSpeechListening = false;
+    if (visitorSpeechDraftTranscript && !visitorSpeechSubmitted) {
+      visitorSpeechSubmitted = true;
+      visitorAutoSpeakNextReply = true;
+      const transcript = visitorSpeechDraftTranscript;
+      visitorSpeechStatus = 'Question captured. Sending to ARCHAI…';
+      updateVisitorSpeechUI();
+      askObject(transcript);
+      return;
+    }
     updateVisitorSpeechUI(visitorSpeechStatus || 'Voice question complete.');
   };
 
@@ -2028,7 +2089,10 @@ function startVisitorVoiceQuestion() {
   }
   recognition.lang = getVisitorSpeechLanguageCode();
   visitorSpeechListening = true;
+  visitorSpeechSubmitted = false;
+  visitorSpeechDraftTranscript = '';
   visitorSpeechStatus = 'Starting microphone…';
+  primeVisitorSpeechPlayback();
   updateVisitorSpeechUI();
   try {
     recognition.start();
@@ -2294,6 +2358,35 @@ function _wrapText(ctx, text, maxW) {
   return lines;
 }
 
+function _fitTextWithEllipsis(ctx, text, maxW) {
+  let value = String(text || '').replace(/\s+/g, ' ').trim();
+  if (!value || ctx.measureText(value).width <= maxW) return value;
+  const suffix = '...';
+  while (value.length > 1 && ctx.measureText(value + suffix).width > maxW) {
+    value = value.slice(0, -1);
+  }
+  // Trim back to a word boundary so a title never ends mid-word, and drop a
+  // dangling stop-word so it doesn't end on "of the" / "and".
+  let out = value.trimEnd();
+  const lastSpace = out.lastIndexOf(' ');
+  if (lastSpace > 0) out = out.slice(0, lastSpace); // drop the partial trailing word
+  out = out.replace(/[\s,;:.–-]+$/, '').replace(/\s+(the|a|an|of|and|or|to|in|on|with|for|by)$/i, '');
+  return (out || value.trimEnd()) + suffix;
+}
+
+function _drawWrappedTextBlock(ctx, text, x, y, maxW, lineH, maxLines, options = {}) {
+  const lines = _wrapText(ctx, text, maxW);
+  const visible = lines.slice(0, maxLines);
+  if (options.ellipsis !== false && lines.length > maxLines && visible.length) {
+    visible[visible.length - 1] = _fitTextWithEllipsis(ctx, visible[visible.length - 1], maxW);
+  }
+  for (const line of visible) {
+    ctx.fillText(line, x, y);
+    y += lineH;
+  }
+  return y;
+}
+
 function _drawQR(ctx, url, x, y, size, fgColor) {
   if (typeof qrcode === 'undefined') return 0;
   try {
@@ -2374,6 +2467,13 @@ function _drawLabel(ctx, text, x, y, mono, size, color = '#5a5450') {
   ctx.fillText(String(text || '').toUpperCase(), x, y);
 }
 
+function _drawLabelFit(ctx, text, x, y, maxW, mono, size, color = '#5a5450') {
+  ctx.font = `400 ${size}px ${mono}`;
+  ctx.fillStyle = color;
+  ctx.textBaseline = 'top';
+  ctx.fillText(_fitTextWithEllipsis(ctx, String(text || '').toUpperCase(), maxW), x, y);
+}
+
 function _shortPrintText(text, limit = 44) {
   const value = String(text || '').replace(/\s+/g, ' ').trim();
   if (value.length <= limit) return value;
@@ -2404,14 +2504,90 @@ function _drawPrintFrame(ctx, W, H, pad, line) {
   ctx.strokeRect(pad, pad, W - pad * 2, H - pad * 2);
 }
 
-function _drawActualImageBorder(ctx, rect, color, sc = 1) {
-  if (!rect) return;
-  ctx.strokeStyle = color;
-  ctx.lineWidth = Math.max(1, Math.round(2 * sc));
-  ctx.strokeRect(rect.x, rect.y, rect.w, rect.h);
+function _drawTopBrand(ctx, W, pad, innerPad, topY, serif, mono, p, sc) {
+  _drawArchaiWordmark(ctx, pad + innerPad, topY, Math.round(70 * sc), serif, Math.round(8 * sc));
+  _drawLabel(ctx, 'QR VISITOR ACCESS', pad + innerPad, topY + Math.round(66 * sc), mono, Math.round(19 * sc), p.muted);
+  ctx.font = `700 ${Math.round(21 * sc)}px ${mono}`;
+  ctx.fillStyle = p.teal;
+  ctx.textAlign = 'right';
+  ctx.textBaseline = 'top';
+  ctx.fillText('AUX.IO', W - pad - innerPad, topY + Math.round(12 * sc));
+  ctx.textAlign = 'left';
 }
 
-function _drawMetaGrid(ctx, t, x, y, colW, rowH, mono, size, palette) {
+function _drawActualImageBorder(ctx, rect, color, sc = 1) {
+  if (!rect) return;
+  const gap = Math.max(8, Math.round(20 * sc));
+  ctx.strokeStyle = color;
+  ctx.lineWidth = Math.max(1, Math.round(2.5 * sc));
+  ctx.strokeRect(rect.x - gap, rect.y - gap, rect.w + gap * 2, rect.h + gap * 2);
+}
+
+function _setMaxFont(ctx, text, maxW, maxSize, minSize, fontFamily, weight = 300) {
+  let size = maxSize;
+  while (size > minSize) {
+    ctx.font = `${weight} ${size}px ${fontFamily}`;
+    if (_wrapText(ctx, text, maxW).length <= 2) return size;
+    size -= 2;
+  }
+  ctx.font = `${weight} ${minSize}px ${fontFamily}`;
+  return minSize;
+}
+
+function _splitSentences(text) {
+  const t = String(text || '').replace(/\s+/g, ' ').trim();
+  if (!t) return [];
+  const raw = t.match(/[^.!?]+[.!?]+(?=\s|$)|[^.!?]+$/g);
+  if (!raw) return [t];
+  // Merge fragments that end on an initial/abbreviation (W. / c. / St. / Jr.) with
+  // the next, so "Coloured lithograph by W. Fitch, c. 1845." stays one sentence.
+  const out = [];
+  for (const frag of raw.map(s => s.trim()).filter(Boolean)) {
+    const prev = out[out.length - 1];
+    if (prev && /(^|\s)([A-Za-z]|St|Mr|Mrs|Ms|Dr|Jr|Sr|vol|no|pp|fig|ca|c)\.$/.test(prev)) {
+      out[out.length - 1] = prev + ' ' + frag;
+    } else {
+      out.push(frag);
+    }
+  }
+  return out;
+}
+
+function _fitWordsToLines(ctx, text, maxW, maxLines) {
+  const words = String(text || '').split(/\s+/).filter(Boolean);
+  let acc = '';
+  for (const w of words) {
+    const trial = acc ? acc + ' ' + w : w;
+    if (_wrapText(ctx, trial + '…', maxW).length > maxLines) break;
+    acc = trial;
+  }
+  return acc ? acc + '…' : String(text || '');
+}
+
+// Fit as much COMPLETE-SENTENCE text as possible into a maxW x maxLines box,
+// scaling the font within [minSize, maxSize]. Never cuts mid-word.
+function _fitParagraph(ctx, fullText, maxW, maxLines, maxSize, minSize, fontFamily, weight = 300) {
+  const sentences = _splitSentences(fullText);
+  const full = sentences.join(' ');
+  if (!full) return { size: maxSize, text: '', truncated: false };
+  // Largest font at which the FULL text fits the box.
+  for (let size = maxSize; size >= minSize; size -= 2) {
+    ctx.font = `${weight} ${size}px ${fontFamily}`;
+    if (_wrapText(ctx, full, maxW).length <= maxLines) return { size, text: full, truncated: false };
+  }
+  // Doesn't fit even at minSize -> keep the most complete sentences that fit.
+  ctx.font = `${weight} ${minSize}px ${fontFamily}`;
+  let acc = '';
+  for (const s of sentences) {
+    const trial = acc ? acc + ' ' + s : s;
+    if (_wrapText(ctx, trial, maxW).length > maxLines) break;
+    acc = trial;
+  }
+  if (!acc) acc = _fitWordsToLines(ctx, sentences[0] || full, maxW, maxLines);
+  return { size: minSize, text: acc, truncated: acc.length < full.length };
+}
+
+function _drawMetaGrid(ctx, t, x, y, colW, rowH, mono, size, palette, gap = 0) {
   const items = [
     ['SOURCE', t.institution || 'ARCHAI', palette.teal],
     ['RIGHTS', (OBJECT.licence || 'Rights recorded on object page'), palette.gold],
@@ -2420,10 +2596,11 @@ function _drawMetaGrid(ctx, t, x, y, colW, rowH, mono, size, palette) {
   ];
   for (let i = 0; i < items.length; i++) {
     const [label, value, color] = items[i];
-    const cx = x + (i % 2) * colW;
+    const cx = x + (i % 2) * (colW + gap);
     const cy = y + Math.floor(i / 2) * rowH;
+    const safeValueW = Math.max(40, colW - Math.round(size * 1.25));
     _drawLabel(ctx, label, cx, cy, mono, size, palette.muted);
-    _drawLabel(ctx, _shortPrintText(value, 42), cx, cy + size * 1.65, mono, size * 1.15, color);
+    _drawLabelFit(ctx, _shortPrintText(value, 56), cx, cy + size * 1.65, safeValueW, mono, size * 1.15, color);
   }
   return y + rowH * 2;
 }
@@ -2438,8 +2615,15 @@ function _drawTightQRCard(ctx, url, x, y, qrSize, qrPad, palette, mono, serif, s
   ctx.strokeRect(x, y, cardW, cardH);
   ctx.strokeStyle = palette.teal;
   ctx.lineWidth = Math.max(1, Math.round(2 * sc));
-  ctx.strokeRect(x - Math.round(10 * sc), y - Math.round(10 * sc), cardW + Math.round(20 * sc), cardH + Math.round(20 * sc));
-  _drawQR(ctx, url, x + qrPad, y + qrPad, qrSize, palette.qrInk);
+  const gap = Math.round(10 * sc);
+  ctx.strokeRect(x - gap, y - gap, cardW + gap * 2, cardH + gap * 2);
+  const drawnSize = _drawQR(ctx, url, x + qrPad, y + qrPad, qrSize, palette.qrInk);
+  if (drawnSize > 0 && drawnSize < qrSize) {
+    ctx.fillStyle = palette.qrPaper;
+    ctx.fillRect(x + qrPad, y + qrPad, qrSize, qrSize);
+    const offset = Math.floor((qrSize - drawnSize) / 2);
+    _drawQR(ctx, url, x + qrPad + offset, y + qrPad + offset, qrSize, palette.qrInk);
+  }
   return { x, y, w: cardW, h: cardH };
 }
 
@@ -2477,7 +2661,8 @@ async function downloadPoster(sizeKey) {
     const ctx = canvas.getContext('2d');
     if (!ctx) { restoreBtns(); return; }
 
-    const pad = Math.round(72 * sc);
+    const pad = Math.round(150 * sc);
+    const innerPad = Math.round(72 * sc);
     const serif = '"Cormorant Garamond", Georgia, serif';
     const mono = '"DM Mono", "Courier New", monospace';
     const t = _posterText();
@@ -2487,76 +2672,74 @@ async function downloadPoster(sizeKey) {
     const p = _printPalette();
     _drawPrintFrame(ctx, W, H, pad, p.line);
 
-    const topY = Math.round(126 * sc);
-    _drawArchaiWordmark(ctx, pad + Math.round(24 * sc), topY, Math.round(64 * sc), serif, Math.round(8 * sc));
-    _drawLabel(ctx, 'AUX.IO / PUBLIC OBJECT ACCESS', pad + Math.round(28 * sc), topY + Math.round(48 * sc), mono, Math.round(15 * sc), p.muted);
+    const topY = Math.round(128 * sc);
+    _drawTopBrand(ctx, W, pad, innerPad, topY, serif, mono, p, sc);
 
-    _drawLabel(ctx, 'Scan / tap / ask', W - pad - Math.round(440 * sc), topY - Math.round(10 * sc), mono, Math.round(17 * sc), p.muted);
-    ctx.font = `700 ${Math.round(18 * sc)}px ${mono}`;
-    ctx.fillStyle = p.teal;
-    ctx.textAlign = 'right';
-    ctx.textBaseline = 'top';
-    ctx.fillText(t.registration, W - pad - Math.round(24 * sc), topY + Math.round(32 * sc));
-    ctx.textAlign = 'left';
-
-    const imageX = pad + Math.round(24 * sc);
-    const imageY = Math.round(245 * sc);
-    const imageW = W - pad * 2 - Math.round(48 * sc);
-    const imageH = Math.round(H * 0.57);
+    const imageX = pad + innerPad;
+    const imageY = Math.round(306 * sc);
+    const imageW = W - pad * 2 - innerPad * 2;
+    const imageH = Math.round(H * 0.535);
     ctx.fillStyle = p.imageBg;
     ctx.fillRect(imageX, imageY, imageW, imageH);
     const imageRect = _drawImageContain(ctx, hero, imageX + Math.round(18 * sc), imageY + Math.round(18 * sc), imageW - Math.round(36 * sc), imageH - Math.round(36 * sc), p.imageBg);
     _drawActualImageBorder(ctx, imageRect, p.teal, sc);
 
-    const infoTop = imageY + imageH + Math.round(62 * sc);
-    const qrSize = Math.round(340 * sc);
-    const qrPad = Math.round(18 * sc);
+    const infoTop = imageY + imageH + Math.round(102 * sc);
+    const qrSize = Math.round(390 * sc);
+    const qrPad = Math.round(16 * sc);
     const qrCardW = qrSize + qrPad * 2;
-    const qrX = W - pad - qrCardW - Math.round(42 * sc);
-    const qrY = infoTop + Math.round(86 * sc);
-    const copyW = qrX - pad - Math.round(105 * sc);
+    const copyX = pad + innerPad;
+    const qrX = W - pad - innerPad - qrCardW;
+    const qrY = infoTop + Math.round(138 * sc);
+    const copyW = qrX - copyX - Math.round(150 * sc);
 
     ctx.strokeStyle = p.line;
     ctx.lineWidth = Math.max(1, Math.round(2 * sc));
     ctx.beginPath(); ctx.moveTo(imageX, imageY + imageH + Math.round(28 * sc)); ctx.lineTo(imageX + imageW, imageY + imageH + Math.round(28 * sc)); ctx.stroke();
 
-    _drawLabel(ctx, 'SCAN TO ASK THIS OBJECT', pad + Math.round(24 * sc), infoTop - Math.round(26 * sc), mono, Math.round(22 * sc), p.teal);
-    _drawLabel(ctx, 'QR · NFC · MAP · SPATIAL TRIGGER', W - pad - Math.round(690 * sc), infoTop - Math.round(26 * sc), mono, Math.round(16 * sc), p.muted);
+    _drawLabel(ctx, 'SCAN QR TO TALK TO THIS IMAGE', copyX, infoTop - Math.round(50 * sc), mono, Math.round(34 * sc), p.teal);
+    ctx.font = `700 ${Math.round(21 * sc)}px ${mono}`;
+    ctx.fillStyle = p.teal;
+    ctx.textAlign = 'right';
+    ctx.textBaseline = 'top';
+    ctx.fillText(_fitTextWithEllipsis(ctx, t.registration, Math.round(430 * sc)), imageX + imageW, infoTop - Math.round(46 * sc));
+    ctx.textAlign = 'left';
 
     ctx.textBaseline = 'top';
-    ctx.font = `300 ${Math.round(82 * sc)}px ${serif}`;
     ctx.fillStyle = p.text;
-    let curY = infoTop;
-    for (const line of _wrapText(ctx, t.title, copyW).slice(0, 4)) {
-      ctx.fillText(line, pad, curY);
-      curY += Math.round(88 * sc);
-    }
+    const titleSize = _setMaxFont(ctx, t.title, copyW, Math.round(124 * sc), Math.round(82 * sc), serif, 300);
+    let curY = _drawWrappedTextBlock(ctx, t.title, copyX, infoTop + Math.round(12 * sc), copyW, Math.round(titleSize * 1.08), 2);
 
-    curY += Math.round(28 * sc);
-    curY = _drawMetaGrid(ctx, t, pad, curY, Math.round(520 * sc), Math.round(70 * sc), mono, Math.round(15 * sc), p);
+    curY += Math.round(48 * sc);
+    curY = _drawMetaGrid(ctx, t, copyX, curY, Math.round(590 * sc), Math.round(92 * sc), mono, Math.round(21 * sc), p);
 
-    const descY = curY + Math.round(26 * sc);
+    const descY = curY + Math.round(42 * sc);
     ctx.strokeStyle = p.line;
-    ctx.beginPath(); ctx.moveTo(pad, descY - Math.round(22 * sc)); ctx.lineTo(pad + copyW, descY - Math.round(22 * sc)); ctx.stroke();
-    ctx.font = `300 ${Math.round(30 * sc)}px ${serif}`;
+    ctx.beginPath(); ctx.moveTo(copyX, descY - Math.round(28 * sc)); ctx.lineTo(copyX + copyW, descY - Math.round(28 * sc)); ctx.stroke();
+    // Keep the description BIG so it reads at walking pace: hold a large minimum
+    // font, show a teaser of complete sentences, and if it is trimmed turn the
+    // cut-off into an invitation to scan.
+    const descBottom = H - Math.round(176 * sc);
+    const descMinFont = Math.round(46 * sc);
+    const descMaxLines = Math.max(2, Math.min(5, Math.floor((descBottom - descY) / Math.round(descMinFont * 1.3))));
+    const descFit = _fitParagraph(ctx, t.description, copyW, descMaxLines, Math.round(58 * sc), descMinFont, serif, 300);
+    ctx.font = `300 ${descFit.size}px ${serif}`;
     ctx.fillStyle = p.body;
-    const excerpt = t.description.substring(0, 285) + (t.description.length > 285 ? '...' : '');
-    let descLineY = descY;
-    for (const line of _wrapText(ctx, excerpt, copyW).slice(0, 5)) {
-      ctx.fillText(line, pad, descLineY);
-      descLineY += Math.round(38 * sc);
+    const descEndY = _drawWrappedTextBlock(ctx, descFit.text, copyX, descY, copyW, Math.round(descFit.size * 1.3), descMaxLines, { ellipsis: false });
+    if (descFit.truncated) {
+      _drawLabel(ctx, '→ SCAN THE QR TO KEEP READING + TALK TO THIS OBJECT', copyX, descEndY + Math.round(22 * sc), mono, Math.round(26 * sc), p.teal);
     }
 
     _drawTightQRCard(ctx, window.location.href, qrX, qrY, qrSize, qrPad, p, mono, serif, sc);
-    _drawLabel(ctx, 'Scan to ask', qrX, qrY + qrSize + qrPad * 2 + Math.round(30 * sc), mono, Math.round(16 * sc), p.teal);
-    ctx.font = `300 ${Math.round(37 * sc)}px ${serif}`;
+    _drawLabel(ctx, 'SCAN QR TO TALK TO THIS IMAGE', qrX, qrY + qrSize + qrPad * 2 + Math.round(42 * sc), mono, Math.round(23 * sc), p.teal);
+    ctx.font = `300 ${Math.round(42 * sc)}px ${serif}`;
     ctx.fillStyle = p.text;
-    ctx.fillText('fineartmedia.tech/aux', qrX, qrY + qrSize + qrPad * 2 + Math.round(64 * sc));
-    _drawLabel(ctx, 'Read · ask · listen · share', qrX, qrY + qrSize + qrPad * 2 + Math.round(118 * sc), mono, Math.round(13 * sc), p.muted);
+    ctx.fillText('fineartmedia.tech/aux', qrX, qrY + qrSize + qrPad * 2 + Math.round(84 * sc));
+    _drawLabel(ctx, 'READ · ASK · LISTEN · SHARE', qrX, qrY + qrSize + qrPad * 2 + Math.round(152 * sc), mono, Math.round(18 * sc), p.muted);
 
-    const footerY = H - Math.round(120 * sc);
-    _drawLabel(ctx, 'ARCHAI · AUX.IO · RIGHTS-AWARE VISITOR ACCESS · OPEN GLAM DEMO', pad + Math.round(24 * sc), footerY, mono, Math.round(13 * sc), p.muted);
-    _drawLabel(ctx, new Date().getFullYear(), W - pad - Math.round(165 * sc), footerY, mono, Math.round(13 * sc), p.muted);
+    const footerY = H - Math.round(116 * sc);
+    _drawLabel(ctx, 'ARCHAI · AUX.IO · RIGHTS-AWARE QR VISITOR ACCESS · OPEN GLAM DEMO', copyX, footerY, mono, Math.round(17 * sc), p.muted);
+    _drawLabel(ctx, new Date().getFullYear(), W - pad - innerPad - Math.round(120 * sc), footerY, mono, Math.round(16 * sc), p.muted);
     ctx.textAlign = 'left';
 
     canvas.toBlob(blob => {
@@ -2589,7 +2772,8 @@ const SMALL_FORMAT_SIZES = {
 // ── STICKER layout — street-ready object access marker ──
 async function _drawStickerLayout(ctx, W, H) {
   const sc = W / 1181;
-  const pad = Math.round(52 * sc);
+  const pad = Math.round(58 * sc);
+  const innerPad = Math.round(32 * sc);
   const serif = '"Cormorant Garamond", Georgia, serif';
   const mono = '"DM Mono", "Courier New", monospace';
   const t = _posterText();
@@ -2599,41 +2783,47 @@ async function _drawStickerLayout(ctx, W, H) {
   const p = _printPalette();
   _drawPrintFrame(ctx, W, H, pad, p.line);
 
-  const imageX = pad + Math.round(28 * sc);
-  const imageY = pad + Math.round(70 * sc);
-  const imageW = W - pad * 2 - Math.round(56 * sc);
-  const imageH = Math.round(505 * sc);
+  _drawArchaiWordmark(ctx, pad + innerPad, Math.round(64 * sc), Math.round(42 * sc), serif, Math.round(5 * sc));
+  ctx.font = `700 ${Math.round(17 * sc)}px ${mono}`;
+  ctx.fillStyle = p.teal;
+  ctx.textAlign = 'right';
+  ctx.textBaseline = 'top';
+  ctx.fillText('AUX.IO', W - pad - innerPad, Math.round(74 * sc));
+  ctx.textAlign = 'left';
+
+  const imageX = pad + innerPad;
+  const imageY = Math.round(122 * sc);
+  const imageW = W - pad * 2 - innerPad * 2;
+  const imageH = Math.round(650 * sc);
   const imageRect = _drawImageContain(ctx, hero, imageX, imageY, imageW, imageH, p.imageBg);
   _drawActualImageBorder(ctx, imageRect, p.teal, sc);
 
-  _drawArchaiWordmark(ctx, pad + Math.round(30 * sc), Math.round(92 * sc), Math.round(35 * sc), serif, Math.round(5 * sc));
-  _drawLabel(ctx, 'AUX.IO', W - pad - Math.round(210 * sc), Math.round(75 * sc), mono, Math.round(15 * sc), p.teal);
-
-  let curY = imageY + imageH + Math.round(48 * sc);
+  let curY = imageY + imageH + Math.round(58 * sc);
   ctx.textBaseline = 'top';
-  ctx.font = `300 ${Math.round(50 * sc)}px ${serif}`;
   ctx.fillStyle = p.text;
-  for (const ln of _wrapText(ctx, t.title, W - pad * 2 - Math.round(110 * sc)).slice(0, 2)) {
-    ctx.fillText(ln, pad + Math.round(30 * sc), curY);
-    curY += Math.round(58 * sc);
-  }
-  _drawLabel(ctx, t.institution, pad + Math.round(30 * sc), curY + Math.round(8 * sc), mono, Math.round(14 * sc), p.teal);
-  _drawLabel(ctx, 'SCAN TO ASK THIS OBJECT', pad + Math.round(30 * sc), curY + Math.round(42 * sc), mono, Math.round(15 * sc), p.muted);
-
-  const qrSize = Math.round(240 * sc);
-  const qrPad = Math.round(12 * sc);
-  const qrX = W - pad - qrSize - qrPad * 2 - Math.round(28 * sc);
-  const qrY = H - pad - qrSize - qrPad * 2 - Math.round(34 * sc);
+  const textX = pad + innerPad;
+  const qrSize = Math.round(216 * sc);
+  const qrPad = Math.round(10 * sc);
+  const qrCard = qrSize + qrPad * 2;
+  const qrX = W - pad - innerPad - qrCard;
+  const minQrY = imageY + imageH + Math.round(82 * sc);
+  const qrY = Math.max(minQrY, H - pad - innerPad - qrCard);
+  const textW = qrX - textX - Math.round(62 * sc);
+  const stickerTitleSize = _setMaxFont(ctx, t.title, textW, Math.round(64 * sc), Math.round(42 * sc), serif, 300);
+  curY = _drawWrappedTextBlock(ctx, t.title, textX, curY, textW, Math.round(stickerTitleSize * 1.05), 2);
+  _drawLabelFit(ctx, t.institution, textX, curY + Math.round(18 * sc), textW, mono, Math.round(17 * sc), p.teal);
+  _drawLabel(ctx, 'SCAN QR TO TALK TO THIS IMAGE', textX, curY + Math.round(66 * sc), mono, Math.round(17 * sc), p.muted);
   _drawTightQRCard(ctx, window.location.href, qrX, qrY, qrSize, qrPad, p, mono, serif, sc);
 
-  _drawLabel(ctx, 'ARCHAI · AUX.IO', pad + Math.round(30 * sc), H - pad - Math.round(70 * sc), mono, Math.round(13 * sc), p.text);
-  _drawLabel(ctx, 'QR · NFC · MAP', pad + Math.round(30 * sc), H - pad - Math.round(42 * sc), mono, Math.round(11 * sc), p.muted);
+  _drawLabel(ctx, 'ARCHAI · AUX.IO', textX, H - pad - Math.round(62 * sc), mono, Math.round(14 * sc), p.text);
+  _drawLabel(ctx, 'QR VISITOR ACCESS', textX, H - pad - Math.round(34 * sc), mono, Math.round(12 * sc), p.muted);
 }
 
 // ── POSTCARD layout — A6 landscape, image left / metadata right ──
 async function _drawPostcardLayout(ctx, W, H) {
   const sc = W / 1748;
-  const pad = Math.round(54 * sc);
+  const pad = Math.round(78 * sc);
+  const innerPad = Math.round(42 * sc);
   const serif = '"Cormorant Garamond", Georgia, serif';
   const mono = '"DM Mono", "Courier New", monospace';
   const t = _posterText();
@@ -2643,56 +2833,61 @@ async function _drawPostcardLayout(ctx, W, H) {
   const p = _printPalette();
   _drawPrintFrame(ctx, W, H, pad, p.line);
 
-  const imageW = Math.round(W * 0.48);
-  const imageH = H - pad * 2 - Math.round(160 * sc);
-  const imageX = pad + Math.round(24 * sc);
-  const imageY = Math.round(128 * sc);
+  const imageW = Math.round(W * 0.46);
+  const imageH = H - pad * 2 - Math.round(96 * sc);
+  const imageX = pad + innerPad;
+  const imageY = pad + Math.round(74 * sc);
   const imageRect = _drawImageContain(ctx, hero, imageX, imageY, imageW, imageH, p.imageBg);
   _drawActualImageBorder(ctx, imageRect, p.teal, sc);
 
-  const qrSize = Math.round(195 * sc);
-  const qrPad = Math.round(10 * sc);
-  const qrX = imageX;
-  const qrY = H - pad - qrSize - qrPad * 2 - Math.round(34 * sc);
-  _drawTightQRCard(ctx, window.location.href, qrX, qrY, qrSize, qrPad, p, mono, serif, sc);
-  _drawLabel(ctx, 'SCAN TO ASK', qrX + qrSize + qrPad * 2 + Math.round(34 * sc), qrY + Math.round(8 * sc), mono, Math.round(13 * sc), p.teal);
-  ctx.font = `300 ${Math.round(31 * sc)}px ${serif}`;
-  ctx.fillStyle = p.text;
-  ctx.fillText('fineartmedia.tech/aux', qrX + qrSize + qrPad * 2 + Math.round(34 * sc), qrY + Math.round(45 * sc));
-  _drawLabel(ctx, 'QR · NFC · MAP', qrX + qrSize + qrPad * 2 + Math.round(34 * sc), qrY + Math.round(92 * sc), mono, Math.round(10 * sc), p.muted);
-
-  const rx = imageX + imageW + Math.round(66 * sc);
-  const rw = W - rx - pad - Math.round(28 * sc);
+  const rx = imageX + imageW + Math.round(86 * sc);
+  const rw = W - rx - pad - innerPad;
   let curY = imageY;
   ctx.textBaseline = 'top';
 
-  _drawLabel(ctx, 'AUX.IO', rx, curY, mono, Math.round(15 * sc), p.teal);
-  curY += Math.round(48 * sc);
+  _drawLabel(ctx, 'AUX.IO', rx, curY, mono, Math.round(19 * sc), p.teal);
+  curY += Math.round(58 * sc);
 
-  ctx.font = `300 ${Math.round(54 * sc)}px ${serif}`;
   ctx.fillStyle = p.text;
-  for (const ln of _wrapText(ctx, t.title, rw).slice(0, 3)) {
-    ctx.fillText(ln, rx, curY);
-    curY += Math.round(58 * sc);
-  }
+  const postcardTitleSize = _setMaxFont(ctx, t.title, rw, Math.round(70 * sc), Math.round(48 * sc), serif, 300);
+  curY = _drawWrappedTextBlock(ctx, t.title, rx, curY, rw, Math.round(postcardTitleSize * 1.05), 2);
 
-  curY += Math.round(18 * sc);
-  curY = _drawMetaGrid(ctx, t, rx, curY, Math.round(300 * sc), Math.round(52 * sc), mono, Math.round(10 * sc), p);
-  curY += Math.round(20 * sc);
-
-  ctx.strokeStyle = p.line;
-  ctx.beginPath(); ctx.moveTo(rx, curY); ctx.lineTo(W - pad - Math.round(28 * sc), curY); ctx.stroke();
+  curY += Math.round(24 * sc);
+  const metaGap = Math.round(72 * sc);
+  const metaColW = Math.floor((rw - metaGap) / 2);
+  curY = _drawMetaGrid(ctx, t, rx, curY, metaColW, Math.round(74 * sc), mono, Math.round(14 * sc), p, metaGap);
   curY += Math.round(24 * sc);
 
-  ctx.font = `300 ${Math.round(25 * sc)}px ${serif}`;
-  ctx.fillStyle = p.body;
-  const desc = t.description.substring(0, 210) + (t.description.length > 210 ? '...' : '');
-  for (const ln of _wrapText(ctx, desc, rw).slice(0, 4)) {
-    ctx.fillText(ln, rx, curY);
-    curY += Math.round(34 * sc);
-  }
+  ctx.strokeStyle = p.line;
+  ctx.beginPath(); ctx.moveTo(rx, curY); ctx.lineTo(W - pad - innerPad, curY); ctx.stroke();
+  curY += Math.round(24 * sc);
 
-  _drawLabel(ctx, 'ARCHAI · AUX.IO · RIGHTS-AWARE VISITOR ACCESS', rx, H - pad - Math.round(24 * sc), mono, Math.round(10 * sc), p.muted);
+  const qrSize = Math.round(194 * sc);
+  const qrPad = Math.round(10 * sc);
+  const qrX = rx;
+  const qrY = H - pad - qrSize - qrPad * 2 - Math.round(70 * sc);
+
+  // A postcard is read in-hand, so favour the FULL text: use all the vertical
+  // space down to the QR block, dropping to a smaller (still print-legible)
+  // font before trimming. Trims stay on sentence boundaries.
+  const pcMinFont = Math.round(24 * sc);
+  const pcMaxLines = Math.max(3, Math.floor((qrY - curY - Math.round(24 * sc)) / Math.round(pcMinFont * 1.3)));
+  const pcFit = _fitParagraph(ctx, t.description, rw, pcMaxLines, Math.round(40 * sc), pcMinFont, serif, 300);
+  ctx.font = `300 ${pcFit.size}px ${serif}`;
+  ctx.fillStyle = p.body;
+  const pcEndY = _drawWrappedTextBlock(ctx, pcFit.text, rx, curY, rw, Math.round(pcFit.size * 1.3), pcMaxLines, { ellipsis: false });
+  if (pcFit.truncated) {
+    _drawLabel(ctx, '→ SCAN TO KEEP READING', rx, pcEndY + Math.round(12 * sc), mono, Math.round(14 * sc), p.teal);
+  }
+  _drawTightQRCard(ctx, window.location.href, qrX, qrY, qrSize, qrPad, p, mono, serif, sc);
+  const accessX = qrX + qrSize + qrPad * 2 + Math.round(34 * sc);
+  _drawLabel(ctx, 'SCAN QR TO TALK TO THIS IMAGE', accessX, qrY + Math.round(10 * sc), mono, Math.round(15 * sc), p.teal);
+  ctx.font = `300 ${Math.round(32 * sc)}px ${serif}`;
+  ctx.fillStyle = p.text;
+  ctx.fillText(_fitTextWithEllipsis(ctx, 'fineartmedia.tech/aux', W - pad - innerPad - accessX), accessX, qrY + Math.round(48 * sc));
+  _drawLabel(ctx, 'READ · ASK · LISTEN', accessX, qrY + Math.round(108 * sc), mono, Math.round(13 * sc), p.muted);
+
+  _drawLabel(ctx, 'ARCHAI · AUX.IO · RIGHTS-AWARE QR VISITOR ACCESS', rx, H - pad - Math.round(30 * sc), mono, Math.round(12 * sc), p.muted);
 }
 
 // ── DOWNLOAD ORCHESTRATOR for small formats ──
