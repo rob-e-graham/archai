@@ -131,6 +131,12 @@ export async function conversationalSearch(userMessage, history = []) {
       const desc = (p.description || p.ai || '').substring(0, 300);
       const score = result.score || 0;
       const commentCount = p._comment_count || 0;
+      const imageAllowed = p.media_available !== false
+        && p.media_placeholder !== true
+        && p.media_public_display_allowed !== false;
+      const image = imageAllowed
+        ? (p.image_url || p.primaryImageSmall || p.media_thumbnail || p.media_medium || p.media_large || '')
+        : '';
 
       objectContext += `\n---\nTitle: ${title}\nInstitution: ${institution}\nRegistration: ${reg}\n`;
       if (date) objectContext += `Date: ${date}\n`;
@@ -147,7 +153,7 @@ export async function conversationalSearch(userMessage, history = []) {
         registration: reg,
         collection: col,
         score,
-        image: p.image_url || p.primaryImageSmall || p.media_thumbnail || p.media_medium || '',
+        image,
         date,
         maker,
         type,
@@ -160,8 +166,13 @@ export async function conversationalSearch(userMessage, history = []) {
         description: p.description || p.ai || '',
         source_url: p.source_url || '',
         media_medium: p.media_medium || '',
+        media_large: p.media_large || '',
         media_thumbnail: p.media_thumbnail || '',
         image_url: p.image_url || p.primaryImageSmall || '',
+        media_available: p.media_available,
+        media_placeholder: p.media_placeholder,
+        media_placeholder_reason: p.media_placeholder_reason || '',
+        media_public_display_allowed: p.media_public_display_allowed,
         // Rights fields so the detail view shows the legal status when opened from chat
         licence: p.licence || '',
         media_rights_title: p.media_rights_title || '',
