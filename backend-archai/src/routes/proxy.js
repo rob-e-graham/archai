@@ -278,6 +278,19 @@ proxyRouter.get('/ollama/health', async (_req, res) => {
   }
 });
 
+// ── Qdrant collection info (points_count etc. for allowlisted cols) ──
+const infoSchema = z.object({ collection: z.enum(ALLOWED_COLLECTIONS) });
+proxyRouter.post('/qdrant/info', async (req, res) => {
+  try {
+    const input = infoSchema.parse(req.body);
+    const resp = await fetch(`${QDRANT_URL}/collections/${input.collection}`);
+    const data = await resp.json();
+    res.json(data);
+  } catch (e) {
+    res.status(400).json({ ok: false, error: e.message });
+  }
+});
+
 // ── Qdrant health check ──────────────────────────────────────────
 proxyRouter.get('/qdrant/health', async (_req, res) => {
   try {

@@ -1,6 +1,44 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import { mockObjects, mockNfcTags, mockUsers } from '../data/mockObjects.js';
 import { thesaurusTerms } from '../data/mockThesaurus.js';
 import { famtecInstitutions, famtecPosts, famtecThreads, famtecMessages, famtecEnquiries, famtecUploads } from '../data/mockFamtec.js';
+
+// Durable workbench state: staff AUX.IO assignments, institution draft objects
+// and the audit trail survive backend restarts (same pattern as media manifests).
+const WORKBENCH_FILE = process.env.AUX_WORKBENCH_FILE || './data/runtime/aux-workbench.json';
+
+function loadWorkbench() {
+  try {
+    const raw = JSON.parse(fs.readFileSync(WORKBENCH_FILE, 'utf8'));
+    return {
+      objects: Array.isArray(raw.objects) ? raw.objects : [],
+      nfcTags: Array.isArray(raw.nfcTags) ? raw.nfcTags : [],
+      auditLog: Array.isArray(raw.auditLog) ? raw.auditLog : [],
+    };
+  } catch {
+    return { objects: [], nfcTags: [], auditLog: [] };
+  }
+}
+
+let persistTimer = null;
+function persistWorkbench() {
+  if (persistTimer) return;
+  persistTimer = setTimeout(() => {
+    persistTimer = null;
+    try {
+      fs.mkdirSync(path.dirname(WORKBENCH_FILE), { recursive: true });
+      fs.writeFileSync(WORKBENCH_FILE, JSON.stringify({
+        savedAt: new Date().toISOString(),
+        objects: runtime.objects.filter((o) => o.persisted),
+        nfcTags: runtime.nfcTags.filter((t) => t.persisted),
+        auditLog: runtime.auditLog.slice(0, 200),
+      }, null, 2));
+    } catch (e) {
+      console.error('aux-workbench persist failed:', e.message);
+    }
+  }, 250);
+}
 
 const runtime = {
   objects: structuredClone(mockObjects),
@@ -18,6 +56,20 @@ const runtime = {
   vectorSyncBatches: [],
 };
 
+// Merge persisted staff work over the mock baseline at boot.
+{
+  const saved = loadWorkbench();
+  for (const o of saved.objects) {
+    const i = runtime.objects.findIndex((x) => x.id === o.id);
+    if (i === -1) runtime.objects.unshift(o); else runtime.objects[i] = o;
+  }
+  for (const t of saved.nfcTags) {
+    const i = runtime.nfcTags.findIndex((x) => x.tagId === t.tagId);
+    if (i === -1) runtime.nfcTags.unshift(t); else runtime.nfcTags[i] = t;
+  }
+  if (saved.auditLog.length) runtime.auditLog = saved.auditLog;
+}
+
 export const repo = {
   state: runtime,
   listObjects(query = '') {
@@ -30,18 +82,21 @@ export const repo = {
   },
   saveObject(record) {
     const idx = runtime.objects.findIndex((o) => o.id === record.id);
-    const next = { ...record, updatedAt: new Date().toISOString() };
+    const next = { ...record, persisted: true, updatedAt: new Date().toISOString() };
     if (idx === -1) {
       runtime.objects.unshift(next);
+      persistWorkbench();
       return next;
     }
     runtime.objects[idx] = { ...runtime.objects[idx], ...next };
+    persistWorkbench();
     return runtime.objects[idx];
   },
   updateObject(id, patch) {
     const idx = runtime.objects.findIndex((o) => o.id === id);
     if (idx === -1) return null;
-    runtime.objects[idx] = { ...runtime.objects[idx], ...patch, updatedAt: new Date().toISOString() };
+    runtime.objects[idx] = { ...runtime.objects[idx], ...patch, persisted: true, updatedAt: new Date().toISOString() };
+    persistWorkbench();
     return runtime.objects[idx];
   },
   listNfcTags() {
@@ -49,12 +104,14 @@ export const repo = {
   },
   upsertNfcTag(record) {
     const idx = runtime.nfcTags.findIndex((t) => t.tagId === record.tagId);
-    const next = { ...record, updatedAt: new Date().toISOString() };
+    const next = { ...record, persisted: true, updatedAt: new Date().toISOString() };
     if (idx === -1) {
       runtime.nfcTags.unshift(next);
+      persistWorkbench();
       return next;
     }
     runtime.nfcTags[idx] = { ...runtime.nfcTags[idx], ...next };
+    persistWorkbench();
     return runtime.nfcTags[idx];
   },
   saveUpload(record) {
@@ -107,7 +164,7 @@ export const repo = {
   },
   listFamtecUploads() { return runtime.famtecUploads; },
   saveFamtecUpload(row) { runtime.famtecUploads.unshift(row); return row; },
-  audit(entry) { runtime.auditLog.unshift({ id: crypto.randomUUID(), at: new Date().toISOString(), ...entry }); },
+  audit(entry) { runtime.auditLog.unshift({ id: crypto.randomUUID(), at: new Date().toISOString(), ...entry }); persistWorkbench(); },
   getAuditLog() { return runtime.auditLog; },
   saveSyncBatch(batch) { runtime.vectorSyncBatches.unshift(batch); },
   listSyncBatches() { return runtime.vectorSyncBatches; },

@@ -15,6 +15,8 @@ export function buildNfcPageModel(tag) {
   }
 
   const objectRecord = repo.getObject(tag.objectId);
+  const media = Array.isArray(objectRecord?.media) ? objectRecord.media : [];
+  const hero = media.find((m) => m.kind === 'image' && (m.thumbUrl || m.url));
   return {
     tagId: tag.tagId,
     title: objectRecord?.title || 'Unknown object',
@@ -22,6 +24,11 @@ export function buildNfcPageModel(tag) {
     year: objectRecord?.year,
     location: tag.location,
     story: objectRecord?.aiInterpretation || objectRecord?.description || 'No curatorial story published yet.',
+    heroImage: hero ? (hero.thumbUrl || hero.url) : null,
+    institution: objectRecord?.source?.institution || null,
+    rights: objectRecord?.source?.rights || null,
+    accession: objectRecord?.source?.accessionNumber || null,
+    verifiedFacts: Array.isArray(objectRecord?.verifiedFacts) ? objectRecord.verifiedFacts : [],
     publishedMedia: listPublishedMedia({ objectId: tag.objectId, status: 'published' }),
     chips: [
       'Ask this work a question',
