@@ -52,8 +52,10 @@ the Keytec pattern: keys are stored once in the host keychain and injected into 
 environment only for the duration of a harvest run:
 
 ```bash
-famtec.js set <profile> YOURSOURCE_API_KEY          # store once, in the keychain
-famtec.js run <profile> -- node scripts/generic-harvester.js --config <cfg>.json
+famtec add <sourceid>                       # store once — becomes SOURCEID_API_KEY
+famtec profile create <sourceid>
+famtec profile attach <sourceid> <sourceid>
+famtec run <sourceid> -- node scripts/generic-harvester.js --config <cfg>.json
 ```
 
 The Connect Collection page generates these commands for you when your API needs a
