@@ -646,7 +646,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
     </div>
   </div>
   <div>
-    <div class="header-meta"><b id="clockDisplay">—</b><br><span>Build v11.6.5 · 19 connected collections · rights-aware media · AUX.IO setup bench</span></div>
+    <div class="header-meta"><b id="clockDisplay">—</b><br><span>Build v11.6.6 · 19 connected collections · rights-aware media · AUX.IO setup bench</span></div>
     <div class="header-links">
       <a class="header-link" href="http://localhost:11434" target="_blank">Ollama LLM</a>
       <a class="header-link" href="http://localhost:8055/admin" target="_blank">Directus CMS</a>
@@ -784,7 +784,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
           <div>Objects loaded: <span id="sb-mv-count">0</span></div>
         </div>
         <button class="pipe-btn" onclick="loadMVObjects()">↻ Reload All Collections</button>
-        <button class="pipe-btn" style="margin-top:4px" onclick="runHarvesters()">▶ Run Harvesters</button>
+        <button class="pipe-btn" style="margin-top:4px" onclick="runHarvesters(this)">▶ Run Harvesters</button>
       </div>
       <div class="sb-section">
         <div class="sb-title">Cultural Safety</div>
@@ -1728,7 +1728,9 @@ function getOdVoiceIndicatorState(message = '') {
     text.includes('blocked') ||
     text.includes('failed') ||
     text.includes('error') ||
-    text.includes('not support')
+    text.includes('not support') ||
+    text.includes('not expose') ||
+    text.includes('no speech detected')
   ) return 'error';
   return '';
 }
@@ -1791,6 +1793,8 @@ function ensureOdSpeechRecognition() {
       window._odSpeechStatus = 'Question captured. Sending to ARCHAI…';
       updateOdSpeechUI();
       odChat();
+    } else if (transcript) {
+      updateOdSpeechUI('Listening… ' + transcript);
     }
   };
 
@@ -1799,7 +1803,9 @@ function ensureOdSpeechRecognition() {
     window._odSpeechListening = false;
     updateOdSpeechUI(code === 'not-allowed'
       ? 'Microphone access was blocked in the browser.'
-      : `Speech demo error: ${code}.`);
+      : code === 'no-speech'
+        ? 'No speech detected — press Start Voice Question to try again.'
+        : `Speech demo error: ${code}.`);
   };
 
   recognition.onend = () => {
@@ -1823,8 +1829,10 @@ function odStartVoiceQuestion() {
   try {
     recognition.start();
   } catch (err) {
-    window._odSpeechListening = false;
-    updateOdSpeechUI('Voice capture is already running.');
+    // start() only throws when capture is already running — keep the
+    // listening state truthful so Stop stays enabled.
+    window._odSpeechListening = true;
+    updateOdSpeechUI('Voice capture is already running — speak now, or press Stop Voice.');
   }
 }
 
@@ -1957,7 +1965,8 @@ function getCollectionVoiceIndicatorState(message = '') {
     text.includes('blocked') ||
     text.includes('failed') ||
     text.includes('error') ||
-    text.includes('not expose')
+    text.includes('not expose') ||
+    text.includes('no speech detected')
   ) return 'error';
   return '';
 }
@@ -2028,7 +2037,9 @@ function ensureCollectionSpeechRecognition() {
     window._collectionSpeechListening = false;
     updateCollectionVoiceUI(code === 'not-allowed'
       ? 'Microphone access was blocked in the browser.'
-      : `Collection voice error: ${code}.`);
+      : code === 'no-speech'
+        ? 'No speech detected — press Voice Query to try again.'
+        : `Collection voice error: ${code}.`);
   };
 
   recognition.onend = () => {
@@ -2052,8 +2063,10 @@ function collectionStartVoiceQuery() {
   try {
     recognition.start();
   } catch {
-    window._collectionSpeechListening = false;
-    updateCollectionVoiceUI('Voice capture is already running.');
+    // start() only throws when capture is already running — keep the
+    // listening state truthful so Stop stays enabled.
+    window._collectionSpeechListening = true;
+    updateCollectionVoiceUI('Voice capture is already running — speak now, or press Stop.');
   }
 }
 
@@ -2169,7 +2182,7 @@ window.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  // Load MV objects from Qdrant
+  // Load collection objects from Qdrant (all connected collections)
   loadMVObjects();
 
   // FAMTEC init
@@ -2676,18 +2689,18 @@ function renderSemanticResults(query, results, labelText) {
     return `<div class="result-card" onclick="openObj('${objectKey}')">
       <div class="thumb"><div class="thumb-live"></div>${
         image
-          ? `<img src="${image}" alt="${escQ(getDisplayTitle(payload))}" loading="lazy" onerror="this.outerHTML='<div style=\\'font-size:0.42rem;opacity:0.2;text-align:center\\'>▣<br>${escQ(displayRegistration)}</div>'">`
-          : `<div style="font-size:1rem;opacity:0.15;margin-bottom:3px">▣</div><div style="font-size:0.44rem">${escQ(displayRegistration)}</div>`
+          ? `<img src="${image}" alt="${escHTML(getDisplayTitle(payload))}" loading="lazy" onerror="this.outerHTML='<div style=\\'font-size:0.42rem;opacity:0.2;text-align:center\\'>▣<br>${escQ(displayRegistration)}</div>'">`
+          : `<div style="font-size:1rem;opacity:0.15;margin-bottom:3px">▣</div><div style="font-size:0.44rem">${escHTML(displayRegistration)}</div>`
       }</div>
       <div>
-        <div class="r-title">${getDisplayTitle(payload)}</div>
-        <div class="r-meta">${metaParts.join(' · ')}</div>
-        <div class="r-summary">${summary}</div>
-        ${matchLine ? `<div class="r-summary" style="margin-top:6px;font-style:normal;color:var(--text3)">Matched on: ${escQ(cues.join(' · '))}</div>` : ''}
+        <div class="r-title">${escHTML(getDisplayTitle(payload))}</div>
+        <div class="r-meta">${escHTML(metaParts.join(' · '))}</div>
+        <div class="r-summary">${escHTML(summary)}</div>
+        ${matchLine ? `<div class="r-summary" style="margin-top:6px;font-style:normal;color:var(--text3)">Matched on: ${escHTML(cues.join(' · '))}</div>` : ''}
         <div class="tag-row">
           <span class="tag" style="border-color:${collection.border};color:${collection.colour}">${collection.short}</span>
           <span class="tag" style="border-color:${rights.color};color:${rights.color}">${rights.status}</span>
-          ${payload.discipline ? '<span class="tag">' + escQ(payload.discipline) + '</span>' : ''}
+          ${payload.discipline ? '<span class="tag">' + escHTML(payload.discipline) + '</span>' : ''}
         </div>
       </div>
       <div>
@@ -3190,10 +3203,12 @@ function emergencyStopAll() {
   }
 }
 
-function runHarvesters() {
-  const btn = event.target;
-  btn.textContent = '⏳ Running…';
-  btn.style.opacity = '0.6';
+function runHarvesters(btn) {
+  btn = btn || document.querySelector('.pipe-btn');
+  if (btn) {
+    btn.textContent = '⏳ Running…';
+    btn.style.opacity = '0.6';
+  }
   const counts = Object.fromEntries(COLLECTIONS.map(col => [col, 0]));
   Promise.all(
     Object.keys(counts).map(col =>
@@ -3203,8 +3218,10 @@ function runHarvesters() {
         .catch(() => {})
     )
   ).then(() => {
-    btn.textContent = '▶ Run Harvesters';
-    btn.style.opacity = '1';
+    if (btn) {
+      btn.textContent = '▶ Run Harvesters';
+      btn.style.opacity = '1';
+    }
     const total = Object.values(counts).reduce((a, b) => a + b, 0);
     const log = document.querySelector('.event-log');
     if (log) {
@@ -3301,11 +3318,11 @@ function saveNFC(code) {
   .then(r => r.json())
   .then(d => {
     if (!d.ok) throw new Error(d.error || 'Save failed');
-    const btn = document.querySelector('.btn.primary');
+    const btn = document.querySelector('#nfcEditor .btn.primary');
     if (btn) { btn.textContent = '✓ Saved to backend'; setTimeout(() => { btn.textContent = 'Save Changes'; }, 2200); }
   })
   .catch(() => {
-    const btn = document.querySelector('.btn.primary');
+    const btn = document.querySelector('#nfcEditor .btn.primary');
     if (btn) { btn.textContent = '✓ Saved (local)'; setTimeout(() => { btn.textContent = 'Save Changes'; }, 2000); }
   });
 }
@@ -3377,10 +3394,10 @@ function thumbHTML(o) {
   const p = o._mv;
   const image = p ? pickSearchImage(p) : '';
   if (image) {
-    return `<img src="${image}" alt="${escQ(o.title)}" loading="lazy"
-      onerror="this.outerHTML='<div style=\\'font-size:0.42rem;opacity:0.2;text-align:center\\'>▣<br>${escQ(o.dams)}</div>'">`; 
+    return `<img src="${image}" alt="${escHTML(o.title)}" loading="lazy"
+      onerror="this.outerHTML='<div style=\\'font-size:0.42rem;opacity:0.2;text-align:center\\'>▣<br>${escQ(o.dams)}</div>'">`;
   }
-  return `<div style="font-size:1rem;opacity:0.15;margin-bottom:3px">▣</div><div style="font-size:0.44rem">${o.dams}</div>`;
+  return `<div style="font-size:1rem;opacity:0.15;margin-bottom:3px">▣</div><div style="font-size:0.44rem">${escHTML(o.dams)}</div>`;
 }
 
 function renderResultCards() {
@@ -3403,14 +3420,14 @@ function renderResultCards() {
     return `<div class="result-card" onclick="openObj('${id}')">
       <div class="thumb"><div class="thumb-live"></div>${thumbHTML(o)}</div>
       <div>
-        <div class="r-title">${escQ(getDisplayTitle(p, o.title))}</div>
-        <div class="r-meta">${escQ([p.discipline || o.type, p.category || '', getDisplayRegistration(p, o.dams)].filter(Boolean).join(' · '))}</div>
-        <div class="r-summary">${escQ((o.ai || '').substring(0, 120))}${(o.ai || '').length > 120 ? '…' : ''}</div>
+        <div class="r-title">${escHTML(getDisplayTitle(p, o.title))}</div>
+        <div class="r-meta">${escHTML([p.discipline || o.type, p.category || '', getDisplayRegistration(p, o.dams)].filter(Boolean).join(' · '))}</div>
+        <div class="r-summary">${escHTML((o.ai || '').substring(0, 120))}${(o.ai || '').length > 120 ? '…' : ''}</div>
         <div class="tag-row">
           <span class="tag" style="border-color:${label.border};color:${label.colour}">${label.short}</span>
           <span class="tag" style="border-color:${rights.color};color:${rights.color}">${rights.status}</span>
-          ${p.discipline ? '<span class="tag">' + escQ(p.discipline) + '</span>' : ''}
-          <span class="tag">${escQ((o.location || '').substring(0, 24))}</span>
+          ${p.discipline ? '<span class="tag">' + escHTML(p.discipline) + '</span>' : ''}
+          <span class="tag">${escHTML((o.location || '').substring(0, 24))}</span>
           ${nfcAssigned(id) ? '<span class="tag nfc-tag">AUX.IO</span>' : ''}
         </div>
       </div>
@@ -3475,22 +3492,12 @@ function doConverse() {
     if (data.objects && data.objects.length > 0) {
       html += '<div class="convo-objects">';
       for (const obj of data.objects) {
-        const objKey = (obj.collection || 'archai_pilot') + '_c_' + (obj.registration || Math.random().toString(36).slice(2,8));
-        // Register object for detail view if not already known
-        if (!OBJECTS[objKey]) {
-          OBJECTS[objKey] = {
-            title: obj.title, year: obj.date || '', type: obj.type || '',
-            id: obj.registration, dams: obj.registration, location: '',
-            status: 'exhibited', nodeLinked: false, ai: '', _source: obj.collection,
-            chat: { default: 'I am ' + obj.title + '.' }
-          };
-        }
-        const objPayload = { ...obj, _source_collection: obj.collection, source_institution: obj.institution, media_medium: obj.image };
-        const objImage = pickSearchImage(objPayload);
+        const objKey = ensureConvoObject(obj);
+        const objImage = pickSearchImage(OBJECTS[objKey]._mv || {});
         html += `<div class="convo-obj-card" onclick="openObj('${objKey}')">`;
         if (objImage) html += `<img src="${objImage}" loading="lazy" onerror="this.style.display='none'">`;
-        html += `<div class="coc-title">${obj.title}</div>`;
-        html += `<div class="coc-meta">${obj.institution} · ${(obj.score*100).toFixed(0)}%</div>`;
+        html += `<div class="coc-title">${escHTML(obj.title)}</div>`;
+        html += `<div class="coc-meta">${escHTML(obj.institution || '')} · ${(obj.score*100).toFixed(0)}%</div>`;
         html += `</div>`;
       }
       html += '</div>';
@@ -3513,23 +3520,50 @@ function doConverse() {
   });
 }
 
+// Register a conversational-search citation as a browsable object with a
+// stable key, so every card rendering (thread + results area) opens the same
+// record, and the detail view has payload metadata + image to show.
+function ensureConvoObject(obj) {
+  const collection = obj.collection || 'archai_pilot';
+  const idPart = obj.registration || normalizeSearchText(obj.title || '').replace(/\s+/g, '-') || 'untitled';
+  const objKey = collection + '_c_' + idPart;
+  if (!OBJECTS[objKey]) {
+    const payload = {
+      ...obj,
+      _source_collection: collection,
+      source_institution: obj.institution,
+      registration_number: obj.registration || '',
+      date_range: obj.date || '',
+      object_type: obj.type || '',
+      media_medium: obj.image
+    };
+    OBJECTS[objKey] = {
+      title: obj.title, year: obj.date || '', type: obj.type || '',
+      id: obj.registration, dams: obj.registration, location: '',
+      status: 'exhibited', nodeLinked: false, ai: obj.description || '',
+      _mv: payload, _source: collection,
+      chat: { default: 'I am ' + (obj.title || 'an object') + '.' }
+    };
+  }
+  return objKey;
+}
+
 function renderConvoResults(objects) {
   const container = document.getElementById('resultsContainer');
   container.innerHTML = objects.map(obj => {
     const label = COLLECTION_LABELS[obj.collection] || COLLECTION_LABELS.archai_pilot;
     const rights = getObjectRightsInfo(obj);
-    const objKey = (obj.collection || 'archai_pilot') + '_c_' + (obj.registration || Math.random().toString(36).slice(2,8));
-    const objPayload = { ...obj, _source_collection: obj.collection, source_institution: obj.institution, media_medium: obj.image };
-    const objImage = pickSearchImage(objPayload);
+    const objKey = ensureConvoObject(obj);
+    const objImage = pickSearchImage(OBJECTS[objKey]._mv || {});
     const thumbInner = objImage
       ? `<img src="${objImage}" style="width:100%;height:100%;object-fit:cover" loading="lazy" onerror="this.style.display='none'">`
       : `<div style="font-size:1rem;opacity:0.15;margin-bottom:3px">▣</div>`;
     return `<div class="result-card" onclick="openObj('${objKey}')">
       <div class="thumb"><div class="thumb-live"></div>${thumbInner}</div>
       <div>
-        <div class="r-title">${obj.title}</div>
-        <div class="r-meta">${obj.type || ''} · ${obj.maker || ''} · ${obj.registration || ''}</div>
-        <div class="r-summary">${obj.date || ''}</div>
+        <div class="r-title">${escHTML(obj.title)}</div>
+        <div class="r-meta">${escHTML([obj.type, obj.maker, obj.registration].filter(Boolean).join(' · '))}</div>
+        <div class="r-summary">${escHTML(obj.date || '')}</div>
         <div class="tag-row">
           <span class="tag" style="border-color:${label.border};color:${label.colour}">${label.short}</span>
           ${rights.detail !== 'Source rights not yet specified' ? `<span class="tag" style="border-color:${rights.color};color:${rights.color}">${rights.status}</span>` : ''}
@@ -3763,8 +3797,8 @@ function odRenderProjectPanel() {
   const list = count ? project.objects.map(item => `
     <div class="od-project-item">
       <div>
-        <div class="od-project-item-title">${escQ(item.title)}</div>
-        <div class="od-project-item-meta">${escQ(item.institution)}${item.registration ? ' · ' + escQ(item.registration) : ''}${item.rights ? ' · ' + escQ(item.rights) : ''}</div>
+        <div class="od-project-item-title">${escHTML(item.title)}</div>
+        <div class="od-project-item-meta">${escHTML(item.institution)}${item.registration ? ' · ' + escHTML(item.registration) : ''}${item.rights ? ' · ' + escHTML(item.rights) : ''}</div>
       </div>
       <button class="btn" onclick="odRemoveProjectObject('${escQ(item.canonical_id)}')">Remove</button>
     </div>
@@ -3773,7 +3807,7 @@ function odRenderProjectPanel() {
   panel.innerHTML = `
     <div class="od-project-head">
       <div>
-        <div class="od-project-title">${escQ(project.title)}</div>
+        <div class="od-project-title">${escHTML(project.title)}</div>
         <div class="od-project-note">A lightweight staff workspace for building object lists, exhibition shortlists, research sets, or collection-review batches. Saved locally in this browser for now; Directus-backed project persistence is the next production step.</div>
       </div>
       <div class="od-project-actions">
@@ -3837,11 +3871,11 @@ function openObjectDetail(objKey) {
   const imgSrc = pickSearchImage(p) || null;
   const imgCol = document.getElementById('od-image-col');
   if (imgSrc) {
-    imgCol.innerHTML = `<img src="${imgSrc}" alt="${escQ(displayTitle)}" loading="lazy"
+    imgCol.innerHTML = `<img src="${imgSrc}" alt="${escHTML(displayTitle)}" loading="lazy"
       onerror="this.outerHTML='<div class=\\'od-image-placeholder\\'><div style=\\'font-size:2rem;opacity:0.08\\'>▣</div><div style=\\'font-family:var(--mono);font-size:0.55rem;color:var(--text3)\\'>Image unavailable</div></div>'"
       style="width:100%;height:100%;object-fit:contain;min-height:280px;">`;
   } else {
-    imgCol.innerHTML = `<div class="od-image-placeholder"><div style="font-size:2.5rem;opacity:0.06">▣</div><div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);text-align:center">No image<br>${escQ(getDisplayRegistration(p, o.dams || '—'))}</div></div>`;
+    imgCol.innerHTML = `<div class="od-image-placeholder"><div style="font-size:2.5rem;opacity:0.06">▣</div><div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);text-align:center">No image<br>${escHTML(getDisplayRegistration(p, o.dams || '—'))}</div></div>`;
   }
 
   // Title + sub
@@ -3859,14 +3893,14 @@ function openObjectDetail(objKey) {
     ['Canonical ID', p.canonical_id || o.id || '—'],
   ];
   document.getElementById('od-meta-grid').innerHTML = keyMeta.map(([k, v]) =>
-    `<div class="od-meta-item"><div class="od-meta-key">${k}</div><div class="od-meta-val">${v}</div></div>`
+    `<div class="od-meta-item"><div class="od-meta-key">${k}</div><div class="od-meta-val">${escHTML(v)}</div></div>`
   ).join('');
 
   // Source links
   const linksEl = document.getElementById('od-source-links');
   linksEl.innerHTML = '';
   if (p.source_url) {
-    linksEl.innerHTML += `<a href="${p.source_url}" target="_blank" class="btn" style="font-size:0.55rem">View on ${escQ(getInstitutionName(o))} →</a>`;
+    linksEl.innerHTML += `<a href="${escHTML(p.source_url)}" target="_blank" class="btn" style="font-size:0.55rem">View on ${escHTML(getInstitutionName(o))} →</a>`;
   }
   const sourceImage = pickSearchImage(p);
   if (sourceImage) {
@@ -3886,7 +3920,7 @@ function openObjectDetail(objKey) {
     `<div id="od-rights-note" style="margin-top:16px;max-width:880px;padding:12px 14px;border:1px solid ${rights.color};background:rgba(255,255,255,0.02);">
       <div style="font-family:var(--mono);font-size:0.56rem;letter-spacing:1.8px;text-transform:uppercase;color:${rights.color};margin-bottom:6px;">Legal Status</div>
       <div style="font-size:0.76rem;color:var(--text2);line-height:1.7;"><strong style="color:var(--text);font-weight:400;">${rights.status}</strong> — ${rights.guidance}</div>
-      <div style="font-family:var(--mono);font-size:0.54rem;color:var(--text3);line-height:1.7;margin-top:6px;">Licence / rights: ${escQ(rights.detail)}</div>
+      <div style="font-family:var(--mono);font-size:0.54rem;color:var(--text3);line-height:1.7;margin-top:6px;">Licence / rights: ${escHTML(rights.detail)}</div>
     </div>`;
 
   // Full metadata — show ALL _mv fields
@@ -3897,7 +3931,7 @@ function openObjectDetail(objKey) {
     fullEl.innerHTML = entries.map(([k, v]) => {
       const val = String(v);
       const isUrl = val.startsWith('http');
-      return `<div class="od-meta-item"><div class="od-meta-key">${k.replace(/_/g, ' ')}</div><div class="od-meta-val">${isUrl ? '<a href="'+val+'" target="_blank" style="color:var(--accent);word-break:break-all">'+val+'</a>' : val}</div></div>`;
+      return `<div class="od-meta-item"><div class="od-meta-key">${escHTML(k.replace(/_/g, ' '))}</div><div class="od-meta-val">${isUrl ? '<a href="'+escHTML(val)+'" target="_blank" style="color:var(--accent);word-break:break-all">'+escHTML(val)+'</a>' : escHTML(val)}</div></div>`;
     }).join('');
   } else {
     fullEl.innerHTML = '<div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3)">No raw metadata available</div>';
@@ -3943,7 +3977,7 @@ function odChat() {
   inEl.value = '';
   inEl.disabled = true;
 
-  msgs.innerHTML += `<div class="chat-msg u">↳ ${escQ(q)}</div>`;
+  msgs.innerHTML += `<div class="chat-msg u">↳ ${escHTML(q)}</div>`;
   const thinkId = 'od-think-' + Date.now();
   msgs.innerHTML += `<div class="chat-msg a thinking" id="${thinkId}">thinking…</div>`;
   msgs.scrollTop = msgs.scrollHeight;
@@ -4098,8 +4132,8 @@ function odLoadRelated(objKey, o) {
       return `<div class="od-rel-card" onclick="openObjectDetail('${relKey}')">
         <div class="od-rel-thumb">${thumb}</div>
         <div class="od-rel-info">
-          <div class="od-rel-title">${p.title || '—'}</div>
-          <div class="od-rel-meta">${label.short} · ${p.discipline || ''} ${p.registration_number ? '· ' + p.registration_number : ''}</div>
+          <div class="od-rel-title">${escHTML(p.title || '—')}</div>
+          <div class="od-rel-meta">${label.short} · ${escHTML(p.discipline || '')} ${p.registration_number ? '· ' + escHTML(p.registration_number) : ''}</div>
           <div class="od-rel-score">Similarity: ${score}</div>
         </div>
       </div>`;
@@ -4122,8 +4156,8 @@ function odLoadRelated(objKey, o) {
         return `<div class="od-rel-card" onclick="openObjectDetail('${k}')">
           <div class="od-rel-thumb">${thumb}</div>
           <div class="od-rel-info">
-            <div class="od-rel-title">${ro.title || '—'}</div>
-            <div class="od-rel-meta">${rp.discipline || ''} ${rp.registration_number ? '· ' + rp.registration_number : ''}</div>
+            <div class="od-rel-title">${escHTML(ro.title || '—')}</div>
+            <div class="od-rel-meta">${escHTML(rp.discipline || '')} ${rp.registration_number ? '· ' + escHTML(rp.registration_number) : ''}</div>
           </div>
         </div>`;
       }).join('');
@@ -4159,12 +4193,12 @@ function renderODComment(c, depth) {
   const replies = (c.replies || []).map(r => renderODComment(r, depth + 1)).join('');
 
   return `<div class="od-comment-item ${flagClass}" style="${hidden ? 'opacity:0.6;' : ''}">
-    <div class="od-comment-text">${hidden ? '⚠ ' : ''}${escQ(c.text)}</div>
+    <div class="od-comment-text">${hidden ? '⚠ ' : ''}${escHTML(c.text)}</div>
     <div class="od-comment-meta">
       <span>${c.author_type || 'visitor'}</span>
       <span>${c.created_at ? new Date(c.created_at).toLocaleDateString() : ''}</span>
       ${c.ai_flag ? `<span class="od-comment-flag ${c.ai_flag}">${c.ai_flag}</span>` : ''}
-      ${c.ai_reason ? `<span style="font-style:italic;">${escQ(c.ai_reason)}</span>` : ''}
+      ${c.ai_reason ? `<span style="font-style:italic;">${escHTML(c.ai_reason)}</span>` : ''}
       <span class="od-comment-actions-inline">
         ${hidden ? `<button class="od-comment-action-btn" onclick="odModerateComment('${c.id}','visible')">Approve</button>` : ''}
         <button class="od-comment-action-btn remove" onclick="odModerateComment('${c.id}','removed')">Remove</button>
@@ -4240,9 +4274,9 @@ function renderNFCList(filter = 'all', search = '') {
     const obj = t.objectId ? OBJECTS[t.objectId] : null;
     return `<div class="nfc-card ${(!t.objectId) ? 'unassigned' : ''} ${activeNFCCode === t.code ? 'active' : ''}" onclick="selectNFC('${t.code}')">
       <div class="nfc-card-header"><div class="nfc-code">${displayAuxCode(t.code)}</div><div class="nfc-status-badge ${t.status}">${t.status}</div></div>
-      <div class="nfc-object-name">${obj ? escQ(obj.title) : 'Empty slot — assign object'}</div>
-      <div class="nfc-object-id">${obj ? escQ(obj.id) : 'Ready for collection object or draft record'}</div>
-      <div class="nfc-location">${escQ(t.location)}</div>
+      <div class="nfc-object-name">${obj ? escHTML(obj.title) : 'Empty slot — assign object'}</div>
+      <div class="nfc-object-id">${obj ? escHTML(obj.id) : 'Ready for collection object or draft record'}</div>
+      <div class="nfc-location">${escHTML(t.location)}</div>
       <div class="nfc-scans">Scans: ${t.scans} · Last: ${t.lastScan}</div>
     </div>`;
   }).join('') || '<div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);padding:10px;">No AUX.IO tags match filter.</div>';
@@ -4277,7 +4311,7 @@ function renderObjectPickerItems(code, query = '') {
     const rights = getObjectRightsInfo(o._mv || {});
     return `<div class="op-item ${tag.objectId === id ? 'selected' : ''}" onclick="assignObject('${tag.code}','${id}')">
       <div class="op-thumb">${thumbSrc ? `<img src="${thumbSrc}" loading="lazy">` : '<div style="font-size:0.42rem;opacity:0.45">NO IMAGE</div>'}</div>
-      <div><div class="op-name">${escQ(o.title)}</div><div class="op-meta">${escQ([(o.type || '').substring(0, 30), o.year, rights.status].filter(Boolean).join(' · '))}</div></div>
+      <div><div class="op-name">${escHTML(o.title)}</div><div class="op-meta">${escHTML([(o.type || '').substring(0, 30), o.year, rights.status].filter(Boolean).join(' · '))}</div></div>
       <div class="op-add">${tag.objectId === id ? '✓ Assigned' : 'Assign'}</div>
     </div>`;
   }).join('') || '<div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);padding:12px;">No loaded objects match this search.</div>';
@@ -4291,7 +4325,7 @@ function renderNFCEditor(tag) {
 
   document.getElementById('nfcEditor').innerHTML = `
     <div class="editor-header">
-      <div><div class="editor-nfc-code">${displayAuxCode(tag.code)}</div><div style="font-family:var(--mono);font-size:0.58rem;color:var(--text3);margin-top:4px">${tag.location}</div></div>
+      <div><div class="editor-nfc-code">${displayAuxCode(tag.code)}</div><div style="font-family:var(--mono);font-size:0.58rem;color:var(--text3);margin-top:4px">${escHTML(tag.location)}</div></div>
       <div class="editor-actions">
         <div class="btn" onclick="exportNFCQR('${tag.code}')">Export QR</div>
         ${tag.status !== 'live' ? `<div class="btn ok" onclick="publishNFC('${tag.code}')">Publish Live</div>` : `<div class="btn warn" onclick="unpublishNFC('${tag.code}')">Unpublish</div>`}
@@ -4306,7 +4340,7 @@ function renderNFCEditor(tag) {
       <div class="aux-field-grid">
         <div class="aux-field full">
           <label for="aux-location-${tag.code}">Gallery / location / physical trigger</label>
-          <input id="aux-location-${tag.code}" class="aux-input" value="${escQ(tag.location)}" oninput="updateAuxLocation('${tag.code}', this.value)" placeholder="Gallery 3 · Case 4 · doorway NFC / QR / kiosk">
+          <input id="aux-location-${tag.code}" class="aux-input" value="${escHTML(tag.location)}" oninput="updateAuxLocation('${tag.code}', this.value)" placeholder="Gallery 3 · Case 4 · doorway NFC / QR / kiosk">
         </div>
       </div>
       <div class="aux-helper">This is the location or access point visitors encounter: NFC tag, QR code, kiosk, room map point, or future spatial/audio trigger.</div>
@@ -4314,8 +4348,8 @@ function renderNFCEditor(tag) {
     <div class="editor-section">
       <div class="editor-section-title"><span>Assigned Collection Object</span>${obj ? `<div class="btn" onclick="clearAssignment('${tag.code}')">Remove</div>` : ''}</div>
       ${obj ? `<div class="assigned-object">
-          <div class="ao-thumb">${obj._mv && pickSearchImage(obj._mv) ? `<img src="${pickSearchImage(obj._mv)}" loading="lazy">` : escQ(obj.dams)}</div>
-        <div><div class="ao-title">${escQ(obj.title)}</div><div class="ao-id">${escQ([obj.id, (obj.type || '').substring(0,30), obj.year].filter(Boolean).join(' · '))}</div></div>
+          <div class="ao-thumb">${obj._mv && pickSearchImage(obj._mv) ? `<img src="${pickSearchImage(obj._mv)}" loading="lazy">` : escHTML(obj.dams)}</div>
+        <div><div class="ao-title">${escHTML(obj.title)}</div><div class="ao-id">${escHTML([obj.id, (obj.type || '').substring(0,30), obj.year].filter(Boolean).join(' · '))}</div></div>
         <div class="ao-remove" onclick="clearAssignment('${tag.code}')">Remove</div>
       </div>` : `<div class="aux-step-note"><strong>Empty AUX.IO slot</strong>Step 1: search or browse below. Step 2: click <b>Assign</b> on an object. Step 3: preview the phone page, then save or publish.</div>`}
       <div style="font-family:var(--mono);font-size:0.56rem;color:var(--text3);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;">Assign from Collection</div>
@@ -4359,10 +4393,10 @@ function renderNFCPreview(tag) {
     <div class="preview-frame">
       <div class="pf-tag"><span>${displayAuxCode(tag.code)}</span><span style="color:${tag.status === 'live' ? 'var(--ok)' : 'var(--text3)'}">${tag.status.toUpperCase()}</span></div>
       ${obj ? `
-        <div class="pf-title">${obj.title}</div>
-        <div class="pf-sub">${obj.type} · ${obj.year}</div>
+        <div class="pf-title">${escHTML(obj.title)}</div>
+        <div class="pf-sub">${escHTML([obj.type, obj.year].filter(Boolean).join(' · '))}</div>
         ${vis.objectImage && imgSrc ? `<div class="pf-img"><img src="${imgSrc}" loading="lazy" onerror="this.parentElement.style.display='none'"></div>` : ''}
-        ${vis.aiInterpretation ? `<div class="pf-story">${(obj.ai || '').substring(0, 160)}${(obj.ai || '').length > 160 ? '…' : ''}</div>` : ''}
+        ${vis.aiInterpretation ? `<div class="pf-story">${escHTML((obj.ai || '').substring(0, 160))}${(obj.ai || '').length > 160 ? '…' : ''}</div>` : ''}
         ${vis.askQuestions ? `
           <div class="pf-ask-label">Ask this object</div>
           <div class="pf-chips">
@@ -4379,7 +4413,7 @@ function renderNFCPreview(tag) {
                 const ro = OBJECTS[id]; const rt = ro._mv && pickSearchImage(ro._mv);
                 return `<div class="pf-rel-item">
                   <div class="pf-rel-thumb">${rt ? `<img src="${rt}" loading="lazy">` : '▣'}</div>
-                  <div class="pf-rel-title">${ro.title.substring(0, 18)}</div>
+                  <div class="pf-rel-title">${escHTML(ro.title.substring(0, 18))}</div>
                 </div>`;
               }).join('')}
             </div>
@@ -4459,8 +4493,11 @@ function createInstitutionObjectForAux(code) {
     year: date,
     dams: institution,
     location: tag.location,
+    status: 'draft',
+    nodeLinked: false,
     ai: description || `${title}. ${type}. ${institution}.`,
-    _mv: payload
+    _mv: payload,
+    chat: { default: `I am ${title}, a draft record from ${institution}.` }
   };
 
   tag.objectId = id;
@@ -4682,10 +4719,10 @@ function lookupVocab() {
     const badge = r.provider ? `<span style="font-family:var(--mono);font-size:0.42rem;padding:1px 4px;border:1px solid var(--border2);color:var(--accent3);margin-left:5px;letter-spacing:0.5px">${r.provider.toUpperCase()}</span>` : '';
     const desc = r.scopeNote ? r.scopeNote.substring(0,120) + (r.scopeNote.length>120?'…':'') : r.path;
     return `<div class="term-result ${idx === 0 ? 'selected' : ''}" onclick="selectVocabTerm('${encodeURIComponent(JSON.stringify(data))}', this)">
-      <div class="tr-term">${r.term}${badge}</div>
-      <div class="tr-source">${[...r.sources].join(', ')} · ${r.type} · ${r.category}</div>
+      <div class="tr-term">${escHTML(r.term)}${badge}</div>
+      <div class="tr-source">${escHTML([...r.sources].join(', '))} · ${escHTML(r.type)} · ${escHTML(r.category)}</div>
       <div class="tr-id">${r.count} object${r.count !== 1 ? 's' : ''}${r.language ? ' · ' + r.language : ''}</div>
-      <div class="tr-desc">${desc}</div>
+      <div class="tr-desc">${escHTML(desc)}</div>
     </div>`;
   }).join('');
 
@@ -4727,8 +4764,8 @@ function selectVocabTermData(term) {
   const providerBadge = provider ? `<span style="display:inline-block;font-family:var(--mono);font-size:0.48rem;padding:2px 6px;border:1px solid var(--border2);color:var(--accent3);margin-left:6px;letter-spacing:1px;text-transform:uppercase">${provider.replace('_',' ')}</span>` : '';
 
   detail.innerHTML = `
-    <div class="td-title">${term.term || term.path}${providerBadge}</div>
-    <div class="td-source">${sources.join(', ')} · ${term.type} · ${term.category}</div>
+    <div class="td-title">${escHTML(term.term || term.path)}${providerBadge}</div>
+    <div class="td-source">${escHTML(sources.join(', '))} · ${escHTML(term.type)} · ${escHTML(term.category)}</div>
     ${language ? `<div style="font-family:var(--mono);font-size:0.48rem;color:var(--text3);margin-top:4px">Language: ${language}</div>` : ''}
     ${externalIds.aat ? `<div style="font-family:var(--mono);font-size:0.48rem;color:var(--text3);margin-top:2px">AAT ID: ${externalIds.aat}</div>` : ''}
     ${uri ? `<div style="margin-top:2px"><a href="${uri}" target="_blank" style="font-family:var(--mono);font-size:0.48rem;color:var(--accent2);text-decoration:none;">URI: ${uri} →</a></div>` : ''}
@@ -4773,8 +4810,8 @@ function renderVisitorList() {
   el.innerHTML = keys.map(k => {
     const o = OBJECTS[k];
     return `<div class="vp-nfc-item ${currentVPage === k ? 'active' : ''}" onclick="switchVPage('${k}',this)">
-      <div class="vp-nfc-name">${o.title}</div>
-      <div class="vp-nfc-id">${o._mv ? o._mv.registration_number || '' : ''} · ${getCollectionLabel(o._source).short}</div>
+      <div class="vp-nfc-name">${escHTML(o.title)}</div>
+      <div class="vp-nfc-id">${escHTML(o._mv ? o._mv.registration_number || '' : '')} · ${getCollectionLabel(o._source).short}</div>
       <div class="vp-badges"><div class="vbadge live">${getCollectionLabel(o._source).short}</div></div>
     </div>`;
   }).join('');
@@ -4798,7 +4835,7 @@ function renderVPage(objId) {
   const thumbSrc = pickSearchImage(p);
   imgEl.innerHTML = thumbSrc ? `<img src="${thumbSrc}" loading="lazy" style="max-height:300px;object-fit:contain">` : 'No image available';
 
-  document.getElementById('vStory').innerHTML = `<strong>${o.title}</strong> — ${(o.ai || '').substring(0, 300)}`;
+  document.getElementById('vStory').innerHTML = `<strong>${escHTML(o.title)}</strong> — ${escHTML((o.ai || '').substring(0, 300))}`;
 
   const chips = ['What are you?', 'Tell me your history', 'How were you used?', 'What are you made of?'];
   document.getElementById('vChips').innerHTML = chips.map(c =>
@@ -4813,7 +4850,7 @@ function renderVPage(objId) {
       const rThumb = ro._mv && pickSearchImage(ro._mv);
       return `<div class="rel-card" onclick="switchVPage('${id}',null)">
         <div class="rel-thumb">${rThumb ? `<img src="${rThumb}" loading="lazy">` : '▣'}</div>
-        <div class="rel-title">${ro.title}</div>
+        <div class="rel-title">${escHTML(ro.title)}</div>
       </div>`;
     }).join('');
 
@@ -4855,7 +4892,7 @@ function vAsk(q) {
   ollamaFetch('/api/chat', JSON.stringify({ model: 'qwen2.5:14b', stream: false, messages: [{ role: 'system', content: sys }, { role: 'user', content: q }] }))
   .then(r => r.json())
   .then(data => {
-    const reply = (data.message && data.message.content) || o.chat.default;
+    const reply = (data.message && data.message.content) || (o.chat && o.chat.default) || ('I am ' + (o.title || 'an object') + '.');
     el.textContent = reply; el.style.color = '';
   })
   .catch(e => {
@@ -4882,7 +4919,7 @@ function loadComments(objectId) {
       if (!comments.length) { list.innerHTML = ''; return; }
       list.innerHTML = comments.slice(0, 10).map(c => `
         <div class="vpc-item vpc-flag-${c.status === 'approved' ? 'safe' : c.status}">
-          <div>${escQ(c.text)}</div>
+          <div>${escHTML(c.text)}</div>
           <div class="vpc-item-meta">${c.author_type} · ${new Date(c.created_at).toLocaleDateString()}</div>
         </div>`).join('');
     })
@@ -4917,6 +4954,18 @@ function submitVisitorComment() {
   })
   .catch(() => { status.textContent = 'Connection error — try again'; })
   .finally(() => { input.disabled = false; });
+}
+
+// escHTML — for interpolating collection text into HTML markup or attributes.
+// escQ — only for strings that land inside a single-quoted JS string in an
+// inline handler (onclick="fn('…')"); its \' escaping shows a literal
+// backslash if used in plain HTML text.
+function escHTML(s) {
+  return String(s ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
 function escQ(s) {

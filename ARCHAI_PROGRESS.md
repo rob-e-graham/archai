@@ -1,9 +1,30 @@
 # ARCHAI Progress Log
 
-Last updated: 2026-06-24
+Last updated: 2026-07-02
 Maintained as an active handoff note so Claude, Codex, and Rob can quickly see where the work is up to if a session ends or tokens run out.
 
 Primary build planning is now also summarized in [ROADMAP.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ROADMAP.md). Use that for milestone order, and use this file for detailed handoff notes.
+
+## 2026-07-02 v11.6.6 main-app correctness pass: escaping, convo click-through, voice retry states
+
+A focused defect/polish pass over `ARCHAI_v10_8.html`, targeting the roadmap's voice-UX queue item and rendering correctness for international collection metadata.
+
+Implemented:
+
+- Added `escHTML()` and stopped using `escQ()` for plain HTML text. `escQ` escapes apostrophes as `\'` for inline-handler strings, so titles like `Traveller's cup` were rendering with stray backslashes on AUX.IO cards, the project panel, comments, and the object picker. `escQ` now only remains in `onclick="fn('…')"` string contexts.
+- Escaped previously-raw collection text in semantic result cards, conversational result cards, related-object cards, the AUX.IO phone preview, the visitor panel, object-detail key/full metadata, and vocabulary results. Source records containing `&`, `<i>`, or stray angle brackets no longer break card layout.
+- Conversational search citations now register through one `ensureConvoObject()` helper with a stable key, so clicking a cited object card in the results area reliably opens object detail (previously the thread and results area generated different random keys for records without a registration number). Registered convo objects now also carry an `_mv` payload, so object detail shows the image and metadata instead of an empty record.
+- Voice UX polish (roadmap near-term queue item 4): object-detail voice now shows the live interim transcript while listening (matching the collection voice), `no-speech` errors give an explicit retry instruction in both voice panels, the "already running" state keeps the Stop button enabled instead of lying about listening state, and the object-detail status indicator now recognises its own "did not expose speech capture" message as an error state.
+- Fixed a crash path in the visitor panel: `vAsk()` dereferenced `o.chat.default` but institution draft objects were created without `chat`. Drafts now get `chat`/`status` fields and `vAsk` falls back safely.
+- `saveNFC()` save-feedback now targets the AUX.IO editor's own button (`#nfcEditor .btn.primary`) instead of the first primary button in the document.
+- `runHarvesters()` no longer relies on the implicit global `event`; the button passes itself.
+- Build label bumped to `v11.6.6`.
+
+Verification:
+
+- Inline script extracted and passed `node --check`.
+- Served via `python3 -m http.server` and `http://127.0.0.1:8000/ARCHAI_v10_8.html` returned `HTTP 200`, containing `Build v11.6.6`, `ensureConvoObject`, and the new voice retry strings.
+- All remaining `escQ` call sites audited: only inline-handler JS-string contexts remain.
 
 ## 2026-06-30 AUX.IO management working-set clarity + seeded demo objects
 
