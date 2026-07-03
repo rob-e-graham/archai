@@ -2575,25 +2575,37 @@ function _fitWordsToLines(ctx, text, maxW, maxLines) {
 
 // Fit as much COMPLETE-SENTENCE text as possible into a maxW x maxLines box,
 // scaling the font within [minSize, maxSize]. Never cuts mid-word.
-function _fitParagraph(ctx, fullText, maxW, maxLines, maxSize, minSize, fontFamily, weight = 300) {
+// Fit text into a PIXEL-HEIGHT budget, not a line count. The allowed line count
+// is recomputed for every candidate font size from THAT size's line height —
+// otherwise text that "fits N lines" at the minimum font physically overflows
+// the box when drawn larger (the postcard-QR overlap bug).
+function _fitParagraph(ctx, fullText, maxW, maxHeightPx, maxSize, minSize, fontFamily, weight = 300) {
   const sentences = _splitSentences(fullText);
   const full = sentences.join(' ');
-  if (!full) return { size: maxSize, text: '', truncated: false };
-  // Largest font at which the FULL text fits the box.
+  if (!full) return { size: maxSize, text: '', truncated: false, lineH: Math.round(maxSize * 1.3), maxLines: 0 };
+  // Largest font whose FULL text fits the pixel budget.
   for (let size = maxSize; size >= minSize; size -= 2) {
+    const lineH = Math.round(size * 1.3);
+    const allowed = Math.floor(maxHeightPx / lineH);
+    if (allowed < 1) continue;
     ctx.font = `${weight} ${size}px ${fontFamily}`;
-    if (_wrapText(ctx, full, maxW).length <= maxLines) return { size, text: full, truncated: false };
+    if (_wrapText(ctx, full, maxW).length <= allowed) {
+      return { size, text: full, truncated: false, lineH, maxLines: allowed };
+    }
   }
-  // Doesn't fit even at minSize -> keep the most complete sentences that fit.
+  // Doesn't fit even at minSize -> keep the most complete sentences that fit
+  // the budget at the minimum size.
+  const lineH = Math.round(minSize * 1.3);
+  const allowed = Math.max(1, Math.floor(maxHeightPx / lineH));
   ctx.font = `${weight} ${minSize}px ${fontFamily}`;
   let acc = '';
   for (const s of sentences) {
     const trial = acc ? acc + ' ' + s : s;
-    if (_wrapText(ctx, trial, maxW).length > maxLines) break;
+    if (_wrapText(ctx, trial, maxW).length > allowed) break;
     acc = trial;
   }
-  if (!acc) acc = _fitWordsToLines(ctx, sentences[0] || full, maxW, maxLines);
-  return { size: minSize, text: acc, truncated: acc.length < full.length };
+  if (!acc) acc = _fitWordsToLines(ctx, sentences[0] || full, maxW, allowed);
+  return { size: minSize, text: acc, truncated: acc.length < full.length, lineH, maxLines: allowed };
 }
 
 function _drawMetaGrid(ctx, t, x, y, colW, rowH, mono, size, palette, gap = 0) {
@@ -2729,12 +2741,13 @@ async function downloadPoster(sizeKey) {
     // font, show a teaser of complete sentences, and if it is trimmed turn the
     // cut-off into an invitation to scan.
     const descBottom = H - Math.round(176 * sc);
-    const descMinFont = Math.round(46 * sc);
-    const descMaxLines = Math.max(2, Math.min(5, Math.floor((descBottom - descY) / Math.round(descMinFont * 1.3))));
-    const descFit = _fitParagraph(ctx, t.description, copyW, descMaxLines, Math.round(58 * sc), descMinFont, serif, 300);
+    // Pixel budget: room above the footer, minus space reserved for the scan
+    // prompt, capped so the poster stays a teaser rather than an essay.
+    const descBudget = Math.min(descBottom - descY - Math.round(40 * sc), Math.round(5 * 58 * 1.3 * sc));
+    const descFit = _fitParagraph(ctx, t.description, copyW, descBudget, Math.round(58 * sc), Math.round(46 * sc), serif, 300);
     ctx.font = `300 ${descFit.size}px ${serif}`;
     ctx.fillStyle = p.body;
-    const descEndY = _drawWrappedTextBlock(ctx, descFit.text, copyX, descY, copyW, Math.round(descFit.size * 1.3), descMaxLines, { ellipsis: false });
+    const descEndY = _drawWrappedTextBlock(ctx, descFit.text, copyX, descY, copyW, descFit.lineH, descFit.maxLines, { ellipsis: false });
     if (descFit.truncated) {
       _drawLabel(ctx, '→ SCAN THE QR TO KEEP READING + TALK TO THIS OBJECT', copyX, descEndY + Math.round(22 * sc), mono, Math.round(26 * sc), p.teal);
     }
@@ -2879,14 +2892,16 @@ async function _drawPostcardLayout(ctx, W, H) {
   // A postcard is read in-hand, so favour the FULL text: use all the vertical
   // space down to the QR block, dropping to a smaller (still print-legible)
   // font before trimming. Trims stay on sentence boundaries.
-  const pcMinFont = Math.round(24 * sc);
-  const pcMaxLines = Math.max(3, Math.floor((qrY - curY - Math.round(24 * sc)) / Math.round(pcMinFont * 1.3)));
-  const pcFit = _fitParagraph(ctx, t.description, rw, pcMaxLines, Math.round(40 * sc), pcMinFont, serif, 300);
+  // Pixel budget: the space between the divider and the QR block, with room
+  // reserved for the scan prompt. The QR is a hard floor — text must never
+  // reach it.
+  const pcBudget = Math.max(Math.round(30 * sc), qrY - curY - Math.round(46 * sc));
+  const pcFit = _fitParagraph(ctx, t.description, rw, pcBudget, Math.round(40 * sc), Math.round(24 * sc), serif, 300);
   ctx.font = `300 ${pcFit.size}px ${serif}`;
   ctx.fillStyle = p.body;
-  const pcEndY = _drawWrappedTextBlock(ctx, pcFit.text, rx, curY, rw, Math.round(pcFit.size * 1.3), pcMaxLines, { ellipsis: false });
+  const pcEndY = _drawWrappedTextBlock(ctx, pcFit.text, rx, curY, rw, pcFit.lineH, pcFit.maxLines, { ellipsis: false });
   if (pcFit.truncated) {
-    _drawLabel(ctx, '→ SCAN TO KEEP READING', rx, pcEndY + Math.round(12 * sc), mono, Math.round(14 * sc), p.teal);
+    _drawLabel(ctx, '→ SCAN TO KEEP READING', rx, Math.min(pcEndY + Math.round(12 * sc), qrY - Math.round(26 * sc)), mono, Math.round(14 * sc), p.teal);
   }
   _drawTightQRCard(ctx, window.location.href, qrX, qrY, qrSize, qrPad, p, mono, serif, sc);
   const accessX = qrX + qrSize + qrPad * 2 + Math.round(34 * sc);
