@@ -162,7 +162,94 @@ any time.
 - The public demonstration set is curated and 100% open-licensed by construction;
   your own deployment publishes only what passes your gates.
 
-## 10. Contact
+## 10. What a pilot looks like
+
+A structured pilot is a short, consultative project — not a software install.
+
+| Phase | Weeks | What happens | Who |
+|---|---|---|---|
+| Scope | 1 | Pick the pilot collection subset, agree rights defaults and cultural-safety gates, sign the data agreement | Curator + Rob |
+| Connect | 1–2 | Connect Collection config → dry-run → legal review → live harvest | IT + Rob |
+| Staff acceptance | 2–3 | Curators search their own records, tune voices/lenses, flag sensitive items | Curatorial team |
+| Publish | 3–4 | Curated AUX.IO set assigned + published; QR/poster kit printed for the floor | Interpretation |
+| Evaluate | 4–6 | Staff findability + trust, visitor engagement, curatorial sign-off review | Everyone |
+
+Exit criteria are agreed up front: either the institution continues on its own
+instance, extends the pilot, or stops — with nothing to unwind, because the
+source systems were never modified.
+
+## 11. What it honestly costs
+
+- **Hardware:** one Apple-Silicon workstation-class machine (a few thousand
+  dollars, one-time — a minor exhibition line item, not an enterprise contract).
+- **No recurring platform fees:** no per-query costs, no subscription tiers, no
+  dependency on an external model vendor.
+- **Real costs that don't disappear:** staff time for the legal review and
+  curatorial acceptance; IT time for install and network placement; ongoing
+  light maintenance (backups, occasional regeneration). ARCHAI's design makes
+  these costs *visible* rather than hidden inside a subscription — that
+  transparency is the point.
+- **Skills:** no AI expertise required to operate; comfort with running two or
+  three documented terminal commands for harvests.
+
+## 12. The five questions every institution asks
+
+**"What if it says something wrong?"** Responses are generated only from your
+verified record via a five-layer prevention framework; where the record runs
+out, the object says so. Test it live: ask any AUX.IO object something outside
+its record. Curatorial review workflows cover the residual risk — and an
+auditable "what was this answer grounded in" trail is part of the design.
+
+**"Does this replace curatorial authority?"** No — it amplifies it. Curators
+define the knowledge foundations, the interpretive framings and the response
+boundaries; the system distinguishes accessibility narration, curatorial
+interpretation and performative object voice, and staff control which modes are
+available. The system speaks *from the record*, not from its own opinions.
+
+**"Will our IT department approve it?"** It's a self-hosted, read-only layer:
+standard open-source components (Node.js, Qdrant, Ollama), no cloud accounts, no
+outbound collection data, keys in the OS keychain. It should sit behind your
+network/VPN for staff use; the public layer serves only rights-cleared pages.
+Honest caveat: this is research-grade software without a commercial SLA — the
+pilot structure exists precisely so your team can evaluate that trade-off.
+
+**"How does it handle culturally sensitive material?"** Exclusion is the
+default, enforced before the AI layer ever sees the record. The gates implement
+your decisions — but the decisions about what is restricted and how it is framed
+belong to communities and curators, never to the software (CARE Principles /
+Local Contexts TK Labels).
+
+**"Who maintains it after the research ends?"** Three honest answers: it's
+open-source (you can maintain, fork or commission your instance); your
+deployment is yours — it keeps working without anyone's permission; and the
+architecture is regenerable by design, so nothing about your data is locked to
+this software or any AI model.
+
+## 13. The data agreement (one page, plain language)
+
+Every pilot starts with a short signed note that records:
+- what ARCHAI harvests (named API/export, read-only) and what it never touches;
+- that all data stays on the named institutional/host machine — no cloud;
+- that AI interpretation is a *derived layer*, clearly distinguished from your
+  record, and never written back into your systems;
+- that you can require removal or restriction of any object at any time;
+- per-item rights and cultural-protocol flags travel with the data and are
+  enforced in code;
+- who owns what: your records remain entirely yours; ARCHAI's code is
+  open-source; derived layers are disposable.
+
+## 14. Quick-start checklist
+
+- [ ] Read this guide + the one-page partner brief
+- [ ] Nominate the pilot collection subset (50–300 objects is ideal)
+- [ ] Confirm your API/export access path and rights fields
+- [ ] Sign the data agreement
+- [ ] Host machine ready (or use the FAMTEC-hosted demo instance to start)
+- [ ] Connect → dry-run → legal review → harvest → staff acceptance → publish
+- [ ] Book the evaluation review
+
+## 15. Contact
 
 Rob Graham · rob@fineartmedia.tech · fineartmedia.tech/archai
 Live demo objects: https://archai-api.fineartmedia.tech/aux/index.html
+Talk to an object right now: https://archai-api.fineartmedia.tech/aux/NFC1308.html
