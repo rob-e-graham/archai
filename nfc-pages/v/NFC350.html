@@ -2654,7 +2654,7 @@ async function downloadPoster(sizeKey) {
     ctx.lineWidth = Math.max(1, Math.round(2 * sc));
     ctx.beginPath(); ctx.moveTo(imageX, imageY + imageH + Math.round(28 * sc)); ctx.lineTo(imageX + imageW, imageY + imageH + Math.round(28 * sc)); ctx.stroke();
 
-    _drawLabel(ctx, 'SCAN QR TO TALK TO THIS IMAGE', copyX, infoTop - Math.round(50 * sc), mono, Math.round(34 * sc), p.teal);
+    _drawLabel(ctx, 'SCAN QR TO START THE CONVERSATION', copyX, infoTop - Math.round(50 * sc), mono, Math.round(34 * sc), p.teal);
     ctx.font = `700 ${Math.round(21 * sc)}px ${mono}`;
     ctx.fillStyle = p.teal;
     ctx.textAlign = 'right';
@@ -2688,7 +2688,7 @@ async function downloadPoster(sizeKey) {
     }
 
     _drawTightQRCard(ctx, window.location.href, qrX, qrY, qrSize, qrPad, p, mono, serif, sc);
-    _drawLabel(ctx, 'SCAN QR TO TALK TO THIS IMAGE', qrX, qrY + qrSize + qrPad * 2 + Math.round(42 * sc), mono, Math.round(23 * sc), p.teal);
+    _drawLabel(ctx, 'SCAN QR TO START THE CONVERSATION', qrX, qrY + qrSize + qrPad * 2 + Math.round(42 * sc), mono, Math.round(23 * sc), p.teal);
     ctx.font = `300 ${Math.round(42 * sc)}px ${serif}`;
     ctx.fillStyle = p.text;
     ctx.fillText('fineartmedia.tech/aux', qrX, qrY + qrSize + qrPad * 2 + Math.round(84 * sc));
@@ -2769,7 +2769,7 @@ async function _drawStickerLayout(ctx, W, H) {
   const stickerTitleSize = _setMaxFont(ctx, t.title, textW, Math.round(64 * sc), Math.round(42 * sc), serif, 300);
   curY = _drawWrappedTextBlock(ctx, t.title, textX, curY, textW, Math.round(stickerTitleSize * 1.05), 2);
   _drawLabelFit(ctx, t.institution, textX, curY + Math.round(18 * sc), textW, mono, Math.round(17 * sc), p.teal);
-  _drawLabel(ctx, 'SCAN QR TO TALK TO THIS IMAGE', textX, curY + Math.round(66 * sc), mono, Math.round(17 * sc), p.muted);
+  _drawLabel(ctx, 'SCAN QR TO START THE CONVERSATION', textX, curY + Math.round(66 * sc), mono, Math.round(17 * sc), p.muted);
   _drawTightQRCard(ctx, window.location.href, qrX, qrY, qrSize, qrPad, p, mono, serif, sc);
 
   _drawLabel(ctx, 'ARCHAI · AUX.IO', textX, H - pad - Math.round(62 * sc), mono, Math.round(14 * sc), p.text);
@@ -2838,7 +2838,7 @@ async function _drawPostcardLayout(ctx, W, H) {
   }
   _drawTightQRCard(ctx, window.location.href, qrX, qrY, qrSize, qrPad, p, mono, serif, sc);
   const accessX = qrX + qrSize + qrPad * 2 + Math.round(34 * sc);
-  _drawLabel(ctx, 'SCAN QR TO TALK TO THIS IMAGE', accessX, qrY + Math.round(10 * sc), mono, Math.round(15 * sc), p.teal);
+  _drawLabel(ctx, 'SCAN QR TO START THE CONVERSATION', accessX, qrY + Math.round(10 * sc), mono, Math.round(15 * sc), p.teal);
   ctx.font = `300 ${Math.round(32 * sc)}px ${serif}`;
   ctx.fillStyle = p.text;
   ctx.fillText(_fitTextWithEllipsis(ctx, 'fineartmedia.tech/aux', W - pad - innerPad - accessX), accessX, qrY + Math.round(48 * sc));
