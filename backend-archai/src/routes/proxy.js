@@ -83,7 +83,9 @@ const MAX_PROMPT_LENGTH = 500;
 
 const chatLimiter = rateLimit({ maxPerMinute: 15 });
 const searchLimiter = rateLimit({ maxPerMinute: 30 });
-const scrollLimiter = rateLimit({ maxPerMinute: 20 });
+// A full app boot scrolls all 19 collections plus pagination (~26+ calls), so
+// 20/min silently 429s the tail and whole collections vanish from the UI.
+const scrollLimiter = rateLimit({ maxPerMinute: 90 });
 
 // ── Qdrant scroll (load objects) ──────────────────────────────────
 const scrollSchema = z.object({
