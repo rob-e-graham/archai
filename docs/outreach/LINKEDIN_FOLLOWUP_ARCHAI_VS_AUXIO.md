@@ -73,55 +73,53 @@ ARCHAI is the building. AUX.IO is the doorway.
 
 ---
 
-## Main post
+## Main follow-up post (updated to play off the actual viral post)
 
-The post that took off last week showed the smallest part of this project.
+Last week I asked what would happen if culture could talk back.
 
-The poster on the wall, the QR code, the museum object you can talk to on your
-phone — that's AUX.IO (*ARCHAI User eXperience: data In, data Out*). It's the
-doorway. What most people didn't see is the building behind it.
+I wasn't ready for how many of you wanted an answer.
 
-That building is ARCHAI — sovereign semantic heritage infrastructure, built as
-practice-based PhD research at RMIT School of Design.
+Most of what you saw in that post was AUX.IO — the doorway. The QR code in
+the laneway, the object talking on your phone, the poster on the wall.
 
-Here's what's actually underneath every one of those posters:
+Today I want to show you the building.
 
-🏛️ **20 live collections, 3,147+ records.** The Met, the V&A, the Rijksmuseum,
-the Smithsonian, the Getty, Wellcome Collection, Museums Victoria, Te Papa,
-M+ Hong Kong, municipal street-art data from six cities — searchable together,
-in natural language, across institutional boundaries.
+The building is ARCHAI: sovereign heritage infrastructure, built as
+practice-based PhD research at RMIT School of Design. Here's what's standing
+behind every one of those 1,400+ talking objects:
 
-🔒 **All of it runs locally.** The language model (Ollama), the vector search
-(Qdrant), the embeddings — everything runs on hardware the institution owns.
-No visitor question, no object record, no institutional data ever goes to a
-third-party cloud. Total hardware cost: roughly AUD $10–20k, one-time. No
-subscriptions.
+🏛️ One searchable cultural commons. Collections from The Met, the V&A, the
+Rijksmuseum, the Smithsonian, the Getty, Wellcome, Museums Victoria, Te Papa
+and more — harvested, enriched, and searchable together in natural language,
+across institutional boundaries.
 
-⚖️ **Every object has passed a legal gate.** Rights status (CC0, CC BY, public
-domain, metadata-only) is checked per item at harvest, enforced in code — not
-in a policy document — and printed on every poster and page. Nothing appears
-on a public surface without clearing that gate.
+🔒 Nothing leaves the building. The language model, the vector search, the
+embeddings — all of it runs on hardware the institution owns. No visitor
+question, no object record, no institutional data ever touches a third-party
+cloud. Hardware cost: roughly AUD $10–20k, one-time. No subscriptions.
 
-🧭 **The objects can't make things up.** A five-layer hallucination prevention
-framework keeps every conversation grounded in the object's verified curatorial
-record. Each object knows what it knows — and says so when it doesn't. Curators
-define the boundaries; the AI amplifies their reach, it doesn't replace their
-judgment.
+⚖️ Every object passed a legal gate. Rights status — CC0, CC BY, public
+domain, metadata-only — is checked per item at harvest and enforced in code,
+not in a policy document. The rights line prints on every poster and page.
 
-📄 **It's research.** The paper was accepted to the 6th Summit on New Media Art
-Archiving at ISEA2026 Dubai. The prototype is the argument: cultural knowledge
-can be conversational without institutions surrendering their data, their
-authority, or their infrastructure to someone else's cloud.
+🧭 The objects can't make things up. Five layers of hallucination prevention
+keep every conversation inside the verified curatorial record. Curators define
+the boundaries; the AI extends their reach. It never replaces their judgment.
 
-So when you scan one of those posters in the street, you're not scanning a
-gimmick. You're opening a door into an infrastructure argument: that museums
-and artist-run spaces can own the machine, the model, the data, and the
-conversation.
+Why does this matter?
 
-The poster is the doorway. ARCHAI is the building. And the building speaks.
+Because the real question isn't whether museums will use AI. They will.
 
-#ARCHAIinTheWild #CulturalHeritage #GLAM #SovereignAI #DigitalHeritage
-#Museums #OpenAccess #PhDResearch
+The question is who ends up owning the machine, the model, the data, and the
+conversation. ARCHAI's answer: the institution does. All of it.
+
+The doorway went viral. The building is the argument.
+
+And if you run a museum, gallery, archive or artist-run space and want to
+test that argument on your own collection — my door is open too.
+
+#ARCHAI #GLAM #CulturalHeritage #SovereignAI #LocalAI #Museums #OpenGLAM
+#DigitalHeritage #PracticeBasedResearch #RMIT #ISEA2026 #ARCHAIinTheWild
 
 ---
 
