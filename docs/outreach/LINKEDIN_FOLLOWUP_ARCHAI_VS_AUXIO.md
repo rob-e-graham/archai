@@ -176,3 +176,107 @@ the street — tag it #ARCHAIinTheWild, I want to see where it ended up.
   (3,147+), AUX.IO page count (1,402), hardware cost band.
 - LinkedIn mechanics: post text has no links (link in first comment instead);
   emoji section markers keep the long version scannable on mobile.
+
+---
+
+# Momentum kit — keeping the vibe going
+
+The viral window is roughly 7–10 days. Everything below is paste-ready and
+fact-checked against the repo so replies stay fast, warm, and accurate.
+
+## Ready-to-paste replies for the comment section
+
+Reply to every substantive comment inside the first 48 hours — replies count
+as engagement and keep the post circulating. Adapt freely; the voice rule is
+the one from the Substack style notes: *warm, plain-language, one idea per
+paragraph, never solemn.*
+
+**"Does it hallucinate?" / AI-skeptic comments**
+> Fair question — it's the first thing museums ask. Every object speaks only
+> from its verified curatorial record, behind a five-layer prevention
+> framework (structured metadata, epistemic constraints, real-time validation,
+> curator sign-off, post-launch monitoring). If something isn't in the record,
+> the object says it doesn't know. Honestly, the objects saying "I don't know"
+> is one of my favourite features.
+
+**"What about copyright / whose images are these?"**
+> Every object passed a per-item legal gate at harvest — CC0, CC BY, public
+> domain, or metadata-only — enforced in code, not in a policy document, and
+> the rights line prints on every poster and page. Nothing appears on a public
+> surface without clearing that gate.
+
+**"Which AI model / what's the stack?"**
+> All local: Ollama running qwen2.5:32b for conversation, Qdrant for vector
+> search, nomic-embed-text for embeddings — currently on a single Mac Studio.
+> No cloud inference, no API keys, no subscriptions. Total hardware is roughly
+> AUD $10–20k one-time, sized to the institution.
+
+**"Doesn't this replace curators?"**
+> The opposite — curators define the knowledge foundations, the interpretive
+> frames, and the boundaries the AI operates inside. Visitor contributions
+> only join a record after curatorial review. The AI extends curatorial reach;
+> it never replaces curatorial judgment.
+
+**"Can my museum try this?"**
+> Yes — that's exactly the phase we're in. The method is open source, there's
+> a public GLAM onboarding guide, and a pilot runs on hardware you already
+> control. DM me or email rob@fineartmedia.tech and I'll walk you through
+> what a pilot looks like for your collection.
+
+**"This is just chatbots on objects" / dismissive comments**
+> The chat is the visible 10%. Underneath is the actual argument: 20
+> institutions' open collections made semantically searchable together, all
+> inference on locally-owned hardware, per-item rights enforcement, and
+> community contributions entering the record under curatorial review. The
+> question the project asks is who owns cultural memory infrastructure — the
+> chat is just the doorway in.
+
+## Follow-up post sequence (ride the window, one lane per post)
+
+Each post = one idea. Don't compress two into one; the viral post already
+proved the audience will come back.
+
+1. **Days 2–4 — "The doorway and the building"** (main post above). Converts
+   attention into the sovereignty/infrastructure claim.
+2. **Days 5–7 — "The whole thing runs on this"**: photo of the Mac Studio.
+   One machine, 1,400+ talking objects, five continents, no cloud. Costs less
+   than one year of a typical SaaS collections subscription. (Hardware story
+   = most shareable single fact for GLAM digital teams.)
+3. **Days 8–10 — "#ARCHAIinTheWild open call"**: the A0 street poster show
+   (docs/AUX_IO_A0_STREET_POSTER_SHOW.md is the ready-made shortlist — the
+   écorché, the Scarlet Ibis, Mucha's Clio). Invite street artists, zine
+   makers, educators to take posters into public space and tag them.
+4. **Week 2+ — "An enslaved potter-poet signed his jars"**: single-object
+   storytelling (Dave the Potter, AUX.IO 1100 — or the Moon photograph, 631).
+   One object, its story, its live conversation link. Repeatable format —
+   this can become a weekly series that keeps the account warm indefinitely.
+5. **On the road to ISEA2026 Dubai**: the research-lineage post — memory
+   palaces, method of loci, "the building has already done the remembering."
+   Times naturally with conference milestones.
+
+## Inbound triage (the DMs are the real yield)
+
+- **GLAM institutions** → send the GLAM Onboarding Guide + offer a call;
+  log in docs/outreach/OUTREACH_TRACKER.md.
+- **Universities/researchers** → white paper v2 + ISEA2026 paper.
+- **Press/newsletters** → the one-paragraph version: *"ARCHAI lets museum
+  objects hold grounded conversations with visitors — with all AI running on
+  hardware the institution owns, and every image cleared item-by-item."*
+- **Commercial partners** → capture and park; the pre-seed prep doc
+  (docs/RMIT_BV_PRE_SEED_PREP.md) is the internal reference, not something
+  to send out.
+
+## Vibe rules (what made the first post work — don't break these)
+
+- Lead with the visitor moment, not the architecture. "Standing in a
+  Melbourne laneway talking to a collection item" beats any stack diagram.
+- Questions as hooks ("What if culture could talk back?") — keep opening
+  with one.
+- Short lines. One idea per line. No academic throat-clearing.
+- Always name what it *doesn't* do (no app, no account, no data collected,
+  says "I don't know") — the honesty is the differentiator in an AI-fatigued
+  feed.
+- Never punch at "AI hype" or other projects. The villain is outsourced,
+  uninspectable cultural memory — not people.
+- End with an invitation, not a conclusion. "Let's have a conversation with
+  culture" worked; keep closing with a door held open.
