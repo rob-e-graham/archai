@@ -11,7 +11,28 @@ paper v2). Update the numbers before posting if collections have grown.
 
 ---
 
-## Pinned comment for the viral post (polished)
+## Pinned comment — FINAL, as posted 2026-07-05
+
+A few people have asked about the difference between ARCHAI and AUX.IO, so
+here's a quick explanation.
+
+ARCHAI is the professional platform for museums, galleries and archives. It's
+designed for curators, collections and exhibitions teams, with tools including
+a built-in museum thesaurus, collection harvesting, AI-assisted exhibition and
+interpretation design, metadata enrichment, and locally hosted,
+evidence-grounded AI.
+
+AUX.IO is the public interface. It's what visitors use to have conversations
+with cultural objects by simply scanning a QR code, in their own language,
+with every response grounded in the museum's collection records.
+
+One platform helps museums build, manage and share knowledge.
+
+The other helps communities discover, explore and contribute to it.
+
+---
+
+## Pinned comment — alternative polished version (not used)
 
 A few people have asked about the difference between ARCHAI and AUX.IO — here's
 the short version.
