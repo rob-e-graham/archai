@@ -1,11 +1,54 @@
 # LinkedIn Follow-Up — "AUX.IO is the doorway. ARCHAI is the building."
 
-Drafted 2026-07 as a follow-up to the viral AUX.IO post. The original post travelled
-well but read as if the project *is* the posters / QR conversation pages. This
-follow-up rides that momentum and explains the full ARCHAI stack underneath.
+Drafted 2026-07 after the "What if culture could talk back?" post went viral. The
+original post travelled well but the ARCHAI/AUX.IO distinction didn't land clearly.
+Two deliverables here: (1) a **pinned comment** for the viral post itself, and
+(2) a **follow-up post** to publish separately and convert the attention into the
+full infrastructure story.
 
-All figures below are verified against the repo as of June–July 2026 (README.md,
-white paper v2). Update the numbers before posting if collections have grown.
+All figures verified against the repo as of June–July 2026 (README.md, white
+paper v2). Update the numbers before posting if collections have grown.
+
+---
+
+## Pinned comment for the viral post (polished)
+
+A few people have asked about the difference between ARCHAI and AUX.IO — here's
+the short version.
+
+ARCHAI is the professional platform — the inward-facing side for curators,
+collections and exhibitions teams. It handles collection harvesting (currently
+20 institutions across five continents), controlled-vocabulary tagging with a
+built-in museum thesaurus (AAT, CHIN, LCSH and local terms), metadata
+enrichment, interpretation and exhibition planning workspaces, and locally
+hosted, evidence-grounded AI. Everything runs on hardware the institution owns
+— no collection data goes to the cloud.
+
+AUX.IO is the public interface — the outward-facing side for visitors and
+communities. Scan a QR code or NFC tag and talk with an object in your own
+language, with every response grounded in the museum's verified record. No
+app, no account, no gatekeeper. And with curatorial review, what visitors
+contribute can become part of the object's living record.
+
+One platform helps museums build, manage and share knowledge.
+The other helps communities discover, explore and contribute to it.
+
+ARCHAI is the building. AUX.IO is the doorway.
+
+### Accuracy notes on the pinned comment
+- **"Built-in museum thesaurus"** — accurate: the vocab/thesaurus panel is a
+  functional prototype with AAT, CHIN, LCSH, TGN and local ARCHAI terms
+  (`docs/APP_FUNCTIONAL_AUDIT_2026-06-03.md`, `vocabProviderService.js`).
+- **"AI-assisted exhibition and interpretation design"** (original wording) —
+  slightly ahead of the build: what exists today is a prototype
+  Project List / Selected Objects workspace for shortlists, interpretation
+  drafts and exhibition planning (`ARCHAI_PROGRESS.md`), and README lists
+  persistent project workspaces as an active development area. The polished
+  version above says "interpretation and exhibition planning workspaces",
+  which is defensible. Keep "AI-assisted … design" only if you're comfortable
+  describing the roadmap rather than the current build.
+- LinkedIn comments don't render markdown — the version above is plain text
+  and paste-ready.
 
 ---
 
