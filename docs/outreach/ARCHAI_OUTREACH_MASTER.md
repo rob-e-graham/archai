@@ -1,15 +1,15 @@
-# ARCHAI Send Pack — 6 July 2026
+# ARCHAI OUTREACH MASTER — the one document
 
-Every email below is complete and ready to paste. Work top to bottom.
-After each send: log the date in `OUTREACH_TRACKER.md`, set a follow-up
-reminder for 10–14 days.
+**This is the single working outreach document.** Everything below is
+cut-and-paste ready: recipient, subject, full email body. Older outreach
+docs are superseded by this file; `OUTREACH_TRACKER.md` remains the send log.
 
 **Before the first send:**
 - [ ] Merge the open PR so the public repo shows current licence/provenance wording
 - [ ] Confirm the white paper attachment is the approved public version
 - [ ] Send individually — no CC lists, no bulk
 
-Attachment for all: ARCHAI white paper (PDF).
+# PART 1 — SOURCE INSTITUTIONS + TECHNICAL PARTNERS (ready to send)
 
 ---
 
@@ -468,3 +468,105 @@ rob@fineartmedia.tech · https://fineartmedia.tech
 ## Send log discipline
 
 After each send, update `OUTREACH_TRACKER.md`: status → Sent, date, follow-up date (+10–14 days). Any rights or correction reply outranks partnership talk — action it, log it in the Correction/Takedown Log, and reply confirming the fix before anything else.
+
+# PART 2 — AUSTRALIAN GLAM · RMIT · PRIOR INSTITUTIONS
+
+One adaptable email (below) + a target table with researched routes and a
+one-line ARCHAI fit for each. **Prefer team inboxes for first contact; verify
+any named staff role on the institution's website before addressing an
+individual — public listings go stale.**
+
+## Adaptable Australian pilot email
+
+**Subject:** ARCHAI — sovereign collection AI research pilot conversation
+
+Dear [Institution] team,
+
+My name is Rob Graham. I am a PhD researcher in Design at RMIT University and
+founder of FAMTEC in Melbourne, with more than twenty years across Australian
+cultural institutions. I am developing ARCHAI, a local-first research
+prototype — built on open-source components and intended for release as an
+open-source GLAM toolkit — that adds rights-aware semantic search,
+staff-facing collection intelligence, and AUX.IO conversational visitor pages
+on top of an institution's existing CMS/DAMS. Everything runs on hardware the
+institution owns: no collection data or visitor interaction leaves the
+building.
+
+[FIT LINE — see table]
+
+A working demonstration currently runs 1,400+ conversational object pages
+across international open collections on a single local machine. A pilot can
+be scoped to a bounded, low-risk set of approved records, with rights,
+terminology, cultural protocols, and publication rules set by your team.
+
+Project page: https://fineartmedia.tech/archai
+GitHub: https://github.com/rob-e-graham/archai
+White paper: attached
+
+This forms part of my RMIT Design PhD and may support a future collaborative
+funding proposal (for example an ARC Linkage-style partnership led through
+RMIT). I am not seeking a funding commitment — the first step is a short
+conversation or demo.
+
+Warm regards,
+Rob Graham
+FAMTEC / RMIT University
+rob@fineartmedia.tech · https://fineartmedia.tech
+
+## Target table — routes researched 6 July 2026
+
+### RMIT (home institution — start here)
+
+| Target | Route | ARCHAI fit / [FIT LINE] |
+|---|---|---|
+| RMIT Library (digital collections) | digitalrepository@rmit.edu.au · permissions@rmit.edu.au | "As RMIT is my PhD home, the Library's digitised and repository collections would make an ideal first institutional pilot — zero partnership friction, strong data-management alignment for ethics approval." |
+| RMIT Gallery / RMIT Culture | form via rmitgallery.com/about-contact | "A campus AUX.IO exhibition pilot would let students and visitors talk to works on display, with the gallery controlling interpretation and publication." |
+| RMIT research office / supervisors | internal | ARC Linkage scheme fit; letters of support; ethics pathway |
+
+### Prior institutions (warm relationships)
+
+| Target | Route | ARCHAI fit / [FIT LINE] |
+|---|---|---|
+| ACMI | collections.access@acmi.net.au | "Given ACMI's born-digital and time-based media leadership, I would value a conversation about ARCHAI's WACZ replay and emulation-boundary work for conversational access to preserved media works." |
+| Heide Museum of Modern Art | info@heide.com.au | "Heide's gallery and sculpture-park setting is ideal for a small AUX.IO interpretation pilot — objects and outdoor works answering visitor questions via QR/NFC, curator-controlled." |
+| TarraWarra Museum of Art | museum@twma.com.au | "A regional-gallery AUX.IO pilot at TarraWarra could test visitor interpretation across seasonal exhibitions, with all AI running on a single local machine the museum owns." |
+| Museums Victoria | collection access form via museumsvictoria.com.au/contact-us · warm contact preferred | "Museums Victoria CC BY records were the founding pilot collection in the demo — I would value your feedback on rights/framing and a scoped staff-workflow pilot." |
+| Grande Experiences | via grandeexperiences.com (verify) | Commercial angle: AUX.IO conversational layer inside immersive touring experiences — commercialisation conversation, not research pilot |
+
+### Australian GLAM — priority pilots and sector bodies
+
+| Target | Route | ARCHAI fit / [FIT LINE] |
+|---|---|---|
+| Powerhouse / MAAS | form via powerhouse.com.au/contact (no public inbox verified) | "Powerhouse's applied arts and sciences collection with its CC BY API is the strongest technology-rich onboarding candidate for the demo — and a natural pilot partner." |
+| State Library Victoria | Ask a Librarian form · 03 8664 7002 | "SLV's digitised collections and oral histories suit rights-aware conversational discovery — a strong library-sector test of the toolkit." |
+| QAGOMA | gallery@qagoma.qld.gov.au | Already a metadata-only source in the demo — transparency note + ask about an approved image path; Asia-Pacific balance |
+| NFSA | form via nfsa.gov.au/about/contact-us | "NFSA's audiovisual and born-digital collections are exactly where ARCHAI's time-based media and replay research is heading — I would value a preservation-team conversation." |
+| National Gallery of Victoria | via ngv.vic.gov.au (verify) | Interpretation/visitor-experience conversation, not a data ask — flagship credibility |
+| National Museum of Australia | via nma.gov.au (verify) | Open data candidate already on the onboarding matrix; national history depth |
+| NLA / Trove | Trove partner route (verify) | Aggregator breadth for Australiana; already on the targets matrix |
+| AGNSW · MCA · AGSA · WA Museum · MONA | verify routes | Second-wave gallery/museum pilots; WA Museum already on the targets matrix |
+| AMaGA | info@amaga.org.au | "AMaGA's network is the best path to the regional and smaller museums an ARC-style pilot coalition needs — plus conference/workshop channels." |
+| GLAM Peak | via glampeak.org.au (verify) | Peak-body digital access agenda; sector legitimacy |
+| AIATSIS | via aiatsis.gov.au (verify) | Advice ask only: cultural protocol gates, CARE alignment — before any sensitive-collection work |
+| Bendigo Art Gallery · Geelong Gallery · Shepparton Art Museum | verify routes | Regional pilot candidates for the funding coalition |
+
+## Send log discipline
+
+After each send, update `OUTREACH_TRACKER.md`: status → Sent, date, follow-up
+date (+10–14 days). Any rights or correction reply outranks partnership talk —
+action it, log it in the Correction/Takedown Log, and confirm the fix first.
+
+## Key route sources (checked 2026-07-06)
+
+- Museums Victoria contact/collections: https://museumsvictoria.com.au/contact-us/
+- RMIT Library digital collections: https://rmit.libguides.com/digitalcollections
+- RMIT Gallery: https://rmitgallery.com/about-contact/
+- ACMI collections access: https://www.acmi.net.au/collection-preservation/access/
+- Heide contact: https://www.heide.com.au/contact/
+- TarraWarra: https://www.twma.com.au/visit/
+- Powerhouse contact: https://powerhouse.com.au/contact
+- Powerhouse API: https://data.nsw.gov.au/data/dataset/powerhouse-museum-collection-api
+- State Library Victoria: https://www.slv.vic.gov.au/visit/contact-us
+- QAGOMA contact: https://www.qagoma.qld.gov.au/contact-us/
+- NFSA contact: https://www.nfsa.gov.au/about/contact-us
+- AMaGA contact: https://www.amaga.org.au/contact-us

@@ -1,3 +1,5 @@
+> **Superseded:** the current working outreach document is `ARCHAI_OUTREACH_MASTER.md`. This file is kept for reference.
+
 # ARCHAI Mail-out Pack - 19 June 2026
 
 Author: Rob Graham / FAMTEC / RMIT University
