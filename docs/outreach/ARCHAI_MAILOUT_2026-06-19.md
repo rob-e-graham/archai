@@ -16,7 +16,7 @@ ARCHAI should not be pitched as a replacement for a museum CMS or DAMS. It is a 
 
 ## Core Architecture Statement
 
-ARCHAI is an open-source, local-first semantic interface layer for cultural institutions. It connects to existing collections management and digital asset management systems through governed APIs or network adapters, builds a rights-aware semantic index, and provides staff-facing collection intelligence and AUX.IO visitor experiences.
+ARCHAI is a local-first semantic interface layer for cultural institutions, built on open-source components, with release as an open-source GLAM toolkit the goal of the research programme. It connects to existing collections management and digital asset management systems through governed APIs or network adapters, builds a rights-aware semantic index, and provides staff-facing collection intelligence and AUX.IO visitor experiences.
 
 The preferred deployment is inside the institution's own network. Collection metadata, model inference, vector search, interaction logs, and future speech processing can remain under institutional control. The current research prototype runs on Apple silicon. A compact pilot can be scoped for Mac mini-class hardware with appropriately sized local models; larger collections or models can scale to a Mac Studio, GPU workstation, virtualised server, or institution-managed infrastructure.
 
@@ -89,7 +89,7 @@ Subject: Research partnership invitation - ARCHAI open-source GLAM toolkit
 
 Dear [Institution] Digital Collections / Open Access team,
 
-My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, an open-source, local-first research prototype that explores rights-aware semantic search, staff-facing collection interrogation, and AUX.IO visitor experiences for museums and galleries.
+My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, a local-first research prototype — built on open-source components and intended for release as an open-source GLAM toolkit — that explores rights-aware semantic search, staff-facing collection interrogation, and AUX.IO visitor experiences for museums and galleries.
 
 I am writing because the current research demo includes a small, rights-filtered subset of records from [Institution], accessed through [API / open data service]. I want to be transparent about that use, share what I am building, and invite your feedback before the project develops further.
 
@@ -124,7 +124,7 @@ Subject: Research partnership invitation - open CMS/DAM integration for ARCHAI
 
 Dear [Project] team,
 
-My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, an open-source, local-first semantic interface layer for museums and galleries.
+My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, a local-first semantic interface layer for museums and galleries, built on open-source components and intended for release as an open-source GLAM toolkit.
 
 ARCHAI is deliberately not another collections management system or DAMS. It is intended to connect to systems such as [Project] through their APIs, remain inside an institution's network, and add a governed semantic index, conversational collection search, rights-aware publication controls, multilingual access, and AUX.IO object-level visitor experiences.
 
@@ -158,11 +158,11 @@ https://fineartmedia.tech
 
 ## ResourceSpace Contact-form Version
 
-I am an RMIT Design PhD researcher and founder of FAMTEC, developing ARCHAI: an open-source, local-first semantic interface layer for museums and galleries. ARCHAI is designed to sit above an existing DAMS/CMS rather than replace it. I am currently prototyping a ResourceSpace adapter so institutions can keep assets and permissions in ResourceSpace while ARCHAI adds local semantic search, rights-aware interpretation, and AUX.IO visitor access. I am looking for research and technical partners to help co-design, develop, test, and launch the resulting open-source GLAM toolkit, potentially building toward a future RMIT-led ARC Linkage-style collaboration. I would value a short conversation about API integration, approved derivatives, and whether an open connector could be useful to the ResourceSpace community. Project: https://fineartmedia.tech/archai GitHub: https://github.com/rob-e-graham/archai
+I am an RMIT Design PhD researcher and founder of FAMTEC, developing ARCHAI: a local-first semantic interface layer for museums and galleries, built on open-source components and headed for open-source release. ARCHAI is designed to sit above an existing DAMS/CMS rather than replace it. I am currently prototyping a ResourceSpace adapter so institutions can keep assets and permissions in ResourceSpace while ARCHAI adds local semantic search, rights-aware interpretation, and AUX.IO visitor access. I am looking for research and technical partners to help co-design, develop, test, and launch the resulting open-source GLAM toolkit, potentially building toward a future RMIT-led ARC Linkage-style collaboration. I would value a short conversation about API integration, approved derivatives, and whether an open connector could be useful to the ResourceSpace community. Project: https://fineartmedia.tech/archai GitHub: https://github.com/rob-e-graham/archai
 
 ## Omeka Contact-form Version
 
-I am an RMIT Design PhD researcher and founder of FAMTEC, developing ARCHAI: an open-source, local-first semantic interface for museum and gallery collections. ARCHAI could sit above Omeka S as a governed semantic and conversational layer while Omeka remains the canonical publishing platform. I am looking for partners to help co-design, develop, test, and launch an open-source GLAM toolkit through the PhD, potentially supporting a future RMIT-led ARC Linkage-style collaboration. I would value a conversation about an open integration and multilingual, accessible collection discovery. Project: https://fineartmedia.tech/archai GitHub: https://github.com/rob-e-graham/archai
+I am an RMIT Design PhD researcher and founder of FAMTEC, developing ARCHAI: a local-first semantic interface for museum and gallery collections, built on open-source components and headed for open-source release. ARCHAI could sit above Omeka S as a governed semantic and conversational layer while Omeka remains the canonical publishing platform. I am looking for partners to help co-design, develop, test, and launch an open-source GLAM toolkit through the PhD, potentially supporting a future RMIT-led ARC Linkage-style collaboration. I would value a conversation about an open integration and multilingual, accessible collection discovery. Project: https://fineartmedia.tech/archai GitHub: https://github.com/rob-e-graham/archai
 
 ## Te Papa-specific Addition
 

@@ -31,6 +31,14 @@ Use this as the working log for museum/gallery contact. Keep notes factual and r
 | Museum of New Zealand Te Papa Tongarewa | collections online / rights / digital | Gmail draft |  |  | Partnership-led draft refreshed 2026-06-19 to `digitaloutreach@tepapa.govt.nz`, CC `collections.api@tepapa.govt.nz`; asks guidance on four-week cache/refresh rule |
 | M+, Hong Kong | digital / collections / rights | Draft |  |  | CC0 metadata, preview media, source rights apply |
 | Brasiliana Museus | platform / source institution | Gmail draft |  |  | Partnership-led draft refreshed 2026-06-19 to `cgsim@museus.gov.br`; bilingual opening; white paper attached |
+| Tate | open data / collections digital | Draft |  |  | Now a live source (CC BY, pre-1920 filter) — moved from future targets; verify current contact route |
+| Wellcome Collection | developers / collections | Draft |  |  | Now a live source (CC BY) — moved from future targets; verify current contact route |
+| Smithsonian Institution | Open Access team | Draft |  |  | Now a live source (CC0, API flag gate) — moved from future targets; verify current contact route |
+| J. Paul Getty Museum | open content / data | Draft |  |  | Now a live source (CC0, Linked Art SPARQL); verify current contact route |
+| National Gallery of Art, Washington | open data programme | Draft |  |  | Now a live source (CC0, item-level gate); verify current contact route |
+| QAGOMA | collections / digital | Draft |  |  | Live metadata-only source; verify current contact route |
+| RAWG Video Games Database | API team | Draft |  |  | Live source (API, attribution required); verify current contact route |
+| Brussels Open Data (street art) | open data portal | Draft |  |  | Live source (CC BY 4.0 images); notify via portal; other municipal feeds metadata-only |
 
 ## Technical Partner Outreach
 
