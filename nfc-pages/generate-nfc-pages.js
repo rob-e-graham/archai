@@ -32,7 +32,7 @@ const ALL_COLLECTIONS = [
   'archai_aic', 'archai_cma', 'archai_rijks', 'archai_europeana', 'archai_auckland', 'archai_tepapa', 'archai_mplus', 'archai_brasiliana',
   'archai_smithsonian', 'archai_tate', 'archai_streetart',
   'archai_getty', 'archai_wellcome', 'archai_qagoma', 'archai_rawg',
-  'archai_nga', 'archai_famtec',
+  'archai_nga',
 ];
 const COLLECTION_LABELS = {
   archai_pilot:        'Museums Victoria',
@@ -54,7 +54,6 @@ const COLLECTION_LABELS = {
   archai_qagoma:       'QAGOMA — Queensland Art Gallery | Gallery of Modern Art',
   archai_rawg:         'RAWG Video Games Database',
   archai_nga:          'National Gallery of Art, Washington',
-  archai_famtec:       'FAMTEC (Fine Art Media Tech) — Demonstration Collection',
 };
 const OLLAMA_LAN_HOST = getArg('host', 'http://localhost:11434');
 // Default to backend-proxy mode so public AUXIO pages can use the live chat API
