@@ -75,7 +75,7 @@ Use this as the working log for museum/gallery contact. Keep notes factual and r
 | Sophie Lieberman Consulting | cultural strategy, partnership brokering, sector positioning | Draft | Potential strategic advisor / conversation about ARCHAI as a GLAM research partnership and funding pathway |
 | Powerhouse / MAAS | Australian applied arts/science/technology | Draft | Strong tech/data balance |
 | State Library Victoria | public access, digital collections, archives | Draft | Collection discovery and rights-aware search |
-| Heide / TarraWarra | gallery-scale visitor and interpretation pilots | Draft | Good for focused AUX.IO testing |
+| Heide / TarraWarra | gallery-scale visitor and interpretation pilots | Draft | Good for focused AUXIO testing |
 | Accessibility partner | voice, screen reader, inclusive design testing | Draft | Identify before formal pilot claims |
 | Indigenous data sovereignty advisor | cultural protocol gates and community authority | Draft | Needed before sensitive collection work |
 | GLAM Peak / AMaGA | sector introductions and legitimacy | Draft | Useful for regional/small-museum connections |

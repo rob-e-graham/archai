@@ -33,7 +33,7 @@ I'm writing because [Institution] has been a significant source in our collectio
 
 - Local LLM (Ollama / qwen2.5:32b or compatible) — no visitor data sent to third-party APIs
 - Vector search via Qdrant — semantic queries across 20,000+ objects from 18 collections
-- Per-object AUX.IO pages: scannable via NFC or QR, conversational, mobile-first
+- Per-object AUXIO pages: scannable via NFC or QR, conversational, mobile-first
 - Downloadable posters at A4 / A2 / A0 / sticker / postcard with IIIF images and attribution
 - Full technical documentation available — we support deployment and integration
 

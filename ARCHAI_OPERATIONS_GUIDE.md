@@ -177,7 +177,7 @@ From iPad/iPhone on the same Tailnet:
 | What | URL |
 |------|-----|
 | Main app | `http://100.109.26.39:8000/ARCHAI_v10_8.html` |
-| AUX.IO visitor pages | `http://100.109.26.39:8787/aux/index.html` |
+| AUXIO visitor pages | `http://100.109.26.39:8787/aux/index.html` |
 | Backend API | `http://100.109.26.39:8787/api/health` |
 
 **Troubleshooting:** If the phone forces HTTPS, type `http://` explicitly. If AI chat gives generic responses, check Ollama is running with `OLLAMA_HOST=0.0.0.0:11434`.
@@ -269,7 +269,7 @@ const ALLOWED_COLLECTIONS = ['archai_pilot', 'archai_met', 'archai_va', 'archai_
 node your-harvester.js
 ```
 
-6. **Regenerate AUX.IO pages** (if the new objects should have visitor pages):
+6. **Regenerate AUXIO pages** (if the new objects should have visitor pages):
 ```bash
 cd nfc-pages
 node generate-nfc-pages.js --host http://100.109.26.39:11434
@@ -325,7 +325,7 @@ curl -X POST http://localhost:8787/api/proxy/curator/search \
 
 ---
 
-## AUX.IO Visitor Pages
+## AUXIO Visitor Pages
 
 ### Generating pages
 
@@ -348,7 +348,7 @@ This reads all objects from Qdrant and generates one standalone HTML page per ob
 - Related objects
 - Comment submission (AI moderated)
 
-### AUX.IO page index
+### AUXIO page index
 
 Browse all generated pages: `http://localhost:8787/aux/index.html`
 
@@ -450,7 +450,7 @@ ARCHAI APP/
 │   └── data/
 │       └── archai.db          # SQLite database (created at runtime)
 └── nfc-pages/
-    ├── generate-nfc-pages.js  # AUX.IO page generator
+    ├── generate-nfc-pages.js  # AUXIO page generator
     ├── nfc-visitor-template.html
     └── v/                     # Generated visitor pages (194+)
 ```

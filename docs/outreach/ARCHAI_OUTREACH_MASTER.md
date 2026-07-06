@@ -20,7 +20,7 @@ docs are superseded by this file; `OUTREACH_TRACKER.md` remains the send log.
 
 Dear Met Open Access team,
 
-My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, a local-first research prototype — built on open-source components and intended for release as an open-source GLAM toolkit — that explores rights-aware semantic search, staff-facing collection interrogation, and AUX.IO visitor experiences for museums and galleries.
+My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, a local-first research prototype — built on open-source components and intended for release as an open-source GLAM toolkit — that explores rights-aware semantic search, staff-facing collection interrogation, and AUXIO visitor experiences for museums and galleries.
 
 I am writing because the current research demo includes a small, rights-filtered subset of records from The Metropolitan Museum of Art, accessed through your CC0 Open Access API. I want to be transparent about that use, share what I am building, and invite your feedback before the project develops further.
 
@@ -50,7 +50,7 @@ rob@fineartmedia.tech · https://fineartmedia.tech
 
 Dear Art Institute of Chicago engineering and open access team,
 
-My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, a local-first research prototype — built on open-source components and intended for release as an open-source GLAM toolkit — that explores rights-aware semantic search, staff-facing collection interrogation, and AUX.IO visitor experiences for museums and galleries.
+My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, a local-first research prototype — built on open-source components and intended for release as an open-source GLAM toolkit — that explores rights-aware semantic search, staff-facing collection interrogation, and AUXIO visitor experiences for museums and galleries.
 
 I am writing because the current research demo includes a small, rights-filtered subset of records from the Art Institute of Chicago, accessed through your public API with a public-domain image gate applied at ingest. I want to be transparent about that use, share what I am building, and invite your feedback before the project develops further.
 
@@ -82,7 +82,7 @@ Dear Cleveland Museum of Art team,
 
 Could I ask that this message be routed to your Open Access or Digital Innovation team? Thank you.
 
-My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, a local-first research prototype — built on open-source components and intended for release as an open-source GLAM toolkit — that explores rights-aware semantic search, staff-facing collection interrogation, and AUX.IO visitor experiences for museums and galleries.
+My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, a local-first research prototype — built on open-source components and intended for release as an open-source GLAM toolkit — that explores rights-aware semantic search, staff-facing collection interrogation, and AUXIO visitor experiences for museums and galleries.
 
 I am writing because the current research demo includes a small, rights-filtered subset of records from the Cleveland Museum of Art, accessed through your Open Access API with a CC0/public-domain gate applied at ingest. I want to be transparent about that use, share what I am building, and invite your feedback before the project develops further.
 
@@ -112,7 +112,7 @@ rob@fineartmedia.tech · https://fineartmedia.tech
 
 Dear Rijksmuseum collection information team,
 
-My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, a local-first research prototype — built on open-source components and intended for release as an open-source GLAM toolkit — that explores rights-aware semantic search, staff-facing collection interrogation, and AUX.IO visitor experiences for museums and galleries.
+My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, a local-first research prototype — built on open-source components and intended for release as an open-source GLAM toolkit — that explores rights-aware semantic search, staff-facing collection interrogation, and AUXIO visitor experiences for museums and galleries.
 
 I am writing because the current research demo includes a small, rights-filtered subset of records from the Rijksmuseum, accessed through your data services with a public-domain gate applied at ingest. I want to be transparent about that use, share what I am building, and invite your feedback before the project develops further.
 
@@ -143,7 +143,7 @@ rob@fineartmedia.tech · https://fineartmedia.tech
 
 Kia ora Te Papa digital team,
 
-My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, a local-first research prototype — built on open-source components and intended for release as an open-source GLAM toolkit — that explores rights-aware semantic search, staff-facing collection interrogation, and AUX.IO visitor experiences for museums and galleries.
+My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, a local-first research prototype — built on open-source components and intended for release as an open-source GLAM toolkit — that explores rights-aware semantic search, staff-facing collection interrogation, and AUXIO visitor experiences for museums and galleries.
 
 I am writing because the current research demo includes a small, rights-filtered subset of records from Te Papa, accessed through your Collections API. I want to be transparent about that use, share what I am building, and invite your feedback before the project develops further.
 
@@ -179,7 +179,7 @@ Escrevo em inglês abaixo para evitar a introdução de erros por meio de tradu�
 
 ---
 
-My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, a local-first research prototype — built on open-source components and intended for release as an open-source GLAM toolkit — that explores rights-aware semantic search, staff-facing collection interrogation, and AUX.IO visitor experiences for museums and galleries.
+My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, a local-first research prototype — built on open-source components and intended for release as an open-source GLAM toolkit — that explores rights-aware semantic search, staff-facing collection interrogation, and AUXIO visitor experiences for museums and galleries.
 
 I am writing because the current research demo includes a small, rights-filtered subset of public-domain and open-access records from the Brasiliana Museus aggregator. I want to be transparent about that use, share what I am building, and invite your feedback before the project develops further.
 
@@ -209,7 +209,7 @@ Dear CollectiveAccess team,
 
 My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, a local-first semantic interface layer for museums and galleries, built on open-source components and intended for release as an open-source GLAM toolkit.
 
-ARCHAI is deliberately not another collections management system or DAMS. It is intended to connect to systems such as CollectiveAccess through their APIs, remain inside an institution's network, and add a governed semantic index, conversational collection search, rights-aware publication controls, multilingual access, and AUX.IO object-level visitor experiences.
+ARCHAI is deliberately not another collections management system or DAMS. It is intended to connect to systems such as CollectiveAccess through their APIs, remain inside an institution's network, and add a governed semantic index, conversational collection search, rights-aware publication controls, multilingual access, and AUXIO object-level visitor experiences.
 
 The source CMS/DAMS remains the system of record. ARCHAI can read approved metadata and asset derivatives, generate embeddings locally, preserve source identifiers and rights, and return visitors or staff to the canonical record. The current Apple-silicon prototype uses open-source components and demonstrates a compact deployment path that scales from a pilot workstation to institution-managed infrastructure.
 
@@ -244,7 +244,7 @@ Dear CollectionSpace team,
 
 My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, a local-first semantic interface layer for museums and galleries, built on open-source components and intended for release as an open-source GLAM toolkit.
 
-ARCHAI is deliberately not another collections management system or DAMS. It is intended to connect to systems such as CollectionSpace through their APIs, remain inside an institution's network, and add a governed semantic index, conversational collection search, rights-aware publication controls, multilingual access, and AUX.IO object-level visitor experiences.
+ARCHAI is deliberately not another collections management system or DAMS. It is intended to connect to systems such as CollectionSpace through their APIs, remain inside an institution's network, and add a governed semantic index, conversational collection search, rights-aware publication controls, multilingual access, and AUXIO object-level visitor experiences.
 
 The source CMS/DAMS remains the system of record. ARCHAI can read approved metadata and asset derivatives, generate embeddings locally, preserve source identifiers and rights, and return visitors or staff to the canonical record. The current Apple-silicon prototype demonstrates a compact deployment path that scales from a pilot workstation to institution-managed infrastructure.
 
@@ -269,7 +269,7 @@ rob@fineartmedia.tech · https://fineartmedia.tech
 
 **Route:** https://www.resourcespace.com/contact
 
-I am an RMIT Design PhD researcher and founder of FAMTEC, developing ARCHAI: a local-first semantic interface layer for museums and galleries, built on open-source components and headed for open-source release. ARCHAI is designed to sit above an existing DAMS/CMS rather than replace it. I am currently prototyping a ResourceSpace adapter so institutions can keep assets and permissions in ResourceSpace while ARCHAI adds local semantic search, rights-aware interpretation, and AUX.IO visitor access. I am looking for research and technical partners to help co-design, develop, test, and launch the resulting open-source GLAM toolkit, potentially building toward a future RMIT-led collaboration. I would value a short conversation about API integration, approved derivatives, and whether an open connector could be useful to the ResourceSpace community. Project: https://fineartmedia.tech/archai GitHub: https://github.com/rob-e-graham/archai Contact: rob@fineartmedia.tech
+I am an RMIT Design PhD researcher and founder of FAMTEC, developing ARCHAI: a local-first semantic interface layer for museums and galleries, built on open-source components and headed for open-source release. ARCHAI is designed to sit above an existing DAMS/CMS rather than replace it. I am currently prototyping a ResourceSpace adapter so institutions can keep assets and permissions in ResourceSpace while ARCHAI adds local semantic search, rights-aware interpretation, and AUXIO visitor access. I am looking for research and technical partners to help co-design, develop, test, and launch the resulting open-source GLAM toolkit, potentially building toward a future RMIT-led collaboration. I would value a short conversation about API integration, approved derivatives, and whether an open connector could be useful to the ResourceSpace community. Project: https://fineartmedia.tech/archai GitHub: https://github.com/rob-e-graham/archai Contact: rob@fineartmedia.tech
 
 ---
 
@@ -288,7 +288,7 @@ I am an RMIT Design PhD researcher and founder of FAMTEC, developing ARCHAI: a l
 
 Dear Museums Victoria digital collections team,
 
-My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne, with a professional background across Victorian cultural institutions including collections and digital media systems work at Museums Victoria. I am developing ARCHAI, a local-first research prototype — built on open-source components and intended for release as an open-source GLAM toolkit — that explores rights-aware semantic search, staff-facing collection interrogation, and AUX.IO visitor experiences.
+My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne, with a professional background across Victorian cultural institutions including collections and digital media systems work at Museums Victoria. I am developing ARCHAI, a local-first research prototype — built on open-source components and intended for release as an open-source GLAM toolkit — that explores rights-aware semantic search, staff-facing collection interrogation, and AUXIO visitor experiences.
 
 I am writing because the current research demo includes a small, rights-filtered subset of CC BY records from the Museums Victoria Collections API. I want to be transparent about that use, confirm the attribution and source-linking approach meets your expectations, and invite your feedback before the project develops further.
 
@@ -316,7 +316,7 @@ rob@fineartmedia.tech · https://fineartmedia.tech
 
 Dear V&A digital collections team,
 
-My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, a local-first research prototype — built on open-source components and intended for release as an open-source GLAM toolkit — that explores rights-aware semantic search, staff-facing collection interrogation, and AUX.IO visitor experiences for museums and galleries.
+My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, a local-first research prototype — built on open-source components and intended for release as an open-source GLAM toolkit — that explores rights-aware semantic search, staff-facing collection interrogation, and AUXIO visitor experiences for museums and galleries.
 
 I am writing because the current research demo includes a small, rights-filtered subset of V&A Open Access records and IIIF images, accessed through your collections API. I want to be transparent about that use, share what I am building, and invite your feedback before the project develops further.
 
@@ -344,7 +344,7 @@ rob@fineartmedia.tech · https://fineartmedia.tech
 
 Dear Europeana team,
 
-My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, a local-first research prototype — built on open-source components and intended for release as an open-source GLAM toolkit — that explores rights-aware semantic search, staff-facing collection interrogation, and AUX.IO visitor experiences.
+My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, a local-first research prototype — built on open-source components and intended for release as an open-source GLAM toolkit — that explores rights-aware semantic search, staff-facing collection interrogation, and AUXIO visitor experiences.
 
 I am writing because the current research demo includes a small subset of records accessed through the Europeana API, filtered to reusability=open at ingest. I recognise that as an aggregator your records carry per-item rights from many providing institutions, and the per-item statements are preserved and displayed. I want to be transparent about that use and invite your feedback.
 
@@ -372,7 +372,7 @@ rob@fineartmedia.tech · https://fineartmedia.tech
 
 Kia ora Auckland Museum collections online team,
 
-My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, a local-first research prototype — built on open-source components and intended for release as an open-source GLAM toolkit — that explores rights-aware semantic search, staff-facing collection interrogation, and AUX.IO visitor experiences.
+My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, a local-first research prototype — built on open-source components and intended for release as an open-source GLAM toolkit — that explores rights-aware semantic search, staff-facing collection interrogation, and AUXIO visitor experiences.
 
 I am writing because the current research demo includes a small, rights-filtered subset of CC BY records accessed through your Linked Open Data API. I want to be transparent about that use and about one specific handling decision: where the API returns placeholder rather than real image derivatives, we detect and hold those from public display, keeping the records staff-searchable as metadata only. I would welcome your advice on the correct way to access or link real derivatives.
 
@@ -400,7 +400,7 @@ rob@fineartmedia.tech · https://fineartmedia.tech
 
 Dear M+ digital team,
 
-My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, a local-first research prototype — built on open-source components and intended for release as an open-source GLAM toolkit — that explores rights-aware semantic search, staff-facing collection interrogation, and AUX.IO visitor experiences.
+My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, a local-first research prototype — built on open-source components and intended for release as an open-source GLAM toolkit — that explores rights-aware semantic search, staff-facing collection interrogation, and AUXIO visitor experiences.
 
 I am writing because the current research demo includes a small subset of CC0 metadata records from the M+ API, with bilingual metadata preserved, and preview media referenced from your public object pages under your API's non-commercial preview terms. I want to be transparent about that use and invite your feedback on whether the preview-media handling meets your expectations.
 
@@ -429,7 +429,7 @@ rob@fineartmedia.tech · https://fineartmedia.tech
 
 Dear [Institution] team,
 
-My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, a local-first research prototype — built on open-source components and intended for release as an open-source GLAM toolkit — that explores rights-aware semantic search, staff-facing collection interrogation, and AUX.IO visitor experiences for museums and galleries.
+My name is Rob Graham. I am a PhD researcher in Design at RMIT University and founder of FAMTEC in Melbourne. I am developing ARCHAI, a local-first research prototype — built on open-source components and intended for release as an open-source GLAM toolkit — that explores rights-aware semantic search, staff-facing collection interrogation, and AUXIO visitor experiences for museums and galleries.
 
 I am writing because the current research demo includes a small, rights-filtered subset of records from [Institution], accessed through [ROUTE — see fill-in table]. I want to be transparent about that use, share what I am building, and invite your feedback before the project develops further.
 
@@ -487,7 +487,7 @@ founder of FAMTEC in Melbourne, with more than twenty years across Australian
 cultural institutions. I am developing ARCHAI, a local-first research
 prototype — built on open-source components and intended for release as an
 open-source GLAM toolkit — that adds rights-aware semantic search,
-staff-facing collection intelligence, and AUX.IO conversational visitor pages
+staff-facing collection intelligence, and AUXIO conversational visitor pages
 on top of an institution's existing CMS/DAMS. Everything runs on hardware the
 institution owns: no collection data or visitor interaction leaves the
 building.
@@ -520,7 +520,7 @@ rob@fineartmedia.tech · https://fineartmedia.tech
 | Target | Route | ARCHAI fit / [FIT LINE] |
 |---|---|---|
 | RMIT Library (digital collections) | digitalrepository@rmit.edu.au · permissions@rmit.edu.au | "As RMIT is my PhD home, the Library's digitised and repository collections would make an ideal first institutional pilot — zero partnership friction, strong data-management alignment for ethics approval." |
-| RMIT Gallery / RMIT Culture | form via rmitgallery.com/about-contact | "A campus AUX.IO exhibition pilot would let students and visitors talk to works on display, with the gallery controlling interpretation and publication." |
+| RMIT Gallery / RMIT Culture | form via rmitgallery.com/about-contact | "A campus AUXIO exhibition pilot would let students and visitors talk to works on display, with the gallery controlling interpretation and publication." |
 | RMIT research office / supervisors | internal | ARC Linkage scheme fit; letters of support; ethics pathway |
 
 ### Prior institutions (warm relationships)
@@ -528,10 +528,10 @@ rob@fineartmedia.tech · https://fineartmedia.tech
 | Target | Route | ARCHAI fit / [FIT LINE] |
 |---|---|---|
 | ACMI | collections.access@acmi.net.au | "Given ACMI's born-digital and time-based media leadership, I would value a conversation about ARCHAI's WACZ replay and emulation-boundary work for conversational access to preserved media works." |
-| Heide Museum of Modern Art | info@heide.com.au | "Heide's gallery and sculpture-park setting is ideal for a small AUX.IO interpretation pilot — objects and outdoor works answering visitor questions via QR/NFC, curator-controlled." |
-| TarraWarra Museum of Art | museum@twma.com.au | "A regional-gallery AUX.IO pilot at TarraWarra could test visitor interpretation across seasonal exhibitions, with all AI running on a single local machine the museum owns." |
+| Heide Museum of Modern Art | info@heide.com.au | "Heide's gallery and sculpture-park setting is ideal for a small AUXIO interpretation pilot — objects and outdoor works answering visitor questions via QR/NFC, curator-controlled." |
+| TarraWarra Museum of Art | museum@twma.com.au | "A regional-gallery AUXIO pilot at TarraWarra could test visitor interpretation across seasonal exhibitions, with all AI running on a single local machine the museum owns." |
 | Museums Victoria | collection access form via museumsvictoria.com.au/contact-us · warm contact preferred | "Museums Victoria CC BY records were the founding pilot collection in the demo — I would value your feedback on rights/framing and a scoped staff-workflow pilot." |
-| Grande Experiences | via grandeexperiences.com (verify) | Commercial angle: AUX.IO conversational layer inside immersive touring experiences — commercialisation conversation, not research pilot |
+| Grande Experiences | via grandeexperiences.com (verify) | Commercial angle: AUXIO conversational layer inside immersive touring experiences — commercialisation conversation, not research pilot |
 
 ### Australian GLAM — priority pilots and sector bodies
 

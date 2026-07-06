@@ -12,7 +12,7 @@ ARCHAI is an open-source toolkit for sovereign semantic heritage infrastructure:
 - normalize records into a shared canonical layer
 - keep rights, provenance, language, and cultural protocol metadata visible
 - search collections semantically across institutions
-- support staff-facing collection intelligence and visitor-facing AUX.IO interpretation
+- support staff-facing collection intelligence and visitor-facing AUXIO interpretation
 - keep speech, translation, and AI interpretation as optional, documented, replaceable layers
 
 ## Milestone 1: Stabilize The Main App
@@ -27,14 +27,14 @@ Goal: make `ARCHAI_v10_8.html` feel like the serious app, not the older website 
 
 Status: in progress.
 
-## Milestone 2: Make AUX.IO Management Real Enough For Demo
+## Milestone 2: Make AUXIO Management Real Enough For Demo
 
-Goal: make AUX.IO management reflect the generated visitor-page universe rather than a tiny mock panel.
+Goal: make AUXIO management reflect the generated visitor-page universe rather than a tiny mock panel.
 
 - Generate a larger image-backed working set from live collection objects.
-- Keep internal legacy `NFC` function names only where renaming would add risk; keep user-facing labels as AUX.IO.
+- Keep internal legacy `NFC` function names only where renaming would add risk; keep user-facing labels as AUXIO.
 - Show linked object, live/draft status, location, legal status, and preview.
-- Next deeper step: read the generated AUX.IO manifest/pages directly so every generated page is editable.
+- Next deeper step: read the generated AUXIO manifest/pages directly so every generated page is editable.
 
 Status: started, needs backend/manifest sync.
 
@@ -43,7 +43,7 @@ Status: started, needs backend/manifest sync.
 Goal: every public-facing object must be legally legible.
 
 - Preserve raw rights/licence/source metadata.
-- Show normalized legal status in ARCHAI, website demo, and AUX.IO.
+- Show normalized legal status in ARCHAI, website demo, and AUXIO.
 - Keep source URL visible.
 - Filter public demos toward image-backed, legally acceptable records.
 - Use `backend-archai/scripts/legal-harvest-bot.js` as the repeatable legal gate before public-demo harvests.
@@ -107,9 +107,9 @@ Status: improving.
 ## Near-Term Build Queue
 
 1. Main app result browse/search parity with website demo.
-2. AUX.IO management working set expanded from real objects.
+2. AUXIO management working set expanded from real objects.
 3. ROADMAP + functional audit kept current.
 4. Voice UX polish: immediate listening feedback, clearer stop/retry states.
 5. Whisper/Piper prototype as separate optional path.
 6. Rights audit command before every public demo push.
-7. Generated AUX.IO manifest sync for true page editing.
+7. Generated AUXIO manifest sync for true page editing.

@@ -1336,7 +1336,7 @@ body::after {
 <!-- HEADER -->
 <div class="v-header">
   <div class="v-logo">ARC<span>H</span>AI</div>
-  <div class="v-tag">AUX.IO 1042</div>
+  <div class="v-tag">AUXIO 1042</div>
 </div>
 
 <div class="v-scroll-cue" id="scrollCue" aria-hidden="true">
@@ -1365,7 +1365,7 @@ body::after {
       <button onclick="setIiifZoom(1)">Reset</button>
       <button onclick="stepIiifZoom(1)">Zoom in</button>
       <a href="https://iiif.micr.io/pcKPY/full/max/0/default.jpg" target="_blank" rel="noopener noreferrer">Open image</a>
-      <div class="v-iiif-note">Drag to pan when zoomed. IIIF lets AUX.IO request useful source-image sizes while attribution and legal status remain visible.</div>
+      <div class="v-iiif-note">Drag to pan when zoomed. IIIF lets AUXIO request useful source-image sizes while attribution and legal status remain visible.</div>
     </div>
   </div>
 </div>
@@ -1439,7 +1439,7 @@ body::after {
           <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
           <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
         </div>
-        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUXIO.</span></div>
       </div>
     </details>
     <div class="v-response" id="chatResponse"></div>
@@ -1564,7 +1564,7 @@ body::after {
 
 <script>
 // ══════════════════════════════════════════════════════════════════
-// ARCHAI AUX.IO Visitor Page — Object Chat via Ollama (LAN)
+// ARCHAI AUXIO Visitor Page — Object Chat via Ollama (LAN)
 // ══════════════════════════════════════════════════════════════════
 
 // ── HERO IMAGE FALLBACK ─────────────────────────────────────────
@@ -1583,7 +1583,7 @@ function resolveApiOrigin() {
   if (!USE_PROXY) return '';
   if (BACKEND_PROXY !== '__SELF__') return BACKEND_PROXY;
 
-  // Static AUX.IO pages can be served from preview ports like :8000 or :8002 while
+  // Static AUXIO pages can be served from preview ports like :8000 or :8002 while
   // the backend API lives on :8787.
   if (window.location.port && window.location.port !== '8787') {
     return `${window.location.protocol}//${window.location.hostname}:8787`;
@@ -1958,7 +1958,7 @@ function updateVisitorSpeechUI(message = '') {
   const silenceBtn = document.getElementById('v-voice-silence-btn');
   const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
   const statusMessage = visitorSpeechStatus || (visitorSupportsSpeechRecognition()
-    ? 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.'
+    ? 'Browser speech demo for now. Whisper + Coqui is the next production path for AUXIO.'
     : getVisitorSpeechUnavailableMessage());
 
   if (statusEl) {
@@ -1991,7 +1991,7 @@ function ensureVisitorSpeechRecognition() {
 
   recognition.onstart = () => {
     visitorSpeechListening = true;
-    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+    updateVisitorSpeechUI('Listening… Ask AUXIO your question.');
   };
 
   recognition.onresult = event => {
@@ -2062,7 +2062,7 @@ function speakVisitorReply() {
   }
   const text = visitorLastReply || '';
   if (!text) {
-    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    updateVisitorSpeechUI('Ask AUXIO something first, then I can read the reply aloud.');
     return;
   }
   speechSynthesis.cancel();
@@ -2325,8 +2325,8 @@ function _posterText() {
     title: OBJECT.title || 'Untitled object',
     meta: [OBJECT.artist, OBJECT.date, OBJECT.type].filter(Boolean).join(' · '),
     institution: OBJECT.institution || 'ARCHAI',
-    registration: (OBJECT.registration || 'AUX.IO').toUpperCase(),
-    rights: [OBJECT.licence || 'Rights recorded on object page', OBJECT.institution || 'ARCHAI', `ARCHAI AUX.IO · ${new Date().getFullYear()}`].join(' · '),
+    registration: (OBJECT.registration || 'AUXIO').toUpperCase(),
+    rights: [OBJECT.licence || 'Rights recorded on object page', OBJECT.institution || 'ARCHAI', `ARCHAI AUXIO · ${new Date().getFullYear()}`].join(' · '),
     description: OBJECT.description || '',
   };
 }
@@ -2499,7 +2499,7 @@ async function downloadPoster(sizeKey) {
 
     const topY = Math.round(126 * sc);
     _drawArchaiWordmark(ctx, pad + Math.round(24 * sc), topY, Math.round(64 * sc), serif, Math.round(8 * sc));
-    _drawLabel(ctx, 'AUX.IO / PUBLIC OBJECT ACCESS', pad + Math.round(28 * sc), topY + Math.round(48 * sc), mono, Math.round(15 * sc), p.muted);
+    _drawLabel(ctx, 'AUXIO / PUBLIC OBJECT ACCESS', pad + Math.round(28 * sc), topY + Math.round(48 * sc), mono, Math.round(15 * sc), p.muted);
 
     _drawLabel(ctx, 'Scan / tap / ask', W - pad - Math.round(440 * sc), topY - Math.round(10 * sc), mono, Math.round(17 * sc), p.muted);
     ctx.font = `700 ${Math.round(18 * sc)}px ${mono}`;
@@ -2565,7 +2565,7 @@ async function downloadPoster(sizeKey) {
     _drawLabel(ctx, 'Read · ask · listen · share', qrX, qrY + qrSize + qrPad * 2 + Math.round(118 * sc), mono, Math.round(13 * sc), p.muted);
 
     const footerY = H - Math.round(120 * sc);
-    _drawLabel(ctx, 'ARCHAI · AUX.IO · RIGHTS-AWARE VISITOR ACCESS · OPEN GLAM DEMO', pad + Math.round(24 * sc), footerY, mono, Math.round(13 * sc), p.muted);
+    _drawLabel(ctx, 'ARCHAI · AUXIO · RIGHTS-AWARE VISITOR ACCESS · OPEN GLAM DEMO', pad + Math.round(24 * sc), footerY, mono, Math.round(13 * sc), p.muted);
     _drawLabel(ctx, new Date().getFullYear(), W - pad - Math.round(165 * sc), footerY, mono, Math.round(13 * sc), p.muted);
     ctx.textAlign = 'left';
 
@@ -2617,7 +2617,7 @@ async function _drawStickerLayout(ctx, W, H) {
   _drawActualImageBorder(ctx, imageRect, p.teal, sc);
 
   _drawArchaiWordmark(ctx, pad + Math.round(30 * sc), Math.round(92 * sc), Math.round(35 * sc), serif, Math.round(5 * sc));
-  _drawLabel(ctx, 'AUX.IO', W - pad - Math.round(210 * sc), Math.round(75 * sc), mono, Math.round(15 * sc), p.teal);
+  _drawLabel(ctx, 'AUXIO', W - pad - Math.round(210 * sc), Math.round(75 * sc), mono, Math.round(15 * sc), p.teal);
 
   let curY = imageY + imageH + Math.round(48 * sc);
   ctx.textBaseline = 'top';
@@ -2636,7 +2636,7 @@ async function _drawStickerLayout(ctx, W, H) {
   const qrY = H - pad - qrSize - qrPad * 2 - Math.round(34 * sc);
   _drawTightQRCard(ctx, window.location.href, qrX, qrY, qrSize, qrPad, p, mono, serif, sc);
 
-  _drawLabel(ctx, 'ARCHAI · AUX.IO', pad + Math.round(30 * sc), H - pad - Math.round(70 * sc), mono, Math.round(13 * sc), p.text);
+  _drawLabel(ctx, 'ARCHAI · AUXIO', pad + Math.round(30 * sc), H - pad - Math.round(70 * sc), mono, Math.round(13 * sc), p.text);
   _drawLabel(ctx, 'QR · NFC · MAP', pad + Math.round(30 * sc), H - pad - Math.round(42 * sc), mono, Math.round(11 * sc), p.muted);
 }
 
@@ -2676,7 +2676,7 @@ async function _drawPostcardLayout(ctx, W, H) {
   let curY = imageY;
   ctx.textBaseline = 'top';
 
-  _drawLabel(ctx, 'AUX.IO', rx, curY, mono, Math.round(15 * sc), p.teal);
+  _drawLabel(ctx, 'AUXIO', rx, curY, mono, Math.round(15 * sc), p.teal);
   curY += Math.round(48 * sc);
 
   ctx.font = `300 ${Math.round(54 * sc)}px ${serif}`;
@@ -2702,7 +2702,7 @@ async function _drawPostcardLayout(ctx, W, H) {
     curY += Math.round(34 * sc);
   }
 
-  _drawLabel(ctx, 'ARCHAI · AUX.IO · RIGHTS-AWARE VISITOR ACCESS', rx, H - pad - Math.round(24 * sc), mono, Math.round(10 * sc), p.muted);
+  _drawLabel(ctx, 'ARCHAI · AUXIO · RIGHTS-AWARE VISITOR ACCESS', rx, H - pad - Math.round(24 * sc), mono, Math.round(10 * sc), p.muted);
 }
 
 // ── DOWNLOAD ORCHESTRATOR for small formats ──

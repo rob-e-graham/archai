@@ -20,12 +20,12 @@ The RMIT-BV Pre-Seed Fund is an investment pathway, not a research grant. For AR
 
 1. IP Position
 - What parts of ARCHAI are RMIT IP, Rob/FAMTEC pre-existing IP, third-party open-source components, and institution/source data?
-- Should a Notification of Disclosure (NoD) be submitted for the semantic interface layer, Obtext method, AUX.IO workflow, or toolkit architecture?
+- Should a Notification of Disclosure (NoD) be submitted for the semantic interface layer, Obtext method, AUXIO workflow, or toolkit architecture?
 - What licence or assignment model would allow open-source toolkit goals while still supporting investment?
 
 2. Technology Readiness
 - Current estimate: TRL 3-4.
-- Evidence: working local prototype, Qdrant/Ollama pipeline, multiple harvesters, public website demo, generated AUX.IO pages, voice/browser demo, rights-aware media gates, and prototype staff workflows.
+- Evidence: working local prototype, Qdrant/Ollama pipeline, multiple harvesters, public website demo, generated AUXIO pages, voice/browser demo, rights-aware media gates, and prototype staff workflows.
 - Gap: formal technical validation and repeatable installation/deployment scripts for partner environments.
 
 3. Market Validation
@@ -43,7 +43,7 @@ The RMIT-BV Pre-Seed Fund is an investment pathway, not a research grant. For AR
 - Book a meeting with Eric Hoefgen / RP&T.
 - Ask IP&C what NoD should cover and how to handle pre-existing FAMTEC know-how plus RMIT PhD research.
 - Prepare a one-page venture summary.
-- Prepare a short demo script for collection search, object review, AUX.IO publishing, voice, and rights-aware media.
+- Prepare a short demo script for collection search, object review, AUXIO publishing, voice, and rights-aware media.
 - Prepare partner outreach list and discovery-call script.
 - Collect 5-10 evidence points from GLAM staff/users about pain, existing alternatives, and willingness to pilot.
 - Draft a technical validation note covering local install, security, data flow, legal gates, and hardware requirements.
@@ -57,7 +57,7 @@ For ARCHAI, the riskiest assumptions appear to be:
 
 - Institutions want a semantic interface above existing CMS/DAMS rather than another replacement platform.
 - Institutions will trust a local AI layer if source records, legal status, and epistemic limits remain visible.
-- GLAM staff will adopt the staff-facing workflows for search, object review, projects, and AUX.IO publishing.
+- GLAM staff will adopt the staff-facing workflows for search, object review, projects, and AUXIO publishing.
 - The IP/licensing pathway can support both open-source toolkit ambitions and RMIT-BV investment requirements.
 - The product can be installed, maintained, and supported with a simple enough hardware/software stack.
 
@@ -69,9 +69,9 @@ Thank you for the detailed explanation of the RMIT-Breakthrough Victoria Pre-See
 
 The project I would like to discuss is ARCHAI, my PhD-linked sovereign semantic interface toolkit for GLAM institutions. ARCHAI is designed to sit above existing CMS and DAMS infrastructure, allowing museums, galleries, archives, and cultural collections to search, compare, interpret, and publish collection records through a local AI and vector-search layer while preserving source records, rights metadata, attribution, and institutional governance.
 
-The current prototype is working locally and publicly as a demo: it includes a Qdrant/Ollama semantic search layer, rights-aware harvesting from museum and open-data APIs, an AUX.IO mobile visitor interface, browser voice interaction, object-level legal/status display, and staff-facing workflows for collection search, object review, and visitor-page publishing.
+The current prototype is working locally and publicly as a demo: it includes a Qdrant/Ollama semantic search layer, rights-aware harvesting from museum and open-data APIs, an AUXIO mobile visitor interface, browser voice interaction, object-level legal/status display, and staff-facing workflows for collection search, object review, and visitor-page publishing.
 
-I understand the next important step is to clarify the IP position. The project combines my pre-existing professional/FAMTEC knowledge, my current RMIT PhD research, open-source components, and third-party collection data used under source licences. I would appreciate guidance on whether a Notification of Disclosure should be submitted for the ARCHAI semantic interface layer, AUX.IO workflow, Obtext record structure, or the broader toolkit architecture.
+I understand the next important step is to clarify the IP position. The project combines my pre-existing professional/FAMTEC knowledge, my current RMIT PhD research, open-source components, and third-party collection data used under source licences. I would appreciate guidance on whether a Notification of Disclosure should be submitted for the ARCHAI semantic interface layer, AUXIO workflow, Obtext record structure, or the broader toolkit architecture.
 
 Could we arrange a time to discuss:
 

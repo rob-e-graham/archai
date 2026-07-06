@@ -5,7 +5,7 @@
 This note explains how microphone and speaker support work in the browser today for:
 
 - the main ARCHAI app
-- AUX.IO visitor pages
+- AUXIO visitor pages
 
 It also explains the difference between the current browser demo and the future Whisper + Coqui production path.
 
@@ -15,9 +15,9 @@ The voice feature that is live right now is a **browser-native demo**.
 
 It uses the browser's built-in speech APIs rather than a local Whisper or Coqui server.
 
-In practice, the current **protected baseline** is the phone/browser flow, especially for AUX.IO. That is the path we know is exciting, useful, and already working in live testing. Any future desktop mic-selection or Whisper work should be added as a separate layer rather than replacing the current phone path too early.
+In practice, the current **protected baseline** is the phone/browser flow, especially for AUXIO. That is the path we know is exciting, useful, and already working in live testing. Any future desktop mic-selection or Whisper work should be added as a separate layer rather than replacing the current phone path too early.
 
-Both the main app and AUX.IO now also expose a **Playback Voice** selector with:
+Both the main app and AUXIO now also expose a **Playback Voice** selector with:
 
 - `ARCHAI Neutral (recommended)`
 - `Browser Default`
@@ -31,7 +31,7 @@ On some phones and tablets this means users may see a large browser-provided voi
 
 - `Start Voice Question` now changes immediately to `Listening...` while capture is starting
 - the status indicator turns on immediately rather than waiting for the browser `onstart` event
-- AUX.IO now requests interim speech results where supported, so visitors can see words appear sooner
+- AUXIO now requests interim speech results where supported, so visitors can see words appear sooner
 - unsupported-browser copy is session-based rather than device-blaming, because support varies by browser, permission state, and OS settings
 
 That means:
@@ -43,7 +43,7 @@ That means:
 
 ## How microphone input works
 
-In both the main app and AUX.IO, the microphone uses:
+In both the main app and AUXIO, the microphone uses:
 
 - `window.SpeechRecognition`
 - or `window.webkitSpeechRecognition`
@@ -53,7 +53,7 @@ When a user presses `Start Voice Question`:
 1. the browser asks for microphone permission if needed
 2. speech recognition starts in the browser
 3. spoken text is transcribed locally/by-browser into a text string
-4. that text is placed into the ARCHAI/AUX.IO question flow
+4. that text is placed into the ARCHAI/AUXIO question flow
 5. the app sends the resulting text question into the usual ARCHAI conversation path
 
 ### Important limitation
@@ -74,7 +74,7 @@ Main app implementation:
   - `odStartVoiceQuestion()`
   - `odStopVoiceQuestion()`
 
-AUX.IO implementation:
+AUXIO implementation:
 
 - [nfc-pages/nfc-visitor-template.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/nfc-visitor-template.html)
   - `getVisitorSpeechLanguageCode()`
@@ -100,13 +100,13 @@ These drive:
 - speech playback language hint
 - the optional `Translate Record` action in object detail
 
-AUX.IO does not currently expose the same explicit language row. It uses:
+AUXIO does not currently expose the same explicit language row. It uses:
 
 - `document.documentElement.lang`
 - or `navigator.language`
 - with visitor tone modes layered over the top
 
-Current AUX.IO tone modes are:
+Current AUXIO tone modes are:
 
 - `Guide`
 - `Curatorial`
@@ -141,7 +141,7 @@ Main app implementation:
   - `odSpeakLatestReply()`
   - `odStopSpeaking()`
 
-AUX.IO implementation:
+AUXIO implementation:
 
 - [nfc-pages/nfc-visitor-template.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/nfc-visitor-template.html)
   - `speakVisitorReply()`
@@ -228,7 +228,7 @@ It is currently the easiest way to test voice flow from:
 
 - phone browsers on the same local network
 - desktop browsers that already have a usable default microphone configured
-- AUX.IO preview pages
+- AUXIO preview pages
 
 For the current project phase, **phone testing is the most trustworthy baseline**.
 

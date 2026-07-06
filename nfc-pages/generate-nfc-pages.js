@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // ══════════════════════════════════════════════════════════════════
-// ARCHAI — AUX.IO Page Generator
+// ARCHAI — AUXIO Page Generator
 // Reads live ARCHAI collection objects from Qdrant and generates one HTML visitor page
-// per object/AUX.IO tag. Output goes to ./v/ directory.
+// per object/AUXIO tag. Output goes to ./v/ directory.
 //
 // Usage:
 //   node generate-nfc-pages.js
@@ -56,7 +56,7 @@ const COLLECTION_LABELS = {
   archai_nga:          'National Gallery of Art, Washington',
 };
 const OLLAMA_LAN_HOST = getArg('host', 'http://localhost:11434');
-// Default to backend-proxy mode so public AUX.IO pages can use the live chat API
+// Default to backend-proxy mode so public AUXIO pages can use the live chat API
 // instead of trying to call a visitor's local Ollama instance from the browser.
 const BACKEND_PROXY = getArg('proxy', '__SELF__');
 const LIMIT = parseInt(getArg('limit', '5000'), 10);
@@ -110,7 +110,7 @@ function loadAuxIdMap() {
   if (!fs.existsSync(AUX_ID_MAP_PATH)) return {};
   const parsed = JSON.parse(fs.readFileSync(AUX_ID_MAP_PATH, 'utf8'));
   if (!parsed || Array.isArray(parsed) || typeof parsed !== 'object') {
-    throw new Error(`Invalid AUX.IO ID registry: ${AUX_ID_MAP_PATH}`);
+    throw new Error(`Invalid AUXIO ID registry: ${AUX_ID_MAP_PATH}`);
   }
   return parsed;
 }
@@ -238,8 +238,8 @@ function buildInteractiveEmbed(p) {
 // ── MAIN ────────────────────────────────────────────────────────
 async function main() {
   console.log('\n  ╔══════════════════════════════════════════════╗');
-  console.log('  ║   ARCHAI — AUX.IO Page Generator             ║');
-  console.log('  ║   (AUX.IO / QR / Beacon / Hyperlink delivery)║');
+  console.log('  ║   ARCHAI — AUXIO Page Generator             ║');
+  console.log('  ║   (AUXIO / QR / Beacon / Hyperlink delivery)║');
   console.log('  ╚══════════════════════════════════════════════╝\n');
 
   // Check template exists
@@ -308,7 +308,7 @@ async function main() {
 
   // Only generate pages for objects with display-cleared media or approved
   // interactive content. Metadata remains searchable in ARCHAI even when its
-  // media is held from the public AUX.IO layer.
+  // media is held from the public AUXIO layer.
   let skippedRights = 0;
   let skippedUnavailable = 0;
   let skippedNoMedia = 0;
@@ -337,7 +337,7 @@ async function main() {
   if (skippedNoMedia > 0) console.log(`  ⊘ Skipped ${skippedNoMedia} metadata-only objects`);
   if (skippedUnavailable > 0) console.log(`  ⊘ Skipped ${skippedUnavailable} unavailable or placeholder media records`);
   if (skippedRights > 0) {
-    console.log(`  ⊘ Held ${skippedRights} objects from AUX.IO pending item-level media clearance`);
+    console.log(`  ⊘ Held ${skippedRights} objects from AUXIO pending item-level media clearance`);
   }
 
   if (!allPoints.length) {
@@ -349,7 +349,7 @@ async function main() {
   // image-ready objects first so the active demo occupies low IDs, then reserve
   // stable higher IDs for metadata-only and held records.
   const auxIdMap = updateAuxIdMap(allSourcePoints, allPoints);
-  console.log(`  ✓ Stable AUX.IO ID registry: ${Object.keys(auxIdMap).length} canonical records`);
+  console.log(`  ✓ Stable AUXIO ID registry: ${Object.keys(auxIdMap).length} canonical records`);
 
   allPoints.sort((a, b) => {
     const aId = auxIdMap[a.payload?.canonical_id] || Number.MAX_SAFE_INTEGER;
@@ -381,7 +381,7 @@ async function main() {
   for (const f of fs.readdirSync(OUTPUT_DIR)) {
     if (/^NFC\d+\.html$/.test(f)) { fs.unlinkSync(path.join(OUTPUT_DIR, f)); purged++; }
   }
-  if (purged) console.log(`  ⊘ Purged ${purged} existing AUX.IO pages before regeneration`);
+  if (purged) console.log(`  ⊘ Purged ${purged} existing AUXIO pages before regeneration`);
 
   // Copy captive portal
   if (fs.existsSync(PORTAL_PATH)) {
@@ -396,7 +396,7 @@ async function main() {
     index: i,
     payload: pt.payload,
     nfcCode: 'NFC' + String(auxIdMap[pt.payload.canonical_id]).padStart(3, '0'), // filename stays NFC for URL compat
-    auxLabel: 'AUX.IO ' + String(auxIdMap[pt.payload.canonical_id]).padStart(3, '0'), // display label
+    auxLabel: 'AUXIO ' + String(auxIdMap[pt.payload.canonical_id]).padStart(3, '0'), // display label
     sourceLabel: pt._sourceLabel || 'Collection',
     sourceCollection: pt._sourceCollection || 'archai_pilot'
   }));
@@ -462,7 +462,7 @@ async function main() {
       <button onclick="setIiifZoom(1)">Reset</button>
       <button onclick="stepIiifZoom(1)">Zoom in</button>
       <a href="${escHtml(iiifLarge)}" target="_blank" rel="noopener noreferrer">Open image</a>
-      <div class="v-iiif-note">Drag to pan when zoomed. IIIF lets AUX.IO request useful source-image sizes while attribution and legal status remain visible.</div>
+      <div class="v-iiif-note">Drag to pan when zoomed. IIIF lets AUXIO request useful source-image sizes while attribution and legal status remain visible.</div>
     </div>
   </div>
 </div>`
@@ -624,9 +624,9 @@ async function main() {
   const indexHtml = generateIndex(generated);
   fs.writeFileSync(path.join(OUTPUT_DIR, 'index.html'), trimGeneratedLines(indexHtml), 'utf-8');
 
-  // AUX.IO programming reference
+  // AUXIO programming reference
   const nfcRef = generated.map(g =>
-    `${g.nfcCode.replace(/^NFC/, 'AUX.IO ')}  →  ${g.filename}  →  [${(g.source || '').substring(0,3).toUpperCase()}]  ${cleanText(g.title)}  (${cleanText(g.reg)})`
+    `${g.nfcCode.replace(/^NFC/, 'AUXIO ')}  →  ${g.filename}  →  [${(g.source || '').substring(0,3).toUpperCase()}]  ${cleanText(g.title)}  (${cleanText(g.reg)})`
   ).join('\n');
   fs.writeFileSync(path.join(OUTPUT_DIR, 'nfc-reference.txt'), trimGeneratedLines(nfcRef), 'utf-8');
 
@@ -640,8 +640,8 @@ async function main() {
     console.log(`    → ${src}: ${count} pages`);
   });
   console.log(`  ✓ Index page: ${OUTPUT_DIR}/index.html`);
-  console.log(`  ✓ AUX.IO reference: ${OUTPUT_DIR}/nfc-reference.txt`);
-  console.log(`\n  AUX.IO tags should open URLs like:`);
+  console.log(`  ✓ AUXIO reference: ${OUTPUT_DIR}/nfc-reference.txt`);
+  console.log(`\n  AUXIO tags should open URLs like:`);
   console.log(`    http://<your-lan-ip>:8000/v/NFC001.html`);
   console.log(`\n  Or with captive portal:`);
   console.log(`    http://<your-lan-ip>:8000/captive-portal.html?next=NFC001`);
@@ -649,7 +649,7 @@ async function main() {
 }
 
 // ── COLLECTION GROUPS ───────────────────────────────────────────
-// Thematic tabs for the public AUX.IO index — ordered to surface the most
+// Thematic tabs for the public AUXIO index — ordered to surface the most
 // distinctive / conversation-starting categories first.
 // null cols = "show everything" (All tab).
 const INDEX_GROUPS = [
@@ -721,7 +721,7 @@ function generateIndex(items) {
     return `<a href="${escHtml(g.filename)}" class="idx-item" data-col="${escHtml(g.collection || '')}" data-search="${escHtml(searchText)}">
       <div class="idx-thumb">${thumbHtml}</div>
       <div class="idx-info">
-        <div class="idx-nfc">${escHtml(g.nfcCode.replace(/^NFC/, 'AUX.IO '))}</div>
+        <div class="idx-nfc">${escHtml(g.nfcCode.replace(/^NFC/, 'AUXIO '))}</div>
         <div class="idx-title">${escHtml(g.title)}</div>
         <div class="idx-src">${escHtml(g.source || '')}</div>
       </div>
@@ -804,12 +804,12 @@ body{background:radial-gradient(circle at 50% 0%,rgba(143,188,176,0.06),transpar
 <div class="idx-shell">
 <div class="idx-header">
   <div class="logo">ARC<span>H</span>AI</div>
-  <div class="sub">AUX.IO Visitor Pages · ${items.length} Objects</div>
+  <div class="sub">AUXIO Visitor Pages · ${items.length} Objects</div>
 </div>
 
 <div class="idx-search-wrap">
   <div class="idx-search">
-    <input id="idx-search-input" type="search" placeholder="Search objects, institutions, AUX.IO numbers..." autocomplete="off" oninput="applyFilter()">
+    <input id="idx-search-input" type="search" placeholder="Search objects, institutions, AUXIO numbers..." autocomplete="off" oninput="applyFilter()">
     <button type="button" onclick="clearIndexSearch()">Clear</button>
   </div>
 </div>

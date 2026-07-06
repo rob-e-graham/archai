@@ -7,7 +7,7 @@ The goal is to keep the conceptual, technical, and PhD-facing work easy to find.
 ## Core R&D
 
 - [ROADMAP.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ROADMAP.md)
-  - current build milestones across main app, AUX.IO, rights/provenance, onboarding, voice, and partner readiness
+  - current build milestones across main app, AUXIO, rights/provenance, onboarding, voice, and partner readiness
 
 - [ARCHAI_R_AND_D_2026-06-04.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/ARCHAI_R_AND_D_2026-06-04.md)
   - CMS / DAMS / IIIF / preservation / born-digital / speech / onboarding direction
@@ -45,14 +45,14 @@ The goal is to keep the conceptual, technical, and PhD-facing work easy to find.
 ## Voice / Accessibility
 
 - [VOICE_AUDIT_2026-06-05.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/VOICE_AUDIT_2026-06-05.md)
-  - full technical audit of browser-native voice demo across main app and AUX.IO
+  - full technical audit of browser-native voice demo across main app and AUXIO
   - 11 findings with severity ratings
   - complete Whisper (STT) + Piper/Coqui (TTS) backend implementation plan
   - privacy, ethics, and sovereignty analysis
   - phased rollout plan
 
 - [VOICE_BROWSER_DEMO.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/VOICE_BROWSER_DEMO.md)
-  - how the browser microphone and speaker demo works today in ARCHAI and AUX.IO
+  - how the browser microphone and speaker demo works today in ARCHAI and AUXIO
   - current phone-first working state, language options, tone modes, and playback voice behavior
   - what it is, what it is not, and how it leads into Whisper + Coqui
 
