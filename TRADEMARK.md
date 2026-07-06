@@ -2,9 +2,9 @@
 
 ARCHAI is a trademark claimed by Rob Graham and FAMTEC (Fine Art Media Tech).
 
-The ARCHAI name, branding, logos, visual identity, and associated marks are not licensed under the MPL-2.0 software licence.
+The ARCHAI name, branding, logos, visual identity, and associated marks are expressly reserved and are not licensed under the repository's software terms (see LICENSE).
 
-Derivative works may use the source code in accordance with the licence but must not use the ARCHAI branding without permission.
+Any use of the source code permitted under the LICENSE or by separate written agreement does not include any right to use the ARCHAI branding without permission.
 
 Trademark rights are independent of copyright and software licensing rights.
 

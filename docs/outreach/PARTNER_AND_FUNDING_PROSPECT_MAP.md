@@ -70,7 +70,6 @@ These are best for real-world testing, staff workflows, visitor access, and cred
 | Organisation | Why They Matter | Best Initial Ask |
 |---|---|---|
 | Museums Victoria | Existing relationship to collection context, science/history/technology depth, public collections | feedback on rights/framing, possible scoped pilot, collections workflow discussion |
-| National Communication Museum | Strong conceptual lineage around communication technology and public interpretation | future pilot discussion only if appropriate and boundaries are clear |
 | ACMI | Media art, screen culture, born-digital and interactive practice | born-digital / media preservation conversation, not first-source data ask |
 | Heide Museum of Modern Art | Strong professional history and exhibition context | small gallery-scale AUX.IO / interpretation pilot conversation |
 | TarraWarra Museum of Art | contemporary art, exhibition interpretation, regional gallery relevance | visitor interpretation and staff workflow pilot |

@@ -1,8 +1,10 @@
 ARCHAI — Sovereign Semantic Heritage AI Infrastructure
 Copyright (c) 2026 Rob Graham / FAMTEC (Fine Art Media Tech)
 
-This software is licensed under the Mozilla Public License 2.0 (MPL-2.0).
-See the LICENSE file for the full licence text.
+This software is proprietary. All rights reserved.
+See the LICENSE file for the applicable terms. No permission is granted
+to use, copy, modify, or redistribute this software without prior
+written permission from the copyright holder.
 
 INTELLECTUAL PROPERTY NOTICE
 =============================
@@ -29,21 +31,22 @@ See TRADEMARK.md for full trademark terms.
 
 The ARCHAI name, logo, and associated branding may not be used by
 third parties without express written permission from Rob Graham / FAMTEC.
-Use of the source code under MPL-2.0 does not grant trademark rights.
+No permission relating to the source code grants trademark rights.
 
-If you fork or modify this code, you MUST:
+Any use of this code permitted by separate written agreement MUST:
   - Remove all ARCHAI branding and trademarks
-  - Choose a different name for your derivative work
-  - Retain the MPL-2.0 licence headers and copyright notices
+  - Use a different name for any derivative work
+  - Retain all copyright notices
 
 DATA LICENCES (separate from code)
 ====================================
-- Museums Victoria collection data: CC BY 4.0
-- The Metropolitan Museum of Art data: CC0 (public domain)
-- Victoria and Albert Museum data: V&A Open Access terms
-- Art Institute of Chicago data: Open API / source rights apply
-- Cleveland Museum of Art data: Open API / source rights apply
-- Rijksmuseum data: Rijksmuseum API / source rights apply
+Collection data, images, and metadata harvested from source institutions
+remain the property of those institutions and are governed by their
+respective licence terms (for example: Museums Victoria CC BY 4.0; The
+Metropolitan Museum of Art CC0; Victoria and Albert Museum Open Access).
+The complete per-source licence matrix for all connected collections is
+documented in backend-archai/scripts/collection-targets.json and enforced
+in harvester code at point of ingest.
 
 PROVENANCE
 ==========

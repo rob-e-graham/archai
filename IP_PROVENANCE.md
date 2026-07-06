@@ -45,15 +45,15 @@ ARCHAI is simultaneously:
 
 - A PhD research project.
 - A FAMTEC research initiative.
-- An open-source software platform.
+- A publicly documented software platform (source-visible; all rights reserved during the research period — see LICENSE).
 - A sovereign AI framework for cultural heritage.
 - A body of academic research and publications.
 
 ## Origin
 
-The conceptual foundations of ARCHAI were developed over twenty years of professional practice across museums, galleries, and cultural institutions — including ACMI, TarraWarra Museum of Art (Head of Technology), Heide Museum of Modern Art, Museums Victoria, Grande Experiences, and the National Communication Museum. All theoretical frameworks, design principles, and research questions emerged from this accumulated practitioner experience, entirely independent of any single institution.
+The conceptual foundations of ARCHAI were developed over twenty years of professional practice across museums, galleries, and cultural institutions — including ACMI, TarraWarra Museum of Art (Head of Technology), Heide Museum of Modern Art, Museums Victoria, Grande Experiences, and other public collecting institutions. All theoretical frameworks, design principles, and research questions emerged from this accumulated practitioner experience, entirely independent of any single institution.
 
-All code in this repository was written after departing the National Communication Museum, developed independently through FAMTEC as part of doctoral research at RMIT University.
+All code in this repository was written after the conclusion of the author's most recent institutional employment, developed independently through FAMTEC on personally owned equipment as part of doctoral research at RMIT University.
 
 ## Evidence Hierarchy
 

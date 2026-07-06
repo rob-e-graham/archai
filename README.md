@@ -64,6 +64,7 @@ ARCHAI is currently a draft institutional demo / WIP build. The current stronges
 | `archai_qagoma` | QAGOMA, Brisbane | — | Metadata-only (image API blocked) | Partial |
 | `archai_streetart` | Municipal public/street-art data | 439 | Brussels CC BY 4.0 images; other municipal feeds metadata/source-link only | Mixed: 139 public images + staff metadata |
 | `archai_rawg` | RAWG Video Games Database | varies | RAWG API (attribution required) | Live |
+| `archai_nga` | National Gallery of Art, Washington | — | CC0 (item-level open-access gate) | Live |
 | `archai_curator` | All live collections + visitor comments | Built on demand | Mixed | Live |
 
 ---
@@ -80,7 +81,7 @@ Twelve interconnected contributions characterise the research:
 6. **Transferable hardware reference implementation** — a sovereign, scalable open-source stack adaptable to institutions of varying size. Total capital investment: approximately AUD 10,000–20,000 one-time; no subscriptions.
 7. **Cross-institutional open data pipeline** — automated harvesting from international museum, gallery, open-data, and digital-culture sources with per-source licence verification, IIIF integration, and legal gate enforcement at point of ingest.
 8. **Physical deployment layer** — five-format downloadable artefact system (A4/A2/A0/postcard/sticker) generated client-side via Canvas API, enabling museum objects to enter public space with live QR links back to conversational interfaces.
-9. **Multilingual audio interface** — voice input (Whisper, local), voice output (Coqui TTS), extending conversational access across languages and interaction modalities.
+9. **Multilingual audio interface** — browser-native voice input and read-aloud output across six languages today, with a self-hosted open speech stack (Whisper capture, Piper/Coqui synthesis) as the in-development sovereign path. Note: the current browser speech engine may process audio via the browser vendor's servers; the self-hosted path is what closes that gap.
 10. **Multi-category public cultural data integration** — municipal open data (street and public art, six cities) and interactive digital culture (RAWG games) integrated under identical licence-gate enforcement as institutional museum collections.
 11. **Thematic discovery navigation** — disciplinary group tabs with per-institution sub-tabs across the current 3,147-record corpus, enabling cross-collection discovery without controlled vocabulary dependency.
 12. **Legal gate enforcement at scale** — per-source rights verification documented in a collection-targets matrix, implemented in harvester code, and surfaced on every public object page.
@@ -126,8 +127,8 @@ Compute: Apple Mac Studio M4 Max · 64GB Unified Memory · under 120W at full in
 | CollectiveAccess | Collection management · Heritage Foundation Layer |
 | ResourceSpace | Digital asset management · canonical media |
 | Ghost / Directus | Headless CMS · curator interpretation layer |
-| Whisper (local) | Voice input transcription · no visitor speech sent externally |
-| Coqui TTS | Per-object, per-language voice synthesis |
+| Browser SpeechRecognition / SpeechSynthesis | Current voice input + read-aloud (demo path — audio may be processed by the browser vendor) |
+| Whisper + Piper/Coqui (in development) | Planned self-hosted speech stack — keeps all audio on institutional hardware |
 | Proxmox VE | VM snapshots · behaviour preservation for AI artworks |
 
 ---
@@ -205,9 +206,9 @@ For licensing enquiries: rob@fineartmedia.tech
 
 ## Origin and Research Independence
 
-The conceptual foundations of ARCHAI were developed over more than twenty years of professional practice across museums, galleries, and cultural institutions — including ACMI, TarraWarra Museum of Art, Heide Museum of Modern Art, Museums Victoria, Grande Experiences, and the National Communication Museum. All theoretical frameworks, design principles, and research questions emerged from this accumulated practitioner experience, and are entirely independent of any single institution or employer.
+The conceptual foundations of ARCHAI were developed over more than twenty years of professional practice across museums, galleries, and cultural institutions — including ACMI, TarraWarra Museum of Art, Heide Museum of Modern Art, Museums Victoria, Grande Experiences, and other public collecting institutions. All theoretical frameworks, design principles, and research questions emerged from this accumulated practitioner experience, and are entirely independent of any single institution or employer.
 
-All code in this repository was written after departing the National Communication Museum, developed independently through FAMTEC as part of doctoral research at RMIT University, School of Design. The first version committed to this repository (v6, the `v0.1-alpha` release) was the first working prototype, built from the updated PhD research document and the ISEA2026 white paper. Earlier conceptual iterations (v1–v4) existed as planning documents and AI-assisted conversation prototypes during the research design phase — the ideas that informed them are documented in the PhD drafts and the ARCHAI Master Plan.
+All code in this repository was written after the conclusion of the author's most recent institutional employment, developed independently through FAMTEC on personally owned equipment as part of doctoral research at RMIT University, School of Design. The first version committed to this repository (v6, the `v0.1-alpha` release) was the first working prototype, built from the updated PhD research document and the ISEA2026 white paper. Earlier conceptual iterations (v1–v4) existed as planning documents and AI-assisted conversation prototypes during the research design phase — the ideas that informed them are documented in the PhD drafts and the ARCHAI Master Plan.
 
 This repository, its commit history, and its git log constitute a verifiable, timestamped research journal of the entire development process, establishing clear provenance for all code, design decisions, and research outputs.
 
@@ -258,6 +259,8 @@ ARCHAI is a working research prototype, not a finished commercial product. All p
 | **v11.6.2** | **Auckland placeholder-media audit added; high-resolution Auckland API placeholders are now detected by content hash and held from public AUX.IO while remaining searchable in the staff database. Curatorial object detail gained share/copy, save-to-project, read-summary, and a local project-list workspace for staff testing. AUX.IO regenerated to 1,402 public pages after placeholder and rights gates.** |
 | **v11.6.3** | **Draft-demo clarity pass: main app now declares itself as an institutional WIP, adds Training Mode guidance, applies safer Auckland media filtering throughout staff/result views, and AUX.IO voice questions auto-read replies while typed questions remain text-first.** |
 | **v11.6.4** | **AUX.IO Management now opens as a clearer institutional setup bench: 10 loaded demo records plus 110 empty assignable slots, with first-empty-slot selection and clearer assign/preview/publish guidance for staff testing.** |
+| **v11.6.5** | **AUX.IO management working set seeded from live image-backed records, with clearer loaded/empty-slot messaging for institutional testing.** |
+| **v11.6.6** | **Main-app correctness pass: consistent HTML escaping for collection text across result, AUX.IO, and visitor surfaces; stable conversational-result object keys with full metadata on click-through; voice interim-transcript feedback and clearer no-speech retry states; institution-draft crash fix.** |
 
 ---
 

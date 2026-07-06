@@ -47,7 +47,7 @@ Dear Sophie,
 
 I hope you are well.
 
-My name is Rob Graham. I am a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT. Since leaving the National Communication Museum I have been developing ARCHAI, an open-source research prototype for museums, galleries, and cultural collections.
+My name is Rob Graham. I am a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT. Through my doctoral research I have been developing ARCHAI, an independent research prototype for museums, galleries, and cultural collections.
 
 ARCHAI is a local-first semantic interface layer that can sit above a museum's existing CMS, DAMS, or collection database. The current prototype uses rights-aware harvesting, vector search, local language models, and AUX.IO visitor pages so staff and visitors can interrogate collection records without handing institutional knowledge or visitor interaction data to opaque cloud platforms.
 

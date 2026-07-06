@@ -6,10 +6,8 @@
 - Conceptual foundations developed through twenty years of institutional practice
 
 ## 2022–2026
-- Head of Technology, National Communication Museum
-- Encountered the infrastructure fragmentation and access problems that became ARCHAI's core research questions
-- NFC-driven visitor engagement prototypes
-- AI-based collections semantic testing environment initiated
+- Continued senior technology practice in the museum sector
+- Encountered the sector-wide infrastructure fragmentation and access problems that became ARCHAI's core research questions
 
 ## 2024
 - Initial concept development
@@ -22,8 +20,8 @@
 - ARCHAI Master Plan v4
 
 ## 2026
-- Departure from National Communication Museum
-- All ARCHAI code written independently through FAMTEC
+- Conclusion of most recent institutional employment
+- All ARCHAI code written independently through FAMTEC, on personally owned equipment
 - ISEA 2026 Dubai — accepted paper and presentation
 - 6th Summit on New Media Art Archiving — presentation
 - Public repository release (v0.1-alpha, first commit: v6)
