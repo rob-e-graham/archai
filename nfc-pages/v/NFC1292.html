@@ -696,8 +696,10 @@ body::after {
   font-family: var(--serif);
   font-style: italic;
   font-size: 1rem;
+  min-width: 0;
+  text-overflow: ellipsis;
 }
-.v-chat-input::placeholder { color: rgba(143,188,176,0.58); }
+.v-chat-input::placeholder { color: rgba(143,188,176,0.58); font-size: 0.9rem; }
 .v-chat-send {
   padding: 14px 18px;
   background: var(--accent2);
@@ -1771,22 +1773,22 @@ const VISITOR_TONES = {
   guide: {
     note: 'A welcoming gallery-guide voice: clear, calm, and easy to follow.',
     instruction: 'Speak like a thoughtful gallery guide standing beside the visitor. Be warm, concise, and practical. Start with what the visitor can understand from the record, then offer one useful observation. 3-4 short sentences max.',
-    placeholder: 'Ask for a simple introduction, guided explanation, or first thing to notice…'
+    placeholder: 'Ask for an introduction or what to notice…'
   },
   curatorial: {
     note: 'A curator-style reading for visitors who want deeper context and significance.',
     instruction: 'Speak like a curator writing for an interested public audience. Focus on significance, materials, maker/date/context, and relationships suggested by the record. Use museum language carefully, but explain it. Do not overstate what the record proves.',
-    placeholder: 'Ask about significance, context, materials, or why this object matters…'
+    placeholder: 'Ask about significance, context, or materials…'
   },
   learning: {
     note: 'For students, families, and first-time visitors: plain language with helpful context.',
     instruction: 'Speak like an education guide. Use plain language, define specialist terms, and give one question or observation that helps someone look more closely. Be respectful and never childish. Keep the answer grounded in the record.',
-    placeholder: 'Ask what it is, how it was used, or what a student should notice…'
+    placeholder: 'Ask what it is or how it was used…'
   },
   interpretive: {
     note: 'A reflective visitor-facing reading: sensory, thoughtful, and still evidence-based.',
     instruction: 'Speak like a public interpretation writer. Offer a reflective reading that helps the visitor slow down, notice details, and connect the record to broader human or cultural questions. Keep the tone grounded, not mystical or sentimental. Say plainly when the record is limited.',
-    placeholder: 'Ask for a reflective reading, looking prompt, or visitor-friendly story…'
+    placeholder: 'Ask for a reflective reading or story…'
   }
 };
 
