@@ -96,6 +96,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 
 /* PANELS */
 .panel{display:none;}.panel.active{display:block;}
+/* Public read-only demo: hide staff-only controls (writes, publishing, admin links). */
+body.public-demo [data-staff-only]{display:none!important;}
 
 /* SHARED */
 .section-label{font-family:var(--mono);font-size:0.56rem;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:9px;}
@@ -647,15 +649,15 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
     </div>
   </div>
   <div>
-    <div class="header-meta"><b id="clockDisplay">—</b><br><span id="headerMetaLine">Build v11.6.10 · connecting… · rights-aware media · AUXIO setup bench</span></div>
+    <div class="header-meta"><b id="clockDisplay">—</b><br><span id="headerMetaLine">Build v11.6.11 · connecting… · rights-aware media · AUXIO setup bench</span></div>
     <div class="header-links">
-      <a class="header-link" href="http://localhost:11434" target="_blank">Ollama LLM</a>
-      <a class="header-link" href="http://localhost:8055/admin" target="_blank">Directus CMS</a>
-      <a class="header-link" href="http://localhost:6333/dashboard" target="_blank">Qdrant</a>
+      <a class="header-link" data-staff-only href="http://localhost:11434" target="_blank">Ollama LLM</a>
+      <a class="header-link" data-staff-only href="http://localhost:8055/admin" target="_blank">Directus CMS</a>
+      <a class="header-link" data-staff-only href="http://localhost:6333/dashboard" target="_blank">Qdrant</a>
       <a class="header-link" href="https://github.com/rob-e-graham/archai" target="_blank">GitHub</a>
-      <button class="header-link" type="button" onclick="openTrainingOverlay()">Training Mode</button>
+      <button class="header-link" data-staff-only type="button" onclick="openTrainingOverlay()">Training Mode</button>
     </div>
-    <div class="role-select-wrap">
+    <div class="role-select-wrap" data-staff-only>
       <span class="role-select-label">Role</span>
       <select id="roleSelect" class="role-select" onchange="setUserRole(this.value)">
         <option value="admin">Admin</option>
@@ -751,7 +753,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
       </div>
       <div class="results-header">
         <span id="resultsLabel">Loading — connecting to Qdrant…</span>
-        <div class="r-acts"><div class="btn" onclick="selectAllResults()">Select All</div><div class="btn" onclick="exportCSV()">Export CSV</div><div class="btn" onclick="batchTagResults()">Batch Tag</div></div>
+        <div class="r-acts" data-staff-only><div class="btn" onclick="selectAllResults()">Select All</div><div class="btn" onclick="exportCSV()">Export CSV</div><div class="btn" onclick="batchTagResults()">Batch Tag</div></div>
       </div>
       <div id="resultsContainer">
         <div class="skel-card"><div class="skel-thumb skeleton"></div><div><div class="skel-line skeleton"></div><div class="skel-line short skeleton"></div><div class="skel-line xs skeleton"></div></div><div></div></div>
@@ -775,7 +777,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
           <div style="display:flex;justify-content:space-between;"><span style="color:var(--accent3)">② Local</span><span>Institutional terms</span></div>
           <div style="display:flex;justify-content:space-between;opacity:0.45"><span>③ LCSH</span><span>Inactive</span></div>
         </div>
-        <div class="btn" style="margin-top:8px;display:block;text-align:center;" onclick="switchTab('vocab',document.querySelectorAll('.tab')[3])">Manage Vocabularies →</div>
+        <div class="btn" data-staff-only style="margin-top:8px;display:block;text-align:center;" onclick="switchTab('vocab',document.querySelectorAll('.tab')[3])">Manage Vocabularies →</div>
       </div>
       <div class="sb-section">
         <div class="sb-title">Collection Pipeline</div>
@@ -785,8 +787,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
           <div>Embed model: <span>nomic-embed-text</span></div>
           <div>Objects loaded: <span id="sb-mv-count">0</span></div>
         </div>
-        <button class="pipe-btn" onclick="loadMVObjects()">↻ Reload All Collections</button>
-        <button class="pipe-btn" style="margin-top:4px" onclick="runHarvesters(this)">▶ Run Harvesters</button>
+        <button class="pipe-btn" data-staff-only onclick="loadMVObjects()">↻ Reload All Collections</button>
+        <button class="pipe-btn" data-staff-only style="margin-top:4px" onclick="runHarvesters(this)">▶ Run Harvesters</button>
       </div>
       <div class="sb-section">
         <div class="sb-title">Cultural Safety</div>
@@ -1335,6 +1337,10 @@ const USE_PROXY = Boolean(API_BASE);
 // so object/visitor chat always runs through the qwen + personality + SafeChat
 // proxy instead of falling back to raw local Ollama (llama3).
 const BACKEND_BASE = IS_LOCAL ? 'http://localhost:8787' : (window.ARCHAI_API_BASE || API_BASE || '');
+// Public read-only demo: served from a public host (not localhost/LAN) through the
+// tunnelled backend. The server independently enforces read-only for this traffic;
+// this flag drives the matching UI (locks role to demo, hides staff controls).
+const IS_PUBLIC_DEMO = !IS_LOCAL && Boolean(window.ARCHAI_API_BASE);
 
 function openTrainingOverlay() {
   const overlay = document.getElementById('trainingOverlay');
@@ -2241,7 +2247,9 @@ const ROLE_DEFS = {
   volunteer:   { label:'Volunteer',          note:'Volunteer · read-only collection lookup, AUXIO preview, visitor support',
                  tabs:['curator','nfc','visitor','famtec'] },
   visitor:     { label:'Visitor',            note:'Visitor mode · public-facing preview only',
-                 tabs:['visitor'] }
+                 tabs:['visitor'] },
+  demo:        { label:'Public Demo',         note:'Public read-only demo · search, converse, and explore the collection. Editing and publishing are disabled.',
+                 tabs:['curator','visitor','objdetail'] }
 };
 
 // ── FAMTEC DATA ─────────────────────────────────────────────────
@@ -3030,7 +3038,7 @@ function loadMVObjects() {
     // Header line reads live state — never hardcode counts (they drift).
     const liveCols = Object.keys(counts).filter(k => counts[k] > 0).length;
     const headerMeta = document.getElementById('headerMetaLine');
-    if (headerMeta) headerMeta.textContent = `Build v11.6.10 · ${liveCols} live collections · ${totalCount.toLocaleString()} objects · rights-aware media · AUXIO setup bench`;
+    if (headerMeta) headerMeta.textContent = `Build v11.6.11 · ${liveCols} live collections · ${totalCount.toLocaleString()} objects · rights-aware media · AUXIO setup bench`;
 
     generateNFCTags();
     renderResultCards();
@@ -3163,6 +3171,16 @@ function togglePill(el) { el.classList.toggle('active'); }
 // ROLE SWITCHING
 // ═══════════════════════════════════════════════════════════════════
 function initRoleUI() {
+  if (IS_PUBLIC_DEMO) {
+    // Public visitors are locked to the read-only demo role; the server enforces
+    // this regardless, and the UI hides staff controls to match.
+    document.body.classList.add('public-demo');
+    currentRole = 'demo';
+    const sel = document.getElementById('roleSelect');
+    if (sel) sel.value = 'demo';
+    applyRoleAccess();
+    return;
+  }
   const sel = document.getElementById('roleSelect');
   if (sel) currentRole = sel.value || currentRole;
   applyRoleAccess();
@@ -4192,9 +4210,9 @@ function openObjectDetail(objKey) {
     linksEl.innerHTML += `<a href="${sourceImage}" target="_blank" class="btn" style="font-size:0.55rem">Look Closer / Source Image →</a>`;
   }
   linksEl.innerHTML += `<button class="btn" onclick="odShareCurrentObject()">Share / Copy</button>`;
-  linksEl.innerHTML += `<button class="btn" onclick="odSaveCurrentObjectToProject()">Save to Project</button>`;
+  linksEl.innerHTML += `<button class="btn" data-staff-only onclick="odSaveCurrentObjectToProject()">Save to Project</button>`;
   linksEl.innerHTML += `<button class="btn" onclick="odSpeakObjectSummary()">Read Summary</button>`;
-  linksEl.innerHTML += `<a href="http://localhost:8055/admin" target="_blank" class="btn" style="font-size:0.55rem">Edit in Directus →</a>`;
+  linksEl.innerHTML += `<a data-staff-only href="http://localhost:8055/admin" target="_blank" class="btn" style="font-size:0.55rem">Edit in Directus →</a>`;
   linksEl.innerHTML += `<span class="od-action-status" id="od-action-status"></span>`;
 
   // Description

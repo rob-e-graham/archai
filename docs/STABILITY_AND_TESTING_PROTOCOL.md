@@ -92,13 +92,22 @@ infrastructure path to an unauthenticated visitor.**
 
 Concrete rules for the public `/app`:
 
-1. **Read-only for visitors.** The demo must run in a non-privileged role that
-   hides and blocks editing, AUXIO publishing, batch tagging, harvesters,
-   deletion, and service/emergency controls. A client-side role selector is a
-   convenience, **not** a security boundary — the *server* must reject those
-   actions for the public role. (See `docs/PUBLIC_APP_DEMO_HOSTING.md` — the
-   default-admin request context is the outstanding risk to close before wide
-   publicity.)
+1. **Read-only for visitors — implemented.** Public traffic is pinned to a
+   read-only `demo` role and enforced **server-side**, not just hidden in the UI:
+   - `backend-archai/src/middleware/requestContext.js` detects public traffic
+     (Cloudflare tunnel headers or a public hostname) and forces role `demo`,
+     ignoring any `x-archai-role` header a visitor sends.
+   - `backend-archai/src/middleware/publicDemoGuard.js` is a **deny-by-default
+     allowlist**: the demo role may call only the read endpoints it needs
+     (search, converse, chat, embed, scroll/info, AUXIO pages, health); every
+     other route — writes, publishing, harvesters, admin data — returns 403.
+     Unlisted routes fail *closed*.
+   - The frontend locks to the `demo` role when served publicly and hides staff
+     controls (`data-staff-only`), so visitors never see edit/publish buttons.
+
+   Kill-switch: `ARCHAI_PUBLIC_LOCKDOWN=off` (private all-staff network only).
+   Remote staff override: set `ARCHAI_STAFF_KEY` and send it as `x-archai-staff-key`.
+   The client role selector remains a convenience only — the server is the boundary.
 2. **Keep infrastructure private.** Qdrant, Ollama, Directus, and raw proxy
    routes stay off the public internet. The public reaches only purpose-built
    API routes (search, converse, object read, AUXIO pages, public counts).
