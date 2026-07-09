@@ -1,9 +1,76 @@
 # ARCHAI Progress Log
 
-Last updated: 2026-07-02
+Last updated: 2026-07-09
 Maintained as an active handoff note so Claude, Codex, and Rob can quickly see where the work is up to if a session ends or tokens run out.
 
 Primary build planning is now also summarized in [ROADMAP.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ROADMAP.md). Use that for milestone order, and use this file for detailed handoff notes.
+
+## 2026-07-09 v11.6.7 → v11.6.11 public /app deploy pipeline, live-demo fixes, read-only demo lockdown
+
+Publicity-readiness pass on the public `fineartmedia.tech/app` demo. Context: the
+live page is a **separate copy** of the app in the `fineartmedia-tech-web` project
+(served by Cloudflare Pages; backend reached via the `archai-api.fineartmedia.tech`
+tunnel). It had drifted to an old build because it was hand-copied. Everything below
+is on branch `claude/archai-app-improvements-lmz0n1` (draft PR #9).
+
+Implemented:
+
+- **Deterministic deploy — `deploy-web-app.mjs` (new).** Regenerates the website's
+  `app.html` from the canonical `ARCHAI_v10_8.html`, injects `window.ARCHAI_API_BASE`,
+  and re-reads the output to confirm the build marker + API base. **Refuses to publish**
+  if the file has no build marker, contains two different `Build vX.Y.Z` strings (the
+  exact stale-header bug we hit), or lost the API-base contract. Flags `--dry-run`,
+  `--no-push`. Replaces hand-copying and stops the drift.
+- **Live-demo fixes (found only in the deployed app):**
+  - Converse result cards rendered as full-width stretched banners — they relied on a
+    flex parent that wasn't there. Wrapped them in `.convo-obj-cards`.
+  - Header showed the new build then "reverted" — a stale hardcoded version string in the
+    JS that rewrites the header overwrote the static one. Aligned both.
+  - Connect Collection panel was flush to the left edge — its grid had no padding while
+    every other tab insets via its column classes. Added the standard 30px/42px inset.
+- **Default view diversified.** The opening result list rendered image-backed objects in
+  load order, so Museum Victoria (loaded first) always sat on top. `diversifyByCollection`
+  interleaves objects across their source collections and randomises per render, so each
+  visit opens on a fresh, varied mix.
+- **Public read-only demo lockdown (safe under publicity):**
+  - Backend is the boundary. `requestContext` detects public traffic (Cloudflare tunnel
+    headers or a public host) and pins it to a read-only `demo` role, ignoring any
+    `x-archai-role` a visitor sends. `publicDemoGuard` is a **deny-by-default allowlist**:
+    the demo role may call only the read endpoints it needs (search, converse, chat, embed,
+    scroll/info, AUXIO pages, health); everything else → 403. Unlisted routes fail *closed*.
+    Verified with a full allow/block matrix, including a spoof attempt (`role=admin` from the
+    public side stays blocked). Staff on localhost/Tailscale are untouched. Kill-switch
+    `ARCHAI_PUBLIC_LOCKDOWN=off`; remote-staff override `ARCHAI_STAFF_KEY` + `x-archai-staff-key`.
+  - Frontend matches: `IS_PUBLIC_DEMO` locks the UI to the `demo` role and hides staff-only
+    controls (role picker, admin links, Training Mode, Reload/Run Harvesters, Manage
+    Vocabularies, Select All/Export/Batch Tag, Save to Project, Edit in Directus) via
+    `data-staff-only`.
+- **`docs/STABILITY_AND_TESTING_PROTOCOL.md` (new).** Root-cause table, the self-verifying
+  deploy, a 5-minute pre-publicity QA checklist run on the *live* URL, and rules for testing
+  at scale without exposing write/publish/ingest or infrastructure paths.
+- Renamed three remaining lowercase `aux.io` tag strings to `auxio`.
+- Build label `v11.6.7` → `v11.6.11`.
+
+Verification:
+
+- `deploy-web-app.mjs` guard tested: consistent file passes; a mismatched-version file
+  aborts before publishing.
+- Public-demo middleware unit-tested with mock req/res across 15 cases: staff localhost and
+  Tailscale → `admin`; public (by Cloudflare header and by host) → `demo`; all reads the demo
+  needs → allow; all writes/admin/publish/harvest/comment-POST → 403; `role=admin` spoof from
+  the public side → 403.
+- Auckland "No image" confirmed as source-data coverage (records with no digitised media),
+  not a rendering bug — the pipeline passes image URLs through for records that have them.
+
+Deploy state / next steps:
+
+- Frontend v11.6.9 is live; **v11.6.11 (diversify + lockdown) is committed and pushed but
+  needs deploying**, and this deploy also requires a **backend restart** on the Mac Studio so
+  `publicDemoGuard` loads. Two-step deploy documented to Rob (checkout code + restart backend,
+  then `node deploy-web-app.mjs`).
+- Open decision for Rob: website is now locked to the read-only public demo, so staff testing
+  happens on the Mac (localhost/Tailscale) — or add a secret `?staff=KEY` unlock so Rob keeps
+  full access on the website while the public stays read-only.
 
 ## 2026-07-02 v11.6.6 main-app correctness pass: escaping, convo click-through, voice retry states
 
