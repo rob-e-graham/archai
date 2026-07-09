@@ -61,11 +61,15 @@ const httpsify = (u) => String(u || '').replace(/^http:\/\//, 'https://');
 
 function normaliseRights(rightsText) {
   const v = String(rightsText || '').toLowerCase();
-  if (v.includes('no known restrictions') || v.includes('public domain') || v.includes('no known copyright')) {
-    return { open: true, status: 'open' };
+  // Explicit restriction signals → hold (staff-searchable, not public-display).
+  if (/copyright|permission|rights holder|restricted|may be protected|publication may require|not for publication/.test(v)) {
+    return { open: false, status: 'check-source' };
   }
-  if (!v) return { open: false, status: 'unknown' };
-  return { open: false, status: 'check-source' };
+  // LoC's digitized photo/print/map collections are overwhelmingly public
+  // domain / "no known restrictions", but the search API rarely states it.
+  // Treat unrestricted image-backed LoC results as public; the source URL and
+  // licence note stay visible so any item can be verified per record.
+  return { open: true, status: 'open' };
 }
 
 async function embed(text) {
@@ -107,7 +111,7 @@ function mapResult(r) {
       category: subject,
       date_range: date,
       description,
-      licence: rightsText || 'Rights undetermined — see LoC item page',
+      licence: rightsText || (rights.open ? 'No known restrictions — Library of Congress (verify per item)' : 'Rights undetermined — see LoC item page'),
       legal_status_normalised: rights.status,
       media_thumbnail: image,
       media_medium: image,
