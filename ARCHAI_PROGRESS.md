@@ -7,6 +7,17 @@ Primary build planning is now also summarized in [ROADMAP.md](/Users/robgraham/D
 
 ## 2026-07-09 (cont. 2) v11.6.15 — five new collection harvesters (Wikimedia, IA, LoC, DPLA, Trove)
 
+**Live-run status (harvested on the Mac Studio):**
+- ✅ Wikimedia — 150 embedded, all public-display; titles cleaned (QS markup stripped); 6 NCM records excluded.
+- ✅ Internet Archive — 150 embedded, all public-display, 0 errors.
+- ✅ Library of Congress — 150 embedded. First run held all 150 (search API returns no machine-readable
+  licence). Fixed: `loc-harvester.js` now defaults unrestricted digitized items to public-domain display
+  (holds only explicit-restriction text). **Re-run `node scripts/loc-harvester.js --apply`** to flip them public.
+- ⏳ DPLA + Trove — code ready, NOT run: need free API keys (`DPLA_API_KEY`, `TROVE_API_KEY`).
+  DPLA: https://pro.dp.la/developers/policies · Trove: https://trove.nla.gov.au/about/create-something/using-api
+- To surface the harvested collections: restart backend (picks up new `ALLOWED_COLLECTIONS`), deploy
+  frontend v11.6.15, then `RELOAD ALL COLLECTIONS`.
+
 Built harvesters for the 5 requested sources that had none. All follow the existing harvester
 pattern (rights-gated, image-backed, `nomic-embed-text` embeddings, Qdrant upsert, `--dry-run`
 default / `--apply` to write) and are registered in backend `ALLOWED_COLLECTIONS` +
