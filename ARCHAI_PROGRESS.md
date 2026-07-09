@@ -13,8 +13,10 @@ Primary build planning is now also summarized in [ROADMAP.md](/Users/robgraham/D
 - ✅ Library of Congress — 150 embedded. First run held all 150 (search API returns no machine-readable
   licence). Fixed: `loc-harvester.js` now defaults unrestricted digitized items to public-domain display
   (holds only explicit-restriction text). **Re-run `node scripts/loc-harvester.js --apply`** to flip them public.
-- ⏳ DPLA + Trove — code ready, NOT run: need free API keys (`DPLA_API_KEY`, `TROVE_API_KEY`).
-  DPLA: https://pro.dp.la/developers/policies · Trove: https://trove.nla.gov.au/about/create-something/using-api
+- ✅ DPLA — key obtained + stored in KeyTec (archai project); harvested via `famtec run archai -- node scripts/dpla-harvester.js --apply`.
+- ⏳ Trove — API key requested 2026-07-09 (Trove ref **RSref187212**, manual staff approval, arrives by email). When it lands,
+  store in KeyTec as `TROVE_API_KEY` and run `famtec run archai -- node scripts/trove-harvester.js --apply` for the 5th collection.
+- KeyTec run pattern for keyed harvesters: `famtec run archai -- node scripts/<x>-harvester.js [--apply]` (injects keys as env vars).
 - To surface the harvested collections: restart backend (picks up new `ALLOWED_COLLECTIONS`), deploy
   frontend v11.6.15, then `RELOAD ALL COLLECTIONS`.
 
