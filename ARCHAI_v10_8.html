@@ -4007,10 +4007,35 @@ RULES:
 
   window._odChatHistory.push({ role: 'user', content: q });
 
+  // Answer from the object's verified metadata whenever the live model path
+  // does not return usable text — offline, rate-limited, busy, or blocked.
+  // The object should never dead-end; it always speaks from its record.
+  const odMetadataFallback = (noteText) => {
+    const reply = generateMetadataResponse(o, q);
+    window._odChatHistory.push({ role: 'assistant', content: reply });
+    window._odLastAssistantReply = reply;
+    window._odSpeechStatus = 'Metadata reply ready. You can read it aloud.';
+    const t = document.getElementById(thinkId);
+    if (t) {
+      t.innerHTML = reply + `<div style="font-family:var(--mono);font-size:0.48rem;color:var(--text3);margin-top:6px;border-top:1px solid var(--border);padding-top:4px;">⚡ ${escQ(noteText)}</div>`;
+      t.style.color = ''; t.classList.remove('thinking');
+    }
+    msgs.scrollTop = msgs.scrollHeight;
+  };
+
   ollamaFetch('/api/chat', JSON.stringify({ model: 'qwen2.5:14b', stream: false, messages: [{ role: 'system', content: sys }, ...window._odChatHistory] }))
   .then(r => r.json())
   .then(data => {
-    const reply = (data.message && data.message.content) || 'I cannot speak right now.';
+    const reply = data && data.message && data.message.content && data.message.content.trim();
+    if (!reply) {
+      // 200 with an error/empty payload (rate limit, model busy, blocked) —
+      // fall back to the verified record instead of a dead-end message.
+      const note = data && data.error
+        ? 'Answered from the verified record — the live model is busy right now.'
+        : 'Answered from the verified record — the live model returned no text.';
+      odMetadataFallback(note);
+      return;
+    }
     window._odChatHistory.push({ role: 'assistant', content: reply });
     window._odLastAssistantReply = reply;
     window._odSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
@@ -4019,17 +4044,8 @@ RULES:
     msgs.scrollTop = msgs.scrollHeight;
   })
   .catch(e => {
-    console.warn('Ollama unreachable, using metadata fallback:', e.message);
-    const reply = generateMetadataResponse(o, q);
-    window._odChatHistory.push({ role: 'assistant', content: reply });
-    window._odLastAssistantReply = reply;
-    window._odSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
-    const t = document.getElementById(thinkId);
-    if (t) {
-      t.innerHTML = reply + '<div style="font-family:var(--mono);font-size:0.48rem;color:var(--text3);margin-top:6px;border-top:1px solid var(--border);padding-top:4px;">⚡ Metadata response — Ollama offline. Fix: run <code>launchctl setenv OLLAMA_ORIGINS "*"</code> then restart Ollama.</div>';
-      t.style.color = ''; t.classList.remove('thinking');
-    }
-    msgs.scrollTop = msgs.scrollHeight;
+    console.warn('Live chat unreachable, using metadata fallback:', e.message);
+    odMetadataFallback('Metadata response — the local model is offline.');
   })
   .finally(() => { inEl.disabled = false; inEl.focus(); updateOdSpeechUI(); });
 }

@@ -2072,11 +2072,36 @@ function askObject(presetQ) {
         })
       }, 30000);
 
+  // Answer from the object's verified metadata whenever the live model path
+  // returns no usable text — offline, slow, rate-limited, or blocked. The
+  // object never dead-ends; it always speaks from its record.
+  const renderMetadataFallback = (note) => {
+    clearInterval(thinkingInterval);
+    const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata reply ready. You can read it aloud.';
+    resp.innerHTML = reply + '<div class="fallback-note">' + note + '</div>';
+    resp.className = 'v-response';
+    updateVisitorSpeechUI();
+    if (shouldAutoSpeakReply) {
+      visitorAutoSpeakNextReply = false;
+      speakVisitorReply();
+    }
+  };
+
   chatFetch
   .then(r => r.json())
   .then(data => {
+    const reply = data && data.message && data.message.content && data.message.content.trim();
+    if (!reply) {
+      // 200 with an error/empty payload (busy, rate-limited, blocked) —
+      // fall back to the verified record rather than a dead-end message.
+      renderMetadataFallback(data && data.error
+        ? 'Response from verified metadata — the live model is busy'
+        : 'Response from verified metadata');
+      return;
+    }
     clearInterval(thinkingInterval);
-    const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
     visitorLastReply = reply;
     visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
@@ -2088,20 +2113,7 @@ function askObject(presetQ) {
       speakVisitorReply();
     }
   })
-  .catch(() => {
-    clearInterval(thinkingInterval);
-    // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
-    const reply = metadataFallback(q);
-    visitorLastReply = reply;
-    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
-    resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
-    resp.className = 'v-response';
-    updateVisitorSpeechUI();
-    if (shouldAutoSpeakReply) {
-      visitorAutoSpeakNextReply = false;
-      speakVisitorReply();
-    }
-  });
+  .catch(() => renderMetadataFallback('Response from verified metadata — LLM offline'));
 }
 
 function metadataFallback(q) {
