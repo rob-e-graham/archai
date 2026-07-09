@@ -3738,8 +3738,6 @@ function doConverse() {
 
     // Render object cards if present
     if (data.objects && data.objects.length > 0) {
-      const imageBackedObjects = [];
-      let objectCards = '';
       for (const obj of data.objects) {
         const objKey = ensureConvoObject(obj);
         const objImage = pickSearchImage(OBJECTS[objKey]._mv || {});
@@ -3750,9 +3748,10 @@ function doConverse() {
         html += `</div>`;
       }
 
-      // Also update the main results area with the objects
-      document.getElementById('resultsLabel').textContent = imageBackedObjects.length + ' image-ready objects cited · conversational';
-      renderConvoResults(imageBackedObjects);
+      // Also update the main results area — renderConvoResults filters to
+      // image-ready records internally, so pass the full cited set.
+      document.getElementById('resultsLabel').textContent = data.objects.length + ' objects cited · conversational';
+      renderConvoResults(data.objects);
     }
 
     if (pending) { pending.id = ''; pending.innerHTML = html; }
