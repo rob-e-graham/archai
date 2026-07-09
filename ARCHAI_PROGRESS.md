@@ -5,6 +5,34 @@ Maintained as an active handoff note so Claude, Codex, and Rob can quickly see w
 
 Primary build planning is now also summarized in [ROADMAP.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ROADMAP.md). Use that for milestone order, and use this file for detailed handoff notes.
 
+## 2026-07-09 (cont. 2) v11.6.15 — five new collection harvesters (Wikimedia, IA, LoC, DPLA, Trove)
+
+Built harvesters for the 5 requested sources that had none. All follow the existing harvester
+pattern (rights-gated, image-backed, `nomic-embed-text` embeddings, Qdrant upsert, `--dry-run`
+default / `--apply` to write) and are registered in backend `ALLOWED_COLLECTIONS` +
+`COLLECTION_INSTITUTIONS` and frontend `COLLECTIONS` + `COLLECTION_LABELS` + `SOURCE_LABELS`.
+
+| Script | Collection | Key |
+|---|---|---|
+| `scripts/wikimedia-harvester.js` | `archai_wikimedia` | none |
+| `scripts/internetarchive-harvester.js` | `archai_internetarchive` | none |
+| `scripts/loc-harvester.js` | `archai_loc` | none |
+| `scripts/dpla-harvester.js` | `archai_dpla` | `DPLA_API_KEY` |
+| `scripts/trove-harvester.js` | `archai_trove` | `TROVE_API_KEY` |
+
+**Not yet run against the live stack** (this sandbox has no Ollama/Qdrant and no outbound API
+access). Each was syntax-checked and built from the source's public API docs. Run on the Mac:
+`node scripts/<x>-harvester.js` (dry-run) → inspect the sample rows → `--apply` to write. First
+run may need a field-path tweak per source (documented response shapes can drift). Rights posture:
+unknown/closed licences are HELD (staff-searchable, not public-display); only allow-listed open
+licences (CC0/CC BY/PD) are public; poster/print reuse stays off. After harvesting: restart backend,
+`RELOAD ALL COLLECTIONS` in the app. Collections 20-24 (LoC, Wikimedia, Trove, DPLA, IA) of Rob's
+24-source list are now wired; the other 19 were already live.
+
+Follow-up: add full entries for the 5 in `scripts/collection-targets.json` + `scripts/HARVESTERS.md`
+(only code registration done so far), and a legal/rights review pass before flipping held records
+to public display (esp. LoC and the aggregators DPLA/Trove).
+
 ## 2026-07-09 (cont.) v11.6.12 → v11.6.14 all tabs, collection selector, public Make-AUXIO — HANDOVER
 
 Continuation of the publicity-readiness work. **Read the "Deploy state" block below first — the
