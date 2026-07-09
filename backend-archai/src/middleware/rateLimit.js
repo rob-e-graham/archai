@@ -1,7 +1,5 @@
-// This Source Code Form is subject to the terms of the Mozilla Public
-// License, v. 2.0. If a copy of the MPL was not distributed with this
-// file, You can obtain one at https://mozilla.org/MPL/2.0/.
-// Copyright (c) 2026 Rob Graham / FAMTEC
+// Copyright (c) 2026 Rob Graham / FAMTEC. All rights reserved.
+// Proprietary during the doctoral research period — see LICENSE.
 const buckets = new Map();
 const WINDOW_MS = 60_000;
 const CLEANUP_INTERVAL = 300_000;
@@ -13,9 +11,20 @@ setInterval(() => {
   }
 }, CLEANUP_INTERVAL);
 
-export function rateLimit({ maxPerMinute = 20, keyFn } = {}) {
+// Resolve a per-visitor identity. Behind a reverse proxy (Cloudflare, nginx)
+// req.ip is often the single upstream IP shared by all visitors, so prefer the
+// left-most X-Forwarded-For hop when present. Good enough for demo throttling.
+function clientKey(req) {
+  const fwd = req.headers['x-forwarded-for'];
+  if (fwd) return String(fwd).split(',')[0].trim();
+  return req.ip || 'unknown';
+}
+
+export function rateLimit({ maxPerMinute = 20, scope = 'default', keyFn } = {}) {
   return (req, res, next) => {
-    const key = keyFn ? keyFn(req) : (req.ip || 'unknown');
+    // Scope the bucket per limiter so heavy read traffic (collection scroll,
+    // search, embeddings on page load) cannot exhaust the separate chat budget.
+    const key = `${scope}:${keyFn ? keyFn(req) : clientKey(req)}`;
     const now = Date.now();
     let bucket = buckets.get(key);
     if (!bucket || now - bucket.windowStart > WINDOW_MS) {

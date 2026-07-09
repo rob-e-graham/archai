@@ -1,7 +1,5 @@
-// This Source Code Form is subject to the terms of the Mozilla Public
-// License, v. 2.0. If a copy of the MPL was not distributed with this
-// file, You can obtain one at https://mozilla.org/MPL/2.0/.
-// Copyright (c) 2026 Rob Graham / FAMTEC
+// Copyright (c) 2026 Rob Graham / FAMTEC. All rights reserved.
+// Proprietary during the doctoral research period — see LICENSE.
 import { Router } from 'express';
 import { z } from 'zod';
 import { createRequire } from 'module';
@@ -81,9 +79,12 @@ proxyRouter.get('/personalities', (_req, res) => {
 const MAX_CHAT_TOKENS = 512;
 const MAX_PROMPT_LENGTH = 500;
 
-const chatLimiter = rateLimit({ maxPerMinute: 15 });
-const searchLimiter = rateLimit({ maxPerMinute: 30 });
-const scrollLimiter = rateLimit({ maxPerMinute: 20 });
+// Separate scopes so the app's own page-load reads (one scroll per collection,
+// embeddings, health) never spend the visitor's chat budget. Limits sized for a
+// public demo where a single page load fans out across ~20 collections.
+const chatLimiter = rateLimit({ scope: 'chat', maxPerMinute: 30 });
+const searchLimiter = rateLimit({ scope: 'search', maxPerMinute: 60 });
+const scrollLimiter = rateLimit({ scope: 'scroll', maxPerMinute: 120 });
 
 // ── Qdrant scroll (load objects) ──────────────────────────────────
 const scrollSchema = z.object({
