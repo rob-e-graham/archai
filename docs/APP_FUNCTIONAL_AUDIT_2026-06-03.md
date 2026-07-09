@@ -13,7 +13,7 @@ Question: what's needed for the main app to be fully functioning.
 | Comments (visitor) | SQLite, AI-moderated | ✅ Real |
 | Semantic search | Qdrant + nomic embeddings | ✅ Real |
 | Objects browse panel | Live Qdrant objects loaded into `OBJECTS` | ✅ Real data, needs better image/legal filtering |
-| AUX.IO management panel | Generated in-memory from live objects | 🔶 Real objects, still not synced to generated page manifest |
+| AUXIO management panel | Generated in-memory from live objects | 🔶 Real objects, still not synced to generated page manifest |
 | Vocab / thesaurus panel | Qdrant-derived vocab + curated CHIN/AAT/DOCAM/Nomenclature terms | ✅ Functional prototype |
 | FAMTEC Exchange panel | Prototype workflow data | 🔶 Placeholder concept, clearly separate from PhD core |
 | Nodel (exhibition control) | simulated devices | 🔶 Mock by design (no hardware in demo) |
@@ -33,8 +33,8 @@ Question: what's needed for the main app to be fully functioning.
 3. **Theme / technology filter UI.** Use `themes[]` / `is_technology` where available, and keep plain language collection-search chips for visitors and staff.
 
 ### P2 — connect the management surfaces
-4. **AUX.IO management → generated pages.** It currently creates an in-memory working set from real objects. Next step is to read the generated AUX.IO manifest/pages so every generated page can be searched, previewed, and eventually edited.
-5. **AUX.IO save path.** Replace the current local confirmation with a persistent backend/Directus/SQLite save route.
+4. **AUXIO management → generated pages.** It currently creates an in-memory working set from real objects. Next step is to read the generated AUXIO manifest/pages so every generated page can be searched, previewed, and eventually edited.
+5. **AUXIO save path.** Replace the current local confirmation with a persistent backend/Directus/SQLite save route.
 
 ### P3 — concept surfaces (label or build)
 6. **FAMTEC Exchange.** Keep clearly labelled as a separate FAMTEC workflow prototype and potential later ARCHAI addition.

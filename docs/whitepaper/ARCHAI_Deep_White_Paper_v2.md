@@ -447,9 +447,9 @@ AI amplifies curatorial reach without replacing curatorial judgment.
 
 ARCHAI's interfaces are the product of iterative HCI design across multiple channels.
 
-**AUX.IO — the object in the visitor's hand.** *ARCHAI User eXperience: data In, data
+**AUXIO — the object in the visitor's hand.** *ARCHAI User eXperience: data In, data
 Out.* An NFC tap, QR scan, hyperlink, map or spatial trigger on or beside an artefact
-opens the AUX.IO chat interface on the visitor's own device; the object speaks as
+opens the AUXIO chat interface on the visitor's own device; the object speaks as
 that specific object, from its verified record, with a clear sense of what it does and
 does not know. Access is method-agnostic, with no app to install and no account to
 create. Distinct voice lenses serve distinct people — internal (curatorial,
@@ -670,7 +670,7 @@ ARCHAI is not confined to a screen. A print-material system renders any open-lic
 object as a family of physical artefacts — poster (A0/A2/A4), postcard (A6) and sticker
 — each carrying a dominant object image, a museum-label metadata hierarchy (title,
 date/type, institution, rights line), and a high-contrast access block that opens the
-object's live AUX.IO conversation. The design treats these as *gallery access objects*,
+object's live AUXIO conversation. The design treats these as *gallery access objects*,
 not generic QR flyers, so they carry a museum label's authority and hold their own
 outside the gallery.
 
@@ -760,7 +760,7 @@ provenance-aware search, whole-collection staff intelligence, IIIF deep-zoom,
 browser-native multilingual voice, and the print artefact system, all live. The
 running configuration realises the two-model split of Section 8: staff-facing
 curatorial interrogation runs on the larger **qwen2.5:32b** for precision and
-cross-referencing, while visitor-facing AUX.IO objects run on the faster
+cross-referencing, while visitor-facing AUXIO objects run on the faster
 **qwen2.5:14b** for responsive, personality-driven replies tightly bounded to each
 object's record — both served locally by Ollama over a Qdrant vector store with
 nomic-embed-text embeddings. The voice layer is browser-native today, with the

@@ -55,12 +55,12 @@ ARCHAI sits at the intersection of new media art archiving, fine art practice, a
 | System | Status | Notes |
 | --- | --- | --- |
 | Semantic search (Qdrant + nomic-embed-text) | Operational | 20,000+ objects · 17 institutions · local · nightly pipeline |
-| Conversational objects (Ollama / qwen2.5:32b) | Live | AI-reactivated hardware deployed. NFC AUX.IO interfaces live. |
+| Conversational objects (Ollama / qwen2.5:32b) | Live | AI-reactivated hardware deployed. NFC AUXIO interfaces live. |
 | Cross-institutional open data pipeline | Operational | 17 sources · CC0-filtered · IIIF-integrated · automated licence verification |
-| NFC / QR AUX.IO visitor pages | Live | Mobile-first · conversational · offline-first · per-object pages |
+| NFC / QR AUXIO visitor pages | Live | Mobile-first · conversational · offline-first · per-object pages |
 | Downloadable poster / sticker / postcard system | Live | Canvas API · A0/A2/A4/sticker/postcard · QR codes · no server round-trip |
 | Multilingual audio chat | Prototype | Whisper local STT + Coqui TTS · voice-in, voice-out object conversations |
-| Object text (obtext) | Operational | Curator-authored short-form descriptions · AUX.IO visitor panel · Qdrant payload |
+| Object text (obtext) | Operational | Curator-authored short-form descriptions · AUXIO visitor panel · Qdrant payload |
 | ARCHAI UI (v0.6.1) | Working prototype | 7-panel web app · 6 roles · Curator · Upload · NFC · Vocab · Visitor · Admin |
 | Hallucination prevention | Framework documented | 5 layers. Pilot object: 10/10 quality, 0 confabulations across 50 tests. |
 | FAMTEC Exchange | Prototype stage | Institution network · loan / rental / booking. Architecturally separate. |
@@ -174,7 +174,7 @@ At the close of each conversation, objects introduce related items in the collec
 
 ### 5.5  Object Text (Obtext): The Curator's Voice Before the AI Begins
 
-Alongside AI-generated conversation, ARCHAI implements a distinct field — obtext — for curator-authored short-form descriptive text. Stored as a dedicated property in each object's Qdrant payload and rendered in the AUX.IO visitor interface above the conversational panel, obtext functions as the canonical human voice of the object before any AI interaction begins.
+Alongside AI-generated conversation, ARCHAI implements a distinct field — obtext — for curator-authored short-form descriptive text. Stored as a dedicated property in each object's Qdrant payload and rendered in the AUXIO visitor interface above the conversational panel, obtext functions as the canonical human voice of the object before any AI interaction begins.
 
 The distinction is deliberate. AI-generated conversation is dynamic and visitor-directed; obtext is fixed, authoritative, and curator-maintained. Where the conversational response adapts to the visitor's question, obtext provides a stable foundation: what this object is, where it came from, and what the institution wants every visitor to know before they begin their own inquiry. Obtext is edited through the ARCHAI curator interface by authorised users, subject to the same quality gate as all interpretive content in the system. It does not enter the heritage foundation layer — it is interpretation, not archival record — but it is clearly distinguished from AI-generated text in the visitor interface and treated with the same curatorial authority as a wall label.
 
@@ -188,7 +188,7 @@ Period-appropriate analogue handsets — available at physical NFC kiosks — de
 
 ### 5.7  Physical Deployment: The Downloadable Archive
 
-The AUX.IO visitor page extends beyond digital interaction to a five-format downloadable artefact system. From any object page, visitors can generate and download high-resolution print files in five formats:
+The AUXIO visitor page extends beyond digital interaction to a five-format downloadable artefact system. From any object page, visitors can generate and download high-resolution print files in five formats:
 
 | Format | Dimensions | Primary use |
 | --- | --- | --- |
@@ -198,7 +198,7 @@ The AUX.IO visitor page extends beyond digital interaction to a five-format down
 | Postcard | 148 × 105 mm | Mailable, distributable, collectable, event giveaway |
 | Sticker | 70 mm circular | Public space activation, laptop, event, risograph |
 
-Each format is generated client-side using the Canvas API — no server round-trip, no stored user data, no file held on ARCHAI infrastructure. The generated file embeds a QR code linking to the live AUX.IO conversation page for that object, a IIIF-sourced image drawn directly from the originating institution's image server, and full attribution: licence type, institution, object identifier, and ARCHAI credit line.
+Each format is generated client-side using the Canvas API — no server round-trip, no stored user data, no file held on ARCHAI infrastructure. The generated file embeds a QR code linking to the live AUXIO conversation page for that object, a IIIF-sourced image drawn directly from the originating institution's image server, and full attribution: licence type, institution, object identifier, and ARCHAI credit line.
 
 The system was designed explicitly for street art activation. An open call (#ARCHAIinTheWild) invites communities — street artists, collectives, educators, zine makers — to take museum objects into public space: paste-up, risograph print, zine insert, mural companion, event giveaway. This constitutes a new category of heritage distribution: the museum object, physically reproduced at no cost, appearing on a wall in a neighbourhood that may never visit the institution that holds the original. The QR code ensures that every physical deployment remains connected to a live conversational interface — the poster is not a dead end. It is an entrance.
 
@@ -268,10 +268,10 @@ ARCHAI currently harvests and indexes materials from 17 international institutio
 Each harvest implements the appropriate licence handling for its source:
 
 - **CC0** (The Met, Rijksmuseum, Smithsonian CC0-flagged items, Getty open content): images and metadata cleared for unrestricted display and distribution.
-- **CC BY** (Wellcome Collection, Te Papa, QAGOMA): images displayed with full attribution preserved in the Qdrant payload and rendered on every AUX.IO page.
+- **CC BY** (Wellcome Collection, Te Papa, QAGOMA): images displayed with full attribution preserved in the Qdrant payload and rendered on every AUXIO page.
 - **Metadata-only** (Whitney, MoMA, Harvard Art Museums): where image rights are not cleared for open display, ARCHAI indexes metadata only — no image served, visitor directed to the source institution for image access.
 
-A collection-targets matrix documents the licence status, API endpoint, authentication requirements, rate limits, and harvest parameters for each institution. Legal compliance is automated and audited per harvest run. No image is displayed on a public ARCHAI or AUX.IO page without having passed the legal gate at ingest time. This gate is not a configuration setting; it is enforced in code.
+A collection-targets matrix documents the licence status, API endpoint, authentication requirements, rate limits, and harvest parameters for each institution. Legal compliance is automated and audited per harvest run. No image is displayed on a public ARCHAI or AUXIO page without having passed the legal gate at ingest time. This gate is not a configuration setting; it is enforced in code.
 
 ### 8.2  Conversational Terminals
 
@@ -279,7 +279,7 @@ Local language models housed in repurposed vintage hardware — a deliberate aes
 
 ### 8.3  NFC / QR Interpretation Points
 
-NFC tags and QR codes function as the system's spatial index — each one a locus in the living memory palace, anchoring AI responses to a specific object at a specific location. When a visitor taps or scans, the system resolves exactly which object is being addressed. Voice interaction is available through period-appropriate analogue handsets via Coqui TTS. The public-facing AUX.IO page loads on the visitor's own device — no app required, no login, no data collected.
+NFC tags and QR codes function as the system's spatial index — each one a locus in the living memory palace, anchoring AI responses to a specific object at a specific location. When a visitor taps or scans, the system resolves exactly which object is being addressed. Voice interaction is available through period-appropriate analogue handsets via Coqui TTS. The public-facing AUXIO page loads on the visitor's own device — no app required, no login, no data collected.
 
 ### 8.4  Technological Reanimation
 

@@ -1,3 +1,5 @@
+> **Superseded:** the current working outreach document is `ARCHAI_OUTREACH_MASTER.md`. This file is kept for reference.
+
 # ARCHAI Museum & Gallery Outreach Plan
 
 Date: 2026-06-08

@@ -17,7 +17,7 @@
 // IMPORTANT — ATTRIBUTION REQUIREMENT:
 //   RAWG terms require an active hyperlink to rawg.io on every page
 //   where their data is displayed. The payload includes rawg_attribution_url
-//   which MUST be rendered as a clickable link on every AUX.IO visitor page.
+//   which MUST be rendered as a clickable link on every AUXIO visitor page.
 //
 // API docs:  https://rawg.io/apidocs  |  https://api.rawg.io/docs/
 // Licence:   Free with attribution for non-commercial / <100K MAU.
@@ -238,7 +238,7 @@ async function main() {
       let added = 0;
       for (const game of data.results) {
         if (!game.id || seen.has(game.id)) continue;
-        // Must have a background image to be useful on AUX.IO
+        // Must have a background image to be useful on AUXIO
         if (!game.background_image) continue;
         seen.add(game.id);
         candidates.push(game);
@@ -354,7 +354,7 @@ async function main() {
   console.log(`  → ${success} games embedded into '${COLLECTION}' (offset: ${ID_OFFSET})`);
   console.log(`  → ${errors} errors`);
   console.log(`  → Licence: Free with attribution`);
-  console.log(`  ⚠ ATTRIBUTION REQUIRED: every AUX.IO page displaying RAWG data`);
+  console.log(`  ⚠ ATTRIBUTION REQUIRED: every AUXIO page displaying RAWG data`);
   console.log(`    must include an active hyperlink to https://rawg.io\n`);
 }
 

@@ -231,5 +231,5 @@ async function upsertPoint(id, vector, payload) {
     if (n % 10 === 0) console.log(`  ${n}/${admitted.length}`);
   }
   console.log(`\n✓ APPLY complete: ${n} records in ${COLLECTION}.`);
-  console.log('Next: rebuild archai_curator, run the public media audit, then regenerate AUX.IO. Public print reuse stays OFF until the legal ranking review.');
+  console.log('Next: rebuild archai_curator, run the public media audit, then regenerate AUXIO. Public print reuse stays OFF until the legal ranking review.');
 })().catch((e) => { console.error('\nHARVEST FAILED:', e.message); process.exit(1); });

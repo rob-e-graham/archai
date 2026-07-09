@@ -5,11 +5,11 @@ export function buildNfcPageModel(tag) {
   if (!tag.objectId) {
     return {
       tagId: tag.tagId,
-      title: 'Unassigned AUX.IO Tag',
-      type: 'AUX.IO Placeholder',
+      title: 'Unassigned AUXIO Tag',
+      type: 'AUXIO Placeholder',
       year: null,
       location: tag.location,
-      story: 'This tag is currently unassigned. Staff can assign an object in the ARCHAI AUX.IO tab.',
+      story: 'This tag is currently unassigned. Staff can assign an object in the ARCHAI AUXIO tab.',
       chips: ['Assign in Admin', 'Scan test', 'Open object search'],
     };
   }

@@ -688,6 +688,7 @@ body::after {
 }
 .v-chat-input {
   flex: 1;
+  min-width: 0;
   padding: 14px 16px;
   background: transparent;
   border: none;
@@ -696,8 +697,10 @@ body::after {
   font-family: var(--serif);
   font-style: italic;
   font-size: 1rem;
+  min-width: 0;
+  text-overflow: ellipsis;
 }
-.v-chat-input::placeholder { color: rgba(143,188,176,0.58); }
+.v-chat-input::placeholder { color: rgba(143,188,176,0.58); font-size: 0.9rem; }
 .v-chat-send {
   padding: 14px 18px;
   background: var(--accent2);
@@ -1359,7 +1362,7 @@ body::after {
 <!-- HEADER -->
 <div class="v-header">
   <div class="v-logo">ARC<span>H</span>AI</div>
-  <div class="v-tag">AUX.IO 1196</div>
+  <div class="v-tag">AUXIO 1196</div>
 </div>
 
 <div class="v-scroll-cue" id="scrollCue" aria-hidden="true">
@@ -1432,7 +1435,7 @@ body::after {
           <button id="v-voice-read-btn" onclick="speakVisitorReply()">Read Reply</button>
           <button id="v-voice-silence-btn" onclick="stopVisitorSpeech()" disabled>Stop Audio</button>
         </div>
-        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.</span></div>
+        <div class="v-voice-status" id="v-voice-status"><span class="v-voice-indicator" id="v-voice-indicator" aria-hidden="true"></span><span class="v-voice-status-text" id="v-voice-status-text">Browser speech demo for now. Whisper + Coqui is the next production path for AUXIO.</span></div>
       </div>
     </details>
     <div class="v-response" id="chatResponse"></div>
@@ -1567,7 +1570,7 @@ body::after {
 
 <script>
 // ══════════════════════════════════════════════════════════════════
-// ARCHAI AUX.IO Visitor Page — Object Chat via Ollama (LAN)
+// ARCHAI AUXIO Visitor Page — Object Chat via Ollama (LAN)
 // ══════════════════════════════════════════════════════════════════
 
 // ── HERO IMAGE FALLBACK ─────────────────────────────────────────
@@ -1586,7 +1589,7 @@ function resolveApiOrigin() {
   if (!USE_PROXY) return '';
   if (BACKEND_PROXY !== '__SELF__') return BACKEND_PROXY;
 
-  // Static AUX.IO pages can be served from preview ports like :8000 or :8002 while
+  // Static AUXIO pages can be served from preview ports like :8000 or :8002 while
   // the backend API lives on :8787.
   if (window.location.port && window.location.port !== '8787') {
     return `${window.location.protocol}//${window.location.hostname}:8787`;
@@ -1781,22 +1784,22 @@ const VISITOR_TONES = {
   guide: {
     note: 'A welcoming gallery-guide voice: clear, calm, and easy to follow.',
     instruction: 'Speak like a thoughtful gallery guide standing beside the visitor. Be warm, concise, and practical. Start with what the visitor can understand from the record, then offer one useful observation. 3-4 short sentences max.',
-    placeholder: 'Ask for a simple introduction, guided explanation, or first thing to notice…'
+    placeholder: 'Ask for an introduction or what to notice…'
   },
   curatorial: {
     note: 'A curator-style reading for visitors who want deeper context and significance.',
     instruction: 'Speak like a curator writing for an interested public audience. Focus on significance, materials, maker/date/context, and relationships suggested by the record. Use museum language carefully, but explain it. Do not overstate what the record proves.',
-    placeholder: 'Ask about significance, context, materials, or why this object matters…'
+    placeholder: 'Ask about significance, context, or materials…'
   },
   learning: {
     note: 'For students, families, and first-time visitors: plain language with helpful context.',
     instruction: 'Speak like an education guide. Use plain language, define specialist terms, and give one question or observation that helps someone look more closely. Be respectful and never childish. Keep the answer grounded in the record.',
-    placeholder: 'Ask what it is, how it was used, or what a student should notice…'
+    placeholder: 'Ask what it is or how it was used…'
   },
   interpretive: {
     note: 'A reflective visitor-facing reading: sensory, thoughtful, and still evidence-based.',
     instruction: 'Speak like a public interpretation writer. Offer a reflective reading that helps the visitor slow down, notice details, and connect the record to broader human or cultural questions. Keep the tone grounded, not mystical or sentimental. Say plainly when the record is limited.',
-    placeholder: 'Ask for a reflective reading, looking prompt, or visitor-friendly story…'
+    placeholder: 'Ask for a reflective reading or story…'
   }
 };
 
@@ -1974,7 +1977,7 @@ function updateVisitorSpeechUI(message = '') {
   const silenceBtn = document.getElementById('v-voice-silence-btn');
   const speaking = typeof speechSynthesis !== 'undefined' && speechSynthesis.speaking;
   const statusMessage = visitorSpeechStatus || (visitorSupportsSpeechRecognition()
-    ? 'Browser speech demo for now. Whisper + Coqui is the next production path for AUX.IO.'
+    ? 'Browser speech demo for now. Whisper + Coqui is the next production path for AUXIO.'
     : getVisitorSpeechUnavailableMessage());
 
   if (statusEl) {
@@ -2009,7 +2012,7 @@ function ensureVisitorSpeechRecognition() {
     visitorSpeechListening = true;
     visitorSpeechSubmitted = false;
     visitorSpeechDraftTranscript = '';
-    updateVisitorSpeechUI('Listening… Ask AUX.IO your question.');
+    updateVisitorSpeechUI('Listening… Ask AUXIO your question.');
   };
 
   recognition.onresult = event => {
@@ -2094,7 +2097,7 @@ function speakVisitorReply() {
   }
   const text = visitorLastReply || '';
   if (!text) {
-    updateVisitorSpeechUI('Ask AUX.IO something first, then I can read the reply aloud.');
+    updateVisitorSpeechUI('Ask AUXIO something first, then I can read the reply aloud.');
     return;
   }
   speechSynthesis.cancel();
@@ -2188,11 +2191,34 @@ function askObject(presetQ) {
         })
       }, 30000);
 
+  // Answer from the object's verified metadata whenever the live model path
+  // returns no usable text — offline, slow, rate-limited, or blocked. The
+  // object never dead-ends; it always speaks from its record.
+  const renderMetadataFallback = (note) => {
+    clearInterval(thinkingInterval);
+    const reply = metadataFallback(q);
+    visitorLastReply = reply;
+    visitorSpeechStatus = 'Metadata reply ready. You can read it aloud.';
+    resp.innerHTML = reply + '<div class="fallback-note">' + note + '</div>';
+    resp.className = 'v-response';
+    updateVisitorSpeechUI();
+    if (shouldAutoSpeakReply) {
+      visitorAutoSpeakNextReply = false;
+      speakVisitorReply();
+    }
+  };
+
   chatFetch
   .then(r => r.json())
   .then(data => {
+    const reply = data && data.message && data.message.content && data.message.content.trim();
+    if (!reply) {
+      renderMetadataFallback(data && data.error
+        ? 'Response from verified metadata — the live model is busy'
+        : 'Response from verified metadata');
+      return;
+    }
     clearInterval(thinkingInterval);
-    const reply = (data.message && data.message.content) || 'I cannot speak right now.';
     chatHistory.push({ role: 'assistant', content: reply });
     visitorLastReply = reply;
     visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
@@ -2204,20 +2230,7 @@ function askObject(presetQ) {
       speakVisitorReply();
     }
   })
-  .catch(() => {
-    clearInterval(thinkingInterval);
-    // Metadata fallback — no LLM required, and keeps the page responsive if the model is slow.
-    const reply = metadataFallback(q);
-    visitorLastReply = reply;
-    visitorSpeechStatus = 'Metadata fallback reply ready. You can read it aloud.';
-    resp.innerHTML = reply + '<div class="fallback-note">Response from verified metadata — LLM offline</div>';
-    resp.className = 'v-response';
-    updateVisitorSpeechUI();
-    if (shouldAutoSpeakReply) {
-      visitorAutoSpeakNextReply = false;
-      speakVisitorReply();
-    }
-  });
+  .catch(() => renderMetadataFallback('Response from verified metadata — LLM offline'));
 }
 
 function metadataFallback(q) {
@@ -2386,8 +2399,8 @@ function _posterText() {
     title: OBJECT.title || 'Untitled object',
     meta: [OBJECT.artist, OBJECT.date, OBJECT.type].filter(Boolean).join(' · '),
     institution: OBJECT.institution || 'ARCHAI',
-    registration: (OBJECT.registration || 'AUX.IO').toUpperCase(),
-    rights: [OBJECT.licence || 'Rights recorded on object page', OBJECT.institution || 'ARCHAI', `ARCHAI AUX.IO · ${new Date().getFullYear()}`].join(' · '),
+    registration: (OBJECT.registration || 'AUXIO').toUpperCase(),
+    rights: [OBJECT.licence || 'Rights recorded on object page', OBJECT.institution || 'ARCHAI', `ARCHAI AUXIO · ${new Date().getFullYear()}`].join(' · '),
     description: OBJECT.description || '',
   };
 }
@@ -2489,7 +2502,7 @@ function _drawTopBrand(ctx, W, pad, innerPad, topY, serif, mono, p, sc) {
   ctx.fillStyle = p.teal;
   ctx.textAlign = 'right';
   ctx.textBaseline = 'top';
-  ctx.fillText('AUX.IO', W - pad - innerPad, topY + Math.round(12 * sc));
+  ctx.fillText('AUXIO', W - pad - innerPad, topY + Math.round(12 * sc));
   ctx.textAlign = 'left';
 }
 
@@ -2729,7 +2742,7 @@ async function downloadPoster(sizeKey) {
     _drawLabel(ctx, 'READ · ASK · LISTEN · SHARE', qrX, qrY + qrSize + qrPad * 2 + Math.round(152 * sc), mono, Math.round(18 * sc), p.muted);
 
     const footerY = H - Math.round(116 * sc);
-    _drawLabel(ctx, 'ARCHAI · AUX.IO · RIGHTS-AWARE QR VISITOR ACCESS · OPEN GLAM DEMO', copyX, footerY, mono, Math.round(17 * sc), p.muted);
+    _drawLabel(ctx, 'ARCHAI · AUXIO · RIGHTS-AWARE QR VISITOR ACCESS · OPEN GLAM DEMO', copyX, footerY, mono, Math.round(17 * sc), p.muted);
     _drawLabel(ctx, new Date().getFullYear(), W - pad - innerPad - Math.round(120 * sc), footerY, mono, Math.round(16 * sc), p.muted);
     ctx.textAlign = 'left';
 
@@ -2779,7 +2792,7 @@ async function _drawStickerLayout(ctx, W, H) {
   ctx.fillStyle = p.teal;
   ctx.textAlign = 'right';
   ctx.textBaseline = 'top';
-  ctx.fillText('AUX.IO', W - pad - innerPad, Math.round(74 * sc));
+  ctx.fillText('AUXIO', W - pad - innerPad, Math.round(74 * sc));
   ctx.textAlign = 'left';
 
   const imageX = pad + innerPad;
@@ -2806,7 +2819,7 @@ async function _drawStickerLayout(ctx, W, H) {
   _drawLabel(ctx, 'SCAN QR TO START THE CONVERSATION', textX, curY + Math.round(66 * sc), mono, Math.round(17 * sc), p.muted);
   _drawTightQRCard(ctx, window.location.href, qrX, qrY, qrSize, qrPad, p, mono, serif, sc);
 
-  _drawLabel(ctx, 'ARCHAI · AUX.IO', textX, H - pad - Math.round(62 * sc), mono, Math.round(14 * sc), p.text);
+  _drawLabel(ctx, 'ARCHAI · AUXIO', textX, H - pad - Math.round(62 * sc), mono, Math.round(14 * sc), p.text);
   _drawLabel(ctx, 'QR VISITOR ACCESS', textX, H - pad - Math.round(34 * sc), mono, Math.round(12 * sc), p.muted);
 }
 
@@ -2836,7 +2849,7 @@ async function _drawPostcardLayout(ctx, W, H) {
   let curY = imageY;
   ctx.textBaseline = 'top';
 
-  _drawLabel(ctx, 'AUX.IO', rx, curY, mono, Math.round(19 * sc), p.teal);
+  _drawLabel(ctx, 'AUXIO', rx, curY, mono, Math.round(19 * sc), p.teal);
   curY += Math.round(58 * sc);
 
   ctx.fillStyle = p.text;
@@ -2880,7 +2893,7 @@ async function _drawPostcardLayout(ctx, W, H) {
   ctx.fillText(_fitTextWithEllipsis(ctx, 'fineartmedia.tech/aux', W - pad - innerPad - accessX), accessX, qrY + Math.round(48 * sc));
   _drawLabel(ctx, 'READ · ASK · LISTEN', accessX, qrY + Math.round(108 * sc), mono, Math.round(13 * sc), p.muted);
 
-  _drawLabel(ctx, 'ARCHAI · AUX.IO · RIGHTS-AWARE QR VISITOR ACCESS', rx, H - pad - Math.round(30 * sc), mono, Math.round(12 * sc), p.muted);
+  _drawLabel(ctx, 'ARCHAI · AUXIO · RIGHTS-AWARE QR VISITOR ACCESS', rx, H - pad - Math.round(30 * sc), mono, Math.round(12 * sc), p.muted);
 }
 
 // ── DOWNLOAD ORCHESTRATOR for small formats ──

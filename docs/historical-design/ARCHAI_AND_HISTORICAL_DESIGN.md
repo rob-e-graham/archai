@@ -50,7 +50,7 @@ However, museum kiosk interfaces have been criticised for being overly transacti
 
 ARCHAI honours several of Shneiderman's rules:
 
-- **Consistency** (Rule 1): Every object in the system has a canonical metadata record with the same structural integrity, regardless of which of the eleven source institutions it came from. The conversational interface pattern is consistent across the main app and AUX.IO visitor pages.
+- **Consistency** (Rule 1): Every object in the system has a canonical metadata record with the same structural integrity, regardless of which of the eleven source institutions it came from. The conversational interface pattern is consistent across the main app and AUXIO visitor pages.
 - **Universal usability** (Rule 2): Speech input/output for accessibility, multilingual support (six languages live, Whisper supports 99), tone controls (narrator, docent, casual, poetic) for different visitor needs.
 - **Informative feedback** (Rule 3): Status messages during voice capture ("Listening...", "Question captured. Sending to ARCHAI..."), clear hallucination prevention notices, legal status indicators per object.
 - **Closure** (Rule 4): The conversational turn — question, response, option to ask more — provides natural closure.
@@ -103,7 +103,7 @@ The limitation of this model in heritage contexts is that it treats objects as d
 
 ARCHAI reframes Norman's principles for heritage interpretation:
 
-- **Affordance**: The NFC tag is a direct physical affordance. Tap the tag, meet the object. No menus, no search required, no intermediary navigation. The tap is the affordance. On AUX.IO visitor pages, the chat input and voice buttons afford asking and speaking.
+- **Affordance**: The NFC tag is a direct physical affordance. Tap the tag, meet the object. No menus, no search required, no intermediary navigation. The tap is the affordance. On AUXIO visitor pages, the chat input and voice buttons afford asking and speaking.
 - **Signifiers**: The "Start Voice Question" button is a signifier. The "Speech Demo" label signals the available interaction mode. On NFC pages, the object's title and image signal that this is a specific, identifiable cultural object that can be spoken to.
 - **Feedback**: Status messages during voice capture ("Listening...", "Question captured. Sending to ARCHAI...") provide immediate feedback. The conversational response is itself feedback — but it is interpretive feedback, not transactional.
 - **Conceptual model**: This is where ARCHAI most significantly departs from Norman. The visitor's conceptual model is: "I am talking to this object." But the actual system is a semantic search layer over canonical records, with an LLM generating first-person responses grounded in verified metadata, with hallucination prevention constraining outputs. The gap between the visitor's model ("I'm having a conversation with a vase") and the system's reality ("I'm querying a vector database and prompting a language model") is a design research question, not a bug. The PhD should address how this gap is managed — through transparency (the system says "responses are grounded in verified collection metadata"), through trust (hallucination prevention is active), and through framing (the object's personality is grounded in its documented record, not in fabrication).
@@ -332,7 +332,7 @@ ARCHAI's architectural decisions directly support digital repatriation principle
 
 1. **Sovereign infrastructure**: ARCHAI runs entirely on local hardware (Mac Studio). No collection data leaves the institution's network. No visitor interactions are sent to cloud services (the current browser speech demo sends audio to Google — the Whisper upgrade will eliminate this). This is sovereignty by architecture, not by policy.
 
-2. **Per-object cultural protocol gates**: ARCHAI's legal and rights gating system operates per object. Objects with restricted cultural status can be excluded from public-facing interfaces (AUX.IO) while remaining accessible to authorised staff. This supports community-controlled access without requiring the entire system to be locked down.
+2. **Per-object cultural protocol gates**: ARCHAI's legal and rights gating system operates per object. Objects with restricted cultural status can be excluded from public-facing interfaces (AUXIO) while remaining accessible to authorised staff. This supports community-controlled access without requiring the entire system to be locked down.
 
 3. **Metadata governance**: ARCHAI preserves raw source records intact and builds canonical, display, and interpretive layers above them. This means the institution (or source community) retains the authoritative record. ARCHAI's interpretive layer is explicitly marked as derived — it does not claim to be the record itself.
 

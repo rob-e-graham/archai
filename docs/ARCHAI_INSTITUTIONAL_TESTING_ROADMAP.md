@@ -8,8 +8,8 @@ ARCHAI is currently a draft institutional demo and research prototype. The stron
 
 - Collection intelligence: semantic and conversational search across harvested metadata in Qdrant.
 - Object review: staff-facing lenses for Curatorial, Collections, Exhibition, and Interpretation use.
-- AUX.IO: visitor pages generated from object records with rights-aware media, source attribution, audio tools, related objects, IIIF image viewing where available, and visible legal/source status.
-- AUX.IO Management: create/select an object, assign it to a QR/NFC/spatial trigger, choose visitor visibility, preview, and publish in the prototype.
+- AUXIO: visitor pages generated from object records with rights-aware media, source attribution, audio tools, related objects, IIIF image viewing where available, and visible legal/source status.
+- AUXIO Management: create/select an object, assign it to a QR/NFC/spatial trigger, choose visitor visibility, preview, and publish in the prototype.
 - Vocabulary and thesaurus: prototype UI for mapping local terms to controlled vocabulary and flagging sensitive/public-facing language.
 - Media gate: per-item public display rules that hold restricted, missing, placeholder, or low-quality media from visitor-facing surfaces.
 
@@ -35,7 +35,7 @@ ARCHAI is currently a draft institutional demo and research prototype. The stron
 - Turn local project lists into Directus-backed project sets.
 - Support object lists for exhibitions, conservation review, research sets, loan planning, and visitor-route planning.
 
-3. AUX.IO Workflow
+3. AUXIO Workflow
 - Make the workflow legible: Create or select object -> assign access point -> configure visitor visibility -> preview -> publish -> export QR/poster/postcard.
 - Keep share/save/download functions near visitor actions and legal/source details lower in the page.
 - Auto-read replies only when a visitor asks by voice; typed questions stay text-first with optional read-aloud.
@@ -53,7 +53,7 @@ ARCHAI is currently a draft institutional demo and research prototype. The stron
 
 6. Training Mode
 - Keep an in-app overlay explaining the test flow for staff.
-- Add short guided tasks for Curator, Collections, Exhibition, Interpretation, and AUX.IO Publisher roles.
+- Add short guided tasks for Curator, Collections, Exhibition, Interpretation, and AUXIO Publisher roles.
 - Track successful/failed workflows during partner testing.
 
 ## Product Principle

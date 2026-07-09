@@ -4,7 +4,7 @@
 
 Full technical audit of the current browser-native voice demo and a concrete plan for the Whisper (STT) + Coqui/Piper (TTS) backend upgrade.
 
-This covers both the main ARCHAI app (`ARCHAI_v10_8.html`) and AUX.IO visitor pages (`nfc-visitor-template.html`).
+This covers both the main ARCHAI app (`ARCHAI_v10_8.html`) and AUXIO visitor pages (`nfc-visitor-template.html`).
 
 ---
 
@@ -12,7 +12,7 @@ This covers both the main ARCHAI app (`ARCHAI_v10_8.html`) and AUX.IO visitor pa
 
 ### What is live today
 
-Both the main app and AUX.IO have four voice controls:
+Both the main app and AUXIO have four voice controls:
 
 | Button | Function |
 |--------|----------|
@@ -39,7 +39,7 @@ Both surfaces also now include a **Playback Voice** selector with:
 - Supported: `en-AU`, `ar`, `es`, `fr-FR`, `pt-BR`, `ja-JP`
 - Desktop microphone selection is still browser/system-default only
 
-**AUX.IO** (`nfc-visitor-template.html`, lines 1051–1107):
+**AUXIO** (`nfc-visitor-template.html`, lines 1051–1107):
 
 - Same Web Speech API pattern
 - `interimResults: false` — waits for final result only
@@ -48,7 +48,7 @@ Both surfaces also now include a **Playback Voice** selector with:
 - Language code: reads from `document.documentElement.lang || navigator.language || 'en-AU'`
 - This is currently the strongest live test path in practice, especially on phone
 
-**Key difference**: Main app does interim display (typing appears as you speak); AUX.IO waits for the full utterance before filling the input. Both auto-submit when speech ends.
+**Key difference**: Main app does interim display (typing appears as you speak); AUXIO waits for the full utterance before filling the input. Both auto-submit when speech ends.
 
 ### TTS (Text-to-Speech) — Browser Side
 
@@ -62,7 +62,7 @@ Both surfaces also now include a **Playback Voice** selector with:
 - `utterance.rate = 1.0`
 - `utterance.pitch = 1.0`
 
-**AUX.IO** (`nfc-visitor-template.html`, lines 1116–1141):
+**AUXIO** (`nfc-visitor-template.html`, lines 1116–1141):
 
 - Same API pattern
 - Reads `visitorLastReply`
@@ -75,7 +75,7 @@ Both surfaces also now include a **Playback Voice** selector with:
 Both implementations track state via simple flags:
 
 - Main app: `window._odSpeechRecognition`, `window._odSpeechListening`, `window._odSpeechStatus`
-- AUX.IO: `visitorSpeechRecognition`, `visitorSpeechListening`, `visitorSpeechStatus`
+- AUXIO: `visitorSpeechRecognition`, `visitorSpeechListening`, `visitorSpeechStatus`
 
 Button enable/disable logic is handled in `updateOdSpeechUI()` / `updateVisitorSpeechUI()`.
 
@@ -86,7 +86,7 @@ Main app cancels `speechSynthesis` on object detail close (line 2878):
 if (window.speechSynthesis) window.speechSynthesis.cancel();
 ```
 
-AUX.IO has no explicit cleanup on page unload — the browser handles it.
+AUXIO has no explicit cleanup on page unload — the browser handles it.
 
 ---
 
@@ -110,11 +110,11 @@ AUX.IO has no explicit cleanup on page unload — the browser handles it.
 | 3 | **Google cloud dependency (Chrome)** | High | Chrome's SpeechRecognition sends audio to Google's servers for processing. This directly contradicts ARCHAI's sovereign infrastructure principle. Users are not informed that speech leaves the device. |
 | 4 | **TTS voice quality still varies by device** | Medium | The new playback-voice selector helps a lot, but browser TTS still depends on whatever voices the device exposes. Neutral selection is improved, not fully standardized. |
 | 5 | **No streaming TTS** | Low | Browser TTS buffers the full text before speaking. Long replies have a noticeable delay. Streaming would feel more natural. |
-| 6 | **AUX.IO has no interim display** | Low | AUX.IO waits for the full utterance. Users don't see their words appearing as they speak. The main app does show interim text. |
+| 6 | **AUXIO has no interim display** | Low | AUXIO waits for the full utterance. Users don't see their words appearing as they speak. The main app does show interim text. |
 | 7 | **No reliable visual mic activity indicator** | Medium | There is status text, but not yet a robust cross-surface visual pulse/waveform confirming active capture. Important for accessibility and user confidence. |
 | 8 | **Read Reply reads the whole response** | Low | No option to read just the first sentence, skip, or control pacing. Fine for now, but matters for longer curatorial responses. |
-| 9 | **No in-app mic selector on desktop** | Medium | Desktop Chrome uses the browser/system default microphone. Users cannot currently choose between multiple input devices inside ARCHAI or AUX.IO. |
-| 10 | **Language mapping incomplete** | Low | Main app supports 6 explicit response languages for speech codes. AUX.IO falls back to page lang or navigator. Neither covers all 11 collection source languages. |
+| 9 | **No in-app mic selector on desktop** | Medium | Desktop Chrome uses the browser/system default microphone. Users cannot currently choose between multiple input devices inside ARCHAI or AUXIO. |
+| 10 | **Language mapping incomplete** | Low | Main app supports 6 explicit response languages for speech codes. AUXIO falls back to page lang or navigator. Neither covers all 11 collection source languages. |
 | 11 | **No speech privacy notice** | Medium | No visible disclosure that speech may be processed off-device (Chrome's Google dependency). Ethics application will need this addressed. |
 
 ### Backend: No voice endpoints exist yet
@@ -312,7 +312,7 @@ pip install piper-tts
 2. Add speech privacy notice to both surfaces
 3. Add streaming TTS for long responses
 4. Add browser fallback detection
-5. Update AUX.IO generator to use backend voice routes
+5. Update AUXIO generator to use backend voice routes
 6. Update ethics documentation
 
 ### Phase 4 — Research + Coqui (optional)
@@ -349,6 +349,6 @@ The voice flow maps directly to several ARCHAI white paper contributions:
 | Audio recording | None (browser handles internally) | MediaRecorder → blob → backend |
 | Audio storage | None | Ephemeral by default, opt-in research logging |
 | Privacy | No disclosure, Google dependency | Local processing, privacy notice, ethics-ready |
-| Languages | 6 (main app) / auto (AUX.IO) | All Whisper-supported (99 languages) |
+| Languages | 6 (main app) / auto (AUXIO) | All Whisper-supported (99 languages) |
 | Voice profiles | None (system default) | Mapped to personality system |
 | Fallback | N/A | Browser demo if backend unavailable |

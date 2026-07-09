@@ -66,7 +66,7 @@ That is the punk bit, really. Own the machine. Own the model. Own the conversati
 
 Museums should not have to rent their own memory back from a cloud provider.
 
-The code is published under MPL-2.0, open enough to inspect, fork, repair, and adapt, while still protecting the ARCHAI™ name and the research context around it. That feels important to me. Open source should not mean careless. Especially not with cultural material.
+The code is published in a public repository — open to inspect and audit, with all rights reserved during the research period and a full open-source release planned on completion of the doctoral programme — while still protecting the ARCHAI™ name and the research context around it. That feels important to me. Open should not mean careless. Especially not with cultural material.
 
 ## Objects speaking, carefully
 
@@ -170,6 +170,6 @@ One object. One page. One working pathway.
 
 Then another.
 
-*Rob Graham is a PhD candidate at RMIT University (Design), founder of FAMTEC (Fine Art Media Tech), and former Head of Technology at the National Communication Museum. His research focuses on sovereign AI infrastructure for cultural heritage institutions.*
+*Rob Graham is a PhD candidate at RMIT University (Design), founder of FAMTEC (Fine Art Media Tech), and a museum technology leader with more than twenty years across Australian cultural institutions. His research focuses on sovereign AI infrastructure for cultural heritage institutions.*
 
 *ARCHAI™ is a trademark of Rob Graham / FAMTEC.*

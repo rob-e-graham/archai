@@ -102,7 +102,7 @@ ARCHAI now exposes cleared, published WACZ files at:
 GET /api/media/published/:mediaId/archive
 ```
 
-The production frontend should load that URL using a pinned, self-hosted ReplayWeb.page release. Use its sandbox and subdomain isolation options. Do not run archived JavaScript in the main ARCHAI or AUX.IO origin.
+The production frontend should load that URL using a pinned, self-hosted ReplayWeb.page release. Use its sandbox and subdomain isolation options. Do not run archived JavaScript in the main ARCHAI or AUXIO origin.
 
 Recommended origin split:
 
@@ -204,7 +204,7 @@ This is not presented as a museum-owned artwork. It is a rights-clean open-sourc
 
 ## WACZ access-copy fallback
 
-Full browser replay is useful, but it should not be the only public access path. During local testing on 23 June 2026, the archived AUX.IO and ARCHAI WACZ files loaded in ReplayWeb.page but the embedded replay iframe still reported "Archived Page Not Found" despite valid page metadata, timestamps, WACZ downloads, and screenshot/text records.
+Full browser replay is useful, but it should not be the only public access path. During local testing on 23 June 2026, the archived AUXIO and ARCHAI WACZ files loaded in ReplayWeb.page but the embedded replay iframe still reported "Archived Page Not Found" despite valid page metadata, timestamps, WACZ downloads, and screenshot/text records.
 
 ARCHAI now treats WACZ replay in two layers:
 
@@ -229,7 +229,7 @@ Keep this distinction in future designs:
 
 ## Specialist media-lab sources
 
-NASA Image and Video Library was tested as a high-value public-media source for video/image playback R&D. ARCHAI ingested a small `archai_nasa` lab collection from the official API, but it is intentionally excluded from the main curator aggregate and public AUX.IO generation by default.
+NASA Image and Video Library was tested as a high-value public-media source for video/image playback R&D. ARCHAI ingested a small `archai_nasa` lab collection from the official API, but it is intentionally excluded from the main curator aggregate and public AUXIO generation by default.
 
 Why:
 

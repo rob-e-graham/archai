@@ -13,7 +13,7 @@ collection-management and asset systems. It reads from them and never writes bac
 It adds:
 
 - **Conversational search** across your collection in plain language (staff and public);
-- **AUX.IO** — a first-person conversational page per object, reachable by QR/NFC/link,
+- **AUXIO** — a first-person conversational page per object, reachable by QR/NFC/link,
   grounded strictly in your institutional record (the object cannot invent facts);
 - **Rights-aware publishing** — per-item legal gates decide what appears publicly;
 - **Print access objects** — poster/postcard/sticker exports with QR access;
@@ -95,17 +95,17 @@ them. Your source system is untouched.
 the voices, lenses and legal labels. Flag anything sensitive — exclusion is the
 default until protocols are agreed with the relevant communities.
 
-**Step 6 — Publish AUX.IO objects.** In the **AUX.IO Management** tab: select an
+**Step 6 — Publish AUXIO objects.** In the **AUXIO Management** tab: select an
 empty slot → search your collection → **Assign** → set location and visitor
 visibility → **Save Changes** → **View Live Page**. Print the poster/postcard/
 sticker kit from any object's page — the QR opens that object's live conversation.
 
 You can also **create objects by hand** (no API needed): fill the draft form in an
-empty AUX.IO slot, save, and the object immediately gets a live, grounded
+empty AUXIO slot, save, and the object immediately gets a live, grounded
 conversational page. Staff work persists across restarts.
 
 **Step 7 — Evaluate.** Use Training Mode's guided flow with your team: collection
-search → object review → AUX.IO publish → voice question → print export.
+search → object review → AUXIO publish → voice question → print export.
 
 ## 5. Rights and cultural safety (non-negotiable defaults)
 
@@ -118,7 +118,7 @@ search → object review → AUX.IO publish → voice question → print export.
   protocols are co-designed with the relevant communities (CARE Principles /
   Local Contexts TK Labels).
 - The object's AI voice can only state what the record supports. Ask it something
-  outside its record and it says so. Test this yourself on any AUX.IO page.
+  outside its record and it says so. Test this yourself on any AUXIO page.
 
 ## 6. How your team uses it day-to-day
 
@@ -126,8 +126,8 @@ search → object review → AUX.IO publish → voice question → print export.
 |---|---|---|
 | Curator | Curator & Collections tab | Plain-language semantic search, object review with curatorial/collections/exhibition/interpretation lenses, project lists. |
 | Collections staff | Object detail | Full metadata record, source links, legal status, share/save actions. |
-| Interpretation | AUX.IO Management | Assign objects to QR/NFC points, tune visitor visibility, publish, print the access kit. |
-| Visitors | AUX.IO pages | Scan → read → **ask the object questions** in their own words, by text or voice, in multiple languages. |
+| Interpretation | AUXIO Management | Assign objects to QR/NFC points, tune visitor visibility, publish, print the access kit. |
+| Visitors | AUXIO pages | Scan → read → **ask the object questions** in their own words, by text or voice, in multiple languages. |
 
 ## 7. Maintenance
 
@@ -171,7 +171,7 @@ A structured pilot is a short, consultative project — not a software install.
 | Scope | 1 | Pick the pilot collection subset, agree rights defaults and cultural-safety gates, sign the data agreement | Curator + Rob |
 | Connect | 1–2 | Connect Collection config → dry-run → legal review → live harvest | IT + Rob |
 | Staff acceptance | 2–3 | Curators search their own records, tune voices/lenses, flag sensitive items | Curatorial team |
-| Publish | 3–4 | Curated AUX.IO set assigned + published; QR/poster kit printed for the floor | Interpretation |
+| Publish | 3–4 | Curated AUXIO set assigned + published; QR/poster kit printed for the floor | Interpretation |
 | Evaluate | 4–6 | Staff findability + trust, visitor engagement, curatorial sign-off review | Everyone |
 
 Exit criteria are agreed up front: either the institution continues on its own
@@ -196,7 +196,7 @@ source systems were never modified.
 
 **"What if it says something wrong?"** Responses are generated only from your
 verified record via a five-layer prevention framework; where the record runs
-out, the object says so. Test it live: ask any AUX.IO object something outside
+out, the object says so. Test it live: ask any AUXIO object something outside
 its record. Curatorial review workflows cover the residual risk — and an
 auditable "what was this answer grounded in" trail is part of the design.
 

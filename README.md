@@ -4,7 +4,7 @@
 > *"Museums are not silent repositories of Memory — they are living, thinking organisms, where imagination and knowledge, tradition and innovation meet. They are spaces where the past is not only preserved but reborn, where every visitor becomes part of a continuous human conversation."*
 > — Gayane Umerova, UNESCO Global Dialogue on AI and the Future of Museums, 2025
 
-**ARCHAI** (Augmented Reanimation, Cultural Heritage, Artificial Intelligence) is a sovereign, open-source-method AI toolkit for cultural institutions and artist-run spaces. It layers conversational AI onto collection objects using local language models, vector semantic search, and AUX.IO visitor interfaces (deployable via NFC, QR, hyperlink, or beacon) — with all computation running on locally-owned hardware and collection data never leaving the institution's physical infrastructure.
+**ARCHAI** (Augmented Reanimation, Cultural Heritage, Artificial Intelligence) is a sovereign, open-source-method AI toolkit for cultural institutions and artist-run spaces. It layers conversational AI onto collection objects using local language models, vector semantic search, and AUXIO visitor interfaces (deployable via NFC, QR, hyperlink, or beacon) — with all computation running on locally-owned hardware and collection data never leaving the institution's physical infrastructure.
 
 The research paper (#999) was accepted for the **6th Summit on New Media Art Archiving, ISEA2026 Dubai**. The paper is at `docs/ARCHAI_ISEA2026_Rob_Graham.pdf`. A post-submission update covering June 2026 developments is at `docs/ARCHAI_ISEA2026_UPDATE_2026-06.md`. The full research white paper is at [`docs/whitepaper/ARCHAI_Deep_White_Paper_v2.md`](docs/whitepaper/ARCHAI_Deep_White_Paper_v2.md); institutions starting a deployment should begin with the [GLAM Onboarding Guide](docs/GLAM_ONBOARDING_GUIDE.md) and the [Onboarding & Backend Plan](docs/ONBOARDING_AND_BACKEND_PLAN.md).
 
@@ -32,17 +32,17 @@ The research draws on a lineage extending from the Greek method of loci (Simonid
 
 **Cross-institutional semantic search** — nomic-embed-text embeddings (768-dimension) index the current 3,147-record pilot corpus across international museum, gallery, open-data, and digital-culture sources. Queries are natural language; results are merged by cosine similarity across all collections.
 
-**Physical deployment** — a five-format downloadable artefact system (A4, A2, A0, postcard, sticker) generated client-side via Canvas API. Each format embeds a QR code linking to the live AUX.IO conversation page, a IIIF-sourced image from the originating institution, and full attribution. Museum objects enter public space — paste-up, zine, mural companion — while remaining connected to a live conversational interface.
+**Physical deployment** — a five-format downloadable artefact system (A4, A2, A0, postcard, sticker) generated client-side via Canvas API. Each format embeds a QR code linking to the live AUXIO conversation page, a IIIF-sourced image from the originating institution, and full attribution. Museum objects enter public space — paste-up, zine, mural companion — while remaining connected to a live conversational interface.
 
-**Rights-aware harvesting** — every object in the system has passed a per-item legal gate at harvest time. Licence status (CC0, CC BY, metadata-only, open government) is enforced in code, not configuration, and surfaced on every object page. No image is displayed on a public ARCHAI or AUX.IO surface without having passed that gate.
+**Rights-aware harvesting** — every object in the system has passed a per-item legal gate at harvest time. Licence status (CC0, CC BY, metadata-only, open government) is enforced in code, not configuration, and surfaced on every object page. No image is displayed on a public ARCHAI or AUXIO surface without having passed that gate.
 
 ---
 
 ## Collection Status — June 2026
 
-20 live collections/data sources · 3,147+ current records · 1,402 public AUX.IO visitor pages generated
+20 live collections/data sources · 3,147+ current records · 1,402 public AUXIO visitor pages generated
 
-ARCHAI is currently a draft institutional demo / WIP build. The current strongest testing lanes are semantic collection search, object review, AUX.IO publishing, rights-aware media, IIIF viewing, and browser voice access. Nodel/exhibition operations, FAMTEC Exchange, CMS/DAMS connector generalisation, and persistent project workspaces remain active development areas.
+ARCHAI is currently a draft institutional demo / WIP build. The current strongest testing lanes are semantic collection search, object review, AUXIO publishing, rights-aware media, IIIF viewing, and browser voice access. Nodel/exhibition operations, FAMTEC Exchange, CMS/DAMS connector generalisation, and persistent project workspaces remain active development areas.
 
 | Collection | Institution | Objects | Licence | Status |
 |---|---|---|---|---|
@@ -64,6 +64,7 @@ ARCHAI is currently a draft institutional demo / WIP build. The current stronges
 | `archai_qagoma` | QAGOMA, Brisbane | — | Metadata-only (image API blocked) | Partial |
 | `archai_streetart` | Municipal public/street-art data | 439 | Brussels CC BY 4.0 images; other municipal feeds metadata/source-link only | Mixed: 139 public images + staff metadata |
 | `archai_rawg` | RAWG Video Games Database | varies | RAWG API (attribution required) | Live |
+| `archai_nga` | National Gallery of Art, Washington | — | CC0 (item-level open-access gate) | Live |
 | `archai_curator` | All live collections + visitor comments | Built on demand | Mixed | Live |
 
 ---
@@ -80,7 +81,7 @@ Twelve interconnected contributions characterise the research:
 6. **Transferable hardware reference implementation** — a sovereign, scalable open-source stack adaptable to institutions of varying size. Total capital investment: approximately AUD 10,000–20,000 one-time; no subscriptions.
 7. **Cross-institutional open data pipeline** — automated harvesting from international museum, gallery, open-data, and digital-culture sources with per-source licence verification, IIIF integration, and legal gate enforcement at point of ingest.
 8. **Physical deployment layer** — five-format downloadable artefact system (A4/A2/A0/postcard/sticker) generated client-side via Canvas API, enabling museum objects to enter public space with live QR links back to conversational interfaces.
-9. **Multilingual audio interface** — voice input (Whisper, local), voice output (Coqui TTS), extending conversational access across languages and interaction modalities.
+9. **Multilingual audio interface** — browser-native voice input and read-aloud output across six languages today, with a self-hosted open speech stack (Whisper capture, Piper/Coqui synthesis) as the in-development sovereign path. Note: the current browser speech engine may process audio via the browser vendor's servers; the self-hosted path is what closes that gap.
 10. **Multi-category public cultural data integration** — municipal open data (street and public art, six cities) and interactive digital culture (RAWG games) integrated under identical licence-gate enforcement as institutional museum collections.
 11. **Thematic discovery navigation** — disciplinary group tabs with per-institution sub-tabs across the current 3,147-record corpus, enabling cross-collection discovery without controlled vocabulary dependency.
 12. **Legal gate enforcement at scale** — per-source rights verification documented in a collection-targets matrix, implemented in harvester code, and surfaced on every public object page.
@@ -92,7 +93,7 @@ Twelve interconnected contributions characterise the research:
 ```
 ┌──────────────────────────────────────────────────────────────────┐
 │  LAYER 3 — Interface                                             │
-│  ARCHAI Web App (v11.6) · AUX.IO Visitor Pages (1,402 pages)    │
+│  ARCHAI Web App (v11.6) · AUXIO Visitor Pages (1,402 pages)    │
 │  Role-aware · NFC/QR/link/beacon · Curator · Collections ·      │
 │  Technician · Volunteer · Visitor · Admin                        │
 └──────────────────────┬───────────────────────────────────────────┘
@@ -126,17 +127,17 @@ Compute: Apple Mac Studio M4 Max · 64GB Unified Memory · under 120W at full in
 | CollectiveAccess | Collection management · Heritage Foundation Layer |
 | ResourceSpace | Digital asset management · canonical media |
 | Ghost / Directus | Headless CMS · curator interpretation layer |
-| Whisper (local) | Voice input transcription · no visitor speech sent externally |
-| Coqui TTS | Per-object, per-language voice synthesis |
+| Browser SpeechRecognition / SpeechSynthesis | Current voice input + read-aloud (demo path — audio may be processed by the browser vendor) |
+| Whisper + Piper/Coqui (in development) | Planned self-hosted speech stack — keeps all audio on institutional hardware |
 | Proxmox VE | VM snapshots · behaviour preservation for AI artworks |
 
 ---
 
-## AUX.IO — Visitor Interface
+## AUXIO — Visitor Interface
 
-AUX.IO (from Latin *aux*, voice) is the public-facing visitor interface: a per-object conversation page deployable via NFC tag, QR code, hyperlink, or Bluetooth beacon. Each page is a self-contained static HTML file embedding the object's complete metadata and AI context. No app is required; no login is needed; no data is collected from the visitor.
+AUXIO (from Latin *aux*, voice) is the public-facing visitor interface: a per-object conversation page deployable via NFC tag, QR code, hyperlink, or Bluetooth beacon. Each page is a self-contained static HTML file embedding the object's complete metadata and AI context. No app is required; no login is needed; no data is collected from the visitor.
 
-From any AUX.IO page, a visitor may:
+From any AUXIO page, a visitor may:
 - hold a natural language conversation with the object (grounded in its verified record)
 - select a response style: Guide / Curatorial / Learning / Interpretive
 - use voice input and audio response (browser SpeechRecognition + SpeechSynthesis; Whisper/Coqui in development)
@@ -145,7 +146,7 @@ From any AUX.IO page, a visitor may:
 - submit a response that joins the collection record (curator-reviewed before publication)
 - navigate to related objects across the current live collection set
 
-The open call **#ARCHAIinTheWild** invites communities — street artists, collectives, educators, zine makers — to take AUX.IO posters into public space. Every poster embeds a QR code that connects back to the live conversational interface.
+The open call **#ARCHAIinTheWild** invites communities — street artists, collectives, educators, zine makers — to take AUXIO posters into public space. Every poster embeds a QR code that connects back to the live conversational interface.
 
 ---
 
@@ -168,13 +169,13 @@ archai/
 │   │       └── curator-vectors.js ← Curator collection builder
 │   ├── scripts/
 │   │   ├── nga-harvester.js       ← NGA CC0 + item-level open images
-│   │   ├── audit-public-media.js  ← Availability/CORS audit before AUX.IO
+│   │   ├── audit-public-media.js  ← Availability/CORS audit before AUXIO
 │   │   └── ...                    ← Institution-specific legal harvesters
 │   └── data/archai.db             ← SQLite (created at runtime)
 ├── nfc-pages/
-│   ├── generate-nfc-pages.js      ← AUX.IO page generator from all live collections
-│   ├── nfc-visitor-template.html  ← AUX.IO mobile template
-│   ├── aux-id-map.json            ← Permanent canonical object → AUX.IO ID registry
+│   ├── generate-nfc-pages.js      ← AUXIO page generator from all live collections
+│   ├── nfc-visitor-template.html  ← AUXIO mobile template
+│   ├── aux-id-map.json            ← Permanent canonical object → AUXIO ID registry
 │   ├── captive-portal.html
 │   ├── vendor/qrcode-generator.js ← Self-hosted MIT QR generator
 │   └── v/                         ← 1402 audited visitor pages
@@ -205,9 +206,9 @@ For licensing enquiries: rob@fineartmedia.tech
 
 ## Origin and Research Independence
 
-The conceptual foundations of ARCHAI were developed over more than twenty years of professional practice across museums, galleries, and cultural institutions — including ACMI, TarraWarra Museum of Art, Heide Museum of Modern Art, Museums Victoria, Grande Experiences, and the National Communication Museum. All theoretical frameworks, design principles, and research questions emerged from this accumulated practitioner experience, and are entirely independent of any single institution or employer.
+The conceptual foundations of ARCHAI were developed over more than twenty years of professional practice across museums, galleries, and cultural institutions — including ACMI, TarraWarra Museum of Art, Heide Museum of Modern Art, Museums Victoria, Grande Experiences, and other public collecting institutions. All theoretical frameworks, design principles, and research questions emerged from this accumulated practitioner experience, and are entirely independent of any single institution or employer.
 
-All code in this repository was written after departing the National Communication Museum, developed independently through FAMTEC as part of doctoral research at RMIT University, School of Design. The first version committed to this repository (v6, the `v0.1-alpha` release) was the first working prototype, built from the updated PhD research document and the ISEA2026 white paper. Earlier conceptual iterations (v1–v4) existed as planning documents and AI-assisted conversation prototypes during the research design phase — the ideas that informed them are documented in the PhD drafts and the ARCHAI Master Plan.
+All code in this repository was written after the conclusion of the author's most recent institutional employment, developed independently through FAMTEC on personally owned equipment as part of doctoral research at RMIT University, School of Design. The first version committed to this repository (v6, the `v0.1-alpha` release) was the first working prototype, built from the updated PhD research document and the ISEA2026 white paper. Earlier conceptual iterations (v1–v5) existed as graphic mock-ups, interface design versions, planning documents, and AI-assisted conversation prototypes during the research design phase — the ideas that informed them are documented in the PhD drafts and the ARCHAI Master Plan.
 
 This repository, its commit history, and its git log constitute a verifiable, timestamped research journal of the entire development process, establishing clear provenance for all code, design decisions, and research outputs.
 
@@ -228,7 +229,7 @@ ARCHAI is a working research prototype, not a finished commercial product. All p
 
 **Contact:** Rob Graham · rob@fineartmedia.tech  
 **Project:** fineartmedia.tech/archai  
-**AUX.IO:** fineartmedia.tech/aux  
+**AUXIO:** fineartmedia.tech/aux  
 **GitHub:** github.com/rob-e-graham/archai
 
 ---
@@ -237,29 +238,31 @@ ARCHAI is a working research prototype, not a finished commercial product. All p
 
 | Version | Changes |
 |---------|---------|
-| v6 | Initial prototype, mock objects |
+| v1–v5 | Pre-repository design phase: graphic mock-ups, interface design iterations, planning documents, and AI-assisted conversation prototypes — documented in the PhD research drafts and the ARCHAI Master Plan |
+| v6 | Initial prototype, mock objects — first version committed to this repository (`v0.1-alpha`) |
 | v7 | Role switcher, FAMTEC, Nodel, NFC, vocabulary |
 | v10.4 | MV-only, live Qdrant + Ollama, LLM chat |
-| v10.5 | Restored all panels, AUX.IO page generator |
-| v10.6 | Multi-collection (MV+Met+V&A), sort/filter, dedup, AUX.IO share+comments, dynamic institutions |
+| v10.5 | Restored all panels, AUXIO page generator |
+| v10.6 | Multi-collection (MV+Met+V&A), sort/filter, dedup, AUXIO share+comments, dynamic institutions |
 | v10.7 | Live CHIN-aligned thesaurus (AAT+DOCAM+Nomenclature+CHIN Disciplines), all buttons wired, responsive thumbnail scaling, vocab search with scope notes and provider badges |
-| **v10.8** | **Backend proxy for safe public hosting (rate limiting, prompt injection blocking), AI-moderated threaded comments, curator vector collection (all metadata + comments searchable), SQLite persistence, six live source collections in Qdrant, AUX.IO pages wired to backend API, object detail comment thread with approve/remove/reply, startup script with health checks, operations guide** |
-| **v10.9** | **AUX.IO moved from the old 62-page website subset to the live generated collection manifest, public website wrappers aligned with newer institutions, and the current runtime/docs brought into sync around the expanded live object set** |
-| **v11.0** | **Auckland Museum onboarded into the live stack, collection loading now scrolls beyond the first 200 Qdrant points, curator vectors rebuilt to 1085 live objects, AUX.IO source tagging corrected, and 951 public-facing visitor pages regenerated across 8 collections** |
-| **v11.1** | **Te Papa Tongarewa onboarded as the ninth live collection, guest-token and registered-key API access supported, curator vectors rebuilt to 1205 live objects, AUX.IO default cap lifted, and 1071 public-facing visitor pages regenerated across 9 collections** |
+| **v10.8** | **Backend proxy for safe public hosting (rate limiting, prompt injection blocking), AI-moderated threaded comments, curator vector collection (all metadata + comments searchable), SQLite persistence, six live source collections in Qdrant, AUXIO pages wired to backend API, object detail comment thread with approve/remove/reply, startup script with health checks, operations guide** |
+| **v10.9** | **AUXIO moved from the old 62-page website subset to the live generated collection manifest, public website wrappers aligned with newer institutions, and the current runtime/docs brought into sync around the expanded live object set** |
+| **v11.0** | **Auckland Museum onboarded into the live stack, collection loading now scrolls beyond the first 200 Qdrant points, curator vectors rebuilt to 1085 live objects, AUXIO source tagging corrected, and 951 public-facing visitor pages regenerated across 8 collections** |
+| **v11.1** | **Te Papa Tongarewa onboarded as the ninth live collection, guest-token and registered-key API access supported, curator vectors rebuilt to 1205 live objects, AUXIO default cap lifted, and 1071 public-facing visitor pages regenerated across 9 collections** |
 | **v11.2** | **M+ Hong Kong onboarded as the tenth live collection with bilingual metadata preserved, public preview media attached from the source object pages, and the curator layer expanded to include Asia-focused visual culture records** |
-| **v11.3** | **Brasiliana Museus onboarded as the eleventh live collection using a public-domain / open-access legal gate, curator vectors rebuilt to 1445 live objects, and 1311 AUX.IO visitor pages regenerated across 11 collections** |
-| **v11.4** | **Legal cleanup and open-only backfill: 208 rights-restricted and 8 unevaluated objects removed from the live public stack, AIC re-harvested public-domain only, Europeana re-harvested with `reusability=open`, curator rebuilt to 1520 live objects, and AUX.IO regenerated with per-object legal status shown** |
-| **v11.5** | **Main app alignment pass: roadmap added, audit refreshed, default browse now favours image-backed demo objects, result cards remain rights-aware, and AUX.IO management uses a larger live-object working set while generated-page sync remains the next step** |
-| **v11.5.6** | **AUX.IO management workflow deepened: staff can create a new AUX.IO record, edit placement, assign from loaded records, draft an institution-owned object for testing, preview the visitor page, and export/save rights-aware config data** |
-| **v11.5.7** | **AUX.IO save path made real for the current backend session: new tag assignments and institution draft objects can be posted to `/api/nfc`, stored in the runtime repository, audited, and returned to the app while Directus remains the production persistence target** |
-| **v11.6** | **Nineteen collection sources and 3147 staff-searchable records aligned across app/backend; NGA onboarded with an item-level open-access gate; 2357 image URLs audited; 473 broken images and 504 rights-held media records removed from public presentation; 1380 AUX.IO pages regenerated; 440 rights-cleared pages gain compact QR poster/sticker/postcard tools; born-digital WACZ replay and an EaaSI integration boundary documented** |
-| **v11.6.1** | **Brussels public street-art images enabled through the dataset's CC BY 4.0 licence, Vancouver/Melbourne municipal feeds retained as metadata/source-link only, curator rebuilt to 3147 records, and AUX.IO regenerated to 1519 public pages with 139 street-art pages** |
-| **v11.6.2** | **Auckland placeholder-media audit added; high-resolution Auckland API placeholders are now detected by content hash and held from public AUX.IO while remaining searchable in the staff database. Curatorial object detail gained share/copy, save-to-project, read-summary, and a local project-list workspace for staff testing. AUX.IO regenerated to 1,402 public pages after placeholder and rights gates.** |
-| **v11.6.3** | **Draft-demo clarity pass: main app now declares itself as an institutional WIP, adds Training Mode guidance, applies safer Auckland media filtering throughout staff/result views, and AUX.IO voice questions auto-read replies while typed questions remain text-first.** |
-| **v11.6.4** | **AUX.IO Management now opens as a clearer institutional setup bench: 10 loaded demo records plus 110 empty assignable slots, with first-empty-slot selection and clearer assign/preview/publish guidance for staff testing.** |
-| **v11.6.5** | **AUX.IO print family finalised as the black street-gallery system: QR-led copy, walk-past text sizing with sentence-safe auto-fit and truncation-as-invitation ("scan to keep reading"), curated seed set, and the hosted app demo synced to the public website.** |
-| **v11.6.6** | **Onboarding made real: Connect Collection tab generates harvester configs in-app; a generic configuration-driven harvester (verified against a live museum API) maps JSON sources with rights/cultural-safety gates and dry-run-first discipline; staff AUX.IO work and institution drafts persist durably across backend restarts; staff-created objects get an immediately live, record-grounded conversational page; Keytec keychain protocol wired into connector commands; hosted-app proxy contract fixed so the public demo loads all collections; source-record markup stripped from public page titles.** |
+| **v11.3** | **Brasiliana Museus onboarded as the eleventh live collection using a public-domain / open-access legal gate, curator vectors rebuilt to 1445 live objects, and 1311 AUXIO visitor pages regenerated across 11 collections** |
+| **v11.4** | **Legal cleanup and open-only backfill: 208 rights-restricted and 8 unevaluated objects removed from the live public stack, AIC re-harvested public-domain only, Europeana re-harvested with `reusability=open`, curator rebuilt to 1520 live objects, and AUXIO regenerated with per-object legal status shown** |
+| **v11.5** | **Main app alignment pass: roadmap added, audit refreshed, default browse now favours image-backed demo objects, result cards remain rights-aware, and AUXIO management uses a larger live-object working set while generated-page sync remains the next step** |
+| **v11.5.6** | **AUXIO management workflow deepened: staff can create a new AUXIO record, edit placement, assign from loaded records, draft an institution-owned object for testing, preview the visitor page, and export/save rights-aware config data** |
+| **v11.5.7** | **AUXIO save path made real for the current backend session: new tag assignments and institution draft objects can be posted to `/api/nfc`, stored in the runtime repository, audited, and returned to the app while Directus remains the production persistence target** |
+| **v11.6** | **Nineteen collection sources and 3147 staff-searchable records aligned across app/backend; NGA onboarded with an item-level open-access gate; 2357 image URLs audited; 473 broken images and 504 rights-held media records removed from public presentation; 1380 AUXIO pages regenerated; 440 rights-cleared pages gain compact QR poster/sticker/postcard tools; born-digital WACZ replay and an EaaSI integration boundary documented** |
+| **v11.6.1** | **Brussels public street-art images enabled through the dataset's CC BY 4.0 licence, Vancouver/Melbourne municipal feeds retained as metadata/source-link only, curator rebuilt to 3147 records, and AUXIO regenerated to 1519 public pages with 139 street-art pages** |
+| **v11.6.2** | **Auckland placeholder-media audit added; high-resolution Auckland API placeholders are now detected by content hash and held from public AUXIO while remaining searchable in the staff database. Curatorial object detail gained share/copy, save-to-project, read-summary, and a local project-list workspace for staff testing. AUXIO regenerated to 1,402 public pages after placeholder and rights gates.** |
+| **v11.6.3** | **Draft-demo clarity pass: main app now declares itself as an institutional WIP, adds Training Mode guidance, applies safer Auckland media filtering throughout staff/result views, and AUXIO voice questions auto-read replies while typed questions remain text-first.** |
+| **v11.6.4** | **AUXIO Management now opens as a clearer institutional setup bench: 10 loaded demo records plus 110 empty assignable slots, with first-empty-slot selection and clearer assign/preview/publish guidance for staff testing.** |
+| **v11.6.5** | **AUXIO print family finalised as the black street-gallery system: QR-led copy, walk-past text sizing with sentence-safe auto-fit and truncation-as-invitation ("scan to keep reading"), curated seed set, and the hosted app demo synced to the public website.** |
+| **v11.6.6** | **Onboarding made real: Connect Collection tab generates harvester configs in-app; a generic configuration-driven harvester (verified against a live museum API) maps JSON sources with rights/cultural-safety gates and dry-run-first discipline; staff AUXIO work and institution drafts persist durably across backend restarts; staff-created objects get an immediately live, record-grounded conversational page; Keytec keychain protocol wired into connector commands; hosted-app proxy contract fixed so the public demo loads all collections; source-record markup stripped from public page titles.** |
+| **v11.6.7** | **Correctness + branding pass: consistent HTML escaping for collection text across result, AUXIO, and visitor surfaces; stable conversational-result keys with metadata on click-through; voice interim-transcript and no-speech retry states; object chat and AUXIO pages fall back to the verified record instead of dead-ending when the model is busy or rate-limited; per-scope API rate limiting; AUXIO branding standardised (from AUXIO); shortened visitor chat placeholders; licence/provenance wording aligned with LICENSE.** |
 
 ---
 

@@ -9,7 +9,7 @@
 
 ## Abstract
 
-This update documents developments to ARCHAI™ since the ISEA2026 Dubai presentation (April 2026). Key advances include: (1) a backend proxy architecture enabling safe public deployment without cloud dependency; (2) an AI-moderated visitor comment system that transforms audience responses into searchable collection records; (3) a unified curator vector collection combining institutional metadata with community knowledge; (4) the Obtext data format for portable, AI-grounded object conversations; (5) trademark protection and MPL-2.0 licensing of the ARCHAI™ toolkit; and (6) the AUX universal access page — a single interface serving NFC, QR, hyperlink, and Bluetooth beacon access patterns.
+This update documents developments to ARCHAI™ since the ISEA2026 Dubai presentation (April 2026). Key advances include: (1) a backend proxy architecture enabling safe public deployment without cloud dependency; (2) an AI-moderated visitor comment system that transforms audience responses into searchable collection records; (3) a unified curator vector collection combining institutional metadata with community knowledge; (4) the Obtext data format for portable, AI-grounded object conversations; (5) trademark protection and formal copyright terms for the ARCHAI™ toolkit; and (6) the AUX universal access page — a single interface serving NFC, QR, hyperlink, and Bluetooth beacon access patterns.
 
 ---
 
@@ -149,7 +149,7 @@ The previous approach generated ~194 static HTML pages per collection, one per o
 ARCHAI™ is asserted as a common law trademark of Rob Graham / FAMTEC. First use in commerce: 2024. Classes covered: software (9), SaaS/research (42), cultural services (41).
 
 ### Licensing
-- **Code:** Mozilla Public License 2.0 — file-level copyleft requiring modifications to be shared, while permitting integration into larger proprietary systems
+- **Code:** Copyright © 2026 Rob Graham — all rights reserved during the doctoral research period; use, copying, or redistribution requires prior written permission (see LICENSE)
 - **Brand:** ARCHAI™ name and branding reserved; forks must rebrand
 - **Data:** Separate licences per source institution (CC BY 4.0, CC0, V&A Open Access)
 - **Research:** All concepts, methods, and architectural patterns are Rob Graham's IP under active doctoral research
@@ -188,4 +188,4 @@ Graham, R. (2026). Prosopopoeia as Interface: When Museum Objects Speak for Them
 
 ---
 
-*ARCHAI™ is a trademark of Rob Graham / FAMTEC (Fine Art Media Tech). MPL-2.0 licensed. GitHub: github.com/rob-e-graham/archai*
+*ARCHAI™ is a trademark of Rob Graham / FAMTEC (Fine Art Media Tech). Copyright © 2026 Rob Graham, all rights reserved. GitHub: github.com/rob-e-graham/archai*

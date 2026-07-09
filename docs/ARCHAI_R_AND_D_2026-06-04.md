@@ -9,7 +9,7 @@ The goal is not to turn ARCHAI into a generic collections management system or a
 - keep raw source records intact
 - keep a clean canonical metadata layer
 - keep legal / rights logic explicit
-- let ARCHAI and AUX.IO operate above that as semantic, interpretive, and accessible interfaces
+- let ARCHAI and AUXIO operate above that as semantic, interpretive, and accessible interfaces
 
 ARCHAI should be a **sovereign semantic layer for collections**, not a clumsy replacement for every existing museum system.
 
@@ -268,7 +268,7 @@ Source:
 
 ### Current state
 
-- Browser-native speech demo is live on both ARCHAI main app and AUX.IO
+- Browser-native speech demo is live on both ARCHAI main app and AUXIO
 - Uses Web Speech API for STT (Chrome sends audio to Google — not sovereign)
 - Uses browser speechSynthesis for TTS (inconsistent voice quality across devices)
 - Core flow works: mic → transcript → ARCHAI question → response → read aloud
@@ -449,7 +449,7 @@ ARCHAI should keep:
 
 - object-level legal status
 - asset-level legal status
-- a strict publish gate for public demo layers like AUX.IO
+- a strict publish gate for public demo layers like AUXIO
 
 ### 5. Accessibility as a first-class feature
 
@@ -523,7 +523,7 @@ Instead:
 
 ### Strategic
 
-1. keep AUX.IO as the accessible visitor surface
+1. keep AUXIO as the accessible visitor surface
 2. keep ARCHAI as the curator / collections / interpretation layer
 3. make both read from the same clean canonical data and asset graph
 

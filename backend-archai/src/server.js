@@ -20,7 +20,7 @@ app.use(express.json({ limit: '2mb' }));
 app.use(morgan('dev'));
 app.use(requestContext);
 
-// ── Serve AUX.IO pages statically ──────────────────────────────
+// ── Serve AUXIO pages statically ──────────────────────────────
 const auxPagesDir = env.auxPagesDir
   ? path.resolve(env.auxPagesDir)
   : path.resolve(__dirname, '../../nfc-pages/v');
@@ -65,7 +65,7 @@ function getAuxPages() {
 app.get('/aux/random', (_req, res) => {
   const pages = getAuxPages();
   if (!pages.length) {
-    return res.status(503).json({ ok: false, error: 'No AUX.IO pages available' });
+    return res.status(503).json({ ok: false, error: 'No AUXIO pages available' });
   }
   const page = pages[Math.floor(Math.random() * pages.length)];
   res.redirect('/aux/' + page);

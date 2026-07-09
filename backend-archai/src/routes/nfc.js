@@ -60,7 +60,7 @@ nfcRouter.get('/pages/:tagId', (req, res) => {
   const tag = repo.listNfcTags().find((t) => t.tagId === normalizedTagId || t.tagId === req.params.tagId);
   if (!tag) return res.status(404).send('Tag not found');
   const page = buildNfcPageModel(tag);
-  const displayTagId = String(page.tagId).replace(/^NFC-?(\d+)$/i, (_m, num) => `AUX.IO ${num.padStart(3, '0')}`);
+  const displayTagId = String(page.tagId).replace(/^NFC-?(\d+)$/i, (_m, num) => `AUXIO ${num.padStart(3, '0')}`);
   const e = escapeHtml;
   const metaLine = [page.type, page.year || 'Date unknown', page.institution].filter(Boolean).map(e).join(' · ');
   // Obtext-style grounding for the live draft page: the object may only speak
@@ -72,7 +72,7 @@ nfcRouter.get('/pages/:tagId', (req, res) => {
     page.rights ? `Rights: ${page.rights}.` : '',
     'STRICT RULE: only state what is in this record. If asked anything not covered by it, say plainly that it is not in your record yet and invite another question. Never invent dates, people, places or events.',
   ].filter(Boolean).join('\n');
-  res.type('html').send(`<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${e(page.title)} — AUX.IO</title><style>
+  res.type('html').send(`<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${e(page.title)} — AUXIO</title><style>
 body{margin:0;background:#050607;color:#edf3f0;font-family:Georgia,serif}
 main{max-width:820px;margin:0 auto;padding:5vw 5vw 12vw}
 h1{font-weight:500;font-size:clamp(1.6rem,4.5vw,3rem);margin:10px 0 8px}
@@ -99,7 +99,7 @@ button:disabled{opacity:.5}
 .foot{margin-top:34px;border-top:1px solid #223;padding-top:12px;font:10px ui-monospace,monospace;color:#68777a;letter-spacing:.12em;line-height:2}
 .foot a{color:#5fbfae;text-decoration:none}
 </style></head><body><main>
-<div class="brand"><b>ARC<span style="color:#c8a96e;font-style:italic">H</span>AI</b><span>AUX.IO · ${e(displayTagId)}</span></div>
+<div class="brand"><b>ARC<span style="color:#c8a96e;font-style:italic">H</span>AI</b><span>AUXIO · ${e(displayTagId)}</span></div>
 <div class="meta">Conversational object · live staff draft</div>
 <h1>${e(page.title)}</h1>
 <div class="meta">${metaLine}</div>
@@ -112,7 +112,7 @@ ${page.rights ? `<div class="rights">RIGHTS · ${e(page.rights)}${page.accession
   <div class="row"><input id="q" placeholder="Ask a question…" onkeydown="if(event.key==='Enter')ask()"><button id="send" onclick="ask()">ASK</button></div>
   <div class="chips">${page.chips.slice(1).map((c) => `<span class="chip" onclick="document.getElementById('q').value=${JSON.stringify(String(c))};ask()">${e(c)}</span>`).join('')}</div>
 </div>
-<div class="foot">ARCHAI · AUX.IO · RIGHTS-AWARE VISITOR ACCESS · GROUNDED IN THE INSTITUTIONAL RECORD<br><a href="https://fineartmedia.tech/archai" rel="noopener">← About ARCHAI · Talk to a Whole Collection</a></div>
+<div class="foot">ARCHAI · AUXIO · RIGHTS-AWARE VISITOR ACCESS · GROUNDED IN THE INSTITUTIONAL RECORD<br><a href="https://fineartmedia.tech/archai" rel="noopener">← About ARCHAI · Talk to a Whole Collection</a></div>
 </main><script>
 const SYS=${JSON.stringify(grounding)};
 const hist=[];
@@ -137,7 +137,7 @@ async function ask(){
 nfcRouter.post('/', (req, res) => {
   const parsed = saveAuxSchema.safeParse(req.body || {});
   if (!parsed.success) {
-    return res.status(400).json({ ok: false, error: 'Invalid AUX.IO payload', details: parsed.error.flatten() });
+    return res.status(400).json({ ok: false, error: 'Invalid AUXIO payload', details: parsed.error.flatten() });
   }
   const input = parsed.data;
   let object = null;

@@ -6,7 +6,7 @@ institutional-expectations map.** Purpose: the concrete path from "working demo"
 
 ## Where the app now stands (post today's fixes)
 
-- Hosted app (`/app`) loads all 3,147 objects and seeds the 10 AUX.IO demos — the
+- Hosted app (`/app`) loads all 3,147 objects and seeds the 10 AUXIO demos — the
   proxy contract bug is fixed and deployed.
 - Assign-from-collection picker works (it was the same bug).
 - New **Connect Collection** tab: builds a harvester config matching
@@ -29,7 +29,7 @@ institutional-expectations map.** Purpose: the concrete path from "working demo"
    embeddings built; `archai_curator` rebuilt.
 5. **Staff acceptance** — curators search their own collection, review voices/lenses,
    flag sensitive records (exclusion is the default until protocols are agreed).
-6. **Curated AUX.IO publish** — staff assign objects to AUX.IO slots, preview,
+6. **Curated AUXIO publish** — staff assign objects to AUXIO slots, preview,
    publish; QR/poster kit generated for the floor.
 7. **Evaluate** — findability, trust, visitor engagement (the PhD pilot instruments,
    post-ethics).
@@ -39,7 +39,7 @@ The Connect tab now covers step 1 in-app; steps 2–4 are host-side scripts by d
 
 ## Backend: the four gaps between demo and product
 
-**P1 — Durable persistence (the gate to any real pilot).** AUX.IO assignments,
+**P1 — Durable persistence (the gate to any real pilot).** AUXIO assignments,
 institution drafts, and project lists live in browser/runtime-session state; a
 restart loses staff work. Move `objectRepository` + `upsertNfcTag` + project lists
 to SQLite (single-file, zero-ops, fits the appliance model) or Directus. Everything
@@ -69,7 +69,7 @@ tenth onboarding cheap; P4 completes the thesis claim.
 - Health-driven counts: app header/source labels should read `/api/health`, not
   hardcoded numbers (drift keeps recurring).
 - Per-collection proxy info route (sidebar count 404) — cosmetic, quick.
-- Guided role walkthroughs in Training Mode (Curator / Collections / AUX.IO
+- Guided role walkthroughs in Training Mode (Curator / Collections / AUXIO
   Publisher) doubling as the pilot's task script.
 - Institutional data agreement one-pager auto-attached to each connector config
   (the ethics scaffold already drafts it).

@@ -2,13 +2,13 @@
 
 ## Purpose
 
-ARCHAI keeps canonical metadata available to authorised staff even when an object's media is missing, technically broken, or not cleared for public reuse. AUX.IO is a separate publication layer and is generated only from records that pass both the media-availability and rights gates.
+ARCHAI keeps canonical metadata available to authorised staff even when an object's media is missing, technically broken, or not cleared for public reuse. AUXIO is a separate publication layer and is generated only from records that pass both the media-availability and rights gates.
 
 This audit tested the first supplied image URL for every image-bearing record. It checked the HTTP response, image bytes/content type, known placeholder patterns, and browser canvas CORS. Results were written to Qdrant only after source snapshots were taken for the collections undergoing policy migration.
 
 ## Current result
 
-| Source | Records | URLs supplied | Healthy | Hidden/broken | AUX.IO pages | QR print formats | Current decision |
+| Source | Records | URLs supplied | Healthy | Hidden/broken | AUXIO pages | QR print formats | Current decision |
 |---|---:|---:|---:|---:|---:|---:|---|
 | Art Institute of Chicago | 150 | 150 | 0 | 150 | 0 | 0 | Current image endpoint returns a Cloudflare HTML challenge; metadata remains staff-searchable |
 | Auckland Museum | 120 | 120 | 120 | 0 | 120 | 0 | Public display with item attribution; derivative output remains disabled |
@@ -17,7 +17,7 @@ This audit tested the first supplied image URL for every image-bearing record. I
 | Europeana | 150 | 150 | 150 | 0 | 150 | 0 | `reusability=open` display set; remote images are not currently canvas-safe |
 | J. Paul Getty Museum | 200 | 200 | 0 | 200 | 0 | 0 | Legacy constructed URLs failed; hold until an explicit item-level Open Content URL is verified |
 | Metropolitan Museum of Art | 135 | 135 | 135 | 0 | 135 | 0 | Public-domain display works; print derivatives remain fail-closed until explicitly migrated |
-| M+ | 110 | 110 | 110 | 0 | 0 | 0 | Preview/non-commercial media is held from AUX.IO |
+| M+ | 110 | 110 | 110 | 0 | 0 | 0 | Preview/non-commercial media is held from AUXIO |
 | National Gallery of Art | 150 | 150 | 150 | 0 | 150 | 150 | CC0 metadata and `published_images.openaccess=1` media; print formats enabled |
 | Museums Victoria | 40 | 39 | 39 | 0 | 39 | 0 | CC BY display set; one metadata-only record remains staff-searchable |
 | QAGOMA | 200 | 0 | 0 | 0 | 0 | 0 | CC BY metadata only; no object media published |
@@ -26,7 +26,7 @@ This audit tested the first supplied image URL for every image-bearing record. I
 | Smithsonian Institution | 145 | 145 | 139 | 6 | 139 | 139 | Only item-level `usage.access=CC0` media; print formats enabled for healthy images |
 | Municipal street-art data | 439 | 139 | 139 | 0 | 139 | 0 | Brussels CC BY 4.0 images enabled for display; Vancouver and Melbourne remain metadata/source-link only |
 | Tate | 150 | 0 | 0 | 0 | 0 | 0 | CC0 metadata only; Tate's dataset explicitly excludes images |
-| Te Papa Tongarewa | 95 | 95 | 95 | 0 | 0 | 0 | Preview-first/item-specific rights; held from the current exact-rights AUX.IO gate |
+| Te Papa Tongarewa | 95 | 95 | 95 | 0 | 0 | 0 | Preview-first/item-specific rights; held from the current exact-rights AUXIO gate |
 | Victoria and Albert Museum | 300 | 300 | 299 | 1 | 0 | 0 | Media is technically healthy but held pending an explicit reusable-media migration |
 | Wellcome Collection | 150 | 150 | 150 | 0 | 150 | 150 | Item-level open licences; derivative-friendly records gain print formats |
 | **Total** | **3147** | **2496** | **2026** | **470** | **1522** | **439** | **651 metadata-only records; 504 otherwise healthy records held by public-media policy** |
@@ -41,22 +41,22 @@ Being visible in public space, being non-profit, and linking back to the source 
 
 The legal harvest bot was run again against ready sources. National Gallery of Art refreshed cleanly with 150 open-access image-backed records. Smithsonian loaded the KeyTec API key from the macOS keychain, found 1887 candidate records, embedded 145 item-level CC0 records, and skipped 1742 records without CC0 media. Getty was dry-run only and remains held because the current pass did not expose usable item-level Open Content image URLs.
 
-After applying the public-media audit with `--apply --concurrency 20`, `archai_curator` was rebuilt to 3147 records and AUX.IO was regenerated to 1522 public visitor pages. The current public gate is:
+After applying the public-media audit with `--apply --concurrency 20`, `archai_curator` was rebuilt to 3147 records and AUXIO was regenerated to 1522 public visitor pages. The current public gate is:
 
 - 2026 healthy media records.
 - 470 hidden or broken media records.
 - 651 metadata-only records.
-- 504 otherwise healthy records held from AUX.IO by source/publication policy.
+- 504 otherwise healthy records held from AUXIO by source/publication policy.
 - 439 poster/postcard-capable records where both `poster_download_allowed` and `media_canvas_safe` are true.
 
 ## Publication rules
 
 1. `media_available === false` hides a broken or placeholder image without deleting its metadata.
 2. `media_public_display_allowed === false` prevents public display even if the URL works.
-3. AUX.IO additionally evaluates the normalized item/source rights statement and explicit source holds.
+3. AUXIO additionally evaluates the normalized item/source rights statement and explicit source holds.
 4. `poster_download_allowed === true` and `media_canvas_safe === true` are both required before any poster, sticker, or postcard control appears.
-5. Every enabled physical format draws a QR code back to the permanent AUX.IO URL.
-6. `nfc-pages/aux-id-map.json` keeps canonical object IDs bound to permanent numeric AUX.IO IDs across regeneration.
+5. Every enabled physical format draws a QR code back to the permanent AUXIO URL.
+6. `nfc-pages/aux-id-map.json` keeps canonical object IDs bound to permanent numeric AUXIO IDs across regeneration.
 
 ## Reproduce the audit
 
@@ -73,7 +73,7 @@ After taking Qdrant snapshots and reviewing the report:
 node audit-public-media.js --apply --concurrency 20
 ```
 
-Then rebuild `archai_curator`, regenerate AUX.IO, and run the generated-page verification. Do not use `npm audit fix --force` or loosen a rights gate merely to increase the public page count.
+Then rebuild `archai_curator`, regenerate AUXIO, and run the generated-page verification. Do not use `npm audit fix --force` or loosen a rights gate merely to increase the public page count.
 
 ## Known follow-up work
 

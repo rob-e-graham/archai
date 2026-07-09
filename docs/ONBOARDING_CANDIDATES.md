@@ -34,7 +34,7 @@ Diagnostic run across the live 1445-object curator collection:
 
 **Conclusion:** the gap is structural, not a search bug. The collection skews to
 fine art because that's where the easy open APIs were. To make ARCHAI's
-technology/communication story strong (which is the whole NCM lineage), we need
+technology/communication story strong (which is the project's core lineage), we need
 to onboard **science & technology museums**. The candidates below are chosen with
 that as the priority.
 
@@ -56,7 +56,7 @@ that as the priority.
 - **License: CC-BY** (open, attribution required).
 - **Scale:** 75,000 objects, 1880–present.
 - **Why:** a museum of *applied arts and sciences* — design, innovation, science,
-  technology. Directly aligned with the NCM/communication lineage, and it's
+  technology. Directly aligned with the project's communication-technology lineage, and it's
   Australian (strengthens the sovereignty framing).
 - **API:** public Collection API via Data.NSW.
 - Docs: https://data.nsw.gov.au/data/dataset/powerhouse-museum-collection-api
@@ -101,7 +101,7 @@ that as the priority.
 Each follows the same pattern as the existing harvesters:
 harvest (image-backed + license-gated) → embed → add to `ALLOWED_COLLECTIONS`
 (proxy.js), `ALL_COLLECTIONS` (generate-nfc-pages.js), `COLLECTION_INSTITUTIONS`
-(both + conversational-search.js) → rebuild curator → regenerate AUX.IO.
+(both + conversational-search.js) → rebuild curator → regenerate AUXIO.
 
 ## Strategy B — re-harvest sources we already have (zero new legal work)
 

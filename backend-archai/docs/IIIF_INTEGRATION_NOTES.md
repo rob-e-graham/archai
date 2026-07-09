@@ -47,7 +47,7 @@ IIIF supports ARCHAI's core direction: a sovereign semantic layer above existing
 Useful product directions:
 
 - Deep zoom for object detail pages.
-- "Look closer" mode in AUX.IO for visitors.
+- "Look closer" mode in AUXIO for visitors.
 - Curatorial image-region annotations.
 - Evidence-linked answers where ARCHAI can point to a specific visual detail.
 - Multi-image/page object support through IIIF manifests.
@@ -56,7 +56,7 @@ Useful product directions:
 ## Recommended next build
 
 1. Add a small image viewer component that activates only when `media_iiif_available` is true.
-2. Add a "Look closer" button to AUX.IO below the hero image.
+2. Add a "Look closer" button to AUXIO below the hero image.
 3. Store region annotations separately from source metadata:
 
 ```json
@@ -70,7 +70,7 @@ Useful product directions:
 }
 ```
 
-4. Extend the media audit to record actual image dimensions and prevent low-resolution derivatives from entering public AUX.IO.
+4. Extend the media audit to record actual image dimensions and prevent low-resolution derivatives from entering public AUXIO.
 5. Add IIIF Presentation API manifest ingestion for collections that expose multi-image works.
 
 ## Boundary

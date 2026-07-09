@@ -29,7 +29,7 @@ The project page is here:
 The GitHub repository is here:
 [https://github.com/rob-e-graham/archai](https://github.com/rob-e-graham/archai)
 
-The research is interested in how GLAM institutions might use local/sovereign AI systems without handing collection knowledge, visitor interactions, or interpretive workflows to opaque cloud platforms. The current prototype includes semantic collection search, object-level question answering grounded in metadata, AUX.IO visitor pages, rights-aware publishing, and early accessibility work around speech input/output.
+The research is interested in how GLAM institutions might use local/sovereign AI systems without handing collection knowledge, visitor interactions, or interpretive workflows to opaque cloud platforms. The current prototype includes semantic collection search, object-level question answering grounded in metadata, AUXIO visitor pages, rights-aware publishing, and early accessibility work around speech input/output.
 
 Would someone on your digital collections, open access, rights, or curatorial technology team be willing to look at a short demo and let me know whether the attribution, rights handling, and framing are appropriate?
 

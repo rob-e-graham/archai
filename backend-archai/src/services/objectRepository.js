@@ -4,7 +4,7 @@ import { mockObjects, mockNfcTags, mockUsers } from '../data/mockObjects.js';
 import { thesaurusTerms } from '../data/mockThesaurus.js';
 import { famtecInstitutions, famtecPosts, famtecThreads, famtecMessages, famtecEnquiries, famtecUploads } from '../data/mockFamtec.js';
 
-// Durable workbench state: staff AUX.IO assignments, institution draft objects
+// Durable workbench state: staff AUXIO assignments, institution draft objects
 // and the audit trail survive backend restarts (same pattern as media manifests).
 const WORKBENCH_FILE = process.env.AUX_WORKBENCH_FILE || './data/runtime/aux-workbench.json';
 

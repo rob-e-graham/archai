@@ -1,6 +1,6 @@
 # ARCHAI Harvesters
 
-Each harvester fetches objects from a museum API, generates embeddings via Ollama, and stores them in Qdrant. After harvesting, run the AUX.IO page generator to create conversational pages.
+Each harvester fetches objects from a museum API, generates embeddings via Ollama, and stores them in Qdrant. After harvesting, run the AUXIO page generator to create conversational pages.
 
 ## Available Harvesters
 
@@ -40,8 +40,8 @@ Each harvester fetches objects from a museum API, generates embeddings via Ollam
 - **Street Art**: Six open-data city portals (Vancouver, Brussels, NYC, Melbourne, San Francisco, Chicago), each with explicit open licences. Attribution is stored per-record in the Qdrant payload. No key required.
 - **Getty**: CC0 via the Getty Open Content Program (~140,000 images). Harvester uses the Linked Art SPARQL endpoint at `data.getty.edu/museum/collection/sparql` and parses CIDOC-CRM JSON-LD per object. No key required.
 - **Wellcome**: CC BY 4.0 or better, verified per item via the `license.id` API field. Only records with an open-licence image are harvested. Attribution is stored in payload. No key required.
-- **QAGOMA**: Queensland Government open data (CC BY 4.0) downloaded as a CSV via the CKAN API. Metadata rights are clear, but the per-object image API (`collection.qagoma.qld.gov.au/api/objects/`) is behind Cloudflare bot mitigation and returns HTTP 403 to all automated requests — so QAGOMA records are **metadata-only** until formal API/media access is arranged. Metadata-only records have no `media_thumbnail` and are therefore skipped by the AUX.IO page generator (image-backed objects only at demo stage).
-- **RAWG**: Video game metadata and cover images via the RAWG API. Free key required (register at rawg.io). RAWG's ToS requires an active hyperlink back to rawg.io on every page that displays their data — the AUX.IO template renders this attribution automatically.
+- **QAGOMA**: Queensland Government open data (CC BY 4.0) downloaded as a CSV via the CKAN API. Metadata rights are clear, but the per-object image API (`collection.qagoma.qld.gov.au/api/objects/`) is behind Cloudflare bot mitigation and returns HTTP 403 to all automated requests — so QAGOMA records are **metadata-only** until formal API/media access is arranged. Metadata-only records have no `media_thumbnail` and are therefore skipped by the AUXIO page generator (image-backed objects only at demo stage).
+- **RAWG**: Video game metadata and cover images via the RAWG API. Free key required (register at rawg.io). RAWG's ToS requires an active hyperlink back to rawg.io on every page that displays their data — the AUXIO template renders this attribution automatically.
 
 **Sources NOT suitable for image display (metadata-only):**
 
@@ -85,7 +85,7 @@ node legal-harvest-bot.js --run-ready --include-live --dry-run --limit 20
 node legal-harvest-bot.js --targets=tepapa,mplus,brasiliana --run-ready --include-live --limit 120
 ```
 
-Do not bypass this gate for public-facing ARCHAI or AUX.IO demos. Raw/source research experiments can be broader, but the public stack needs item-level rights and media quality checks.
+Do not bypass this gate for public-facing ARCHAI or AUXIO demos. Raw/source research experiments can be broader, but the public stack needs item-level rights and media quality checks.
 
 ### Individual harvesters
 
@@ -161,9 +161,9 @@ node audit-public-media.js
 node audit-public-media.js --apply --concurrency 20
 ```
 
-The audit records whether each URL returns a real image and whether cross-origin canvas use is permitted. ARCHAI keeps failed media out of result cards and AUX.IO while retaining the canonical metadata for staff search. Take a Qdrant snapshot before applying a large policy migration.
+The audit records whether each URL returns a real image and whether cross-origin canvas use is permitted. ARCHAI keeps failed media out of result cards and AUXIO while retaining the canonical metadata for staff search. Take a Qdrant snapshot before applying a large policy migration.
 
-Regenerate AUX.IO pages:
+Regenerate AUXIO pages:
 ```bash
 cd ../nfc-pages
 node generate-nfc-pages.js --limit 300
@@ -197,7 +197,7 @@ node generate-nfc-pages.js --limit 300
 
 ## Data Richness
 
-Cleveland Museum objects are scored by conversational richness — fields like `did_you_know`, `fun_fact`, and `wall_description` make for the most interesting AUX.IO conversations. The `--min-richness` flag filters for objects with enough data to sustain a meaningful dialogue.
+Cleveland Museum objects are scored by conversational richness — fields like `did_you_know`, `fun_fact`, and `wall_description` make for the most interesting AUXIO conversations. The `--min-richness` flag filters for objects with enough data to sustain a meaningful dialogue.
 
 ## API Key Management (KeyTec)
 
@@ -234,12 +234,12 @@ ARCHAI is moving toward translation-aware onboarding at ingest time, not only in
 
 ### Future targets — born-digital & modern culture
 - **Rhizome ArtBase** (SPARQL/Linked Open Data) — net art, software art, browser art. Needs dedicated SPARQL harvester + per-work media review.
-- **Wikimedia Commons** (MediaWiki Action API) — broadest open-licensed cultural pool: animation/anime production art, architecture, indigenous objects, historical photography, scientific illustration. Filter by CC0/CC BY/CC BY-SA via licence metadata. One category-configurable harvester can feed multiple AUX.IO tabs. **Researched, not yet built.**
+- **Wikimedia Commons** (MediaWiki Action API) — broadest open-licensed cultural pool: animation/anime production art, architecture, indigenous objects, historical photography, scientific illustration. Filter by CC0/CC BY/CC BY-SA via licence metadata. One category-configurable harvester can feed multiple AUXIO tabs. **Researched, not yet built.**
 - **DPLA** (api.dp.la/v2) — 36M+ US cultural-heritage records, CC0 metadata + per-item rights field. Free key. Thumbnails + metadata, links to source institution. **Researched, not yet built.**
 - **NASA Image and Video Library** (images-api.nasa.gov) — 140K+ public-domain space mission images. No restrictions. **Researched, not yet built.**
 - **Art Blocks** (GraphQL/The Graph) — on-chain generative art. Image rights complex (token holder owns the output). Start metadata-only.
 - **Whitney Museum** — CC0 metadata only, images NOT open. Useful for semantic search enrichment without image display.
 - **MoMA dataset** (GitHub) — CC0 metadata only. Same pattern as Whitney.
 - **Harvard Art Museums** — non-commercial only, rich provenance data. Research context only.
-- **DigitalNZ** — partner-rights gate still needed before public AUX.IO use.
+- **DigitalNZ** — partner-rights gate still needed before public AUXIO use.
 - **Tokyo Museum Collection / ToMuCo** — technically explored, held out on public-rights grounds.

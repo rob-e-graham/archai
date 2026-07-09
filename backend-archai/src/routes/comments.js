@@ -1,7 +1,5 @@
-// This Source Code Form is subject to the terms of the Mozilla Public
-// License, v. 2.0. If a copy of the MPL was not distributed with this
-// file, You can obtain one at https://mozilla.org/MPL/2.0/.
-// Copyright (c) 2026 Rob Graham / FAMTEC
+// Copyright (c) 2026 Rob Graham / FAMTEC. All rights reserved.
+// Proprietary during the doctoral research period — see LICENSE.
 import { Router } from 'express';
 import { z } from 'zod';
 import db from '../data/db.js';
@@ -10,7 +8,7 @@ import { rateLimit } from '../middleware/rateLimit.js';
 
 export const commentsRouter = Router();
 
-const commentLimiter = rateLimit({ maxPerMinute: 10 });
+const commentLimiter = rateLimit({ scope: 'comment', maxPerMinute: 10 });
 
 const postSchema = z.object({
   objectId: z.string().min(1),

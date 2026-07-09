@@ -1,6 +1,6 @@
-# AUX.IO — Objects with Posters (print-eligible)
+# AUXIO — Objects with Posters (print-eligible)
 
-Every object here passes the print gate (`poster_download_allowed` + `media_canvas_safe`) — CC0 / Public Domain / open, high-res, with a live AUX.IO page and an A0/A2/A4/postcard/sticker export. **Total: 439.** Generated 2026-07-02.
+Every object here passes the print gate (`poster_download_allowed` + `media_canvas_safe`) — CC0 / Public Domain / open, high-res, with a live AUXIO page and an A0/A2/A4/postcard/sticker export. **Total: 439.** Generated 2026-07-02.
 
 Full machine-readable list: `docs/AUX_IO_POSTER_ELIGIBLE.csv`.
 

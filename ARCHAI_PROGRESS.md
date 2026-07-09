@@ -1,31 +1,52 @@
 # ARCHAI Progress Log
 
-Last updated: 2026-06-24
+Last updated: 2026-07-02
 Maintained as an active handoff note so Claude, Codex, and Rob can quickly see where the work is up to if a session ends or tokens run out.
 
 Primary build planning is now also summarized in [ROADMAP.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ROADMAP.md). Use that for milestone order, and use this file for detailed handoff notes.
 
-## 2026-06-30 AUX.IO management working-set clarity + seeded demo objects
+## 2026-07-02 v11.6.6 main-app correctness pass: escaping, convo click-through, voice retry states
 
-Rob could not work out how to load an object into AUX.IO from the staff app, so the management panel has been simplified around a clearer test workflow.
+A focused defect/polish pass over `ARCHAI_v10_8.html`, targeting the roadmap's voice-UX queue item and rendering correctness for international collection metadata.
+
+Implemented:
+
+- Added `escHTML()` and stopped using `escQ()` for plain HTML text. `escQ` escapes apostrophes as `\'` for inline-handler strings, so titles like `Traveller's cup` were rendering with stray backslashes on AUXIO cards, the project panel, comments, and the object picker. `escQ` now only remains in `onclick="fn('…')"` string contexts.
+- Escaped previously-raw collection text in semantic result cards, conversational result cards, related-object cards, the AUXIO phone preview, the visitor panel, object-detail key/full metadata, and vocabulary results. Source records containing `&`, `<i>`, or stray angle brackets no longer break card layout.
+- Conversational search citations now register through one `ensureConvoObject()` helper with a stable key, so clicking a cited object card in the results area reliably opens object detail (previously the thread and results area generated different random keys for records without a registration number). Registered convo objects now also carry an `_mv` payload, so object detail shows the image and metadata instead of an empty record.
+- Voice UX polish (roadmap near-term queue item 4): object-detail voice now shows the live interim transcript while listening (matching the collection voice), `no-speech` errors give an explicit retry instruction in both voice panels, the "already running" state keeps the Stop button enabled instead of lying about listening state, and the object-detail status indicator now recognises its own "did not expose speech capture" message as an error state.
+- Fixed a crash path in the visitor panel: `vAsk()` dereferenced `o.chat.default` but institution draft objects were created without `chat`. Drafts now get `chat`/`status` fields and `vAsk` falls back safely.
+- `saveNFC()` save-feedback now targets the AUXIO editor's own button (`#nfcEditor .btn.primary`) instead of the first primary button in the document.
+- `runHarvesters()` no longer relies on the implicit global `event`; the button passes itself.
+- Build label bumped to `v11.6.6`.
+
+Verification:
+
+- Inline script extracted and passed `node --check`.
+- Served via `python3 -m http.server` and `http://127.0.0.1:8000/ARCHAI_v10_8.html` returned `HTTP 200`, containing `Build v11.6.6`, `ensureConvoObject`, and the new voice retry strings.
+- All remaining `escQ` call sites audited: only inline-handler JS-string contexts remain.
+
+## 2026-06-30 AUXIO management working-set clarity + seeded demo objects
+
+Rob could not work out how to load an object into AUXIO from the staff app, so the management panel has been simplified around a clearer test workflow.
 
 Implemented in [ARCHAI_v10_8.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ARCHAI_v10_8.html):
 
-- AUX.IO Management now starts with `10` loaded demo records.
+- AUXIO Management now starts with `10` loaded demo records.
 - Claude curated the preferred "wow range" seed list in Huggle (born-digital/game records, Wellcome art/science records, musical instruments, street art, early photo/projection media).
 - Codex wired the app to prefer that curated seed list when those records are present, then fill any missing slots from image-backed safe records.
-- The remaining `110` AUX.IO records are intentionally empty slots ready for assignment.
+- The remaining `110` AUXIO records are intentionally empty slots ready for assignment.
 - The sidebar now explains the working set: loaded demo records vs empty assignable slots.
 - Empty records read as `Empty slot — assign object` instead of looking like broken data.
-- Opening the AUX.IO Management tab auto-selects the first empty slot when nothing is already selected.
+- Opening the AUXIO Management tab auto-selects the first empty slot when nothing is already selected.
 - Empty-slot editor copy now gives a clear three-step workflow: search/browse, click `Assign`, preview/save/publish.
-- Creating an institution draft with a blank title no longer throws a browser alert. It creates a clearly labelled `AUX.IO ### draft object` so demonstrations can proceed quickly, then staff can rename/enrich it.
+- Creating an institution draft with a blank title no longer throws a browser alert. It creates a clearly labelled `AUXIO ### draft object` so demonstrations can proceed quickly, then staff can rename/enrich it.
 - The object picker placeholder now explains that staff can search by title, object number, institution, material, or rights.
 - Search/seed matching now strips diacritics, improving matches for international records such as `écorché`.
 
 Why this matters:
 
-- AUX.IO now feels more like a museum/gallery setup bench: a strong curated default set, then many empty tags/QRs ready to assign.
+- AUXIO now feels more like a museum/gallery setup bench: a strong curated default set, then many empty tags/QRs ready to assign.
 - This supports institutional testing where staff need to create visitor pages for their own objects, not only browse preloaded public demo objects.
 - The public website's hosted full app demo at `/app.html` was synced to this build and retains `window.ARCHAI_API_BASE = https://archai-api.fineartmedia.tech`.
 
@@ -37,33 +58,33 @@ Verification:
 
 ## 2026-06-29 v11.6.3 WIP clarity, Auckland hold, voice auto-read, and funding prep
 
-Rob asked for a full app audit/update pass before partner and investor outreach, with clearer WIP language, tighter AUX.IO behaviour, safer Auckland image handling, and RMIT-Breakthrough Victoria planning captured properly.
+Rob asked for a full app audit/update pass before partner and investor outreach, with clearer WIP language, tighter AUXIO behaviour, safer Auckland image handling, and RMIT-Breakthrough Victoria planning captured properly.
 
 Implemented:
 
 - [ARCHAI_v10_8.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ARCHAI_v10_8.html) now displays a visible `Draft institutional demo / WIP` banner and a `Training Mode` overlay.
-- Training Mode explains the current test flow: collection search, object review, AUX.IO publishing, vocabulary/thesaurus use, CMS/DAMS connectors, and current prototype boundaries.
-- Staff-side image rendering now routes through the same safer image picker across search cards, conversational result cards, object detail, source-image links, related objects, AUX.IO management preview, and visitor-preview thumbnails.
+- Training Mode explains the current test flow: collection search, object review, AUXIO publishing, vocabulary/thesaurus use, CMS/DAMS connectors, and current prototype boundaries.
+- Staff-side image rendering now routes through the same safer image picker across search cards, conversational result cards, object detail, source-image links, related objects, AUXIO management preview, and visitor-preview thumbnails.
 - Auckland image URLs are upgraded from the low-resolution `?rendering=` routes to the 800px derivative path where possible, but records marked `media_placeholder` or `media_available: false` are held from image display.
 - [nfc-pages/nfc-visitor-template.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/nfc-visitor-template.html) now auto-reads the response only when the visitor asked by voice. Typed questions remain text-first with manual `Read Reply`.
 - [backend-archai/scripts/audit-auckland-placeholder-media.js](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/backend-archai/scripts/audit-auckland-placeholder-media.js) was run against Qdrant.
 - Auckland audit result: `120` checked, `120` held as placeholder/unavailable, `0` restored.
-- AUX.IO was regenerated after the audit and now publishes `1,402` public visitor pages.
-- Generated AUX.IO pages no longer contain `Auckland Museum` or `Digital image not yet created`.
-- Public website copy in [fineartmedia-tech-web/archai.html](/Users/robgraham/Desktop/APPS/fineartmedia-tech-web/archai.html) now reports `1,402` rights-gated AUX.IO pages and moves the `Open full app WIP` link out of the AUX.IO visitor-flow panel into the staff-facing `Talk to ARCHAI` panel.
+- AUXIO was regenerated after the audit and now publishes `1,402` public visitor pages.
+- Generated AUXIO pages no longer contain `Auckland Museum` or `Digital image not yet created`.
+- Public website copy in [fineartmedia-tech-web/archai.html](/Users/robgraham/Desktop/APPS/fineartmedia-tech-web/archai.html) now reports `1,402` rights-gated AUXIO pages and moves the `Open full app WIP` link out of the AUXIO visitor-flow panel into the staff-facing `Talk to ARCHAI` panel.
 - Added [docs/ARCHAI_INSTITUTIONAL_TESTING_ROADMAP.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/ARCHAI_INSTITUTIONAL_TESTING_ROADMAP.md).
 - Added [docs/RMIT_BV_PRE_SEED_PREP.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/RMIT_BV_PRE_SEED_PREP.md), including a draft reply to Eric Hoefgen and a Lean Canvas / risk-assumption framing.
 
 Important decision:
 
-- Auckland remains useful as staff-searchable metadata, but should not be used as public AUX.IO image media until a different Auckland media route, API access mode, or replacement harvest set provides genuinely usable images.
+- Auckland remains useful as staff-searchable metadata, but should not be used as public AUXIO image media until a different Auckland media route, API access mode, or replacement harvest set provides genuinely usable images.
 
 Next recommended app jobs:
 
 - Move local object project lists into Directus or backend persistence.
 - Add a dedicated custom harvester / CMS-DAMS connector tab.
-- Add guided training tasks per role: Curator, Collections, Exhibition/AV, Interpretation, AUX.IO Publisher.
-- Build an institutional test script that checks collection search, object review, AUX.IO publish, legal status, image zoom, voice question, and project export.
+- Add guided training tasks per role: Curator, Collections, Exhibition/AV, Interpretation, AUXIO Publisher.
+- Build an institutional test script that checks collection search, object review, AUXIO publish, legal status, image zoom, voice question, and project export.
 - Prepare RMIT IP&C / NoD discussion and partner validation outreach for GLAM pilots.
 
 ## Current focus
@@ -73,7 +94,7 @@ Keep the system clean, fast, and aligned with the ARCHAI white paper:
 - preserve raw museum metadata as the permanent heritage layer
 - build a clean canonical metadata layer above it
 - build translation, display text, embeddings, and interaction as regenerable layers
-- keep ARCHAI and AUX.IO reading from structured derived data, not from messy raw payloads
+- keep ARCHAI and AUXIO reading from structured derived data, not from messy raw payloads
 
 Protect what is already working while we improve it:
 
@@ -81,13 +102,13 @@ Protect what is already working while we improve it:
 - treat desktop microphone selection and Whisper capture as an additive next layer
 - avoid replacing the live phone experience until a better path is genuinely proven
 
-## 2026-06-24 website audio + AUX.IO demo alignment
+## 2026-06-24 website audio + AUXIO demo alignment
 
 - Tightened the public website `Talk to ARCHAI` audio flow so captured speech automatically asks ARCHAI when recording ends or the user presses Stop.
-- Added clearer live/pending audio states and active button feedback to match the smoother AUX.IO voice interaction.
+- Added clearer live/pending audio states and active button feedback to match the smoother AUXIO voice interaction.
 - Updated the website voice selector scoring to prefer modern/neutral browser voices and strongly avoid legacy novelty voices.
-- Pinned the embedded AUX.IO phone preview to a stable generated page (`NFC585.html`) instead of loading the lightweight website `aux.html`, while keeping the Surprise button pointed at the live random AUX.IO route.
-- Verified the website inline script passes `node --check` after extraction and confirmed the pinned local backend AUX.IO page returns HTTP 200.
+- Pinned the embedded AUXIO phone preview to a stable generated page (`NFC585.html`) instead of loading the lightweight website `aux.html`, while keeping the Surprise button pointed at the live random AUXIO route.
+- Verified the website inline script passes `node --check` after extraction and confirmed the pinned local backend AUXIO page returns HTTP 200.
 
 ## 2026-06-22 licence update
 
@@ -105,7 +126,7 @@ Immediate action sequence:
 - make app search/browse feel as strong as the public website demo
 - keep result thumbnails light, then open full metadata on selected object
 - keep matched themes/keywords, match score, source institution, and legal status visible
-- expand AUX.IO management beyond a tiny mock set while preserving safe internal function names
+- expand AUXIO management beyond a tiny mock set while preserving safe internal function names
 - track Whisper/Piper as an open-source optional accessibility layer, not a replacement for the working phone browser path yet
 
 Work started:
@@ -114,11 +135,11 @@ Work started:
 - refreshed [docs/APP_FUNCTIONAL_AUDIT_2026-06-03.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/APP_FUNCTIONAL_AUDIT_2026-06-03.md) so it no longer describes old mock-only panels as the current state
 - bumped the main app display build label to `v11.5`
 - changed default browse cards to prefer image-backed demo objects while preserving the full object record when selected
-- expanded AUX.IO Management from a tiny sample to a larger image-backed working set generated from live loaded objects
+- expanded AUXIO Management from a tiny sample to a larger image-backed working set generated from live loaded objects
 
 Still next:
 
-- connect AUX.IO Management to the generated page manifest so every generated visitor page can be searched, previewed, edited, and published persistently
+- connect AUXIO Management to the generated page manifest so every generated visitor page can be searched, previewed, edited, and published persistently
 - add an explicit release-time rights audit command
 - prototype the Whisper/Piper voice path separately from the working browser speech path
 
@@ -204,11 +225,11 @@ Why:
 
 Total live source objects in the current working set: `1520`
 
-### AUX.IO generation
+### AUXIO generation
 
-Latest collection harvests were run successfully and AUX.IO pages were regenerated.
+Latest collection harvests were run successfully and AUXIO pages were regenerated.
 
-Last noted AUX.IO output:
+Last noted AUXIO output:
 - `1519` generated visitor pages in [nfc-pages/v](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v)
 - live source spread: MV 39, Met 42, V&A 300, AIC 150, CMA 150, Rijks 150, Europeana 150, Auckland 120, Te Papa 95, M+ 110, Brasiliana 120
 
@@ -219,13 +240,13 @@ This is the current highest-trust public-demo state:
 - `208` rights-restricted objects and `8` unevaluated / copyright-not-evaluated objects were removed from the live public-facing stack
 - Art Institute of Chicago was re-harvested public-domain only
 - Europeana was re-harvested with `reusability=open`
-- AUX.IO generation now purges stale pages before regeneration, so removed records cannot linger as orphaned public HTML pages
+- AUXIO generation now purges stale pages before regeneration, so removed records cannot linger as orphaned public HTML pages
 
 Current live outcome:
 
 - `1520` live source objects
 - `1520` curator vectors
-- `1519` AUX.IO pages
+- `1519` AUXIO pages
 - public object views now surface a normalized legal status plus raw licence / rights detail
 - current audited rights mix resolves to `1091` open, `165` attribution, `59` share-alike, `205` mixed / non-commercial, `0` restricted, `0` unknown
 
@@ -235,7 +256,7 @@ Legal status is now being surfaced more clearly across the public-facing stack:
 
 - [ARCHAI_v10_8.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ARCHAI_v10_8.html) now normalizes raw licence / rights fields into visitor-readable statuses such as `Open access`, `Attribution required`, `Share alike`, `Restricted / mixed`, `Restricted`, and `Check source`
 - the public website demo at [fineartmedia-tech-web/archai.html](/Users/robgraham/Desktop/APPS/fineartmedia-tech-web/archai.html) now shows the same legal status language on result cards and object views
-- AUX.IO generation now carries legal status, reuse guidance, and raw licence / rights detail into the visitor page output instead of only a raw licence label
+- AUXIO generation now carries legal status, reuse guidance, and raw licence / rights detail into the visitor page output instead of only a raw licence label
 
 Important note:
 - item-level rights still matter more than collection-level branding
@@ -246,7 +267,7 @@ Important note:
 Current working voice reality:
 
 - the live speech demo is browser-native, not full Whisper/Coqui yet
-- phone/browser testing is currently the strongest and most reliable path, especially for AUX.IO
+- phone/browser testing is currently the strongest and most reliable path, especially for AUXIO
 - the main app object detail currently exposes explicit response languages:
   - English
   - Arabic
@@ -254,7 +275,7 @@ Current working voice reality:
   - French
   - Portuguese
   - Japanese
-- both the main app and AUX.IO now expose playback voice choices:
+- both the main app and AUXIO now expose playback voice choices:
   - `ARCHAI Neutral (recommended)`
   - `Browser Default`
   - browser/system voices exposed by the current device
@@ -267,8 +288,8 @@ Important implementation rule:
 Latest UI stabilization:
 
 - main app voice status now preserves its visual indicator instead of wiping it out during status updates
-- AUX.IO now shows the same listening / pending / error status dot alongside the speech text
-- regenerated AUX.IO pages now carry that cue through to the public visitor page output
+- AUXIO now shows the same listening / pending / error status dot alongside the speech text
+- regenerated AUXIO pages now carry that cue through to the public visitor page output
 
 ### Europeana / Keytec
 
@@ -330,7 +351,7 @@ Important:
 This partial work currently exists only in:
 - [ARCHAI_v10_8.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ARCHAI_v10_8.html)
 
-No matching AUX.IO template translation implementation has been completed yet in:
+No matching AUXIO template translation implementation has been completed yet in:
 - [nfc-pages/nfc-visitor-template.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/nfc-visitor-template.html)
 
 ## Research and audit docs worth keeping
@@ -358,7 +379,7 @@ Build the ingest structure first before more UI:
 3. preserve any multilingual source fields already provided by institutions
 4. generate only missing derived translations
 5. build vectors from canonical / display layers
-6. make ARCHAI and AUX.IO read from those clean layers
+6. make ARCHAI and AUXIO read from those clean layers
 
 ## New work added in this pass
 
@@ -424,7 +445,7 @@ Live onboarding completed in this pass:
 
 - `archai_auckland` created in Qdrant with `120` public-safe records
 - `archai_curator` rebuilt to `1085` vectors across all live collections
-- AUX.IO regenerated to `951` pages with correct source collection tags in-page
+- AUXIO regenerated to `951` pages with correct source collection tags in-page
 - main app collection loading updated to scroll beyond the first `200` points per collection
 
 ## Suggested schema blocks
@@ -489,7 +510,7 @@ Live onboarding completed in this pass:
 - moderation flags
 - curator notes
 - staff prompts / response tone presets
-- AUX.IO session logs
+- AUXIO session logs
 - ARCHAI session logs
 
 ## White paper alignment summary
@@ -516,7 +537,7 @@ Notable currently modified areas include:
 - backend proxy / conversational search files
 - Docker files and config
 - documentation drafts
-- regenerated AUX.IO pages in [nfc-pages/v](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v)
+- regenerated AUXIO pages in [nfc-pages/v](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v)
 
 These should be reviewed carefully before any broad cleanup or commit.
 
@@ -530,7 +551,7 @@ If time or tokens are short, continue in this order:
 4. preserve existing source translations
 5. derive missing translations
 6. rebuild embeddings
-7. only then tune ARCHAI / AUX.IO UI around the clean data layer
+7. only then tune ARCHAI / AUXIO UI around the clean data layer
 
 ## If picking up quickly
 
@@ -545,7 +566,7 @@ Start by checking:
 
 ## Short handoff sentence
 
-ARCHAI should remain a fast, layered, provenance-aware system: raw collection data stays clean, canonical data gets normalized, translations and embeddings are derived during ingest, and ARCHAI / AUX.IO sit above that as interpretive interfaces.
+ARCHAI should remain a fast, layered, provenance-aware system: raw collection data stays clean, canonical data gets normalized, translations and embeddings are derived during ingest, and ARCHAI / AUXIO sit above that as interpretive interfaces.
 
 ## Website demo status — 2026-06-02 afternoon
 
@@ -575,7 +596,7 @@ Resolved follow-up:
 - latest Auckland dry run skipped `11` placeholder-media records while still returning a full `120` clean objects
 - latest live Auckland refresh skipped `15` placeholder-media records, rewrote the `archai_auckland` collection, and left `0` known placeholder hashes in the live source collection
 - `archai_curator` was rebuilt to `1445` vectors after the Auckland refresh
-- AUX.IO was regenerated again to `1311` visitor pages after the source-side cleanup
+- AUXIO was regenerated again to `1311` visitor pages after the source-side cleanup
 
 Good next step after this session:
 
@@ -625,12 +646,12 @@ Verification:
 - `archai_tepapa` created in Qdrant with `120` records
 - backend health now reports `1205` live source objects across `9` collections
 - `archai_curator` rebuilt to `1205` vectors
-- AUX.IO regenerated to `1071` visitor pages across `9` live collections
+- AUXIO regenerated to `1071` visitor pages across `9` live collections
 
 Workflow notes:
 
 - [nfc-pages/generate-nfc-pages.js](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/generate-nfc-pages.js) now includes `archai_tepapa`
-- AUX.IO default generation cap was lifted from `1000` to `5000`
+- AUXIO default generation cap was lifted from `1000` to `5000`
 - [ARCHAI_v10_8.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ARCHAI_v10_8.html) now knows about Te Papa and displays `Build v11.1 · 9 live collections`
 
 Completed since that Te Papa pass:
@@ -683,7 +704,7 @@ Verification:
 - rights-restricted records skipped during harvest: `1995`
 - backend health now reports `1445` live source objects across `11` source collections
 - `archai_curator` rebuilt to `1445` vectors
-- AUX.IO regenerated to `1311` visitor pages across `11` live collections
+- AUXIO regenerated to `1311` visitor pages across `11` live collections
 
 Workflow notes:
 
@@ -698,7 +719,7 @@ Outcome:
 
 Reason:
 
-- the current legal / media gate did not produce a strong enough set of public-safe, image-backed records for ARCHAI or AUX.IO
+- the current legal / media gate did not produce a strong enough set of public-safe, image-backed records for ARCHAI or AUXIO
 - this remains a possible future metadata / research source, but not a clean public demo source yet
 
 ## Main app search aligned with website demo — 2026-06-04
@@ -723,7 +744,7 @@ Notes:
 
 - this is a display-layer cleanup, not a rewrite of the raw source record
 - the screenshot showing Greek + English title text and a long Europeana aggregator id is a good reminder that raw heritage records and public display records need to stay distinct
-- next cleanup pass should move this kind of source-specific normalization further upstream into onboarding so ARCHAI and AUX.IO read cleaner display metadata by default
+- next cleanup pass should move this kind of source-specific normalization further upstream into onboarding so ARCHAI and AUXIO read cleaner display metadata by default
 
 ## Speech / accessibility R&D note — 2026-06-04
 
@@ -735,7 +756,7 @@ Direction:
 
 Why it fits:
 
-- supports the long-term AUX.IO direction around accessibility, spoken interaction, and multilingual visitor support
+- supports the long-term AUXIO direction around accessibility, spoken interaction, and multilingual visitor support
 - keeps ARCHAI aligned with the sovereignty goal by favouring local inference rather than cloud-only voice services
 - creates a clean path for future neutral narration, interpretive voice, and accessible read-aloud modes
 
@@ -751,11 +772,11 @@ Next likely focus:
 - port the same Europeana display cleanup into the website demo wrapper
 - continue onboarding-quality normalization so raw aggregator strings do not surface in public-facing object views
 - map a first-pass speech architecture into:
-  - AUX.IO visitor input
+  - AUXIO visitor input
   - ARCHAI staff-facing conversational search
   - translation-aware response output
 
-## Browser speech demo added to ARCHAI + AUX.IO — 2026-06-04
+## Browser speech demo added to ARCHAI + AUXIO — 2026-06-04
 
 What changed:
 
@@ -765,8 +786,8 @@ What changed:
   - `Read Reply`
   - `Stop Audio`
 - the object-detail legal status note was also moved lower in the flow so it no longer interrupts the object introduction too aggressively
-- [nfc-pages/nfc-visitor-template.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/nfc-visitor-template.html) now includes the same browser speech demo controls for AUX.IO
-- AUX.IO pages were regenerated from the updated template, so the controls are now live in:
+- [nfc-pages/nfc-visitor-template.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/nfc-visitor-template.html) now includes the same browser speech demo controls for AUXIO
+- AUXIO pages were regenerated from the updated template, so the controls are now live in:
   - [nfc-pages/v](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v)
   - [nfc-pages/v/index.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v/index.html)
 
@@ -787,7 +808,7 @@ Verification:
 - inline script parse passed for:
   - [ARCHAI_v10_8.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ARCHAI_v10_8.html)
   - [nfc-pages/nfc-visitor-template.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/nfc-visitor-template.html)
-- AUX.IO regeneration completed successfully to `1519` visitor pages
+- AUXIO regeneration completed successfully to `1519` visitor pages
 - local live page check confirmed the voice controls render on:
   - `http://127.0.0.1:8002/nfc-pages/v/NFC001.html`
 
@@ -795,7 +816,7 @@ Morning test points:
 
 - main app object detail:
   - `http://127.0.0.1:8002/ARCHAI_v10_8.html`
-- AUX.IO sample page:
+- AUXIO sample page:
   - `http://127.0.0.1:8002/nfc-pages/v/NFC001.html`
 
 Next production step:
@@ -804,13 +825,13 @@ Next production step:
   - Whisper / faster-whisper / whisper.cpp for speech-to-text
   - Coqui or a lighter local TTS stack for speech output
 
-## Phone testing route for AUX.IO / main app voice demo — 2026-06-04
+## Phone testing route for AUXIO / main app voice demo — 2026-06-04
 
 What was fixed:
 
 - [ARCHAI_v10_8.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ARCHAI_v10_8.html) now routes backend API calls to the host Mac over LAN / Tailscale instead of incorrectly calling `localhost` from the phone
-- [nfc-pages/nfc-visitor-template.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/nfc-visitor-template.html) now rewrites preview ports such as `:8000` or `:8002` to backend port `:8787`, so generated AUX.IO pages can talk back to the backend correctly from phones
-- AUX.IO pages were regenerated again after the routing fix
+- [nfc-pages/nfc-visitor-template.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/nfc-visitor-template.html) now rewrites preview ports such as `:8000` or `:8002` to backend port `:8787`, so generated AUXIO pages can talk back to the backend correctly from phones
+- AUXIO pages were regenerated again after the routing fix
 
 Important truth:
 
@@ -824,7 +845,7 @@ Phone test URLs on the local network:
 
 - main app:
   - `http://192.168.1.113:8002/ARCHAI_v10_8.html`
-- AUX.IO sample page:
+- AUXIO sample page:
   - `http://192.168.1.113:8002/nfc-pages/v/NFC001.html`
 
 Supporting research note:
@@ -834,13 +855,13 @@ Supporting research note:
   - identifies born-digital / web-art directions
   - outlines the likely Whisper + Coqui production path
 
-## Neutral voice control added to main app + AUX.IO — 2026-06-05
+## Neutral voice control added to main app + AUXIO — 2026-06-05
 
 What changed:
 
 - [ARCHAI_v10_8.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ARCHAI_v10_8.html) now includes a `Playback Voice` selector in object detail
-- [nfc-pages/nfc-visitor-template.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/nfc-visitor-template.html) now includes the same selector for AUX.IO
-- generated AUX.IO pages were rebuilt so the selector is present in:
+- [nfc-pages/nfc-visitor-template.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/nfc-visitor-template.html) now includes the same selector for AUXIO
+- generated AUXIO pages were rebuilt so the selector is present in:
   - [nfc-pages/v](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v)
 
 How it works:
@@ -857,7 +878,7 @@ Why:
 
 ## Voice audit completed — 2026-06-05
 
-Full technical audit of the browser-native speech demo across both ARCHAI main app and AUX.IO.
+Full technical audit of the browser-native speech demo across both ARCHAI main app and AUXIO.
 
 See [VOICE_AUDIT_2026-06-05.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/VOICE_AUDIT_2026-06-05.md) for the complete document.
 
@@ -934,31 +955,31 @@ ETHICS_APPLICATION_NOTES.md now includes RMIT Research Ethics Platform (REP) pro
 
 - [RESEARCH_INDEX.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/RESEARCH_INDEX.md) — all new documents indexed
 
-## AUX.IO institutional workflow pass — 2026-06-07
+## AUXIO institutional workflow pass — 2026-06-07
 
-Rob clarified the product priority: AUX.IO needs to feel like a realistic museum/gallery publishing workflow, while Nodel, FAMTEC Exchange, and exhibition operations can remain later-stage modules.
+Rob clarified the product priority: AUXIO needs to feel like a realistic museum/gallery publishing workflow, while Nodel, FAMTEC Exchange, and exhibition operations can remain later-stage modules.
 
 Implemented in `ARCHAI_v10_8.html`:
 
-- AUX.IO editor now explains the workflow as create → assign → preview → publish.
-- Staff can create a new AUX.IO record from scratch.
+- AUXIO editor now explains the workflow as create → assign → preview → publish.
+- Staff can create a new AUXIO record from scratch.
 - Placement/location is editable for gallery, QR, NFC, kiosk, map, or future spatial trigger contexts.
 - Object picker now searches across all loaded objects, while opening with an image-backed shortlist for performance.
 - Staff can draft a local institutional object record with title, accession, institution, type, date, image/media URL, source URL, description, and legal status.
-- Draft institutional objects are added to the current app session, assigned to the AUX.IO record, and shown in the phone preview.
-- AUX.IO export now includes institution, rights status, rights detail, visibility options, object title, object ID, location, and URL.
+- Draft institutional objects are added to the current app session, assigned to the AUXIO record, and shown in the phone preview.
+- AUXIO export now includes institution, rights status, rights detail, visibility options, object title, object ID, location, and URL.
 - Removed the placeholder `saveNFC` override so the existing backend save attempt with local confirmation is the active path again.
 - Rights parser now treats `Permission required` and `Internal preview only` as restricted.
 
 State / next step:
 
-- This is still a prototype layer. Production should persist institution-created object records and AUX.IO assignments in Directus, with raw source metadata stored separately from visitor-facing interpretation.
-- Generated static AUX.IO pages still come from the page generator; live generation from staff-created records remains future work.
-- Nodel, FAMTEC Exchange, and exhibition operations are intentionally lower priority until AUX.IO and curatorial search are more complete.
+- This is still a prototype layer. Production should persist institution-created object records and AUXIO assignments in Directus, with raw source metadata stored separately from visitor-facing interpretation.
+- Generated static AUXIO pages still come from the page generator; live generation from staff-created records remains future work.
+- Nodel, FAMTEC Exchange, and exhibition operations are intentionally lower priority until AUXIO and curatorial search are more complete.
 
-## High-intelligence AUX.IO persistence pass — 2026-06-07
+## High-intelligence AUXIO persistence pass — 2026-06-07
 
-Follow-up review found a mismatch: the frontend `saveNFC()` function posted to `/api/nfc`, but the backend only exposed read-only AUX.IO/NFC routes. That meant saves always fell back locally and were not genuinely represented in backend state.
+Follow-up review found a mismatch: the frontend `saveNFC()` function posted to `/api/nfc`, but the backend only exposed read-only AUXIO/NFC routes. That meant saves always fell back locally and were not genuinely represented in backend state.
 
 Fixed:
 
@@ -967,7 +988,7 @@ Fixed:
 - `NFC001` and `NFC-001` formats are normalized at the backend boundary.
 - Optional institution draft objects are accepted with the save payload.
 - `backend-archai/src/services/objectRepository.js` now supports runtime `saveObject()` and `upsertNfcTag()`.
-- AUX.IO saves now upsert the tag assignment, visibility settings, location, and optional institution draft object into the backend runtime repository.
+- AUXIO saves now upsert the tag assignment, visibility settings, location, and optional institution draft object into the backend runtime repository.
 - Saves are audited as `auxio.save`.
 - Frontend `saveNFC()` now includes local institution draft object data when applicable and reports `Saved to backend` on success.
 - Verified live against the restarted backend on `http://127.0.0.1:8787/api/nfc`: sample `NFC998` saved as `NFC-998` with draft object `institution-live-test-001` and returned `mode: runtime-session`.
@@ -976,7 +997,7 @@ Important boundary:
 
 - This is runtime-session persistence, not durable production storage.
 - Directus or SQLite-backed persistence is still required before public/institutional deployment.
-- The current implementation is useful for demo realism and workflow testing: create object → assign AUX.IO → preview → save to backend session.
+- The current implementation is useful for demo realism and workflow testing: create object → assign AUXIO → preview → save to backend session.
 
 ## Born-digital manifestation and legal-source pass — 2026-06-22
 
@@ -991,7 +1012,7 @@ Implemented:
 - Added byte-range WACZ delivery at `GET /api/media/published/:mediaId/archive` for cleared, published captures.
 - Added [BORN_DIGITAL_CAPTURE_AND_REPLAY.md](./backend-archai/docs/BORN_DIGITAL_CAPTURE_AND_REPLAY.md).
 - Added [CONTEMPORARY_AND_STREET_ART_SOURCE_AUDIT.md](./backend-archai/scripts/CONTEMPORARY_AND_STREET_ART_SOURCE_AUDIT.md).
-- Linked the new model from the AUX.IO runtime and collection onboarding documents.
+- Linked the new model from the AUXIO runtime and collection onboarding documents.
 
 Legal/source findings:
 
@@ -1040,7 +1061,7 @@ Implemented:
 - Self-hosted pinned ReplayWeb.page `2.4.6` assets from the ARCHAI backend.
 - Added an isolated replay page at `GET /api/media/published/:mediaId/replay`.
 - Retained byte-range archive delivery at `GET /api/media/published/:mediaId/archive`.
-- Added owned mock records for the ARCHAI and AUX.IO public demonstrators.
+- Added owned mock records for the ARCHAI and AUXIO public demonstrators.
 
 Verified local preservation packages:
 
@@ -1097,15 +1118,15 @@ Audit result:
 - 790 metadata-only records
 - notable holds: Getty 200/200 broken; AIC 150/150 currently blocked by a Cloudflare image challenge; Brasiliana 113/120 returned 404
 
-AUX.IO result:
+AUXIO result:
 
 - 1380 visitor pages regenerated from working, display-cleared media
 - 504 otherwise available records held by the public-media rights policy
 - 440 pages explicitly support reusable derivative outputs
-- A4, A2, A0, 100 mm sticker, and A6 postcard layouts all draw a QR code to the current AUX.IO page
+- A4, A2, A0, 100 mm sticker, and A6 postcard layouts all draw a QR code to the current AUXIO page
 - QR generation is self-hosted from the MIT-licensed `qrcode-generator` library and fails closed rather than producing a QR-less asset
 - save/print formats are grouped under a compact `Save / print with QR` disclosure below the share controls
-- `nfc-pages/aux-id-map.json` now reserves a permanent numeric AUX.IO ID for every canonical record; a second full regeneration produced identical registry and representative page hashes, so existing physical QR/NFC links no longer drift when collection order changes
+- `nfc-pages/aux-id-map.json` now reserves a permanent numeric AUXIO ID for every canonical record; a second full regeneration produced identical registry and representative page hashes, so existing physical QR/NFC links no longer drift when collection order changes
 
 Street-art source policy:
 
@@ -1133,7 +1154,7 @@ The ARCHAI project page has been reorganised into one coherent three-path demo i
 
 - **Search Collections:** all 19 connected source collections are visible as live-count scope tabs, with `All sources` as the default;
 - **Talk to ARCHAI:** whole-collection conversation uses the same Curatorial, Collections, Exhibition, and Interpretation response lenses as the app;
-- **Visit AUX.IO:** an embedded phone preview links directly to the visitor experience and random-object path.
+- **Visit AUXIO:** an embedded phone preview links directly to the visitor experience and random-object path.
 
 Voice behavior on the website follows the stable phone-first design:
 
@@ -1153,7 +1174,7 @@ Verification completed:
 - direct whole-collection conversation returned a grounded response with cited source objects;
 - desktop and 390 px mobile layouts showed no page-level horizontal overflow;
 - source tabs remain horizontally scrollable and conversation controls stack on mobile;
-- AUX.IO loaded inside the embedded phone preview.
+- AUXIO loaded inside the embedded phone preview.
 
 Hosting decision:
 
@@ -1182,14 +1203,14 @@ Operational result:
 - 139 Brussels street-art records now have public-display image URLs and CC BY 4.0 rights text;
 - 300 remaining public-art records remain metadata-only;
 - `archai_curator` was rebuilt successfully with 3147 records;
-- AUX.IO was regenerated with 1519 visitor pages, including 139 Public Street Art pages.
+- AUXIO was regenerated with 1519 visitor pages, including 139 Public Street Art pages.
 
 Website behaviour:
 
 - if a scoped source returns metadata but no public image-ready records, the public demo now shows a clear metadata-only panel with title, maker/place/date, media-rights basis, and source-record link instead of appearing broken;
 - image-enabled Brussels street-art searches now return image cards in the normal website search grid.
 
-## Legal harvest refresh and AUX.IO cleanup - 2026-06-23
+## Legal harvest refresh and AUXIO cleanup - 2026-06-23
 
 Rob asked to start the next legal harvests and keep the media gates strict. Codex posted the working state to Claude in Huggle so the next pass can continue without resetting or flattening the dirty worktree.
 
@@ -1206,11 +1227,11 @@ Media publication gate:
 
 - `backend-archai/scripts/audit-public-media.js --apply --concurrency 20` was run after harvest.
 - Current audit totals: 2496 supplied image URLs checked; 2026 healthy; 470 hidden or broken; 1426 canvas-safe; 651 metadata-only.
-- AUX.IO was regenerated after the audit and now publishes 1522 clean visitor pages.
-- The generator skipped 651 metadata-only records, 470 unavailable/placeholder media records, and held 504 otherwise healthy records from AUX.IO because the source/publication policy is not yet explicit enough.
+- AUXIO was regenerated after the audit and now publishes 1522 clean visitor pages.
+- The generator skipped 651 metadata-only records, 470 unavailable/placeholder media records, and held 504 otherwise healthy records from AUXIO because the source/publication policy is not yet explicit enough.
 - Poster/postcard/download controls remain fail-closed: only 439 records currently pass both `poster_download_allowed` and `media_canvas_safe`.
 
-Current AUX.IO page breakdown after regeneration:
+Current AUXIO page breakdown after regeneration:
 
 - Auckland Museum: 120 pages.
 - Brasiliana Museus: 7 pages.
@@ -1291,7 +1312,7 @@ Current limitation:
 
 ## NASA media-lab harvest quarantined from core GLAM app - 2026-06-23
 
-Rob queried whether NASA fits the core GLAM institution feel. Decision: keep NASA useful for media/playback R&D, but do not treat it as a normal museum/gallery source in the main ARCHAI app or public AUX.IO demo.
+Rob queried whether NASA fits the core GLAM institution feel. Decision: keep NASA useful for media/playback R&D, but do not treat it as a normal museum/gallery source in the main ARCHAI app or public AUXIO demo.
 
 What happened:
 
@@ -1305,7 +1326,7 @@ What happened:
 Current boundary:
 
 - `archai_nasa` may be used for media-player, video, caption, and science/technology playback tests.
-- It is not in the hardcoded main app collection list, not in AUX.IO generation, and not in automatic legal-harvest runs.
+- It is not in the hardcoded main app collection list, not in AUXIO generation, and not in automatic legal-harvest runs.
 - Promote individual NASA records only if the project intentionally needs a science/media example and the UI clearly labels it as a specialist media-lab source, not a museum/gallery institution.
 
 ## Runtime alignment/refactor audit - 2026-06-23
@@ -1326,7 +1347,7 @@ Verified:
 - Ollama is online on `qwen2.5:14b`
 - Qdrant is live
 - runtime reports `3267` collection objects, `3147` curator vectors, `21` Qdrant collections, and `6414` total vectors
-- AUX.IO manifest reports `1522` pages
+- AUXIO manifest reports `1522` pages
 - local runtime smoke tests passed
 - public stability checks passed for backend tunnel, ARCHAI demo, AUX page, and Dark Plates
 - local static app server is reachable at `http://localhost:8000/ARCHAI_v10_8.html`
@@ -1337,9 +1358,9 @@ Known drift to clean next:
 - full ReplayWeb dynamic replay remains beta; stable access-copy pages are the public-safe route
 - Codex browser tooling could not open local `localhost` app URLs in this session even though shell checks confirmed the app server is reachable
 
-## AUX.IO collapsible panel layout demo - 2026-06-24
+## AUXIO collapsible panel layout demo - 2026-06-24
 
-Rob suggested using the Dark Plates-style dropdown pattern to reduce visual load on AUX.IO pages while keeping the visitor experience warm and object-led.
+Rob suggested using the Dark Plates-style dropdown pattern to reduce visual load on AUXIO pages while keeping the visitor experience warm and object-led.
 
 What changed:
 
@@ -1350,7 +1371,7 @@ What changed:
   - Visitor response
 - Related objects remain visible by default because they support exploration and feel important to the visitor flow.
 - The object image, title, source, story, and "Ask this object" chat remain immediate rather than hidden.
-- AUX.IO pages were regenerated from the updated template after the layout pass.
+- AUXIO pages were regenerated from the updated template after the layout pass.
 
 Local test:
 
@@ -1364,12 +1385,12 @@ Design note:
 
 ## Auckland Museum image rescue - 2026-06-25
 
-Rob flagged blurry Auckland Museum images on AUX.IO, especially `AUX.IO 001 / NFC001` where a tiny table image was being stretched inside the mobile visitor page.
+Rob flagged blurry Auckland Museum images on AUXIO, especially `AUXIO 001 / NFC001` where a tiny table image was being stretched inside the mobile visitor page.
 
 Root cause:
 
 - Auckland's normal media URLs such as `https://api.aucklandmuseum.com/id/media/v/{id}?rendering=standard.jpg` and `?rendering=original.jpg` return very small derivatives for many records, often around 70px wide.
-- The source metadata and rights were valid; the problem was the derivative route, not the AUX.IO layout.
+- The source metadata and rights were valid; the problem was the derivative route, not the AUXIO layout.
 
 Fix applied:
 
@@ -1377,17 +1398,17 @@ Fix applied:
   - thumbnails: `/full/300,/0/default.jpg`
   - page display: `/full/800,/0/default.jpg`
 - Updated all 120 existing `archai_auckland` Qdrant payloads in place, without re-embedding the records.
-- Regenerated AUX.IO pages from the updated payloads.
+- Regenerated AUXIO pages from the updated payloads.
 
 Verification:
 
 - `NFC001.html` now uses `https://api.aucklandmuseum.com/id/media/v/40382/full/800,/0/default.jpg` for the hero image.
 - Sample Auckland derivative tested with `sips`: `800 x 800`.
-- AUX.IO public manifest still reports `1522` pages, so Auckland was rescued rather than removed.
+- AUXIO public manifest still reports `1522` pages, so Auckland was rescued rather than removed.
 
 Next quality gate:
 
-- Extend the public media audit to store measured image dimensions and hold any future records below a minimum display threshold, so low-resolution derivatives cannot slip into public AUX.IO again.
+- Extend the public media audit to store measured image dimensions and hold any future records below a minimum display threshold, so low-resolution derivatives cannot slip into public AUXIO again.
 
 ## IIIF helper and first harvester alignment - 2026-06-25
 
@@ -1427,18 +1448,18 @@ media_iiif_available
 Why it matters:
 
 - ARCHAI can now distinguish ordinary static images from zoomable/region-addressable IIIF images.
-- This opens the path for "Look closer" mode, curatorial region annotations, citation of visual evidence, and richer AUX.IO object experiences.
+- This opens the path for "Look closer" mode, curatorial region annotations, citation of visual evidence, and richer AUXIO object experiences.
 - Rights remain separate from IIIF availability: an object can be IIIF-capable but still not public-display or derivative-download cleared.
 
 Next build:
 
 - Add IIIF availability to the media audit and app UI.
-- Prototype a small AUX.IO "Look closer" view for IIIF objects.
+- Prototype a small AUXIO "Look closer" view for IIIF objects.
 - Add staff-side region annotations as an ARCHAI overlay, not as edits to source records.
 
-## AUX.IO Look Closer prototype - 2026-06-25
+## AUXIO Look Closer prototype - 2026-06-25
 
-Built the first visible IIIF feature into generated AUX.IO visitor pages.
+Built the first visible IIIF feature into generated AUXIO visitor pages.
 
 What changed:
 
@@ -1448,10 +1469,10 @@ What changed:
 
 Current regeneration result:
 
-- `1522` public AUX.IO visitor pages generated.
+- `1522` public AUXIO visitor pages generated.
 - `651` metadata-only records skipped.
 - `470` unavailable or placeholder-media records skipped.
-- `504` records held from AUX.IO pending item-level media clearance.
+- `504` records held from AUXIO pending item-level media clearance.
 - `NFC001.html` now has `Look closer` and uses the Auckland IIIF route `https://api.aucklandmuseum.com/id/media/v/40382/full/800,/0/default.jpg`.
 
 Verification:
@@ -1467,21 +1488,21 @@ rg -n "Look closer|iiifViewer|OBJECT_IIIF|IIIF_LOOK|full/800|Open image" nfc-pag
 Notes:
 
 - This is deliberately simple: browser-native zoom via a scaled image in an overflow canvas, not a full OpenSeadragon-style deep zoom viewer yet.
-- Next sensible step is a measured image-quality audit that records dimensions and automatically suppresses low-resolution derivatives from public AUX.IO while keeping their metadata searchable in ARCHAI.
+- Next sensible step is a measured image-quality audit that records dimensions and automatically suppresses low-resolution derivatives from public AUXIO while keeping their metadata searchable in ARCHAI.
 
-## AUX.IO index and IIIF viewer polish - 2026-06-27
+## AUXIO index and IIIF viewer polish - 2026-06-27
 
 Rob tested the new Auckland/IIIF pages and found two UX issues:
 
 - Zooming into the `Look closer` image did not allow mouse/touch panning.
-- The AUX.IO index still showed Auckland's "Digital image not yet created" placeholders because the index preferred `media_thumbnail` before the repaired `media_medium`.
+- The AUXIO index still showed Auckland's "Digital image not yet created" placeholders because the index preferred `media_thumbnail` before the repaired `media_medium`.
 
 Fixes applied:
 
 - Updated [nfc-pages/nfc-visitor-template.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/nfc-visitor-template.html) so `Look closer` uses real layout zoom plus pointer-event drag panning. Mouse, trackpad, and touch should now be able to drag around a zoomed image.
-- Updated [nfc-pages/generate-nfc-pages.js](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/generate-nfc-pages.js) so the generated AUX.IO index:
+- Updated [nfc-pages/generate-nfc-pages.js](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/generate-nfc-pages.js) so the generated AUXIO index:
   - prefers `media_medium` over `media_thumbnail` for list thumbnails;
-  - includes a simple client-side search box across AUX.IO number, title, source, registration, and collection;
+  - includes a simple client-side search box across AUXIO number, title, source, registration, and collection;
   - centers the directory in a narrower shell with larger thumbnails so it reads less like a raw export.
 - Regenerated [nfc-pages/v/](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v).
 
@@ -1491,33 +1512,33 @@ Verification:
 node --check nfc-pages/generate-nfc-pages.js
 node --check /tmp/archai-nfc-template-inline-sanitized.js
 node nfc-pages/generate-nfc-pages.js
-curl -s 'http://127.0.0.1:8000/nfc-pages/v/' | rg -n "idx-search-input|full/800|AUX.IO 001|data-search"
+curl -s 'http://127.0.0.1:8000/nfc-pages/v/' | rg -n "idx-search-input|full/800|AUXIO 001|data-search"
 curl -s 'http://127.0.0.1:8000/nfc-pages/v/NFC001.html?akl=800' | rg -n "bindIiifPan|pointerdown|pointermove|dragging|touch-action"
 ```
 
 Current result:
 
-- Public AUX.IO page count remains `1522`.
-- `AUX.IO 001` on the index now uses `https://api.aucklandmuseum.com/id/media/v/40382/full/800,/0/default.jpg`.
+- Public AUXIO page count remains `1522`.
+- `AUXIO 001` on the index now uses `https://api.aucklandmuseum.com/id/media/v/40382/full/800,/0/default.jpg`.
 - The generated object page contains `bindIiifPan`, `pointerdown`, `pointermove`, and `dragging` support.
 
 ## App / website object-view alignment - 2026-06-27
 
-Rob reviewed the AUX.IO and staff object views before the Monday partner/investor mailout and identified three alignment issues:
+Rob reviewed the AUXIO and staff object views before the Monday partner/investor mailout and identified three alignment issues:
 
-- the AUX.IO `Look closer` affordance was visually too bulky under the hero image;
+- the AUXIO `Look closer` affordance was visually too bulky under the hero image;
 - the visitor-facing `IIIF info` control opened raw IIIF JSON, which reads as broken to non-technical users;
 - the staff/demo object views showed legal/admin detail before the interpretive conversation, making the workflow feel less like a curatorial review.
 
 Fixes applied:
 
 - Updated [nfc-pages/nfc-visitor-template.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/nfc-visitor-template.html) so `Look closer` is a compact floating pill over the image area instead of a large full-width block.
-- Updated [nfc-pages/generate-nfc-pages.js](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/generate-nfc-pages.js) to remove the raw `IIIF info` link from public AUX.IO pages while keeping `Open image`, zoom, reset, and drag-to-pan guidance.
-- Regenerated [nfc-pages/v/](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v) so all `1522` public AUX.IO pages carry the new visitor controls.
+- Updated [nfc-pages/generate-nfc-pages.js](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/generate-nfc-pages.js) to remove the raw `IIIF info` link from public AUXIO pages while keeping `Open image`, zoom, reset, and drag-to-pan guidance.
+- Regenerated [nfc-pages/v/](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v) so all `1522` public AUXIO pages carry the new visitor controls.
 
 ## Curatorial object actions and Auckland media hold - 2026-06-29
 
-Rob flagged that staff-facing object records need the same practical actions as AUX.IO: share/save/audio controls, plus a way for curators and collections staff to build object lists or project sets. Rob also showed Auckland objects still displaying the "Digital image not yet created" placeholder through the supposedly repaired IIIF route.
+Rob flagged that staff-facing object records need the same practical actions as AUXIO: share/save/audio controls, plus a way for curators and collections staff to build object lists or project sets. Rob also showed Auckland objects still displaying the "Digital image not yet created" placeholder through the supposedly repaired IIIF route.
 
 What changed:
 
@@ -1537,18 +1558,18 @@ Audit result:
 - Auckland held as placeholders: `120` records.
 - Real Auckland media restored: `0` records.
 
-Resulting AUX.IO state:
+Resulting AUXIO state:
 
-- AUX.IO was regenerated after the Auckland hold.
+- AUXIO was regenerated after the Auckland hold.
 - Public visitor pages now publish `1,402` records.
-- Auckland remains searchable in the staff database but is no longer published as public AUX.IO image pages until a genuinely usable image route or better harvest set is found.
-- `AUX.IO 001-119` are intentionally absent for now because the permanent ID registry must not silently move physical QR/NFC IDs onto different objects.
+- Auckland remains searchable in the staff database but is no longer published as public AUXIO image pages until a genuinely usable image route or better harvest set is found.
+- `AUXIO 001-119` are intentionally absent for now because the permanent ID registry must not silently move physical QR/NFC IDs onto different objects.
 
 Verification:
 
 - Main app inline script parses cleanly with Node `vm.Script`.
 - Website demo inline script parses cleanly with Node `vm.Script`.
-- Generated AUX.IO pages no longer contain `Auckland Museum` or `Digital image not yet created`.
+- Generated AUXIO pages no longer contain `Auckland Museum` or `Digital image not yet created`.
 - Updated [ARCHAI_v10_8.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ARCHAI_v10_8.html) so the actual app object detail view now presents image, key metadata, and object interrogation before expandable `Full Metadata Record` and `Legal Status / Source Use` sections.
 - Mirrored the same workflow direction into the public website demo object modal in `/Users/robgraham/Desktop/APPS/fineartmedia-tech-web/archai.html`.
 - Added `/Users/robgraham/Desktop/APPS/fineartmedia-tech-web/app.html` as a hosted WIP copy of the full ARCHAI app shell with `window.ARCHAI_API_BASE` pointing at `https://archai-api.fineartmedia.tech`.
@@ -1572,14 +1593,14 @@ Current result:
 - Staff/demo object review sits above legal/admin details.
 - Full app hosting is now available as a WIP static shell at `/app.html`; it still depends on the ARCHAI backend API for live search/chat behaviour.
 
-## AUX.IO seeded demo and print-material redesign - 2026-06-30
+## AUXIO seeded demo and print-material redesign - 2026-06-30
 
-Rob tested the full hosted app and found the AUX.IO create-demo workflow still failing on the public website with the old "Add an object title..." alert. Claude also asked that the first loaded AUX.IO demo records be the curated "wow" set rather than generic random records.
+Rob tested the full hosted app and found the AUXIO create-demo workflow still failing on the public website with the old "Add an object title..." alert. Claude also asked that the first loaded AUXIO demo records be the curated "wow" set rather than generic random records.
 
 Fixes applied:
 
 - [ARCHAI_v10_8.html](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ARCHAI_v10_8.html) now uses Build `v11.6.5`.
-- The AUX.IO startup set now resolves against a curated seed list where possible:
+- The AUXIO startup set now resolves against a curated seed list where possible:
   - Disco Elysium
   - Pentiment
   - Dwarf Fortress
@@ -1593,7 +1614,7 @@ Fixes applied:
   - Photographie Lunaire / Tycho
   - Old Father Thames lantern slide
 - Seed matching now strips diacritics so titles like `écorché` can match plain `ecorche`.
-- Creating a new institutional AUX.IO draft no longer requires a title. If the title is blank, the app creates a safe placeholder such as `AUX.IO 003 draft object`, assigns it, and lets staff rename/enrich it.
+- Creating a new institutional AUXIO draft no longer requires a title. If the title is blank, the app creates a safe placeholder such as `AUXIO 003 draft object`, assigns it, and lets staff rename/enrich it.
 - The public website WIP copy at `/Users/robgraham/Desktop/APPS/fineartmedia-tech-web/app.html` was synced from the current full app and keeps `window.ARCHAI_API_BASE = 'https://archai-api.fineartmedia.tech'`.
 
 Print/export redesign:
@@ -1605,7 +1626,7 @@ Print/export redesign:
   - stronger QR/access block;
   - lighter, clearer metadata;
   - matching poster, postcard, and sticker family.
-- Regenerated [nfc-pages/v/](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v) so public AUX.IO pages carry the new export template.
+- Regenerated [nfc-pages/v/](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/nfc-pages/v) so public AUXIO pages carry the new export template.
 - Added first approval previews:
   - [docs/design-previews/aux-io-poster-approval-preview.png](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/design-previews/aux-io-poster-approval-preview.png)
   - [docs/design-previews/aux-io-postcard-approval-preview.png](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/design-previews/aux-io-postcard-approval-preview.png)
@@ -1624,20 +1645,20 @@ git -C /Users/robgraham/Desktop/APPS/fineartmedia-tech-web diff --check
 Notes:
 
 - The raw `nfc-visitor-template.html` still contains generator placeholders, so parse checks should be run against generated pages such as `nfc-pages/v/NFC1308.html`, not the unfilled template itself.
-- The print previews are approval images, not the only outputs. Live A0/A2/A4/postcard/sticker PNGs are still generated client-side from each AUX.IO object page.
+- The print previews are approval images, not the only outputs. Live A0/A2/A4/postcard/sticker PNGs are still generated client-side from each AUXIO object page.
 
-## AUX.IO black public-space print family - 2026-06-30
+## AUXIO black public-space print family - 2026-06-30
 
 Rob pushed the print direction away from a quiet gallery handout toward public/street use: posters may sit in streets, laneways, pop-ups, or non-gallery contexts, so the image must act as the hero and the QR must remain instantly scannable.
 
 Design decisions applied:
 
-- Replaced the warm paper print-export system with a black ARCHAI/AUX.IO street-gallery system.
+- Replaced the warm paper print-export system with a black ARCHAI/AUXIO street-gallery system.
 - Kept the object image as the dominant visual in the A4/A2/A0 poster exports.
 - Added shared print helpers so the aqua border is drawn around the actual rendered image rectangle, not around the empty black image holder. This matters for portrait, landscape, square, and awkward archival-image ratios.
 - Kept production QR codes black-on-white for reliability, but tightened the white block with a deliberate black border and aqua outer stroke.
 - Reworked A6 postcard and 100 mm sticker exports to match the same system.
-- Metadata now sits directly below or beside the object image depending on format, with AUX.IO carrying the deeper record.
+- Metadata now sits directly below or beside the object image depending on format, with AUXIO carrying the deeper record.
 - Generated multiple approval previews across different object types:
   - anatomical print
   - ancient ceramic fragment
@@ -1671,7 +1692,7 @@ Remaining design QA:
 - Test printed or screen-displayed QR scanning under real phone conditions.
 - If inverted QR is desired aesthetically, keep it as an alternate only after outdoor/low-light scan tests.
 
-## AUX.IO print legibility correction - 2026-07-01
+## AUXIO print legibility correction - 2026-07-01
 
 Rob reviewed the A0/A2/A4, postcard, and sticker exports and identified the key production issue: the print materials were still behaving too much like a screen layout. Text was too small from distance, some labels sat too close to the border, sticker images were undersized, and the access language implied tap/NFC/map even though the printed materials are QR-led.
 
@@ -1707,11 +1728,11 @@ git diff --check
 
 Next visual QA:
 
-- Refresh an AUX.IO object page before exporting new proofs, because the PNGs are generated client-side from the current HTML.
+- Refresh an AUXIO object page before exporting new proofs, because the PNGs are generated client-side from the current HTML.
 - Test one portrait object, one landscape object, and one square/awkward archival object across A0/A4/postcard/sticker.
 - Confirm QR scan reliability from street/poster distance before exploring inverted or stylised QR options.
 
-## AUX.IO print system final tightening - 2026-07-01
+## AUXIO print system final tightening - 2026-07-01
 
 Second pass after Rob's close-read of the proof set.
 
@@ -1719,7 +1740,7 @@ Key corrections:
 
 - Increased poster safe margins again so the top labels, title, QR block, and footer no longer sit close to the page edge.
 - Removed the small top-right `SCAN / TAP / ASK` style language from the poster system. Print assets are now explicitly QR-led.
-- Top brand now reads as a quiet header: `ARCHAI`, `QR VISITOR ACCESS`, and `AUX.IO`.
+- Top brand now reads as a quiet header: `ARCHAI`, `QR VISITOR ACCESS`, and `AUXIO`.
 - Enlarged poster title, source metadata, description excerpt, QR caption, URL, and footer copy for distance readability.
 - Reduced poster hero height slightly to create a stronger information band below the image without shrinking the image into a label.
 - Increased image-border breathing room so the aqua rule frames the actual rendered image rather than hugging image content or empty black space.
@@ -1746,11 +1767,11 @@ git diff --check
 
 Result:
 
-- 1,402 AUX.IO pages regenerated from the current 19-collection stack.
+- 1,402 AUXIO pages regenerated from the current 19-collection stack.
 - Runtime scripts validated on a mixed sample of Brasiliana, Cleveland, Europeana, Wellcome, public street art, and index pages.
 - Next proof should be exported fresh from the browser because old Downloads PNGs are stale.
 
-## AUX.IO print geometry fix - 2026-07-02
+## AUXIO print geometry fix - 2026-07-02
 
 Rob reviewed the next proof set and found three production blockers: postcard source/rights text was colliding, QR codes were visually off-centre in their cards, and the sticker QR could overlap the hero image. The print system now has stricter layout rules rather than fixed-position assumptions.
 
@@ -1763,8 +1784,8 @@ Changes applied:
 - Sticker hero/text spacing was rebalanced so the image remains dominant while the title/institution/QR prompt stay readable.
 - Postcard title, metadata, description, and access text were slightly enlarged while retaining safe margins.
 - Print copy remains QR-first: `SCAN QR TO TALK TO THIS IMAGE`.
-- Regenerated 1,402 AUX.IO pages from the current 19-collection stack.
-- Follow-up cleanup after Claude's pass: replaced remaining `SCAN QR TO START THE CONVERSATION` print labels with `SCAN QR TO TALK TO THIS IMAGE`, then regenerated and revalidated the AUX.IO pages.
+- Regenerated 1,402 AUXIO pages from the current 19-collection stack.
+- Follow-up cleanup after Claude's pass: replaced remaining `SCAN QR TO START THE CONVERSATION` print labels with `SCAN QR TO TALK TO THIS IMAGE`, then regenerated and revalidated the AUXIO pages.
 
 Verification:
 

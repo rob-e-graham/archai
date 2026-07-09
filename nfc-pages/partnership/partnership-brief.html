@@ -517,7 +517,7 @@
       <ol>
         <li><strong>Harvest layer</strong> — harvesters pull open-access data from museum APIs (CC0, CC BY, OGL). Every record passes a legal gate before reaching the collection. Embeddings generated via Ollama (<code>nomic-embed-text</code>) stored in Qdrant.</li>
         <li><strong>Conversation layer</strong> — object queries use vector search (cosine similarity) to retrieve context, then pass it to a local LLM (qwen2.5:32b or compatible). No cloud API required. No visitor data transmitted.</li>
-        <li><strong>Deployment layer</strong> — each object generates an HTML visitor page (AUX.IO). Pages are static-first, mobile-first, and scannable via NFC tag or QR code. Downloadable posters in 5 sizes.</li>
+        <li><strong>Deployment layer</strong> — each object generates an HTML visitor page (AUXIO). Pages are static-first, mobile-first, and scannable via NFC tag or QR code. Downloadable posters in 5 sizes.</li>
       </ol>
 
       <div class="tech-grid">
@@ -698,7 +698,7 @@
       <h2>Open access, properly done</h2>
       <p>ARCHAI takes rights seriously. Every source in our pipeline passes a legal harvest gate before data is indexed. The rules are explicit and enforced in code:</p>
       <ul>
-        <li><strong>CC0 or equivalent open licence required</strong> for any image displayed publicly on AUX.IO</li>
+        <li><strong>CC0 or equivalent open licence required</strong> for any image displayed publicly on AUXIO</li>
         <li><strong>CC BY attribution</strong> stored in every Qdrant payload and rendered on every visitor page</li>
         <li><strong>Metadata-only mode</strong> for sources where images are not cleared (Whitney, MoMA, Harvard)</li>
         <li><strong>Cultural sensitivity</strong> reviews flagged in the collection matrix for Pacific, Indigenous, and sacred material</li>

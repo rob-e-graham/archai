@@ -14,7 +14,7 @@ The existing staff application should remain protected by Tailscale, a private i
 
 ## Why the Current Staff Build Is Not Public-Safe
 
-The prototype middleware in `backend-archai/src/middleware/requestContext.js` currently assigns the `admin` role when no role header is supplied. The interface also exposes operational concepts including collection editing, AUX.IO publishing, harvesting, batch actions, infrastructure controls, and service administration.
+The prototype middleware in `backend-archai/src/middleware/requestContext.js` currently assigns the `admin` role when no role header is supplied. The interface also exposes operational concepts including collection editing, AUXIO publishing, harvesting, batch actions, infrastructure controls, and service administration.
 
 A client-side role selector is useful for prototyping, but it is not an access-control boundary. Public hosting requires identity and permissions to be enforced by the server.
 
@@ -28,7 +28,7 @@ Address: `fineartmedia.tech/archai`
 - Show only media that passes the public rights and image-health gates.
 - Offer grounded whole-collection conversation with staff response lenses.
 - Offer optional browser speech input and text-to-speech.
-- Link directly to the AUX.IO visitor experience.
+- Link directly to the AUXIO visitor experience.
 - State clearly that this is a research demo and that source inclusion does not imply endorsement.
 
 ### 2. Read-Only App Demo
@@ -60,7 +60,7 @@ The public website and read-only demo should expose only purpose-built routes fo
 - Sanitised health and public counts.
 - Semantic search over approved public fields.
 - Grounded collection conversation with rate limits.
-- Published AUX.IO pages and approved media.
+- Published AUXIO pages and approved media.
 - Public source, attribution, and legal-status information.
 - Optional anonymous feedback through a moderated endpoint.
 
@@ -80,8 +80,8 @@ The public gateway must block arbitrary Qdrant proxying, collection scrolling, c
 
 ## Delivery Phases
 
-1. **Current:** Use the integrated website demo and published AUX.IO pages.
-2. **Read-only build:** Create a separate public app shell with only search, object detail, conversation, vocabulary preview, and AUX.IO preview.
+1. **Current:** Use the integrated website demo and published AUXIO pages.
+2. **Read-only build:** Create a separate public app shell with only search, object detail, conversation, vocabulary preview, and AUXIO preview.
 3. **Gateway:** Add explicit public API routes and deny all operational routes by default.
 4. **Authentication:** Add named staff accounts and server-side roles.
 5. **Pilot:** Deploy with one partner institution on a private network before wider public hosting.
@@ -92,7 +92,7 @@ The public gateway must block arbitrary Qdrant proxying, collection scrolling, c
 - Every public route has an explicit allowlist entry and rate limit.
 - No public interface can write to source metadata or publishing state.
 - Restricted or unavailable media is not rendered as public display media.
-- Search, conversation, AUX.IO, speech, and offline states are tested on desktop and mobile.
+- Search, conversation, AUXIO, speech, and offline states are tested on desktop and mobile.
 - The demo banner, research status, source acknowledgement, and rights language are visible.
 - A rollback procedure and current backup are documented and tested.
 

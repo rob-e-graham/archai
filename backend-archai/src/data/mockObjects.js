@@ -121,7 +121,7 @@ export const mockObjects = [
   {
     id: 'FAMTEC_2026_AUXIO_WEB',
     slug: 'auxio-public-demonstrator',
-    title: 'AUX.IO Public Visitor Demonstrator',
+    title: 'AUXIO Public Visitor Demonstrator',
     type: 'Born-Digital Web Application',
     year: 2026,
     location: 'Online / locally preserved',
@@ -131,7 +131,7 @@ export const mockObjects = [
     media: [],
     tags: ['born-digital', 'visitor interpretation', 'accessibility', 'web application'],
     materials: ['HTML', 'CSS', 'JavaScript', 'ARCHAI API'],
-    description: 'Public AUX.IO visitor-interface demonstrator, captured as a time-specific interactive web archive for preservation testing.',
+    description: 'Public AUXIO visitor-interface demonstrator, captured as a time-specific interactive web archive for preservation testing.',
     aiInterpretation: 'Documents the visitor-facing interpretation layer and its relationship to the ARCHAI collection infrastructure.',
     verifiedFacts: ['Created by Rob Graham / FAMTEC', 'Research demonstrator', 'Institution-owned capture approved'],
     unknownFields: [],
