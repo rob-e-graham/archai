@@ -57,7 +57,17 @@ let html = readFileSync(SRC, 'utf8');
 const buildMatch = html.match(/Build v(\d+\.\d+\.\d+)/);
 if (!buildMatch) die('Could not find a "Build vX.Y.Z" marker in the source — refusing to deploy an unrecognised file.');
 const buildVersion = buildMatch[1];
-ok(`Source is Build v${buildVersion} (${SRC})`);
+
+// Guard: every "Build vX.Y.Z" in the file must be identical. Today's stale-header
+// bug was two different version strings (a static one and a JS one that overwrote
+// it on load). If they disagree again, refuse to publish rather than ship a page
+// whose header lies about which build it is.
+const allVersions = [...html.matchAll(/Build v(\d+\.\d+\.\d+)/g)].map((m) => m[1]);
+const distinct = [...new Set(allVersions)];
+if (distinct.length > 1) {
+  die(`Inconsistent build versions in the source: ${distinct.join(', ')}.\n  The static header and the JS that rewrites it must match. Fix them, then deploy.`);
+}
+ok(`Source is Build v${buildVersion} — ${allVersions.length} version marker(s), all consistent (${SRC})`);
 
 if (!html.includes('window.ARCHAI_API_BASE')) {
   die('Source no longer reads window.ARCHAI_API_BASE — the API-base contract changed. Fix this script before deploying.');
