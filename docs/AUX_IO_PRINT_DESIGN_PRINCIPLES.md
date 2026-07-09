@@ -24,6 +24,7 @@ The current system now uses a black public-space / street-gallery direction:
 - Keep rights visible: source, licence, and attribution remain present without dominating the visitor invitation.
 - Respect print: safe margins, high contrast, and clean hierarchy matter more than decorative density.
 - Test across image shapes: portrait, landscape, small artefacts, screenshots, archival documents, and born-digital stills must all survive the same system.
+- Print only what is explicitly print-safe: posters, postcards, and stickers are available only for CC0, public-domain, CC BY, or institution-approved open-access media. Staff/demo records with restricted, mixed, preview-only, game, source-link, or placeholder media can remain searchable, but they should not generate downloadable print assets.
 
 ## Format Roles
 

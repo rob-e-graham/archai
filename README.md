@@ -6,7 +6,7 @@
 
 **ARCHAI** (Augmented Reanimation, Cultural Heritage, Artificial Intelligence) is a sovereign, open-source-method AI toolkit for cultural institutions and artist-run spaces. It layers conversational AI onto collection objects using local language models, vector semantic search, and AUXIO visitor interfaces (deployable via NFC, QR, hyperlink, or beacon) — with all computation running on locally-owned hardware and collection data never leaving the institution's physical infrastructure.
 
-The research paper (#999) was accepted for the **6th Summit on New Media Art Archiving, ISEA2026 Dubai**. The paper is at `docs/ARCHAI_ISEA2026_Rob_Graham.pdf`. A post-submission update covering June 2026 developments is at `docs/ARCHAI_ISEA2026_UPDATE_2026-06.md`.
+The research paper (#999) was accepted for the **6th Summit on New Media Art Archiving, ISEA2026 Dubai**. The paper is at `docs/ARCHAI_ISEA2026_Rob_Graham.pdf`. A post-submission update covering June 2026 developments is at `docs/ARCHAI_ISEA2026_UPDATE_2026-06.md`. The full research white paper is at [`docs/whitepaper/ARCHAI_Deep_White_Paper_v2.md`](docs/whitepaper/ARCHAI_Deep_White_Paper_v2.md); institutions starting a deployment should begin with the [GLAM Onboarding Guide](docs/GLAM_ONBOARDING_GUIDE.md) and the [Onboarding & Backend Plan](docs/ONBOARDING_AND_BACKEND_PLAN.md).
 
 ---
 
@@ -15,7 +15,7 @@ The research paper (#999) was accepted for the **6th Summit on New Media Art Arc
 **Investigator:** Rob Graham  
 **Institution:** RMIT University, School of Design — PhD Researcher (DR235)  
 **Organisation:** FAMTEC (Fine Art Media Tech)  
-**Supervisors:** Chris Barker (Senior), co-supervisor TBC  
+**Supervisors:** Chris Barker (Senior), Johanne Trippas; third supervisor in progress  
 **Contact:** rob@fineartmedia.tech  
 
 ARCHAI is a practice-based doctoral research project. In practice-based research, building constitutes the research — not as illustration of theory, but as the primary epistemic act. The commit history of this repository is part of the methodology. The prototype iterations are documented findings. The code advances arguments that the writing must then sustain.
@@ -260,8 +260,9 @@ ARCHAI is a working research prototype, not a finished commercial product. All p
 | **v11.6.2** | **Auckland placeholder-media audit added; high-resolution Auckland API placeholders are now detected by content hash and held from public AUXIO while remaining searchable in the staff database. Curatorial object detail gained share/copy, save-to-project, read-summary, and a local project-list workspace for staff testing. AUXIO regenerated to 1,402 public pages after placeholder and rights gates.** |
 | **v11.6.3** | **Draft-demo clarity pass: main app now declares itself as an institutional WIP, adds Training Mode guidance, applies safer Auckland media filtering throughout staff/result views, and AUXIO voice questions auto-read replies while typed questions remain text-first.** |
 | **v11.6.4** | **AUXIO Management now opens as a clearer institutional setup bench: 10 loaded demo records plus 110 empty assignable slots, with first-empty-slot selection and clearer assign/preview/publish guidance for staff testing.** |
-| **v11.6.5** | **AUXIO management working set seeded from live image-backed records, with clearer loaded/empty-slot messaging for institutional testing.** |
-| **v11.6.6** | **Main-app correctness pass: consistent HTML escaping for collection text across result, AUXIO, and visitor surfaces; stable conversational-result object keys with full metadata on click-through; voice interim-transcript feedback and clearer no-speech retry states; institution-draft crash fix.** |
+| **v11.6.5** | **AUXIO print family finalised as the black street-gallery system: QR-led copy, walk-past text sizing with sentence-safe auto-fit and truncation-as-invitation ("scan to keep reading"), curated seed set, and the hosted app demo synced to the public website.** |
+| **v11.6.6** | **Onboarding made real: Connect Collection tab generates harvester configs in-app; a generic configuration-driven harvester (verified against a live museum API) maps JSON sources with rights/cultural-safety gates and dry-run-first discipline; staff AUXIO work and institution drafts persist durably across backend restarts; staff-created objects get an immediately live, record-grounded conversational page; Keytec keychain protocol wired into connector commands; hosted-app proxy contract fixed so the public demo loads all collections; source-record markup stripped from public page titles.** |
+| **v11.6.7** | **Correctness + branding pass: consistent HTML escaping for collection text across result, AUXIO, and visitor surfaces; stable conversational-result keys with metadata on click-through; voice interim-transcript and no-speech retry states; object chat and AUXIO pages fall back to the verified record instead of dead-ending when the model is busy or rate-limited; per-scope API rate limiting; AUXIO branding standardised (from AUXIO); shortened visitor chat placeholders; licence/provenance wording aligned with LICENSE.** |
 
 ---
 

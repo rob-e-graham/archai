@@ -407,14 +407,17 @@ async function main() {
 
     const nfcCode = obj.nfcCode;
     const fallbackTitle = p.registration_number || p.accession_number || p.canonical_id || 'Unknown Object';
-    const title = (p.title && p.title.trim()) ? p.title.trim() : `Untitled — ${fallbackTitle}`;
+    // Strip stray source-record markup (e.g. Smithsonian "<I>Grus Americana</I>")
+    // so italics tags never render as literal text on public pages.
+    const rawTitle = (p.title && p.title.trim()) ? p.title.trim() : `Untitled — ${fallbackTitle}`;
+    const title = rawTitle.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
     const type = p.object_type || p.discipline || 'Heritage Object';
     const date = p.date_range || 'Date unknown';
     const reg = p.registration_number || '';
     const location = p.museum_location || obj.sourceLabel;
     const discipline = p.discipline || '';
     const category = p.category || '';
-    const description = p.description || 'No description recorded.';
+    const description = String(p.description || 'No description recorded.').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
     const medium = p.medium || '';
     const artist = p.artist || '';
     const culture = p.culture || '';
@@ -553,7 +556,7 @@ async function main() {
     const relatedHtml = relatedIndices.slice(0, 4).map(ri => {
       const rp = allObjects[ri].payload;
       const rThumb = rp.media_medium || rp.media_thumbnail || '';
-      const rTitle = rp.title || 'Object';
+      const rTitle = String(rp.title || 'Object').replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
       const rReg = rp.registration_number || '';
       const rNfc = allObjects[ri].nfcCode;
       const rSrc = allObjects[ri].sourceLabel || '';

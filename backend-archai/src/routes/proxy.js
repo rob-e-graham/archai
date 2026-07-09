@@ -80,8 +80,9 @@ const MAX_CHAT_TOKENS = 512;
 const MAX_PROMPT_LENGTH = 500;
 
 // Separate scopes so the app's own page-load reads (one scroll per collection,
-// embeddings, health) never spend the visitor's chat budget. Limits sized for a
-// public demo where a single page load fans out across ~20 collections.
+// embeddings, health) never spend the visitor's chat budget. A full app boot
+// scrolls ~20 collections plus pagination, which previously 429'd the tail and
+// dropped whole collections; scoped buckets plus higher limits prevent that.
 const chatLimiter = rateLimit({ scope: 'chat', maxPerMinute: 30 });
 const searchLimiter = rateLimit({ scope: 'search', maxPerMinute: 60 });
 const scrollLimiter = rateLimit({ scope: 'scroll', maxPerMinute: 120 });
@@ -276,6 +277,19 @@ proxyRouter.get('/ollama/health', async (_req, res) => {
     res.json({ ok: true, models: data.models?.map(m => m.name) || [] });
   } catch {
     res.json({ ok: false, models: [] });
+  }
+});
+
+// ── Qdrant collection info (points_count etc. for allowlisted cols) ──
+const infoSchema = z.object({ collection: z.enum(ALLOWED_COLLECTIONS) });
+proxyRouter.post('/qdrant/info', async (req, res) => {
+  try {
+    const input = infoSchema.parse(req.body);
+    const resp = await fetch(`${QDRANT_URL}/collections/${input.collection}`);
+    const data = await resp.json();
+    res.json(data);
+  } catch (e) {
+    res.status(400).json({ ok: false, error: e.message });
   }
 });
 
