@@ -1,6 +1,6 @@
 # ARCHAI — Data Residency & Sovereignty Policy
 
-**Version:** 0.1 (Draft for pilot partners)
+**Version:** 0.2 (Draft for pilot partners)
 **Status:** Research prototype. Pre-institutional deployment.
 **Last updated:** 9 July 2026
 **Contact:** rob@fineartmedia.tech
@@ -140,9 +140,38 @@ Openness here is a sovereignty mechanism, not a marketing posture. An institutio
 
 ---
 
-## 11. Review
+## 11. Direction — the plan to full sovereignty
 
-This document is versioned and will be revised as limitations in §7 are closed or as new ones are identified. Superseded versions remain publicly available so that claims made at any point in time can be checked against what was true.
+This policy describes a research prototype, not a finished product. It is published now so partners can judge the **trajectory** as well as the current state. The direction is fixed even where the implementation is incomplete.
+
+**Closing the §7 gaps.** Each present limitation has a committed path:
+
+- **Voice sovereignty.** Replace the browser Web Speech layer with a self-hosted open stack — **Whisper** for capture, **Piper** for synthesis — so audio and text for speech never leave the host machine. Until that ships, text-only mode is the fully-sovereign default.
+- **Scale.** Pilot deployments on institutional hardware will test concurrent load, long-running operation, and larger collections before any production claim is made.
+- **Maintenance.** Documented, institution-run update and backup procedures, so sovereignty does not become fragility — the institution can patch and restore without a vendor.
+- **Model provenance.** A curated, documented set of open-weight models with a clear replacement path, so an institution can swap the model without swapping the system.
+
+Progress against these is tracked in the public roadmap, and this document is revised as each gap closes (§12).
+
+**The sector vision.** ARCHAI's end state is an open toolkit that galleries, libraries, archives, museums, community archives, and the not-for-profit sector can hold without permission. It is built to:
+
+- preserve raw records exactly as received;
+- normalise them into a shared canonical layer while keeping rights, provenance, language, and cultural-protocol metadata visible;
+- search and interpret collections locally, and across institutions by choice;
+- support both staff-facing collection intelligence and visitor-facing AUXIO interpretation;
+- keep speech, translation, and AI interpretation as optional, documented, replaceable layers.
+
+Sovereign infrastructure the sector **owns**, not a service it rents.
+
+**How the work sustains itself.** The core toolkit is intended to be **free for not-for-profit and educational use**. The project is funded through consultation, installation, and commercial licensing for organisations that want hands-on deployment or want to build on the system — the arrangement that keeps the core open rather than forcing it behind a paywall. During the current doctoral research period the code remains all-rights-reserved while it is tested and hardened; open release follows completion.
+
+**Community authority grows, not shrinks.** The two-way contribution pathway (§6) is the seed of a curated, community-governed knowledge layer: correction, context, and reply entering the record at a cadence institutions set, with communities retaining authority to add, amend, restrict, or revoke. The software will always write to the archive **through** people, never around them.
+
+---
+
+## 12. Review
+
+This document is versioned and will be revised as limitations in §7 are closed, as the commitments in §11 are met, or as new limitations are identified. Superseded versions remain publicly available so that claims made at any point in time can be checked against what was true.
 
 ---
 
