@@ -436,7 +436,7 @@ body {
 }
 .chat-typing { color: var(--text3); font-style: italic; }
 
-/* ── AUX.IO PANEL ── */
+/* ── AUXIO PANEL ── */
 .aux-panel {
   padding: 40px 24px;
   text-align: center;
@@ -518,7 +518,7 @@ body {
   <div class="main-tabs">
     <button class="main-tab active" onclick="switchMainTab('search',this)">Search Collections</button>
     <button class="main-tab" onclick="switchMainTab('talk',this)">Talk to ARCHAI</button>
-    <button class="main-tab" onclick="switchMainTab('aux',this)">Visit AUX.IO</button>
+    <button class="main-tab" onclick="switchMainTab('aux',this)">Visit AUXIO</button>
   </div>
 
   <!-- ── SEARCH PANEL ── -->
@@ -614,16 +614,16 @@ body {
     </div>
   </div>
 
-  <!-- ── AUX.IO PANEL ── -->
+  <!-- ── AUXIO PANEL ── -->
   <div class="main-tab-panel" id="panel-aux">
     <div class="aux-panel">
-      <div class="aux-headline">AUX.IO</div>
+      <div class="aux-headline">AUXIO</div>
       <div class="aux-latin">Latin: <em>aux</em> · voice</div>
       <div class="aux-desc">
-        Per-object visitor pages for 2,357 collection items — each scannable via QR code, tappable via AUX.IO tag, or accessible via hyperlink. No app required. No login. No data collected.<br><br>
+        Per-object visitor pages for 2,357 collection items — each scannable via QR code, tappable via AUXIO tag, or accessible via hyperlink. No app required. No login. No data collected.<br><br>
         Each page speaks as the object itself: drawing on curatorially-verified metadata, inviting the visitor into a conversation with something that has been waiting in a collection for years, or centuries.
       </div>
-      <a class="aux-link-btn" href="nfc-pages/v/index.html" target="_blank">Browse AUX.IO Pages →</a>
+      <a class="aux-link-btn" href="nfc-pages/v/index.html" target="_blank">Browse AUXIO Pages →</a>
       <div style="margin-top:16px;">
         <a class="aux-link-btn" href="nfc-pages/v/NFC001.html" target="_blank" style="margin-top:8px">View Example Object →</a>
       </div>
@@ -759,9 +759,9 @@ function showOffline(msg) {
     The live ARCHAI collection is hosted on sovereign infrastructure at the FAMTEC studio.<br>
     It is available when the Mac Studio is online and the Cloudflare tunnel is active.<br><br>
     ${msg ? '<span style="opacity:.5">' + escHtml(msg) + '</span><br><br>' : ''}
-    You can browse the pre-generated AUX.IO visitor pages in the <strong>Visit AUX.IO</strong> tab — these work offline.
+    You can browse the pre-generated AUXIO visitor pages in the <strong>Visit AUXIO</strong> tab — these work offline.
   </div>`;
-  document.getElementById('resultsLabel').textContent = 'Backend unreachable — AUX.IO pages available offline';
+  document.getElementById('resultsLabel').textContent = 'Backend unreachable — AUXIO pages available offline';
   document.getElementById('backendStatus').textContent = 'offline';
 }
 
@@ -780,7 +780,7 @@ async function doChat() {
   if (!activeBackend) activeBackend = await discoverBackend();
 
   if (!activeBackend) {
-    document.getElementById('chat-pending').innerHTML = '<strong>Backend offline.</strong> The conversational interface requires the live ARCHAI stack. Try the AUX.IO visitor pages which work standalone.';
+    document.getElementById('chat-pending').innerHTML = '<strong>Backend offline.</strong> The conversational interface requires the live ARCHAI stack. Try the AUXIO visitor pages which work standalone.';
     document.getElementById('chat-pending').removeAttribute('id');
     return;
   }
@@ -835,7 +835,7 @@ async function init() {
     doSearch();
   } else {
     showOffline();
-    document.getElementById('footerCount').textContent = 'Backend offline — browse AUX.IO pages in the Visit AUX.IO tab';
+    document.getElementById('footerCount').textContent = 'Backend offline — browse AUXIO pages in the Visit AUXIO tab';
   }
 }
 

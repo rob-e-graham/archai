@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Audit collection image URLs before they reach ARCHAI cards or AUX.IO pages.
+// Audit collection image URLs before they reach ARCHAI cards or AUXIO pages.
 // Report-only by default; pass --apply to persist availability/CORS results.
 
 const QDRANT_URL = process.env.QDRANT_URL || 'http://127.0.0.1:6333';

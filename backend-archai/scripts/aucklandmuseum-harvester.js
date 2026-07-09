@@ -178,7 +178,7 @@ function mediaUrl(primaryRepresentation, rendering = 'standard.jpg') {
   const secure = String(primaryRepresentation).replace(/^http:\/\//, 'https://');
   // The documented `?rendering=standard/original` routes currently return
   // ~70px derivatives for many records. The IIIF-style media path gives a
-  // stable 800px public derivative, which is suitable for AUX.IO display.
+  // stable 800px public derivative, which is suitable for AUXIO display.
   if (/api\.aucklandmuseum\.com\/id\/media\/v\/\d+$/i.test(secure)) {
     const images = buildIiifImageSet(secure, { thumbnail: 300, display: 800, large: 800, includeInfo: false });
     if (rendering === 'thumbnail.jpg') return images.media_thumbnail;

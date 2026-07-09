@@ -15,7 +15,7 @@ The original museum payload exactly as delivered by the source API or dataset.
 A normalized object schema shared across all institutions.
 
 3. `Display and language layer`
-Human-facing text for ARCHAI and AUX.IO.
+Human-facing text for ARCHAI and AUXIO.
 
 4. `Embedding layer`
 Search text and vectors derived from canonical and display data.
@@ -40,7 +40,7 @@ Why:
 
 - faster object pages
 - faster collection search
-- faster AUX.IO
+- faster AUXIO
 - lower repeated LLM cost
 - clearer provenance
 - easier review by curators and collections staff
@@ -122,7 +122,7 @@ Prefer clean canonical and display text, not raw nested JSON.
 7. Upsert to Qdrant
 Keep vectors lightweight and useful for search.
 
-8. Regenerate AUX.IO pages
+8. Regenerate AUXIO pages
 Only after the canonical/display layer is stable.
 
 ## Immediate target regions
@@ -167,7 +167,7 @@ Use the legal / quality gate matrix before starting any new harvester:
 
 ## What ARCHAI should read from
 
-ARCHAI and AUX.IO should prefer:
+ARCHAI and AUXIO should prefer:
 
 1. canonical fields
 2. stored display texts

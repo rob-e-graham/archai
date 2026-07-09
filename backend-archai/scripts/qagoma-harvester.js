@@ -18,7 +18,7 @@
 //
 // Data:    https://www.data.qld.gov.au/dataset/qagoma-collection
 // Licence: Creative Commons Attribution 4.0 International (CC BY 4.0)
-//          Image reuse: per-item check recommended for AUX.IO display.
+//          Image reuse: per-item check recommended for AUXIO display.
 //          Only image-backed records with clear open-media flags used.
 // ══════════════════════════════════════════════════════════════════
 

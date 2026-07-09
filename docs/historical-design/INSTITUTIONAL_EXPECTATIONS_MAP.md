@@ -113,7 +113,7 @@ Sources:
 | MARC 21 | Library cataloguing | Relevant if ARCHAI connects to library collections |
 | LIDO | Lightweight museum data exchange (XML) | ARCHAI harvesters could consume LIDO exports |
 | OAI-PMH | Metadata harvesting protocol | Standard for bulk metadata exchange; several of ARCHAI's source APIs support it |
-| Schema.org | Structured data for web | Important for SEO/discoverability of AUX.IO pages |
+| Schema.org | Structured data for web | Important for SEO/discoverability of AUXIO pages |
 | Rights Statements | Standardised rights declarations (rightsstatements.org) | ARCHAI already uses normalised rights language compatible with this |
 | Creative Commons | Open access licensing | ARCHAI harvests CC0/public domain; gates restricted material |
 | Traditional Knowledge Labels | Community-controlled access indicators | Not yet implemented; important for Indigenous collections |
@@ -168,7 +168,7 @@ Based on the 2024 UK GLAM Digital Collections Infrastructure research, SPECTRUM 
 
 The "2025 Project" envisions IDbGLAM as "an innovative platform designed to centralize access to digitized collections and digital experiences offered by GLAM institutions worldwide." This signals growing appetite for cross-institutional discovery layers — systems that can search across institutions, not just within one.
 
-**ARCHAI alignment**: ARCHAI already operates across 11 institutions. The curator collection provides cross-institutional semantic search. AUX.IO publishes per-object pages from all sources. This is precisely the kind of cross-institutional discovery the field is moving toward, but ARCHAI does it at a sovereign, local level rather than through a centralised cloud platform.
+**ARCHAI alignment**: ARCHAI already operates across 11 institutions. The curator collection provides cross-institutional semantic search. AUXIO publishes per-object pages from all sources. This is precisely the kind of cross-institutional discovery the field is moving toward, but ARCHAI does it at a sovereign, local level rather than through a centralised cloud platform.
 
 Source: [The 2025 Project — Digital Innovation in GLAM](https://suaudiversified.net/glam-2025project/)
 

@@ -4,10 +4,10 @@ const baseUrl = process.env.ARCHAI_BACKEND_URL || 'http://localhost:8787';
 
 const checks = [
   { label: 'Backend health', path: '/api/health', expect: [200] },
-  { label: 'AUX.IO manifest', path: '/api/aux-manifest', expect: [200] },
+  { label: 'AUXIO manifest', path: '/api/aux-manifest', expect: [200] },
   { label: 'Published media manifest', path: '/api/media/published', expect: [200] },
-  { label: 'AUX.IO WACZ access page', path: '/api/media/published/auxio_public_2026-06-22/replay', expect: [200] },
-  { label: 'AUX.IO WACZ screenshot', path: '/api/media/published/auxio_public_2026-06-22/capture-image', expect: [200], contentType: 'image/png' },
+  { label: 'AUXIO WACZ access page', path: '/api/media/published/auxio_public_2026-06-22/replay', expect: [200] },
+  { label: 'AUXIO WACZ screenshot', path: '/api/media/published/auxio_public_2026-06-22/capture-image', expect: [200], contentType: 'image/png' },
   { label: 'ARCHAI WACZ screenshot', path: '/api/media/published/archai_public_2026-06-22/capture-image', expect: [200], contentType: 'image/png' },
   { label: 'CD-ROM interactive player', path: '/api/media/published/cdrom_window_1997_demo/play', expect: [200] },
   { label: 'Epicycloid interactive player', path: '/api/media/published/epicycloid_2017_open_demo/play', expect: [200] },

@@ -153,7 +153,7 @@ If the initial study is limited to:
 
 ### 4.2 Speech Input and Output
 
-If ARCHAI / AUX.IO use speech (which they already do via browser demo, and will via backend Whisper/Piper):
+If ARCHAI / AUXIO use speech (which they already do via browser demo, and will via backend Whisper/Piper):
 
 **Ethical requirements:**
 
@@ -198,7 +198,7 @@ If ARCHAI / AUX.IO use speech (which they already do via browser demo, and will 
 **Key questions:**
 
 - How are community restrictions handled? (ARCHAI's per-object legal gating can restrict public visibility)
-- How are culturally sensitive records treated? (Personality system can be constrained; objects can be excluded from AUX.IO)
+- How are culturally sensitive records treated? (Personality system can be constrained; objects can be excluded from AUXIO)
 - What is excluded from public interpretation? (Legal status gate currently prevents restricted objects from appearing on public pages)
 - How are Indigenous data sovereignty principles respected? (Sovereign architecture keeps data under institutional control; but community consultation processes need to be described)
 

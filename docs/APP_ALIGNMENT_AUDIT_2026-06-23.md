@@ -8,7 +8,7 @@ This audit records the current runtime state after the WACZ replay/access-copy r
 - Public backend tunnel: `https://archai-api.fineartmedia.tech/api/health`
 - Main app static server: `http://localhost:8000/ARCHAI_v10_8.html`
 - Public ARCHAI demo: `https://fineartmedia.tech/archai`
-- Public AUX.IO landing page: `https://fineartmedia.tech/aux`
+- Public AUXIO landing page: `https://fineartmedia.tech/aux`
 - Dark Plates launch site: `https://darkplates.art`
 
 Verified backend counts:
@@ -17,12 +17,12 @@ Verified backend counts:
 - Qdrant collections: `21`
 - Curator vectors: `3147`
 - Total vectors: `6414`
-- AUX.IO manifest pages: `1522`
+- AUXIO manifest pages: `1522`
 - Runtime chat model: `qwen2.5:14b`
 - Runtime embed model: `nomic-embed-text`
 - Ollama status: online
 
-Important note: AUX.IO page numbers are permanent IDs, not a dense sequence. The manifest currently reports `1522` pages with the last permanent page ID at `3247`; gaps are expected because records have been removed, filtered, or legally quarantined over time.
+Important note: AUXIO page numbers are permanent IDs, not a dense sequence. The manifest currently reports `1522` pages with the last permanent page ID at `3247`; gaps are expected because records have been removed, filtered, or legally quarantined over time.
 
 ## What Was Refactored
 
@@ -47,10 +47,10 @@ curl -I http://localhost:8000/ARCHAI_v10_8.html
 Smoke checks covered:
 
 - Backend health endpoint
-- AUX.IO manifest endpoint
+- AUXIO manifest endpoint
 - Published media manifest endpoint
-- AUX.IO WACZ access page
-- AUX.IO WACZ screenshot extraction
+- AUXIO WACZ access page
+- AUXIO WACZ screenshot extraction
 - ARCHAI WACZ screenshot extraction
 - CD-ROM-style interactive player route
 - Epicycloid creative-coding player route
@@ -67,7 +67,7 @@ Public stability checks covered:
 ## Current Known Drift
 
 - `ARCHAI_v10_8.html` still contains some hardcoded presentation labels such as `Build v11.6`, `19 connected collections`, and `11 museum APIs`. The backend now reports `21` Qdrant collections, `3267` collection objects, and `3147` curator vectors. The next app pass should make these labels read from `/api/health` rather than from static copy.
-- `README.md` and `ARCHAI_PROGRESS.md` mention earlier AUX.IO counts in some historical sections. That is acceptable in version history, but the current-state sections should be checked before the next public push.
+- `README.md` and `ARCHAI_PROGRESS.md` mention earlier AUXIO counts in some historical sections. That is acceptable in version history, but the current-state sections should be checked before the next public push.
 - Full dynamic ReplayWeb loading remains beta. The stable public path is now the ARCHAI access-copy page with screenshot, source link, rights label, timestamp, WACZ download, and a separate ReplayWeb beta link.
 - The Codex browser tool could not open local `localhost` / `127.0.0.1` app URLs in this session, even though `curl` confirmed the servers were reachable. Treat this as a browser-tool limitation rather than app downtime.
 - Main app click-level workflow testing still needs a browser session that can access local ports reliably.
@@ -76,14 +76,14 @@ Public stability checks covered:
 
 - The main ARCHAI app remains the primary staff-facing system.
 - The website is a public demo and explanatory layer, not the source of truth.
-- AUX.IO should remain the near-term product focus after the collection search layer: institutions need to create, assign, edit, preview, publish, and export their own object pages.
-- Nodel, FAMTEC Exchange, and exhibition operations can stay later-stage until the core search/AUX.IO workflow is stable.
+- AUXIO should remain the near-term product focus after the collection search layer: institutions need to create, assign, edit, preview, publish, and export their own object pages.
+- Nodel, FAMTEC Exchange, and exhibition operations can stay later-stage until the core search/AUXIO workflow is stable.
 - NASA is quarantined for media-lab R&D only and should not be presented as a core GLAM collection unless deliberately promoted with clear context.
 
 ## Recommended Next Refactor
 
 1. Move hardcoded app counts/source labels to a runtime `GET /api/health` driven UI model.
-2. Add one small browser-accessible app smoke page or test harness for search, AUX.IO preview, and published media playback.
+2. Add one small browser-accessible app smoke page or test harness for search, AUXIO preview, and published media playback.
 3. Cache WACZ screenshot extraction or pre-generate thumbnails so repeated public access does not repeatedly unzip WACZ files.
 4. Add a dedicated search smoke test that verifies image-backed results and rights labels for a few stable queries.
 5. Continue separating raw metadata, canonical normalized metadata, derived translation/embedding data, and public interpretation copy.

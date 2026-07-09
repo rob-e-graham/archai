@@ -27,7 +27,7 @@ Institutional EaaSI node
   - controlled browser session
 ```
 
-ARCHAI must never copy an EaaSI token into a generated AUX.IO page. Session launch should be mediated by the backend after checking the manifestation's publication state, rights, role, and institutional access policy.
+ARCHAI must never copy an EaaSI token into a generated AUXIO page. Session launch should be mediated by the backend after checking the manifestation's publication state, rights, role, and institutional access policy.
 
 ## Network discovery
 
@@ -67,7 +67,7 @@ This reference belongs alongside, not inside, the canonical source metadata. Pre
 4. Add staff reconciliation and rights-review UI.
 5. Launch sessions only through a backend policy gate.
 6. Test read-only sessions, timeouts, accessibility, privacy, and cleanup.
-7. Offer public AUX.IO launch only where collection, software, and access rights are cleared.
+7. Offer public AUXIO launch only where collection, software, and access rights are cleared.
 
 ## Partnership direction
 

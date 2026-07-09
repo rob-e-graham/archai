@@ -20,7 +20,7 @@ The goal is not to send everyone the same email. Different organisations should 
 
 ## Core Proposition For Partners
 
-ARCHAI is a working, open-source, local-first research toolkit for cultural institutions. It already supports meaningful experiments in semantic search, staff-facing collection intelligence, AUX.IO visitor pages, rights-aware discovery, multilingual interpretation, and local AI. The partnership opportunity is to tailor these capabilities to real institutional needs, evaluate their effect on staff and visitors, and turn the prototype into a governed, reusable GLAM toolkit without handing institutional knowledge or visitor data to opaque cloud systems.
+ARCHAI is a working, open-source, local-first research toolkit for cultural institutions. It already supports meaningful experiments in semantic search, staff-facing collection intelligence, AUXIO visitor pages, rights-aware discovery, multilingual interpretation, and local AI. The partnership opportunity is to tailor these capabilities to real institutional needs, evaluate their effect on staff and visitors, and turn the prototype into a governed, reusable GLAM toolkit without handing institutional knowledge or visitor data to opaque cloud systems.
 
 Potential partner language:
 
@@ -58,7 +58,7 @@ ARC scheme details, deadlines, eligibility, and partner contribution rules chang
 | ARC Linkage Projects | Industry/community partner collaboration with research outcomes | RMIT + GLAM partners + FAMTEC, focused on sovereign AI for collection access |
 | ARC Discovery / DECRA-adjacent research | Strong conceptual/theoretical contribution | AI, cultural memory, HCI, object agency, institutional sovereignty |
 | RMIT internal seed funding | Good for prototype hardening and pilot preparation | ethics, user testing, accessibility evaluation, partner workshops |
-| Creative Australia / cultural innovation grants | Public cultural access and digital practice | visitor-facing AUX.IO pilots and open toolkit dissemination |
+| Creative Australia / cultural innovation grants | Public cultural access and digital practice | visitor-facing AUXIO pilots and open toolkit dissemination |
 | State government digital/cultural grants | Victorian and Australian GLAM sector relevance | local-first infrastructure for regional museums and galleries |
 | Philanthropic / foundation support | Public access, education, preservation | open-source toolkits, schools, accessibility, small-museum deployments |
 | International GLAM innovation funds | Cross-institutional and open-access focus | multilingual open collection interaction and rights-aware publishing |
@@ -73,7 +73,7 @@ These are best for real-world testing, staff workflows, visitor access, and cred
 |---|---|---|
 | Museums Victoria | Existing relationship to collection context, science/history/technology depth, public collections | feedback on rights/framing, possible scoped pilot, collections workflow discussion |
 | ACMI | Media art, screen culture, born-digital and interactive practice | born-digital / media preservation conversation, not first-source data ask |
-| Heide Museum of Modern Art | Strong professional history and exhibition context | small gallery-scale AUX.IO / interpretation pilot conversation |
+| Heide Museum of Modern Art | Strong professional history and exhibition context | small gallery-scale AUXIO / interpretation pilot conversation |
 | TarraWarra Museum of Art | contemporary art, exhibition interpretation, regional gallery relevance | visitor interpretation and staff workflow pilot |
 | Powerhouse / MAAS | applied arts, science, technology, Australian open data | data onboarding, technology-rich collection testing |
 | QAGOMA | Australian / Asia-Pacific balance, major gallery context | Asia-Pacific collection access and rights-aware demo review |
@@ -129,7 +129,7 @@ These are needed for ARC-level credibility, evaluation, ethics, and publication 
 
 ### 5. Accessibility, Language, and Community Partners
 
-These are important because AUX.IO and voice interaction could become a serious accessibility contribution.
+These are important because AUXIO and voice interaction could become a serious accessibility contribution.
 
 | Partner Type | Why |
 |---|---|
@@ -205,7 +205,7 @@ Possible pilot mix:
 
 1. How can local AI systems provide conversational access to museum collections while preserving institutional authority and rights metadata?
 2. What staff workflows are needed for curators, collections managers, educators, and technicians to trust AI-assisted collection interpretation?
-3. How does AUX.IO change visitor engagement when object pages can respond, speak, listen, and preserve feedback?
+3. How does AUXIO change visitor engagement when object pages can respond, speak, listen, and preserve feedback?
 4. How can semantic search support cross-institutional discovery without centralising ownership of cultural data?
 5. What governance model is needed for open-source AI tools in culturally sensitive GLAM contexts?
 6. How can browser and local speech tools improve accessibility without creating new privacy risks?
@@ -216,7 +216,7 @@ Possible pilot mix:
 Use these as concrete collaboration options:
 
 - 30-minute demo and rights/framing feedback session
-- one-object AUX.IO prototype using their data
+- one-object AUXIO prototype using their data
 - staff workflow interview / requirements mapping
 - accessibility review of voice and visitor pages
 - metadata mapping workshop against their CMS/DAMS
@@ -231,7 +231,7 @@ Use these as concrete collaboration options:
 - local-first deployment model
 - rights-aware object publication gate
 - semantic search across multiple collections
-- AUX.IO visitor page workflow
+- AUXIO visitor page workflow
 - voice and multilingual accessibility prototype
 - clear research documentation and public GitHub record
 - honest prototype status, not vendor lock-in

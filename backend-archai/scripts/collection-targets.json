@@ -87,7 +87,7 @@
     "official_docs": [
       "https://www.data.qld.gov.au/dataset/qagoma-collection"
     ],
-    "notes": "Strong Australian and Asia-Pacific balancing source. Metadata (CC BY 4.0) harvests cleanly via CKAN CSV. The per-object image API is Cloudflare-protected and blocks all automated requests (HTTP 403), so QAGOMA records are metadata-only and are skipped by the image-only AUX.IO page generator. Partnership outreach to the QAGOMA digital team for formal API/media access is the path to enabling images."
+    "notes": "Strong Australian and Asia-Pacific balancing source. Metadata (CC BY 4.0) harvests cleanly via CKAN CSV. The per-object image API is Cloudflare-protected and blocks all automated requests (HTTP 403), so QAGOMA records are metadata-only and are skipped by the image-only AUXIO page generator. Partnership outreach to the QAGOMA digital team for formal API/media access is the path to enabling images."
   },
   {
     "id": "nma",
@@ -272,7 +272,7 @@
     "cultural_protocol": "Archive-oriented material may need different UX treatment than object collections",
     "verification_status": "pending_verification",
     "official_docs": [],
-    "notes": "Valuable regional archive source, but likely better for document/knowledge layers than object-heavy AUX.IO first."
+    "notes": "Valuable regional archive source, but likely better for document/knowledge layers than object-heavy AUXIO first."
   },
   {
     "id": "chm",
@@ -310,7 +310,7 @@
     "cultural_protocol": "Legacy description and sensitivity checks required",
     "verification_status": "pending_verification",
     "official_docs": [],
-    "notes": "Useful discovery layer for Australian breadth, but better as metadata and reference enrichment than first-wave AUX.IO media source."
+    "notes": "Useful discovery layer for Australian breadth, but better as metadata and reference enrichment than first-wave AUXIO media source."
   },
   {
     "id": "nga",
@@ -385,7 +385,7 @@
       "https://github.com/tategallery/collection",
       "https://www.tate.org.uk/about-us/policies-and-procedures/website-terms-use"
     ],
-    "notes": "The unmaintained 2014 GitHub snapshot is useful CC0 metadata, but its README explicitly excludes images. ARCHAI keeps these records staff-searchable and does not publish Tate media in AUX.IO."
+    "notes": "The unmaintained 2014 GitHub snapshot is useful CC0 metadata, but its README explicitly excludes images. ARCHAI keeps these records staff-searchable and does not publish Tate media in AUXIO."
   },
 
   {

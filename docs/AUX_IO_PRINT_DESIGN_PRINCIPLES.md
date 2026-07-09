@@ -1,14 +1,14 @@
-# AUX.IO Print Design Principles
+# AUXIO Print Design Principles
 
 Working note for poster, postcard, and sticker templates.
 
 ## Design Direction
 
-AUX.IO print materials should feel like gallery access objects, not generic QR flyers. They should carry the authority of a museum label, the clarity of wayfinding, and the quiet curiosity of an invitation.
+AUXIO print materials should feel like gallery access objects, not generic QR flyers. They should carry the authority of a museum label, the clarity of wayfinding, and the quiet curiosity of an invitation.
 
 The current system now uses a black public-space / street-gallery direction:
 
-- Black ground so the material feels like ARCHAI/AUX.IO and can hold its own outside the gallery, including streets, laneways, and pop-up contexts.
+- Black ground so the material feels like ARCHAI/AUXIO and can hold its own outside the gallery, including streets, laneways, and pop-up contexts.
 - One dominant hero image so the object remains the first read from a distance.
 - The aqua image border frames the actual rendered image, not the empty holding area, so portrait and landscape images both feel intentional.
 - A strong black-on-white QR/access block with a tight border for scan reliability without looking pasted on.
@@ -18,7 +18,7 @@ The current system now uses a black public-space / street-gallery direction:
 ## Practical Rules
 
 - Focus the eye: the object image and scan action must be readable from a distance.
-- Simplify: avoid overloading print with every available field. AUX.IO contains the deeper record.
+- Simplify: avoid overloading print with every available field. AUXIO contains the deeper record.
 - Manipulate scale: make the object or QR intentionally large, not timid.
 - Make a system: poster, postcard, and sticker should feel like one institutional kit.
 - Keep rights visible: source, licence, and attribution remain present without dominating the visitor invitation.
@@ -60,7 +60,7 @@ Priority order:
 1. QR code.
 2. "Scan to ask this object".
 3. Object title.
-4. Institution and AUX.IO ID.
+4. Institution and AUXIO ID.
 
 ## Approval Checklist
 
@@ -70,7 +70,7 @@ Priority order:
 - Is the object image the main visual event?
 - Is the rights/source line present but not alarmist?
 - Can the same system handle tiny objects, wide images, screenshots, and born-digital stills?
-- Does it feel like ARCHAI/AUX.IO, not a generic event poster?
+- Does it feel like ARCHAI/AUXIO, not a generic event poster?
 
 ## References
 

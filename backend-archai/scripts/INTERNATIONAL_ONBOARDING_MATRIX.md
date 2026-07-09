@@ -16,7 +16,7 @@ It is not a list of "interesting museums". It is a go / caution / hold layer for
 
 ### Approved open
 
-Safe to prioritise for public-facing ARCHAI / AUX.IO testing once image quality is confirmed.
+Safe to prioritise for public-facing ARCHAI / AUXIO testing once image quality is confirmed.
 
 ### Approved with item rights check
 
@@ -88,7 +88,7 @@ Do not ingest a source into public-facing demos unless it passes all of these:
 
 ### Current hold note
 
-`ToMuCo` remains architecturally interesting, but it is being kept out of the live stack for now because the current legal / media gate did not produce a strong enough set of public-safe, image-backed records for ARCHAI or AUX.IO.
+`ToMuCo` remains architecturally interesting, but it is being kept out of the live stack for now because the current legal / media gate did not produce a strong enough set of public-safe, image-backed records for ARCHAI or AUXIO.
 
 ## Official source links
 

@@ -101,7 +101,7 @@ that as the priority.
 Each follows the same pattern as the existing harvesters:
 harvest (image-backed + license-gated) → embed → add to `ALLOWED_COLLECTIONS`
 (proxy.js), `ALL_COLLECTIONS` (generate-nfc-pages.js), `COLLECTION_INSTITUTIONS`
-(both + conversational-search.js) → rebuild curator → regenerate AUX.IO.
+(both + conversational-search.js) → rebuild curator → regenerate AUXIO.
 
 ## Strategy B — re-harvest sources we already have (zero new legal work)
 

@@ -110,6 +110,6 @@ Move from server-rendered inline HTML to a dedicated `nfc-pages/` frontend bundl
 
 ## Born-digital and interactive works
 
-AUX.IO may also present approved live links, archived web captures, software documentation, and emulated experiences. These are separate manifestations of an object, not interchangeable thumbnails.
+AUXIO may also present approved live links, archived web captures, software documentation, and emulated experiences. These are separate manifestations of an object, not interchangeable thumbnails.
 
 See [BORN_DIGITAL_CAPTURE_AND_REPLAY.md](./BORN_DIGITAL_CAPTURE_AND_REPLAY.md) for the rights model, WACZ workflow, replay isolation, and publication requirements.

@@ -356,7 +356,7 @@ proxyRouter.post('/curator/search', searchLimiter, async (req, res) => {
   }
 });
 
-// ── Random object (for AUX.IO public page) ──────────────────────
+// ── Random object (for AUXIO public page) ──────────────────────
 proxyRouter.get('/random-object', searchLimiter, async (_req, res) => {
   try {
     // Pick a random collection

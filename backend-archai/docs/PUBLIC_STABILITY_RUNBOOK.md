@@ -4,7 +4,7 @@ Date: 2026-06-08
 
 ## What Must Be Online
 
-For public ARCHAI / AUX.IO access to work during a launch day, these layers need to be healthy:
+For public ARCHAI / AUXIO access to work during a launch day, these layers need to be healthy:
 
 1. Qdrant on `localhost:6333`
 2. Ollama on `localhost:11434`

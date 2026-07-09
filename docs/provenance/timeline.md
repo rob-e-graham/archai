@@ -27,7 +27,7 @@
 - Public repository release (v0.1-alpha, first commit: v6)
 - Multi-collection implementation (six institutions, 815 objects)
 - Open museum API integrations (Met, V&A, AIC, CMA, Rijksmuseum, Museums Victoria)
-- AUX.IO public visitor interface live
+- AUXIO public visitor interface live
 - SafeChat international crisis safety protocol released
 - KeyTec API credential vault released
 - Dark Plates autonomous AI artwork (Hobart, June 2026)

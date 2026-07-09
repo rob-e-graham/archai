@@ -67,7 +67,7 @@ export const publishedMediaSchema = z.object({
   loop: z.boolean().default(false),
   // Born-digital / interactive works
   // interactiveUrl: local path (/born-digital/WORK_ID/index.html) or external URL
-  //   rendered as a sandboxed <iframe> in the AUX.IO visitor page
+  //   rendered as a sandboxed <iframe> in the AUXIO visitor page
   interactiveUrl: z.string().optional().nullable(),
   // archiveSource: path or URL to a WARC file — replayed via ReplayWeb.page
   archiveSource: z.string().optional().nullable(),

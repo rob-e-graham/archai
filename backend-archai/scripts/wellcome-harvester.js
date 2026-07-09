@@ -39,7 +39,7 @@ const ID_OFFSET     = 11_000_000;
 // We focus on k (pictures/images) and l (3d objects) for visual richness.
 const VISUAL_TYPES = ['k', 'l'];
 
-// Licence values considered open for public display on AUX.IO
+// Licence values considered open for public display on AUXIO
 // We require at minimum CC BY or better.
 const OPEN_LICENCES = new Set([
   'cc-by',
@@ -139,7 +139,7 @@ async function fetchJSON(url, retries = 4) {
   }
 }
 
-// Determine if a Wellcome work has an open licence for AUX.IO display.
+// Determine if a Wellcome work has an open licence for AUXIO display.
 function isOpenLicence(work) {
   // Wellcome API provides licence at both work level and image level
   const workLic = work.license?.id || '';
