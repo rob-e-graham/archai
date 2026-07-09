@@ -23,6 +23,7 @@ const OLLAMA_URL = process.env.OLLAMA_URL || 'http://localhost:11434';
 const COLLECTION = 'archai_dpla';
 const EMBED_MODEL = 'nomic-embed-text';
 const ID_OFFSET = 3300000;
+const EXCLUDE_PATTERNS = [/national communication museum/i];
 
 function resolveApiKey() {
   if (process.env.DPLA_API_KEY) return process.env.DPLA_API_KEY;
@@ -158,6 +159,7 @@ async function main() {
         seen.add(doc.id);
         const rec = mapDoc(doc);
         if (!rec || !rec.ok) continue;
+        if (EXCLUDE_PATTERNS.some((re) => re.test(`${rec.payload.title} ${rec.payload.description}`))) { skippedNoOpen++; continue; }
         if (!rec.payload.media_public_display_allowed) { skippedNoOpen++; continue; }
         if (DRY_RUN) { console.log(`  [dry] ${rec.payload.title.substring(0, 50)} — ${rec.payload.source_institution}`); success++; added++; continue; }
         try { const vector = await embed(rec.payload.embedding_text); if (!vector?.length) { errors++; continue; } await upsertPoint(ID_OFFSET + success, vector, rec.payload); success++; added++; await sleep(120); }

@@ -22,6 +22,7 @@ const OLLAMA_URL = process.env.OLLAMA_URL || 'http://localhost:11434';
 const COLLECTION = 'archai_loc';
 const EMBED_MODEL = 'nomic-embed-text';
 const ID_OFFSET = 3000000;
+const EXCLUDE_PATTERNS = [/national communication museum/i];
 
 const args = process.argv.slice(2);
 const getArg = (name, fallback) => { const i = args.indexOf('--' + name); return i !== -1 && args[i + 1] ? args[i + 1] : fallback; };
@@ -151,6 +152,7 @@ async function main() {
         seen.add(key);
         const rec = mapResult(r);
         if (!rec || !rec.ok) continue;
+        if (EXCLUDE_PATTERNS.some((re) => re.test(`${rec.payload.title} ${rec.payload.description}`))) continue;
         if (!rec.payload.media_public_display_allowed) held++;
         if (DRY_RUN) { console.log(`  [dry] ${rec.payload.title.substring(0, 50)} — display:${rec.payload.media_public_display_allowed}`); success++; added++; continue; }
         try { const vector = await embed(rec.payload.embedding_text); if (!vector?.length) { errors++; continue; } await upsertPoint(ID_OFFSET + success, vector, rec.payload); success++; added++; await sleep(150); }
