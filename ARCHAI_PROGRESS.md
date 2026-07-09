@@ -5,6 +5,73 @@ Maintained as an active handoff note so Claude, Codex, and Rob can quickly see w
 
 Primary build planning is now also summarized in [ROADMAP.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ROADMAP.md). Use that for milestone order, and use this file for detailed handoff notes.
 
+## 2026-07-09 (cont.) v11.6.12 → v11.6.14 all tabs, collection selector, public Make-AUXIO — HANDOVER
+
+Continuation of the publicity-readiness work. **Read the "Deploy state" block below first — the
+latest build and the safety lockdown are committed but NOT yet live.**
+
+Implemented (all committed + pushed to `claude/archai-app-improvements-lmz0n1`, draft PR #9):
+
+- **v11.6.12 — all tabs accessible in the demo.** Rob wanted the public demo to showcase the whole
+  system, so the `demo` role now includes every tab (Exhibitions, AUXIO Management, Vocabulary,
+  Connect, FAMTEC), not just curator/visitor/objdetail. Safety comes from the backend blocking
+  writes, not from hiding tabs.
+- **v11.6.13 — collection selector.** New "Collection" dropdown in the search filter row scopes
+  classic search, the semantic fallback, and the default browse view to one institution or All.
+  Populated from the collections that actually loaded. Read-only, safe.
+- **v11.6.14 — public "Make AUXIO".** Object detail has a "✦ Make AUXIO" button that creates a live
+  AUXIO visitor page from the object's own verified metadata via `POST /api/nfc` (stable per-object
+  code, so re-running updates rather than duplicates). Page renders through the existing
+  `/api/nfc/pages/:tagId` endpoint with grounded chat. Per Rob's decision ("let the public create &
+  save"), `publicDemoGuard` now allowlists **POST /nfc only** for the demo role — publish, harvest,
+  admin, delete all stay 403 (re-verified with the unit test). Page output is escaped; demo-created
+  tags will need light moderation/cleanup.
+
+Verification:
+
+- Guard unit test re-run: public `POST /nfc` → ALLOW(demo); publish/admin/pipeline → 403; staff
+  localhost → admin. Deploy-version guard passes at v11.6.14 (consistent).
+- **NOT verified against the live backend** (this session's sandbox can't reach `archai-api…`): the
+  Make-AUXIO round-trip (create → page renders → chat works) should be smoke-tested on the Mac once
+  the backend is restarted. Logic matches `buildNfcPageModel`'s expected fields, but confirm live.
+
+### Deploy state (IMPORTANT — what is and isn't live)
+
+- **Live website frontend: v11.6.11.** Everything v11.6.12→v11.6.14 (all tabs, collection selector,
+  Make-AUXIO) is committed but **not deployed**. This is why "all tabs are still blacked out" —
+  v11.6.11 restricts the demo tabs. Deploying v11.6.14 fixes it.
+- **Backend: never restarted with the lockdown.** `requestContext` + `publicDemoGuard` are committed
+  but the running Mac Studio backend is still the old one that defaults to `admin`. So **the
+  read-only enforcement is NOT live** — right now the public site is not actually locked down. Now
+  that all tabs (and their write buttons) are exposed in v11.6.12+, **the backend restart is required
+  before this goes public**, or visitors could perform staff writes.
+
+To go fully live (two-step, on the Mac Studio):
+
+```
+cd "/Users/robgraham/Desktop/APPS/ARCHAI APP"
+git fetch origin
+git checkout origin/claude/archai-app-improvements-lmz0n1 -- ARCHAI_v10_8.html deploy-web-app.mjs backend-archai/src/middleware/requestContext.js backend-archai/src/middleware/publicDemoGuard.js backend-archai/src/routes/index.js
+lsof -ti :8787 | xargs kill -9 2>/dev/null; cd "/Users/robgraham/Desktop/APPS/ARCHAI APP/backend-archai" && npm start
+```
+Then in a new Terminal: `cd "/Users/robgraham/Desktop/APPS/ARCHAI APP" && node deploy-web-app.mjs`.
+Verify header reads **v11.6.14**, all tabs open, and Make-AUXIO on an object produces a working page.
+
+### Next steps to pilot readiness (still to do)
+
+- **Full functionality audit** Rob requested — started, not finished. Ground it in `ROADMAP.md`
+  milestones 1-6. Cross-check each feature as live / simulated / prototype / future.
+- **Smoke-test Make-AUXIO on the live backend** and add a cleanup script for demo-created tags
+  (dataset `demo_visitor_auxio`) so publicity spam can be purged.
+- **Backend restart discipline:** the lockdown only protects once the backend is restarted; document
+  this in the ops guide so a plain `git pull` isn't mistaken for "now it's safe".
+- **Optional `?staff=KEY` unlock** so Rob keeps full staff access on the website while the public
+  stays read-only (backend `ARCHAI_STAFF_KEY` override already exists; frontend just needs to read
+  the URL param and send `x-archai-staff-key`).
+- Roadmap-level pilot gaps (from `ROADMAP.md`): open Whisper/Piper voice backend (M5), AUXIO manifest
+  sync for true page editing (M2), collection onboarding breadth (M4), rights-gate audit before each
+  public harvest (M3).
+
 ## 2026-07-09 v11.6.7 → v11.6.11 public /app deploy pipeline, live-demo fixes, read-only demo lockdown
 
 Publicity-readiness pass on the public `fineartmedia.tech/app` demo. Context: the
