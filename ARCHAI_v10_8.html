@@ -3722,8 +3722,13 @@ function doConverse() {
   .then(r => r.json())
   .then(data => {
     const pending = document.getElementById('convo-pending');
-    if (!data.ok && data.error) {
-      if (pending) { pending.id = ''; pending.innerHTML = data.error; }
+    if (!data.ok || !data.message) {
+      // Backend busy, rate-limited, or the query was rejected — degrade to
+      // classic search rather than surfacing a raw error to the user. The
+      // collection always returns something, like the rest of the site.
+      if (pending) { pending.id = ''; pending.innerHTML = 'Searching the collection directly…'; }
+      document.getElementById('curatorSearch').value = q;
+      doSearch();
       return;
     }
 
