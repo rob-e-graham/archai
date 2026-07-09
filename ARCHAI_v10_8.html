@@ -2269,7 +2269,7 @@ const FAMTEC_FEED = [
   { kind:'need skills', title:'Need dev support for legacy browser artwork', org:'FAMTEC', timing:'Exhibition opens in 6 weeks', body:'Seeking emulation / browser preservation specialist for IE6-era net art display and capture workflow.', tags:['need skills','preservation','emulation','net art'] },
   { kind:'available crew', title:'Installation technicians available (2-person team)', org:'FAMTEC', timing:'April capacity open', body:'Experienced in media server commissioning, projection alignment, sensor calibration and deinstall documentation.', tags:['available crew','installation','commissioning'] },
   { kind:'need skills', title:'Digitisation workflow advice for archive ingest', org:'RMIT Library (demo)', timing:'Semester ingest surge', body:'Short-term guidance on capture standards, file naming and preservation-grade storage for a special-collections push.', tags:['need skills','digitisation','archives'] },
-  { kind:'loan', title:'AUXIO kiosks + tags starter kit', org:'FAMTEC', timing:'Pilot loan (8 weeks)', body:'Loan bundle for visitor wayfinding and object interpretation pilots. Includes deployment guide.', tags:['loan','aux.io','visitor experience','pilot'] }
+  { kind:'loan', title:'AUXIO kiosks + tags starter kit', org:'FAMTEC', timing:'Pilot loan (8 weeks)', body:'Loan bundle for visitor wayfinding and object interpretation pilots. Includes deployment guide.', tags:['loan','auxio','visitor experience','pilot'] }
 ];
 
 const FAMTEC_CHAT = {
@@ -3553,7 +3553,7 @@ function saveNFC(code) {
       rights: p.licence || p.media_rights_title || 'Institutional demo record'
     },
     media: pickSearchImage(p) ? [{ kind: 'image', thumbUrl: pickSearchImage(p), rights: p.licence || p.media_rights_title || '' }] : [],
-    tags: Array.isArray(p.keywords) ? p.keywords : ['institution draft', 'aux.io'],
+    tags: Array.isArray(p.keywords) ? p.keywords : ['institution draft', 'auxio'],
     materials: p.medium ? [p.medium] : [],
     description: p.description || obj.ai || '',
     aiInterpretation: obj.ai || p.description || '',
@@ -4811,7 +4811,7 @@ function createInstitutionObjectForAux(code) {
     media_thumbnail: image,
     media_medium: image,
     image_url: image,
-    keywords: ['institution draft', 'aux.io'],
+    keywords: ['institution draft', 'auxio'],
     source_short: 'INST'
   };
 
