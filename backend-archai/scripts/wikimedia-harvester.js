@@ -36,6 +36,20 @@ const SINGLE_QUERY = getArg('query', '');
 // Open-licence allow-list (matched case-insensitively against extmetadata licence).
 const OPEN_LICENCES = ['cc0', 'public domain', 'pdm', 'cc-by', 'cc by', 'cc-by-sa', 'cc by-sa', 'no restrictions'];
 
+// Records whose title/description match any of these are excluded. Keeps a
+// former-employer institution out of the system during legal resolution.
+const EXCLUDE_PATTERNS = [/national communication museum/i];
+
+// Wikimedia ObjectName/caption values often carry structured-data markup like
+// `label QS:Lit,"..."` or `title QS:P1476,en:"..."`. Strip it to the plain title.
+function cleanCommonsTitle(raw) {
+  let t = String(raw || '');
+  t = t.replace(/\s*(?:label|title)\s+QS:.*$/is, '');
+  const quoted = t.match(/"([^"]{3,})"/);
+  if (/QS:/i.test(String(raw)) && quoted) t = quoted[1];
+  return t.replace(/\s+/g, ' ').trim();
+}
+
 // Heritage-leaning search terms; each is a Commons full-text file search.
 const SEARCH_QUERIES = SINGLE_QUERY ? [SINGLE_QUERY] : [
   'museum object collection', 'historical photograph', 'painting oil canvas',
@@ -111,7 +125,7 @@ function mapPage(page) {
   const licence = meta(ext, 'LicenseShortName') || meta(ext, 'License') || meta(ext, 'UsageTerms');
   const rights = normaliseRights(licence + ' ' + meta(ext, 'License'));
   const rawTitle = meta(ext, 'ObjectName') || String(page.title || '').replace(/^File:/, '').replace(/\.[a-z0-9]+$/i, '');
-  const title = stripHtml(rawTitle) || 'Untitled';
+  const title = cleanCommonsTitle(stripHtml(rawTitle)) || 'Untitled';
   const description = meta(ext, 'ImageDescription');
   const creator = meta(ext, 'Artist');
   const date = meta(ext, 'DateTimeOriginal') || meta(ext, 'DateTime');
@@ -162,7 +176,7 @@ async function main() {
   if (!DRY_RUN) await ensureCollection();
 
   const seen = new Set();
-  let success = 0, skippedNoOpen = 0, errors = 0;
+  let success = 0, skippedNoOpen = 0, excluded = 0, errors = 0;
 
   for (const q of SEARCH_QUERIES) {
     if (success >= LIMIT) break;
@@ -180,6 +194,8 @@ async function main() {
         if (info && info.mime && !/^image\//.test(info.mime)) continue;
         const rec = mapPage(page);
         if (!rec || !rec.ok) continue;
+        const haystack = `${rec.payload.title} ${rec.payload.description}`;
+        if (EXCLUDE_PATTERNS.some((re) => re.test(haystack))) { excluded++; continue; }
         if (!rec.payload.media_public_display_allowed) { skippedNoOpen++; continue; }
         if (DRY_RUN) { console.log(`  [dry] ${rec.payload.title.substring(0, 55)} — ${rec.payload.licence}`); success++; added++; continue; }
         try {
@@ -199,6 +215,7 @@ async function main() {
   console.log(`  ✓ Wikimedia harvest ${DRY_RUN ? '(dry-run) ' : ''}complete`);
   console.log(`  → ${success} open-licensed image-backed records ${DRY_RUN ? 'would be' : ''} embedded into '${COLLECTION}'`);
   console.log(`  → ${skippedNoOpen} skipped (licence not on the open allow-list)`);
+  console.log(`  → ${excluded} excluded (matched exclusion list)`);
   console.log(`  → ${errors} errors`);
   console.log(`  → Register: add 'archai_wikimedia' to ALLOWED_COLLECTIONS + COLLECTION_LABELS (already done in this branch)\n`);
 }
