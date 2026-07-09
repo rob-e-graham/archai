@@ -647,7 +647,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
     </div>
   </div>
   <div>
-    <div class="header-meta"><b id="clockDisplay">—</b><br><span id="headerMetaLine">Build v11.6.9 · connecting… · rights-aware media · AUXIO setup bench</span></div>
+    <div class="header-meta"><b id="clockDisplay">—</b><br><span id="headerMetaLine">Build v11.6.10 · connecting… · rights-aware media · AUXIO setup bench</span></div>
     <div class="header-links">
       <a class="header-link" href="http://localhost:11434" target="_blank">Ollama LLM</a>
       <a class="header-link" href="http://localhost:8055/admin" target="_blank">Directus CMS</a>
@@ -3030,7 +3030,7 @@ function loadMVObjects() {
     // Header line reads live state — never hardcode counts (they drift).
     const liveCols = Object.keys(counts).filter(k => counts[k] > 0).length;
     const headerMeta = document.getElementById('headerMetaLine');
-    if (headerMeta) headerMeta.textContent = `Build v11.6.9 · ${liveCols} live collections · ${totalCount.toLocaleString()} objects · rights-aware media · AUXIO setup bench`;
+    if (headerMeta) headerMeta.textContent = `Build v11.6.10 · ${liveCols} live collections · ${totalCount.toLocaleString()} objects · rights-aware media · AUXIO setup bench`;
 
     generateNFCTags();
     renderResultCards();
@@ -3649,11 +3649,31 @@ function thumbHTML(o) {
   return `<div style="font-size:1rem;opacity:0.15;margin-bottom:3px">▣</div><div style="font-size:0.44rem">${escHTML(o.dams)}</div>`;
 }
 
+// Interleave objects across their source collections and randomise per call, so
+// the default view opens on a fresh, diverse mix each visit instead of always the
+// same first-loaded collection (Museum Victoria) sitting at the top.
+function diversifyByCollection(keys) {
+  const shuffle = (arr) => { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; };
+  const groups = new Map();
+  for (const k of keys) {
+    const src = (OBJECTS[k] && OBJECTS[k]._source) || 'archai_pilot';
+    if (!groups.has(src)) groups.set(src, []);
+    groups.get(src).push(k);
+  }
+  const lists = shuffle([...groups.values()].map((list) => shuffle(list)));
+  const out = [];
+  for (let idx = 0, added = true; added; idx++) {
+    added = false;
+    for (const list of lists) { if (idx < list.length) { out.push(list[idx]); added = true; } }
+  }
+  return out;
+}
+
 function renderResultCards() {
   const c = document.getElementById('resultsContainer');
   if (!c) return;
   const allKeys = Object.keys(OBJECTS);
-  const keys = allKeys.filter(id => hasUsableObjectImage(OBJECTS[id]._mv || {}));
+  const keys = diversifyByCollection(allKeys.filter(id => hasUsableObjectImage(OBJECTS[id]._mv || {})));
   if (!keys.length) {
     c.innerHTML = '<div style="padding:30px;font-family:var(--mono);font-size:0.62rem;color:var(--text3);text-align:center;">No image-backed objects loaded. Connect to Qdrant or re-run the harvesters.</div>';
     return;
