@@ -29,6 +29,12 @@ const PUBLIC_ALLOWLIST = [
   { method: 'GET', pattern: /^\/nfc\/pages\// },
   { method: 'GET', pattern: /^\/nfc\/published\// },
 
+  // Make-AUXIO: the ONE write the public demo may perform. Creates/updates a
+  // visitor page from an object's metadata (repo tag + draft object only; never
+  // touches the source collections). Content is escaped on render. Needs light
+  // moderation/cleanup of demo-created tags. Everything else stays blocked.
+  { method: 'POST', pattern: /^\/nfc\/?$/ },
+
   // Read published social comments for display (posting is blocked)
   { method: 'GET', pattern: /^\/comments(\/|$)/ },
 ];
