@@ -1,9 +1,43 @@
 # ARCHAI Progress Log
 
-Last updated: 2026-07-09
+Last updated: 2026-07-10
 Maintained as an active handoff note so Claude, Codex, and Rob can quickly see where the work is up to if a session ends or tokens run out.
 
 Primary build planning is now also summarized in [ROADMAP.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ROADMAP.md). Use that for milestone order, and use this file for detailed handoff notes.
+
+## 2026-07-10 Spatial awareness & wayfinding — design exploration + data-residency policy v0.2
+
+New strategic direction: extend ARCHAI from "the object speaks" to "the building can guide you" — a
+sovereign, accessible tour guide / wayfinder that helps people *find things*, not just learn about them.
+Captured as a design doc: [`docs/ARCHAI_SPATIAL_WAYFINDING.md`](docs/ARCHAI_SPATIAL_WAYFINDING.md).
+
+Core of the design:
+- **NFC/QR check-ins are the universal, sovereign baseline** — "the eyes that don't watch you back."
+  Deliberate, precise, cheap, offline, private (no camera, no cloud maps API, no continuous tracking).
+- **Tiered sensing stack** (baseline never breaks): Tier 0 NFC/QR check-in → Tier 1 phone compass
+  (true left/right) → Tier 2 optional BLE proximity → Tier 3 LiDAR/ARKit RoomPlan (Apple-only, app-only,
+  heavier — optional top tier for capable devices, great for accessibility narration, never required).
+- **Building map = a graph** the model reasons over — nodes include amenities (toilet/café/lift/exit),
+  not just objects; edges carry direction/distance/`step_free` for accessible, multi-floor routing.
+  Map sources cheapest-first: authored → learned (anonymous check-in flows) → imported floor plan → scanned.
+- **Wayfinding is routed, not guessed** — deterministic shortest-path over the *verified* graph; the LLM
+  only narrates the computed route (epistemic integrity applied to space); if unmapped, it says so and
+  points to staff. Fuses physical adjacency (NFC) with semantic adjacency (Qdrant).
+- **Use cases:** findability ("where's the Rodin / the toilet?"), guided tours ("highlights in 30 min",
+  interest-driven), surroundings narration (accessibility), journey memory.
+- **Architecture:** extend `aux-id-map` with spatial node fields + a `spatial_map.json` edge graph;
+  spatial-context builder → existing grounded chat; deterministic router; tour planner (Qdrant + time
+  budget). All local, alongside Ollama + Qdrant, no new cloud dependency.
+- **Phase 0 MVP (no new hardware):** authored map for one gallery + QR/NFC check-in → narrate surroundings
+  and answer "where is X?" by routing the small graph. Then compass, then tours, then optional LiDAR.
+
+Also this session: **Data Residency & Sovereignty Policy** added and reviewed to **v0.2**
+([`docs/ARCHAI_DATA_RESIDENCY_POLICY.md`](docs/ARCHAI_DATA_RESIDENCY_POLICY.md)) — voice section corrected to
+the real browser-Web-Speech reality, licence set to all-rights-reserved-during-research with intended open
+release, and a new §11 "Direction — the plan to full sovereignty" (roadmap to closing §7 gaps + the free-for-
+NFP/education + commercial-licensing model). Plus a finalised LinkedIn reply to Hélène Alonso (WonderWay)
+positioning ARCHAI's sovereignty/accessibility distinction warmly; the outreach send pack + CSV remain the
+current mail-out artifacts.
 
 ## 2026-07-09 (cont. 2) v11.6.15 — five new collection harvesters (Wikimedia, IA, LoC, DPLA, Trove)
 
