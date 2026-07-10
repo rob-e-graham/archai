@@ -106,6 +106,57 @@ and heavier — so it is an optional top tier for capable devices, never the
 baseline. Kept on-device, it still respects the sovereignty line. NFC/QR remains
 the universal, sovereign floor everyone gets.
 
+### The eco label — Tier 0 in hardware
+
+The baseline has a physical form: an **e-paper museum label with an embedded NFC
+chip** (battery-powered, image-capable). It is the anchor the whole system hangs
+on, and it is a **link, not a silo** — the chip carries an identifier that
+resolves to two things at once: **the object** and **its node on the map**. The
+record and the map stay the institution's, updatable locally, never a cloud
+round-trip.
+
+**One tap answers three questions at the same time:**
+
+- *What is this?* → the object's audio tour / grounded conversation (AUXIO).
+- *Where am I?* → a known map node, so ARCHAI can give location assistance and
+  route the visitor onward.
+- *How do I access this?* → audio, large print, and language, for anyone who
+  can't see the label, read it, or find their way.
+
+For the visitor it most needs to serve — blind, reading a second language, or
+simply lost — that is not three features; it is one gesture that removes three
+barriers.
+
+Because the e-paper shows the **object image**, the label is also its own
+properties:
+
+- **A visible landmark** — every map node has a face, so wayfinding can say "the
+  Van Gogh, whose label shows a wheatfield, along the teal line."
+- **It can show the object even when the object is gone** — in conservation, on
+  loan, or removed: the image stays on the wall with "tap to hear its story."
+  This is ARCHAI's *held, not silently deleted* principle made physical — the gap
+  where a work was still speaks. No phone-based competitor can do this, because
+  their interpretation lives on the visitor's device, not on the wall.
+- **Graceful degradation, all the way down** — no phone: still a rich image +
+  caption; tap: the work speaks; low-vision: audio. One object, every level of
+  access.
+- **Updatable and sovereign** — multilingual, corrections, and reviewed community
+  contributions are pushed from the institution's own device; the caption and
+  image are the institution's assets, changed locally.
+- **Still eco** — e-paper holds an image at zero power between refreshes, so
+  batteries last months to years, with no wiring across a building.
+- **Past the walls** — the same battery-powered image label on a street poster is
+  a complete artifact on its own.
+
+The product shape: **conversational, updatable, sovereign museum labels** — the
+electronic-shelf-label category reimagined for culture, with a powerful NFC tap
+and ARCHAI's grounded voice behind it.
+
+*Open hardware specifics to confirm:* colour vs greyscale e-paper and size (sets
+whether it reads as a caption or a poster); and how images/updates are pushed
+(tap-from-staff-phone over NFC, a small controller, or local Wi-Fi/BLE) — which
+determines how "update the label" flows through ARCHAI.
+
 ---
 
 ## 5. What ARCHAI can then do
