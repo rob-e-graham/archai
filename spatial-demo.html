@@ -1,0 +1,444 @@
+<title>ARCHAI · Spatial Guide — Mock Gallery</title>
+<style>
+  :root{
+    --bg:#0a0b0e; --surface:#14171c; --surface-2:#1b2027; --line:#272d36;
+    --ink:#e9ede9; --ink-soft:#98a29d; --ink-faint:#5e6a65;
+    --teal:#5fbfae; --teal-dim:rgba(95,191,174,.14); --teal-line:rgba(95,191,174,.5);
+    --gold:#c8a96e; --gold-dim:rgba(200,169,110,.14);
+    --serif:Georgia,'Iowan Old Style','Times New Roman',serif;
+    --mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+    --sans:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    --room:rgba(255,255,255,.025); --room-stroke:rgba(255,255,255,.06);
+  }
+  @media (prefers-color-scheme: light){
+    :root{
+      --bg:#f3f1ea; --surface:#ffffff; --surface-2:#efece3; --line:#ddd8cb;
+      --ink:#1b1e1b; --ink-soft:#545a52; --ink-faint:#8b9088;
+      --teal:#2f9d89; --teal-dim:rgba(47,157,137,.12); --teal-line:rgba(47,157,137,.55);
+      --gold:#a5803a; --gold-dim:rgba(165,128,58,.14);
+      --room:rgba(20,25,22,.03); --room-stroke:rgba(20,25,22,.08);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0a0b0e; --surface:#14171c; --surface-2:#1b2027; --line:#272d36;
+    --ink:#e9ede9; --ink-soft:#98a29d; --ink-faint:#5e6a65;
+    --teal:#5fbfae; --teal-dim:rgba(95,191,174,.14); --teal-line:rgba(95,191,174,.5);
+    --gold:#c8a96e; --gold-dim:rgba(200,169,110,.14);
+    --room:rgba(255,255,255,.025); --room-stroke:rgba(255,255,255,.06);
+  }
+  :root[data-theme="light"]{
+    --bg:#f3f1ea; --surface:#ffffff; --surface-2:#efece3; --line:#ddd8cb;
+    --ink:#1b1e1b; --ink-soft:#545a52; --ink-faint:#8b9088;
+    --teal:#2f9d89; --teal-dim:rgba(47,157,137,.12); --teal-line:rgba(47,157,137,.55);
+    --gold:#a5803a; --gold-dim:rgba(165,128,58,.14);
+    --room:rgba(20,25,22,.03); --room-stroke:rgba(20,25,22,.08);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;
+    -webkit-font-smoothing:antialiased;min-height:100vh}
+  .wrap{max-width:1200px;margin:0 auto;padding:26px 22px 40px}
+  header.top{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;
+    border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:22px;flex-wrap:wrap}
+  .brand{font-family:var(--serif);font-size:1.7rem;letter-spacing:.02em;font-weight:400}
+  .brand b{font-weight:400}.brand .h{color:var(--gold);font-style:italic}
+  .kicker{font-family:var(--mono);font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;
+    color:var(--ink-faint);margin-bottom:6px}
+  .sub{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;color:var(--ink-soft);
+    text-align:right;max-width:280px;line-height:1.7}
+  .themebtn{font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;
+    background:transparent;border:1px solid var(--line);color:var(--ink-soft);padding:6px 10px;
+    border-radius:2px;cursor:pointer;margin-top:8px}
+  .themebtn:hover{border-color:var(--teal);color:var(--teal)}
+  .grid{display:grid;grid-template-columns:1.5fr 1fr;gap:20px;align-items:start}
+  @media(max-width:840px){.grid{grid-template-columns:1fr}}
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:6px}
+  .plan-wrap{padding:14px}
+  .plan-head{display:flex;justify-content:space-between;align-items:baseline;padding:2px 4px 12px;
+    font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
+  .plan-head b{color:var(--ink-soft);font-weight:400}
+  svg.floor{width:100%;height:auto;display:block;touch-action:manipulation}
+  .node-hit{cursor:pointer}
+  .node-label{font-family:var(--mono);font-size:8.5px;letter-spacing:.02em;fill:var(--ink-soft);pointer-events:none}
+  .zone-label{font-family:var(--mono);font-size:9px;letter-spacing:.28em;text-transform:uppercase;
+    fill:var(--ink-faint);pointer-events:none;opacity:.8}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;padding:12px 6px 2px;font-family:var(--mono);
+    font-size:.58rem;letter-spacing:.08em;color:var(--ink-soft)}
+  .legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:middle}
+  /* guide panel */
+  .guide{display:flex;flex-direction:column;min-height:520px}
+  .guide-head{padding:16px 18px 12px;border-bottom:1px solid var(--line)}
+  .guide-title{font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--teal)}
+  .guide-where{font-family:var(--serif);font-size:1.15rem;margin-top:6px;color:var(--ink);text-wrap:balance}
+  .log{flex:1;overflow-y:auto;padding:16px 18px;display:flex;flex-direction:column;gap:12px;max-height:420px}
+  .msg{font-size:.9rem}
+  .msg.you{align-self:flex-end;background:var(--surface-2);border:1px solid var(--line);
+    padding:8px 12px;border-radius:10px 10px 2px 10px;max-width:82%;font-family:var(--mono);
+    font-size:.72rem;letter-spacing:.02em;color:var(--ink-soft)}
+  .msg.guide{align-self:flex-start;max-width:94%;font-family:var(--serif);font-size:.98rem;
+    line-height:1.6;color:var(--ink)}
+  .msg.guide .dir{font-family:var(--mono);font-size:.68rem;letter-spacing:.04em;color:var(--teal);
+    display:block;margin-top:7px;padding-left:10px;border-left:2px solid var(--teal-line)}
+  .msg.guide .step{display:block}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;padding:12px 18px;border-top:1px solid var(--line)}
+  .chip{font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;background:var(--teal-dim);
+    border:1px solid transparent;color:var(--teal);padding:6px 10px;border-radius:20px;cursor:pointer;white-space:nowrap}
+  .chip:hover{border-color:var(--teal-line)}
+  .ask{display:flex;gap:8px;padding:0 18px 16px}
+  .ask input{flex:1;background:var(--bg);border:1px solid var(--line);color:var(--ink);
+    padding:10px 12px;border-radius:4px;font-family:var(--sans);font-size:.85rem}
+  .ask input:focus{outline:none;border-color:var(--teal)}
+  .ask button{background:var(--teal);color:var(--bg);border:none;padding:0 16px;border-radius:4px;
+    font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;font-weight:600}
+  .foot{margin-top:22px;padding-top:14px;border-top:1px solid var(--line);
+    font-family:var(--mono);font-size:.58rem;letter-spacing:.06em;color:var(--ink-faint);line-height:1.8}
+  .foot b{color:var(--teal);font-weight:400}
+  a{color:var(--teal)}
+  :focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <div class="kicker">ARCHAI · Spatial Guide · Phase 0 demo</div>
+      <div class="brand"><b>ARC<span class="h">H</span>AI</b> can guide you through the room</div>
+    </div>
+    <div>
+      <div class="sub">A mock gallery. Tap a spot to "check in" (as an NFC tag or QR would), then ask the guide to find things. Every direction is routed over the map, never guessed. Runs entirely in your browser.</div>
+      <button class="themebtn" id="themebtn" type="button">Toggle theme</button>
+    </div>
+  </header>
+
+  <div class="grid">
+    <div class="panel plan-wrap">
+      <div class="plan-head"><span>Ashcroft Gallery · Ground floor <b>(mock)</b></span><span id="hereTag">— not checked in —</span></div>
+      <svg class="floor" id="floor" viewBox="0 0 800 560" role="img" aria-label="Interactive gallery floor plan"></svg>
+      <div class="legend">
+        <span><i style="background:var(--gold)"></i>You are here</span>
+        <span><i style="background:var(--teal)"></i>Route</span>
+        <span><i style="background:var(--ink-soft)"></i>Artwork</span>
+        <span><i style="background:var(--ink-faint)"></i>Amenity</span>
+      </div>
+    </div>
+
+    <div class="panel guide">
+      <div class="guide-head">
+        <div class="guide-title">The gallery, speaking</div>
+        <div class="guide-where" id="whereLine">Tap anywhere on the plan to begin.</div>
+      </div>
+      <div class="log" id="log"></div>
+      <div class="chips" id="chips"></div>
+      <div class="ask">
+        <input id="ask" type="text" placeholder="Ask: where's the Van Gogh? the café? the exit?" autocomplete="off">
+        <button id="askbtn" type="button">Ask</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <b>How it works.</b> Each spot is a check-in node in a small verified map (nodes + edges). Surroundings and directions are produced by shortest-path routing over that graph, so the guide narrates the real route and says so plainly when something isn't mapped — the wayfinding equivalent of an object that declines to guess.<br>
+    Nothing here calls a server. No camera, no tracking, no cloud maps API — the whole thing runs on this device. Sovereign by default. Connected by choice.
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  // ---- The mock gallery: nodes (x,y in 0..800 / 0..560), edges with compass bearing + "via" ----
+  var N = {
+    entrance:{x:400,y:520,label:"Entrance",type:"amenity",zone:"Foyer"},
+    info:{x:300,y:500,label:"Info Desk",type:"amenity",zone:"Foyer"},
+    exit:{x:500,y:520,label:"Exit",type:"amenity",zone:"Foyer"},
+    hall:{x:400,y:400,label:"Central Hall",type:"junction",zone:"Hall"},
+    restroom:{x:150,y:400,label:"Restrooms",type:"amenity",zone:"Hall"},
+    cafe:{x:660,y:400,label:"Café",type:"amenity",zone:"Hall"},
+    gaA:{x:300,y:320,label:"Gallery A",type:"junction",zone:"Gallery A"},
+    a1:{x:150,y:250,label:"The Age of Bronze",maker:"Rodin",type:"art",zone:"Gallery A"},
+    a2:{x:150,y:130,label:"The Milkmaid",maker:"Vermeer",type:"art",zone:"Gallery A"},
+    a3:{x:320,y:120,label:"Winter Landscape",maker:"Avercamp",type:"art",zone:"Gallery A"},
+    gaB:{x:500,y:320,label:"Gallery B",type:"junction",zone:"Gallery B"},
+    b1:{x:650,y:250,label:"Wheatfield with Crows",maker:"Van Gogh",type:"art",zone:"Gallery B"},
+    b2:{x:650,y:130,label:"The Great Wave",maker:"Hokusai",type:"art",zone:"Gallery B"},
+    b3:{x:480,y:130,label:"Self-Portrait",maker:"Rembrandt",type:"art",zone:"Gallery B"}
+  };
+  // edges: [a,b,bearingDegFromAtoB, via]
+  var E = [
+    ["entrance","hall",0,"the doorway"],
+    ["entrance","info",270,""],
+    ["entrance","exit",90,""],
+    ["hall","restroom",270,"the corridor"],
+    ["hall","cafe",90,"the corridor"],
+    ["hall","gaA",315,"the archway"],
+    ["hall","gaB",45,"the archway"],
+    ["gaA","a1",250,""],
+    ["a1","a2",0,""],
+    ["a2","a3",70,""],
+    ["a3","gaA",200,""],
+    ["gaB","b1",70,""],
+    ["b1","b2",0,""],
+    ["b2","b3",290,""],
+    ["b3","gaB",160,""]
+  ];
+  // adjacency with bearings both ways
+  var ADJ = {};
+  Object.keys(N).forEach(function(k){ADJ[k]=[];});
+  E.forEach(function(e){
+    ADJ[e[0]].push({to:e[1],bear:e[2],via:e[3]});
+    ADJ[e[1]].push({to:e[0],bear:(e[2]+180)%360,via:e[3]});
+  });
+
+  var here=null, facing=null; // facing = bearing we last travelled
+
+  // ---- geometry / rendering ----
+  var svg=document.getElementById('floor');
+  var SVGNS="http://www.w3.org/2000/svg";
+  function el(n,a){var e=document.createElementNS(SVGNS,n);for(var k in a)e.setAttribute(k,a[k]);return e;}
+  function dist(a,b){return Math.hypot(N[a].x-N[b].x,N[a].y-N[b].y);}
+
+  function drawBase(){
+    svg.innerHTML="";
+    // room zones (soft rectangles behind)
+    var zones=[
+      {x:60,y:70,w:340,h:280,t:"Gallery A"},
+      {x:400,y:70,w:340,h:280,t:"Gallery B"},
+      {x:60,y:350,w:680,h:110,t:"Central Hall"},
+      {x:230,y:460,w:340,h:90,t:"Foyer"}
+    ];
+    zones.forEach(function(z){
+      svg.appendChild(el("rect",{x:z.x,y:z.y,width:z.w,height:z.h,rx:8,fill:"var(--room)",stroke:"var(--room-stroke)","stroke-width":1}));
+      var zl=el("text",{x:z.x+14,y:z.y+22,class:"zone-label"});zl.textContent=z.t;svg.appendChild(zl);
+    });
+    // edges (faint corridors)
+    E.forEach(function(e){
+      svg.appendChild(el("line",{x1:N[e[0]].x,y1:N[e[0]].y,x2:N[e[1]].x,y2:N[e[1]].y,
+        stroke:"var(--line)","stroke-width":6,"stroke-linecap":"round",opacity:.7}));
+    });
+    // route layer (drawn later)
+    svg.appendChild(el("g",{id:"routeLayer"}));
+    // nodes
+    Object.keys(N).forEach(function(k){
+      var n=N[k], g=el("g",{class:"node-hit",tabindex:0,role:"button","aria-label":"Check in at "+n.label});
+      g.dataset.id=k;
+      var r = n.type==="art"?7:(n.type==="junction"?5:6);
+      var fill = n.type==="art"?"var(--ink-soft)":(n.type==="junction"?"var(--ink-faint)":"var(--ink-faint)");
+      if(n.type==="art") fill="var(--ink-soft)";
+      g.appendChild(el("circle",{cx:n.x,cy:n.y,r:14,fill:"transparent"})); // hit area
+      var dot=el("circle",{cx:n.x,cy:n.y,r:r,fill:fill,stroke:"var(--bg)","stroke-width":2});
+      dot.dataset.dot=k; g.appendChild(dot);
+      // label placement: art label above, others below
+      var ly = n.type==="art"? n.y-13 : n.y+18;
+      var t=el("text",{x:n.x,y:ly,class:"node-label","text-anchor":"middle"});
+      t.textContent = n.type==="art"? n.label : n.label;
+      g.appendChild(t);
+      g.addEventListener('click',function(){checkIn(k);});
+      g.addEventListener('keydown',function(ev){if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();checkIn(k);}});
+      svg.appendChild(g);
+    });
+    // you-are-here marker group (on top)
+    svg.appendChild(el("g",{id:"hereLayer"}));
+  }
+
+  function renderHere(){
+    var hl=document.getElementById('hereLayer'); if(!hl)return; hl.innerHTML="";
+    if(!here)return;
+    var n=N[here];
+    var ring=el("circle",{cx:n.x,cy:n.y,r:11,fill:"none",stroke:"var(--gold)","stroke-width":2.5});
+    var core=el("circle",{cx:n.x,cy:n.y,r:5,fill:"var(--gold)"});
+    var pulse=el("circle",{cx:n.x,cy:n.y,r:11,fill:"none",stroke:"var(--gold)","stroke-width":2,opacity:.6});
+    var anim=el("animate",{attributeName:"r",values:"11;22;11",dur:"2.4s",repeatCount:"indefinite"});
+    var animo=el("animate",{attributeName:"opacity",values:".6;0;.6",dur:"2.4s",repeatCount:"indefinite"});
+    pulse.appendChild(anim);pulse.appendChild(animo);
+    hl.appendChild(pulse);hl.appendChild(ring);hl.appendChild(core);
+  }
+
+  function drawRoute(path){
+    var rl=document.getElementById('routeLayer'); if(!rl)return; rl.innerHTML="";
+    if(!path||path.length<2)return;
+    var d="M "+N[path[0]].x+" "+N[path[0]].y;
+    for(var i=1;i<path.length;i++) d+=" L "+N[path[i]].x+" "+N[path[i]].y;
+    var p=el("path",{d:d,fill:"none",stroke:"var(--teal)","stroke-width":4,"stroke-linecap":"round",
+      "stroke-linejoin":"round","stroke-dasharray":"1 9",opacity:.95});
+    rl.appendChild(p);
+    // animated leading dots
+    var glow=el("path",{d:d,fill:"none",stroke:"var(--teal)","stroke-width":8,opacity:.16,"stroke-linecap":"round"});
+    rl.insertBefore(glow,p);
+    // destination marker
+    var dn=N[path[path.length-1]];
+    rl.appendChild(el("circle",{cx:dn.x,cy:dn.y,r:9,fill:"none",stroke:"var(--teal)","stroke-width":2.5}));
+  }
+
+  // ---- routing (Dijkstra by physical distance) ----
+  function route(from,to){
+    if(from===to) return [from];
+    var distTo={},prev={},seen={},pq=[from]; distTo[from]=0;
+    while(pq.length){
+      pq.sort(function(a,b){return distTo[a]-distTo[b];});
+      var u=pq.shift(); if(seen[u])continue; seen[u]=1;
+      if(u===to)break;
+      ADJ[u].forEach(function(e){
+        var nd=distTo[u]+dist(u,e.to);
+        if(distTo[e.to]===undefined||nd<distTo[e.to]){distTo[e.to]=nd;prev[e.to]=u;pq.push(e.to);}
+      });
+    }
+    if(distTo[to]===undefined)return null;
+    var path=[to],c=to; while(c!==from){c=prev[c];path.unshift(c);} return path;
+  }
+  function bearingBetween(a,b){
+    var found=null; ADJ[a].forEach(function(e){if(e.to===b)found=e;}); return found;
+  }
+  // ---- language ----
+  var COMPASS=["north","north-east","east","south-east","south","south-west","west","north-west"];
+  function compass(b){return COMPASS[Math.round(((b%360)/45))%8];}
+  function relTurn(b){ // relative to facing
+    if(facing===null) return null;
+    var d=((b-facing)+360)%360;
+    if(d<25||d>335)return "straight ahead";
+    if(d>=25&&d<115)return "on your right";
+    if(d>=115&&d<245)return "behind you";
+    return "on your left";
+  }
+  function nameOf(id){var n=N[id];return n.maker? n.label+" by "+n.maker : n.label;}
+  function shortName(id){return N[id].label;}
+
+  function describeSurroundings(id){
+    var n=N[id];
+    var neigh=ADJ[id].filter(function(e){return N[e.to].type!=="junction"||true;});
+    // prefer art + amenities in the description
+    var bits=[];
+    ADJ[id].forEach(function(e){
+      var t=N[e.to];
+      var rel=relTurn(e.bear);
+      var where = rel? rel : ("to the "+compass(e.bear));
+      if(t.type==="art") bits.push({txt:t.label+" is "+where,pri:0});
+      else if(t.type==="amenity") bits.push({txt:"the "+t.label.toLowerCase()+" is "+where,pri:2});
+      else bits.push({txt:"the "+t.label+" is "+where+(e.via?" through "+e.via:""),pri:1});
+    });
+    bits.sort(function(a,b){return a.pri-b.pri;});
+    var lead;
+    if(n.type==="art") lead="You're standing in front of "+nameOf(id)+", in "+n.zone+". ";
+    else if(n.type==="amenity") lead="You're at the "+n.label.toLowerCase()+". ";
+    else lead="You're in the "+n.label+". ";
+    var list = bits.slice(0,4).map(function(b){return b.txt;});
+    var sentence = list.length? cap(list.join("; "))+"." : "It's a quiet corner.";
+    return lead+sentence;
+  }
+  function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+
+  function narrateRoute(path){
+    var steps=[];
+    for(var i=0;i<path.length-1;i++){
+      var e=bearingBetween(path[i],path[i+1]);
+      var rel = i===0? relTurn(e.bear) : null;
+      var head = i===0 ? (rel? "Head "+({"straight ahead":"straight ahead","on your right":"right","on your left":"left","behind you":"back"}[rel]) : "Head "+compass(e.bear))
+                       : "then continue "+compass(e.bear);
+      var dest = shortName(path[i+1]);
+      var via = e.via? " through "+e.via : "";
+      steps.push(cap(head)+via+" to "+ (N[path[i+1]].type==="art"? dest : "the "+dest.replace(/^the /i,"")) +".");
+    }
+    return steps;
+  }
+
+  // ---- interaction ----
+  var log=document.getElementById('log');
+  function addYou(t){var d=document.createElement('div');d.className="msg you";d.textContent=t;log.appendChild(d);log.scrollTop=log.scrollHeight;}
+  function addGuide(html){var d=document.createElement('div');d.className="msg guide";d.innerHTML=html;log.appendChild(d);log.scrollTop=log.scrollHeight;}
+
+  function checkIn(id){
+    var prev=here; here=id;
+    if(prev){var e=bearingBetween(prev,id); facing = e? e.bear : facing;}
+    document.getElementById('hereTag').textContent = "checked in · "+N[id].label;
+    document.getElementById('whereLine').textContent = N[id].type==="art"? nameOf(id) : N[id].label;
+    drawRoute(null); renderHere();
+    addYou("✦ checked in");
+    addGuide(describeSurroundings(id));
+  }
+
+  function findTarget(q){
+    q=q.toLowerCase().trim();
+    var syn={toilet:"restroom",bathroom:"restroom",loo:"restroom",restrooms:"restroom",
+      coffee:"cafe","café":"cafe",food:"cafe",way_out:"exit",leave:"exit",help:"info",desk:"info"};
+    var keys=Object.keys(N);
+    // direct id / label / maker contains
+    for(var i=0;i<keys.length;i++){
+      var n=N[keys[i]];
+      var hay=(keys[i]+" "+n.label+" "+(n.maker||"")).toLowerCase();
+      if(hay.indexOf(q)>-1 && q.length>2) return keys[i];
+    }
+    for(var s in syn){ if(q.indexOf(s.replace("_"," "))>-1) return syn[s]; }
+    // single strong words
+    if(/toilet|bathroom|restroom|loo/.test(q))return "restroom";
+    if(/cafe|coffee|caf|eat|drink/.test(q))return "cafe";
+    if(/exit|out|leave/.test(q))return "exit";
+    if(/info|help|desk|lost/.test(q))return "info";
+    if(/entrance|start/.test(q))return "entrance";
+    return null;
+  }
+
+  function ask(q){
+    if(!q)return;
+    addYou(q);
+    if(!here){ addGuide("Tap a spot on the plan first so I know where you're standing — then I can guide you from there."); return; }
+    // "what's around me"
+    if(/around|near|surround|what.s here|beside/.test(q.toLowerCase())){ addGuide(describeSurroundings(here)); return; }
+    // "highlights tour"
+    if(/tour|highlight|show me|best|must/.test(q.toLowerCase())){ return doTour(); }
+    var target=findTarget(q);
+    if(!target){
+      addGuide("I don't have that on the gallery map yet, so I won't guess at directions. The <b>Info Desk</b> by the entrance can help — shall I take you there?");
+      return;
+    }
+    if(target===here){ addGuide("Good news — you're already here. "+describeSurroundings(here)); return; }
+    var path=route(here,target);
+    if(!path){ addGuide("I can see "+shortName(target)+" on the map but not a route from here right now. Best to ask a staff member."); return; }
+    drawRoute(path);
+    var steps=narrateRoute(path);
+    var dest=N[target];
+    var intro = dest.type==="art"? "To reach "+nameOf(target)+", it's "+(steps.length)+(steps.length>1?" turns":" step")+" from here."
+              : "The "+dest.label.toLowerCase()+" is "+(steps.length)+(steps.length>1?" turns":" step")+" away.";
+    var html = intro + "<span class='dir'>"+steps.map(function(s){return "<span class='step'>› "+s+"</span>";}).join("")+"</span>";
+    if(dest.type==="art") html+="<br><span style='font-family:var(--mono);font-size:.66rem;color:var(--ink-soft)'>When you arrive, tap it to hear the work speak.</span>";
+    addGuide(html);
+    // move the "you are here" gently along? keep at current; highlight path only.
+  }
+
+  function doTour(){
+    var stops=["a1","a2","a3","b1","b2"]; // highlights
+    // order by nearest-first walk from here
+    var order=[],cur=here,pool=stops.slice();
+    while(pool.length){
+      pool.sort(function(a,b){return (route(cur,a)||[]).length-(route(cur,b)||[]).length;});
+      var nx=pool.shift(); order.push(nx); cur=nx;
+    }
+    var full=[]; var c=here;
+    order.forEach(function(t){var p=route(c,t);if(p){for(var i=(full.length?1:0);i<p.length;i++)full.push(p[i]);}c=t;});
+    drawRoute([here].concat(full));
+    var names=order.map(function(id){return nameOf(id);});
+    addGuide("Here's a short highlights walk from where you are — five works, roughly fifteen minutes, routed as one loop:<span class='dir'>"+
+      order.map(function(id,i){return "<span class='step'>"+(i+1)+". "+nameOf(id)+" · "+N[id].zone+"</span>";}).join("")+"</span>"+
+      "<br><span style='font-family:var(--mono);font-size:.66rem;color:var(--ink-soft)'>Follow the teal line, and tap each work to hear it. Ask me for the café or a rest whenever you like.</span>");
+  }
+
+  // chips
+  var CHIPS=[["What's around me?","around"],["Where's the café?","where is the café"],
+    ["Find the Van Gogh","where is the van gogh"],["Take me to the exit","take me to the exit"],
+    ["Highlights tour","highlights tour"],["Where's the restroom?","where is the restroom"]];
+  var chipsEl=document.getElementById('chips');
+  CHIPS.forEach(function(c){var b=document.createElement('button');b.className="chip";b.type="button";
+    b.textContent=c[0];b.addEventListener('click',function(){ask(c[1]);});chipsEl.appendChild(b);});
+
+  document.getElementById('askbtn').addEventListener('click',function(){var v=document.getElementById('ask').value;document.getElementById('ask').value="";ask(v);});
+  document.getElementById('ask').addEventListener('keydown',function(e){if(e.key==="Enter"){var v=this.value;this.value="";ask(v);}});
+
+  // theme toggle
+  var tb=document.getElementById('themebtn');
+  tb.addEventListener('click',function(){
+    var cur=document.documentElement.getAttribute('data-theme');
+    var next = cur==="light"?"dark":(cur==="dark"?"light":(matchMedia('(prefers-color-scheme: dark)').matches?"light":"dark"));
+    document.documentElement.setAttribute('data-theme',next);
+  });
+
+  // boot
+  drawBase(); renderHere();
+  addGuide("Welcome to the Ashcroft Gallery. I'm the room, and I can help you find your way. Tap where you're standing, or one of the prompts below, and I'll guide you — always by the real map, never a guess.");
+})();
+</script>
