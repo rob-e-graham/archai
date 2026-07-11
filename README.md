@@ -36,6 +36,8 @@ The research draws on a lineage extending from the Greek method of loci (Simonid
 
 **Rights-aware harvesting** — every object in the system has passed a per-item legal gate at harvest time. Licence status (CC0, CC BY, metadata-only, open government) is enforced in code, not configuration, and surfaced on every object page. No image is displayed on a public ARCHAI or AUXIO surface without having passed that gate.
 
+**Source-community cultural authority** — a source community (or its delegated guardian/kaitiaki) can set the terms on which the AI may speak about an object connected to them, and the system honours those terms **at the AI inference boundary — before and after the model runs — not as a staff review after the fact**. An object can be marked `closed` (the AI will not answer), `restricted` (minimal facts only), given a `noVoice` constraint (the AI describes it in the third person rather than ventriloquising it), or fenced off on specific restricted topics. Protocols are set behind a community steward key that museum staff — including admin — cannot override in the app. The design follows the CARE Principles for Indigenous Data Governance, Local Contexts' TK Labels, Mukurtu CMS access protocols, and Te Hiku Media's Kaitiakitanga License model. See [`docs/CULTURAL_PROTOCOLS.md`](docs/CULTURAL_PROTOCOLS.md).
+
 ---
 
 ## Collection Status — June 2026
@@ -71,7 +73,7 @@ ARCHAI is currently a draft institutional demo / WIP build. The current stronges
 
 ## Core Technical Contributions
 
-Twelve interconnected contributions characterise the research:
+Thirteen interconnected contributions characterise the research:
 
 1. **Vector embeddings for heritage discovery** — semantic search across heterogeneous collections without reliance on controlled curatorial vocabulary.
 2. **Provenance-tracked AI interpretation** — every generated response records its complete derivation chain back to source materials.
@@ -85,6 +87,7 @@ Twelve interconnected contributions characterise the research:
 10. **Multi-category public cultural data integration** — municipal open data (street and public art, six cities) and interactive digital culture (RAWG games) integrated under identical licence-gate enforcement as institutional museum collections.
 11. **Thematic discovery navigation** — disciplinary group tabs with per-institution sub-tabs across the current 3,147-record corpus, enabling cross-collection discovery without controlled vocabulary dependency.
 12. **Legal gate enforcement at scale** — per-source rights verification documented in a collection-targets matrix, implemented in harvester code, and surfaced on every public object page.
+13. **Source-community cultural authority enforced at inference** — a server-authoritative, community-governed protocol layer (CARE / TK Labels / Mukurtu / Kaitiakitanga) that lets a source community close an object to AI interpretation, restrict specific topics, or refuse first-person ventriloquism — honoured by the model before and after it generates, auditable, and not overridable by museum staff. Distinct from the legal gate: rights govern the *image*; cultural protocols govern *what the AI is allowed to say*.
 
 ---
 
@@ -263,6 +266,7 @@ ARCHAI is a working research prototype, not a finished commercial product. All p
 | **v11.6.5** | **AUXIO print family finalised as the black street-gallery system: QR-led copy, walk-past text sizing with sentence-safe auto-fit and truncation-as-invitation ("scan to keep reading"), curated seed set, and the hosted app demo synced to the public website.** |
 | **v11.6.6** | **Onboarding made real: Connect Collection tab generates harvester configs in-app; a generic configuration-driven harvester (verified against a live museum API) maps JSON sources with rights/cultural-safety gates and dry-run-first discipline; staff AUXIO work and institution drafts persist durably across backend restarts; staff-created objects get an immediately live, record-grounded conversational page; Keytec keychain protocol wired into connector commands; hosted-app proxy contract fixed so the public demo loads all collections; source-record markup stripped from public page titles.** |
 | **v11.6.7** | **Correctness + branding pass: consistent HTML escaping for collection text across result, AUXIO, and visitor surfaces; stable conversational-result keys with metadata on click-through; voice interim-transcript and no-speech retry states; object chat and AUXIO pages fall back to the verified record instead of dead-ending when the model is busy or rate-limited; per-scope API rate limiting; AUXIO branding standardised (from AUXIO); shortened visitor chat placeholders; licence/provenance wording aligned with LICENSE.** |
+| **v11.7** | **Source-community cultural authority: a server-authoritative, community-governed protocol layer (CARE / TK Labels / Mukurtu / Kaitiakitanga) enforced at the AI inference boundary. Objects can be closed to AI interpretation, restricted to minimal facts, fenced off on specific topics, or given a no-ventriloquism voice constraint — honoured before AND after the model generates, on both the public AUXIO chat path and the staff path, audited, and set behind a community steward key that museum staff (including admin) cannot override. New `/api/protocols` API, offline enforcement test (`npm run test:cultural`), AUXIO visitor pages now display a cultural-authority notice, and the shared hallucination guard delegates cultural restrictions to the one protocol authority.** |
 
 ---
 
@@ -283,6 +287,12 @@ Kelly, L. (2016). *The Memory Code*. Allen & Unwin.
 Szántó, A. & Campbell, T. P. (2025). "A.I. Is Coming for Museums." *Artnet News*, 29 October 2025.
 
 Global Indigenous Data Alliance. (2020). *CARE Principles for Indigenous Data Governance*. gida-global.org/care
+
+Local Contexts. (2019–). *Traditional Knowledge (TK) Labels*. localcontexts.org
+
+Christen, K., Merrill, A. & Wynne, M. (2017). "A Community of Relations: Mukurtu Hubs and Spokes." *D-Lib Magazine*, 23(5/6).
+
+Te Hiku Media. (2018–). *Kaitiakitanga License* and te reo Māori speech recognition. tehiku.nz/te-hiku-tech
 
 ---
 
