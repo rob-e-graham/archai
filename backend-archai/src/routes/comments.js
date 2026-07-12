@@ -48,6 +48,12 @@ const updateStatus = db.prepare(`
   UPDATE comments SET status = ?, moderated_at = datetime('now'), moderated_by = ? WHERE id = ?
 `);
 
+const verifyComment = db.prepare(`
+  UPDATE comments
+  SET verified = ?, verified_by = ?, verified_at = CASE WHEN ? = 1 THEN datetime('now') ELSE NULL END
+  WHERE id = ?
+`);
+
 const getStats = db.prepare(`
   SELECT status, ai_flag, COUNT(*) as count FROM comments GROUP BY status, ai_flag
 `);
@@ -140,6 +146,18 @@ commentsRouter.patch('/:id', (req, res) => {
   const result = updateStatus.run(status, moderator, req.params.id);
   if (result.changes === 0) return res.status(404).json({ ok: false, error: 'Comment not found' });
   res.json({ ok: true, updated: req.params.id, status });
+});
+
+// ── Curator: confirm a community memory as a verified oral history ─
+// This is the comment-side of the verification line: a visible community
+// response becomes a verified oral history, and carries a verified marker on
+// the public "love" pages so the two tiers stay visibly distinct.
+commentsRouter.patch('/:id/verify', (req, res) => {
+  const verified = req.body?.verified === false ? 0 : 1;
+  const moderator = req.body?.moderator || 'curator';
+  const result = verifyComment.run(verified, verified ? moderator : null, verified, req.params.id);
+  if (result.changes === 0) return res.status(404).json({ ok: false, error: 'Comment not found' });
+  res.json({ ok: true, updated: req.params.id, verified: Boolean(verified) });
 });
 
 // ── Curator: which objects have comments ─────────────────────────

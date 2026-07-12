@@ -1,7 +1,7 @@
 export const roleCapabilities = {
   admin: ['*'],
-  curator: ['objects.read', 'objects.write', 'workflow.transition', 'nfc.publish', 'media.publish', 'vocab.read', 'search', 'export'],
-  collections: ['objects.read', 'objects.write-limited', 'upload.queue', 'workflow.submit-review', 'vocab.read', 'search'],
+  curator: ['objects.read', 'objects.write', 'workflow.transition', 'verification.set', 'accession.commit', 'nfc.publish', 'media.publish', 'vocab.read', 'search', 'export'],
+  collections: ['objects.read', 'objects.write-limited', 'upload.queue', 'workflow.submit-review', 'accession.read', 'vocab.read', 'search'],
   technician: ['nodel.read', 'runtime.read', 'media.validate', 'objects.read-tech'],
   volunteer: ['objects.read', 'notes.create', 'visitor.preview'],
   visitor: ['nfc.public', 'chat.object', 'comments.create'],

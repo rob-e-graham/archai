@@ -82,3 +82,33 @@ export const objectWorkflowSchema = z.object({
   updatedBy: z.string().default('system'),
   updatedAt: z.string(),
 });
+
+// Verification tier — the layer that lets a record, an oral history and an open
+// community response coexist in one interface without being flattened together.
+//   institutional_record  — the museum's own object record
+//   verified_oral_history — a community memory the curatorial team has confirmed
+//   community_response    — living, unverified community interpretation
+// `verified` is the single line visitors read from: institutional records and
+// confirmed oral histories sit above it, community responses below it.
+export const objectVerificationSchema = z.object({
+  tier: z.enum(['institutional_record', 'verified_oral_history', 'community_response']).default('institutional_record'),
+  verified: z.boolean().default(false),
+  verifiedBy: z.string().optional().nullable(),
+  verifiedAt: z.string().optional().nullable(),
+  method: z.string().optional().nullable(),
+  notes: z.string().default(''),
+});
+
+// Accession — the path a verified record travels to enter the archival CMS
+// (CollectiveAccess). A record is never accessioned until it is both verified
+// and curatorially approved; that gate is what keeps "what we've heard" separate
+// from "what we've confirmed".
+export const accessionSchema = z.object({
+  status: z.enum(['not_accessioned', 'ready', 'accessioned', 'returned']).default('not_accessioned'),
+  accessionNumber: z.string().optional().nullable(),
+  cmsTarget: z.enum(['collectiveaccess']).default('collectiveaccess'),
+  cmsRecordId: z.string().optional().nullable(),
+  accessionedBy: z.string().optional().nullable(),
+  accessionedAt: z.string().optional().nullable(),
+  notes: z.string().default(''),
+});
