@@ -1,6 +1,22 @@
 #!/usr/bin/env bash
 set -uo pipefail
 
+# ⚠️ DEPRECATED — do not run. Superseded by archai-stack-supervisor.sh + the
+# LaunchAgents installed by install-public-launchagents.sh.
+#
+# This script starts the backend and cloudflared itself. Those are now owned by
+# launchd (KeepAlive), so running this too double-starts them and causes the
+# `EADDRINUSE :8787` port conflict. Kept only for reference/history.
+#
+# To supervise the public demo, use:
+#     bash backend-archai/scripts/install-public-launchagents.sh
+if [ "${ARCHAI_WATCHDOG_FORCE:-}" != "1" ]; then
+  echo "archai-public-watchdog.sh is DEPRECATED and does nothing." >&2
+  echo "Use: bash backend-archai/scripts/install-public-launchagents.sh" >&2
+  echo "(sets up Docker/Qdrant supervision, keep-awake, and outage alerts via launchd)." >&2
+  exit 0
+fi
+
 ROOT="/Users/robgraham/Desktop/APPS/ARCHAI APP"
 BACKEND_DIR="$ROOT/backend-archai"
 LOG_DIR="/tmp"
