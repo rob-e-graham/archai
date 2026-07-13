@@ -149,7 +149,7 @@ This policy describes a research prototype, not a finished product. It is publis
 - **Voice sovereignty.** Replace the browser Web Speech layer with a self-hosted open stack — **Whisper** for capture, **Piper** for synthesis — so audio and text for speech never leave the host machine. Until that ships, text-only mode is the fully-sovereign default.
 - **Scale.** Pilot deployments on institutional hardware will test concurrent load, long-running operation, and larger collections before any production claim is made.
 - **Maintenance.** Documented, institution-run update and backup procedures, so sovereignty does not become fragility — the institution can patch and restore without a vendor.
-- **Model provenance.** A curated, documented set of open-weight models with a clear replacement path, so an institution can swap the model without swapping the system.
+- **Model provenance.** A curated, documented set of open-weight models with a clear replacement path, so an institution can swap the model without swapping the system. The direction is toward models that show their work — **OLMo 2** (Allen Institute for AI: published weights, code, and training data), **Pythia** (EleutherAI: built to be studied), **IBM Granite** (documented, legally-backed data), and corpora such as **PleIAs' Common Corpus** (public-domain and openly-licensed text only) — with certification schemes like **Fairly Trained** as a signal of properly-licensed training data. Open weights make the model a chosen, inspectable, replaceable layer rather than a black box; the institution should always be able to know what is speaking in its name.
 
 Progress against these is tracked in the public roadmap, and this document is revised as each gap closes (§12).
 

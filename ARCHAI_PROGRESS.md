@@ -1,9 +1,48 @@
 # ARCHAI Progress Log
 
-Last updated: 2026-07-10
+Last updated: 2026-07-13
 Maintained as an active handoff note so Claude, Codex, and Rob can quickly see where the work is up to if a session ends or tokens run out.
 
 Primary build planning is now also summarized in [ROADMAP.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ROADMAP.md). Use that for milestone order, and use this file for detailed handoff notes.
+
+## 2026-07-13 Reliability fail-safe + keep-awake, phone nav demo, ethical-models direction
+
+Focused on stopping the recurring "objects won't load" public-demo outages and locking in this week's
+work before pilot outreach begins.
+
+- **Root-caused the recurring outage.** The public app kept going dark because the LaunchAgents kept the
+  **backend** and **cloudflared tunnel** alive, but nothing kept **Docker/Qdrant** alive and nothing kept
+  the **Mac awake**. When Docker stopped (reboot / Docker Desktop not launched / container exit) the backend
+  stayed up with no vector DB, so objects silently failed to load — and no one was alerted until a visitor
+  (or a partner) noticed. Confirmed live this session: Docker was down.
+- **Fix — stack supervisor + keep-awake** (self-healing, flags outages the moment they happen):
+  - New [`backend-archai/scripts/archai-stack-supervisor.sh`](backend-archai/scripts/archai-stack-supervisor.sh):
+    a launchd-run loop that ensures Docker Desktop is running and the Qdrant container is up and answering,
+    and checks Ollama + local backend + the public tunnel end-to-end. Owns the Docker+Qdrant layer (starts
+    them when needed); **flag-only** for backend/tunnel (launchd owns those — no double-start, avoids the old
+    `EADDRINUSE`). Alerts on every state change via a macOS notification, a log line, and an optional
+    `ARCHAI_ALERT_WEBHOOK` (Slack/Discord → phone). Transitions only, so no spam.
+  - [`install-public-launchagents.sh`](backend-archai/scripts/install-public-launchagents.sh) now also
+    installs a **caffeinate** agent (keeps the Mac awake) and the **supervisor** agent, alongside the
+    existing backend + cloudflared agents. All four KeepAlive/RunAtLoad, installed in one loop.
+  - Compose already sets `restart: unless-stopped`; the supervisor covers the case where Docker itself is off.
+  - **To activate on the Mac:** `bash backend-archai/scripts/install-public-launchagents.sh`, tick Docker
+    Desktop → "Start when you sign in", and allow notifications. Optional phone alerts via `ARCHAI_ALERT_WEBHOOK`.
+- **Phone navigation demo** — [`nfc-pages/v/exhibition-map.html`](nfc-pages/v/exhibition-map.html) "A Cabinet
+  of Voices": a mobile-first gallery map with six **real** AUXIO objects wired into the routed wayfinding
+  engine (Dijkstra route, surroundings narration, time-boxed tour). Served from the AUXIO folder → reachable
+  at `/aux/exhibition-map.html`; object cards link to the real `NFC####.html` pages so nav → object audio can
+  be tested end-to-end on a phone. (Also published as a Claude Artifact with absolute live-tunnel links for
+  iPad viewing without the Mac.)
+- **Ethical-models direction made concrete** — data-residency policy §11 model-provenance commitment now
+  names the transparent open models the project is steering toward (OLMo 2, Pythia, IBM Granite, PleIAs'
+  Common Corpus) and the Fairly Trained certification signal, matching the "models that show their work"
+  passage drafted for the Substack essay. Keeps repo and essay in sync.
+- **Status for outreach (starting tomorrow):** git clean and pushed (PR #9), Huggle current. The verification
+  posture — server-enforced read-only public demo (`publicDemoGuard` + `requestContext`), the five-layer
+  grounding / "declines rather than infers", and now the reliability supervisor — is all committed and logged.
+  Reminder: the fail-safe **install step still needs to be run on the Mac** to be active; deploying it is what
+  makes the demo dependable during the mail-out.
 
 ## 2026-07-10 Spatial awareness & wayfinding — design exploration + data-residency policy v0.2
 
