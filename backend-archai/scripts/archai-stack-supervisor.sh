@@ -36,28 +36,35 @@ PUBLIC_HEALTH_URL="https://archai-api.fineartmedia.tech/api/health"
 log() { printf '%s %s\n' "$(date '+%Y-%m-%d %H:%M:%S')" "$*" | tee -a "$LOG"; }
 
 # Alert only on state transitions so we never spam. Track last state per key.
-declare -A STATE
+# File-based, not an associative array, so this runs on stock macOS bash 3.2
+# (declare -A needs bash 4+, which macOS does not ship — using it would make the
+# supervisor die on launch on any Mac without homebrew bash first on PATH).
+STATE_DIR="/tmp/archai-supervisor-state"
+mkdir -p "$STATE_DIR"
 notify() {
-  local title="$1" msg="$2"
+  title="$1"; msg="$2"
   log "ALERT — $title: $msg"
-  osascript -e "display notification \"${msg//\"/\'}\" with title \"${title//\"/\'}\" sound name \"Basso\"" >/dev/null 2>&1 || true
+  safe_msg=$(printf '%s' "$msg" | tr '"' "'")
+  safe_title=$(printf '%s' "$title" | tr '"' "'")
+  osascript -e "display notification \"$safe_msg\" with title \"$safe_title\" sound name \"Basso\"" >/dev/null 2>&1 || true
   if [ -n "${ARCHAI_ALERT_WEBHOOK:-}" ]; then
     curl -fsS -m 8 -X POST -H 'Content-Type: application/json' \
-      -d "{\"text\":\"🛑 ARCHAI — ${title}: ${msg}\"}" "$ARCHAI_ALERT_WEBHOOK" >/dev/null 2>&1 || true
+      -d "{\"text\":\"ARCHAI — ${safe_title}: ${safe_msg}\"}" "$ARCHAI_ALERT_WEBHOOK" >/dev/null 2>&1 || true
   fi
 }
 # mark <key> up|down <human message-on-change>
 mark() {
-  local key="$1" now="$2" msg="$3"
-  local prev="${STATE[$key]:-unknown}"
+  key="$1"; now="$2"; msg="$3"
+  state_file="$STATE_DIR/$key"
+  prev=$(cat "$state_file" 2>/dev/null || printf 'unknown')
   if [ "$now" != "$prev" ]; then
-    STATE[$key]="$now"
+    printf '%s' "$now" > "$state_file"
     if [ "$now" = "down" ]; then notify "$key DOWN" "$msg"; else notify "$key recovered" "$msg"; fi
   fi
 }
 
 docker_up()   { docker info >/dev/null 2>&1; }
-qdrant_up()   { curl -fsS -m 5 http://localhost:6333/readyz >/dev/null 2>&1; }
+qdrant_up()   { curl -fsS -m 5 http://localhost:6333/readyz >/dev/null 2>&1 || curl -fsS -m 5 http://localhost:6333/ >/dev/null 2>&1; }
 ollama_up()   { curl -fsS -m 5 http://localhost:11434/api/tags >/dev/null 2>&1; }
 backend_up()  { curl -fsS -m 6 http://localhost:8787/api/health >/dev/null 2>&1; }
 public_up()   { curl -fsS -m 12 "$PUBLIC_HEALTH_URL" >/dev/null 2>&1; }

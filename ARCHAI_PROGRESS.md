@@ -3,6 +3,13 @@
 Last updated: 2026-07-13
 Maintained as an active handoff note so Claude, Codex, and Rob can quickly see where the work is up to if a session ends or tokens run out.
 
+> **▶ How to resume (read this first).** Any new ARCHAI session — Claude web, Codex, or a fresh
+> terminal — should read the most recent dated entry below **and** the current
+> `⚠️ PRE-OUTREACH VERIFICATION` block before touching anything, then update this file last.
+> This log, not any single chat thread, is the shared source of truth across sessions. Cloud/web
+> Claude cannot reach the local Huggle bus (`localhost:4848`) — it hands off through git here; a
+> Mac-local agent relays into Huggle (see `huggle-relay/`).
+
 Primary build planning is now also summarized in [ROADMAP.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ROADMAP.md). Use that for milestone order, and use this file for detailed handoff notes.
 
 ## 2026-07-13 Reliability fail-safe + keep-awake, phone nav demo, ethical-models direction
