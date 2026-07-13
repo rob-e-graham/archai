@@ -65,6 +65,30 @@ trust it. Reconcile these four on the Mac first thing, because outreach sends pa
 
 Only after 1–3 pass is the public demo safe and dependable for outreach; 4 keeps it that way unattended.
 
+### Session handover — comms, essay, and open decisions (2026-07-13)
+
+Non-code context so the outreach push and any collaborator pick up clean:
+
+- **Outreach starts tomorrow.** Mail-out artifacts are the send pack + CSV (56 orgs) from 2026-07-09.
+  Do the PRE-OUTREACH VERIFICATION above first.
+- **Essay** ("A conversation about museums, memory and mutual relationships") is in editing. Two adds drafted:
+  (a) a "models that show their work" passage — now also reflected in policy §11 so repo and essay match;
+  (b) a short "the fear is real" stance for the *Objects that tell the truth* section. Both are Rob's to place;
+  not repo artifacts. Adeline Ravoux line fact-checked TRUE (Cleveland 1958.31) and backed by a real AUXIO page
+  (`NFC154`), so "you can ask her about herself" is honest.
+- **LinkedIn threads handled.** Jonathan Ben-… (Amanita / Madrona.app): governance/authority critique — replied
+  by positioning ARCHAI as a read-and-interpret layer that defers to the institution's system of record, not a
+  competing store; demo runs on open API data by design. William Rogers: "existential threat vs your tool aren't
+  connected" — replied by conceding the two axes (power/sovereignty vs alignment) and closing warmly.
+- **Warm inbound: muse.run (Talila Yehiel; built by Shani Ziv).** Museum storytelling app — interactive maps +
+  games, cloud SaaS. Collaboration models drafted (ARCHAI as grounded content engine behind their games; the
+  sovereign/on-prem mode they can't offer; accessibility/wayfinding; a one-museum joint pilot). Zoom pending.
+  Guardrail: clean integration seam, keep institutional data + grounding method on ARCHAI's side; do not over-share.
+- **OPEN DECISION — Obtext IP.** "Obtext" is publicly disclosed in the repo (SUBSTACK_DRAFT, whitepaper,
+  ARCHAI_UPDATE) and the essay. RMIT_BV_PRE_SEED_PREP flags a possible Notification of Disclosure. Rob to decide:
+  protect as IP (public disclosure has a clock — talk to RMIT tech-transfer) vs. deliberate open prior-art. Until
+  decided, keep "Obtext" out of public replies/pitches. Not yet resolved.
+
 ## 2026-07-10 Spatial awareness & wayfinding — design exploration + data-residency policy v0.2
 
 New strategic direction: extend ARCHAI from "the object speaks" to "the building can guide you" — a
