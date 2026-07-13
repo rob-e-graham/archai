@@ -113,7 +113,7 @@ Twelve interconnected contributions characterise the research:
 └──────────────────────────────────────────────────────────────────┘
 
 Public access: Visitor device → Cloudflare Tunnel → Backend proxy → Ollama / Qdrant (local)
-Storage: Hot NAS (SSD RAID) · Warm NAS (HDD RAID) · Cold LTO-9 tape (off-site, ransomware-immune)
+Storage (target architecture): tiered NAS + off-site LTO-9 tape — planned, not yet in place. The current research instance runs on the Mac Studio's local storage.
 Compute: Apple Mac Studio M4 Max · 64GB Unified Memory · under 120W at full inference
 ```
 
@@ -129,7 +129,7 @@ Compute: Apple Mac Studio M4 Max · 64GB Unified Memory · under 120W at full in
 | Ghost / Directus | Headless CMS · curator interpretation layer |
 | Browser SpeechRecognition / SpeechSynthesis | Current voice input + read-aloud (demo path — audio may be processed by the browser vendor) |
 | Whisper + Piper/Coqui (in development) | Planned self-hosted speech stack — keeps all audio on institutional hardware |
-| Proxmox VE | VM snapshots · behaviour preservation for AI artworks |
+| Proxmox VE *(planned)* | VM snapshots · behaviour preservation for AI artworks — not in the current single-machine instance |
 
 ---
 
