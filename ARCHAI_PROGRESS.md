@@ -44,6 +44,27 @@ work before pilot outreach begins.
   Reminder: the fail-safe **install step still needs to be run on the Mac** to be active; deploying it is what
   makes the demo dependable during the mail-out.
 
+### ⚠️ PRE-OUTREACH VERIFICATION (run on the Mac before mailing — supersedes the stale 2026-07-09 "Deploy state")
+
+The "Deploy state" block in the 2026-07-09 entry below is **out of date** (it predates later deploys). Do not
+trust it. Reconcile these four on the Mac first thing, because outreach sends partners straight to the live demo:
+
+1. **Services up / objects load.** Phone: `https://archai-api.fineartmedia.tech/aux/random` opens a real
+   object; `https://fineartmedia.tech/app` populates objects with green status dots. (If not: `open -ga Docker`
+   then `docker start archai_qdrant`.)
+2. **Read-only lockdown IS live** (the real risk — verify, don't assume). Any request to the public hostname
+   comes through Cloudflare = `demo` role, so a blocked write must 403. Test from anywhere:
+   `curl -s -o /dev/null -w "%{http_code}\n" -X POST https://archai-api.fineartmedia.tech/api/comments -H 'content-type: application/json' -d '{}'`
+   → must print **403** (and the body carries `demo_read_only`). A **200/500 here means the backend is running
+   WITHOUT the lockdown** — restart it from the branch before any outreach (two-step deploy in the 2026-07-09 entry).
+3. **Live frontend build is current.** `curl -s https://fineartmedia.tech/app | grep -o 'Build v[0-9.]*' | head -1`
+   → should read the latest build (v11.6.15), not v11.6.11. If stale: `node deploy-web-app.mjs` on the Mac.
+4. **Fail-safe installed.** After `bash backend-archai/scripts/install-public-launchagents.sh`:
+   `launchctl list | grep famtec` shows all four agents (backend, cloudflared, caffeinate, supervisor);
+   `tail -n 20 /tmp/archai-supervisor.launchd.log` shows healthy checks.
+
+Only after 1–3 pass is the public demo safe and dependable for outreach; 4 keeps it that way unattended.
+
 ## 2026-07-10 Spatial awareness & wayfinding — design exploration + data-residency policy v0.2
 
 New strategic direction: extend ARCHAI from "the object speaks" to "the building can guide you" — a
