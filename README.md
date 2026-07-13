@@ -107,7 +107,7 @@ Twelve interconnected contributions characterise the research:
                        │
 ┌──────────────────────▼───────────────────────────────────────────┐
 │  LAYER 1 — Heritage Foundation Layer (Permanent)                │
-│  CollectiveAccess (CMS) · ResourceSpace (DAMS)                  │
+│  Your CMS/DAMS or open APIs — e.g. CollectiveAccess, EMu, IIIF  │
 │  Canonical records · Artist statements · Conservation reports   │
 │  Primary digital assets — NEVER modified by AI                  │
 └──────────────────────────────────────────────────────────────────┘
@@ -124,8 +124,8 @@ Compute: Apple Mac Studio M4 Max · 64GB Unified Memory · under 120W at full in
 | Qdrant | Vector database · semantic search · self-hosted |
 | Ollama / qwen2.5:32b | Local LLM inference · conversational objects |
 | nomic-embed-text (768-dim) | Open-source embedding model · local |
-| CollectiveAccess | Collection management · Heritage Foundation Layer |
-| ResourceSpace | Digital asset management · canonical media |
+| CollectiveAccess / EMu / TMS *(example CMS)* | A collection source ARCHAI can sit above · connector scaffolded, not run by the demo |
+| ResourceSpace / Preservica *(example DAMS)* | An asset source ARCHAI can sit above · connector scaffolded, not run by the demo |
 | Ghost / Directus | Headless CMS · curator interpretation layer |
 | Browser SpeechRecognition / SpeechSynthesis | Current voice input + read-aloud (demo path — audio may be processed by the browser vendor) |
 | Whisper + Piper/Coqui (in development) | Planned self-hosted speech stack — keeps all audio on institutional hardware |
