@@ -26,7 +26,7 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
-Relevance to your collection: Public API and open access engineering contact; good technical feedback path
+Relevance to your collection: your public API and open-access programme are exactly the kind of well-documented open data ARCHAI is built to use responsibly, and your engineering team's perspective on how it is represented would be genuinely valuable.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -59,7 +59,7 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
-Relevance to your collection: CC0/open access collection; ask for rights/framing feedback and pilot interest
+Relevance to your collection: your CC0 open-access collection is a natural fit for a rights-aware system like this, and I would value your feedback on how the records are framed and whether a small pilot might be of interest.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -92,7 +92,7 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
-Relevance to your collection: CC0 dataset; strong open data precedent; ask open access team
+Relevance to your collection: your CC0 dataset and leadership in open data make you an important reference point for this work, and I would welcome your open-access team's view on how it is represented.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -125,7 +125,7 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
-Relevance to your collection: Major open data image collection; ask data services for rights/framing feedback
+Relevance to your collection: your open-data image collection is one of the richest of its kind, and I would value your data services team's feedback on how the records and their rights are handled.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -158,7 +158,7 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
-Relevance to your collection: Huge CC0 dataset; strong sovereign/local AI demo relevance
+Relevance to your collection: your large CC0 dataset is an ideal way to show that meaningful, sovereign, local AI can work at real scale on openly-licensed cultural data.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -191,7 +191,7 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
-Relevance to your collection: API terms include caching limits and cultural care; important to ask about research cache/refresh cycle
+Relevance to your collection: your API's attention to caching and cultural care matters a great deal to how ARCHAI should behave, and I would like to check I am handling the research cache and refresh cycle in line with your terms.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -224,7 +224,7 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
-Relevance to your collection: CC0 open data; strong open access precedent; ask for representation/rights feedback and possible research conversation
+Relevance to your collection: your CC0 open-access programme set much of the precedent this work builds on, and I would welcome your feedback on representation and rights, and any interest in a research conversation.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -257,7 +257,7 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
-Relevance to your collection: Strong IIIF/API fit; ask digital collections team for feedback
+Relevance to your collection: your IIIF and API infrastructure is a strong technical fit for ARCHAI, and I would value your digital collections team's feedback on how it is used.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -290,7 +290,7 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
-Relevance to your collection: API + IIIF + sensitive health/care collections; good governance conversation
+Relevance to your collection: your API and IIIF access, alongside sensitive health and care material, make you an especially valuable partner for a conversation about responsible governance.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -323,7 +323,7 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
-Relevance to your collection: API source; ask about approved derivative image paths and placeholder handling
+Relevance to your collection: your API is already a source in the prototype, and I would like to check I am using approved derivative image paths and handling placeholders the way your team would want.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -356,7 +356,7 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
-Relevance to your collection: Design collection + Smithsonian ecosystem; strong design metadata fit
+Relevance to your collection: your design collection and rich design metadata, within the Smithsonian ecosystem, are a strong fit for how ARCHAI interprets objects.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -389,7 +389,7 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
-Relevance to your collection: Aggregator rights complexity and multilingual access; ask data services/reuse team
+Relevance to your collection: as a multilingual aggregator with genuinely complex rights, you are an important test of how ARCHAI handles both, and I would value your data services and reuse team's perspective.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -422,7 +422,7 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
-Relevance to your collection: South American open collection perspective; bilingual outreach
+Relevance to your collection: your open collection brings an essential South American perspective to this work, and I would be glad to continue in Portuguese or English, whichever suits your team.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -455,7 +455,7 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
-Relevance to your collection: Open content + vocabularies/AAT; good standards partner
+Relevance to your collection: your Open Content programme and vocabularies such as the AAT make you a natural standards partner for a project built on open, interoperable data.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -488,7 +488,7 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
-Relevance to your collection: Open APIs, national library scale, public cultural access
+Relevance to your collection: your open APIs and national-library scale make you a landmark example of public cultural access, exactly the kind of openness ARCHAI is designed to serve.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -521,7 +521,7 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
-Relevance to your collection: Bilingual contemporary visual culture; ask about preview-media handling
+Relevance to your collection: your bilingual, contemporary visual culture is a strong fit for ARCHAI's multilingual interpretation, and I would like to check I am handling preview media appropriately.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -554,7 +554,7 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
-Relevance to your collection: Video games metadata; ask attribution/linking check
+Relevance to your collection: your video-games metadata lets ARCHAI treat born-digital works as first-class cultural objects, and I would like to confirm I am attributing and linking back to you correctly.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -587,7 +587,7 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
-Relevance to your collection: Open metadata; ask about CC BY attribution and daily-changing metadata
+Relevance to your collection: your open metadata is a strong fit for this work, and I would like to check I am handling CC BY attribution and your regularly-updated records the way your team expects.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -623,7 +623,7 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 
 National Library of Australia / Trove is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
-Why your collection: National discovery service; Trove API; strong federation/data governance relevance
+Why your collection: as a national discovery service, Trove is a natural fit for ARCHAI's federated, sovereignty-first approach to data governance.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -654,7 +654,7 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 
 British Library is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
-Why your collection: Digital collections, metadata, preservation; library-sector fit
+Why your collection: your digital collections, metadata depth and preservation focus make you a strong fit for how ARCHAI serves the library sector.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -685,7 +685,7 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 
 British Museum is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
-Why your collection: Major world collection; sensitive governance/protocol care required
+Why your collection: your collection's global significance, and the governance and protocol care it rightly demands, is exactly the kind of context ARCHAI is designed to respect.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -716,7 +716,7 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 
 Brooklyn Museum is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
-Why your collection: Transparent rights fields/open collection model
+Why your collection: your transparent rights fields and open-collection model are a natural match for a rights-aware system like ARCHAI.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -747,7 +747,7 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 
 Brussels Open Data is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
-Why your collection: Street-art/public culture dataset; CC BY 4.0 attribution check
+Why your collection: your street-art and public-culture data extends ARCHAI beyond museum walls, and I would want to confirm I am handling CC BY 4.0 attribution correctly.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -778,7 +778,7 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 
 DigitalNZ is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
-Why your collection: Aotearoa aggregation; partner rights gates; multilingual/regional breadth
+Why your collection: your Aotearoa aggregation, partner rights gates and regional breadth make you a strong fit for ARCHAI's multilingual, rights-respecting approach.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -809,7 +809,7 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 
 Harvard Art Museums is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
-Why your collection: Structured API and strong metadata; data quality conversation
+Why your collection: your well-structured API and strong metadata would make you an excellent partner for a conversation about data quality in AI interpretation.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -840,7 +840,7 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 
 MoMA is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
-Why your collection: Modern/contemporary art, media art relevance
+Why your collection: your modern, contemporary and media-art holdings are directly relevant to ARCHAI's work with born-digital and time-based objects.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -871,7 +871,7 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 
 National Gallery, London is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
-Why your collection: Interoperable data and IIIF/images; strong standards case
+Why your collection: your interoperable data and IIIF imagery make a strong standards case for how ARCHAI should handle openly-published collections.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -902,7 +902,7 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 
 Science Museum Group is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
-Why your collection: Science/technology/media/transport collection gap filler
+Why your collection: your science, technology, media and transport holdings fill a genuine gap in the kinds of objects ARCHAI can currently interpret.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -933,7 +933,7 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 
 Canadian Museum of History is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
-Why your collection: National cultural history; future pilot/research target
+Why your collection: your national cultural-history collection would be a compelling future pilot and research partner for this work.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -964,7 +964,7 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 
 LACMA is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
-Why your collection: Large art collection; possible future collection interface test
+Why your collection: your large art collection would be an ideal future test of ARCHAI as a collection-scale interpretive interface.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -995,7 +995,7 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 
 Museo Nacional de Bellas Artes is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
-Why your collection: South American representation beyond Brasiliana
+Why your collection: your collection would broaden ARCHAI's South American representation beyond its current Brazilian source.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -1026,7 +1026,7 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 
 National Gallery of Canada is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
-Why your collection: National art collection; future comparative open collection candidate
+Why your collection: your national art collection would be a strong future candidate for comparative work across open collections.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -1057,7 +1057,7 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 
 National Museum of Korea is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
-Why your collection: Major Korean collection; future multilingual access case
+Why your collection: your collection would be a significant future case for ARCHAI's multilingual access, opening Korean heritage to more visitors in their own language.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -1088,7 +1088,7 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 
 National Palace Museum is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
-Why your collection: Major Asian collection; multilingual/cross-cultural interpretation relevance
+Why your collection: your collection is directly relevant to ARCHAI's multilingual, cross-cultural interpretation of major Asian holdings.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -1119,7 +1119,7 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 
 Royal Ontario Museum is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
-Why your collection: Natural/cultural history breadth; future pilot target
+Why your collection: your breadth across natural and cultural history would make you a strong future pilot for ARCHAI.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -1150,7 +1150,7 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 
 Tokyo National Museum is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
-Why your collection: Major Asian collection; multilingual interpretation future case
+Why your collection: your collection would be an important future case for ARCHAI's multilingual interpretation of major Asian heritage.
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -1182,7 +1182,7 @@ I hope you're well. My name is Rob Graham — a Melbourne-based creative technol
 
 I'm developing ARCHAI, an open-source, local-first toolkit for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and adds rights-aware semantic search, staff-facing collection intelligence, and AUXIO conversational visitor pages. The core idea is simple: collection data and visitor interaction stay under the institution's control.
 
-I thought ACMI could be a strong fit because Born-digital, screen culture, time-based media; strong ARCHAI preservation/replay fit
+I thought ACMI could be a strong fit because your born-digital, screen-culture and time-based collections are exactly where ARCHAI's preservation and replay work is most useful.
 
 A working demonstration is already running across open collection records, and a pilot could be scoped to a small, low-risk set of approved records — with rights, terminology, cultural protocols and publication rules set by your team.
 
@@ -1213,7 +1213,7 @@ I hope you're well. My name is Rob Graham — a Melbourne-based creative technol
 
 I'm developing ARCHAI, an open-source, local-first toolkit for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and adds rights-aware semantic search, staff-facing collection intelligence, and AUXIO conversational visitor pages. The core idea is simple: collection data and visitor interaction stay under the institution's control.
 
-I thought Heide Museum of Modern Art could be a strong fit because Outdoor/sculpture/garden QR/NFC pilot; warm prior work context
+I thought Heide Museum of Modern Art could be a strong fit because your outdoor sculpture and garden setting is a natural home for a QR/NFC wayfinding and interpretation pilot, and we have had warm contact before.
 
 A working demonstration is already running across open collection records, and a pilot could be scoped to a small, low-risk set of approved records — with rights, terminology, cultural protocols and publication rules set by your team.
 
@@ -1244,7 +1244,7 @@ I hope you're well. My name is Rob Graham — a Melbourne-based creative technol
 
 I'm developing ARCHAI, an open-source, local-first toolkit for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and adds rights-aware semantic search, staff-facing collection intelligence, and AUXIO conversational visitor pages. The core idea is simple: collection data and visitor interaction stay under the institution's control.
 
-I thought Museums Victoria could be a strong fit because Founding/demo collection; local relationship; best pilot prospect
+I thought Museums Victoria could be a strong fit because your collection has been part of ARCHAI's development from the start, you are local to me, and I think you would make an ideal first pilot.
 
 A working demonstration is already running across open collection records, and a pilot could be scoped to a small, low-risk set of approved records — with rights, terminology, cultural protocols and publication rules set by your team.
 
@@ -1275,7 +1275,7 @@ I hope you're well. My name is Rob Graham — a Melbourne-based creative technol
 
 I'm developing ARCHAI, an open-source, local-first toolkit for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and adds rights-aware semantic search, staff-facing collection intelligence, and AUXIO conversational visitor pages. The core idea is simple: collection data and visitor interaction stay under the institution's control.
 
-I thought NFSA could be a strong fit because Audiovisual, games, new media, preservation; strong ARCHAI direction
+I thought NFSA could be a strong fit because your audiovisual, games and new-media holdings, and your preservation focus, sit right at the centre of where ARCHAI is heading.
 
 A working demonstration is already running across open collection records, and a pilot could be scoped to a small, low-risk set of approved records — with rights, terminology, cultural protocols and publication rules set by your team.
 
@@ -1306,7 +1306,7 @@ I hope you're well. My name is Rob Graham — a Melbourne-based creative technol
 
 I'm developing ARCHAI, an open-source, local-first toolkit for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and adds rights-aware semantic search, staff-facing collection intelligence, and AUXIO conversational visitor pages. The core idea is simple: collection data and visitor interaction stay under the institution's control.
 
-I thought National Museum of Australia could be a strong fit because Collection API with public domain/CC images; national history depth
+I thought National Museum of Australia could be a strong fit because your collection API with public-domain and CC imagery, and your depth in national history, are a strong match for ARCHAI.
 
 A working demonstration is already running across open collection records, and a pilot could be scoped to a small, low-risk set of approved records — with rights, terminology, cultural protocols and publication rules set by your team.
 
@@ -1337,7 +1337,7 @@ I hope you're well. My name is Rob Graham — a Melbourne-based creative technol
 
 I'm developing ARCHAI, an open-source, local-first toolkit for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and adds rights-aware semantic search, staff-facing collection intelligence, and AUXIO conversational visitor pages. The core idea is simple: collection data and visitor interaction stay under the institution's control.
 
-I thought Powerhouse Museum / MAAS could be a strong fit because Technology-rich collection; CC BY/API candidate; strong applied arts/science fit
+I thought Powerhouse Museum / MAAS could be a strong fit because your technology-rich collection and your applied-arts and science focus are a strong fit for ARCHAI, and your CC BY / API access makes it practical.
 
 A working demonstration is already running across open collection records, and a pilot could be scoped to a small, low-risk set of approved records — with rights, terminology, cultural protocols and publication rules set by your team.
 
@@ -1368,7 +1368,7 @@ I hope you're well. My name is Rob Graham — a Melbourne-based creative technol
 
 I'm developing ARCHAI, an open-source, local-first toolkit for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and adds rights-aware semantic search, staff-facing collection intelligence, and AUXIO conversational visitor pages. The core idea is simple: collection data and visitor interaction stay under the institution's control.
 
-I thought QAGOMA could be a strong fit because Asia-Pacific collection strength; ask about approved image path and possible pilot
+I thought QAGOMA could be a strong fit because your Asia-Pacific collection strength is a compelling fit for ARCHAI, and I would love to talk about an approved image path and a possible pilot.
 
 A working demonstration is already running across open collection records, and a pilot could be scoped to a small, low-risk set of approved records — with rights, terminology, cultural protocols and publication rules set by your team.
 
@@ -1399,7 +1399,7 @@ I hope you're well. My name is Rob Graham — a Melbourne-based creative technol
 
 I'm developing ARCHAI, an open-source, local-first toolkit for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and adds rights-aware semantic search, staff-facing collection intelligence, and AUXIO conversational visitor pages. The core idea is simple: collection data and visitor interaction stay under the institution's control.
 
-I thought State Library Victoria could be a strong fit because Digitised collections, oral histories, public access; strong library-sector test
+I thought State Library Victoria could be a strong fit because your digitised collections, oral histories and public-access mission would make a strong library-sector test for ARCHAI.
 
 A working demonstration is already running across open collection records, and a pilot could be scoped to a small, low-risk set of approved records — with rights, terminology, cultural protocols and publication rules set by your team.
 
@@ -1430,7 +1430,7 @@ I hope you're well. My name is Rob Graham — a Melbourne-based creative technol
 
 I'm developing ARCHAI, an open-source, local-first toolkit for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and adds rights-aware semantic search, staff-facing collection intelligence, and AUXIO conversational visitor pages. The core idea is simple: collection data and visitor interaction stay under the institution's control.
 
-I thought TarraWarra Museum of Art could be a strong fit because Regional gallery AUX.IO interpretation pilot; warm prior relationship
+I thought TarraWarra Museum of Art could be a strong fit because your regional gallery would be an ideal setting for an AUXIO interpretation pilot, and we have had a warm relationship already.
 
 A working demonstration is already running across open collection records, and a pilot could be scoped to a small, low-risk set of approved records — with rights, terminology, cultural protocols and publication rules set by your team.
 
@@ -1461,7 +1461,7 @@ I hope you're well. My name is Rob Graham — a Melbourne-based creative technol
 
 I'm developing ARCHAI, an open-source, local-first toolkit for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and adds rights-aware semantic search, staff-facing collection intelligence, and AUXIO conversational visitor pages. The core idea is simple: collection data and visitor interaction stay under the institution's control.
 
-I thought National Gallery of Australia could be a strong fit because flagship national gallery; interpretation/visitor-experience framing and open-collection conversation — credibility for the Australian coalition.
+I thought National Gallery of Australia could be a strong fit because as a flagship national gallery, your work on interpretation and visitor experience, and an open-collection conversation, would mean a great deal to this project.
 
 A working demonstration is already running across open collection records, and a pilot could be scoped to a small, low-risk set of approved records — with rights, terminology, cultural protocols and publication rules set by your team.
 
@@ -1492,7 +1492,7 @@ I hope you're well. My name is Rob Graham — a Melbourne-based creative technol
 
 I'm developing ARCHAI, an open-source, local-first toolkit for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and adds rights-aware semantic search, staff-facing collection intelligence, and AUXIO conversational visitor pages. The core idea is simple: collection data and visitor interaction stay under the institution's control.
 
-I thought National Gallery of Victoria could be a strong fit because Visitor interpretation, access, exhibition tech; flagship credibility
+I thought National Gallery of Victoria could be a strong fit because your leadership in visitor interpretation, access and exhibition technology makes you an ideal flagship partner for ARCHAI.
 
 A working demonstration is already running across open collection records, and a pilot could be scoped to a small, low-risk set of approved records — with rights, terminology, cultural protocols and publication rules set by your team.
 
