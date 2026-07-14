@@ -95,6 +95,25 @@ Non-code context so the outreach push and any collaborator pick up clean:
   ARCHAI_UPDATE) and the essay. RMIT_BV_PRE_SEED_PREP flags a possible Notification of Disclosure. Rob to decide:
   protect as IP (public disclosure has a clock — talk to RMIT tech-transfer) vs. deliberate open prior-art. Until
   decided, keep "Obtext" out of public replies/pitches. Not yet resolved.
+- **CLIENT TRACK — Musean (Olivier Joureau, my.musean.xyz).** Virtual museum of Afro-diasporic heritage
+  (Iconothèque des Caraïbes, MFN, MUSIK etc.), digital-first, no legacy CMS. Wants ARCHAI as its intelligent
+  layer. Framed as FAMTEC's first client engagement: software stays open source, Rob's time quoted at
+  $150 AUD/h. Proposed ladder: **proof of voice** (20–30 exported records → a handful of speaking objects
+  hosted from the studio, ~15–20h) → discovery (~20h, fixed quote out) → pilot (~98h: adapter+gating, node
+  on their own Mac mini + NAS (~€1.5–2.5k hardware), FR/EN search, 20–50 community-reviewed speaking
+  objects, integration+handover). Key risks logged: FR-first embeddings (nomic is EN-leaning — test bge-m3),
+  colonial-era rights murk, community-authority question asked up front. Olivier keen; Zoom pending.
+- **CHANNEL TRACK — ResourceSpace (Dan).** Replied to outreach with sharp product questions + an offer to
+  gauge interest across their arts-heritage customers. Reply drafted answering all questions in order;
+  concrete next step offered: proof-of-concept read connector against an RS instance (fits the harvester
+  pattern; would make the README's "connector scaffolded" true). NOTE: live demo links in these emails
+  (piano NFC495 etc.) require the Mac stack up — fail-safe install matters before sends.
+- **Design thinking added:** [`docs/ARCHAI_CURIOSITY_DESIGN_NOTES.md`](docs/ARCHAI_CURIOSITY_DESIGN_NOTES.md) —
+  Le Cunff (NYT, 8 Jul 2026) on curiosity: the question-answer gap is where learning happens; AI summaries
+  close the window; "questions become endpoints." Maps her asks onto ARCHAI (decline-not-invent = window held
+  open; visible sources; contribution pathway as competing voices) and adopts design rules: **answer +
+  doorway** in AUXIO prompts, "open questions" as page content, engineered serendipity in related objects,
+  slow modes as a feature. Cite her in the essay's honesty passage.
 
 ## 2026-07-10 Spatial awareness & wayfinding — design exploration + data-residency policy v0.2
 
