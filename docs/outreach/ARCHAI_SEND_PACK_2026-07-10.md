@@ -18,7 +18,7 @@ _Generated 2026-07-09. Contacts verified against the two contact databases + liv
 ```
 Subject: ARCHAI research prototype using your open collection data
 
-Hi [Open Access / Digital Collections team],
+Hi Art Institute of Chicago Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -27,6 +27,8 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
 Relevance to your collection: your public API and open-access programme are exactly the kind of well-documented open data ARCHAI is built to use responsibly, and your engineering team's perspective on how it is represented would be genuinely valuable.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -51,7 +53,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI research prototype using your open collection data
 
-Hi [Open Access / Digital Collections team],
+Hi Cleveland Museum of Art Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -60,6 +62,8 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
 Relevance to your collection: your CC0 open-access collection is a natural fit for a rights-aware system like this, and I would value your feedback on how the records are framed and whether a small pilot might be of interest.
+
+Two of your own records are already speaking — try the Red-Figure Fish Plate (https://archai-api.fineartmedia.tech/aux/NFC198.html) or Van Gogh's portrait of Adeline Ravoux (https://archai-api.fineartmedia.tech/aux/NFC154.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -84,7 +88,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI research prototype using your open collection data
 
-Hi [Open Access / Digital Collections team],
+Hi National Gallery of Art Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -93,6 +97,8 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
 Relevance to your collection: your CC0 dataset and leadership in open data make you an important reference point for this work, and I would welcome your open-access team's view on how it is represented.
+
+One of your own records is already speaking — Advance of the Skirmish Line will answer questions grounded strictly in its record: https://archai-api.fineartmedia.tech/aux/NFC746.html The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -117,7 +123,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI research prototype using your open collection data
 
-Hi [Open Access / Digital Collections team],
+Hi Rijksmuseum Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -126,6 +132,8 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
 Relevance to your collection: your open-data image collection is one of the richest of its kind, and I would value your data services team's feedback on how the records and their rights are handled.
+
+One of your own records is already speaking — the portrait of Floris V will answer questions grounded strictly in its record: https://archai-api.fineartmedia.tech/aux/NFC1000.html The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -150,7 +158,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI research prototype using your open collection data
 
-Hi [Open Access / Digital Collections team],
+Hi Smithsonian Institution Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -159,6 +167,8 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
 Relevance to your collection: your large CC0 dataset is an ideal way to show that meaningful, sovereign, local AI can work at real scale on openly-licensed cultural data.
+
+One of your own records is already speaking — your Beechcraft King Air 65-90 will answer questions grounded strictly in its record: https://archai-api.fineartmedia.tech/aux/NFC1230.html The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -183,7 +193,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI research prototype using your open collection data
 
-Hi [Open Access / Digital Collections team],
+Hi Te Papa Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -192,6 +202,8 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
 Relevance to your collection: your API's attention to caching and cultural care matters a great deal to how ARCHAI should behave, and I would like to check I am handling the research cache and refresh cycle in line with your terms.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -216,7 +228,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI research prototype using your open collection data
 
-Hi [Open Access / Digital Collections team],
+Hi Metropolitan Museum of Art Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -225,6 +237,8 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
 Relevance to your collection: your CC0 open-access programme set much of the precedent this work builds on, and I would welcome your feedback on representation and rights, and any interest in a research conversation.
+
+One of your own records is already speaking — your 1720 Cristofori grand piano, the oldest surviving piano in the world, will answer questions grounded strictly in its record: https://archai-api.fineartmedia.tech/aux/NFC495.html The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -249,7 +263,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI research prototype using your open collection data
 
-Hi [Open Access / Digital Collections team],
+Hi Victoria and Albert Museum Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -258,6 +272,8 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
 Relevance to your collection: your IIIF and API infrastructure is a strong technical fit for ARCHAI, and I would value your digital collections team's feedback on how it is used.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -282,7 +298,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI research prototype using your open collection data
 
-Hi [Open Access / Digital Collections team],
+Hi Wellcome Collection Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -291,6 +307,8 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
 Relevance to your collection: your API and IIIF access, alongside sensitive health and care material, make you an especially valuable partner for a conversation about responsible governance.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -315,7 +333,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI research prototype using your open collection data
 
-Hi [Open Access / Digital Collections team],
+Hi Auckland War Memorial Museum Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -324,6 +342,8 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
 Relevance to your collection: your API is already a source in the prototype, and I would like to check I am using approved derivative image paths and handling placeholders the way your team would want.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -348,7 +368,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI research prototype using your open collection data
 
-Hi [Open Access / Digital Collections team],
+Hi Cooper Hewitt Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -357,6 +377,8 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
 Relevance to your collection: your design collection and rich design metadata, within the Smithsonian ecosystem, are a strong fit for how ARCHAI interprets objects.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -381,7 +403,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI research prototype using your open collection data
 
-Hi [Open Access / Digital Collections team],
+Hi Europeana Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -390,6 +412,8 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
 Relevance to your collection: as a multilingual aggregator with genuinely complex rights, you are an important test of how ARCHAI handles both, and I would value your data services and reuse team's perspective.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -414,7 +438,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI research prototype using your open collection data
 
-Hi [Open Access / Digital Collections team],
+Hi Brasiliana Museus Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -423,6 +447,8 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
 Relevance to your collection: your open collection brings an essential South American perspective to this work, and I would be glad to continue in Portuguese or English, whichever suits your team.
+
+One of your own records is already speaking — an estampa religiosa from Brasiliana will answer questions grounded strictly in its record: https://archai-api.fineartmedia.tech/aux/NFC120.html The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -447,7 +473,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI research prototype using your open collection data
 
-Hi [Open Access / Digital Collections team],
+Hi Getty Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -456,6 +482,8 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
 Relevance to your collection: your Open Content programme and vocabularies such as the AAT make you a natural standards partner for a project built on open, interoperable data.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -480,7 +508,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI research prototype using your open collection data
 
-Hi [Open Access / Digital Collections team],
+Hi Library of Congress Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -489,6 +517,8 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
 Relevance to your collection: your open APIs and national-library scale make you a landmark example of public cultural access, exactly the kind of openness ARCHAI is designed to serve.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -513,7 +543,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI research prototype using your open collection data
 
-Hi [Open Access / Digital Collections team],
+Hi M+ Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -522,6 +552,8 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
 Relevance to your collection: your bilingual, contemporary visual culture is a strong fit for ARCHAI's multilingual interpretation, and I would like to check I am handling preview media appropriately.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -546,7 +578,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI research prototype using your open collection data
 
-Hi [Open Access / Digital Collections team],
+Hi RAWG Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -555,6 +587,8 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
 Relevance to your collection: your video-games metadata lets ARCHAI treat born-digital works as first-class cultural objects, and I would like to confirm I am attributing and linking back to you correctly.
+
+One of the records is already speaking — Tetris (1984), talking as a first-class cultural object: https://archai-api.fineartmedia.tech/aux/NFC883.html The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -579,7 +613,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI research prototype using your open collection data
 
-Hi [Open Access / Digital Collections team],
+Hi Tate Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -588,6 +622,8 @@ I'm writing because ARCHAI currently includes a carefully selected subset of rec
 ARCHAI is an open-source, local-first research prototype for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and supports rights-aware semantic search, staff-facing collection interrogation, and AUXIO object-level visitor pages. The preferred deployment keeps collection data, vector search and AI inference under institutional control.
 
 Relevance to your collection: your open metadata is a strong fit for this work, and I would like to check I am handling CC BY attribution and your regularly-updated records the way your team expects.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -615,7 +651,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — a research prototype that could include your open collection
 
-Hi [Open Access / Digital Collections team],
+Hi National Library of Australia Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -624,6 +660,8 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 National Library of Australia / Trove is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
 Why your collection: as a national discovery service, Trove is a natural fit for ARCHAI's federated, sovereignty-first approach to data governance.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -646,7 +684,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — a research prototype that could include your open collection
 
-Hi [Open Access / Digital Collections team],
+Hi British Library Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -655,6 +693,8 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 British Library is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
 Why your collection: your digital collections, metadata depth and preservation focus make you a strong fit for how ARCHAI serves the library sector.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -677,7 +717,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — a research prototype that could include your open collection
 
-Hi [Open Access / Digital Collections team],
+Hi British Museum Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -686,6 +726,8 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 British Museum is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
 Why your collection: your collection's global significance, and the governance and protocol care it rightly demands, is exactly the kind of context ARCHAI is designed to respect.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -708,7 +750,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — a research prototype that could include your open collection
 
-Hi [Open Access / Digital Collections team],
+Hi Brooklyn Museum Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -717,6 +759,8 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 Brooklyn Museum is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
 Why your collection: your transparent rights fields and open-collection model are a natural match for a rights-aware system like ARCHAI.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -739,7 +783,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — a research prototype that could include your open collection
 
-Hi [Open Access / Digital Collections team],
+Hi Brussels Open Data Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -748,6 +792,8 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 Brussels Open Data is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
 Why your collection: your street-art and public-culture data extends ARCHAI beyond museum walls, and I would want to confirm I am handling CC BY 4.0 attribution correctly.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -770,7 +816,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — a research prototype that could include your open collection
 
-Hi [Open Access / Digital Collections team],
+Hi DigitalNZ Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -779,6 +825,8 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 DigitalNZ is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
 Why your collection: your Aotearoa aggregation, partner rights gates and regional breadth make you a strong fit for ARCHAI's multilingual, rights-respecting approach.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -801,7 +849,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — a research prototype that could include your open collection
 
-Hi [Open Access / Digital Collections team],
+Hi Harvard Art Museums Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -810,6 +858,8 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 Harvard Art Museums is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
 Why your collection: your well-structured API and strong metadata would make you an excellent partner for a conversation about data quality in AI interpretation.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -832,7 +882,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — a research prototype that could include your open collection
 
-Hi [Open Access / Digital Collections team],
+Hi MoMA Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -841,6 +891,8 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 MoMA is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
 Why your collection: your modern, contemporary and media-art holdings are directly relevant to ARCHAI's work with born-digital and time-based objects.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -863,7 +915,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — a research prototype that could include your open collection
 
-Hi [Open Access / Digital Collections team],
+Hi National Gallery, London Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -872,6 +924,8 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 National Gallery, London is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
 Why your collection: your interoperable data and IIIF imagery make a strong standards case for how ARCHAI should handle openly-published collections.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -894,7 +948,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — a research prototype that could include your open collection
 
-Hi [Open Access / Digital Collections team],
+Hi Science Museum Group Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -903,6 +957,8 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 Science Museum Group is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
 Why your collection: your science, technology, media and transport holdings fill a genuine gap in the kinds of objects ARCHAI can currently interpret.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -925,7 +981,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — a research prototype that could include your open collection
 
-Hi [Open Access / Digital Collections team],
+Hi Canadian Museum of History Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -934,6 +990,8 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 Canadian Museum of History is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
 Why your collection: your national cultural-history collection would be a compelling future pilot and research partner for this work.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -956,7 +1014,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — a research prototype that could include your open collection
 
-Hi [Open Access / Digital Collections team],
+Hi LACMA Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -965,6 +1023,8 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 LACMA is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
 Why your collection: your large art collection would be an ideal future test of ARCHAI as a collection-scale interpretive interface.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -987,7 +1047,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — a research prototype that could include your open collection
 
-Hi [Open Access / Digital Collections team],
+Hi Museo Nacional de Bellas Artes Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -996,6 +1056,8 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 Museo Nacional de Bellas Artes is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
 Why your collection: your collection would broaden ARCHAI's South American representation beyond its current Brazilian source.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -1018,7 +1080,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — a research prototype that could include your open collection
 
-Hi [Open Access / Digital Collections team],
+Hi National Gallery of Canada Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -1027,6 +1089,8 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 National Gallery of Canada is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
 Why your collection: your national art collection would be a strong future candidate for comparative work across open collections.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -1049,7 +1113,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — a research prototype that could include your open collection
 
-Hi [Open Access / Digital Collections team],
+Hi National Museum of Korea Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -1058,6 +1122,8 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 National Museum of Korea is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
 Why your collection: your collection would be a significant future case for ARCHAI's multilingual access, opening Korean heritage to more visitors in their own language.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -1080,7 +1146,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — a research prototype that could include your open collection
 
-Hi [Open Access / Digital Collections team],
+Hi National Palace Museum Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -1089,6 +1155,8 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 National Palace Museum is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
 Why your collection: your collection is directly relevant to ARCHAI's multilingual, cross-cultural interpretation of major Asian holdings.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -1111,7 +1179,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — a research prototype that could include your open collection
 
-Hi [Open Access / Digital Collections team],
+Hi Royal Ontario Museum Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -1120,6 +1188,8 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 Royal Ontario Museum is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
 Why your collection: your breadth across natural and cultural history would make you a strong future pilot for ARCHAI.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -1142,7 +1212,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — a research prototype that could include your open collection
 
-Hi [Open Access / Digital Collections team],
+Hi Tokyo National Museum Open Access / Digital Collections team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -1151,6 +1221,8 @@ I'm developing ARCHAI, an open-source, local-first research prototype for museum
 Tokyo National Museum is a strong candidate to include next, using only your published open/CC data and preserving attribution, source links and item-level rights. Before harvesting anything, I wanted to introduce myself and check you'd be comfortable with a small, clearly-labelled research subset — and correct, restrict or remove anything on request.
 
 Why your collection: your collection would be an important future case for ARCHAI's multilingual interpretation of major Asian heritage.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -1176,13 +1248,15 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — sovereign collection AI research pilot conversation
 
-Hi [Team],
+Hi ACMI team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
 I'm developing ARCHAI, an open-source, local-first toolkit for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and adds rights-aware semantic search, staff-facing collection intelligence, and AUXIO conversational visitor pages. The core idea is simple: collection data and visitor interaction stay under the institution's control.
 
 I thought ACMI could be a strong fit because your born-digital, screen-culture and time-based collections are exactly where ARCHAI's preservation and replay work is most useful.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 A working demonstration is already running across open collection records, and a pilot could be scoped to a small, low-risk set of approved records — with rights, terminology, cultural protocols and publication rules set by your team.
 
@@ -1207,13 +1281,15 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — sovereign collection AI research pilot conversation
 
-Hi [Team],
+Hi Heide Museum of Modern Art team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
 I'm developing ARCHAI, an open-source, local-first toolkit for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and adds rights-aware semantic search, staff-facing collection intelligence, and AUXIO conversational visitor pages. The core idea is simple: collection data and visitor interaction stay under the institution's control.
 
 I thought Heide Museum of Modern Art could be a strong fit because your outdoor sculpture and garden setting is a natural home for a QR/NFC wayfinding and interpretation pilot, and we have had warm contact before.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 A working demonstration is already running across open collection records, and a pilot could be scoped to a small, low-risk set of approved records — with rights, terminology, cultural protocols and publication rules set by your team.
 
@@ -1238,13 +1314,15 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — sovereign collection AI research pilot conversation
 
-Hi [Team],
+Hi Museums Victoria team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
 I'm developing ARCHAI, an open-source, local-first toolkit for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and adds rights-aware semantic search, staff-facing collection intelligence, and AUXIO conversational visitor pages. The core idea is simple: collection data and visitor interaction stay under the institution's control.
 
 I thought Museums Victoria could be a strong fit because your collection has been part of ARCHAI's development from the start, you are local to me, and I think you would make an ideal first pilot.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 A working demonstration is already running across open collection records, and a pilot could be scoped to a small, low-risk set of approved records — with rights, terminology, cultural protocols and publication rules set by your team.
 
@@ -1269,13 +1347,15 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — sovereign collection AI research pilot conversation
 
-Hi [Team],
+Hi NFSA team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
 I'm developing ARCHAI, an open-source, local-first toolkit for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and adds rights-aware semantic search, staff-facing collection intelligence, and AUXIO conversational visitor pages. The core idea is simple: collection data and visitor interaction stay under the institution's control.
 
 I thought NFSA could be a strong fit because your audiovisual, games and new-media holdings, and your preservation focus, sit right at the centre of where ARCHAI is heading.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 A working demonstration is already running across open collection records, and a pilot could be scoped to a small, low-risk set of approved records — with rights, terminology, cultural protocols and publication rules set by your team.
 
@@ -1300,13 +1380,15 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — sovereign collection AI research pilot conversation
 
-Hi [Team],
+Hi National Museum of Australia team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
 I'm developing ARCHAI, an open-source, local-first toolkit for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and adds rights-aware semantic search, staff-facing collection intelligence, and AUXIO conversational visitor pages. The core idea is simple: collection data and visitor interaction stay under the institution's control.
 
 I thought National Museum of Australia could be a strong fit because your collection API with public-domain and CC imagery, and your depth in national history, are a strong match for ARCHAI.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 A working demonstration is already running across open collection records, and a pilot could be scoped to a small, low-risk set of approved records — with rights, terminology, cultural protocols and publication rules set by your team.
 
@@ -1331,13 +1413,15 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — sovereign collection AI research pilot conversation
 
-Hi [Team],
+Hi Powerhouse Museum team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
 I'm developing ARCHAI, an open-source, local-first toolkit for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and adds rights-aware semantic search, staff-facing collection intelligence, and AUXIO conversational visitor pages. The core idea is simple: collection data and visitor interaction stay under the institution's control.
 
 I thought Powerhouse Museum / MAAS could be a strong fit because your technology-rich collection and your applied-arts and science focus are a strong fit for ARCHAI, and your CC BY / API access makes it practical.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 A working demonstration is already running across open collection records, and a pilot could be scoped to a small, low-risk set of approved records — with rights, terminology, cultural protocols and publication rules set by your team.
 
@@ -1362,13 +1446,15 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — sovereign collection AI research pilot conversation
 
-Hi [Team],
+Hi QAGOMA team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
 I'm developing ARCHAI, an open-source, local-first toolkit for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and adds rights-aware semantic search, staff-facing collection intelligence, and AUXIO conversational visitor pages. The core idea is simple: collection data and visitor interaction stay under the institution's control.
 
 I thought QAGOMA could be a strong fit because your Asia-Pacific collection strength is a compelling fit for ARCHAI, and I would love to talk about an approved image path and a possible pilot.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 A working demonstration is already running across open collection records, and a pilot could be scoped to a small, low-risk set of approved records — with rights, terminology, cultural protocols and publication rules set by your team.
 
@@ -1393,13 +1479,15 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — sovereign collection AI research pilot conversation
 
-Hi [Team],
+Hi State Library Victoria team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
 I'm developing ARCHAI, an open-source, local-first toolkit for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and adds rights-aware semantic search, staff-facing collection intelligence, and AUXIO conversational visitor pages. The core idea is simple: collection data and visitor interaction stay under the institution's control.
 
 I thought State Library Victoria could be a strong fit because your digitised collections, oral histories and public-access mission would make a strong library-sector test for ARCHAI.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 A working demonstration is already running across open collection records, and a pilot could be scoped to a small, low-risk set of approved records — with rights, terminology, cultural protocols and publication rules set by your team.
 
@@ -1424,13 +1512,15 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — sovereign collection AI research pilot conversation
 
-Hi [Team],
+Hi TarraWarra Museum of Art team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
 I'm developing ARCHAI, an open-source, local-first toolkit for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and adds rights-aware semantic search, staff-facing collection intelligence, and AUXIO conversational visitor pages. The core idea is simple: collection data and visitor interaction stay under the institution's control.
 
 I thought TarraWarra Museum of Art could be a strong fit because your regional gallery would be an ideal setting for an AUXIO interpretation pilot, and we have had a warm relationship already.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 A working demonstration is already running across open collection records, and a pilot could be scoped to a small, low-risk set of approved records — with rights, terminology, cultural protocols and publication rules set by your team.
 
@@ -1455,13 +1545,15 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — sovereign collection AI research pilot conversation
 
-Hi [Team],
+Hi National Gallery of Australia team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
 I'm developing ARCHAI, an open-source, local-first toolkit for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and adds rights-aware semantic search, staff-facing collection intelligence, and AUXIO conversational visitor pages. The core idea is simple: collection data and visitor interaction stay under the institution's control.
 
 I thought National Gallery of Australia could be a strong fit because as a flagship national gallery, your work on interpretation and visitor experience, and an open-collection conversation, would mean a great deal to this project.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 A working demonstration is already running across open collection records, and a pilot could be scoped to a small, low-risk set of approved records — with rights, terminology, cultural protocols and publication rules set by your team.
 
@@ -1486,13 +1578,15 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — sovereign collection AI research pilot conversation
 
-Hi [Team],
+Hi National Gallery of Victoria team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
 I'm developing ARCHAI, an open-source, local-first toolkit for museums, galleries, libraries and archives. It sits above existing CMS/DAMS systems and adds rights-aware semantic search, staff-facing collection intelligence, and AUXIO conversational visitor pages. The core idea is simple: collection data and visitor interaction stay under the institution's control.
 
 I thought National Gallery of Victoria could be a strong fit because your leadership in visitor interpretation, access and exhibition technology makes you an ideal flagship partner for ARCHAI.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 A working demonstration is already running across open collection records, and a pilot could be scoped to a small, low-risk set of approved records — with rights, terminology, cultural protocols and publication rules set by your team.
 
@@ -1530,6 +1624,8 @@ Why CollectionSpace: Open-source collections management; potential adapter and r
 
 I'd value a short technical conversation about the cleanest integration pattern — field mapping, incremental sync, rights and derivative-media handling — and whether an open connector could be useful to your community.
 
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
+
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
 
@@ -1560,6 +1656,8 @@ I'm developing ARCHAI, an open-source, local-first semantic interface layer for 
 Why CollectiveAccess: Open-source CMS; ARCHAI adapter/federated semantic layer fit
 
 I'd value a short technical conversation about the cleanest integration pattern — field mapping, incremental sync, rights and derivative-media handling — and whether an open connector could be useful to your community.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -1592,6 +1690,8 @@ Why IIIF Consortium: Image interoperability, deep zoom, provenance, media standa
 
 I'd value a short technical conversation about the cleanest integration pattern — field mapping, incremental sync, rights and derivative-media handling — and whether an open connector could be useful to your community.
 
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
+
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
 
@@ -1622,6 +1722,8 @@ I'm developing ARCHAI, an open-source, local-first semantic interface layer for 
 Why Omeka: Omeka S semantic/conversational publishing layer fit
 
 I'd value a short technical conversation about the cleanest integration pattern — field mapping, incremental sync, rights and derivative-media handling — and whether an open connector could be useful to your community.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -1654,6 +1756,8 @@ Why ResourceSpace: Open DAMS; adapter for approved derivatives/permissions
 
 I'd value a short technical conversation about the cleanest integration pattern — field mapping, incremental sync, rights and derivative-media handling — and whether an open connector could be useful to your community.
 
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
+
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
 
@@ -1678,7 +1782,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — a short conversation about GLAM research partnerships
 
-Hi [Name],
+Hi AIATSIS team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -1687,6 +1791,8 @@ I'm developing ARCHAI, an open-source, local-first toolkit that gives museums, g
 I'm reaching out to AIATSIS for guidance rather than a pilot: Indigenous data sovereignty/protocol guidance; advice before sensitive collections
 
 Would you be open to a short conversation? I'd value your read on sector fit, cultural-protocol safeguards, and who else it would be sensible to talk to.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -1707,7 +1813,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — a short conversation about GLAM research partnerships
 
-Hi [Name],
+Hi AMaGA National team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -1716,6 +1822,8 @@ I'm developing ARCHAI, an open-source, local-first toolkit that gives museums, g
 I'm reaching out to AMaGA National for guidance rather than a pilot: Best path to regional/small museums and sector legitimacy
 
 Would you be open to a short conversation? I'd value your read on sector fit, cultural-protocol safeguards, and who else it would be sensible to talk to.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -1736,7 +1844,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — a short conversation about GLAM research partnerships
 
-Hi [Name],
+Hi AMaGA Victoria team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -1745,6 +1853,8 @@ I'm developing ARCHAI, an open-source, local-first toolkit that gives museums, g
 I'm reaching out to AMaGA Victoria for guidance rather than a pilot: Local Victorian network; good regional pilot pathway
 
 Would you be open to a short conversation? I'd value your read on sector fit, cultural-protocol safeguards, and who else it would be sensible to talk to.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
@@ -1765,7 +1875,7 @@ LinkedIn: https://au.linkedin.com/in/rob-graham-a0897a25
 ```
 Subject: ARCHAI — a short conversation about GLAM research partnerships
 
-Hi [Name],
+Hi Local Contexts team,
 
 I hope you're well. My name is Rob Graham — a Melbourne-based creative technologist, founder of FAMTEC, and a PhD researcher in Design at RMIT University.
 
@@ -1774,6 +1884,8 @@ I'm developing ARCHAI, an open-source, local-first toolkit that gives museums, g
 I'm reaching out to Local Contexts for guidance rather than a pilot: TK Labels and cultural authority protocols; vital before sensitive collections
 
 Would you be open to a short conversation? I'd value your read on sector fit, cultural-protocol safeguards, and who else it would be sensible to talk to.
+
+You can meet a couple of the objects already speaking — the Met's 1720 Cristofori grand piano (https://archai-api.fineartmedia.tech/aux/NFC495.html) and a 2,300-year-old Greek fish plate from Cleveland (https://archai-api.fineartmedia.tech/aux/NFC198.html). The thinking behind the project is in my essay, Waking Up the Museum: https://open.substack.com/pub/robgraham1/p/a-manifesto-for-ethical-community?r=3nsjjn
 
 Project: https://fineartmedia.tech/archai
 GitHub: https://github.com/rob-e-graham/archai
