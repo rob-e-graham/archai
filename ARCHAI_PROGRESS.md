@@ -114,11 +114,22 @@ Non-code context so the outreach push and any collaborator pick up clean:
   the object the whole time. Hard rules: mic opens only on deliberate action (no always-listening in a
   public room), dwell ≠ tracking, spoken answers end with a doorway, graceful degradation to NFC tap.
   Phase 0 works on the web today: tap an object, pocket the phone, talk.
-- **INBOUND — Artisan-e (Rassina Hassan), handle with care.** Proposes ARCHAI as ingestion bridge for a
-  "Sovereign Registry" whose engine ("GOd MODe") self-describes as scraping public *and private* heritage
-  archives and selling "high-fidelity tensors for foundational AI lab training." Direct tension with
-  ARCHAI's published ethics (CARE, non-extractive, consent-based) and with the museum outreach in flight.
-  Due diligence before any technical work; opt-in living-artisan registry is the only aligned version.
+- **INBOUND — Artisan-e (Rassina Hassan), handle with care — STATUS: brief requested, quoting path opened.**
+  Proposes ARCHAI as ingestion bridge for a "Sovereign Registry" whose engine ("GOd MODe") self-describes as
+  scraping public *and private* heritage archives and selling "high-fidelity tensors for foundational AI lab
+  training." Direct tension with ARCHAI's published ethics (CARE, non-extractive, consent-based) and with the
+  museum outreach in flight. Notable: her email never mentions conversations — she wants supply/ingestion
+  (ARCHAI's pipes and museum permissions), not what ARCHAI is.
+  - **Action taken:** Rob sent a project-definition request: (1) the job plainly, incl. conversational objects
+    vs ingestion/access; (2) the material + one real worked example (item, owner, permission, downstream);
+    (3) commercial model + value flow back to source; (4) what exists today (site/registry/stack); (5) needs
+    vs wants. Constraints stated in writing up front: opt-in only, rights+attribution travel with records,
+    culturally restricted material excluded without authority, no scraping — built into anything delivered.
+  - **Decision rule when the brief lands:** "I want museum content through your bridge" → decline (permissions
+    were given to ARCHAI for interpretation, not re-licensing). "My clients/creators own the material" →
+    legitimate bespoke FAMTEC engagement (possibly non-ARCHAI-branded; the rights gate travels with the
+    builder either way): Musean playbook, her hardware, time at $150 AUD/h, fixed quote after discovery.
+    Promised outcomes: scoped proposal with costs, or an honest not-a-fit. No technical work before the brief.
 - **Design thinking added:** [`docs/ARCHAI_CURIOSITY_DESIGN_NOTES.md`](docs/ARCHAI_CURIOSITY_DESIGN_NOTES.md) —
   Le Cunff (NYT, 8 Jul 2026) on curiosity: the question-answer gap is where learning happens; AI summaries
   close the window; "questions become endpoints." Maps her asks onto ARCHAI (decline-not-invent = window held
