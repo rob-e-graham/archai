@@ -1,9 +1,350 @@
 # ARCHAI Progress Log
 
-Last updated: 2026-07-02
+Last updated: 2026-07-13
 Maintained as an active handoff note so Claude, Codex, and Rob can quickly see where the work is up to if a session ends or tokens run out.
 
+> **▶ How to resume (read this first).** Any new ARCHAI session — Claude web, Codex, or a fresh
+> terminal — should read the most recent dated entry below **and** the current
+> `⚠️ PRE-OUTREACH VERIFICATION` block before touching anything, then update this file last.
+> This log, not any single chat thread, is the shared source of truth across sessions. Cloud/web
+> Claude cannot reach the local Huggle bus (`localhost:4848`) — it hands off through git here; a
+> Mac-local agent relays into Huggle (see `huggle-relay/`).
+
 Primary build planning is now also summarized in [ROADMAP.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/ROADMAP.md). Use that for milestone order, and use this file for detailed handoff notes.
+
+## 2026-07-13 Reliability fail-safe + keep-awake, phone nav demo, ethical-models direction
+
+Focused on stopping the recurring "objects won't load" public-demo outages and locking in this week's
+work before pilot outreach begins.
+
+- **Root-caused the recurring outage.** The public app kept going dark because the LaunchAgents kept the
+  **backend** and **cloudflared tunnel** alive, but nothing kept **Docker/Qdrant** alive and nothing kept
+  the **Mac awake**. When Docker stopped (reboot / Docker Desktop not launched / container exit) the backend
+  stayed up with no vector DB, so objects silently failed to load — and no one was alerted until a visitor
+  (or a partner) noticed. Confirmed live this session: Docker was down.
+- **Fix — stack supervisor + keep-awake** (self-healing, flags outages the moment they happen):
+  - New [`backend-archai/scripts/archai-stack-supervisor.sh`](backend-archai/scripts/archai-stack-supervisor.sh):
+    a launchd-run loop that ensures Docker Desktop is running and the Qdrant container is up and answering,
+    and checks Ollama + local backend + the public tunnel end-to-end. Owns the Docker+Qdrant layer (starts
+    them when needed); **flag-only** for backend/tunnel (launchd owns those — no double-start, avoids the old
+    `EADDRINUSE`). Alerts on every state change via a macOS notification, a log line, and an optional
+    `ARCHAI_ALERT_WEBHOOK` (Slack/Discord → phone). Transitions only, so no spam.
+  - [`install-public-launchagents.sh`](backend-archai/scripts/install-public-launchagents.sh) now also
+    installs a **caffeinate** agent (keeps the Mac awake) and the **supervisor** agent, alongside the
+    existing backend + cloudflared agents. All four KeepAlive/RunAtLoad, installed in one loop.
+  - Compose already sets `restart: unless-stopped`; the supervisor covers the case where Docker itself is off.
+  - **To activate on the Mac:** `bash backend-archai/scripts/install-public-launchagents.sh`, tick Docker
+    Desktop → "Start when you sign in", and allow notifications. Optional phone alerts via `ARCHAI_ALERT_WEBHOOK`.
+- **Phone navigation demo** — [`nfc-pages/v/exhibition-map.html`](nfc-pages/v/exhibition-map.html) "A Cabinet
+  of Voices": a mobile-first gallery map with six **real** AUXIO objects wired into the routed wayfinding
+  engine (Dijkstra route, surroundings narration, time-boxed tour). Served from the AUXIO folder → reachable
+  at `/aux/exhibition-map.html`; object cards link to the real `NFC####.html` pages so nav → object audio can
+  be tested end-to-end on a phone. (Also published as a Claude Artifact with absolute live-tunnel links for
+  iPad viewing without the Mac.)
+- **Ethical-models direction made concrete** — data-residency policy §11 model-provenance commitment now
+  names the transparent open models the project is steering toward (OLMo 2, Pythia, IBM Granite, PleIAs'
+  Common Corpus) and the Fairly Trained certification signal, matching the "models that show their work"
+  passage drafted for the Substack essay. Keeps repo and essay in sync.
+- **Status for outreach (starting tomorrow):** git clean and pushed (PR #9), Huggle current. The verification
+  posture — server-enforced read-only public demo (`publicDemoGuard` + `requestContext`), the five-layer
+  grounding / "declines rather than infers", and now the reliability supervisor — is all committed and logged.
+  Reminder: the fail-safe **install step still needs to be run on the Mac** to be active; deploying it is what
+  makes the demo dependable during the mail-out.
+
+### ⚠️ PRE-OUTREACH VERIFICATION (run on the Mac before mailing — supersedes the stale 2026-07-09 "Deploy state")
+
+The "Deploy state" block in the 2026-07-09 entry below is **out of date** (it predates later deploys). Do not
+trust it. Reconcile these four on the Mac first thing, because outreach sends partners straight to the live demo:
+
+1. **Services up / objects load.** Phone: `https://archai-api.fineartmedia.tech/aux/random` opens a real
+   object; `https://fineartmedia.tech/app` populates objects with green status dots. (If not: `open -ga Docker`
+   then `docker start archai_qdrant`.)
+2. **Read-only lockdown IS live** (the real risk — verify, don't assume). Any request to the public hostname
+   comes through Cloudflare = `demo` role, so a blocked write must 403. Test from anywhere:
+   `curl -s -o /dev/null -w "%{http_code}\n" -X POST https://archai-api.fineartmedia.tech/api/comments -H 'content-type: application/json' -d '{}'`
+   → must print **403** (and the body carries `demo_read_only`). A **200/500 here means the backend is running
+   WITHOUT the lockdown** — restart it from the branch before any outreach (two-step deploy in the 2026-07-09 entry).
+3. **Live frontend build is current.** `curl -s https://fineartmedia.tech/app | grep -o 'Build v[0-9.]*' | head -1`
+   → should read the latest build (v11.6.15), not v11.6.11. If stale: `node deploy-web-app.mjs` on the Mac.
+4. **Fail-safe installed.** After `bash backend-archai/scripts/install-public-launchagents.sh`:
+   `launchctl list | grep famtec` shows all four agents (backend, cloudflared, caffeinate, supervisor);
+   `tail -n 20 /tmp/archai-supervisor.launchd.log` shows healthy checks.
+
+Only after 1–3 pass is the public demo safe and dependable for outreach; 4 keeps it that way unattended.
+
+### Session handover — comms, essay, and open decisions (2026-07-13)
+
+Non-code context so the outreach push and any collaborator pick up clean:
+
+- **Outreach starts tomorrow.** Mail-out artifacts are the send pack + CSV (56 orgs) from 2026-07-09.
+  Do the PRE-OUTREACH VERIFICATION above first.
+- **Essay** ("A conversation about museums, memory and mutual relationships") is in editing. Two adds drafted:
+  (a) a "models that show their work" passage — now also reflected in policy §11 so repo and essay match;
+  (b) a short "the fear is real" stance for the *Objects that tell the truth* section. Both are Rob's to place;
+  not repo artifacts. Adeline Ravoux line fact-checked TRUE (Cleveland 1958.31) and backed by a real AUXIO page
+  (`NFC154`), so "you can ask her about herself" is honest.
+- **LinkedIn threads handled.** Jonathan Ben-… (Amanita / Madrona.app): governance/authority critique — replied
+  by positioning ARCHAI as a read-and-interpret layer that defers to the institution's system of record, not a
+  competing store; demo runs on open API data by design. William Rogers: "existential threat vs your tool aren't
+  connected" — replied by conceding the two axes (power/sovereignty vs alignment) and closing warmly.
+- **Warm inbound: muse.run (Talila Yehiel; built by Shani Ziv).** Museum storytelling app — interactive maps +
+  games, cloud SaaS. Collaboration models drafted (ARCHAI as grounded content engine behind their games; the
+  sovereign/on-prem mode they can't offer; accessibility/wayfinding; a one-museum joint pilot). Zoom pending.
+  Guardrail: clean integration seam, keep institutional data + grounding method on ARCHAI's side; do not over-share.
+- **OPEN DECISION — Obtext IP.** "Obtext" is publicly disclosed in the repo (SUBSTACK_DRAFT, whitepaper,
+  ARCHAI_UPDATE) and the essay. RMIT_BV_PRE_SEED_PREP flags a possible Notification of Disclosure. Rob to decide:
+  protect as IP (public disclosure has a clock — talk to RMIT tech-transfer) vs. deliberate open prior-art. Until
+  decided, keep "Obtext" out of public replies/pitches. Not yet resolved.
+- **CLIENT TRACK — Musean (Olivier Joureau, my.musean.xyz).** Virtual museum of Afro-diasporic heritage
+  (Iconothèque des Caraïbes, MFN, MUSIK etc.), digital-first, no legacy CMS. Wants ARCHAI as its intelligent
+  layer. Framed as FAMTEC's first client engagement: software stays open source, Rob's time quoted at
+  $150 AUD/h. Proposed ladder: **proof of voice** (20–30 exported records → a handful of speaking objects
+  hosted from the studio, ~15–20h) → discovery (~20h, fixed quote out) → pilot (~98h: adapter+gating, node
+  on their own Mac mini + NAS (~€1.5–2.5k hardware), FR/EN search, 20–50 community-reviewed speaking
+  objects, integration+handover). Key risks logged: FR-first embeddings (nomic is EN-leaning — test bge-m3),
+  colonial-era rights murk, community-authority question asked up front. Olivier keen; Zoom pending.
+- **CHANNEL TRACK — ResourceSpace (Dan).** Replied to outreach with sharp product questions + an offer to
+  gauge interest across their arts-heritage customers. Reply drafted answering all questions in order;
+  concrete next step offered: proof-of-concept read connector against an RS instance (fits the harvester
+  pattern; would make the README's "connector scaffolded" true). NOTE: live demo links in these emails
+  (piano NFC495 etc.) require the Mac stack up — fail-safe install matters before sends.
+- **Heads-up mode added to the spatial doc** (`docs/ARCHAI_SPATIAL_WAYFINDING.md` §4): "the object is the
+  hero" — phone pocketed or worn face-out on a lanyard ("LiDAR necklace"), BLE dwell makes the nearest
+  object *addressable*, visitor says hello out loud and gets a grounded voice answer in earbuds, eyes on
+  the object the whole time. Hard rules: mic opens only on deliberate action (no always-listening in a
+  public room), dwell ≠ tracking, spoken answers end with a doorway, graceful degradation to NFC tap.
+  Phase 0 works on the web today: tap an object, pocket the phone, talk.
+- **INBOUND — Artisan-e (Rassina Hassan), handle with care — STATUS: brief requested, quoting path opened.**
+  Proposes ARCHAI as ingestion bridge for a "Sovereign Registry" whose engine ("GOd MODe") self-describes as
+  scraping public *and private* heritage archives and selling "high-fidelity tensors for foundational AI lab
+  training." Direct tension with ARCHAI's published ethics (CARE, non-extractive, consent-based) and with the
+  museum outreach in flight. Notable: her email never mentions conversations — she wants supply/ingestion
+  (ARCHAI's pipes and museum permissions), not what ARCHAI is.
+  - **Action taken:** Rob sent a project-definition request: (1) the job plainly, incl. conversational objects
+    vs ingestion/access; (2) the material + one real worked example (item, owner, permission, downstream);
+    (3) commercial model + value flow back to source; (4) what exists today (site/registry/stack); (5) needs
+    vs wants. Constraints stated in writing up front: opt-in only, rights+attribution travel with records,
+    culturally restricted material excluded without authority, no scraping — built into anything delivered.
+  - **Decision rule when the brief lands:** "I want museum content through your bridge" → decline (permissions
+    were given to ARCHAI for interpretation, not re-licensing). "My clients/creators own the material" →
+    legitimate bespoke FAMTEC engagement (possibly non-ARCHAI-branded; the rights gate travels with the
+    builder either way): Musean playbook, her hardware, time at $150 AUD/h, fixed quote after discovery.
+    Promised outcomes: scoped proposal with costs, or an honest not-a-fit. No technical work before the brief.
+- **Design thinking added:** [`docs/ARCHAI_CURIOSITY_DESIGN_NOTES.md`](docs/ARCHAI_CURIOSITY_DESIGN_NOTES.md) —
+  Le Cunff (NYT, 8 Jul 2026) on curiosity: the question-answer gap is where learning happens; AI summaries
+  close the window; "questions become endpoints." Maps her asks onto ARCHAI (decline-not-invent = window held
+  open; visible sources; contribution pathway as competing voices) and adopts design rules: **answer +
+  doorway** in AUXIO prompts, "open questions" as page content, engineered serendipity in related objects,
+  slow modes as a feature. Cite her in the essay's honesty passage.
+
+## 2026-07-10 Spatial awareness & wayfinding — design exploration + data-residency policy v0.2
+
+New strategic direction: extend ARCHAI from "the object speaks" to "the building can guide you" — a
+sovereign, accessible tour guide / wayfinder that helps people *find things*, not just learn about them.
+Captured as a design doc: [`docs/ARCHAI_SPATIAL_WAYFINDING.md`](docs/ARCHAI_SPATIAL_WAYFINDING.md).
+
+Core of the design:
+- **NFC/QR check-ins are the universal, sovereign baseline** — "the eyes that don't watch you back."
+  Deliberate, precise, cheap, offline, private (no camera, no cloud maps API, no continuous tracking).
+- **Tiered sensing stack** (baseline never breaks): Tier 0 NFC/QR check-in → Tier 1 phone compass
+  (true left/right) → Tier 2 optional BLE proximity → Tier 3 LiDAR/ARKit RoomPlan (Apple-only, app-only,
+  heavier — optional top tier for capable devices, great for accessibility narration, never required).
+- **Building map = a graph** the model reasons over — nodes include amenities (toilet/café/lift/exit),
+  not just objects; edges carry direction/distance/`step_free` for accessible, multi-floor routing.
+  Map sources cheapest-first: authored → learned (anonymous check-in flows) → imported floor plan → scanned.
+- **Wayfinding is routed, not guessed** — deterministic shortest-path over the *verified* graph; the LLM
+  only narrates the computed route (epistemic integrity applied to space); if unmapped, it says so and
+  points to staff. Fuses physical adjacency (NFC) with semantic adjacency (Qdrant).
+- **Use cases:** findability ("where's the Rodin / the toilet?"), guided tours ("highlights in 30 min",
+  interest-driven), surroundings narration (accessibility), journey memory.
+- **Architecture:** extend `aux-id-map` with spatial node fields + a `spatial_map.json` edge graph;
+  spatial-context builder → existing grounded chat; deterministic router; tour planner (Qdrant + time
+  budget). All local, alongside Ollama + Qdrant, no new cloud dependency.
+- **Phase 0 MVP (no new hardware):** authored map for one gallery + QR/NFC check-in → narrate surroundings
+  and answer "where is X?" by routing the small graph. Then compass, then tours, then optional LiDAR.
+
+Also this session: **Data Residency & Sovereignty Policy** added and reviewed to **v0.2**
+([`docs/ARCHAI_DATA_RESIDENCY_POLICY.md`](docs/ARCHAI_DATA_RESIDENCY_POLICY.md)) — voice section corrected to
+the real browser-Web-Speech reality, licence set to all-rights-reserved-during-research with intended open
+release, and a new §11 "Direction — the plan to full sovereignty" (roadmap to closing §7 gaps + the free-for-
+NFP/education + commercial-licensing model). Plus a finalised LinkedIn reply to Hélène Alonso (WonderWay)
+positioning ARCHAI's sovereignty/accessibility distinction warmly; the outreach send pack + CSV remain the
+current mail-out artifacts.
+
+## 2026-07-09 (cont. 2) v11.6.15 — five new collection harvesters (Wikimedia, IA, LoC, DPLA, Trove)
+
+**Live-run status (harvested on the Mac Studio):**
+- ✅ Wikimedia — 150 embedded, all public-display; titles cleaned (QS markup stripped); 6 NCM records excluded.
+- ✅ Internet Archive — 150 embedded, all public-display, 0 errors.
+- ✅ Library of Congress — 150 embedded. First run held all 150 (search API returns no machine-readable
+  licence). Fixed: `loc-harvester.js` now defaults unrestricted digitized items to public-domain display
+  (holds only explicit-restriction text). **Re-run `node scripts/loc-harvester.js --apply`** to flip them public.
+- ✅ DPLA — key obtained + stored in KeyTec (archai project); harvested via `famtec run archai -- node scripts/dpla-harvester.js --apply`.
+- ⏳ Trove — API key requested 2026-07-09 (Trove ref **RSref187212**, manual staff approval, arrives by email). When it lands,
+  store in KeyTec as `TROVE_API_KEY` and run `famtec run archai -- node scripts/trove-harvester.js --apply` for the 5th collection.
+- KeyTec run pattern for keyed harvesters: `famtec run archai -- node scripts/<x>-harvester.js [--apply]` (injects keys as env vars).
+- To surface the harvested collections: restart backend (picks up new `ALLOWED_COLLECTIONS`), deploy
+  frontend v11.6.15, then `RELOAD ALL COLLECTIONS`.
+
+Built harvesters for the 5 requested sources that had none. All follow the existing harvester
+pattern (rights-gated, image-backed, `nomic-embed-text` embeddings, Qdrant upsert, `--dry-run`
+default / `--apply` to write) and are registered in backend `ALLOWED_COLLECTIONS` +
+`COLLECTION_INSTITUTIONS` and frontend `COLLECTIONS` + `COLLECTION_LABELS` + `SOURCE_LABELS`.
+
+| Script | Collection | Key |
+|---|---|---|
+| `scripts/wikimedia-harvester.js` | `archai_wikimedia` | none |
+| `scripts/internetarchive-harvester.js` | `archai_internetarchive` | none |
+| `scripts/loc-harvester.js` | `archai_loc` | none |
+| `scripts/dpla-harvester.js` | `archai_dpla` | `DPLA_API_KEY` |
+| `scripts/trove-harvester.js` | `archai_trove` | `TROVE_API_KEY` |
+
+**Not yet run against the live stack** (this sandbox has no Ollama/Qdrant and no outbound API
+access). Each was syntax-checked and built from the source's public API docs. Run on the Mac:
+`node scripts/<x>-harvester.js` (dry-run) → inspect the sample rows → `--apply` to write. First
+run may need a field-path tweak per source (documented response shapes can drift). Rights posture:
+unknown/closed licences are HELD (staff-searchable, not public-display); only allow-listed open
+licences (CC0/CC BY/PD) are public; poster/print reuse stays off. After harvesting: restart backend,
+`RELOAD ALL COLLECTIONS` in the app. Collections 20-24 (LoC, Wikimedia, Trove, DPLA, IA) of Rob's
+24-source list are now wired; the other 19 were already live.
+
+Follow-up: add full entries for the 5 in `scripts/collection-targets.json` + `scripts/HARVESTERS.md`
+(only code registration done so far), and a legal/rights review pass before flipping held records
+to public display (esp. LoC and the aggregators DPLA/Trove).
+
+## 2026-07-09 (cont.) v11.6.12 → v11.6.14 all tabs, collection selector, public Make-AUXIO — HANDOVER
+
+Continuation of the publicity-readiness work. **Read the "Deploy state" block below first — the
+latest build and the safety lockdown are committed but NOT yet live.**
+
+Implemented (all committed + pushed to `claude/archai-app-improvements-lmz0n1`, draft PR #9):
+
+- **v11.6.12 — all tabs accessible in the demo.** Rob wanted the public demo to showcase the whole
+  system, so the `demo` role now includes every tab (Exhibitions, AUXIO Management, Vocabulary,
+  Connect, FAMTEC), not just curator/visitor/objdetail. Safety comes from the backend blocking
+  writes, not from hiding tabs.
+- **v11.6.13 — collection selector.** New "Collection" dropdown in the search filter row scopes
+  classic search, the semantic fallback, and the default browse view to one institution or All.
+  Populated from the collections that actually loaded. Read-only, safe.
+- **v11.6.14 — public "Make AUXIO".** Object detail has a "✦ Make AUXIO" button that creates a live
+  AUXIO visitor page from the object's own verified metadata via `POST /api/nfc` (stable per-object
+  code, so re-running updates rather than duplicates). Page renders through the existing
+  `/api/nfc/pages/:tagId` endpoint with grounded chat. Per Rob's decision ("let the public create &
+  save"), `publicDemoGuard` now allowlists **POST /nfc only** for the demo role — publish, harvest,
+  admin, delete all stay 403 (re-verified with the unit test). Page output is escaped; demo-created
+  tags will need light moderation/cleanup.
+
+Verification:
+
+- Guard unit test re-run: public `POST /nfc` → ALLOW(demo); publish/admin/pipeline → 403; staff
+  localhost → admin. Deploy-version guard passes at v11.6.14 (consistent).
+- **NOT verified against the live backend** (this session's sandbox can't reach `archai-api…`): the
+  Make-AUXIO round-trip (create → page renders → chat works) should be smoke-tested on the Mac once
+  the backend is restarted. Logic matches `buildNfcPageModel`'s expected fields, but confirm live.
+
+### Deploy state (IMPORTANT — what is and isn't live)
+
+- **Live website frontend: v11.6.11.** Everything v11.6.12→v11.6.14 (all tabs, collection selector,
+  Make-AUXIO) is committed but **not deployed**. This is why "all tabs are still blacked out" —
+  v11.6.11 restricts the demo tabs. Deploying v11.6.14 fixes it.
+- **Backend: never restarted with the lockdown.** `requestContext` + `publicDemoGuard` are committed
+  but the running Mac Studio backend is still the old one that defaults to `admin`. So **the
+  read-only enforcement is NOT live** — right now the public site is not actually locked down. Now
+  that all tabs (and their write buttons) are exposed in v11.6.12+, **the backend restart is required
+  before this goes public**, or visitors could perform staff writes.
+
+To go fully live (two-step, on the Mac Studio):
+
+```
+cd "/Users/robgraham/Desktop/APPS/ARCHAI APP"
+git fetch origin
+git checkout origin/claude/archai-app-improvements-lmz0n1 -- ARCHAI_v10_8.html deploy-web-app.mjs backend-archai/src/middleware/requestContext.js backend-archai/src/middleware/publicDemoGuard.js backend-archai/src/routes/index.js
+lsof -ti :8787 | xargs kill -9 2>/dev/null; cd "/Users/robgraham/Desktop/APPS/ARCHAI APP/backend-archai" && npm start
+```
+Then in a new Terminal: `cd "/Users/robgraham/Desktop/APPS/ARCHAI APP" && node deploy-web-app.mjs`.
+Verify header reads **v11.6.14**, all tabs open, and Make-AUXIO on an object produces a working page.
+
+### Next steps to pilot readiness (still to do)
+
+- **Full functionality audit** Rob requested — started, not finished. Ground it in `ROADMAP.md`
+  milestones 1-6. Cross-check each feature as live / simulated / prototype / future.
+- **Smoke-test Make-AUXIO on the live backend** and add a cleanup script for demo-created tags
+  (dataset `demo_visitor_auxio`) so publicity spam can be purged.
+- **Backend restart discipline:** the lockdown only protects once the backend is restarted; document
+  this in the ops guide so a plain `git pull` isn't mistaken for "now it's safe".
+- **Optional `?staff=KEY` unlock** so Rob keeps full staff access on the website while the public
+  stays read-only (backend `ARCHAI_STAFF_KEY` override already exists; frontend just needs to read
+  the URL param and send `x-archai-staff-key`).
+- Roadmap-level pilot gaps (from `ROADMAP.md`): open Whisper/Piper voice backend (M5), AUXIO manifest
+  sync for true page editing (M2), collection onboarding breadth (M4), rights-gate audit before each
+  public harvest (M3).
+
+## 2026-07-09 v11.6.7 → v11.6.11 public /app deploy pipeline, live-demo fixes, read-only demo lockdown
+
+Publicity-readiness pass on the public `fineartmedia.tech/app` demo. Context: the
+live page is a **separate copy** of the app in the `fineartmedia-tech-web` project
+(served by Cloudflare Pages; backend reached via the `archai-api.fineartmedia.tech`
+tunnel). It had drifted to an old build because it was hand-copied. Everything below
+is on branch `claude/archai-app-improvements-lmz0n1` (draft PR #9).
+
+Implemented:
+
+- **Deterministic deploy — `deploy-web-app.mjs` (new).** Regenerates the website's
+  `app.html` from the canonical `ARCHAI_v10_8.html`, injects `window.ARCHAI_API_BASE`,
+  and re-reads the output to confirm the build marker + API base. **Refuses to publish**
+  if the file has no build marker, contains two different `Build vX.Y.Z` strings (the
+  exact stale-header bug we hit), or lost the API-base contract. Flags `--dry-run`,
+  `--no-push`. Replaces hand-copying and stops the drift.
+- **Live-demo fixes (found only in the deployed app):**
+  - Converse result cards rendered as full-width stretched banners — they relied on a
+    flex parent that wasn't there. Wrapped them in `.convo-obj-cards`.
+  - Header showed the new build then "reverted" — a stale hardcoded version string in the
+    JS that rewrites the header overwrote the static one. Aligned both.
+  - Connect Collection panel was flush to the left edge — its grid had no padding while
+    every other tab insets via its column classes. Added the standard 30px/42px inset.
+- **Default view diversified.** The opening result list rendered image-backed objects in
+  load order, so Museum Victoria (loaded first) always sat on top. `diversifyByCollection`
+  interleaves objects across their source collections and randomises per render, so each
+  visit opens on a fresh, varied mix.
+- **Public read-only demo lockdown (safe under publicity):**
+  - Backend is the boundary. `requestContext` detects public traffic (Cloudflare tunnel
+    headers or a public host) and pins it to a read-only `demo` role, ignoring any
+    `x-archai-role` a visitor sends. `publicDemoGuard` is a **deny-by-default allowlist**:
+    the demo role may call only the read endpoints it needs (search, converse, chat, embed,
+    scroll/info, AUXIO pages, health); everything else → 403. Unlisted routes fail *closed*.
+    Verified with a full allow/block matrix, including a spoof attempt (`role=admin` from the
+    public side stays blocked). Staff on localhost/Tailscale are untouched. Kill-switch
+    `ARCHAI_PUBLIC_LOCKDOWN=off`; remote-staff override `ARCHAI_STAFF_KEY` + `x-archai-staff-key`.
+  - Frontend matches: `IS_PUBLIC_DEMO` locks the UI to the `demo` role and hides staff-only
+    controls (role picker, admin links, Training Mode, Reload/Run Harvesters, Manage
+    Vocabularies, Select All/Export/Batch Tag, Save to Project, Edit in Directus) via
+    `data-staff-only`.
+- **`docs/STABILITY_AND_TESTING_PROTOCOL.md` (new).** Root-cause table, the self-verifying
+  deploy, a 5-minute pre-publicity QA checklist run on the *live* URL, and rules for testing
+  at scale without exposing write/publish/ingest or infrastructure paths.
+- Renamed three remaining lowercase `aux.io` tag strings to `auxio`.
+- Build label `v11.6.7` → `v11.6.11`.
+
+Verification:
+
+- `deploy-web-app.mjs` guard tested: consistent file passes; a mismatched-version file
+  aborts before publishing.
+- Public-demo middleware unit-tested with mock req/res across 15 cases: staff localhost and
+  Tailscale → `admin`; public (by Cloudflare header and by host) → `demo`; all reads the demo
+  needs → allow; all writes/admin/publish/harvest/comment-POST → 403; `role=admin` spoof from
+  the public side → 403.
+- Auckland "No image" confirmed as source-data coverage (records with no digitised media),
+  not a rendering bug — the pipeline passes image URLs through for records that have them.
+
+Deploy state / next steps:
+
+- Frontend v11.6.9 is live; **v11.6.11 (diversify + lockdown) is committed and pushed but
+  needs deploying**, and this deploy also requires a **backend restart** on the Mac Studio so
+  `publicDemoGuard` loads. Two-step deploy documented to Rob (checkout code + restart backend,
+  then `node deploy-web-app.mjs`).
+- Open decision for Rob: website is now locked to the read-only public demo, so staff testing
+  happens on the Mac (localhost/Tailscale) — or add a secret `?staff=KEY` unlock so Rob keeps
+  full access on the website while the public stays read-only.
 
 ## 2026-07-02 v11.6.6 main-app correctness pass: escaping, convo click-through, voice retry states
 

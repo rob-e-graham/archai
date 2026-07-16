@@ -6,7 +6,7 @@
 
 **ARCHAI** (Augmented Reanimation, Cultural Heritage, Artificial Intelligence) is a sovereign, open-source-method AI toolkit for cultural institutions and artist-run spaces. It layers conversational AI onto collection objects using local language models, vector semantic search, and AUXIO visitor interfaces (deployable via NFC, QR, hyperlink, or beacon) — with all computation running on locally-owned hardware and collection data never leaving the institution's physical infrastructure.
 
-The research paper (#999) was accepted for the **6th Summit on New Media Art Archiving, ISEA2026 Dubai**. The paper is at `docs/ARCHAI_ISEA2026_Rob_Graham.pdf`. A post-submission update covering June 2026 developments is at `docs/ARCHAI_ISEA2026_UPDATE_2026-06.md`. The full research white paper is at [`docs/whitepaper/ARCHAI_Deep_White_Paper_v2.md`](docs/whitepaper/ARCHAI_Deep_White_Paper_v2.md); institutions starting a deployment should begin with the [GLAM Onboarding Guide](docs/GLAM_ONBOARDING_GUIDE.md) and the [Onboarding & Backend Plan](docs/ONBOARDING_AND_BACKEND_PLAN.md).
+The research paper (#999) was accepted for the **6th Summit on New Media Art Archiving, ISEA2026 Dubai**. The paper is at `docs/ARCHAI_ISEA2026_Rob_Graham.pdf`. A post-submission update covering June 2026 developments is at `docs/ARCHAI_ISEA2026_UPDATE_2026-06.md`. The full research white paper is at [`docs/whitepaper/ARCHAI_Deep_White_Paper_v2.md`](docs/whitepaper/ARCHAI_Deep_White_Paper_v2.md); institutions starting a deployment should begin with the [GLAM Onboarding Guide](docs/GLAM_ONBOARDING_GUIDE.md) and the [Onboarding & Backend Plan](docs/ONBOARDING_AND_BACKEND_PLAN.md). For where data lives, what leaves the machine, and the cultural-safety and jurisdiction position, see the [Data Residency & Sovereignty Policy](docs/ARCHAI_DATA_RESIDENCY_POLICY.md).
 
 ---
 
@@ -107,13 +107,13 @@ Twelve interconnected contributions characterise the research:
                        │
 ┌──────────────────────▼───────────────────────────────────────────┐
 │  LAYER 1 — Heritage Foundation Layer (Permanent)                │
-│  CollectiveAccess (CMS) · ResourceSpace (DAMS)                  │
+│  Your CMS/DAMS or open APIs — e.g. CollectiveAccess, EMu, IIIF  │
 │  Canonical records · Artist statements · Conservation reports   │
 │  Primary digital assets — NEVER modified by AI                  │
 └──────────────────────────────────────────────────────────────────┘
 
 Public access: Visitor device → Cloudflare Tunnel → Backend proxy → Ollama / Qdrant (local)
-Storage: Hot NAS (SSD RAID) · Warm NAS (HDD RAID) · Cold LTO-9 tape (off-site, ransomware-immune)
+Storage (target architecture): tiered NAS + off-site LTO-9 tape — planned, not yet in place. The current research instance runs on the Mac Studio's local storage.
 Compute: Apple Mac Studio M4 Max · 64GB Unified Memory · under 120W at full inference
 ```
 
@@ -124,12 +124,12 @@ Compute: Apple Mac Studio M4 Max · 64GB Unified Memory · under 120W at full in
 | Qdrant | Vector database · semantic search · self-hosted |
 | Ollama / qwen2.5:32b | Local LLM inference · conversational objects |
 | nomic-embed-text (768-dim) | Open-source embedding model · local |
-| CollectiveAccess | Collection management · Heritage Foundation Layer |
-| ResourceSpace | Digital asset management · canonical media |
+| CollectiveAccess / EMu / TMS *(example CMS)* | A collection source ARCHAI can sit above · connector scaffolded, not run by the demo |
+| ResourceSpace / Preservica *(example DAMS)* | An asset source ARCHAI can sit above · connector scaffolded, not run by the demo |
 | Ghost / Directus | Headless CMS · curator interpretation layer |
 | Browser SpeechRecognition / SpeechSynthesis | Current voice input + read-aloud (demo path — audio may be processed by the browser vendor) |
 | Whisper + Piper/Coqui (in development) | Planned self-hosted speech stack — keeps all audio on institutional hardware |
-| Proxmox VE | VM snapshots · behaviour preservation for AI artworks |
+| Proxmox VE *(planned)* | VM snapshots · behaviour preservation for AI artworks — not in the current single-machine instance |
 
 ---
 

@@ -1,0 +1,209 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ARCHAI · A Cabinet of Voices — map & guide</title>
+<style>
+  :root{
+    --bg:#0a0b0e;--surface:#14171c;--surface-2:#1b2027;--line:#272d36;
+    --ink:#e9ede9;--ink-soft:#98a29d;--ink-faint:#5e6a65;
+    --teal:#5fbfae;--teal-dim:rgba(95,191,174,.14);--teal-line:rgba(95,191,174,.5);
+    --gold:#c8a96e;--gold-dim:rgba(200,169,110,.16);
+    --serif:Georgia,'Iowan Old Style','Times New Roman',serif;
+    --mono:ui-monospace,'SF Mono',Menlo,Consolas,monospace;
+    --sans:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    --room:rgba(255,255,255,.025);--room-stroke:rgba(255,255,255,.06);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5;
+    -webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:20px 16px 40px}
+  header.top{border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:16px}
+  .kicker{font-family:var(--mono);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:6px}
+  .brand{font-family:var(--serif);font-size:1.5rem;font-weight:400;text-wrap:balance}
+  .brand .h{color:var(--gold);font-style:italic}
+  .sub{font-family:var(--mono);font-size:.6rem;letter-spacing:.04em;color:var(--ink-soft);margin-top:8px;line-height:1.7}
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:8px;margin-bottom:16px}
+  .plan-wrap{padding:12px}
+  .plan-head{display:flex;justify-content:space-between;padding:2px 4px 10px;font-family:var(--mono);
+    font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint)}
+  svg.floor{width:100%;height:auto;display:block;touch-action:manipulation}
+  .zone-label{font-family:var(--mono);font-size:9px;letter-spacing:.24em;text-transform:uppercase;fill:var(--ink-faint);opacity:.85;pointer-events:none}
+  .node-label{font-family:var(--mono);font-size:8px;fill:var(--ink-soft);pointer-events:none}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;padding:10px 6px 2px;font-family:var(--mono);font-size:.55rem;color:var(--ink-soft)}
+  .legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:middle}
+  .guide-head{padding:14px 16px 10px;border-bottom:1px solid var(--line)}
+  .guide-title{font-family:var(--mono);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--teal)}
+  .guide-where{font-family:var(--serif);font-size:1.08rem;margin-top:5px;text-wrap:balance}
+  .log{padding:14px 16px;display:flex;flex-direction:column;gap:12px}
+  .msg.you{align-self:flex-end;background:var(--surface-2);border:1px solid var(--line);padding:7px 11px;border-radius:10px 10px 2px 10px;font-family:var(--mono);font-size:.68rem;color:var(--ink-soft);max-width:84%}
+  .msg.guide{align-self:flex-start;font-family:var(--serif);font-size:.97rem;line-height:1.6;max-width:97%}
+  .msg.guide .dir{font-family:var(--mono);font-size:.66rem;letter-spacing:.03em;color:var(--teal);display:block;margin-top:7px;padding-left:10px;border-left:2px solid var(--teal-line)}
+  .msg.guide .step{display:block}
+  .obj{align-self:flex-start;width:100%;background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:13px 14px}
+  .obj .ttl{font-family:var(--serif);font-size:1.08rem;line-height:1.25;text-wrap:balance}
+  .obj .meta{font-family:var(--mono);font-size:.58rem;letter-spacing:.04em;color:var(--ink-soft);margin-top:5px}
+  .obj .open{display:inline-flex;align-items:center;gap:7px;margin-top:12px;background:var(--teal);color:var(--bg);
+    text-decoration:none;padding:9px 15px;border-radius:22px;font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;font-weight:600}
+  .chips{display:flex;flex-wrap:wrap;gap:7px;padding:12px 16px;border-top:1px solid var(--line)}
+  .chip{font-family:var(--mono);font-size:.58rem;letter-spacing:.04em;background:var(--teal-dim);border:1px solid transparent;color:var(--teal);padding:7px 11px;border-radius:20px;cursor:pointer;white-space:nowrap}
+  .chip:hover,.chip:active{border-color:var(--teal-line)}
+  .ask{display:flex;gap:8px;padding:0 16px 16px}
+  .ask input{flex:1;background:var(--bg);border:1px solid var(--line);color:var(--ink);padding:11px 12px;border-radius:4px;font-family:var(--sans);font-size:.9rem}
+  .ask input:focus{outline:none;border-color:var(--teal)}
+  .ask button{background:var(--teal);color:var(--bg);border:none;padding:0 16px;border-radius:4px;font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-weight:600}
+  .foot{font-family:var(--mono);font-size:.56rem;letter-spacing:.04em;color:var(--ink-faint);line-height:1.9;padding:0 4px}
+  .foot b{color:var(--teal);font-weight:400}
+  a{color:var(--teal)}:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style></head><body>
+<div class="wrap">
+  <header class="top">
+    <div class="kicker">ARCHAI · Spatial guide · live AUXIO objects</div>
+    <div class="brand"><b>A Cabinet of Voices</b></div>
+    <div class="sub">Six real works — a bronze, a harp, a painting, a print, a game, an anatomy — each with its own live AUXIO page. Tap a spot to check in, ask the guide to find a work, then open it to hear it speak. Directions are routed over the map, never guessed.</div>
+  </header>
+
+  <div class="panel plan-wrap">
+    <div class="plan-head"><span>Ashcroft Gallery · ground floor (mock)</span><span id="hereTag">— not checked in —</span></div>
+    <svg class="floor" id="floor" viewBox="0 0 800 540" role="img" aria-label="Gallery floor plan"></svg>
+    <div class="legend">
+      <span><i style="background:var(--gold)"></i>You are here</span>
+      <span><i style="background:var(--teal)"></i>Route</span>
+      <span><i style="background:var(--ink-soft)"></i>Work</span>
+      <span><i style="background:var(--ink-faint)"></i>Amenity</span>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="guide-head"><div class="guide-title">The gallery, speaking</div><div class="guide-where" id="whereLine">Tap anywhere on the plan to begin.</div></div>
+    <div class="log" id="log"></div>
+    <div class="chips" id="chips"></div>
+    <div class="ask"><input id="ask" type="text" placeholder="Ask: where's the Rodin? the café? the exit?" autocomplete="off"><button id="askbtn" type="button">Ask</button></div>
+  </div>
+
+  <div class="foot"><b>Real AUXIO.</b> Each work opens its actual published page (real audio + grounded chat). <b>Routed, not guessed.</b> Wayfinding is shortest-path over a verified map; unmapped things get an honest answer. Runs on this device — no tracking. Sovereign by default. Connected by choice.</div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var N={
+    entrance:{x:400,y:500,label:"Entrance",type:"amenity",zone:"Foyer"},
+    info:{x:305,y:485,label:"Info Desk",type:"amenity",zone:"Foyer"},
+    exit:{x:495,y:500,label:"Exit",type:"amenity",zone:"Foyer"},
+    hall:{x:400,y:390,label:"Central Hall",type:"junction",zone:"Hall"},
+    restroom:{x:160,y:390,label:"Restrooms",type:"amenity",zone:"Hall"},
+    cafe:{x:650,y:390,label:"Café",type:"amenity",zone:"Hall"},
+    gaA:{x:300,y:320,label:"Gallery A",type:"junction",zone:"Gallery A"},
+    a1:{x:150,y:245,label:"The Age of Bronze",maker:"Auguste Rodin",meta:"Sculpture · 1875–76 · Cleveland Museum of Art",url:"NFC276.html",type:"art",zone:"Gallery A"},
+    a2:{x:150,y:130,label:"The Seine at Bas-Meudon",maker:"Johan Barthold Jongkind",meta:"Painting · 1865 · Art Institute of Chicago",url:"NFC210.html",type:"art",zone:"Gallery A"},
+    a3:{x:320,y:130,label:"The Soul exploring the recesses of the Grave",maker:"Schiavonetti after William Blake",meta:"Engraving · 1808–13",url:"NFC700.html",type:"art",zone:"Gallery A"},
+    gaB:{x:500,y:320,label:"Gallery B",type:"junction",zone:"Gallery B"},
+    b1:{x:650,y:245,label:"Saùng-Gauk",maker:"Burmese arched harp",meta:"Musical instrument · 19th century",url:"NFC500.html",type:"art",zone:"Gallery B"},
+    b2:{x:650,y:130,label:"Katamari Damacy",maker:"Namco",meta:"Born-digital game · 2004",url:"NFC850.html",type:"art",zone:"Gallery B"},
+    b3:{x:480,y:130,label:"A Rachitic Skeleton",maker:"after Buffon",meta:"Anatomical engraving · 1749 · Wellcome Collection",url:"NFC1330.html",type:"art",zone:"Gallery B"}
+  };
+  var E=[["entrance","hall",0,"the doorway"],["entrance","info",270,""],["entrance","exit",90,""],
+    ["hall","restroom",270,"the corridor"],["hall","cafe",90,"the corridor"],
+    ["hall","gaA",315,"the archway"],["hall","gaB",45,"the archway"],
+    ["gaA","a1",250,""],["a1","a2",0,""],["a2","a3",90,""],["a3","gaA",180,""],
+    ["gaB","b1",70,""],["b1","b2",0,""],["b2","b3",270,""],["b3","gaB",180,""]];
+  var ADJ={};Object.keys(N).forEach(function(k){ADJ[k]=[];});
+  E.forEach(function(e){ADJ[e[0]].push({to:e[1],bear:e[2],via:e[3]});ADJ[e[1]].push({to:e[0],bear:(e[2]+180)%360,via:e[3]});});
+  var here=null,facing=null;
+  var svg=document.getElementById('floor'),NS="http://www.w3.org/2000/svg";
+  function el(n,a){var e=document.createElementNS(NS,n);for(var k in a)e.setAttribute(k,a[k]);return e;}
+  function dist(a,b){return Math.hypot(N[a].x-N[b].x,N[a].y-N[b].y);}
+  function drawBase(){
+    svg.innerHTML="";
+    [{x:60,y:70,w:340,h:280,t:"Gallery A"},{x:400,y:70,w:340,h:280,t:"Gallery B"},
+     {x:60,y:350,w:680,h:100,t:"Central Hall"},{x:235,y:450,w:330,h:80,t:"Foyer"}].forEach(function(z){
+      svg.appendChild(el("rect",{x:z.x,y:z.y,width:z.w,height:z.h,rx:8,fill:"var(--room)",stroke:"var(--room-stroke)","stroke-width":1}));
+      var l=el("text",{x:z.x+12,y:z.y+21,class:"zone-label"});l.textContent=z.t;svg.appendChild(l);});
+    E.forEach(function(e){svg.appendChild(el("line",{x1:N[e[0]].x,y1:N[e[0]].y,x2:N[e[1]].x,y2:N[e[1]].y,stroke:"var(--line)","stroke-width":6,"stroke-linecap":"round",opacity:.7}));});
+    svg.appendChild(el("g",{id:"routeLayer"}));
+    Object.keys(N).forEach(function(k){
+      var n=N[k],g=el("g",{tabindex:0,role:"button","aria-label":"Go to "+n.label});g.style.cursor="pointer";
+      g.appendChild(el("circle",{cx:n.x,cy:n.y,r:16,fill:"transparent"}));
+      g.appendChild(el("circle",{cx:n.x,cy:n.y,r:n.type==="art"?7:(n.type==="junction"?4:6),fill:n.type==="art"?"var(--ink-soft)":"var(--ink-faint)",stroke:"var(--bg)","stroke-width":2}));
+      if(n.type==="art"){var t=el("text",{x:n.x,y:n.y-13,class:"node-label","text-anchor":"middle"});t.textContent=n.maker.split(" ").pop();g.appendChild(t);}
+      else if(n.type==="amenity"){var t2=el("text",{x:n.x,y:n.y+18,class:"node-label","text-anchor":"middle"});t2.textContent=n.label;g.appendChild(t2);}
+      g.addEventListener('click',function(){checkIn(k);});
+      g.addEventListener('keydown',function(ev){if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();checkIn(k);}});
+      svg.appendChild(g);});
+    svg.appendChild(el("g",{id:"hereLayer"}));
+  }
+  function renderHere(){var hl=document.getElementById('hereLayer');if(!hl)return;hl.innerHTML="";if(!here)return;var n=N[here];
+    var p=el("circle",{cx:n.x,cy:n.y,r:11,fill:"none",stroke:"var(--gold)","stroke-width":2,opacity:.6});
+    p.appendChild(el("animate",{attributeName:"r",values:"11;22;11",dur:"2.4s",repeatCount:"indefinite"}));
+    p.appendChild(el("animate",{attributeName:"opacity",values:".6;0;.6",dur:"2.4s",repeatCount:"indefinite"}));
+    hl.appendChild(p);hl.appendChild(el("circle",{cx:n.x,cy:n.y,r:11,fill:"none",stroke:"var(--gold)","stroke-width":2.5}));hl.appendChild(el("circle",{cx:n.x,cy:n.y,r:5,fill:"var(--gold)"}));}
+  function drawRoute(path){var rl=document.getElementById('routeLayer');if(!rl)return;rl.innerHTML="";if(!path||path.length<2)return;
+    var d="M "+N[path[0]].x+" "+N[path[0]].y;for(var i=1;i<path.length;i++)d+=" L "+N[path[i]].x+" "+N[path[i]].y;
+    rl.appendChild(el("path",{d:d,fill:"none",stroke:"var(--teal)","stroke-width":8,opacity:.16,"stroke-linecap":"round"}));
+    rl.appendChild(el("path",{d:d,fill:"none",stroke:"var(--teal)","stroke-width":4,"stroke-linecap":"round","stroke-dasharray":"1 9",opacity:.95}));
+    var dn=N[path[path.length-1]];rl.appendChild(el("circle",{cx:dn.x,cy:dn.y,r:9,fill:"none",stroke:"var(--teal)","stroke-width":2.5}));}
+  function route(from,to){if(from===to)return[from];var D={},P={},S={},pq=[from];D[from]=0;
+    while(pq.length){pq.sort(function(a,b){return D[a]-D[b];});var u=pq.shift();if(S[u])continue;S[u]=1;if(u===to)break;
+      ADJ[u].forEach(function(e){var nd=D[u]+dist(u,e.to);if(D[e.to]===undefined||nd<D[e.to]){D[e.to]=nd;P[e.to]=u;pq.push(e.to);}});}
+    if(D[to]===undefined)return null;var path=[to],c=to;while(c!==from){c=P[c];path.unshift(c);}return path;}
+  function bear(a,b){var f=null;ADJ[a].forEach(function(e){if(e.to===b)f=e;});return f;}
+  var C=["north","north-east","east","south-east","south","south-west","west","north-west"];
+  function compass(b){return C[Math.round(((b%360)/45))%8];}
+  function rel(b){if(facing===null)return null;var d=((b-facing)+360)%360;if(d<25||d>335)return"straight ahead";if(d<115)return"on your right";if(d<245)return"behind you";return"on your left";}
+  function nm(id){var n=N[id];return n.maker?n.label+" by "+n.maker:n.label;}
+  function cap(s){return s.charAt(0).toUpperCase()+s.slice(1);}
+  function surroundings(id){var n=N[id],b=[];
+    ADJ[id].forEach(function(e){var t=N[e.to],r=rel(e.bear),w=r?r:("to the "+compass(e.bear));
+      if(t.type==="art")b.push({t:(t.maker?t.maker+"'s "+t.label:t.label)+" is "+w,p:0});
+      else if(t.type==="amenity")b.push({t:"the "+t.label.toLowerCase()+" is "+w,p:2});
+      else b.push({t:t.label+" is "+w+(e.via?" through "+e.via:""),p:1});});
+    b.sort(function(x,y){return x.p-y.p;});
+    var lead=n.type==="art"?"You're in front of "+nm(id)+". ":(n.type==="amenity"?"You're at the "+n.label.toLowerCase()+". ":"You're in the "+n.label+". ");
+    var l=b.slice(0,4).map(function(x){return x.t;});return lead+(l.length?cap(l.join("; "))+".":"");}
+  function narr(path){var s=[];for(var i=0;i<path.length-1;i++){var e=bear(path[i],path[i+1]);
+    var h=i===0?(rel(e.bear)?"Head "+({"straight ahead":"straight ahead","on your right":"right","on your left":"left","behind you":"back"}[rel(e.bear)]):"Head "+compass(e.bear)):"then continue "+compass(e.bear);
+    var dn=N[path[i+1]],d=dn.type==="art"?(dn.maker.split(" ").pop()+"'s work"):("the "+dn.label.replace(/^the /i,""));
+    s.push(cap(h)+(e.via?" through "+e.via:"")+" to "+d+".");}return s;}
+  var log=document.getElementById('log');
+  function you(t){var d=document.createElement('div');d.className="msg you";d.textContent=t;log.appendChild(d);scrollDown();}
+  function guide(h){var d=document.createElement('div');d.className="msg guide";d.innerHTML=h;log.appendChild(d);scrollDown();}
+  function objectCard(id){var n=N[id],c=document.createElement('div');c.className="obj";
+    c.innerHTML="<div class='ttl'>"+n.label+"</div><div class='meta'>"+n.maker+" · "+n.meta+"</div>"+
+      "<a class='open' href='"+n.url+"'>▶ Open its AUXIO page</a>";log.appendChild(c);scrollDown();}
+  function scrollDown(){log.parentNode.scrollInto? null:0;window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});}
+  function checkIn(id){var prev=here;here=id;if(prev){var e=bear(prev,id);if(e)facing=e.bear;}
+    document.getElementById('hereTag').textContent="checked in · "+N[id].label;
+    document.getElementById('whereLine').textContent=N[id].type==="art"?nm(id):N[id].label;
+    drawRoute(null);renderHere();you("✦ checked in");if(N[id].type==="art")objectCard(id);guide(surroundings(id));}
+  function find(q){q=q.toLowerCase().trim();var K=Object.keys(N);
+    for(var i=0;i<K.length;i++){var n=N[K[i]];if(q.length>2&&(K[i]+" "+n.label+" "+(n.maker||"")).toLowerCase().indexOf(q)>-1)return K[i];}
+    if(/toilet|bathroom|restroom|loo/.test(q))return"restroom";if(/cafe|coffee|caf|eat|drink/.test(q))return"cafe";
+    if(/exit|out|leave/.test(q))return"exit";if(/info|help|desk|lost/.test(q))return"info";
+    if(/rodin|bronze/.test(q))return"a1";if(/jongkind|seine|paint/.test(q))return"a2";if(/blake|soul|grave/.test(q))return"a3";
+    if(/harp|saung|gauk|instrument/.test(q))return"b1";if(/katamari|game/.test(q))return"b2";if(/skeleton|anatomy|rachit/.test(q))return"b3";return null;}
+  function ask(q){if(!q)return;you(q);
+    if(!here){guide("Tap a spot on the plan first so I know where you're standing.");return;}
+    if(/around|near|surround|beside/.test(q.toLowerCase())){guide(surroundings(here));return;}
+    if(/tour|highlight|show me|best/.test(q.toLowerCase())){return tour();}
+    var t=find(q);if(!t){guide("I don't have that on the map, so I won't guess. The <b>Info Desk</b> by the entrance can help — shall I take you there?");return;}
+    if(t===here){guide("You're already here. "+surroundings(here));return;}
+    var p=route(here,t);if(!p){guide("It's on the map but I can't route there right now — best ask a staff member.");return;}
+    drawRoute(p);var s=narr(p),dn=N[t];
+    var intro=dn.type==="art"?"To reach "+nm(t)+", it's "+s.length+(s.length>1?" turns":" step")+" away.":"The "+dn.label.toLowerCase()+" is "+s.length+(s.length>1?" turns":" step")+" away.";
+    guide(intro+"<span class='dir'>"+s.map(function(x){return"<span class='step'>› "+x+"</span>";}).join("")+"</span>");
+    if(dn.type==="art")objectCard(t);}
+  function tour(){var st=["a1","a2","a3","b1","b3","b2"],ord=[],cur=here,pool=st.slice();
+    while(pool.length){pool.sort(function(a,b){return(route(cur,a)||[]).length-(route(cur,b)||[]).length;});var nx=pool.shift();ord.push(nx);cur=nx;}
+    var full=[],c=here;ord.forEach(function(t){var p=route(c,t);if(p){for(var i=(full.length?1:0);i<p.length;i++)full.push(p[i]);}c=t;});
+    drawRoute([here].concat(full));
+    guide("A short walk through all six, routed as one loop:<span class='dir'>"+ord.map(function(id,i){return"<span class='step'>"+(i+1)+". "+nm(id)+"</span>";}).join("")+"</span><br><span style='font-family:var(--mono);font-size:.62rem;color:var(--ink-soft)'>Follow the teal line; tap each work to open it.</span>");}
+  var CH=[["What's around me?","around"],["Find the Rodin","rodin"],["Find the game","katamari"],["Where's the café?","café"],["Highlights tour","tour"],["Where's the exit?","exit"]];
+  var ce=document.getElementById('chips');CH.forEach(function(c){var b=document.createElement('button');b.className="chip";b.type="button";b.textContent=c[0];b.addEventListener('click',function(){ask(c[1]);});ce.appendChild(b);});
+  document.getElementById('askbtn').addEventListener('click',function(){var v=document.getElementById('ask').value;document.getElementById('ask').value="";ask(v);});
+  document.getElementById('ask').addEventListener('keydown',function(e){if(e.key==="Enter"){var v=this.value;this.value="";ask(v);}});
+  drawBase();renderHere();
+  guide("Welcome to <em>A Cabinet of Voices</em> — six very different works, each able to speak for itself. Tap where you're standing, or a prompt below, and I'll guide you — always by the real map.");
+})();
+</script>
+</body></html>

@@ -16,8 +16,13 @@ import { mediaRouter } from './media.js';
 import { workflowsRouter } from './workflows.js';
 import { webhooksRouter } from './webhooks/index.js';
 import { proxyRouter } from './proxy.js';
+import { publicDemoGuard } from '../middleware/publicDemoGuard.js';
 
 export const apiRouter = Router();
+
+// Deny-by-default lockdown for public/demo traffic. Runs before every route so
+// an unlisted write path is blocked, not exposed. No-op for staff requests.
+apiRouter.use(publicDemoGuard);
 
 apiRouter.use('/health', healthRouter);
 apiRouter.use('/search', searchRouter);
