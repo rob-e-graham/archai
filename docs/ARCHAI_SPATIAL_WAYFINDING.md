@@ -106,6 +106,60 @@ and heavier — so it is an optional top tier for capable devices, never the
 baseline. Kept on-device, it still respects the sovereignty line. NFC/QR remains
 the universal, sovereign floor everyone gets.
 
+### Heads-up mode — the object is the hero
+
+A design principle that governs everything above: **the object is what matters,
+and the screen is a tool of last resort.** The failure mode of every museum app
+to date is that it wins the interaction and loses the room — a gallery of bowed
+heads, each person looking at a phone instead of the thing they came to meet.
+ARCHAI's sensing stack exists so the visitor can look *up*.
+
+The interaction this enables: the phone goes in a pocket or hangs on a lanyard,
+and the visit becomes **conversation at natural scale**. BLE dwell (Tier 2)
+tells the system which object you are standing with; when you've been near the
+Rodin for a few moments, the Rodin is simply *addressable* — you say hello, out
+loud, the way you'd greet a person, and ask it about its history and its
+culture. The answer arrives as voice in your earbuds. Eyes on the bronze the
+whole time. No screen is drawn unless the visitor asks for one.
+
+The wearable variant — the phone worn face-out on a lanyard, its sensors
+sweeping the room like a **LiDAR necklace** — extends the same idea on capable
+devices: continuous facing and distance (Tier 1 + 3) so the system knows not
+just which object is nearest but which one you are *looking at*, making "hello"
+unambiguous in a crowded room. The phone becomes the eyes so the visitor's eyes
+stay free — worn, not watched.
+
+Rules that keep this honest:
+
+1. **Deliberate address, not surveillance.** Proximity makes an object
+   *available*; it never makes the object speak first, and the microphone opens
+   only on the visitor's action (a press on the pendant/earbud, or an explicit
+   spoken address with on-device detection). No always-listening mic in a
+   public room, ever — that would betray "the eyes that don't watch you back"
+   at the exact moment it matters most.
+2. **Dwell is the signal, not tracking.** BLE proximity resolves to "nearest
+   node now" and is processed on the visitor's device; no path is retained
+   beyond the session unless the visitor keeps a journey memory on purpose.
+3. **Voice-first is grounded the same way.** The spoken answer is the same
+   record-grounded, declines-rather-than-invents voice as the AUXIO page — and
+   spoken answers should end with a doorway (what the record doesn't say, the
+   object one plinth over), because a conversation with no screen has no
+   "related objects" rail; the voice must carry the serendipity itself.
+4. **Gallery etiquette is a feature.** Answers via earbuds; a whisper is a
+   valid question. The room stays quiet, the object stays the loudest thing in
+   it.
+5. **Graceful degradation as always.** No earbuds, no BLE, no lanyard — the
+   NFC tap and the e-paper label still work. Heads-up mode is a richer way in,
+   never the price of entry.
+
+Technical honesty: BLE ranging is coarse (a metre or three, worse in crowds),
+so dwell + facing beats raw distance; on-device spoken-address detection needs
+the self-hosted speech path (Whisper) to stay sovereign; and browser BLE/
+background audio are limited enough that the full pendant experience likely
+needs the native app tier, while the pocket + earbuds + NFC-tap version works
+on the web today. Phase 0 of heads-up mode is exactly that: tap an object,
+pocket the phone, talk.
+
 ### The eco label — Tier 0 in hardware
 
 The baseline has a physical form: an **e-paper museum label with an embedded NFC

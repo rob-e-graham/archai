@@ -108,6 +108,17 @@ Non-code context so the outreach push and any collaborator pick up clean:
   concrete next step offered: proof-of-concept read connector against an RS instance (fits the harvester
   pattern; would make the README's "connector scaffolded" true). NOTE: live demo links in these emails
   (piano NFC495 etc.) require the Mac stack up — fail-safe install matters before sends.
+- **Heads-up mode added to the spatial doc** (`docs/ARCHAI_SPATIAL_WAYFINDING.md` §4): "the object is the
+  hero" — phone pocketed or worn face-out on a lanyard ("LiDAR necklace"), BLE dwell makes the nearest
+  object *addressable*, visitor says hello out loud and gets a grounded voice answer in earbuds, eyes on
+  the object the whole time. Hard rules: mic opens only on deliberate action (no always-listening in a
+  public room), dwell ≠ tracking, spoken answers end with a doorway, graceful degradation to NFC tap.
+  Phase 0 works on the web today: tap an object, pocket the phone, talk.
+- **INBOUND — Artisan-e (Rassina Hassan), handle with care.** Proposes ARCHAI as ingestion bridge for a
+  "Sovereign Registry" whose engine ("GOd MODe") self-describes as scraping public *and private* heritage
+  archives and selling "high-fidelity tensors for foundational AI lab training." Direct tension with
+  ARCHAI's published ethics (CARE, non-extractive, consent-based) and with the museum outreach in flight.
+  Due diligence before any technical work; opt-in living-artisan registry is the only aligned version.
 - **Design thinking added:** [`docs/ARCHAI_CURIOSITY_DESIGN_NOTES.md`](docs/ARCHAI_CURIOSITY_DESIGN_NOTES.md) —
   Le Cunff (NYT, 8 Jul 2026) on curiosity: the question-answer gap is where learning happens; AI summaries
   close the window; "questions become endpoints." Maps her asks onto ARCHAI (decline-not-invent = window held
