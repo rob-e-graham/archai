@@ -424,6 +424,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 .od-comment-flag.safe{background:rgba(74,170,119,0.15);color:#4a7;}
 .od-comment-flag.suspicious{background:rgba(200,136,68,0.15);color:#c84;}
 .od-comment-flag.harmful{background:rgba(200,68,68,0.15);color:#c44;}
+.od-comment-flag.verified{background:rgba(74,170,119,0.15);color:#4a7;border:1px solid rgba(74,170,119,0.35);}
 .od-comment-actions-inline{display:flex;gap:6px;margin-left:auto;}
 .od-comment-action-btn{background:none;border:1px solid var(--border2);color:var(--text3);font-family:var(--mono);font-size:0.42rem;padding:2px 8px;cursor:pointer;letter-spacing:1px;text-transform:uppercase;}
 .od-comment-action-btn:hover{border-color:var(--accent2);color:var(--accent2);}
@@ -4470,15 +4471,19 @@ function renderODComment(c, depth) {
   const hidden = c.status === 'hidden';
   const replies = (c.replies || []).map(r => renderODComment(r, depth + 1)).join('');
 
+  const verified = !!c.verified;
+
   return `<div class="od-comment-item ${flagClass}" style="${hidden ? 'opacity:0.6;' : ''}">
     <div class="od-comment-text">${hidden ? '⚠ ' : ''}${escHTML(c.text)}</div>
     <div class="od-comment-meta">
       <span>${c.author_type || 'visitor'}</span>
       <span>${c.created_at ? new Date(c.created_at).toLocaleDateString() : ''}</span>
       ${c.ai_flag ? `<span class="od-comment-flag ${c.ai_flag}">${c.ai_flag}</span>` : ''}
+      ${verified ? '<span class="od-comment-flag verified" title="Verified oral history">✓ verified</span>' : ''}
       ${c.ai_reason ? `<span style="font-style:italic;">${escHTML(c.ai_reason)}</span>` : ''}
       <span class="od-comment-actions-inline">
         ${hidden ? `<button class="od-comment-action-btn" onclick="odModerateComment('${c.id}','visible')">Approve</button>` : ''}
+        ${!hidden ? `<button class="od-comment-action-btn" onclick="odVerifyComment('${c.id}', ${verified ? 'false' : 'true'})">${verified ? 'Unverify' : 'Verify'}</button>` : ''}
         <button class="od-comment-action-btn remove" onclick="odModerateComment('${c.id}','removed')">Remove</button>
         <button class="od-comment-action-btn" onclick="odReplyTo('${c.id}')">Reply</button>
       </span>
@@ -4492,6 +4497,16 @@ function odModerateComment(commentId, status) {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ status, moderator: 'curator' }),
+  })
+  .then(r => r.json())
+  .then(() => { if (_odCurrentObjectId) odLoadComments(_odCurrentObjectId); });
+}
+
+function odVerifyComment(commentId, verified) {
+  fetch(`${COMMENTS_API}/${commentId}/verify`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ verified, moderator: 'curator' }),
   })
   .then(r => r.json())
   .then(() => { if (_odCurrentObjectId) odLoadComments(_odCurrentObjectId); });
@@ -5208,7 +5223,7 @@ function loadComments(objectId) {
       list.innerHTML = comments.slice(0, 10).map(c => `
         <div class="vpc-item vpc-flag-${c.status === 'approved' ? 'safe' : c.status}">
           <div>${escHTML(c.text)}</div>
-          <div class="vpc-item-meta">${c.author_type} · ${new Date(c.created_at).toLocaleDateString()}</div>
+          <div class="vpc-item-meta">${c.author_type} · ${new Date(c.created_at).toLocaleDateString()}${c.verified ? ' <span class="od-comment-flag verified" title="Verified oral history">✓ verified</span>' : ''}</div>
         </div>`).join('');
     })
     .catch(() => { list.innerHTML = ''; });

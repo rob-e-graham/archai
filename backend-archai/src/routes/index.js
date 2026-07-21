@@ -14,6 +14,8 @@ import { integrationsRouter } from './integrations.js';
 import { commentsRouter } from './comments.js';
 import { mediaRouter } from './media.js';
 import { workflowsRouter } from './workflows.js';
+import { verificationRouter } from './verification.js';
+import { accessionRouter } from './accession.js';
 import { webhooksRouter } from './webhooks/index.js';
 import { proxyRouter } from './proxy.js';
 
@@ -34,5 +36,7 @@ apiRouter.use('/integrations', integrationsRouter);
 apiRouter.use('/comments', commentsRouter);
 apiRouter.use('/media', mediaRouter);
 apiRouter.use('/workflows', workflowsRouter);
+apiRouter.use('/verification', verificationRouter);
+apiRouter.use('/accession', accessionRouter);
 apiRouter.use('/webhooks', webhooksRouter);
 apiRouter.use('/proxy', proxyRouter);

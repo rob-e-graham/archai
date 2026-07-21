@@ -1137,6 +1137,19 @@ body::after {
   margin-top: 3px;
   letter-spacing: 0.5px;
 }
+.v-prev-verified {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-family: var(--mono);
+  font-size: 0.38rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #4a7;
+  background: rgba(74, 170, 119, 0.15);
+  border: 1px solid rgba(74, 170, 119, 0.35);
+}
 
 /* ── SHARE ── */
 .v-share {
@@ -2902,7 +2915,7 @@ function renderComments(comments) {
     comments.slice(0, 10).map(c =>
       `<div class="v-prev-item">
         <div class="v-prev-text">${escHTML(c.text)}</div>
-        <div class="v-prev-time">${c.author_type || 'visitor'} · ${c.created_at ? new Date(c.created_at).toLocaleDateString() : (c.time || '')}</div>
+        <div class="v-prev-time">${c.author_type || 'visitor'} · ${c.created_at ? new Date(c.created_at).toLocaleDateString() : (c.time || '')}${c.verified ? '<span class="v-prev-verified" title="Confirmed by the curatorial team as a verified oral history">✓ Verified</span>' : ''}</div>
       </div>`
     ).join('');
 }
