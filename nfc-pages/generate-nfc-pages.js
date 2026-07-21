@@ -599,6 +599,7 @@ async function main() {
       .replace(/\{\{OBJECT_IIIF_LARGE\}\}/g, esc(iiifLarge))
       .replace(/\{\{OBJECT_IIIF_INFO_URL\}\}/g, esc(iiifInfoUrl))
       .replace(/\{\{OBJECT_COLLECTION\}\}/g, esc(obj.sourceCollection || 'archai_pilot'))
+      .replace(/\{\{OBJECT_CANONICAL\}\}/g, esc(p.canonical_id || ''))
       .replace(/\{\{OBJECT_STORY\}\}/g, story)
       .replace(/\{\{SOURCE_URL\}\}/g, escHtml(sourceUrl))
       .replace(/\{\{SOURCE_INSTITUTION\}\}/g, escHtml(sourceInstitution))

@@ -16,6 +16,7 @@ import { mediaRouter } from './media.js';
 import { workflowsRouter } from './workflows.js';
 import { webhooksRouter } from './webhooks/index.js';
 import { proxyRouter } from './proxy.js';
+import { protocolsRouter } from './protocols.js';
 
 export const apiRouter = Router();
 
@@ -36,3 +37,4 @@ apiRouter.use('/media', mediaRouter);
 apiRouter.use('/workflows', workflowsRouter);
 apiRouter.use('/webhooks', webhooksRouter);
 apiRouter.use('/proxy', proxyRouter);
+apiRouter.use('/protocols', protocolsRouter);

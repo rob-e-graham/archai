@@ -1,0 +1,84 @@
+{
+  "_comment": "ARCHAI Community Cultural Protocol registry. This is NOT institutional configuration — it is a community-governed authority layer. A source community (or its delegated steward) sets the terms on which the AI may speak about an object it is connected to. These terms are enforced at the AI inference boundary (before AND after the model runs), not applied as a staff review after the fact. Museum staff and even the admin role CANNOT weaken a protocol registered here through the normal object-editing paths; only a holder of the community steward key may change it. This mirrors Local Contexts TK Labels, Mukurtu CMS access protocols, the Te Hiku Media Kaitiakitanga License model, and the CARE Principles for Indigenous Data Governance (Collective benefit, Authority to control, Responsibility, Ethics).",
+  "version": "1.0",
+  "governance_basis": [
+    "CARE Principles for Indigenous Data Governance (GIDA, 2020)",
+    "Local Contexts — Traditional Knowledge (TK) Labels",
+    "Mukurtu CMS community access protocols",
+    "Te Hiku Media — Kaitiakitanga License (guardianship, not ownership)"
+  ],
+
+  "access_levels": {
+    "open": "The AI may answer questions about this object from the verified record, subject to any topic restrictions and voice constraint below.",
+    "restricted": "The AI may confirm the object exists and give minimal catalogue facts, but must decline substantive interpretation and defer to the source community.",
+    "closed": "The AI must not answer about this object at all. It returns the community-authored decline message and points the visitor to the community steward."
+  },
+
+  "tk_labels": {
+    "TK_A": { "name": "TK Attribution", "note": "Name the correct community and follow their attribution wording." },
+    "TK_CV": { "name": "TK Community Voice", "note": "The record may be incomplete or one-sided; interpretation should defer to the community's own voice." },
+    "TK_V": { "name": "TK Verified", "note": "The community has reviewed and verified how this material may be used." },
+    "TK_NV": { "name": "TK Non-Verified", "note": "The community has NOT verified this record; the AI must foreground that uncertainty and avoid authoritative claims." },
+    "TK_CS": { "name": "TK Culturally Sensitive", "note": "Handle with care; some questions are inappropriate to answer publicly." },
+    "TK_S": { "name": "TK Secret / Sacred", "note": "Restricted knowledge. The AI must not disclose or elaborate on secret/sacred content." },
+    "TK_SS": { "name": "TK Seasonal", "note": "Access is appropriate only in certain seasons/contexts as defined by the community." },
+    "TK_NC": { "name": "TK Non-Commercial", "note": "No commercial framing, sale, or promotional reuse." },
+    "TK_O": { "name": "TK Outreach", "note": "The community welcomes respectful educational engagement within the stated limits." }
+  },
+
+  "voice_constraint_note": "noVoice=true means the AI must NOT ventriloquize the object or speak as if the community/ancestor is talking through it. It answers as a neutral catalogue describer in the third person. This directly refuses the 'give the object a voice' framing when the source community has not consented to it.",
+
+  "protocols": [
+    {
+      "id": "demo_tepapa_taonga",
+      "match": { "collection": "archai_tepapa", "cultural_context": "Taonga Māori" },
+      "access": "restricted",
+      "tkLabels": ["TK_A", "TK_CV", "TK_CS"],
+      "noVoice": true,
+      "restrictedTopics": [
+        "who is buried",
+        "human remains",
+        "koiwi",
+        "burial",
+        "tangihanga",
+        "sacred chant",
+        "karakia wording",
+        "location of the site",
+        "how it was taken",
+        "monetary value",
+        "how much is it worth",
+        "buy",
+        "sell"
+      ],
+      "community": {
+        "name": "Source iwi / hapū (via Te Papa repatriation and mātauranga Māori teams)",
+        "authority": "Kaitiaki (guardians) of the taonga",
+        "steward_contact": "Assigned kaitiaki — routed through the holding institution's Māori advisory team",
+        "benefitFlowsBack": true,
+        "ownershipClaimByInstitution": false
+      },
+      "declineMessage": "This taonga is cared for under the authority of its source community. That question touches knowledge the kaitiaki have asked not be answered here. You can still learn about the object's form and materials, or contact the community's kaitiaki through the holding institution.",
+      "culturalNotice": "Taonga Māori — cared for under kaitiakitanga (guardianship) by its source community. Some knowledge is held by the community and is not answered here.",
+      "setBy": "seed",
+      "updatedAt": "2026-07-11T00:00:00.000Z"
+    },
+    {
+      "id": "demo_secret_sacred_example",
+      "match": { "restriction_flag": "secret-sacred" },
+      "access": "closed",
+      "tkLabels": ["TK_S", "TK_A"],
+      "noVoice": true,
+      "restrictedTopics": [],
+      "community": {
+        "name": "Source community (secret/sacred material)",
+        "authority": "Community law-holders",
+        "benefitFlowsBack": true,
+        "ownershipClaimByInstitution": false
+      },
+      "declineMessage": "This object holds knowledge that its source community has asked not be shared. The collection will not answer questions about it here. If you have a cultural connection to this material, please contact the community steward through the holding institution.",
+      "culturalNotice": "Restricted (secret/sacred) — the source community has closed this object to public AI interpretation.",
+      "setBy": "seed",
+      "updatedAt": "2026-07-11T00:00:00.000Z"
+    }
+  ]
+}

@@ -11,6 +11,7 @@
     "seed:mock": "node src/pipeline/seedMockData.js",
     "harvest:legal": "node scripts/legal-harvest-bot.js --report",
     "test:smoke": "node scripts/smoke-test-runtime.js",
+    "test:cultural": "node scripts/cultural-protocol-test.js",
     "lint:quick": "node -e \"console.log('No linter configured yet')\""
   },
   "keywords": [

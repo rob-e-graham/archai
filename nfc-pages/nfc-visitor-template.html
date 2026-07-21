@@ -919,6 +919,27 @@ body::after {
   letter-spacing: 0.5px;
 }
 
+.v-response .cultural-notice {
+  display: block;
+  margin-top: 12px;
+  padding: 8px 10px;
+  border-left: 2px solid var(--accent, #b8862b);
+  background: rgba(184, 134, 43, 0.08);
+  font-size: 0.62rem;
+  line-height: 1.5;
+  color: var(--text2, inherit);
+}
+
+.v-response .cultural-notice-label {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.44rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent, #b8862b);
+  margin-right: 6px;
+}
+
 /* ── METADATA CARD ── */
 .v-meta-card {
   background: var(--surface);
@@ -1573,8 +1594,23 @@ const OBJECT = {
   iiif_large: `{{OBJECT_IIIF_LARGE}}`,
   iiif_info_url: `{{OBJECT_IIIF_INFO_URL}}`,
   source_url: `{{SOURCE_URL}}`,
-  institution: `{{SOURCE_INSTITUTION}}`
+  institution: `{{SOURCE_INSTITUTION}}`,
+  collection: `{{OBJECT_COLLECTION}}`,
+  canonical: `{{OBJECT_CANONICAL}}`
 };
+
+// Object reference sent to the backend so it can look this object up in the
+// server-authoritative community cultural protocol registry and honour any
+// source-community restriction before the model answers.
+function objectProtocolRef() {
+  return {
+    collection: OBJECT.collection || '',
+    canonicalId: OBJECT.canonical || '',
+    institution: OBJECT.institution || '',
+    registration: OBJECT.registration || '',
+    culturalContext: OBJECT.culture || ''
+  };
+}
 
 let iiifZoomLevel = 1;
 let iiifDragState = null;
@@ -2124,6 +2160,7 @@ function askObject(presetQ) {
           systemPrompt: buildSystemPrompt(),
           userPrompt: q,
           history: chatHistory.slice(0, -1),
+          object: objectProtocolRef(),
         })
       }, 30000)
     : fetchWithTimeout(`${OLLAMA_HOST}/api/chat`, {
@@ -2171,6 +2208,7 @@ function askObject(presetQ) {
     visitorSpeechStatus = 'Reply ready. You can read it aloud or ask another question.';
     resp.textContent = reply;
     resp.className = 'v-response';
+    renderCulturalNotice(resp, data.culturalProtocol);
     updateVisitorSpeechUI();
     if (shouldAutoSpeakReply) {
       visitorAutoSpeakNextReply = false;
@@ -2178,6 +2216,25 @@ function askObject(presetQ) {
     }
   })
   .catch(() => renderMetadataFallback('Response from verified metadata — LLM offline'));
+}
+
+// Show who governs this object when the backend reports a source-community
+// cultural protocol — whether the answer was allowed through or declined.
+// CARE principle: Authority to control, made visible to the visitor.
+function renderCulturalNotice(resp, cp) {
+  if (!cp || !cp.enforced) return;
+  const notice = cp.notice && cp.notice.culturalNotice
+    ? cp.notice.culturalNotice
+    : (cp.layer ? 'The source community connected to this object has set terms on how it may be answered here.' : null);
+  if (!notice) return;
+  const el = document.createElement('div');
+  el.className = 'cultural-notice';
+  const label = document.createElement('span');
+  label.className = 'cultural-notice-label';
+  label.textContent = 'Cultural authority';
+  el.appendChild(label);
+  el.appendChild(document.createTextNode(' ' + notice));
+  resp.appendChild(el);
 }
 
 function metadataFallback(q) {
