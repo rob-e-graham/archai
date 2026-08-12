@@ -37,13 +37,18 @@ import { execSync } from 'child_process';
 // service=famtec, account=EUROPEANA_API_KEY) so the secret never lives in .env
 // or the repo. Falls through to a clear error if neither is available.
 function resolveApiKey() {
-  if (process.env.EUROPEANA_API_KEY) return process.env.EUROPEANA_API_KEY;
-  try {
-    const k = execSync('security find-generic-password -s famtec -a EUROPEANA_API_KEY -w', {
-      stdio: ['ignore', 'pipe', 'ignore'],
-    }).toString().trim();
-    if (k) { console.log('  ✓ Europeana key loaded from Keychain (KeyTec)'); return k; }
-  } catch (_) { /* not on macOS or not in keychain */ }
+  // Accept the classic name or the Keytec 'archai' project-key name (EUROPEANA_PROJECT_KEY),
+  // from the process env first, then the macOS Keychain (service=famtec).
+  const names = ['EUROPEANA_API_KEY', 'EUROPEANA_PROJECT_KEY'];
+  for (const n of names) if (process.env[n]) return process.env[n];
+  for (const n of names) {
+    try {
+      const k = execSync(`security find-generic-password -s famtec -a ${n} -w`, {
+        stdio: ['ignore', 'pipe', 'ignore'],
+      }).toString().trim();
+      if (k) { console.log(`  ✓ Europeana key loaded from Keychain (KeyTec · ${n})`); return k; }
+    } catch (_) { /* not on macOS or not in keychain */ }
+  }
   return '';
 }
 
