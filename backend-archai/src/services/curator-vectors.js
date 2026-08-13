@@ -2,18 +2,19 @@
 // Proprietary during the doctoral research period — see LICENSE.
 import { env } from '../config/env.js';
 import db from '../data/db.js';
+import { createHash } from 'node:crypto';
+import {
+  buildCuratorQueryVariants,
+  buildMetadataCandidate,
+  mergeCuratorResultSets,
+  rankCuratorResults,
+} from './curator-search-ranking.js';
 
 const QDRANT_URL = env.qdrant.url;
 const OLLAMA_URL = env.ollama.baseUrl;
 const EMBED_MODEL = env.ollama.embedModel;
 const CURATOR_COLLECTION = 'archai_curator';
 const VECTOR_SIZE = 768;
-const EXCLUDED_SOURCE_COLLECTIONS = new Set([
-  // Specialist media lab material is useful for playback/R&D, but should not
-  // dilute the core GLAM curator aggregate unless deliberately promoted.
-  'archai_nasa',
-]);
-
 const getCommentsByObject = db.prepare(
   'SELECT text, author_type, ai_flag, created_at FROM comments WHERE object_id = ? ORDER BY created_at ASC'
 );
@@ -42,6 +43,13 @@ const INSTITUTION_META = {
   archai_qagoma:     { institution: 'QAGOMA',                          city: 'Brisbane',   state: 'Queensland',    country: 'Australia' },
   archai_rawg:       { institution: 'RAWG Video Games Database',       city: '',           state: '',             country: 'International' },
   archai_nga:        { institution: 'National Gallery of Art',         city: 'Washington', state: 'District of Columbia', country: 'United States' },
+  archai_acmi:       { institution: 'Australian Centre for the Moving Image (ACMI)', city: 'Melbourne', state: 'Victoria', country: 'Australia' },
+  archai_wikimedia:  { institution: 'Wikimedia Commons',               city: '',           state: '',             country: 'International' },
+  archai_internetarchive: { institution: 'Internet Archive',           city: 'San Francisco', state: 'California', country: 'United States' },
+  archai_loc:        { institution: 'Library of Congress',             city: 'Washington', state: 'District of Columbia', country: 'United States' },
+  archai_dpla:       { institution: 'Digital Public Library of America', city: '',          state: '',             country: 'United States' },
+  archai_trove:      { institution: 'Trove · National Library of Australia', city: 'Canberra', state: 'Australian Capital Territory', country: 'Australia' },
+  archai_nasa:       { institution: 'NASA Image and Video Library',    city: '',           state: '',             country: 'United States' },
 };
 
 async function embed(text) {
@@ -69,20 +77,21 @@ async function listSourceCollections() {
   return (data.result?.collections || [])
     .map((row) => row.name)
     .filter((name) => name.startsWith('archai_') && name !== CURATOR_COLLECTION)
-    .filter((name) => !EXCLUDED_SOURCE_COLLECTIONS.has(name));
+    .filter((name) => name !== 'archai_objects');
 }
 
 function buildCuratorText(payload, comments, meta) {
   const parts = [];
 
   const title = payload.title || payload.object_name || '';
-  const type = payload.type || payload.object_type || payload.classification || '';
-  const date = payload.date || payload.date_display || payload.production_date || '';
-  const desc = payload.description || payload.ai || '';
-  const location = payload.location || payload.gallery || '';
+  const type = payload.type || payload.object_type || payload.classification || payload.category || '';
+  const date = payload.date || payload.date_display || payload.production_date || payload.date_range || '';
+  const desc = payload.description || payload.ai || payload.embedding_text || '';
+  const location = payload.location || payload.gallery || payload.museum_location || '';
   const materials = payload.materials || payload.medium || '';
   const maker = payload.maker || payload.artist || payload.creator || '';
   const reg = payload.registration_number || payload.accession_number || '';
+  const keywords = Array.isArray(payload.keywords) ? payload.keywords.join(', ') : (payload.keywords || payload.themes || '');
 
   // Provenance first — so "objects from Melbourne / at the V&A / Dutch" match.
   if (meta) {
@@ -96,6 +105,7 @@ function buildCuratorText(payload, comments, meta) {
   if (materials) parts.push(`Materials: ${materials}`);
   if (location) parts.push(`Location: ${location}`);
   if (reg) parts.push(`Registration: ${reg}`);
+  if (keywords) parts.push(`Subjects: ${String(keywords).substring(0, 400)}`);
   if (desc) parts.push(`Description: ${desc.substring(0, 800)}`);
 
   if (comments.length) {
@@ -208,6 +218,110 @@ Done — ${totalPoints} objects in ${CURATOR_COLLECTION}`);
   return { collection: CURATOR_COLLECTION, totalPoints };
 }
 
+function deterministicPointId(collection, sourceId) {
+  const hex = createHash('sha256').update(`${collection}:${sourceId}`).digest('hex').slice(0, 32).split('');
+  hex[12] = '5';
+  hex[16] = ((parseInt(hex[16], 16) & 0x3) | 0x8).toString(16);
+  const value = hex.join('');
+  return `${value.slice(0, 8)}-${value.slice(8, 12)}-${value.slice(12, 16)}-${value.slice(16, 20)}-${value.slice(20)}`;
+}
+
+export async function syncCuratorSources({ collections = null, onProgress } = {}) {
+  const log = onProgress || console.log;
+  const sourceCollections = collections?.length ? collections : await listSourceCollections();
+  let totalPoints = 0;
+
+  for (const col of sourceCollections) {
+    const meta = INSTITUTION_META[col] || null;
+    log(`Synchronising ${col}...`);
+    const existingIds = [];
+    let existingOffset = null;
+    do {
+      const existingBody = {
+        limit: 500,
+        with_payload: false,
+        with_vector: false,
+        filter: { must: [{ key: '_source_collection', match: { value: col } }] },
+      };
+      if (existingOffset !== null) existingBody.offset = existingOffset;
+      const existingResponse = await fetch(`${QDRANT_URL}/collections/${CURATOR_COLLECTION}/points/scroll`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(existingBody),
+      });
+      const existingData = await existingResponse.json();
+      existingIds.push(...(existingData.result?.points || []).map((point) => point.id));
+      existingOffset = existingData.result?.next_page_offset ?? null;
+    } while (existingOffset !== null);
+
+    let offset = null;
+    let copied = 0;
+    const syncedIds = new Set();
+    do {
+      const body = { limit: 100, with_payload: true, with_vector: true };
+      if (offset !== null) body.offset = offset;
+      const response = await fetch(`${QDRANT_URL}/collections/${col}/points/scroll`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      if (!response.ok) throw new Error(`Could not read ${col}: HTTP ${response.status}`);
+      const data = await response.json();
+      const points = data.result?.points || [];
+      const upsertPoints = points
+        .filter((point) => Array.isArray(point.vector) && point.vector.length === VECTOR_SIZE)
+        .map((point) => {
+          const payload = point.payload || {};
+          const objectId = payload.registration_number || payload.accession_number || payload.source_record_id || String(point.id);
+          const comments = getCommentsByObject.all(objectId);
+          const id = deterministicPointId(col, point.id);
+          syncedIds.add(id);
+          return {
+            id,
+            vector: point.vector,
+            payload: {
+              ...payload,
+              _source_collection: col,
+              _source_id: point.id,
+              _curator_text: buildCuratorText(payload, comments, meta),
+              _comment_count: comments.length,
+              _has_flagged: comments.some((comment) => comment.ai_flag === 'harmful' || comment.ai_flag === 'suspicious'),
+              institution: meta?.institution || payload.source_institution || '',
+              institution_city: meta?.city || '',
+              institution_state: meta?.state || '',
+              institution_country: meta?.country || payload.source_country || '',
+            },
+          };
+        });
+
+      if (upsertPoints.length) {
+        const upsert = await fetch(`${QDRANT_URL}/collections/${CURATOR_COLLECTION}/points?wait=true`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ points: upsertPoints }),
+        });
+        if (!upsert.ok) throw new Error(`Could not update ${CURATOR_COLLECTION} from ${col}: HTTP ${upsert.status}`);
+      }
+      copied += upsertPoints.length;
+      offset = data.result?.next_page_offset ?? null;
+    } while (offset !== null);
+
+    const staleIds = existingIds.filter((id) => !syncedIds.has(id));
+    if (staleIds.length) {
+      const deleted = await fetch(`${QDRANT_URL}/collections/${CURATOR_COLLECTION}/points/delete?wait=true`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ points: staleIds }),
+      });
+      if (!deleted.ok) throw new Error(`Could not remove stale ${col} records: HTTP ${deleted.status}`);
+    }
+
+    totalPoints += copied;
+    log(`  ${copied} records synchronised from ${col}; ${staleIds.length} stale records removed`);
+  }
+  return { collection: CURATOR_COLLECTION, sourceCollections, totalPoints };
+}
+
 // Map free-text place/institution mentions in a query to structured facet
 // filters. Provenance queries ("objects from Melbourne", "at the V&A", "Dutch
 // collection") can't be answered reliably by embedding similarity, so when we
@@ -232,6 +346,13 @@ const PROVENANCE_LEXICON = [
   { terms: ['qagoma', 'queensland art gallery'], match: { institution: 'QAGOMA' } },
   { terms: ['rawg', 'video games', 'games collection'], match: { institution: 'RAWG Video Games Database' } },
   { terms: ['national gallery of art', 'nga', 'washington gallery'], match: { institution: 'National Gallery of Art' } },
+  { terms: ['acmi', 'australian centre for the moving image'], match: { institution: 'Australian Centre for the Moving Image (ACMI)' } },
+  { terms: ['wikimedia', 'wikimedia commons'], match: { institution: 'Wikimedia Commons' } },
+  { terms: ['internet archive', 'archive.org'], match: { institution: 'Internet Archive' } },
+  { terms: ['library of congress', 'loc'], match: { institution: 'Library of Congress' } },
+  { terms: ['digital public library of america', 'dpla'], match: { institution: 'Digital Public Library of America' } },
+  { terms: ['trove', 'national library of australia'], match: { institution: 'Trove · National Library of Australia' } },
+  { terms: ['nasa'], match: { institution: 'NASA Image and Video Library' } },
   // Country-level (broader) — only used if no specific institution matched
   { terms: ['australia', 'australian'], match: { institution_country: 'Australia' }, country: true },
   { terms: ['new zealand', 'aotearoa'], match: { institution_country: 'New Zealand' }, country: true },
@@ -258,21 +379,57 @@ export function detectProvenanceFilter(query) {
   };
 }
 
-export async function curatorSearch(query, limit = 10, collection = null) {
-  const vector = await embed(query);
-  if (!vector) return [];
-
+export async function curatorSearch(query, limit = 10, collection = null, options = {}) {
   const filter = collection
     ? { must: [{ key: '_source_collection', match: { value: collection } }] }
     : detectProvenanceFilter(query);
-  const body = { vector, limit, with_payload: true };
-  if (filter) body.filter = filter;
+  const variants = buildCuratorQueryVariants(query);
+  const candidateLimit = Math.min(250, Math.max(limit * (variants.length > 1 ? 5 : 3), variants.length > 1 ? 100 : 40));
+  const resultSets = await Promise.all(variants.map(async (variant) => {
+    const vector = await embed(variant);
+    if (!vector) return [];
+    const body = { vector, limit: candidateLimit, with_payload: true };
+    if (filter) body.filter = filter;
+    const resp = await fetch(`${QDRANT_URL}/collections/${CURATOR_COLLECTION}/points/search`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    if (!resp.ok) throw new Error(`Curator vector search failed: HTTP ${resp.status}`);
+    const data = await resp.json();
+    return data.result || [];
+  }));
 
-  const resp = await fetch(`${QDRANT_URL}/collections/${CURATOR_COLLECTION}/points/search`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
+  const merged = mergeCuratorResultSets(resultSets);
+  if (variants.length > 1) {
+    let offset = null;
+    do {
+      const body = { limit: 500, with_payload: true, with_vector: false };
+      if (offset !== null) body.offset = offset;
+      if (filter) body.filter = filter;
+      const resp = await fetch(`${QDRANT_URL}/collections/${CURATOR_COLLECTION}/points/scroll`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      if (!resp.ok) throw new Error(`Curator metadata scan failed: HTTP ${resp.status}`);
+      const data = await resp.json();
+      const mergedKeys = new Set(merged.map((result) => String(result.payload?.canonical_id || `${result.payload?._source_collection}:${result.payload?._source_id || result.id}`)));
+      for (const point of data.result?.points || []) {
+        const candidate = buildMetadataCandidate(point);
+        const key = String(candidate.payload?.canonical_id || `${candidate.payload?._source_collection}:${candidate.payload?._source_id || candidate.id}`);
+        if (!mergedKeys.has(key)) {
+          merged.push(candidate);
+          mergedKeys.add(key);
+        }
+      }
+      offset = data.result?.next_page_offset ?? null;
+    } while (offset !== null);
+  }
+  return rankCuratorResults(merged, query, {
+    ...options,
+    limit,
+    collection,
+    diversify: options.diversify ?? !collection,
   });
-  const data = await resp.json();
-  return data.result || [];
 }

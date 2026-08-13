@@ -2,6 +2,7 @@
 // Proprietary during the doctoral research period — see LICENSE.
 import { env } from '../config/env.js';
 import { curatorSearch } from './curator-vectors.js';
+import { analyzeCuratorQuery } from './curator-search-ranking.js';
 
 const OLLAMA_URL = env.ollama.baseUrl;
 const QDRANT_URL = env.qdrant.url;
@@ -84,6 +85,13 @@ const COLLECTION_INSTITUTIONS = {
   archai_qagoma: 'QAGOMA',
   archai_rawg: 'RAWG Video Games Database',
   archai_nga: 'National Gallery of Art',
+  archai_acmi: 'Australian Centre for the Moving Image (ACMI)',
+  archai_wikimedia: 'Wikimedia Commons',
+  archai_internetarchive: 'Internet Archive',
+  archai_loc: 'Library of Congress',
+  archai_dpla: 'Digital Public Library of America',
+  archai_trove: 'Trove · National Library of Australia',
+  archai_nasa: 'NASA Image and Video Library',
 };
 
 const SYSTEM_PROMPT = `You are ARCHAI — Augmented Reanimation of Cultural Heritage through Artificial Intelligence. You are the collection intelligence: a curatorial AI that helps staff examine connected cultural records as one governed research layer. You have access to the connected sources named in the object context and whole-collection overview. Treat source metadata as evidence, preserve institutional provenance, and never imply that a connected source endorses ARCHAI.
@@ -93,14 +101,65 @@ If asked who or what you are, say you are ARCHAI — Augmented Reanimation of Cu
 RULES:
 1. Answer based ONLY on the object records provided in context. If objects are provided, discuss them specifically with titles, dates, materials, and makers.
 2. When discussing objects, be specific — cite the title, registration number, and institution.
-3. Draw connections between objects when relevant — material similarities, temporal overlaps, cultural links.
+3. Separate evidence levels exactly as supplied. "direct" means the metadata explicitly names AI. "related" means it names computational, algorithmic, cybernetic, robotic or automated practice. "contextual" is a broader curatorial lead.
 4. If no relevant objects are found, say so honestly. Do not invent objects.
 5. Keep responses conversational but scholarly. You're a knowledgeable curator, not a search engine.
 6. Suggest follow-up questions or related avenues when appropriate.
 7. If the user asks something completely outside museum collections, redirect gently to collection-related topics.
-8. Use first person plural — "we have", "in our collection" — to position yourself as the institutional voice.
+8. Refer to "the connected collection" or the named source institution. Do not use "our collection" or imply that ARCHAI owns or speaks for source records.
+9. Treat the supplied Match relationship and evidence as a hard boundary. Never manufacture a connection to the user's topic when the record is marked contextual, and say when only adjacent material was found.
+10. Never infer appearance, meaning, intent, symbolism or significance from a title or object type. Do not write that a work "explores", "evokes", "features" or "represents" something unless the supplied Description explicitly states that claim. If the record only supplies title, maker and type, report only those fields.
+11. Do not call every result an AI artwork. Explain that an exhibition search can include explicit AI works, computational precedents and contextual material, and keep those categories distinct.
+12. When many objects are supplied, summarise the evidence levels and discuss no more than six of the strongest examples unless the user explicitly asks for a complete list. The object cards provide the fuller result set.
 
-PERSONALITY: Knowledgeable, curious, slightly poetic. You love finding unexpected connections. You speak with the authority of thousands of objects and centuries of cultural knowledge. Think: a curator who's had one glass of wine at a gallery opening — warm, engaged, making connections others miss.`;
+PERSONALITY: Knowledgeable, curious and clear. Use measured museum language. Prefer evidence and useful distinctions over decorative interpretation.`;
+
+function isEvidenceDiscoveryRequest(message) {
+  const intent = analyzeCuratorQuery(message);
+  return intent.ai && /\b(?:find|show|list|looking for|search|exhibition|online show|artworks?|objects?|pictures?|images?)\b/i.test(String(message));
+}
+
+function discoverySummary(objects) {
+  const groups = {
+    direct: objects.filter((object) => object.match?.relationship === 'direct'),
+    related: objects.filter((object) => object.match?.relationship === 'related'),
+    contextual: objects.filter((object) => object.match?.relationship === 'contextual'),
+  };
+  const lines = [
+    `I found ${objects.length} image-ready records and separated them by the strength of their source metadata.`,
+  ];
+
+  const addGroup = (heading, records, limit, explanation) => {
+    if (!records.length) return;
+    lines.push('', heading, explanation);
+    records.slice(0, limit).forEach((record, index) => {
+      const details = [record.maker, record.date, record.institution].filter(Boolean).join(', ');
+      const evidence = record.match?.evidence?.join(', ') || 'semantic match';
+      lines.push(`${index + 1}. ${record.title}${details ? ` (${details})` : ''}. Metadata evidence: ${evidence}.`);
+    });
+  };
+
+  addGroup(
+    'Explicit AI metadata',
+    groups.direct,
+    4,
+    'These records explicitly name artificial intelligence in their catalogue text or title.',
+  );
+  addGroup(
+    'Computational and robotic precedents',
+    groups.related,
+    6,
+    'These records name computational, computer-generated, robotic or automated practice. They are relevant precedents, but the source metadata does not describe them as AI artworks.',
+  );
+  if (!groups.direct.length && !groups.related.length) {
+    lines.push('', 'No records with explicit AI or computational evidence were found in the current index.');
+  }
+  if (groups.contextual.length) {
+    lines.push('', `${groups.contextual.length} broader contextual leads are included in the result cards. They should be reviewed by a curator before entering an exhibition.`);
+  }
+  lines.push('', 'The current explicit evidence is concentrated in a small number of connected sources, so the result set should be treated as a research shortlist rather than a finished exhibition selection.');
+  return lines.join('\n');
+}
 
 /**
  * Conversational search: interpret the user's question, search the collection,
@@ -108,7 +167,11 @@ PERSONALITY: Knowledgeable, curious, slightly poetic. You love finding unexpecte
  */
 export async function conversationalSearch(userMessage, history = []) {
   // Step 1: Search the collection using the user's message as query
-  const searchResults = await curatorSearch(userMessage, 8);
+  const evidenceDiscovery = isEvidenceDiscoveryRequest(userMessage);
+  const searchResults = await curatorSearch(userMessage, 12, null, {
+    imageReady: evidenceDiscovery ? true : undefined,
+    diversify: true,
+  });
 
   // Step 2: Build context from search results
   let objectContext = '';
@@ -129,6 +192,8 @@ export async function conversationalSearch(userMessage, history = []) {
       const desc = (p.description || p.ai || '').substring(0, 300);
       const score = result.score || 0;
       const commentCount = p._comment_count || 0;
+      const relationship = result.match?.relationship || 'semantic';
+      const evidence = result.match?.evidence || [];
       const imageAllowed = p.media_available !== false
         && p.media_placeholder !== true
         && p.media_public_display_allowed !== false;
@@ -143,6 +208,8 @@ export async function conversationalSearch(userMessage, history = []) {
       if (materials) objectContext += `Materials: ${materials}\n`;
       if (desc) objectContext += `Description: ${desc}\n`;
       if (commentCount > 0) objectContext += `Visitor comments: ${commentCount}\n`;
+      objectContext += `Match relationship: ${relationship}\n`;
+      if (evidence.length) objectContext += `Match evidence in metadata: ${evidence.join(', ')}\n`;
       objectContext += `Relevance: ${(score * 100).toFixed(0)}%\n`;
 
       citedObjects.push({
@@ -155,6 +222,7 @@ export async function conversationalSearch(userMessage, history = []) {
         date,
         maker,
         type,
+        match: result.match || null,
         // Fields so the front-end can open a full object detail directly from chat
         _source_collection: col,
         canonical_id: p.canonical_id || '',
@@ -182,6 +250,15 @@ export async function conversationalSearch(userMessage, history = []) {
     objectContext = '\n\nNo objects found matching this query. Let the user know and suggest alternative search terms or broader concepts.';
   }
 
+  if (evidenceDiscovery) {
+    return {
+      message: discoverySummary(citedObjects),
+      objects: citedObjects,
+      model: 'deterministic-evidence-summary',
+      searchCount: searchResults.length,
+    };
+  }
+
   // Step 3: Build messages for LLM — inject whole-collection overview so the
   // assistant reasons as one mind that knows the entire collection.
   const overview = overviewText(await getCollectionOverview());
@@ -203,7 +280,7 @@ export async function conversationalSearch(userMessage, history = []) {
         messages,
         stream: false,
         keep_alive: '15m', // keep the model resident — avoids slow cold reloads between questions
-        options: { num_predict: 420, temperature: 0.7 },
+        options: { num_predict: 420, temperature: 0.25 },
       }),
       signal: controller.signal,
     });

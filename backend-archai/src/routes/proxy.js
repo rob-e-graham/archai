@@ -31,6 +31,7 @@ const ALLOWED_COLLECTIONS = [
   'archai_streetart', 'archai_getty', 'archai_wellcome', 'archai_qagoma', 'archai_rawg',
   'archai_nga',
   'archai_wikimedia', 'archai_internetarchive', 'archai_loc', 'archai_dpla', 'archai_trove',
+  'archai_acmi', 'archai_nasa',
 ];
 const COLLECTION_INSTITUTIONS = {
   archai_pilot: 'Museums Victoria',
@@ -57,6 +58,8 @@ const COLLECTION_INSTITUTIONS = {
   archai_loc: 'Library of Congress',
   archai_dpla: 'Digital Public Library of America',
   archai_trove: 'Trove · National Library of Australia',
+  archai_acmi: 'Australian Centre for the Moving Image (ACMI)',
+  archai_nasa: 'NASA Image and Video Library',
 };
 
 // ── Personality config ────────────────────────────────────────────
@@ -361,12 +364,17 @@ const curatorSearchSchema = z.object({
   query: z.string().min(1).max(1000),
   limit: z.coerce.number().int().min(1).max(50).optional().default(10),
   collection: z.enum(ALLOWED_COLLECTIONS).optional(),
+  imageReady: z.boolean().optional(),
+  diversify: z.boolean().optional(),
 });
 
 proxyRouter.post('/curator/search', searchLimiter, async (req, res) => {
   try {
     const input = curatorSearchSchema.parse(req.body);
-    const results = await curatorSearch(input.query, input.limit, input.collection || null);
+    const results = await curatorSearch(input.query, input.limit, input.collection || null, {
+      imageReady: input.imageReady,
+      diversify: input.diversify,
+    });
     res.json({ ok: true, results });
   } catch (e) {
     if (e instanceof z.ZodError) {
