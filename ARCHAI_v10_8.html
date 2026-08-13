@@ -96,6 +96,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 
 /* PANELS */
 .panel{display:none;}.panel.active{display:block;}
+/* Public read-only demo: hide staff-only controls (writes, publishing, admin links). */
+body.public-demo [data-staff-only]{display:none!important;}
 
 /* SHARED */
 .section-label{font-family:var(--mono);font-size:0.56rem;letter-spacing:2px;text-transform:uppercase;color:var(--text3);margin-bottom:9px;}
@@ -146,7 +148,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 .convo-msg.assistant{background:rgba(232,228,220,0.02);border-left:2px solid var(--border2);color:var(--text);white-space:pre-wrap}
 .convo-msg .convo-typing{display:inline-block;width:10px;height:10px;border:1.5px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 0.5s linear infinite}
 .convo-objects{display:flex;gap:8px;overflow-x:auto;padding:8px 0;margin-top:8px}
-.convo-obj-card{flex:0 0 140px;background:var(--surface);border:1px solid var(--border);cursor:pointer;transition:border-color 0.2s}
+.convo-obj-cards{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.convo-obj-card{flex:0 0 140px;max-width:140px;background:var(--surface);border:1px solid var(--border);cursor:pointer;transition:border-color 0.2s}
 .convo-obj-card:hover{border-color:var(--accent)}
 .convo-obj-card img{width:100%;height:80px;object-fit:cover;filter:brightness(0.7)}
 .convo-obj-card .coc-title{padding:6px 8px;font-family:var(--mono);font-size:0.5rem;line-height:1.3;color:var(--text2)}
@@ -157,6 +160,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 .filter-group{display:flex;align-items:center;gap:5px;}
 .fg-label{font-family:var(--mono);font-size:0.53rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);}
 .chip{font-family:var(--mono);font-size:0.58rem;letter-spacing:1px;text-transform:uppercase;padding:3px 7px;border:1px solid var(--border2);color:var(--text3);cursor:pointer;transition:all 0.12s;}
+.collection-filter-select{font-family:var(--mono);font-size:0.58rem;letter-spacing:0.5px;padding:3px 7px;border:1px solid var(--border2);background:var(--surface);color:var(--text2);cursor:pointer;max-width:200px;}
 .chip:hover{color:var(--text2);border-color:var(--text3);}
 .chip.active{color:var(--text);border-color:var(--text3);background:var(--surface2);}
 .results-header{font-family:var(--mono);font-size:0.56rem;color:var(--text3);text-transform:uppercase;letter-spacing:2px;padding:9px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
@@ -646,15 +650,15 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
     </div>
   </div>
   <div>
-    <div class="header-meta"><b id="clockDisplay">—</b><br><span id="headerMetaLine">Build v11.6.7 · connecting… · rights-aware media · AUXIO setup bench</span></div>
+    <div class="header-meta"><b id="clockDisplay">—</b><br><span id="headerMetaLine">Build v11.6.15 · connecting… · rights-aware media · AUXIO setup bench</span></div>
     <div class="header-links">
-      <a class="header-link" href="http://localhost:11434" target="_blank">Ollama LLM</a>
-      <a class="header-link" href="http://localhost:8055/admin" target="_blank">Directus CMS</a>
-      <a class="header-link" href="http://localhost:6333/dashboard" target="_blank">Qdrant</a>
+      <a class="header-link" data-staff-only href="http://localhost:11434" target="_blank">Ollama LLM</a>
+      <a class="header-link" data-staff-only href="http://localhost:8055/admin" target="_blank">Directus CMS</a>
+      <a class="header-link" data-staff-only href="http://localhost:6333/dashboard" target="_blank">Qdrant</a>
       <a class="header-link" href="https://github.com/rob-e-graham/archai" target="_blank">GitHub</a>
-      <button class="header-link" type="button" onclick="openTrainingOverlay()">Training Mode</button>
+      <button class="header-link" data-staff-only type="button" onclick="openTrainingOverlay()">Training Mode</button>
     </div>
-    <div class="role-select-wrap">
+    <div class="role-select-wrap" data-staff-only>
       <span class="role-select-label">Role</span>
       <select id="roleSelect" class="role-select" onchange="setUserRole(this.value)">
         <option value="admin">Admin</option>
@@ -747,10 +751,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
       <div class="filter-row">
         <div class="filter-group"><span class="fg-label">Role</span><div class="chip active" onclick="setChip(this)">Curator</div><div class="chip" onclick="setChip(this)">Collections</div><div class="chip" onclick="setChip(this)">Research</div></div>
         <div class="filter-group"><span class="fg-label">Scope</span><div class="chip active" onclick="setChip(this)">All</div><div class="chip" onclick="setChip(this)">Technology</div><div class="chip" onclick="setChip(this)">History</div><div class="chip" onclick="setChip(this)">Science</div></div>
+        <div class="filter-group"><span class="fg-label">Collection</span><select id="collectionFilter" class="collection-filter-select" onchange="setSearchCollection(this.value)"><option value="">All collections</option></select></div>
       </div>
       <div class="results-header">
         <span id="resultsLabel">Loading — connecting to Qdrant…</span>
-        <div class="r-acts"><div class="btn" onclick="selectAllResults()">Select All</div><div class="btn" onclick="exportCSV()">Export CSV</div><div class="btn" onclick="batchTagResults()">Batch Tag</div></div>
+        <div class="r-acts" data-staff-only><div class="btn" onclick="selectAllResults()">Select All</div><div class="btn" onclick="exportCSV()">Export CSV</div><div class="btn" onclick="batchTagResults()">Batch Tag</div></div>
       </div>
       <div id="resultsContainer">
         <div class="skel-card"><div class="skel-thumb skeleton"></div><div><div class="skel-line skeleton"></div><div class="skel-line short skeleton"></div><div class="skel-line xs skeleton"></div></div><div></div></div>
@@ -774,7 +779,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
           <div style="display:flex;justify-content:space-between;"><span style="color:var(--accent3)">② Local</span><span>Institutional terms</span></div>
           <div style="display:flex;justify-content:space-between;opacity:0.45"><span>③ LCSH</span><span>Inactive</span></div>
         </div>
-        <div class="btn" style="margin-top:8px;display:block;text-align:center;" onclick="switchTab('vocab',document.querySelectorAll('.tab')[3])">Manage Vocabularies →</div>
+        <div class="btn" data-staff-only style="margin-top:8px;display:block;text-align:center;" onclick="switchTab('vocab',document.querySelectorAll('.tab')[3])">Manage Vocabularies →</div>
       </div>
       <div class="sb-section">
         <div class="sb-title">Collection Pipeline</div>
@@ -784,8 +789,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
           <div>Embed model: <span>nomic-embed-text</span></div>
           <div>Objects loaded: <span id="sb-mv-count">0</span></div>
         </div>
-        <button class="pipe-btn" onclick="loadMVObjects()">↻ Reload All Collections</button>
-        <button class="pipe-btn" style="margin-top:4px" onclick="runHarvesters(this)">▶ Run Harvesters</button>
+        <button class="pipe-btn" data-staff-only onclick="loadMVObjects()">↻ Reload All Collections</button>
+        <button class="pipe-btn" data-staff-only style="margin-top:4px" onclick="runHarvesters(this)">▶ Run Harvesters</button>
       </div>
       <div class="sb-section">
         <div class="sb-title">Cultural Safety</div>
@@ -994,7 +999,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--sans);font-weight:
 
 <!-- ████ CONNECT COLLECTION PANEL ████ -->
 <div class="panel" id="panel-connect">
-  <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:26px;align-items:start;max-width:1500px;">
+  <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:26px;align-items:start;max-width:1500px;padding:30px 42px;">
     <div>
       <div class="section-label" style="margin-bottom:6px;">Connect a Collection — Harvester / API Setup</div>
       <div style="font-family:var(--mono);font-size:0.55rem;color:var(--text3);line-height:1.9;margin-bottom:16px;">
@@ -1334,6 +1339,10 @@ const USE_PROXY = Boolean(API_BASE);
 // so object/visitor chat always runs through the qwen + personality + SafeChat
 // proxy instead of falling back to raw local Ollama (llama3).
 const BACKEND_BASE = IS_LOCAL ? 'http://localhost:8787' : (window.ARCHAI_API_BASE || API_BASE || '');
+// Public read-only demo: served from a public host (not localhost/LAN) through the
+// tunnelled backend. The server independently enforces read-only for this traffic;
+// this flag drives the matching UI (locks role to demo, hides staff controls).
+const IS_PUBLIC_DEMO = !IS_LOCAL && Boolean(window.ARCHAI_API_BASE);
 
 function openTrainingOverlay() {
   const overlay = document.getElementById('trainingOverlay');
@@ -1425,11 +1434,36 @@ function getAuxPageBase() {
   return `http://${host}:8787/aux`;
 }
 
-async function proxyCuratorSearch(query, limit = 20) {
+// Which collection the staff/visitor is scoping search to ('' = all collections).
+let selectedSearchCollection = '';
+
+function setSearchCollection(value) {
+  selectedSearchCollection = value || '';
+  const q = document.getElementById('curatorSearch').value.trim();
+  if (q) { doSearch(); } else { renderResultCards(); }
+}
+
+// Populate the collection filter from the collections that actually loaded.
+function populateCollectionFilter(counts) {
+  const sel = document.getElementById('collectionFilter');
+  if (!sel) return;
+  const cols = Object.keys(counts).filter(k => counts[k] > 0)
+    .sort((a, b) => (getCollectionLabel(a).name || a).localeCompare(getCollectionLabel(b).name || b));
+  const current = sel.value;
+  sel.innerHTML = '<option value="">All collections</option>' + cols.map(c => {
+    const l = getCollectionLabel(c);
+    return `<option value="${c}">${escHTML(l.name || l.short || c)}</option>`;
+  }).join('');
+  if (current && cols.includes(current)) sel.value = current;
+}
+
+async function proxyCuratorSearch(query, limit = 20, collection = '') {
+  const body = { query, limit };
+  if (collection) body.collection = collection;
   const r = await fetch(`${BACKEND_BASE}/api/proxy/curator/search`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query, limit }),
+    body: JSON.stringify(body),
   });
   const d = await r.json();
   return d.results || [];
@@ -2240,7 +2274,9 @@ const ROLE_DEFS = {
   volunteer:   { label:'Volunteer',          note:'Volunteer · read-only collection lookup, AUXIO preview, visitor support',
                  tabs:['curator','nfc','visitor','famtec'] },
   visitor:     { label:'Visitor',            note:'Visitor mode · public-facing preview only',
-                 tabs:['visitor'] }
+                 tabs:['visitor'] },
+  demo:        { label:'Public Demo',         note:'Public read-only demo · explore every part of ARCHAI. Search, converse, and browse freely; editing and publishing are disabled.',
+                 tabs:['curator','nodel','nfc','vocab','connect','visitor','famtec','objdetail'] }
 };
 
 // ── FAMTEC DATA ─────────────────────────────────────────────────
@@ -2260,7 +2296,7 @@ const FAMTEC_FEED = [
   { kind:'need skills', title:'Need dev support for legacy browser artwork', org:'FAMTEC', timing:'Exhibition opens in 6 weeks', body:'Seeking emulation / browser preservation specialist for IE6-era net art display and capture workflow.', tags:['need skills','preservation','emulation','net art'] },
   { kind:'available crew', title:'Installation technicians available (2-person team)', org:'FAMTEC', timing:'April capacity open', body:'Experienced in media server commissioning, projection alignment, sensor calibration and deinstall documentation.', tags:['available crew','installation','commissioning'] },
   { kind:'need skills', title:'Digitisation workflow advice for archive ingest', org:'RMIT Library (demo)', timing:'Semester ingest surge', body:'Short-term guidance on capture standards, file naming and preservation-grade storage for a special-collections push.', tags:['need skills','digitisation','archives'] },
-  { kind:'loan', title:'AUXIO kiosks + tags starter kit', org:'FAMTEC', timing:'Pilot loan (8 weeks)', body:'Loan bundle for visitor wayfinding and object interpretation pilots. Includes deployment guide.', tags:['loan','aux.io','visitor experience','pilot'] }
+  { kind:'loan', title:'AUXIO kiosks + tags starter kit', org:'FAMTEC', timing:'Pilot loan (8 weeks)', body:'Loan bundle for visitor wayfinding and object interpretation pilots. Includes deployment guide.', tags:['loan','auxio','visitor experience','pilot'] }
 ];
 
 const FAMTEC_CHAT = {
@@ -2535,7 +2571,8 @@ const COLLECTIONS = [
   'archai_rijks', 'archai_europeana', 'archai_auckland', 'archai_tepapa',
   'archai_mplus', 'archai_brasiliana', 'archai_smithsonian', 'archai_tate',
   'archai_streetart', 'archai_getty', 'archai_wellcome', 'archai_qagoma', 'archai_rawg',
-  'archai_nga'
+  'archai_nga',
+  'archai_wikimedia', 'archai_internetarchive', 'archai_loc', 'archai_dpla', 'archai_trove'
 ];
 const COLLECTION_LABELS = {
   archai_pilot: { name: 'Museums Victoria', short: 'MV', colour: 'rgba(143,188,176,0.7)', border: 'rgba(143,188,176,0.3)' },
@@ -2556,7 +2593,12 @@ const COLLECTION_LABELS = {
   archai_wellcome: { name: 'Wellcome Collection', short: 'Well', colour: 'rgba(112,186,163,0.84)', border: 'rgba(112,186,163,0.34)' },
   archai_qagoma: { name: 'QAGOMA', short: 'QAG', colour: 'rgba(174,139,199,0.84)', border: 'rgba(174,139,199,0.34)' },
   archai_rawg: { name: 'RAWG Video Games Database', short: 'RAWG', colour: 'rgba(122,166,216,0.84)', border: 'rgba(122,166,216,0.34)' },
-  archai_nga: { name: 'National Gallery of Art, Washington', short: 'NGA', colour: 'rgba(202,166,104,0.84)', border: 'rgba(202,166,104,0.34)' }
+  archai_nga: { name: 'National Gallery of Art, Washington', short: 'NGA', colour: 'rgba(202,166,104,0.84)', border: 'rgba(202,166,104,0.34)' },
+  archai_wikimedia: { name: 'Wikimedia Commons', short: 'WMC', colour: 'rgba(150,180,150,0.84)', border: 'rgba(150,180,150,0.34)' },
+  archai_internetarchive: { name: 'Internet Archive', short: 'IA', colour: 'rgba(200,140,110,0.84)', border: 'rgba(200,140,110,0.34)' },
+  archai_loc: { name: 'Library of Congress', short: 'LoC', colour: 'rgba(140,160,200,0.84)', border: 'rgba(140,160,200,0.34)' },
+  archai_dpla: { name: 'Digital Public Library of America', short: 'DPLA', colour: 'rgba(120,190,190,0.84)', border: 'rgba(120,190,190,0.34)' },
+  archai_trove: { name: 'Trove · NLA', short: 'Trove', colour: 'rgba(196,150,120,0.84)', border: 'rgba(196,150,120,0.34)' }
 };
 
 function getCollectionLabel(col) {
@@ -3029,9 +3071,10 @@ function loadMVObjects() {
     // Header line reads live state — never hardcode counts (they drift).
     const liveCols = Object.keys(counts).filter(k => counts[k] > 0).length;
     const headerMeta = document.getElementById('headerMetaLine');
-    if (headerMeta) headerMeta.textContent = `Build v11.6.5 · ${liveCols} live collections · ${totalCount.toLocaleString()} objects · rights-aware media · AUXIO setup bench`;
+    if (headerMeta) headerMeta.textContent = `Build v11.6.15 · ${liveCols} live collections · ${totalCount.toLocaleString()} objects · rights-aware media · AUXIO setup bench`;
 
     generateNFCTags();
+    populateCollectionFilter(counts);
     renderResultCards();
     renderNFCList();
     renderVisitorList();
@@ -3162,6 +3205,16 @@ function togglePill(el) { el.classList.toggle('active'); }
 // ROLE SWITCHING
 // ═══════════════════════════════════════════════════════════════════
 function initRoleUI() {
+  if (IS_PUBLIC_DEMO) {
+    // Public visitors are locked to the read-only demo role; the server enforces
+    // this regardless, and the UI hides staff controls to match.
+    document.body.classList.add('public-demo');
+    currentRole = 'demo';
+    const sel = document.getElementById('roleSelect');
+    if (sel) sel.value = 'demo';
+    applyRoleAccess();
+    return;
+  }
   const sel = document.getElementById('roleSelect');
   if (sel) currentRole = sel.value || currentRole;
   applyRoleAccess();
@@ -3513,6 +3566,59 @@ function exportNFCQR(code) {
   URL.revokeObjectURL(a.href);
 }
 
+// Make a live AUXIO visitor page from any object, using the object's own
+// verified metadata. Stable code per object so re-running updates the same page
+// instead of spawning duplicates. Persists via POST /api/nfc (the same endpoint
+// staff use); the public demo role is allowlisted for exactly this one write.
+function makeAuxioFromObject(objId) {
+  const obj = objId ? OBJECTS[objId] : null;
+  const statusEl = document.getElementById('od-action-status');
+  if (!obj) { if (statusEl) statusEl.textContent = 'Open an object first.'; return; }
+  const p = obj._mv || {};
+  const img = pickSearchImage(p);
+  const institution = p.source_institution || p.institution || obj.location || '';
+  const accession = p.registration_number || p.accession_number || obj.id || obj.dams || '';
+  const rights = p.licence || p.media_rights_title || 'Open access / per-record rights';
+  const draftId = 'auxio-' + String(objId).replace(/[^A-Za-z0-9_-]+/g, '').slice(0, 48);
+  const code = 'AUX-' + String(objId).replace(/[^A-Za-z0-9]+/g, '').slice(-12).toUpperCase();
+  const objectDraft = {
+    id: draftId,
+    title: obj.title || getDisplayTitle(p, 'Untitled object'),
+    type: obj.type || p.object_type || 'Object',
+    year: obj.year || p.date_range || p.date || null,
+    location: institution,
+    status: 'live',
+    dataset: 'demo_visitor_auxio',
+    media: img ? [{ kind: 'image', thumbUrl: img, rights }] : [],
+    tags: Array.isArray(p.keyword_terms) ? p.keyword_terms.slice(0, 8) : ['auxio'],
+    materials: p.medium ? [p.medium] : [],
+    description: p.description || obj.ai || '',
+    aiInterpretation: obj.ai || p.description || '',
+    verifiedFacts: [
+      institution ? `Institution: ${institution}` : '',
+      accession ? `Accession: ${accession}` : '',
+      rights ? `Rights: ${rights}` : ''
+    ].filter(Boolean),
+    source: { sourceUrl: p.source_url || p.record_url || '', accessionNumber: accession, institution, rights },
+    workflow: { state: 'published' }
+  };
+  const payload = { code, status: 'live', objectId: draftId, location: institution || 'Visitor demo', visibility: { ...NFC_VIS_DEFAULTS }, objectDraft, savedAt: new Date().toISOString() };
+  if (statusEl) statusEl.textContent = 'Creating AUXIO page…';
+  fetch(`${BACKEND_BASE}/api/nfc`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
+  })
+  .then(r => r.json())
+  .then(d => {
+    if (!d.ok) throw new Error(d.error || 'failed');
+    const url = `${BACKEND_BASE}/api/nfc/pages/${encodeURIComponent(code)}`;
+    if (statusEl) statusEl.innerHTML = `AUXIO page created — <a href="${escHTML(url)}" target="_blank" rel="noopener" style="color:var(--accent)">open the visitor page →</a>`;
+    window.open(url, '_blank', 'noopener');
+  })
+  .catch(() => {
+    if (statusEl) statusEl.textContent = 'Could not create the AUXIO page right now — please try again.';
+  });
+}
+
 function saveNFC(code) {
   const tag = NFC_TAGS.find(t => t.code === code);
   if (!tag) return;
@@ -3534,7 +3640,7 @@ function saveNFC(code) {
       rights: p.licence || p.media_rights_title || 'Institutional demo record'
     },
     media: pickSearchImage(p) ? [{ kind: 'image', thumbUrl: pickSearchImage(p), rights: p.licence || p.media_rights_title || '' }] : [],
-    tags: Array.isArray(p.keywords) ? p.keywords : ['institution draft', 'aux.io'],
+    tags: Array.isArray(p.keywords) ? p.keywords : ['institution draft', 'auxio'],
     materials: p.medium ? [p.medium] : [],
     description: p.description || obj.ai || '',
     aiInterpretation: obj.ai || p.description || '',
@@ -3648,11 +3754,34 @@ function thumbHTML(o) {
   return `<div style="font-size:1rem;opacity:0.15;margin-bottom:3px">▣</div><div style="font-size:0.44rem">${escHTML(o.dams)}</div>`;
 }
 
+// Interleave objects across their source collections and randomise per call, so
+// the default view opens on a fresh, diverse mix each visit instead of always the
+// same first-loaded collection (Museum Victoria) sitting at the top.
+function diversifyByCollection(keys) {
+  const shuffle = (arr) => { for (let i = arr.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [arr[i], arr[j]] = [arr[j], arr[i]]; } return arr; };
+  const groups = new Map();
+  for (const k of keys) {
+    const src = (OBJECTS[k] && OBJECTS[k]._source) || 'archai_pilot';
+    if (!groups.has(src)) groups.set(src, []);
+    groups.get(src).push(k);
+  }
+  const lists = shuffle([...groups.values()].map((list) => shuffle(list)));
+  const out = [];
+  for (let idx = 0, added = true; added; idx++) {
+    added = false;
+    for (const list of lists) { if (idx < list.length) { out.push(list[idx]); added = true; } }
+  }
+  return out;
+}
+
 function renderResultCards() {
   const c = document.getElementById('resultsContainer');
   if (!c) return;
   const allKeys = Object.keys(OBJECTS);
-  const keys = allKeys.filter(id => hasUsableObjectImage(OBJECTS[id]._mv || {}));
+  const keys = diversifyByCollection(allKeys.filter(id =>
+    hasUsableObjectImage(OBJECTS[id]._mv || {}) &&
+    (!selectedSearchCollection || OBJECTS[id]._source === selectedSearchCollection)
+  ));
   if (!keys.length) {
     c.innerHTML = '<div style="padding:30px;font-family:var(--mono);font-size:0.62rem;color:var(--text3);text-align:center;">No image-backed objects loaded. Connect to Qdrant or re-run the harvesters.</div>';
     return;
@@ -3743,6 +3872,7 @@ function doConverse() {
 
     // Render object cards if present
     if (data.objects && data.objects.length > 0) {
+      html += `<div class="convo-obj-cards">`;
       for (const obj of data.objects) {
         const objKey = ensureConvoObject(obj);
         const objImage = pickSearchImage(OBJECTS[objKey]._mv || {});
@@ -3752,6 +3882,7 @@ function doConverse() {
         html += `<div class="coc-meta">${escHTML(obj.institution || '')} · ${(obj.score*100).toFixed(0)}%</div>`;
         html += `</div>`;
       }
+      html += `</div>`;
 
       // Also update the main results area — renderConvoResults filters to
       // image-ready records internally, so pass the full cited set.
@@ -3851,7 +3982,7 @@ async function doSearch(query) {
   container.innerHTML = '<div style="padding:20px;font-family:var(--mono);font-size:0.62rem;color:var(--text2)">Reviewing the curator index and preparing image-backed matches…</div>';
 
   try {
-    const semanticResults = await proxyCuratorSearch(q, CURATOR_SEARCH_LIMIT);
+    const semanticResults = await proxyCuratorSearch(q, CURATOR_SEARCH_LIMIT, selectedSearchCollection);
     const seen = new Set();
     const imageReady = [];
 
@@ -3885,6 +4016,7 @@ async function doSearch(query) {
     console.warn('Semantic search failed, falling back to text search:', e.message);
     const terms = q.toLowerCase().split(/\s+/);
     const matches = Object.entries(OBJECTS).filter(([id, o]) => {
+      if (selectedSearchCollection && o._source !== selectedSearchCollection) return false;
       const haystack = [o.title, o.ai, o.type, o.location, o.dams, o.id,
         o._mv ? (o._mv.description || '') : '',
         o._mv ? (o._mv.discipline || '') : '',
@@ -4168,10 +4300,11 @@ function openObjectDetail(objKey) {
   if (sourceImage) {
     linksEl.innerHTML += `<a href="${sourceImage}" target="_blank" class="btn" style="font-size:0.55rem">Look Closer / Source Image →</a>`;
   }
+  linksEl.innerHTML += `<button class="btn primary" onclick="makeAuxioFromObject(window._odCurrentId)">✦ Make AUXIO</button>`;
   linksEl.innerHTML += `<button class="btn" onclick="odShareCurrentObject()">Share / Copy</button>`;
-  linksEl.innerHTML += `<button class="btn" onclick="odSaveCurrentObjectToProject()">Save to Project</button>`;
+  linksEl.innerHTML += `<button class="btn" data-staff-only onclick="odSaveCurrentObjectToProject()">Save to Project</button>`;
   linksEl.innerHTML += `<button class="btn" onclick="odSpeakObjectSummary()">Read Summary</button>`;
-  linksEl.innerHTML += `<a href="http://localhost:8055/admin" target="_blank" class="btn" style="font-size:0.55rem">Edit in Directus →</a>`;
+  linksEl.innerHTML += `<a data-staff-only href="http://localhost:8055/admin" target="_blank" class="btn" style="font-size:0.55rem">Edit in Directus →</a>`;
   linksEl.innerHTML += `<span class="od-action-status" id="od-action-status"></span>`;
 
   // Description
@@ -4770,7 +4903,7 @@ function createInstitutionObjectForAux(code) {
     media_thumbnail: image,
     media_medium: image,
     image_url: image,
-    keywords: ['institution draft', 'aux.io'],
+    keywords: ['institution draft', 'auxio'],
     source_short: 'INST'
   };
 
@@ -4888,7 +5021,12 @@ function buildVocabIndex() {
     archai_wellcome: 'Wellcome Collection',
     archai_qagoma: 'QAGOMA',
     archai_rawg: 'RAWG Video Games Database',
-    archai_nga: 'National Gallery of Art, Washington'
+    archai_nga: 'National Gallery of Art, Washington',
+    archai_wikimedia: 'Wikimedia Commons',
+    archai_internetarchive: 'Internet Archive',
+    archai_loc: 'Library of Congress',
+    archai_dpla: 'Digital Public Library of America',
+    archai_trove: 'Trove · NLA'
   };
 
   for (const [key, obj] of Object.entries(OBJECTS)) {

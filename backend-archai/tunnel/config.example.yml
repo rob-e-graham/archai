@@ -6,6 +6,9 @@ credentials-file: /path/to/YOUR_TUNNEL_UUID.json
 
 ingress:
   - hostname: archai-api.fineartmedia.tech
+    path: ^/voice(/.*)?$
+    service: http://localhost:8123
+  - hostname: archai-api.fineartmedia.tech
     service: http://localhost:8787
     originRequest:
       noTLSVerify: true

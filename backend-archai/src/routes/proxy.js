@@ -30,6 +30,7 @@ const ALLOWED_COLLECTIONS = [
   'archai_mplus', 'archai_brasiliana', 'archai_smithsonian', 'archai_tate',
   'archai_streetart', 'archai_getty', 'archai_wellcome', 'archai_qagoma', 'archai_rawg',
   'archai_nga',
+  'archai_wikimedia', 'archai_internetarchive', 'archai_loc', 'archai_dpla', 'archai_trove',
 ];
 const COLLECTION_INSTITUTIONS = {
   archai_pilot: 'Museums Victoria',
@@ -51,6 +52,11 @@ const COLLECTION_INSTITUTIONS = {
   archai_qagoma: 'QAGOMA',
   archai_rawg: 'RAWG Video Games Database',
   archai_nga: 'National Gallery of Art, Washington',
+  archai_wikimedia: 'Wikimedia Commons',
+  archai_internetarchive: 'Internet Archive',
+  archai_loc: 'Library of Congress',
+  archai_dpla: 'Digital Public Library of America',
+  archai_trove: 'Trove · National Library of Australia',
 };
 
 // ── Personality config ────────────────────────────────────────────
