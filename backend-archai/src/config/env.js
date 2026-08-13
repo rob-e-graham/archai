@@ -67,4 +67,18 @@ export const env = {
     .split(',')
     .map((s) => s.trim())
     .filter(Boolean),
+  // Community steward keys. A source community (or its delegated guardian) holds
+  // one of these; only its holder may set or change a cultural protocol. Kept
+  // deliberately separate from the staff role system — museum staff, including
+  // admin, cannot register or weaken a community protocol. Governed by the
+  // community, in the spirit of the Kaitiakitanga License. Format: "id:key".
+  culturalStewardKeys: (process.env.CULTURAL_STEWARD_KEYS || '')
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean)
+    .reduce((acc, pair) => {
+      const [id, key] = pair.split(':');
+      if (id && key) acc[key] = id;
+      return acc;
+    }, {}),
 };

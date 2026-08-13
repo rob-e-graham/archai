@@ -7,6 +7,14 @@ import { env } from '../config/env.js';
 import { rateLimit } from '../middleware/rateLimit.js';
 import { buildCuratorCollection, curatorSearch } from '../services/curator-vectors.js';
 import { conversationalSearch } from '../services/conversational-search.js';
+import {
+  resolveProtocol,
+  evaluateAccess,
+  screenResponse,
+  applyVoiceConstraint,
+  publicNotice,
+} from '../services/culturalProtocol.js';
+import { repo } from '../services/objectRepository.js';
 
 // ── SafeChat — crisis detection for AI chat ───────────────────────
 const require = createRequire(import.meta.url);
@@ -162,7 +170,43 @@ const chatSchema = z.object({
     role: z.enum(['user', 'assistant']),
     content: z.string().max(1000),
   })).max(10).optional().default([]),
+  // Which object is speaking. Used ONLY to look the object up in the
+  // server-authoritative community protocol registry — a static AUXIO page
+  // cannot strip a community's restriction by leaving this out, because a
+  // closed/restricted protocol keyed on the collection or institution still
+  // applies. Fields are permissive because payload shapes differ by source.
+  object: z.object({
+    collection: z.string().max(64).optional(),
+    canonicalId: z.string().max(200).optional(),
+    id: z.string().max(200).optional(),
+    institution: z.string().max(200).optional(),
+    registration: z.string().max(200).optional(),
+    culturalContext: z.string().max(200).optional(),
+    restrictions: z.array(z.string().max(64)).max(20).optional(),
+  }).optional(),
 });
+
+// The community's decline is delivered in the same envelope shape the visitor
+// page already renders for a normal answer, so honouring a protocol never
+// dead-ends the page.
+function declineEnvelope(decision) {
+  return {
+    ok: true,
+    message: { role: 'assistant', content: decision.declineMessage },
+    model: CHAT_MODEL,
+    proxied: true,
+    culturalProtocol: {
+      enforced: true,
+      access: decision.access,
+      layer: decision.layer,
+      tkLabels: decision.tkLabels,
+      restrictedTopic: decision.restrictedTopicMatched || null,
+      notice: decision.culturalNotice || null,
+      community: decision.community || null,
+      authority: 'source-community',
+    },
+  };
+}
 
 const BLOCKED_PATTERNS = [
   /ignore.*(?:previous|above|system)/i,
@@ -188,6 +232,24 @@ proxyRouter.post('/chat', chatLimiter, async (req, res) => {
           ok: false,
           error: 'I can only answer questions about the objects in this collection.',
         });
+      }
+    }
+
+    // ── Community cultural protocol — PRE-inference gate ────────────
+    // A source community's terms are honoured here, before the model is ever
+    // called — not as a staff review after the fact. Resolution is from the
+    // server-side registry, so the restriction holds even if a page omits the
+    // object reference or was edited to remove it.
+    const protocol = resolveProtocol(input.object || {});
+    if (protocol) {
+      const access = evaluateAccess({ protocol, prompt: input.userPrompt });
+      if (!access.allowed) {
+        repo.audit({
+          type: 'cultural.protocol.block',
+          actor: req.archai?.user?.email || 'public',
+          summary: `Blocked at ${access.layer} for ${protocol.matchedProtocolIds?.join(',') || 'protocol'}`,
+        });
+        return res.json(declineEnvelope(access));
       }
     }
 
@@ -233,6 +295,10 @@ proxyRouter.post('/chat', chatLimiter, async (req, res) => {
       systemContent = crisisOverride + '\n\n' + systemContent;
     }
 
+    // Honour a community "do not ventriloquise this object" decision by telling
+    // the model to describe in the third person rather than speak as the object.
+    systemContent = applyVoiceConstraint(systemContent, protocol);
+
     const messages = [
       { role: 'system', content: systemContent },
       ...input.history,
@@ -255,11 +321,35 @@ proxyRouter.post('/chat', chatLimiter, async (req, res) => {
     }
 
     const data = await resp.json();
+
+    // ── Community cultural protocol — POST-inference backstop ───────
+    // Catch restricted knowledge that surfaced in generated text despite the
+    // pre-gate, and replace the whole answer with the community's decline.
+    if (protocol && data.message?.content) {
+      const screen = screenResponse({ protocol, responseText: data.message.content });
+      if (!screen.allowed) {
+        repo.audit({
+          type: 'cultural.protocol.block',
+          actor: req.archai?.user?.email || 'public',
+          summary: `Blocked at ${screen.layer} for ${protocol.matchedProtocolIds?.join(',') || 'protocol'}`,
+        });
+        return res.json(declineEnvelope({
+          ...evaluateAccess({ protocol, prompt: '' }),
+          layer: screen.layer,
+          restrictedTopicMatched: screen.restrictedTopicMatched,
+          declineMessage: screen.responseText,
+        }));
+      }
+    }
+
     res.json({
       ok: true,
       message: data.message,
       model: CHAT_MODEL,
       proxied: true,
+      // Surface who governs this object (CARE: Authority to control) even on
+      // answers that were allowed through, for transparency on the page.
+      culturalProtocol: protocol ? { enforced: true, notice: publicNotice(protocol) } : undefined,
     });
   } catch (e) {
     if (e instanceof z.ZodError) {

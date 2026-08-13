@@ -19,11 +19,17 @@ chatRouter.post('/object', async (req, res) => {
 
   const guard = evaluateHallucinationRisk(objectRecord, input.prompt);
   if (!guard.allowed) {
+    // When the block comes from a source-community protocol, prefer the
+    // community's own decline wording over the generic staff message.
+    const safeReply = guard.protocol?.declineMessage
+      || 'I cannot answer that from the verified record available. Please ask a staff member or curator.';
     return res.status(422).json({
       ok: false,
-      error: 'Hallucination prevention blocked response',
+      error: guard.protocol?.declineMessage
+        ? 'Community cultural protocol blocked response'
+        : 'Hallucination prevention blocked response',
       guard,
-      safeReply: 'I cannot answer that from the verified record available. Please ask a staff member or curator.',
+      safeReply,
     });
   }
 
