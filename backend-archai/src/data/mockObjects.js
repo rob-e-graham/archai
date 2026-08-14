@@ -24,6 +24,8 @@ export const mockObjects = [
     prohibitedStatements: ['Invented artist biography', 'Unsupported claims about emotions of visitors'],
     restrictions: [],
     workflow: { state: 'published', updatedBy: 'curator@famtec.au', updatedAt },
+    verification: { tier: 'institutional_record', verified: true, verifiedBy: 'curator@famtec.au', verifiedAt: updatedAt, method: 'institutional_source', notes: '' },
+    accession: { status: 'accessioned', accessionNumber: 'FAMTEC.2022.0087', cmsTarget: 'collectiveaccess', cmsRecordId: 'ca_1008', accessionedBy: 'curator@famtec.au', accessionedAt: updatedAt, notes: '' },
     updatedAt,
   },
   {
@@ -47,6 +49,8 @@ export const mockObjects = [
     prohibitedStatements: ['Claims of consciousness', 'Unsupported personal memories'],
     restrictions: [],
     workflow: { state: 'published', updatedBy: 'curator@famtec.au', updatedAt },
+    verification: { tier: 'institutional_record', verified: true, verifiedBy: 'curator@famtec.au', verifiedAt: updatedAt, method: 'institutional_source', notes: '' },
+    accession: { status: 'accessioned', accessionNumber: 'FAMTEC.2018.0001', cmsTarget: 'collectiveaccess', cmsRecordId: 'ca_1001', accessionedBy: 'curator@famtec.au', accessionedAt: updatedAt, notes: '' },
     updatedAt,
   },
   {
@@ -70,6 +74,8 @@ export const mockObjects = [
     prohibitedStatements: ['Claims of exact hardware equivalence without testing'],
     restrictions: [],
     workflow: { state: 'review', updatedBy: 'collections@famtec.au', updatedAt },
+    verification: { tier: 'institutional_record', verified: false, verifiedBy: null, verifiedAt: null, method: null, notes: 'Provenance still under curatorial review.' },
+    accession: { status: 'accessioned', accessionNumber: 'FAMTEC.1997.0234', cmsTarget: 'collectiveaccess', cmsRecordId: 'ca_1051', accessionedBy: 'collections@famtec.au', accessionedAt: updatedAt, notes: 'Legacy accession; verification pending.' },
     updatedAt,
   },
   {
@@ -93,6 +99,8 @@ export const mockObjects = [
     prohibitedStatements: ['Attribution to historical broadcasts not documented'],
     restrictions: [],
     workflow: { state: 'approved', updatedBy: 'curator@famtec.au', updatedAt },
+    verification: { tier: 'institutional_record', verified: true, verifiedBy: 'curator@famtec.au', verifiedAt: updatedAt, method: 'institutional_source', notes: '' },
+    accession: { status: 'accessioned', accessionNumber: 'FAMTEC.2019.0051', cmsTarget: 'collectiveaccess', cmsRecordId: 'ca_1019', accessionedBy: 'curator@famtec.au', accessionedAt: updatedAt, notes: '' },
     updatedAt,
   },
   {
@@ -116,6 +124,8 @@ export const mockObjects = [
     prohibitedStatements: ['Claims that the archived capture is the current production system'],
     restrictions: [],
     workflow: { state: 'published', updatedBy: 'curator@famtec.au', updatedAt },
+    verification: { tier: 'institutional_record', verified: true, verifiedBy: 'curator@famtec.au', verifiedAt: updatedAt, method: 'institutional_source', notes: 'Institution-owned capture approved.' },
+    accession: { status: 'not_accessioned', accessionNumber: null, cmsTarget: 'collectiveaccess', cmsRecordId: null, accessionedBy: null, accessionedAt: null, notes: 'Born-digital capture verified and awaiting accession into CollectiveAccess.' },
     updatedAt,
   },
   {
@@ -139,6 +149,8 @@ export const mockObjects = [
     prohibitedStatements: ['Claims that the archived capture is a museum-owned collection record'],
     restrictions: [],
     workflow: { state: 'published', updatedBy: 'curator@famtec.au', updatedAt },
+    verification: { tier: 'institutional_record', verified: true, verifiedBy: 'curator@famtec.au', verifiedAt: updatedAt, method: 'institutional_source', notes: 'Institution-owned capture approved.' },
+    accession: { status: 'not_accessioned', accessionNumber: null, cmsTarget: 'collectiveaccess', cmsRecordId: null, accessionedBy: null, accessionedAt: null, notes: 'Born-digital capture verified and awaiting accession into CollectiveAccess.' },
     updatedAt,
   },
 ];

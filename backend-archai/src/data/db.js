@@ -29,16 +29,29 @@ if (!tableExists) {
       status TEXT NOT NULL DEFAULT 'visible',
       ai_flag TEXT DEFAULT NULL,
       ai_reason TEXT DEFAULT NULL,
+      verified INTEGER NOT NULL DEFAULT 0,
+      verified_by TEXT DEFAULT NULL,
+      verified_at TEXT DEFAULT NULL,
       created_at TEXT NOT NULL DEFAULT (datetime('now')),
       moderated_at TEXT DEFAULT NULL,
       moderated_by TEXT DEFAULT NULL
     );
   `);
-} else {
-  // Migrate: add parent_id if missing
-  const cols = db.prepare("PRAGMA table_info(comments)").all().map(c => c.name);
-  if (!cols.includes('parent_id')) {
-    db.exec('ALTER TABLE comments ADD COLUMN parent_id TEXT DEFAULT NULL');
+}
+
+// Bring pre-existing databases up to the current schema. A community memory can
+// be confirmed by a curator into a verified oral history, so comments carry the
+// same verification line that object records do.
+{
+  const cols = db.prepare('PRAGMA table_info(comments)').all().map((c) => c.name);
+  const migrations = [
+    ['parent_id', "ALTER TABLE comments ADD COLUMN parent_id TEXT DEFAULT NULL"],
+    ['verified', "ALTER TABLE comments ADD COLUMN verified INTEGER NOT NULL DEFAULT 0"],
+    ['verified_by', "ALTER TABLE comments ADD COLUMN verified_by TEXT DEFAULT NULL"],
+    ['verified_at', "ALTER TABLE comments ADD COLUMN verified_at TEXT DEFAULT NULL"],
+  ];
+  for (const [name, ddl] of migrations) {
+    if (!cols.includes(name)) db.exec(ddl);
   }
 }
 

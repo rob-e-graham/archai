@@ -13,8 +13,11 @@ GitHub `main` branch notes and operations guide.
 ### 2. Backend API and proxy
 - `backend-archai/src/server.js` - Express entry point
 - `backend-archai/src/routes/proxy.js` - safe Qdrant/Ollama/curator proxy
-- `backend-archai/src/routes/comments.js` - visitor comment API
+- `backend-archai/src/routes/comments.js` - visitor comment API (+ oral-history verification)
 - `backend-archai/src/services/moderation.js` - AI moderation for comments
+- `backend-archai/src/services/verificationService.js` + `routes/verification.js` - verification tiers (institutional record / verified oral history / community response)
+- `backend-archai/src/services/accessionService.js` + `routes/accession.js` - accession CMS path (verified + approved → CollectiveAccess)
+- `docs/VERIFICATION_AND_ACCESSION.md` - how verification and the accession path work
 - `backend-archai/src/services/curator-vectors.js` - curator vector collection build/search
 - `backend-archai/src/data/db.js` - SQLite persistence layer
 
