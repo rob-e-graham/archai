@@ -1,6 +1,6 @@
 # ARCHAI Roadmap
 
-Last updated: 2026-06-07
+Last updated: 2026-07-11
 
 This roadmap turns the current progress logs, audits, and research notes into a practical build sequence. ARCHAI is the main app and source of truth. The public website is a demo window into that system.
 
@@ -104,6 +104,33 @@ Goal: make the project understandable to GLAM partners, RMIT, funders, and colla
 
 Status: improving.
 
+## Field Signals → Product Language
+
+Goal: turn what the museum field is asking for out loud into how ARCHAI
+describes itself. These are positioning/framing items that sharpen features we
+largely already have, not new engineering milestones.
+
+Prompted by two 2026-07 field signals (see
+`docs/STRATEGY_NOTE_ACCESS_AS_PRODUCT_2026-07-11.md`): the "museums are showing
+what they used to hide / access as a product" conversation, and the "AI gives
+museums a lifeline — with strings attached" data-homogenisation debate.
+
+- Make the **evidence boundary** a visible, demonstrable product feature: what
+  the system knows, what it doesn't, and where it got it — the direct answer to
+  the "AI slop / cultural homogenisation" fear.
+- Frame object detail as **"behind the record"**: the provenance / rights /
+  source-link layer is ARCHAI's equivalent of open storage and the conservation
+  window — value is in showing the working, not hiding it.
+- Carry a **data-sovereignty talking point** into partner/funder decks
+  (RMIT/pre-seed, outreach): position ARCHAI against both extremes surfaced by
+  the IWM/V&A licensing-marketplace story — giving heritage data away for free,
+  or renting it back from a platform.
+- Guardrail: do not pitch ARCHAI as "monetise access with an AI bot." Our
+  contribution is the trustworthy record beneath human access, keeping curators
+  and their labour visible.
+
+Status: captured, feeding positioning and outreach materials.
+
 ## Near-Term Build Queue
 
 1. Main app result browse/search parity with website demo.
@@ -113,3 +140,4 @@ Status: improving.
 5. Whisper/Piper prototype as separate optional path.
 6. Rights audit command before every public demo push.
 7. Generated AUXIO manifest sync for true page editing.
+8. Make the evidence boundary a visible product feature (Field Signals theme).

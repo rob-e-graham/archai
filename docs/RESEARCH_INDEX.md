@@ -15,6 +15,11 @@ The goal is to keep the conceptual, technical, and PhD-facing work easy to find.
 - [APP_FUNCTIONAL_AUDIT_2026-06-03.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/APP_FUNCTIONAL_AUDIT_2026-06-03.md)
   - functional review of the app and major workflow gaps
 
+- [STRATEGY_NOTE_ACCESS_AS_PRODUCT_2026-07-11.md](STRATEGY_NOTE_ACCESS_AS_PRODUCT_2026-07-11.md)
+  - field-signal capture: "access as a product" + "AI with strings attached"
+  - distilled positioning against AI-slop/homogenisation and free data give-away
+  - roadmap items (evidence boundary, "behind the record", data sovereignty) and a public response draft
+
 ## Historical Design
 
 - [HISTORICAL_DESIGN_BRIEF.md](/Users/robgraham/Desktop/APPS/ARCHAI%20APP/docs/historical-design/HISTORICAL_DESIGN_BRIEF.md)
