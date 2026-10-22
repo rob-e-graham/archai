@@ -22,8 +22,13 @@ const PUBLIC_ALLOWLIST = [
   { method: 'POST', pattern: /^\/proxy\/qdrant\/info$/ },
   { method: 'POST', pattern: /^\/proxy\/curator\/converse$/ },
   { method: 'POST', pattern: /^\/proxy\/curator\/search$/ },
+  // Which answer models exist. Public traffic is shown the default only (see proxy.js); /curator/warm stays staff-only.
+  { method: 'GET', pattern: /^\/proxy\/curator\/models$/ },
   { method: 'POST', pattern: /^\/proxy\/chat$/ },
   { method: 'POST', pattern: /^\/proxy\/embed$/ },
+  // ARCHAI Assistant planner: proposes design operations only. Stateless; the browser
+  // validates every operation and a person applies it. No writes anywhere.
+  { method: 'POST', pattern: /^\/proxy\/assistant\/plan$/ },
 
   // AUXIO visitor pages + their public media (read-only)
   { method: 'GET', pattern: /^\/nfc\/tags(\/|$)/ },

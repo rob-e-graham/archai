@@ -33,6 +33,12 @@ Each harvester fetches objects from a museum API, generates embeddings via Ollam
 | `qagoma-harvester.js` | QAGOMA — Queensland Art Gallery \| GOMA | Asia-Pacific contemporary, Aboriginal & Torres Strait Islander, Australian art | ⚠️ Metadata-only (Cloudflare blocks image API) | None | CC BY 4.0 (QLD Open Data) |
 | `rawg-harvester.js` | RAWG Video Games Database | Video games as cultural objects | ✅ per-item (attribution link required) | 🔑 Free (rawg.io) | RAWG ToS — attribution to rawg.io on every display page |
 
+### Institutional connector POCs
+
+| Connector | Source System | Purpose | Write-back | Credentials |
+|-----------|---------------|---------|------------|-------------|
+| `resourcespace-harvester.js` | ResourceSpace DAM | Read approved DAM records into ARCHAI so AUXIO can generate object-level visitor interactives | ❌ Read-only | `RESOURCE_SPACE_URL`, `RESOURCE_SPACE_USER`, `RESOURCE_SPACE_API_KEY` |
+
 **Legal status of new harvesters:**
 
 - **Smithsonian**: CC0 verified at item level via API `usage.access` field. Only CC0-flagged records are harvested. Images and metadata cleared for public display including commercial use. Free key required — register at api.data.gov.
@@ -116,6 +122,17 @@ node qagoma-harvester.js --limit 200            # No key needed (QLD Open Data �
 RAWG_API_KEY=xxx node rawg-harvester.js --limit 200                 # Free key: rawg.io
 SMITHSONIAN_API_KEY=xxx node smithsonian-harvester.js --limit 200   # Free key: api.data.gov
 
+# ResourceSpace → AUXIO POC (read-only; dry-run by default)
+RESOURCE_SPACE_URL=https://my.resourcespace.system \
+RESOURCE_SPACE_USER=admin \
+RESOURCE_SPACE_API_KEY=xxx \
+  node resourcespace-harvester.js --query "museum" --limit 20
+
+RESOURCE_SPACE_URL=https://my.resourcespace.system \
+RESOURCE_SPACE_USER=admin \
+RESOURCE_SPACE_API_KEY=xxx \
+  node resourcespace-harvester.js --query "museum" --limit 20 --apply
+
 # Street art — single source
 node streetart-harvester.js --source vancouver --limit 100
 node streetart-harvester.js --source brussels --limit 100
@@ -192,6 +209,7 @@ node generate-nfc-pages.js --limit 300
 | `archai_streetart` | 16,000,000+ | Street Art (Vancouver · Brussels · NYC · Melbourne · San Francisco · Chicago) |
 | `archai_rawg` | 17,000,000+ | RAWG Video Games Database |
 | `archai_nga` | 13,000,000 + NGA object ID | National Gallery of Art, Washington |
+| `archai_resourcespace` | 18,000,000+ | ResourceSpace connector POC |
 
 > **Note on ID offsets**: The `archai_smithsonian`, `archai_tate`, and `archai_streetart` harvesters were initially documented with conflicting offsets (2M, 3M, 5M — same as older collections). The table above assigns them new non-conflicting offsets in the 14–16M range. Update the harvester `ID_OFFSET` constants if you are re-harvesting from scratch into a fresh Qdrant instance. Existing production data at legacy offsets remains valid until a full re-harvest.
 

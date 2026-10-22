@@ -10,7 +10,10 @@
     "sync:nightly": "node src/pipeline/runNightlySync.js",
     "seed:mock": "node src/pipeline/seedMockData.js",
     "harvest:legal": "node scripts/legal-harvest-bot.js --report",
+    "harvest:resourcespace": "node scripts/resourcespace-harvester.js",
     "test:smoke": "node scripts/smoke-test-runtime.js",
+    "test:unit": "node --test src/services/*.test.js",
+    "test:converse": "node scripts/smoke-converse.mjs",
     "lint:quick": "node -e \"console.log('No linter configured yet')\""
   },
   "keywords": [

@@ -6,7 +6,7 @@ import { createRequire } from 'module';
 import { env } from '../config/env.js';
 import { rateLimit } from '../middleware/rateLimit.js';
 import { buildCuratorCollection, curatorSearch } from '../services/curator-vectors.js';
-import { conversationalSearch } from '../services/conversational-search.js';
+import { conversationalSearch, listConverseModels, warmConverseModel } from '../services/conversational-search.js';
 
 // ── SafeChat — crisis detection for AI chat ───────────────────────
 const require = createRequire(import.meta.url);
@@ -331,8 +331,24 @@ const convoSearchSchema = z.object({
   message: z.string().min(1).max(500),
   history: z.array(z.object({
     role: z.enum(['user', 'assistant']),
-    content: z.string().max(1000),
+    content: z.string().max(8000),
   })).max(10).optional().default([]),
+  web: z.boolean().optional().default(false),
+  model: z.string().max(60).optional(),
+  exclude: z.array(z.object({ registration: z.string().max(120).optional(), title: z.string().max(300).optional() })).max(40).optional(),
+});
+
+proxyRouter.post('/curator/warm', chatLimiter, (req, res) => {
+  const model = typeof req.body?.model === 'string' ? req.body.model.slice(0, 60) : '';
+  warmConverseModel(model); // fire and forget
+  res.json({ ok: true });
+});
+
+proxyRouter.get('/curator/models', async (req, res) => {
+  const list = await listConverseModels();
+  // Public visitors get the default model only: switching the large model in and out of memory would slow every other visitor.
+  if (req.archai?.isPublicDemo) list.models = list.models.filter((m) => m.id === list.default);
+  res.json({ ok: true, ...list });
 });
 
 proxyRouter.post('/curator/converse', chatLimiter, async (req, res) => {
@@ -349,7 +365,7 @@ proxyRouter.post('/curator/converse', chatLimiter, async (req, res) => {
       }
     }
 
-    const result = await conversationalSearch(input.message, input.history);
+    const result = await conversationalSearch(input.message, input.history, { web: input.web, model: req.archai?.isPublicDemo ? undefined : input.model, exclude: input.exclude });
     res.json({ ok: true, ...result });
   } catch (e) {
     if (e instanceof z.ZodError) {
